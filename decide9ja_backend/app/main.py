@@ -460,28 +460,20 @@ async def whatsapp_webhook(request: Request, db: Session = Depends(get_db)):
         from app.services.twilio_whatsapp import hash_phone
         user_hash = hash_phone(phone_from)
         
-        # Initialize V2 Handler dependencies
-        from app.services.message_handler_v2 import IntegratedMessageHandler
-        from app.services import llm
-        from app.services.rag import RAGService
-        
-        rag = RAGService(db)
-        
-        handler = IntegratedMessageHandler(
-            db_session=db,
-            llm_service=llm,
-            rag_service=rag
-        )
+        # Use V3 Handler with proper state management
+        from app.services.message_handler_v3 import handle_message
         
         # Handle incoming voice note
         if media_url and "audio" in media_type:
             logger.info(f"Incoming voice note from {user_hash}")
             from app.services import voice
-            transcribed = await voice.speech_to_text(media_url)
-            if transcribed:
-                message_body = transcribed
-                logger.info(f"Transcribed: {transcribed[:100]}...")
-            else:
+            try:
+                transcribed = await voice.speech_to_text(media_url)
+                if transcribed:
+                    message_body = transcribed
+                    logger.info(f"Transcribed: {transcribed[:100]}...")
+            except Exception as e:
+                logger.error(f"Voice transcription error: {e}")
                 return Response(
                     content="""<?xml version="1.0" encoding="UTF-8"?><Response><Message>Sorry, I couldn't understand that voice note. Please try again.</Message></Response>""",
                     media_type="application/xml"
@@ -493,41 +485,12 @@ async def whatsapp_webhook(request: Request, db: Session = Depends(get_db)):
         # SECURITY: Sanitize
         message_body = sanitize_input(message_body)[:1000]
         
-        # Process message
-        response_text = await handler.handle(user_hash, message_body)
+        # Process message with V3 handler
+        response_text = await handle_message(phone_from, message_body, media_url)
         
-        # Check if user wants voice response
-        state = handler.get_state(user_hash)
-        
-        if state.profile.voice_mode:
-            # Generate voice note response
-            from app.services import voice
-            audio_path = await voice.text_to_speech(response_text[:500])  # Limit for TTS
-            
-            if audio_path:
-                # Get base URL for audio file serving
-                host = request.headers.get("host", "localhost:8000")
-                scheme = "https" if "ngrok" in host else "http"
-                
-                # For now, send text + confirmation (Twilio media requires public URL)
-                # We'll notify user that voice mode is on but serving audio needs public hosting
-                safe_response = escape_xml(response_text[:1500])
-                twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-    <Message>🎤 {safe_response}</Message>
-</Response>"""
-                # Note: Full audio sending requires hosting audio files publicly
-                # Can be done with S3, Cloudinary, or similar
-            else:
-                safe_response = escape_xml(response_text[:1500])
-                twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-    <Message>{safe_response}</Message>
-</Response>"""
-        else:
-            # Regular text response
-            safe_response = escape_xml(response_text[:1500])
-            twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
+        # Regular text response (simplified - voice mode can be added later)
+        safe_response = escape_xml(response_text[:1500])
+        twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Message>{safe_response}</Message>
 </Response>"""

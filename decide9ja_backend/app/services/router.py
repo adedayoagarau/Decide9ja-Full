@@ -1,193 +1,279 @@
 """
-Decide9ja Smart Router
-Handles Intent Classification and Data Retrieval Strategy.
+Intent classification and routing.
+
+PRIORITY ORDER (matters!):
+1. Commands (reset, help)
+2. Greetings
+3. Confirmations (yes/no when in confirming state)
+4. Voter registration
+5. NEWS_QUERY ← BEFORE issue (prevents "issue" keyword confusion)
+6. Followup (pronouns, "more", "what about")
+7. Politician record
+8. Rep lookup
+9. Politician info
+10. Issue report
+11. Fallback
 """
 import re
-from typing import List, Dict, Tuple, Optional
+import logging
 from enum import Enum
+from typing import Tuple, Dict, Optional
+from dataclasses import dataclass
+
+logger = logging.getLogger(__name__)
+
 
 class Intent(Enum):
+    """All possible user intents."""
+    COMMAND = "command"
     GREETING = "greeting"
+    CONFIRMATION = "confirmation"
+    VOTER_REGISTRATION = "voter_registration"
+    NEWS_QUERY = "news_query"
+    FOLLOWUP = "followup"
+    POLITICIAN_RECORD = "politician_record"
     REP_LOOKUP = "rep_lookup"
     POLITICIAN_INFO = "politician_info"
-    POLITICIAN_RECORD = "politician_record"
-    NEWS_QUERY = "news_query"
     ISSUE_REPORT = "issue_report"
-    VOTER_REG = "voter_reg"
-    FOLLOWUP = "followup"
     HELP = "help"
-    RESET = "reset"
-    CONFIRMATION = "confirmation"
+    THANKS = "thanks"
     FALLBACK = "fallback"
 
-class DataStrategy(Enum):
-    RAG_ONLY = "rag"
-    REALTIME_ONLY = "realtime"
-    HYBRID = "hybrid"
-    NO_DATA = "none"
 
-# Constants moved from message_handler
-NIGERIAN_STATES = {
-    "abia", "adamawa", "akwa ibom", "anambra", "bauchi", "bayelsa", "benue",
-    "borno", "cross river", "delta", "ebonyi", "edo", "ekiti", "enugu",
-    "fct", "gombe", "imo", "jigawa", "kaduna", "kano", "katsina", "kebbi",
-    "kogi", "kwara", "lagos", "nasarawa", "niger", "ogun", "ondo", "osun",
-    "oyo", "plateau", "rivers", "sokoto", "taraba", "yobe", "zamfara",
-    "abuja", "federal capital territory"
-}
+@dataclass
+class ClassificationResult:
+    """Result of intent classification."""
+    intent: Intent
+    confidence: float
+    entities: Dict
 
-class Router:
-    def __init__(self):
-        pass
 
-    def classify_intent(self, text: str, context: object = None) -> Tuple[Intent, float, Dict]:
-        """
-        Classify user intent. Returns (intent, confidence, entities).
-        """
-        text_lower = text.lower().strip()
-        entities = {}
-        
-        # === COMMANDS ===
-        if text_lower in ["reset", "start over", "/reset"]:
-            return Intent.RESET, 1.0, entities
-        
-        if text_lower in ["help", "menu", "/help", "what can you do"]:
-            return Intent.HELP, 1.0, entities
-        
-        # === GREETINGS ===
-        if text_lower in ["hi", "hello", "hey", "hi there", "hello there", "start", "/start"] or \
-           text_lower.startswith(("good morning", "good afternoon", "good evening", "hi ", "hello ", "hey ")):
-            return Intent.GREETING, 0.95, entities
-        
-        # === CONFIRMATIONS ===
-        if text_lower in ["yes", "yeah", "yep", "no", "nope", "ok", "okay", "sure", "1", "2", "3"]:
-            entities["is_yes"] = text_lower in ["yes", "yeah", "yep", "ok", "okay", "sure", "1"]
-            return Intent.CONFIRMATION, 0.9, entities
-        
-        # === VOTER REGISTRATION ===
-        if re.search(r"(register|vote|voting|pvc|inec).*(how|where|get)", text_lower) or \
-           re.search(r"(how|where).*(register|vote|pvc)", text_lower):
-            return Intent.VOTER_REG, 0.9, entities
-        
-        # === NEWS QUERY ===
-        news_patterns = [
-            r"update on",
-            r"what.*(happening|going on)",
-            r"(latest|recent|trending|current).*(news|issue|development)",
-            r"news (about|on)",
-            r".*\s+vs\s+.*",
-            r".*(crisis|conflict)\s+(in|between|with)",
-            r"tell me about the .* (issue|situation|crisis)",
-            r"most important.*(policy|issue)",
-            r"what is happening with",
-        ]
-        
-        political_context = ["wike", "makinde", "tinubu", "obi", "atiku", "pdp", "apc", 
-                            "lp", "nnpp", "senate", "house", "governor", "minister", "power", "grid"]
-        
-        if any(re.search(p, text_lower) for p in news_patterns):
-            return Intent.NEWS_QUERY, 0.85, entities
-        
-        if "issue" in text_lower and any(ctx in text_lower for ctx in political_context):
-            return Intent.NEWS_QUERY, 0.8, entities
-        
-        # === FOLLOWUP ===
-        followup_indicators = [
-            r"^what (has|have|did|does) (he|she|they)",
-            r"^(his|her|their) (record|bills|policies|achievements)",
-            r"^(the|that) (honorable|senator|governor|rep|minister)",
-            r"^tell me more",
-            r"^more (about|on|details)",
-            r"^what about (him|her|them)",
-        ]
-        
-        if any(re.match(p, text_lower) for p in followup_indicators):
-            return Intent.FOLLOWUP, 0.85, entities
-        
-        # Short message with pronouns
-        if context and getattr(context, 'politician', None) and not context.is_stale():
-            pronouns = ["he", "him", "his", "she", "her", "they", "them", "their"]
-            if len(text_lower.split()) <= 6 and any(p in text_lower.split() for p in pronouns):
-                entities["resolved_politician"] = context.politician
-                return Intent.FOLLOWUP, 0.8, entities
-        
-        # === POLITICIAN RECORD ===
-        record_patterns = [
-            r"what (has|have|did) (.+?) done",
-            r"(.+?)('s|s') (record|achievements|bills|projects)",
-            r"(achievements|projects|bills) (of|by) (.+)",
-        ]
-        
-        for pattern in record_patterns:
-            match = re.search(pattern, text_lower)
-            if match:
-                groups = match.groups()
-                for g in groups:
-                    if g and g not in ["has", "have", "did", "'s", "s'", "of", "by", 
-                                       "record", "achievements", "bills", "projects"]:
-                        entities["politician_query"] = g.strip()
-                        break
-                return Intent.POLITICIAN_RECORD, 0.85, entities
-        
-        # === REPRESENTATIVE LOOKUP ===
-        if re.search(r"(who|find|show).*(my|our).*(rep|representative|senator|governor)", text_lower) or \
-           re.search(r"(my|our) (rep|representative|senator|governor)", text_lower) or \
-           re.search(r"who represents (me|us|my area)", text_lower):
-            return Intent.REP_LOOKUP, 0.9, entities
-        
-        # === POLITICIAN INFO ===
-        info_patterns = [
-            r"who is (.+)",
-            r"tell me about (.+)",
-            r"(governor|senator|president|minister) of (.+)",
-        ]
-        
-        for pattern in info_patterns:
-            match = re.search(pattern, text_lower)
-            if match:
-                entities["politician_query"] = match.group(1).strip()
-                return Intent.POLITICIAN_INFO, 0.8, entities
-        
-        # === ISSUE REPORT ===
-        issue_patterns = [
-            r"(report|document).*(issue|problem|pothole|flood|damage)",
-            r"(bad|broken|damaged) (road|bridge|light|pipe)",
-            r"(no|lack of) (light|power|water|electricity)",
-            r"(pothole|flood|erosion|leak)",
-            r"there('s| is) (a|an) (problem|issue|crater)",
-        ]
-        
-        if any(re.search(p, text_lower) for p in issue_patterns):
-            return Intent.ISSUE_REPORT, 0.85, entities
-        
-        # === FALLBACK ===
-        return Intent.FALLBACK, 0.3, entities
+# Pattern definitions with priority (higher = checked first)
+PATTERNS = [
+    # 1. COMMANDS - highest priority
+    {
+        "intent": Intent.COMMAND,
+        "patterns": [
+            r"^(reset|restart|start over|menu|cancel|stop)$",
+        ],
+        "priority": 100,
+    },
+    
+    # 2. HELP
+    {
+        "intent": Intent.HELP,
+        "patterns": [
+            r"^(help|options|what can you do|how do you work)(\?)?$",
+        ],
+        "priority": 98,
+    },
+    
+    # 3. THANKS
+    {
+        "intent": Intent.THANKS,
+        "patterns": [
+            r"^(thanks|thank you|thank u|ty|cheers|appreciated)(\s|!|\.)?",
+        ],
+        "priority": 96,
+    },
+    
+    # 4. GREETINGS
+    {
+        "intent": Intent.GREETING,
+        "patterns": [
+            r"^(hi|hello|hey|good\s*(morning|afternoon|evening)|greetings|howdy|yo|sup|what'?s\s*up)(\s|!|\?|$)",
+        ],
+        "priority": 95,
+    },
+    
+    # 5. CONFIRMATIONS
+    {
+        "intent": Intent.CONFIRMATION,
+        "patterns": [
+            r"^(yes|yeah|yep|yup|sure|ok|okay|no|nope|nah|y|n|1|2|correct|confirm|wrong)(\s|!|\?|$)",
+        ],
+        "priority": 90,
+    },
+    
+    # 6. VOTER REGISTRATION
+    {
+        "intent": Intent.VOTER_REGISTRATION,
+        "patterns": [
+            r"\b(register|registration|vote|voter|pvc|inec|polling)\b.*\b(vote|how|where|get)\b",
+            r"\b(how|where|can)\b.*(register|vote|pvc|polling)",
+            r"\b(pvc|voter'?s?\s*card)\b",
+            r"\bget\s+(my\s+)?pvc\b",
+        ],
+        "priority": 85,
+    },
+    
+    # 7. NEWS QUERY - BEFORE issue report
+    {
+        "intent": Intent.NEWS_QUERY,
+        "patterns": [
+            r"\b(news|update|latest|recent|happening|trending|current)\b",
+            r"\bwhat'?s\s*(happening|going\s*on|the\s*(latest|news|update))\b",
+            r"\b(today|yesterday|this\s*week)\b.*\b(news|happen|said|announce)\b",
+            r"\bissue\b.*\b(wike|makinde|tinubu|obi|atiku|sanwo)\b",  # "issue" with politician = news
+            r"\b(wike|makinde|tinubu|obi|atiku|sanwo)\b.*\bissue\b",  # politician + "issue" = news
+            r"\b(tax|bill|budget|policy|law|naira|dollar|fuel|subsidy)\b",
+        ],
+        "priority": 80,
+    },
+    
+    # 8. FOLLOWUP
+    {
+        "intent": Intent.FOLLOWUP,
+        "patterns": [
+            r"^(what\s*about|how\s*about|and|also)\s",
+            r"^(more|continue|go\s*on|tell\s*me\s*more)",
+            r"^(his|her|their|the)\s+(bills?|record|projects?|votes?|achievement)",
+            r"^(yes|yeah|sure),?\s*(tell\s*me|more|what)",
+            r"\bwhat\s+(has|have|did)\s+(he|she|they)\b",
+        ],
+        "priority": 75,
+    },
+    
+    # 9. POLITICIAN RECORD
+    {
+        "intent": Intent.POLITICIAN_RECORD,
+        "patterns": [
+            r"\b(done|achieved|accomplish|record|bills?|projects?|performance)\b",
+            r"\b(what|how)\s*(has|have|did)\s+\w+\s+(done|achieved|accomplish)",
+            r"\btrack\s*record\b",
+            r"\bsponsor(ed)?\s+(bills?|motion)",
+        ],
+        "priority": 70,
+    },
+    
+    # 10. REP LOOKUP
+    {
+        "intent": Intent.REP_LOOKUP,
+        "patterns": [
+            r"\b(my|our)\s+(senator|representative|rep|governor|councillor|chairman)",
+            r"\bwho\s+(is|are)\s+(my|our)\b",
+            r"\brepresent(s|ing|ative)?\s+(me|us|my)\b",
+            r"\bmy\s+(lga|state|constituency)\s+(rep|representative|senator)",
+        ],
+        "priority": 65,
+    },
+    
+    # 11. POLITICIAN INFO
+    {
+        "intent": Intent.POLITICIAN_INFO,
+        "patterns": [
+            r"\bwho\s+is\s+(?!my|our)\w+",  # "who is X" but not "who is my"
+            r"\btell\s+me\s+about\s+\w+",
+            r"\b(governor|senator|president|minister)\s+of\s+\w+",
+            r"\b(tinubu|atiku|obi|makinde|sanwo|wike|fubara|shettima)\b",  # Common politician names
+        ],
+        "priority": 60,
+    },
+    
+    # 12. ISSUE REPORT - lower priority
+    {
+        "intent": Intent.ISSUE_REPORT,
+        "patterns": [
+            r"\breport\s+(a\s+)?(bad\s+road|pothole|issue|problem)",
+            r"\b(bad|damaged|broken)\s+(road|bridge|drain|pipe)",
+            r"\b(no|lack\s+of)\s+(water|electricity|light|power)",
+            r"\bi\s+want\s+to\s+report\b",
+            r"\bproblem\s+(with|in)\s+(my|our|the)\s+(area|street|community)",
+        ],
+        "priority": 50,
+    },
+]
 
-    def decide_data_strategy(self, intent: Intent, text: str) -> DataStrategy:
-        """
-        Decide whether to use RAG, Realtime, or Hybrid based on intent and query.
-        """
-        if intent == Intent.NEWS_QUERY:
-            return DataStrategy.HYBRID
-            
-        if intent in [Intent.POLITICIAN_INFO, Intent.POLITICIAN_RECORD]:
-            # If query asks for "latest" or "current", verify with realtime
-            if any(w in text.lower() for w in ["latest", "current", "news", "today", "now"]):
-                return DataStrategy.HYBRID
-            return DataStrategy.RAG_ONLY
-            
-        if intent == Intent.REP_LOOKUP:
-            return DataStrategy.RAG_ONLY
-            
-        if intent == Intent.FALLBACK:
-            # Check for realtime keywords
-            rt_keywords = ["news", "latest", "price", "cost", "happening", "breaking"]
-            if any(k in text.lower() for k in rt_keywords):
-                return DataStrategy.REALTIME_ONLY
-            # Check if likely general knowledge -> RAG
-            return DataStrategy.RAG_ONLY
-            
-        return DataStrategy.NO_DATA
 
-# Singleton
-router = Router()
+def classify_intent(text: str, state=None) -> Tuple[Intent, float, Dict]:
+    """
+    Classify user intent based on message text and conversation state.
+    
+    Args:
+        text: User's message
+        state: Optional UserState for context-aware classification
+    
+    Returns:
+        Tuple of (Intent, confidence, extracted_entities)
+    """
+    text_lower = text.lower().strip()
+    entities = {}
+    
+    # Sort patterns by priority (descending)
+    sorted_patterns = sorted(PATTERNS, key=lambda x: x["priority"], reverse=True)
+    
+    # Check each pattern in priority order
+    for pattern_group in sorted_patterns:
+        for pattern in pattern_group["patterns"]:
+            if re.search(pattern, text_lower, re.IGNORECASE):
+                intent = pattern_group["intent"]
+                
+                # Extract entities based on intent
+                if intent == Intent.POLITICIAN_INFO:
+                    entities["politician_query"] = extract_politician_query(text)
+                elif intent == Intent.NEWS_QUERY:
+                    entities["news_query"] = text
+                elif intent == Intent.ISSUE_REPORT:
+                    entities["issue_type"] = extract_issue_type(text)
+                
+                confidence = min(0.95, pattern_group["priority"] / 100)
+                logger.debug(f"Classified '{text[:50]}...' as {intent.value} (conf={confidence})")
+                return intent, confidence, entities
+    
+    # Fallback
+    logger.debug(f"No pattern matched for '{text[:50]}...', using FALLBACK")
+    return Intent.FALLBACK, 0.3, {}
+
+
+def extract_politician_query(text: str) -> str:
+    """Extract politician name or position from query."""
+    # Remove common prefixes
+    prefixes = ["who is", "tell me about", "what about", "info on", "information on", "about"]
+    text_lower = text.lower()
+    
+    for prefix in prefixes:
+        if text_lower.startswith(prefix):
+            return text[len(prefix):].strip()
+    
+    return text
+
+
+def extract_issue_type(text: str) -> Optional[str]:
+    """Extract issue category from text."""
+    issue_keywords = {
+        "road": "road_damage",
+        "pothole": "road_damage",
+        "bridge": "infrastructure",
+        "drain": "drainage",
+        "drainage": "drainage",
+        "flood": "drainage",
+        "water": "water_supply",
+        "electricity": "electricity",
+        "light": "electricity",
+        "power": "electricity",
+        "nepa": "electricity",
+        "waste": "sanitation",
+        "garbage": "sanitation",
+        "refuse": "sanitation",
+        "security": "security",
+        "crime": "security",
+        "robbery": "security",
+    }
+    
+    text_lower = text.lower()
+    for keyword, category in issue_keywords.items():
+        if keyword in text_lower:
+            return category
+    
+    return "general"
+
+
+def is_greeting(text: str) -> bool:
+    """Check if text is a greeting."""
+    greetings = {
+        "hi", "hello", "hey", "good morning", "good afternoon", 
+        "good evening", "greetings", "sup", "whatsup", "what's up",
+        "howdy", "hiya", "yo", "hola"
+    }
+    text_lower = text.lower().strip()
+    return text_lower in greetings or any(text_lower.startswith(g) for g in greetings)
