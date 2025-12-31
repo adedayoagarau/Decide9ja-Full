@@ -40,6 +40,16 @@ class Intent(Enum):
     FALLBACK = "fallback"
 
 
+# Backward compatibility for message_handler_v2
+class DataStrategy(Enum):
+    """Data retrieval strategy (backward compat)."""
+    RAG_ONLY = "rag_only"
+    RAG_PLUS_REALTIME = "rag_plus_realtime"
+    REALTIME_ONLY = "realtime_only"
+    DATABASE_LOOKUP = "database_lookup"
+    NO_DATA = "no_data"
+
+
 @dataclass
 class ClassificationResult:
     """Result of intent classification."""
@@ -277,3 +287,41 @@ def is_greeting(text: str) -> bool:
     }
     text_lower = text.lower().strip()
     return text_lower in greetings or any(text_lower.startswith(g) for g in greetings)
+
+
+# ==========================================
+# BACKWARD COMPATIBILITY LAYER
+# ==========================================
+
+class Router:
+    """
+    Router class for backward compatibility with message_handler_v2.
+    Wraps the functional classify_intent and adds decide_data_strategy.
+    """
+    
+    def classify_intent(self, text: str, context=None) -> Tuple[Intent, float, Dict]:
+        """Classify user intent."""
+        return classify_intent(text, context)
+    
+    def decide_data_strategy(self, intent: Intent, text: str = "") -> DataStrategy:
+        """Decide which data strategy to use for this intent."""
+        strategy_map = {
+            Intent.GREETING: DataStrategy.NO_DATA,
+            Intent.HELP: DataStrategy.NO_DATA,
+            Intent.THANKS: DataStrategy.NO_DATA,
+            Intent.COMMAND: DataStrategy.NO_DATA,
+            Intent.CONFIRMATION: DataStrategy.NO_DATA,
+            Intent.REP_LOOKUP: DataStrategy.DATABASE_LOOKUP,
+            Intent.POLITICIAN_INFO: DataStrategy.RAG_ONLY,
+            Intent.POLITICIAN_RECORD: DataStrategy.RAG_ONLY,
+            Intent.NEWS_QUERY: DataStrategy.RAG_PLUS_REALTIME,
+            Intent.VOTER_REGISTRATION: DataStrategy.NO_DATA,
+            Intent.ISSUE_REPORT: DataStrategy.NO_DATA,
+            Intent.FOLLOWUP: DataStrategy.RAG_ONLY,
+            Intent.FALLBACK: DataStrategy.RAG_PLUS_REALTIME,
+        }
+        return strategy_map.get(intent, DataStrategy.RAG_PLUS_REALTIME)
+
+
+# Singleton for backward compatibility
+router = Router()
