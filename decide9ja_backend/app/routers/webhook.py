@@ -107,7 +107,6 @@ async def receive_message(request: Request, background_tasks: BackgroundTasks):
                             continue
                             
                 except Exception as e:
-                except Exception as e:
                     logger.error(f"Security check error: {e}")
                 
                 # Check user-level restrictions (Prompt Guard / User Rate Limit)
