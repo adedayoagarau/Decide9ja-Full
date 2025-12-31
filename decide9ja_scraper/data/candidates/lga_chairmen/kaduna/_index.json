@@ -1,0 +1,158 @@
+{
+    "state": "Kaduna",
+    "total_lgas": 23,
+    "last_lga_election": "2024-10-19",
+    "next_election_due": "2027",
+    "current_term_status": "Active",
+    "siec_name": "KADSIECOM",
+    "party_sweep": "APC",
+    "data_completeness": "100%",
+    "chairmen": [
+        {
+            "lga": "Birnin Gwari",
+            "name": "Salisu Isah",
+            "party": "APC",
+            "file": "birnin_gwari.json"
+        },
+        {
+            "lga": "Chikun",
+            "name": "Salasi Nuhu Musa",
+            "party": "APC",
+            "file": "chikun.json"
+        },
+        {
+            "lga": "Giwa",
+            "name": "Ahmad Sama'ila",
+            "party": "APC",
+            "file": "giwa.json"
+        },
+        {
+            "lga": "Igabi",
+            "name": "Sani Abdul",
+            "party": "APC",
+            "file": "igabi.json"
+        },
+        {
+            "lga": "Ikara",
+            "name": "Bashir Mamman Dogon-Koli",
+            "party": "APC",
+            "file": "ikara.json"
+        },
+        {
+            "lga": "Jaba",
+            "name": "Larai Sylvia Ishaku",
+            "party": "APC",
+            "file": "jaba.json"
+        },
+        {
+            "lga": "Jema'a",
+            "name": "Peter Tanko Dogara",
+            "party": "APC",
+            "file": "jemaa.json"
+        },
+        {
+            "lga": "Kachia",
+            "name": "Manzo Daniel Maigari",
+            "party": "APC",
+            "file": "kachia.json"
+        },
+        {
+            "lga": "Kaduna North",
+            "name": "Muhammad Gambo",
+            "party": "APC",
+            "file": "kaduna_north.json"
+        },
+        {
+            "lga": "Kaduna South",
+            "name": "Rayyan Hussain",
+            "party": "APC",
+            "file": "kaduna_south.json"
+        },
+        {
+            "lga": "Kagarko",
+            "name": "Muhuyiddeen Abdullahi Umar",
+            "party": "APC",
+            "file": "kagarko.json"
+        },
+        {
+            "lga": "Kajuru",
+            "name": "Dauda Madaki",
+            "party": "APC",
+            "file": "kajuru.json"
+        },
+        {
+            "lga": "Kaura",
+            "name": "Sankyai Obadiah Sanko",
+            "party": "APC",
+            "file": "kaura.json"
+        },
+        {
+            "lga": "Kauru",
+            "name": "Bashir Yanko Dawaki",
+            "party": "APC",
+            "file": "kauru.json"
+        },
+        {
+            "lga": "Kubau",
+            "name": "Musa Saleh",
+            "party": "APC",
+            "file": "kubau.json"
+        },
+        {
+            "lga": "Kudan",
+            "name": "Dauda Iliya Hunkuyi",
+            "party": "APC",
+            "file": "kudan.json"
+        },
+        {
+            "lga": "Lere",
+            "name": "Jafaru Ahmed",
+            "party": "APC",
+            "file": "lere.json"
+        },
+        {
+            "lga": "Makarfi",
+            "name": "Muhammad Garba Sabon Gari",
+            "party": "APC",
+            "file": "makarfi.json"
+        },
+        {
+            "lga": "Sabon Gari",
+            "name": "Muhammad Abubakar",
+            "party": "APC",
+            "file": "sabon_gari.json"
+        },
+        {
+            "lga": "Sanga",
+            "name": "Anto Usman",
+            "party": "APC",
+            "file": "sanga.json"
+        },
+        {
+            "lga": "Soba",
+            "name": "Muhammad Lawal Shehu",
+            "party": "APC",
+            "file": "soba.json"
+        },
+        {
+            "lga": "Zangon Kataf",
+            "name": "Bege Gaiya Joseph",
+            "party": "APC",
+            "file": "zangon_kataf.json"
+        },
+        {
+            "lga": "Zaria",
+            "name": "Jamil Ahmad Muhammad",
+            "party": "APC",
+            "file": "zaria.json"
+        }
+    ],
+    "sources": [
+        "naijadetails.com",
+        "nigerianleaders.com",
+        "historyrep.com",
+        "Guardian",
+        "Punch"
+    ],
+    "last_updated": "2025-12-28T00:00:00Z"
+}

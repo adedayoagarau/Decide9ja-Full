@@ -1,0 +1,189 @@
+{
+    "state": "Nasarawa",
+    "assembly_name": "Nasarawa State House of Assembly",
+    "assembly_term": "7th Assembly",
+    "inauguration_date": "2023-06-13",
+    "total_members": 24,
+    "party_breakdown": {
+        "APC": 11,
+        "PDP": 8,
+        "SDP": 2,
+        "NNPP": 2,
+        "Inconclusive": 1
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Hon. Danladi Jatau",
+            "party": "APC",
+            "constituency": "Kokona East",
+            "notes": "Elected November 2023 after previous Speaker was sacked"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Mohammed Oyanki",
+            "party": "PDP",
+            "constituency": "Doma South"
+        },
+        "Previous_Speaker": {
+            "name": "Hon. Ibrahim Balarabe Abdullahi",
+            "party": "APC",
+            "notes": "Sacked by Appeal Court November 2023"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Akwanga North",
+            "name": "Hon. Nehemiah Dandaura",
+            "party": "APC",
+            "file": "akwanga_north.json"
+        },
+        {
+            "constituency": "Akwanga South",
+            "name": "Hon. Aliyu Chunbaya",
+            "party": "PDP",
+            "file": "akwanga_south.json"
+        },
+        {
+            "constituency": "Doma North",
+            "name": "Hon. Muhammed Onyanki",
+            "party": "PDP",
+            "role": "Deputy Speaker",
+            "file": "doma_north.json"
+        },
+        {
+            "constituency": "Doma South",
+            "name": "Hon. Musa Abubakar Ibrahim",
+            "party": "NNPP",
+            "file": "doma_south.json"
+        },
+        {
+            "constituency": "Karu/Gitata",
+            "name": "Hon. John Dizaho",
+            "party": "PDP",
+            "file": "karu_gitata.json"
+        },
+        {
+            "constituency": "Keana",
+            "name": "Hon. Muhammad Omadefu",
+            "party": "APC",
+            "file": "keana.json"
+        },
+        {
+            "constituency": "Keffi East",
+            "name": "Hon. John Ovey",
+            "party": "PDP",
+            "file": "keffi_east.json"
+        },
+        {
+            "constituency": "Keffi West",
+            "name": "Hon. Ibrahim Nana",
+            "party": "APC",
+            "file": "keffi_west.json"
+        },
+        {
+            "constituency": "Kokona East",
+            "name": "Hon. Danladi Jatau",
+            "party": "APC",
+            "role": "Speaker",
+            "file": "kokona_east.json"
+        },
+        {
+            "constituency": "Kokona West",
+            "name": "Hon. Daniel Ogazi",
+            "party": "APC",
+            "file": "kokona_west.json"
+        },
+        {
+            "constituency": "Lafia Central",
+            "name": "Hon. Ibrahim Abdullahi",
+            "party": "APC",
+            "file": "lafia_central.json"
+        },
+        {
+            "constituency": "Lafia North",
+            "name": "Hon. Esson Mairiga",
+            "party": "PDP",
+            "file": "lafia_north.json"
+        },
+        {
+            "constituency": "Lafia South",
+            "name": "Hon. Ahmed Suleiman",
+            "party": "APC",
+            "file": "lafia_south.json"
+        },
+        {
+            "constituency": "Nasarawa Central",
+            "name": "Hon. Hajara Danyaro",
+            "party": "APC",
+            "file": "nasarawa_central.json"
+        },
+        {
+            "constituency": "Nasarawa Eggon West",
+            "name": "Hon. Abel Bala",
+            "party": "PDP",
+            "file": "nasarawa_eggon_west.json"
+        },
+        {
+            "constituency": "Nasarawa Eggon East",
+            "name": "Hon. Musa Ahmed",
+            "party": "APC",
+            "file": "nasarawa_eggon_east.json"
+        },
+        {
+            "constituency": "Obi 1",
+            "name": "Hon. Ibrahim Akwe",
+            "party": "PDP",
+            "file": "obi_1.json"
+        },
+        {
+            "constituency": "Obi 2",
+            "name": "Hon. Luka Zhekaba",
+            "party": "PDP",
+            "file": "obi_2.json"
+        },
+        {
+            "constituency": "Toto/Gadabuke",
+            "name": "Hon. Muhammed Isimbabi Garba",
+            "party": "NNPP",
+            "file": "toto_gadabuke.json"
+        },
+        {
+            "constituency": "Udege/Loko",
+            "name": "Hon. Adamu Kaika",
+            "party": "SDP",
+            "file": "udege_loko.json"
+        },
+        {
+            "constituency": "Uke/Karshi",
+            "name": "Hon. Musa Saidu Gude",
+            "party": "SDP",
+            "file": "uke_karshi.json"
+        },
+        {
+            "constituency": "Wamba North",
+            "name": "Hon. Suleiman Mohammed",
+            "party": "APC",
+            "file": "wamba_north.json"
+        },
+        {
+            "constituency": "Wamba South",
+            "name": "Hon. Haruna Danladi",
+            "party": "APC",
+            "file": "wamba_south.json"
+        },
+        {
+            "constituency": "Awe",
+            "name": "Hon. Muhammed Bello",
+            "party": "APC",
+            "file": "awe.json"
+        }
+    ],
+    "data_status": "COMPLETE",
+    "sources": [
+        "Pulse",
+        "VON",
+        "Vanguard",
+        "Guardian",
+        "Punch"
+    ],
+    "last_updated": "2025-12-27T23:45:00Z"
+}

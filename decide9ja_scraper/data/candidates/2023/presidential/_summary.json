@@ -1,0 +1,89 @@
+{
+    "database_summary": {
+        "election_year": 2023,
+        "position": "Presidential",
+        "total_candidates": 18,
+        "profiles_created": 18,
+        "coverage_percentage": 100
+    },
+    "data_quality": {
+        "high_quality_profiles": 4,
+        "medium_quality_profiles": 8,
+        "low_quality_profiles": 6,
+        "average_quality_score": 0.52,
+        "notes": "Top 4 candidates have comprehensive profiles with sourced policy quotes. Minor party candidates have basic biographical and election data."
+    },
+    "content_coverage": {
+        "candidates_with_full_bio": 12,
+        "candidates_with_education_details": 10,
+        "candidates_with_policy_positions": 10,
+        "candidates_with_track_record": 8,
+        "candidates_with_controversies": 6,
+        "candidates_with_social_media": 6
+    },
+    "election_statistics": {
+        "total_registered_voters": 93469008,
+        "total_votes_cast": 24772892,
+        "valid_votes": 23689010,
+        "rejected_votes": 1083882,
+        "turnout_percentage": 26.72,
+        "winner_votes": 8794726,
+        "winner_percentage": 36.61,
+        "top_4_vote_share_percentage": 98.56
+    },
+    "party_breakdown": {
+        "APC": {
+            "candidates": 1,
+            "votes": 8794726,
+            "won": true
+        },
+        "PDP": {
+            "candidates": 1,
+            "votes": 6984520,
+            "won": false
+        },
+        "LP": {
+            "candidates": 1,
+            "votes": 6101533,
+            "won": false
+        },
+        "NNPP": {
+            "candidates": 1,
+            "votes": 1496687,
+            "won": false
+        },
+        "others": {
+            "candidates": 14,
+            "votes": 311544,
+            "won": false
+        }
+    },
+    "sources_used": {
+        "primary_sources": [
+            "INEC Nigeria (inecnigeria.org)",
+            "Premium Times (premiumtimesng.com)",
+            "The Cable (thecable.ng)",
+            "BudgIT (yourbudgit.com)"
+        ],
+        "secondary_sources": [
+            "Wikipedia",
+            "Al Jazeera",
+            "BusinessDay",
+            "Guardian Nigeria",
+            "Punch",
+            "Vanguard",
+            "ThisDay",
+            "Channels TV",
+            "erad.ng"
+        ],
+        "total_unique_sources": 25
+    },
+    "known_limitations": [
+        "Minor party candidates have limited publicly available information",
+        "Some policy positions lack direct verbatim quotes",
+        "Historical career details incomplete for some candidates",
+        "Social media handles not verified for all candidates"
+    ],
+    "generated_at": "2025-12-27T19:00:00Z",
+    "generated_by": "Antigravity Agent"
+}

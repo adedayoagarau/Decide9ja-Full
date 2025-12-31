@@ -1,0 +1,43 @@
+{
+  "id": "oke_oluwole",
+  "slug": "oluwole-busayo-oke",
+  "state": "Osun",
+  "federal_constituency": "Obokun/Oriade",
+  "name": {
+    "full": "Oluwole Busayo Oke",
+    "common": "Oluwole Busayo Oke",
+    "aliases": []
+  },
+  "party": "PDP",
+  "personal": {
+    "date_of_birth": null,
+    "state_of_origin": "Osun",
+    "lga_of_origin": null,
+    "religion": null,
+    "education": []
+  },
+  "political_career": {
+    "positions_held": [
+      {
+        "position": "Member, House of Representatives",
+        "constituency": "Obokun/Oriade Federal Constituency",
+        "period": "2023-present"
+      }
+    ]
+  },
+  "house_info": {
+    "committee_memberships": [],
+    "bills_sponsored": [],
+    "motions": [],
+    "legislative_focus": []
+  },
+  "social_media": {
+    "twitter": null,
+    "facebook": null,
+    "website": null
+  },
+  "metadata": {
+    "data_quality_score": 0.45,
+    "last_updated": "2025-12-27T21:35:00Z"
+  }
+}

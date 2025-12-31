@@ -1,0 +1,135 @@
+{
+    "id": "umeadi_peter_nnanna",
+    "slug": "peter-umeadi",
+    "name": {
+        "full": "Peter Nnanna Umeadi",
+        "common": "Peter Umeadi",
+        "aliases": []
+    },
+    "personal": {
+        "date_of_birth": null,
+        "state_of_origin": "Anambra",
+        "lga_of_origin": "Anaocha",
+        "religion": null,
+        "ethnicity": "Igbo",
+        "education": [
+            {
+                "institution": "University of Nigeria",
+                "degree": "Law Degree",
+                "year": null
+            },
+            {
+                "institution": "Academic career",
+                "degree": "Professor of Law",
+                "year": null,
+                "source": "https://www.premiumtimesng.com"
+            }
+        ],
+        "career_before_politics": [
+            {
+                "role": "Professor of Law",
+                "organization": "University of Nigeria",
+                "period": "Academic career",
+                "notes": "Legal scholar"
+            },
+            {
+                "role": "Chief Judge",
+                "organization": "Anambra State Judiciary",
+                "period": "Until March 2019",
+                "notes": "Retired from judiciary before entering politics"
+            }
+        ],
+        "family": {
+            "spouse": null,
+            "children": null,
+            "notes": null
+        }
+    },
+    "political_career": {
+        "party_history": [
+            {
+                "party": "APGA",
+                "full_name": "All Progressives Grand Alliance",
+                "joined": 2019,
+                "left": null
+            }
+        ],
+        "positions_held": [
+            {
+                "position": "Chief Judge",
+                "constituency": "Anambra State",
+                "period": "Until 2019",
+                "notes": "Retired before entering politics"
+            }
+        ],
+        "election_history": [
+            {
+                "year": 2023,
+                "position": "President",
+                "party": "APGA",
+                "votes": 55066,
+                "result": "Lost",
+                "notes": "Emerged unopposed as APGA candidate",
+                "source": "https://www.premiumtimesng.com"
+            }
+        ]
+    },
+    "policy_positions": [
+        {
+            "issue_area": "Governance",
+            "sub_issues": [
+                "Rule of Law",
+                "Due Process"
+            ],
+            "stance_summary": "Focus on rule of law, separation of powers, and due process",
+            "quotes": [],
+            "notes": "Background as Chief Judge and legal scholar"
+        },
+        {
+            "issue_area": "Federalism",
+            "sub_issues": [
+                "Regional Balance",
+                "South-East Representation"
+            ],
+            "stance_summary": "Advocated for president from South-Eastern region",
+            "quotes": [],
+            "notes": "Emphasized Igbo investment in Nigeria"
+        }
+    ],
+    "track_record": {
+        "achievements": [
+            {
+                "achievement": "Chief Judge of Anambra State",
+                "period": "Until 2019",
+                "evidence": "Highest judicial office in state",
+                "source": "https://www.premiumtimesng.com"
+            },
+            {
+                "achievement": "Professor of Law",
+                "period": "Academic career",
+                "evidence": "University of Nigeria",
+                "source": "https://www.premiumtimesng.com"
+            }
+        ],
+        "failures": [],
+        "promises_vs_delivery": []
+    },
+    "controversies": [],
+    "social_media": {
+        "twitter": null,
+        "facebook": null,
+        "instagram": null,
+        "website": null,
+        "verified": false
+    },
+    "metadata": {
+        "data_quality_score": 0.55,
+        "last_updated": "2025-12-27T19:00:00Z",
+        "sources_count": 5,
+        "reviewed_by": "Antigravity Agent",
+        "notes": "Former Chief Judge and Professor of Law. First-time political candidate. Limited campaign visibility compared to major candidates.",
+        "election_year": 2023,
+        "position_contested": "Presidential",
+        "result": "Lost"
+    }
+}

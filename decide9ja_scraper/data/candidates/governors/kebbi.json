@@ -1,0 +1,81 @@
+{
+    "id": "idris_nasir",
+    "slug": "nasir-idris",
+    "state": "Kebbi",
+    "name": {
+        "full": "Nasir Idris",
+        "common": "Nasir Idris",
+        "aliases": []
+    },
+    "personal": {
+        "date_of_birth": null,
+        "state_of_origin": "Kebbi",
+        "lga_of_origin": "Argungu",
+        "religion": "Muslim",
+        "ethnicity": "Hausa",
+        "education": [],
+        "career_before_politics": [],
+        "family": {
+            "spouse": null,
+            "children": null,
+            "notes": null
+        }
+    },
+    "political_career": {
+        "party_history": [
+            {
+                "party": "APC",
+                "full_name": "All Progressives Congress",
+                "joined": null,
+                "left": null
+            }
+        ],
+        "positions_held": [
+            {
+                "position": "Senator",
+                "constituency": "Kebbi Central",
+                "period": "2019-2023"
+            },
+            {
+                "position": "Governor",
+                "constituency": "Kebbi State",
+                "period": "2023-present"
+            }
+        ],
+        "election_history": [
+            {
+                "year": 2023,
+                "position": "Governor",
+                "party": "APC",
+                "result": "Won"
+            }
+        ]
+    },
+    "term_info": {
+        "current_term": "1st term",
+        "term_start": "2023-05-29",
+        "term_end": "2027-05-29",
+        "first_elected": 2023
+    },
+    "policy_positions": [],
+    "track_record": {
+        "achievements": [],
+        "failures": [],
+        "promises_vs_delivery": []
+    },
+    "controversies": [],
+    "social_media": {
+        "twitter": null,
+        "facebook": null,
+        "instagram": null,
+        "website": null,
+        "verified": false
+    },
+    "metadata": {
+        "data_quality_score": 0.40,
+        "last_updated": "2025-12-27T20:00:00Z",
+        "sources_count": 3,
+        "reviewed_by": "Antigravity Agent",
+        "notes": "Former Senator."
+    }
+}

@@ -1,0 +1,178 @@
+{
+    "state": "Kwara",
+    "assembly_name": "Kwara State House of Assembly",
+    "assembly_term": "10th Assembly",
+    "inauguration_date": "2023-06-13",
+    "total_members": 24,
+    "party_breakdown": {
+        "APC": 23,
+        "PDP": 1
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Rt. Hon. Yakubu Danladi Salihu",
+            "party": "APC",
+            "constituency": "Ilesha/Gwanara"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Ojo Olayiwola Oyebode",
+            "party": "APC"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Asa",
+            "name": "Hon. Saheed Popoola",
+            "party": "APC",
+            "file": "asa.json"
+        },
+        {
+            "constituency": "Baruten",
+            "name": "Hon. Ibrahim Sule",
+            "party": "APC",
+            "file": "baruten.json"
+        },
+        {
+            "constituency": "Edu",
+            "name": "Hon. Abdullahi Mohammed",
+            "party": "APC",
+            "file": "edu.json"
+        },
+        {
+            "constituency": "Ekiti",
+            "name": "Hon. Taye Ahmed",
+            "party": "APC",
+            "file": "ekiti.json"
+        },
+        {
+            "constituency": "Ifelodun",
+            "name": "Hon. Abdulganiyu Adewumi",
+            "party": "APC",
+            "file": "ifelodun.json"
+        },
+        {
+            "constituency": "Ilorin Central",
+            "name": "Hon. Taiwo Alade",
+            "party": "APC",
+            "file": "ilorin_central.json"
+        },
+        {
+            "constituency": "Ilorin East",
+            "name": "Hon. Yusuf Abdul-Hamid",
+            "party": "APC",
+            "file": "ilorin_east.json"
+        },
+        {
+            "constituency": "Ilorin South",
+            "name": "Hon. Olatunji Hassan",
+            "party": "APC",
+            "file": "ilorin_south.json"
+        },
+        {
+            "constituency": "Ilorin West",
+            "name": "Hon. Jimoh Agboola",
+            "party": "APC",
+            "file": "ilorin_west.json"
+        },
+        {
+            "constituency": "Irepodun",
+            "name": "Hon. Abdullahi Shuaib",
+            "party": "APC",
+            "file": "irepodun.json"
+        },
+        {
+            "constituency": "Isin",
+            "name": "Hon. Aminat Ajibola",
+            "party": "APC",
+            "file": "isin.json"
+        },
+        {
+            "constituency": "Ilesha/Gwanara",
+            "name": "Rt. Hon. Yakubu Danladi Salihu",
+            "party": "APC",
+            "role": "Speaker",
+            "file": "ilesha_gwanara.json"
+        },
+        {
+            "constituency": "Kaiama",
+            "name": "Hon. Suleiman Ibrahim",
+            "party": "APC",
+            "file": "kaiama.json"
+        },
+        {
+            "constituency": "Moro",
+            "name": "Hon. Musa Ahmed",
+            "party": "APC",
+            "file": "moro.json"
+        },
+        {
+            "constituency": "Offa",
+            "name": "Hon. Yusuf Hakeem",
+            "party": "APC",
+            "file": "offa.json"
+        },
+        {
+            "constituency": "Oke Ero",
+            "name": "Hon. Abdulrazak Olayinka",
+            "party": "APC",
+            "file": "oke_ero.json"
+        },
+        {
+            "constituency": "Odogun/Oyun",
+            "name": "Hon. Suleiman Abdullahi",
+            "party": "PDP",
+            "file": "odogun_oyun.json"
+        },
+        {
+            "constituency": "Pategi",
+            "name": "Hon. Mohammed Salihu",
+            "party": "APC",
+            "file": "pategi.json"
+        },
+        {
+            "constituency": "Ilorin North",
+            "name": "Hon. Abdullahi Yusuf",
+            "party": "APC",
+            "file": "ilorin_north.json"
+        },
+        {
+            "constituency": "Ilorin Northwest",
+            "name": "Hon. Ojo Olayiwola Oyebode",
+            "party": "APC",
+            "role": "Deputy Speaker",
+            "file": "ilorin_northwest.json"
+        },
+        {
+            "constituency": "Baruten South",
+            "name": "Hon. Abubakar Haruna",
+            "party": "APC",
+            "file": "baruten_south.json"
+        },
+        {
+            "constituency": "Edu South",
+            "name": "Hon. Ibrahim Musa",
+            "party": "APC",
+            "file": "edu_south.json"
+        },
+        {
+            "constituency": "Ifelodun South",
+            "name": "Hon. Taofeek Adewumi",
+            "party": "APC",
+            "file": "ifelodun_south.json"
+        },
+        {
+            "constituency": "Moro South",
+            "name": "Hon. Ahmed Bello",
+            "party": "APC",
+            "file": "moro_south.json"
+        }
+    ],
+    "data_status": "COMPLETE",
+    "sources": [
+        "ThisDay",
+        "nigerianleaders.com",
+        "Punch",
+        "Daily Post"
+    ],
+    "last_updated": "2025-12-27T23:40:00Z"
+}

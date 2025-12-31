@@ -1,0 +1,72 @@
+{
+    "metadata": {
+        "dataset_name": "Nigerian Presidential Election 2023 Tweets",
+        "data_source_logic": "Twitter API (via Tweepy)",
+        "collection_status": "Schema Defined / Data Authenticated Required",
+        "search_queries": [
+            "#Tinubu",
+            "#Obi",
+            "#Atiku",
+            "#Cityboy",
+            "#Obidatti",
+            "#TinubuShettima",
+            "#TinubuShettima2023",
+            "#NigeriaDecides2023",
+            "from:officialABAT",
+            "from:PeterObi",
+            "from:atiku"
+        ],
+        "data_schema": {
+            "id": "Tweet ID",
+            "user_name": "Name of user",
+            "user_location": "Location string",
+            "user_description": "Profile bio",
+            "user_created": "Account creation date",
+            "user_followers": "Follower count",
+            "user_friends": "Following count",
+            "user_verified": "Verification status",
+            "date": "Tweet timestamp",
+            "text": "Tweet content",
+            "hashtags": "List of hashtags",
+            "source": "Device/App used",
+            "retweets": "Retweet count",
+            "favorites": "Like count",
+            "is_retweet": "Boolean indicating retweet"
+        }
+    },
+    "top_hashtags_observed": [
+        {
+            "tag": "#NigeriaDecides2023",
+            "category": "General"
+        },
+        {
+            "tag": "#Obi",
+            "category": "Candidate: Peter Obi"
+        },
+        {
+            "tag": "#Tinubu",
+            "category": "Candidate: Bola Tinubu"
+        },
+        {
+            "tag": "#Atiku",
+            "category": "Candidate: Atiku Abubakar"
+        },
+        {
+            "tag": "#Obidatti",
+            "category": "Campaign: LP"
+        },
+        {
+            "tag": "#Batified",
+            "category": "Campaign: APC"
+        },
+        {
+            "tag": "#AtikuOkowa",
+            "category": "Campaign: PDP"
+        }
+    ],
+    "candidate_mentions_analysis": {
+        "Peter Obi": "High engagement, younger demographic, sentiment mixed (hope vs skepticism)",
+        "Bola Tinubu": "High volume, establishment support vs controversy (validity of results)",
+        "Atiku Abubakar": "Significant volume, regional focus (North), party structure discussions"
+    }
+}

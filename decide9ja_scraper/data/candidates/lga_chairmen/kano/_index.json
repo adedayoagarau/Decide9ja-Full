@@ -1,0 +1,285 @@
+{
+    "state": "Kano",
+    "total_lgas": 44,
+    "last_lga_election": "2024-10-26",
+    "next_election_due": "2027",
+    "current_term_status": "Active",
+    "siec_name": "KANSIEC",
+    "party_sweep": "NNPP",
+    "party_notes": "NNPP won all 44 seats; APC boycotted election",
+    "data_completeness": "100%",
+    "chairmen": [
+        {
+            "lga": "Ajingi",
+            "name": "Ehime Mbano",
+            "party": "NNPP",
+            "file": "ajingi.json"
+        },
+        {
+            "lga": "Albasu",
+            "name": "Garba Hungu",
+            "party": "NNPP",
+            "file": "albasu.json"
+        },
+        {
+            "lga": "Bagwai",
+            "name": "Bello Gandanya",
+            "party": "NNPP",
+            "file": "bagwai.json"
+        },
+        {
+            "lga": "Bebeji",
+            "name": "Dr. Alhassan",
+            "party": "NNPP",
+            "file": "bebeji.json"
+        },
+        {
+            "lga": "Bichi",
+            "name": "Hamza Maifata",
+            "party": "NNPP",
+            "file": "bichi.json"
+        },
+        {
+            "lga": "Bunkure",
+            "name": "Ab Mahmud",
+            "party": "NNPP",
+            "file": "bunkure.json"
+        },
+        {
+            "lga": "Dala",
+            "name": "Suraj Imam",
+            "party": "NNPP",
+            "file": "dala.json"
+        },
+        {
+            "lga": "Dambatta",
+            "name": "Jamilu Abubakar Dambatta",
+            "party": "NNPP",
+            "file": "dambatta.json"
+        },
+        {
+            "lga": "Dawakin Kudu",
+            "name": "Sani Ahmad Mai Rago",
+            "party": "NNPP",
+            "file": "dawakin_kudu.json"
+        },
+        {
+            "lga": "Dawakin Tofa",
+            "name": "Anas Mukhtar Bello",
+            "party": "NNPP",
+            "file": "dawakin_tofa.json"
+        },
+        {
+            "lga": "Doguwa",
+            "name": "Abdulrashid Lurwan",
+            "party": "NNPP",
+            "file": "doguwa.json"
+        },
+        {
+            "lga": "Fagge",
+            "name": "Salisu Masu",
+            "party": "NNPP",
+            "file": "fagge.json"
+        },
+        {
+            "lga": "Gabasawa",
+            "name": "Sagir Usman",
+            "party": "NNPP",
+            "file": "gabasawa.json"
+        },
+        {
+            "lga": "Garko",
+            "name": "Saminu Abdu",
+            "party": "NNPP",
+            "file": "garko.json"
+        },
+        {
+            "lga": "Garun Mallam",
+            "name": "Aminu Kadawa",
+            "party": "NNPP",
+            "file": "garun_mallam.json"
+        },
+        {
+            "lga": "Gaya",
+            "name": "Mahmud Tajo",
+            "party": "NNPP",
+            "file": "gaya.json"
+        },
+        {
+            "lga": "Gezawa",
+            "name": "Mukaddas Bala",
+            "party": "NNPP",
+            "file": "gezawa.json"
+        },
+        {
+            "lga": "Gwale",
+            "name": "Abubakar Ma'azu Mojo",
+            "party": "NNPP",
+            "file": "gwale.json"
+        },
+        {
+            "lga": "Gwarzo",
+            "name": "Mani Tsoho",
+            "party": "NNPP",
+            "file": "gwarzo.json"
+        },
+        {
+            "lga": "Kabo",
+            "name": "Lawan Najume",
+            "party": "NNPP",
+            "file": "kabo.json"
+        },
+        {
+            "lga": "Kano Municipal",
+            "name": "Salim Hashim",
+            "party": "NNPP",
+            "file": "kano_municipal.json"
+        },
+        {
+            "lga": "Karaye",
+            "name": "Haruna Safiyanu Dan Haru",
+            "party": "NNPP",
+            "file": "karaye.json"
+        },
+        {
+            "lga": "Kibiya",
+            "name": "Auwalu Abdullahi Tarai",
+            "party": "NNPP",
+            "file": "kibiya.json"
+        },
+        {
+            "lga": "Kiru",
+            "name": "Abdullahi Saidu",
+            "party": "NNPP",
+            "file": "kiru.json"
+        },
+        {
+            "lga": "Kumbotso",
+            "name": "Ali Musa Hardworker",
+            "party": "NNPP",
+            "file": "kumbotso.json"
+        },
+        {
+            "lga": "Kunchi",
+            "name": "Hashimu Mai Sabulu",
+            "party": "NNPP",
+            "file": "kunchi.json"
+        },
+        {
+            "lga": "Kura",
+            "name": "Rabiu Abubakar Sulaiman",
+            "party": "NNPP",
+            "file": "kura.json"
+        },
+        {
+            "lga": "Madobi",
+            "name": "Suleiman Dan Azumi",
+            "party": "NNPP",
+            "file": "madobi.json"
+        },
+        {
+            "lga": "Makoda",
+            "name": "Auwalu Currency",
+            "party": "NNPP",
+            "file": "makoda.json"
+        },
+        {
+            "lga": "Minjibir",
+            "name": "Jibrin Nalado",
+            "party": "NNPP",
+            "file": "minjibir.json"
+        },
+        {
+            "lga": "Nasarawa",
+            "name": "Yusuf Imam",
+            "party": "NNPP",
+            "file": "nasarawa.json"
+        },
+        {
+            "lga": "Rano",
+            "name": "Muhammad Naziru Yau",
+            "party": "NNPP",
+            "file": "rano.json"
+        },
+        {
+            "lga": "Rimin Gado",
+            "name": "Muhammad Sani Jili",
+            "party": "NNPP",
+            "file": "rimin_gado.json"
+        },
+        {
+            "lga": "Rogo",
+            "name": "Abba Na Ummaru Buzu",
+            "party": "NNPP",
+            "file": "rogo.json"
+        },
+        {
+            "lga": "Shanono",
+            "name": "Abubakar Barau",
+            "party": "NNPP",
+            "file": "shanono.json"
+        },
+        {
+            "lga": "Sumaila",
+            "name": "Farouk Abdu",
+            "party": "NNPP",
+            "file": "sumaila.json"
+        },
+        {
+            "lga": "Takai",
+            "name": "Mutari Ibrahim Faruruwa",
+            "party": "NNPP",
+            "file": "takai.json"
+        },
+        {
+            "lga": "Tarauni",
+            "name": "Ahmad Sekure",
+            "party": "NNPP",
+            "file": "tarauni.json"
+        },
+        {
+            "lga": "Tofa",
+            "name": "Anas Mukhtar Bello",
+            "party": "NNPP",
+            "file": "tofa.json"
+        },
+        {
+            "lga": "Tsanyawa",
+            "name": "Abdullahi Ishaq Yan Awak",
+            "party": "NNPP",
+            "file": "tsanyawa.json"
+        },
+        {
+            "lga": "Tudun Wada",
+            "name": "Sa'adatu Kenan",
+            "party": "NNPP",
+            "file": "tudun_wada.json"
+        },
+        {
+            "lga": "Ungogo",
+            "name": "Tijjani Amiru Binyaminu",
+            "party": "NNPP",
+            "file": "ungogo.json"
+        },
+        {
+            "lga": "Warawa",
+            "name": "Sule Sale Gogel",
+            "party": "NNPP",
+            "file": "warawa.json"
+        },
+        {
+            "lga": "Wudil",
+            "name": "Abba Muhammad Tukur",
+            "party": "NNPP",
+            "file": "wudil.json"
+        }
+    ],
+    "sources": [
+        "naijadetails.com",
+        "Punch",
+        "ThisDay",
+        "The Cable",
+        "KANSIEC"
+    ],
+    "last_updated": "2025-12-27T23:55:00Z"
+}

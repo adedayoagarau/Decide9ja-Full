@@ -1,0 +1,193 @@
+{
+    "state": "Osun",
+    "assembly_name": "Osun State House of Assembly",
+    "website": "https://osunstate.gov.ng",
+    "assembly_term": "8th Assembly",
+    "inauguration_date": "2023-06-06",
+    "total_members": 26,
+    "party_breakdown": {
+        "PDP": 25,
+        "APC": 1
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Hon. Adewale Egbedun",
+            "party": "PDP",
+            "constituency": "Odo-Otin"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Akinyode Oyewusi",
+            "party": "PDP",
+            "constituency": "Ife North"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Atakunmosa East/West",
+            "name": "Hon. Adeniyi Olatinsu",
+            "party": "PDP",
+            "file": "atakunmosa_east_west.json"
+        },
+        {
+            "constituency": "Ayedaade/Ayedire",
+            "name": "Hon. Taiwo Abiloye",
+            "party": "PDP",
+            "file": "ayedaade_ayedire.json"
+        },
+        {
+            "constituency": "Boluwaduro/Boripe",
+            "name": "Hon. Tajudeen Adekanola",
+            "party": "APC",
+            "file": "boluwaduro_boripe.json"
+        },
+        {
+            "constituency": "Ede North",
+            "name": "Hon. Kamaldeen Adedeji",
+            "party": "PDP",
+            "file": "ede_north.json"
+        },
+        {
+            "constituency": "Ede South",
+            "name": "Hon. Adebayo Afolabi",
+            "party": "PDP",
+            "file": "ede_south.json"
+        },
+        {
+            "constituency": "Egbedore",
+            "name": "Hon. Festus Akande",
+            "party": "PDP",
+            "file": "egbedore.json"
+        },
+        {
+            "constituency": "Ejigbo",
+            "name": "Hon. Lukman Oyelekan",
+            "party": "PDP",
+            "file": "ejigbo.json"
+        },
+        {
+            "constituency": "Ife Central",
+            "name": "Hon. Adetokunbo Aderibigbe",
+            "party": "PDP",
+            "file": "ife_central.json"
+        },
+        {
+            "constituency": "Ife East",
+            "name": "Hon. Oyegoke Olatunji",
+            "party": "PDP",
+            "file": "ife_east.json"
+        },
+        {
+            "constituency": "Ife North",
+            "name": "Hon. Akinyode Oyewusi",
+            "party": "PDP",
+            "role": "Deputy Speaker",
+            "file": "ife_north.json"
+        },
+        {
+            "constituency": "Ife South",
+            "name": "Hon. Adebayo Oluwole",
+            "party": "PDP",
+            "file": "ife_south.json"
+        },
+        {
+            "constituency": "Ila",
+            "name": "Hon. Oluwole Olofinsao",
+            "party": "PDP",
+            "file": "ila.json"
+        },
+        {
+            "constituency": "Ilesa East",
+            "name": "Hon. Femi Adewale",
+            "party": "PDP",
+            "file": "ilesa_east.json"
+        },
+        {
+            "constituency": "Ilesa West",
+            "name": "Hon. Adeniyi Akinlogun",
+            "party": "PDP",
+            "file": "ilesa_west.json"
+        },
+        {
+            "constituency": "Irepodun",
+            "name": "Hon. Gboyega Komolafe",
+            "party": "PDP",
+            "file": "irepodun.json"
+        },
+        {
+            "constituency": "Irewole",
+            "name": "Hon. Waheed Olanlokun",
+            "party": "PDP",
+            "file": "irewole.json"
+        },
+        {
+            "constituency": "Isokan",
+            "name": "Hon. Yisa Ganiyu",
+            "party": "PDP",
+            "file": "isokan.json"
+        },
+        {
+            "constituency": "Iwo",
+            "name": "Hon. Abiodun Taiwo",
+            "party": "PDP",
+            "file": "iwo.json"
+        },
+        {
+            "constituency": "Obokun",
+            "name": "Hon. Oyewole Omotayo",
+            "party": "PDP",
+            "file": "obokun.json"
+        },
+        {
+            "constituency": "Odo-Otin",
+            "name": "Hon. Adewale Egbedun",
+            "party": "PDP",
+            "role": "Speaker",
+            "file": "odo_otin.json"
+        },
+        {
+            "constituency": "Ola-Oluwa",
+            "name": "Hon. Tajudeen Sikiru",
+            "party": "PDP",
+            "file": "ola_oluwa.json"
+        },
+        {
+            "constituency": "Olorunda",
+            "name": "Hon. Jimoh Abideen",
+            "party": "PDP",
+            "file": "olorunda.json"
+        },
+        {
+            "constituency": "Oriade",
+            "name": "Hon. Clement Adeogun",
+            "party": "PDP",
+            "file": "oriade.json"
+        },
+        {
+            "constituency": "Orolu",
+            "name": "Hon. Saheed Onigemo",
+            "party": "PDP",
+            "file": "orolu.json"
+        },
+        {
+            "constituency": "Osogbo",
+            "name": "Hon. Kunle Okunola",
+            "party": "PDP",
+            "file": "osogbo.json"
+        },
+        {
+            "constituency": "Ifedayo",
+            "name": "Hon. Ademola Ojo",
+            "party": "PDP",
+            "file": "ifedayo.json"
+        }
+    ],
+    "data_status": "COMPLETE",
+    "sources": [
+        "osunstate.gov.ng",
+        "The Cable",
+        "Channels TV",
+        "Vanguard",
+        "nigerianleaders.com"
+    ],
+    "last_updated": "2025-12-27T23:50:00Z"
+}

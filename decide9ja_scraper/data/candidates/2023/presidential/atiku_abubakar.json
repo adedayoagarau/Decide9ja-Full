@@ -1,0 +1,312 @@
+{
+    "id": "abubakar_atiku",
+    "slug": "atiku-abubakar",
+    "name": {
+        "full": "Atiku Abubakar",
+        "common": "Atiku Abubakar",
+        "aliases": [
+            "Waziri Adamawa",
+            "Turaki Adamawa"
+        ]
+    },
+    "personal": {
+        "date_of_birth": "1946-11-25",
+        "state_of_origin": "Adamawa",
+        "lga_of_origin": "Jada",
+        "religion": "Muslim",
+        "ethnicity": "Fulani",
+        "education": [
+            {
+                "institution": "Jada Primary School",
+                "type": "Primary",
+                "year": null
+            },
+            {
+                "institution": "Adamawa Provincial Secondary School",
+                "type": "Secondary",
+                "year": 1965
+            },
+            {
+                "institution": "Nigeria Police College, Kaduna",
+                "type": "Training",
+                "year": null
+            },
+            {
+                "institution": "School of Hygiene, Kano",
+                "degree": "Diploma in Hygiene",
+                "year": 1967
+            },
+            {
+                "institution": "Ahmadu Bello University Institute of Administration",
+                "degree": "Law Diploma",
+                "year": 1969
+            },
+            {
+                "institution": "Anglia Ruskin University",
+                "degree": "Master's in International Relations",
+                "year": 2021,
+                "source": "https://en.wikipedia.org/wiki/Atiku_Abubakar"
+            }
+        ],
+        "career_before_politics": [
+            {
+                "role": "Customs Officer",
+                "organization": "Nigeria Customs Service",
+                "period": "1969-1989",
+                "notes": "Rose to become Deputy Director"
+            },
+            {
+                "role": "Businessman",
+                "organization": "Various enterprises",
+                "period": "1990s-present",
+                "notes": "Founded Intels Nigeria Limited (logistics); significant business interests"
+            }
+        ],
+        "family": {
+            "spouse": "Multiple marriages (Islamic tradition)",
+            "children": "Multiple",
+            "notes": "Notable children in business"
+        }
+    },
+    "political_career": {
+        "party_history": [
+            {
+                "party": "SDP",
+                "full_name": "Social Democratic Party",
+                "joined": 1989,
+                "left": 1993
+            },
+            {
+                "party": "PDP",
+                "full_name": "Peoples Democratic Party",
+                "joined": 1998,
+                "left": 2006
+            },
+            {
+                "party": "ACN",
+                "full_name": "Action Congress of Nigeria",
+                "joined": 2006,
+                "left": 2014
+            },
+            {
+                "party": "APC",
+                "full_name": "All Progressives Congress",
+                "joined": 2014,
+                "left": 2017
+            },
+            {
+                "party": "PDP",
+                "full_name": "Peoples Democratic Party",
+                "joined": 2017,
+                "left": 2025
+            },
+            {
+                "party": "ADC",
+                "full_name": "African Democratic Congress",
+                "joined": 2025,
+                "left": null,
+                "notes": "Reported defection alongside Peter Obi"
+            }
+        ],
+        "positions_held": [
+            {
+                "position": "Vice President",
+                "constituency": "Federal Republic of Nigeria",
+                "period": "1999-2007",
+                "notes": "Under President Olusegun Obasanjo",
+                "source": "https://en.wikipedia.org/wiki/Atiku_Abubakar"
+            }
+        ],
+        "election_history": [
+            {
+                "year": 2007,
+                "position": "President",
+                "party": "ACN",
+                "result": "Lost",
+                "notes": "Third place"
+            },
+            {
+                "year": 2011,
+                "position": "President (Primary)",
+                "party": "PDP",
+                "result": "Lost primary to Goodluck Jonathan"
+            },
+            {
+                "year": 2015,
+                "position": "President (Primary)",
+                "party": "APC",
+                "result": "Lost primary to Muhammadu Buhari"
+            },
+            {
+                "year": 2019,
+                "position": "President",
+                "party": "PDP",
+                "votes": 11262978,
+                "result": "Lost to Buhari"
+            },
+            {
+                "year": 2023,
+                "position": "President",
+                "party": "PDP",
+                "votes": 6984520,
+                "percentage": 29.49,
+                "result": "Lost (2nd place)",
+                "opponents": [
+                    "Bola Tinubu (APC)",
+                    "Peter Obi (LP)",
+                    "Rabiu Kwankwaso (NNPP)"
+                ],
+                "source": "https://www.premiumtimesng.com"
+            }
+        ]
+    },
+    "policy_positions": [
+        {
+            "issue_area": "Economy",
+            "sub_issues": [
+                "Privatization",
+                "Job Creation",
+                "Trade"
+            ],
+            "stance_summary": "Pro-business, privatization advocate; pledged economic revitalization",
+            "quotes": [],
+            "notes": "Known as pro-privatization from VP tenure"
+        },
+        {
+            "issue_area": "Security",
+            "sub_issues": [
+                "Insurgency",
+                "Restructuring of Security"
+            ],
+            "stance_summary": "Focus on security reform and addressing insurgency",
+            "quotes": []
+        },
+        {
+            "issue_area": "Education",
+            "sub_issues": [
+                "Access",
+                "Funding"
+            ],
+            "stance_summary": "Support for education sector improvement",
+            "quotes": [],
+            "notes": "Founded American University of Nigeria in Yola"
+        },
+        {
+            "issue_area": "Healthcare",
+            "sub_issues": [
+                "Access",
+                "Infrastructure"
+            ],
+            "stance_summary": "Improvement of healthcare infrastructure",
+            "quotes": []
+        },
+        {
+            "issue_area": "Infrastructure",
+            "sub_issues": [
+                "Power",
+                "Transportation"
+            ],
+            "stance_summary": "Infrastructure development focus",
+            "quotes": []
+        },
+        {
+            "issue_area": "Agriculture",
+            "sub_issues": [
+                "Food Security"
+            ],
+            "stance_summary": "Agricultural development for food security",
+            "quotes": []
+        },
+        {
+            "issue_area": "Corruption",
+            "sub_issues": [
+                "Transparency"
+            ],
+            "stance_summary": "Anti-corruption stance",
+            "quotes": [],
+            "notes": "Has faced corruption allegations which he denies"
+        },
+        {
+            "issue_area": "Federalism",
+            "sub_issues": [
+                "Restructuring",
+                "Devolution of Power"
+            ],
+            "stance_summary": "Strong advocate for restructuring and devolution of power",
+            "quotes": [],
+            "notes": "Key campaign platform"
+        },
+        {
+            "issue_area": "Youth",
+            "sub_issues": [
+                "Employment",
+                "Empowerment"
+            ],
+            "stance_summary": "Youth employment and empowerment programs",
+            "quotes": []
+        },
+        {
+            "issue_area": "Women",
+            "sub_issues": [
+                "Inclusion"
+            ],
+            "stance_summary": "Support for women's participation",
+            "quotes": []
+        }
+    ],
+    "track_record": {
+        "achievements": [
+            {
+                "achievement": "Privatization program as VP",
+                "period": "1999-2007",
+                "evidence": "Oversaw major privatization of government enterprises",
+                "source": "https://en.wikipedia.org/wiki/Atiku_Abubakar"
+            },
+            {
+                "achievement": "Founded American University of Nigeria",
+                "period": "2004",
+                "evidence": "Private university in Yola, Adamawa State",
+                "source": "https://www.aun.edu.ng"
+            }
+        ],
+        "failures": [],
+        "promises_vs_delivery": []
+    },
+    "controversies": [
+        {
+            "issue": "Corruption allegations",
+            "allegation": "Various allegations of corruption during VP tenure and business dealings",
+            "their_response": "Consistently denied all allegations",
+            "status": "No convictions",
+            "sources": [
+                "https://www.premiumtimesng.com"
+            ]
+        },
+        {
+            "issue": "Party switching",
+            "allegation": "Criticized for multiple party switches",
+            "their_response": "Moves were made in national interest",
+            "status": "Political criticism",
+            "sources": [
+                "https://en.wikipedia.org/wiki/Atiku_Abubakar"
+            ]
+        }
+    ],
+    "social_media": {
+        "twitter": "@atikiabubakr",
+        "facebook": "Atiku Abubakar",
+        "instagram": "atikiabubakr",
+        "website": "https://atiku.org",
+        "verified": true
+    },
+    "metadata": {
+        "data_quality_score": 0.75,
+        "last_updated": "2025-12-27T19:00:00Z",
+        "sources_count": 15,
+        "reviewed_by": "Antigravity Agent",
+        "notes": "6th presidential attempt in 2023. Limited direct policy quotes from 2023 campaign in research. Known for privatization advocacy and business background.",
+        "election_year": 2023,
+        "position_contested": "Presidential",
+        "result": "2nd Place"
+    }
+}

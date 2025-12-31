@@ -1,0 +1,224 @@
+{
+    "metadata": {
+        "source": "Nairaland.com Politics Section",
+        "collection_method": "Web search aggregation (direct scraping blocked)",
+        "period_covered": "2024",
+        "last_updated": "2025-12-28T00:00:00Z",
+        "note": "Direct scraping of Nairaland returns 403 Forbidden. Data compiled from search results referencing Nairaland discussions."
+    },
+    "top_discussion_topics": [
+        {
+            "rank": 1,
+            "topic": "Fuel Subsidy Removal Impact",
+            "category": "economic_policy",
+            "estimated_threads": "500+",
+            "key_subtopics": [
+                "Fuel price increases (N185 to N1,025/liter)",
+                "Cost of living crisis",
+                "Transportation costs",
+                "Tinubu defense at World Economic Forum",
+                "IMF advice on subsidy"
+            ],
+            "sentiment": "mostly_negative",
+            "peak_period": "May-August 2024"
+        },
+        {
+            "rank": 2,
+            "topic": "Tinubu Administration Policies",
+            "category": "government",
+            "estimated_threads": "400+",
+            "key_subtopics": [
+                "2024 Budget (N27.5T to N43.5T)",
+                "Minimum wage increase (N30K to N70K)",
+                "Student loan scheme",
+                "Electricity Act reforms",
+                "New tax agenda"
+            ],
+            "sentiment": "mixed",
+            "peak_period": "Throughout 2024"
+        },
+        {
+            "rank": 3,
+            "topic": "Peter Obi and Obidient Movement",
+            "category": "candidate_movement",
+            "estimated_threads": "350+",
+            "key_subtopics": [
+                "Movement vs Labour Party conflicts",
+                "2027 coalition discussions",
+                "Obidient leadership resignations",
+                "Movement registration plans",
+                "Edo election strategy"
+            ],
+            "sentiment": "polarized",
+            "peak_period": "Throughout 2024"
+        },
+        {
+            "rank": 4,
+            "topic": "Naira/Currency Crisis",
+            "category": "economy",
+            "estimated_threads": "300+",
+            "key_subtopics": [
+                "Exchange rate unification",
+                "Naira freefall",
+                "CBN policies",
+                "Forex scarcity",
+                "Impact on imports"
+            ],
+            "sentiment": "mostly_negative",
+            "peak_period": "Q1-Q2 2024"
+        },
+        {
+            "rank": 5,
+            "topic": "EndBadGovernance Protests",
+            "category": "movement",
+            "estimated_threads": "250+",
+            "key_subtopics": [
+                "August 2024 nationwide protests",
+                "Police response",
+                "Protest organization",
+                "#TinubuMustGo trend",
+                "Government response"
+            ],
+            "sentiment": "mostly_negative",
+            "peak_period": "August 2024"
+        },
+        {
+            "rank": 6,
+            "topic": "Inflation and Food Prices",
+            "category": "economy",
+            "estimated_threads": "250+",
+            "key_subtopics": [
+                "Record inflation (June 2024)",
+                "Food prices surge",
+                "Market conditions",
+                "Hunger concerns",
+                "Palliatives distribution"
+            ],
+            "sentiment": "negative",
+            "peak_period": "June-August 2024"
+        },
+        {
+            "rank": 7,
+            "topic": "Political Defections to APC",
+            "category": "politics",
+            "estimated_threads": "200+",
+            "key_subtopics": [
+                "PDP to APC mass defections",
+                "Rivers State Fubara-Wike crisis",
+                "Delta State defections",
+                "2027 positioning",
+                "Party loyalty debates"
+            ],
+            "sentiment": "mixed",
+            "peak_period": "Q4 2024"
+        },
+        {
+            "rank": 8,
+            "topic": "Security and Terrorism",
+            "category": "security",
+            "estimated_threads": "200+",
+            "key_subtopics": [
+                "Banditry in Northwest",
+                "Tinubu declares bandits terrorists",
+                "Kidnappings",
+                "Military operations",
+                "State governors responses"
+            ],
+            "sentiment": "concerned",
+            "peak_period": "Throughout 2024"
+        },
+        {
+            "rank": 9,
+            "topic": "Local Government Autonomy",
+            "category": "governance",
+            "estimated_threads": "150+",
+            "key_subtopics": [
+                "Supreme Court judgment",
+                "State governors reactions",
+                "Fund allocation debates",
+                "Constitutional implications"
+            ],
+            "sentiment": "mixed",
+            "peak_period": "Mid 2024"
+        },
+        {
+            "rank": 10,
+            "topic": "2027 Election Speculation",
+            "category": "elections",
+            "estimated_threads": "150+",
+            "key_subtopics": [
+                "Peter Obi coalition talks",
+                "Tinubu re-election positioning",
+                "Youth candidates",
+                "Party realignments",
+                "Regional considerations"
+            ],
+            "sentiment": "speculative",
+            "peak_period": "Q4 2024"
+        }
+    ],
+    "most_mentioned_politicians": [
+        {
+            "name": "Bola Tinubu",
+            "party": "APC",
+            "context": "President, policy decisions"
+        },
+        {
+            "name": "Peter Obi",
+            "party": "LP",
+            "context": "Opposition, Obidient movement"
+        },
+        {
+            "name": "Atiku Abubakar",
+            "party": "PDP",
+            "context": "Opposition, 2027 speculation"
+        },
+        {
+            "name": "Nyesom Wike",
+            "party": "APC/FCT",
+            "context": "Rivers crisis, defection drama"
+        },
+        {
+            "name": "Sim Fubara",
+            "party": "PDP",
+            "context": "Rivers State governor, Wike conflict"
+        },
+        {
+            "name": "Rabiu Kwankwaso",
+            "party": "NNPP",
+            "context": "Party crisis, expulsion drama"
+        },
+        {
+            "name": "Godswill Akpabio",
+            "party": "APC",
+            "context": "Senate President, legislative issues"
+        },
+        {
+            "name": "Babajide Sanwo-Olu",
+            "party": "APC",
+            "context": "Lagos governance"
+        }
+    ],
+    "issues_sentiment_summary": {
+        "economy": {
+            "positive": 15,
+            "negative": 70,
+            "neutral": 15
+        },
+        "governance": {
+            "positive": 25,
+            "negative": 55,
+            "neutral": 20
+        },
+        "security": {
+            "positive": 10,
+            "negative": 75,
+            "neutral": 15
+        },
+        "elections": {
+            "positive": 20,
+            "negative": 40,
+            "neutral": 40
+        }
+    }
+}

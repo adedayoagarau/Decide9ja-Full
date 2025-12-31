@@ -1,0 +1,42 @@
+{
+  "id": "akintunde_yunus",
+  "slug": "yunus-akintunde",
+  "state": "Oyo",
+  "senatorial_district": "Central",
+  "name": {
+    "full": "Yunus Akintunde",
+    "common": "Yunus Akintunde",
+    "aliases": []
+  },
+  "party": "APC",
+  "personal": {
+    "date_of_birth": null,
+    "state_of_origin": "Oyo",
+    "lga_of_origin": null,
+    "religion": null,
+    "education": []
+  },
+  "political_career": {
+    "positions_held": [
+      {
+        "position": "Senator",
+        "constituency": "Oyo Central",
+        "period": "2023-present"
+      }
+    ]
+  },
+  "senate_info": {
+    "committee_memberships": [],
+    "bills_sponsored": [],
+    "legislative_focus": []
+  },
+  "social_media": {
+    "twitter": null,
+    "facebook": null,
+    "website": null
+  },
+  "metadata": {
+    "data_quality_score": 0.45,
+    "last_updated": "2025-12-27T21:00:00Z"
+  }
+}

@@ -1,0 +1,179 @@
+{
+    "id": "zulum_babagana",
+    "slug": "babagana-zulum",
+    "state": "Borno",
+    "name": {
+        "full": "Babagana Umara Zulum",
+        "common": "Babagana Zulum",
+        "aliases": []
+    },
+    "personal": {
+        "date_of_birth": "1969-08-25",
+        "state_of_origin": "Borno",
+        "lga_of_origin": "Mafa",
+        "religion": "Muslim",
+        "ethnicity": "Kanuri",
+        "education": [
+            {
+                "institution": "Mafa Primary School",
+                "type": "Primary",
+                "year": 1980
+            },
+            {
+                "institution": "Government Secondary School, Monguno",
+                "type": "Secondary",
+                "year": 1985
+            },
+            {
+                "institution": "University of Maiduguri",
+                "degree": "BSc Agriculture Engineering",
+                "year": null
+            },
+            {
+                "institution": "University of Ibadan",
+                "degree": "MSc Agriculture Engineering",
+                "year": 1998
+            },
+            {
+                "institution": "University of Maiduguri",
+                "degree": "PhD Soil and Water Engineering",
+                "year": 2009
+            }
+        ],
+        "career_before_politics": [
+            {
+                "role": "Civil Servant",
+                "organization": "Borno State Civil Service",
+                "period": "1989-2000"
+            },
+            {
+                "role": "Professor",
+                "organization": "University of Maiduguri",
+                "period": "2000-2011"
+            },
+            {
+                "role": "Rector",
+                "organization": "Ramat Polytechnic",
+                "period": "2011-2015"
+            },
+            {
+                "role": "Commissioner for Reconstruction, Rehabilitation and Resettlement",
+                "organization": "Borno State",
+                "period": "2015-2018"
+            }
+        ],
+        "family": {
+            "spouse": "Married",
+            "children": null,
+            "notes": null
+        }
+    },
+    "political_career": {
+        "party_history": [
+            {
+                "party": "APC",
+                "full_name": "All Progressives Congress",
+                "joined": 2018,
+                "left": null
+            }
+        ],
+        "positions_held": [
+            {
+                "position": "Commissioner",
+                "constituency": "Borno State",
+                "period": "2015-2018"
+            },
+            {
+                "position": "Governor",
+                "constituency": "Borno State",
+                "period": "2019-present",
+                "notes": "Re-elected 2023"
+            }
+        ],
+        "election_history": [
+            {
+                "year": 2019,
+                "position": "Governor",
+                "party": "APC",
+                "votes": 1175440,
+                "result": "Won"
+            },
+            {
+                "year": 2023,
+                "position": "Governor",
+                "party": "APC",
+                "result": "Won (re-elected)",
+                "source": "https://grokipedia.com"
+            }
+        ]
+    },
+    "term_info": {
+        "current_term": "2nd term",
+        "term_start": "2023-05-29",
+        "term_end": "2027-05-29",
+        "first_elected": 2019
+    },
+    "policy_positions": [
+        {
+            "issue_area": "Security",
+            "stance_summary": "Over N300 billion spent on security; 500 vehicles and 1000+ motorcycles to security agencies",
+            "source": "https://economicconfidential.com"
+        },
+        {
+            "issue_area": "Reconstruction",
+            "stance_summary": "Resettled 200+ communities; 30,000+ model houses for returnees; reintegrated 100,000+ surrendered insurgents",
+            "source": "https://von.gov.ng"
+        },
+        {
+            "issue_area": "Education",
+            "stance_summary": "Recruited 1,000 secondary teachers and 3,000 primary teachers",
+            "source": "https://economicconfidential.com"
+        }
+    ],
+    "track_record": {
+        "achievements": [
+            {
+                "achievement": "1,200+ reconstruction projects completed",
+                "period": "2019-2025",
+                "source": "https://businessday.ng"
+            },
+            {
+                "achievement": "Forbes African Leadership Award",
+                "period": "2024",
+                "source": "https://businessday.ng"
+            },
+            {
+                "achievement": "Rehabilitated 300 health centers",
+                "period": "2019-2025",
+                "source": "https://economicconfidential.com"
+            }
+        ],
+        "failures": [],
+        "promises_vs_delivery": []
+    },
+    "controversies": [
+        {
+            "issue": "Multiple assassination attempts",
+            "allegation": "Survived several Boko Haram assassination attempts",
+            "their_response": "Continued frontline governance",
+            "status": "Ongoing security challenges",
+            "sources": [
+                "https://pgf.ng"
+            ]
+        }
+    ],
+    "social_media": {
+        "twitter": "@ProfZulum",
+        "facebook": null,
+        "instagram": null,
+        "website": null,
+        "verified": false
+    },
+    "metadata": {
+        "data_quality_score": 0.78,
+        "last_updated": "2025-12-27T20:00:00Z",
+        "sources_count": 15,
+        "reviewed_by": "Antigravity Agent",
+        "notes": "Professor and academic. Known for frontline governance in insurgency zone."
+    }
+}

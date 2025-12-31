@@ -1,0 +1,28 @@
+{
+  "scraped_at": "2025-12-27T17:55:49.403421Z",
+  "source": "INEC Nigeria (inecnigeria.org)",
+  "files": [
+    {
+      "name": "senatorial_districts.json",
+      "records": 109
+    },
+    {
+      "name": "lgas.json",
+      "records": 774
+    },
+    {
+      "name": "parties.json",
+      "records": 18
+    },
+    {
+      "name": "states.json",
+      "records": 37
+    }
+  ],
+  "statistics": {
+    "senatorial_districts": 109,
+    "lgas": 774,
+    "parties": 18,
+    "states": 37
+  }
+}

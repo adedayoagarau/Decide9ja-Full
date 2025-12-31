@@ -1,0 +1,43 @@
+{
+  "id": "jaji_aminu",
+  "slug": "aminu-sani-jaji",
+  "state": "Zamfara",
+  "federal_constituency": "Kaura-Namoda/Birnin-Magaji",
+  "name": {
+    "full": "Aminu Sani Jaji",
+    "common": "Aminu Sani Jaji",
+    "aliases": []
+  },
+  "party": "APC",
+  "personal": {
+    "date_of_birth": null,
+    "state_of_origin": "Zamfara",
+    "lga_of_origin": null,
+    "religion": null,
+    "education": []
+  },
+  "political_career": {
+    "positions_held": [
+      {
+        "position": "Member, House of Representatives",
+        "constituency": "Kaura-Namoda/Birnin-Magaji Federal Constituency",
+        "period": "2023-present"
+      }
+    ]
+  },
+  "house_info": {
+    "committee_memberships": [],
+    "bills_sponsored": [],
+    "motions": [],
+    "legislative_focus": []
+  },
+  "social_media": {
+    "twitter": null,
+    "facebook": null,
+    "website": null
+  },
+  "metadata": {
+    "data_quality_score": 0.45,
+    "last_updated": "2025-12-27T21:35:00Z"
+  }
+}

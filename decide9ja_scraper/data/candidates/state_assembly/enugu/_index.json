@@ -1,0 +1,179 @@
+{
+    "state": "Enugu",
+    "assembly_name": "Enugu State House of Assembly",
+    "assembly_term": "8th Assembly",
+    "inauguration_date": "2023-06-13",
+    "total_members": 24,
+    "party_breakdown": {
+        "LP": 14,
+        "PDP": 10
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Hon. Uche Ugwu",
+            "party": "PDP",
+            "constituency": "Udi North"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Ezenta Ezeani",
+            "party": "PDP",
+            "constituency": "Igbo-Etiti East"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Aninri",
+            "name": "Hon. Ede Magnus",
+            "party": "PDP",
+            "file": "aninri.json"
+        },
+        {
+            "constituency": "Awgu North",
+            "name": "Hon. Eneh Jane Chinwe",
+            "party": "PDP",
+            "file": "awgu_north.json"
+        },
+        {
+            "constituency": "Awgu South",
+            "name": "Hon. Nwankwo Anthony",
+            "party": "PDP",
+            "file": "awgu_south.json"
+        },
+        {
+            "constituency": "Enugu East I",
+            "name": "Hon. Okoh Osita",
+            "party": "LP",
+            "file": "enugu_east_1.json"
+        },
+        {
+            "constituency": "Enugu East II",
+            "name": "Hon. Ugwu Raymond",
+            "party": "LP",
+            "file": "enugu_east_2.json"
+        },
+        {
+            "constituency": "Enugu North",
+            "name": "Hon. Ani Johnson Samuel",
+            "party": "LP",
+            "file": "enugu_north.json"
+        },
+        {
+            "constituency": "Enugu South I",
+            "name": "Hon. Ngene Bright Emeka",
+            "party": "LP",
+            "file": "enugu_south_1.json"
+        },
+        {
+            "constituency": "Enugu South II",
+            "name": "Hon. Ugwu Obiajulu P.",
+            "party": "LP",
+            "file": "enugu_south_2.json"
+        },
+        {
+            "constituency": "Ezeagu",
+            "name": "Hon. Udefuna Chukwudi",
+            "party": "LP",
+            "file": "ezeagu.json"
+        },
+        {
+            "constituency": "Igbo-Etiti East",
+            "name": "Hon. Ezenta Ezeani",
+            "party": "PDP",
+            "role": "Deputy Speaker",
+            "file": "igbo_etiti_east.json"
+        },
+        {
+            "constituency": "Igbo-Etiti West",
+            "name": "Hon. Amuka Williams",
+            "party": "LP",
+            "file": "igbo_etiti_west.json"
+        },
+        {
+            "constituency": "Igbo-Eze North I",
+            "name": "Hon. Eze Ejikeme",
+            "party": "LP",
+            "file": "igbo_eze_north_1.json"
+        },
+        {
+            "constituency": "Igbo-Eze North II",
+            "name": "Hon. Obe Clifford Nnaemeka",
+            "party": "PDP",
+            "file": "igbo_eze_north_2.json"
+        },
+        {
+            "constituency": "Igbo-Eze South",
+            "name": "Hon. Ogara Harrison",
+            "party": "LP",
+            "file": "igbo_eze_south.json"
+        },
+        {
+            "constituency": "Isi-Uzo",
+            "name": "Hon. Eze Gabriel Lebechi",
+            "party": "LP",
+            "file": "isi_uzo.json"
+        },
+        {
+            "constituency": "Nkanu East",
+            "name": "Hon. Mba Okechukwu",
+            "party": "PDP",
+            "file": "nkanu_east.json"
+        },
+        {
+            "constituency": "Nkanu West",
+            "name": "Hon. Aniagu Iloabuchi",
+            "party": "PDP",
+            "file": "nkanu_west.json"
+        },
+        {
+            "constituency": "Nsukka East",
+            "name": "Hon. Ezugwu Onyekachi",
+            "party": "LP",
+            "file": "nsukka_east.json"
+        },
+        {
+            "constituency": "Nsukka West",
+            "name": "Hon. Onyechi Malachi Okey",
+            "party": "LP",
+            "file": "nsukka_west.json"
+        },
+        {
+            "constituency": "Oji-River",
+            "name": "Hon. Osita Eze",
+            "party": "LP",
+            "file": "oji_river.json"
+        },
+        {
+            "constituency": "Udenu",
+            "name": "Hon. Ijere Obinna Anthony",
+            "party": "LP",
+            "file": "udenu.json"
+        },
+        {
+            "constituency": "Udi North",
+            "name": "Hon. Uche Ugwu",
+            "party": "PDP",
+            "role": "Speaker",
+            "file": "udi_north.json"
+        },
+        {
+            "constituency": "Udi South",
+            "name": "Hon. Aneke Okechukwu H",
+            "party": "PDP",
+            "file": "udi_south.json"
+        },
+        {
+            "constituency": "Uzo-Uwani",
+            "name": "Hon. Ekwueme Chukwuma",
+            "party": "PDP",
+            "file": "uzo_uwani.json"
+        }
+    ],
+    "data_status": "COMPLETE",
+    "sources": [
+        "nigerianleaders.com",
+        "Premium Times",
+        "The Cable",
+        "West African Pilot"
+    ],
+    "last_updated": "2025-12-27T23:30:00Z"
+}

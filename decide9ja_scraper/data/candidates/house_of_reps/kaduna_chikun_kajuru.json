@@ -1,0 +1,43 @@
+{
+  "id": "ekene_adams",
+  "slug": "adams-abubakar-ekene",
+  "state": "Kaduna",
+  "federal_constituency": "Chikun/Kajuru",
+  "name": {
+    "full": "Adams Abubakar Ekene",
+    "common": "Adams Abubakar Ekene",
+    "aliases": []
+  },
+  "party": "PDP",
+  "personal": {
+    "date_of_birth": null,
+    "state_of_origin": "Kaduna",
+    "lga_of_origin": null,
+    "religion": null,
+    "education": []
+  },
+  "political_career": {
+    "positions_held": [
+      {
+        "position": "Member, House of Representatives",
+        "constituency": "Chikun/Kajuru Federal Constituency",
+        "period": "2023-present"
+      }
+    ]
+  },
+  "house_info": {
+    "committee_memberships": [],
+    "bills_sponsored": [],
+    "motions": [],
+    "legislative_focus": []
+  },
+  "social_media": {
+    "twitter": null,
+    "facebook": null,
+    "website": null
+  },
+  "metadata": {
+    "data_quality_score": 0.45,
+    "last_updated": "2025-12-27T21:35:00Z"
+  }
+}

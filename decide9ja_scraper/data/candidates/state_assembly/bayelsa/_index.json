@@ -1,0 +1,181 @@
+{
+    "state": "Bayelsa",
+    "assembly_name": "Bayelsa State House of Assembly",
+    "assembly_term": "7th Assembly",
+    "inauguration_date": "2023-06-06",
+    "total_members": 24,
+    "party_breakdown": {
+        "PDP": 18,
+        "APC": 4,
+        "APGA": 2
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Rt. Hon. Abraham Ingobere",
+            "party": "PDP",
+            "constituency": "Brass III",
+            "notes": "Re-elected for second term"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Michael Ogbere",
+            "party": "PDP",
+            "constituency": "Ekeremor III"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Brass I",
+            "name": "Hon. Charles Daniel",
+            "party": "PDP",
+            "file": "brass_1.json"
+        },
+        {
+            "constituency": "Brass II",
+            "name": "Hon. Omubo Timinyo",
+            "party": "APC",
+            "file": "brass_2.json"
+        },
+        {
+            "constituency": "Brass III",
+            "name": "Rt. Hon. Abraham Ingobere",
+            "party": "PDP",
+            "role": "Speaker",
+            "file": "brass_3.json"
+        },
+        {
+            "constituency": "Ekeremor I",
+            "name": "Hon. Tare Porri",
+            "party": "PDP",
+            "file": "ekeremor_1.json"
+        },
+        {
+            "constituency": "Ekeremor II",
+            "name": "Hon. Mitin Living",
+            "party": "PDP",
+            "file": "ekeremor_2.json"
+        },
+        {
+            "constituency": "Ekeremor III",
+            "name": "Hon. Michael Ogbere",
+            "party": "PDP",
+            "role": "Deputy Speaker",
+            "file": "ekeremor_3.json"
+        },
+        {
+            "constituency": "Kolokuma/Opokuma I",
+            "name": "Hon. Werinipre Pamoh",
+            "party": "PDP",
+            "file": "kolokuma_opokuma_1.json"
+        },
+        {
+            "constituency": "Kolokuma/Opokuma II",
+            "name": "Hon. Wisdom Fafi",
+            "party": "PDP",
+            "file": "kolokuma_opokuma_2.json"
+        },
+        {
+            "constituency": "Nembe I",
+            "name": "Hon. George Braah-Okigbanyo",
+            "party": "APGA",
+            "file": "nembe_1.json"
+        },
+        {
+            "constituency": "Nembe II",
+            "name": "Hon. Edward Brigidi",
+            "party": "APC",
+            "file": "nembe_2.json"
+        },
+        {
+            "constituency": "Nembe III",
+            "name": "Hon. Douglas Samson",
+            "party": "APC",
+            "file": "nembe_3.json"
+        },
+        {
+            "constituency": "Ogbia I",
+            "name": "Hon. Obodor Mitema",
+            "party": "PDP",
+            "file": "ogbia_1.json"
+        },
+        {
+            "constituency": "Ogbia II",
+            "name": "Hon. Gibson Munalayefa",
+            "party": "PDP",
+            "file": "ogbia_2.json"
+        },
+        {
+            "constituency": "Ogbia III",
+            "name": "Hon. Ogoli Naomi",
+            "party": "PDP",
+            "file": "ogbia_3.json"
+        },
+        {
+            "constituency": "Sagbama I",
+            "name": "Hon. Onyinke Godbless",
+            "party": "PDP",
+            "file": "sagbama_1.json"
+        },
+        {
+            "constituency": "Sagbama II",
+            "name": "Hon. Bernard Kenebai",
+            "party": "PDP",
+            "file": "sagbama_2.json"
+        },
+        {
+            "constituency": "Sagbama III",
+            "name": "Hon. Ebizi Brown",
+            "party": "PDP",
+            "file": "sagbama_3.json"
+        },
+        {
+            "constituency": "Southern Ijaw I",
+            "name": "Hon. Felix Bonny-Ayah",
+            "party": "PDP",
+            "file": "southern_ijaw_1.json"
+        },
+        {
+            "constituency": "Southern Ijaw II",
+            "name": "Hon. Bubou-Monday Obolo",
+            "party": "PDP",
+            "file": "southern_ijaw_2.json"
+        },
+        {
+            "constituency": "Southern Ijaw III",
+            "name": "Hon. Malon Moses",
+            "party": "PDP",
+            "file": "southern_ijaw_3.json"
+        },
+        {
+            "constituency": "Southern Ijaw IV",
+            "name": "Hon. Victor-Ben Selekaye",
+            "party": "APC",
+            "file": "southern_ijaw_4.json"
+        },
+        {
+            "constituency": "Yenagoa I",
+            "name": "Hon. Egba Ayibanengiyefa",
+            "party": "PDP",
+            "file": "yenagoa_1.json"
+        },
+        {
+            "constituency": "Yenagoa II",
+            "name": "Hon. Waikumo Amakoromo",
+            "party": "APGA",
+            "file": "yenagoa_2.json"
+        },
+        {
+            "constituency": "Yenagoa III",
+            "name": "Hon. Teddy Tombara",
+            "party": "PDP",
+            "file": "yenagoa_3.json"
+        }
+    ],
+    "data_status": "COMPLETE",
+    "sources": [
+        "Wikipedia",
+        "Premium Times",
+        "gazettengr.com",
+        "nigerianleaders.com"
+    ],
+    "last_updated": "2025-12-27T22:20:00Z"
+}

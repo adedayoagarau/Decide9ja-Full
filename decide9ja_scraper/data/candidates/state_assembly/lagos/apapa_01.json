@@ -1,0 +1,45 @@
+{
+  "id": "meranda_mojisola",
+  "slug": "mojisola-lasbat-meranda",
+  "state": "Lagos",
+  "state_constituency": "Apapa 01",
+  "name": {
+    "full": "Hon. Mojisola Lasbat Meranda",
+    "common": "Mojisola Lasbat Meranda",
+    "aliases": []
+  },
+  "party": "APC",
+  "personal": {
+    "date_of_birth": null,
+    "state_of_origin": "Lagos",
+    "lga_of_origin": null,
+    "religion": null,
+    "education": []
+  },
+  "political_career": {
+    "positions_held": [
+      {
+        "position": "Member, State House of Assembly",
+        "constituency": "Apapa 01 State Constituency",
+        "period": "2023-present"
+      }
+    ]
+  },
+  "assembly_info": {
+    "assembly_term": "10th Assembly",
+    "committee_memberships": [],
+    "bills_sponsored": [],
+    "motions": [],
+    "legislative_focus": [],
+    "role": "Deputy Speaker"
+  },
+  "social_media": {
+    "twitter": null,
+    "facebook": null,
+    "website": null
+  },
+  "metadata": {
+    "data_quality_score": 0.5,
+    "last_updated": "2025-12-27T14:00:20Z"
+  }
+}

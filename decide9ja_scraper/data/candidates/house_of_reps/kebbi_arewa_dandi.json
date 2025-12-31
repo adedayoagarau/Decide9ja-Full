@@ -1,0 +1,43 @@
+{
+  "id": "kamba_umar",
+  "slug": "umar-abdullahi-kamba",
+  "state": "Kebbi",
+  "federal_constituency": "Arewa/Dandi",
+  "name": {
+    "full": "Umar Abdullahi Kamba",
+    "common": "Umar Abdullahi Kamba",
+    "aliases": []
+  },
+  "party": "PDP",
+  "personal": {
+    "date_of_birth": null,
+    "state_of_origin": "Kebbi",
+    "lga_of_origin": null,
+    "religion": null,
+    "education": []
+  },
+  "political_career": {
+    "positions_held": [
+      {
+        "position": "Member, House of Representatives",
+        "constituency": "Arewa/Dandi Federal Constituency",
+        "period": "2023-present"
+      }
+    ]
+  },
+  "house_info": {
+    "committee_memberships": [],
+    "bills_sponsored": [],
+    "motions": [],
+    "legislative_focus": []
+  },
+  "social_media": {
+    "twitter": null,
+    "facebook": null,
+    "website": null
+  },
+  "metadata": {
+    "data_quality_score": 0.45,
+    "last_updated": "2025-12-27T21:35:00Z"
+  }
+}

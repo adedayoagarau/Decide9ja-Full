@@ -1,0 +1,184 @@
+{
+    "state": "Borno",
+    "total_lgas": 27,
+    "last_lga_election": "2024-01-20",
+    "next_election_due": "2027",
+    "current_term_status": "Active",
+    "siec_name": "BOSIEC",
+    "party_sweep": "APC",
+    "data_completeness": "100%",
+    "notable": "First elected female council chairman in Borno State history - Hajiya Inna Galadima (Jere LGA)",
+    "chairmen": [
+        {
+            "lga": "Abadam",
+            "name": "Abubakar Aji Mustapha",
+            "party": "APC",
+            "file": "abadam.json"
+        },
+        {
+            "lga": "Askira/Uba",
+            "name": "Abubakar U. Mazhinyi",
+            "party": "APC",
+            "file": "askira_uba.json"
+        },
+        {
+            "lga": "Bama",
+            "name": "Modu Ali Gujja",
+            "party": "APC",
+            "file": "bama.json"
+        },
+        {
+            "lga": "Bayo",
+            "name": "Haruna Aliyu Chibra",
+            "party": "APC",
+            "file": "bayo.json"
+        },
+        {
+            "lga": "Biu",
+            "name": "Sule Ali Abubakar",
+            "party": "APC",
+            "file": "biu.json"
+        },
+        {
+            "lga": "Chibok",
+            "name": "Madu Mustapha",
+            "party": "APC",
+            "file": "chibok.json"
+        },
+        {
+            "lga": "Damboa",
+            "name": "Prof. Adamu Alooma",
+            "party": "APC",
+            "file": "damboa.json"
+        },
+        {
+            "lga": "Dikwa",
+            "name": "R.G. Modu",
+            "party": "APC",
+            "file": "dikwa.json"
+        },
+        {
+            "lga": "Gubio",
+            "name": "Mali Bulama Mali Gubio",
+            "party": "APC",
+            "file": "gubio.json"
+        },
+        {
+            "lga": "Guzamala",
+            "name": "Goni Gana Lawan",
+            "party": "APC",
+            "file": "guzamala.json"
+        },
+        {
+            "lga": "Gwoza",
+            "name": "Prof. Ibrahim Bukar",
+            "party": "APC",
+            "file": "gwoza.json"
+        },
+        {
+            "lga": "Hawul",
+            "name": "Hussaini Malgwi",
+            "party": "APC",
+            "file": "hawul.json"
+        },
+        {
+            "lga": "Jere",
+            "name": "Hajiya Inna Galadima",
+            "party": "APC",
+            "notes": "First female chairman in Borno history",
+            "file": "jere.json"
+        },
+        {
+            "lga": "Kaga",
+            "name": "Mairu Goni Abdallah",
+            "party": "APC",
+            "file": "kaga.json"
+        },
+        {
+            "lga": "Kala/Balge",
+            "name": "Ajid Musa Ajid",
+            "party": "APC",
+            "file": "kala_balge.json"
+        },
+        {
+            "lga": "Konduga",
+            "name": "Abba Satomi Abbari",
+            "party": "APC",
+            "file": "konduga.json"
+        },
+        {
+            "lga": "Kukawa",
+            "name": "Abba Fugu Bukar",
+            "party": "APC",
+            "file": "kukawa.json"
+        },
+        {
+            "lga": "Kwaya Kusar",
+            "name": "Salisu Adamu Yanga",
+            "party": "APC",
+            "file": "kwaya_kusar.json"
+        },
+        {
+            "lga": "Mafa",
+            "name": "Sunusi Mustapha",
+            "party": "APC",
+            "file": "mafa.json"
+        },
+        {
+            "lga": "Magumeri",
+            "name": "Abubakar Abdulkadir",
+            "party": "APC",
+            "file": "magumeri.json"
+        },
+        {
+            "lga": "Maiduguri",
+            "name": "Tijani Umar Ali",
+            "party": "APC",
+            "file": "maiduguri.json"
+        },
+        {
+            "lga": "Marte",
+            "name": "Baba Gana Abatcha",
+            "party": "APC",
+            "file": "marte.json"
+        },
+        {
+            "lga": "Mobbar",
+            "name": "Mohammed M. Aji",
+            "party": "APC",
+            "file": "mobbar.json"
+        },
+        {
+            "lga": "Monguno",
+            "name": "Liman Alhaji Kalla",
+            "party": "APC",
+            "file": "monguno.json"
+        },
+        {
+            "lga": "Ngala",
+            "name": "Muhammad Umar",
+            "party": "APC",
+            "file": "ngala.json"
+        },
+        {
+            "lga": "Nganzai",
+            "name": "Engr. Badu",
+            "party": "APC",
+            "file": "nganzai.json"
+        },
+        {
+            "lga": "Shani",
+            "name": "Hassan Abdu Labaki",
+            "party": "APC",
+            "file": "shani.json"
+        }
+    ],
+    "sources": [
+        "bornostate.gov.ng",
+        "ndarason.com",
+        "New Telegraph",
+        "Vanguard",
+        "BOSIEC"
+    ],
+    "last_updated": "2025-12-28T00:30:00Z"
+}

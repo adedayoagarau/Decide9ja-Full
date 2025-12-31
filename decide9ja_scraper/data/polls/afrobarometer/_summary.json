@@ -1,0 +1,17 @@
+{
+    "source": "Afrobarometer",
+    "url": "https://www.afrobarometer.org",
+    "scraped_at": "2025-12-27T18:07:00Z",
+    "total_records": 139,
+    "date_range": {
+        "earliest": "2000-01-01 (Estimated)",
+        "latest": "2024-12-01 (Estimated)"
+    },
+    "categories": [
+        "Dispatch",
+        "Summary of Results",
+        "Working Paper",
+        "Policy Paper",
+        "Report"
+    ]
+}

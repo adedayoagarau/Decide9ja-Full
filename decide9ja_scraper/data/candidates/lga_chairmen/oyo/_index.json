@@ -1,0 +1,219 @@
+{
+    "state": "Oyo",
+    "total_lgas": 33,
+    "last_lga_election": "2024-04-27",
+    "next_election_due": "2027",
+    "current_term_status": "Active",
+    "siec_name": "OYSIEC",
+    "party_sweep": "PDP",
+    "data_completeness": "PARTIAL",
+    "data_notes": "PDP won all 33 seats; individual chairman names not fully documented in search results",
+    "chairmen": [
+        {
+            "lga": "Afijio",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "afijio.json"
+        },
+        {
+            "lga": "Akinyele",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "akinyele.json"
+        },
+        {
+            "lga": "Atiba",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "atiba.json"
+        },
+        {
+            "lga": "Atisbo",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "atisbo.json"
+        },
+        {
+            "lga": "Egbeda",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "egbeda.json"
+        },
+        {
+            "lga": "Ibadan North",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ibadan_north.json"
+        },
+        {
+            "lga": "Ibadan North-East",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ibadan_north_east.json"
+        },
+        {
+            "lga": "Ibadan North-West",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ibadan_north_west.json"
+        },
+        {
+            "lga": "Ibadan South-East",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ibadan_south_east.json"
+        },
+        {
+            "lga": "Ibadan South-West",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ibadan_south_west.json"
+        },
+        {
+            "lga": "Ibarapa Central",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ibarapa_central.json"
+        },
+        {
+            "lga": "Ibarapa East",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ibarapa_east.json"
+        },
+        {
+            "lga": "Ibarapa North",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ibarapa_north.json"
+        },
+        {
+            "lga": "Ido",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ido.json"
+        },
+        {
+            "lga": "Irepo",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "irepo.json"
+        },
+        {
+            "lga": "Iseyin",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "iseyin.json"
+        },
+        {
+            "lga": "Itesiwaju",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "itesiwaju.json"
+        },
+        {
+            "lga": "Iwajowa",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "iwajowa.json"
+        },
+        {
+            "lga": "Kajola",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "kajola.json"
+        },
+        {
+            "lga": "Lagelu",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "lagelu.json"
+        },
+        {
+            "lga": "Ogbomosho North",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ogbomosho_north.json"
+        },
+        {
+            "lga": "Ogbomosho South",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ogbomosho_south.json"
+        },
+        {
+            "lga": "Ogo Oluwa",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ogo_oluwa.json"
+        },
+        {
+            "lga": "Olorunsogo",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "olorunsogo.json"
+        },
+        {
+            "lga": "Oluyole",
+            "name": "Akeem Olatunji",
+            "party": "PDP",
+            "file": "oluyole.json"
+        },
+        {
+            "lga": "Ona Ara",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ona_ara.json"
+        },
+        {
+            "lga": "Orelope",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "orelope.json"
+        },
+        {
+            "lga": "Ori Ire",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ori_ire.json"
+        },
+        {
+            "lga": "Oyo East",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "oyo_east.json"
+        },
+        {
+            "lga": "Oyo West",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "oyo_west.json"
+        },
+        {
+            "lga": "Saki East",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "saki_east.json"
+        },
+        {
+            "lga": "Saki West",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "saki_west.json"
+        },
+        {
+            "lga": "Surulere",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "surulere.json"
+        }
+    ],
+    "sources": [
+        "Punch",
+        "Channels TV",
+        "oyostate.gov.ng",
+        "OYSIEC"
+    ],
+    "suggested_enrichment": "Contact OYSIEC or Oyo State Government for individual chairman names",
+    "last_updated": "2025-12-28T00:00:00Z"
+}

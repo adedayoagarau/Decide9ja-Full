@@ -1,0 +1,206 @@
+{
+    "state": "Imo",
+    "assembly_name": "Imo State House of Assembly",
+    "website": "https://imostate.gov.ng",
+    "assembly_term": "10th Assembly",
+    "inauguration_date": "2023-06-13",
+    "total_members": 27,
+    "party_breakdown": {
+        "APC": 25,
+        "PDP": 1,
+        "AP": 1
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Hon. Chike Olemgbe",
+            "party": "APC",
+            "constituency": "Ihitte/Uboma"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Amara Iwuanyanwu",
+            "party": "APC",
+            "constituency": "Nwangele"
+        },
+        "Chief_Whip": {
+            "name": "Hon. Chigozie Nwaneri",
+            "party": "APC",
+            "constituency": "Oru East"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Aboh Mbaise",
+            "name": "Hon. Eddy Obinna",
+            "party": "APC",
+            "file": "aboh_mbaise.json"
+        },
+        {
+            "constituency": "Ahiazu Mbaise",
+            "name": "Hon. Samuel Otuibe",
+            "party": "APC",
+            "file": "ahiazu_mbaise.json"
+        },
+        {
+            "constituency": "Ehime Mbano",
+            "name": "Hon. Innocent Ikechukwu Ikpamezie",
+            "party": "APC",
+            "file": "ehime_mbano.json"
+        },
+        {
+            "constituency": "Ezinihitte",
+            "name": "Hon. Chinemetem Agbaso",
+            "party": "APC",
+            "file": "ezinihitte.json"
+        },
+        {
+            "constituency": "Ideato North",
+            "name": "Hon. Udeze Ernest Okechukwu",
+            "party": "APC",
+            "file": "ideato_north.json"
+        },
+        {
+            "constituency": "Ideato South",
+            "name": "Hon. Vitalis Azodo",
+            "party": "AP",
+            "file": "ideato_south.json"
+        },
+        {
+            "constituency": "Ihitte/Uboma",
+            "name": "Hon. Chike Olemgbe",
+            "party": "APC",
+            "role": "Speaker",
+            "file": "ihitte_uboma.json"
+        },
+        {
+            "constituency": "Ikeduru",
+            "name": "Hon. James Uba Esile",
+            "party": "APC",
+            "file": "ikeduru.json"
+        },
+        {
+            "constituency": "Isiala Mbano",
+            "name": "Hon. Samuel Ikechukwu Osuji",
+            "party": "APC",
+            "file": "isiala_mbano.json"
+        },
+        {
+            "constituency": "Isu",
+            "name": "Hon. Modestus Osakwe",
+            "party": "PDP",
+            "file": "isu.json"
+        },
+        {
+            "constituency": "Mbaitoli",
+            "name": "Hon. Kelechi Opurum",
+            "party": "APC",
+            "file": "mbaitoli.json"
+        },
+        {
+            "constituency": "Ngor Okpala",
+            "name": "Hon. Obinna Ambrose Egu",
+            "party": "APC",
+            "file": "ngor_okpala.json"
+        },
+        {
+            "constituency": "Njaba",
+            "name": "Hon. Ozioma Bennett Ebonine",
+            "party": "APC",
+            "file": "njaba.json"
+        },
+        {
+            "constituency": "Nkwerre",
+            "name": "Hon. Chisom Ojukwu",
+            "party": "APC",
+            "file": "nkwerre.json"
+        },
+        {
+            "constituency": "Nwangele",
+            "name": "Hon. Amara Iwuanyanwu",
+            "party": "APC",
+            "role": "Deputy Speaker",
+            "file": "nwangele.json"
+        },
+        {
+            "constituency": "Obowo",
+            "name": "Hon. Bernard Ndubuisi Odoemenam",
+            "party": "APC",
+            "file": "obowo.json"
+        },
+        {
+            "constituency": "Oguta",
+            "name": "Hon. Gilbert Chidozie Nwosu",
+            "party": "APC",
+            "file": "oguta.json"
+        },
+        {
+            "constituency": "Ohaji/Egbema",
+            "name": "Hon. Henry Agbasonu",
+            "party": "APC",
+            "file": "ohaji_egbema.json"
+        },
+        {
+            "constituency": "Okigwe",
+            "name": "Hon. Iheoha Johnleoba",
+            "party": "APC",
+            "file": "okigwe.json"
+        },
+        {
+            "constituency": "Onuimo",
+            "name": "Hon. Ikenna Ihezuo",
+            "party": "APC",
+            "file": "onuimo.json"
+        },
+        {
+            "constituency": "Orlu",
+            "name": "Hon. Uzoma Francis Osuoha",
+            "party": "APC",
+            "file": "orlu.json"
+        },
+        {
+            "constituency": "Orsu",
+            "name": "Hon. Francis Uche Agbabige",
+            "party": "APC",
+            "file": "orsu.json"
+        },
+        {
+            "constituency": "Oru East",
+            "name": "Hon. Chigozie Nwaneri",
+            "party": "APC",
+            "role": "Chief Whip",
+            "file": "oru_east.json"
+        },
+        {
+            "constituency": "Oru West",
+            "name": "Hon. Dominic Ezeriorah",
+            "party": "APC",
+            "file": "oru_west.json"
+        },
+        {
+            "constituency": "Owerri Municipal",
+            "name": "Hon. Ugochukwu Obodo",
+            "party": "APC",
+            "file": "owerri_municipal.json"
+        },
+        {
+            "constituency": "Owerri North",
+            "name": "Hon. Solomon Nwafor",
+            "party": "APC",
+            "file": "owerri_north.json"
+        },
+        {
+            "constituency": "Owerri West",
+            "name": "Hon. Kanayo Onyemachi",
+            "party": "APC",
+            "file": "owerri_west.json"
+        }
+    ],
+    "data_status": "COMPLETE",
+    "sources": [
+        "imostate.gov.ng",
+        "Premium Times",
+        "Vanguard",
+        "The Nation",
+        "Wikipedia"
+    ],
+    "last_updated": "2025-12-27T23:35:00Z"
+}

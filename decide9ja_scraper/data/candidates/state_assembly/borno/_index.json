@@ -1,0 +1,204 @@
+{
+    "state": "Borno",
+    "assembly_name": "Borno State House of Assembly",
+    "assembly_term": "10th Assembly",
+    "inauguration_date": "2023-06-13",
+    "total_members": 28,
+    "party_breakdown": {
+        "APC": 28,
+        "notes": "APC won all 28 seats"
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Hon. Abdulkarim Lawan",
+            "party": "APC",
+            "constituency": "Guzamala",
+            "notes": "Longest-serving Speaker in Nigeria since 2012"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Abdullahi Musa",
+            "party": "APC",
+            "constituency": "Askira/Uba"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Guzamala",
+            "name": "Hon. Abdulkarim Lawan",
+            "party": "APC",
+            "role": "Speaker",
+            "file": "guzamala.json"
+        },
+        {
+            "constituency": "Askira/Uba",
+            "name": "Hon. Abdullahi Musa",
+            "party": "APC",
+            "role": "Deputy Speaker",
+            "file": "askira_uba.json"
+        },
+        {
+            "constituency": "Bama",
+            "name": "Hon. Baba Kura",
+            "party": "APC",
+            "file": "bama.json"
+        },
+        {
+            "constituency": "Bayo",
+            "name": "Hon. Alhaji Bukar",
+            "party": "APC",
+            "file": "bayo.json"
+        },
+        {
+            "constituency": "Biu",
+            "name": "Hon. Mohammed Bitrus",
+            "party": "APC",
+            "file": "biu.json"
+        },
+        {
+            "constituency": "Chibok",
+            "name": "Hon. Patrick Madu",
+            "party": "APC",
+            "file": "chibok.json"
+        },
+        {
+            "constituency": "Damboa",
+            "name": "Hon. Suleiman Haruna",
+            "party": "APC",
+            "file": "damboa.json"
+        },
+        {
+            "constituency": "Dikwa",
+            "name": "Hon. Alhaji Maidugu",
+            "party": "APC",
+            "file": "dikwa.json"
+        },
+        {
+            "constituency": "Gubio",
+            "name": "Hon. Mohammed Ali",
+            "party": "APC",
+            "file": "gubio.json"
+        },
+        {
+            "constituency": "Gwoza",
+            "name": "Hon. Adamu Haruna",
+            "party": "APC",
+            "file": "gwoza.json"
+        },
+        {
+            "constituency": "Hawul",
+            "name": "Hon. Ishaya Maimuna",
+            "party": "APC",
+            "file": "hawul.json"
+        },
+        {
+            "constituency": "Jere",
+            "name": "Hon. Bukar Dalori",
+            "party": "APC",
+            "file": "jere.json"
+        },
+        {
+            "constituency": "Kaga",
+            "name": "Hon. Shettima Ali",
+            "party": "APC",
+            "file": "kaga.json"
+        },
+        {
+            "constituency": "Kala/Balge",
+            "name": "Hon. Ali Bukar",
+            "party": "APC",
+            "file": "kala_balge.json"
+        },
+        {
+            "constituency": "Konduga",
+            "name": "Hon. Grema Mohammed",
+            "party": "APC",
+            "file": "konduga.json"
+        },
+        {
+            "constituency": "Kukawa",
+            "name": "Hon. Kalli Modu",
+            "party": "APC",
+            "file": "kukawa.json"
+        },
+        {
+            "constituency": "Kwaya/Kusar",
+            "name": "Hon. Dauda Maina",
+            "party": "APC",
+            "file": "kwaya_kusar.json"
+        },
+        {
+            "constituency": "Mafa",
+            "name": "Hon. Ali Dala",
+            "party": "APC",
+            "file": "mafa.json"
+        },
+        {
+            "constituency": "Magumeri",
+            "name": "Hon. Mustapha Audu",
+            "party": "APC",
+            "file": "magumeri.json"
+        },
+        {
+            "constituency": "Maiduguri MC",
+            "name": "Hon. Kotoko Alhaji Ali",
+            "party": "APC",
+            "file": "maiduguri_mc.json"
+        },
+        {
+            "constituency": "Marte",
+            "name": "Hon. Gambomi Mohammed Marte",
+            "party": "APC",
+            "file": "marte.json"
+        },
+        {
+            "constituency": "Mobbar",
+            "name": "Hon. Morum Usman Lawan",
+            "party": "APC",
+            "file": "mobbar.json"
+        },
+        {
+            "constituency": "Monguno",
+            "name": "Hon. Bukar Kachalla",
+            "party": "APC",
+            "file": "monguno.json"
+        },
+        {
+            "constituency": "Ngala",
+            "name": "Hon. Usman Mustapha",
+            "party": "APC",
+            "file": "ngala.json"
+        },
+        {
+            "constituency": "Nganzai",
+            "name": "Hon. Ahmed Maidugu",
+            "party": "APC",
+            "file": "nganzai.json"
+        },
+        {
+            "constituency": "Shani",
+            "name": "Hon. Ishaku Haruna",
+            "party": "APC",
+            "file": "shani.json"
+        },
+        {
+            "constituency": "Kwajaffa",
+            "name": "Hon. Audu Ibrahim",
+            "party": "APC",
+            "file": "kwajaffa.json"
+        },
+        {
+            "constituency": "Mubi",
+            "name": "Hon. Musa Ahmed",
+            "party": "APC",
+            "file": "mubi.json"
+        }
+    ],
+    "data_status": "PARTIAL",
+    "data_notes": "APC won all seats. Individual member names partially verified; some constituencies need confirmation.",
+    "sources": [
+        "Wikipedia",
+        "Vanguard",
+        "nigerianleaders.com"
+    ],
+    "last_updated": "2025-12-27T22:25:00Z"
+}

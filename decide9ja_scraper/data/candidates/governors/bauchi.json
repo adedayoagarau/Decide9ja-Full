@@ -1,0 +1,104 @@
+{
+    "id": "muhammed_bala",
+    "slug": "bala-muhammed",
+    "state": "Bauchi",
+    "name": {
+        "full": "Bala Abdulkadir Mohammed",
+        "common": "Bala Mohammed",
+        "aliases": []
+    },
+    "personal": {
+        "date_of_birth": "1958-10-05",
+        "state_of_origin": "Bauchi",
+        "lga_of_origin": "Bauchi",
+        "religion": "Muslim",
+        "ethnicity": "Hausa",
+        "education": [],
+        "career_before_politics": [
+            {
+                "role": "Journalist",
+                "organization": "Various",
+                "period": "1980s"
+            },
+            {
+                "role": "FCT Minister",
+                "organization": "Federal Government",
+                "period": "2010-2015"
+            }
+        ],
+        "family": {
+            "spouse": null,
+            "children": null,
+            "notes": null
+        }
+    },
+    "political_career": {
+        "party_history": [
+            {
+                "party": "PDP",
+                "full_name": "Peoples Democratic Party",
+                "joined": null,
+                "left": null
+            }
+        ],
+        "positions_held": [
+            {
+                "position": "Senator",
+                "constituency": "Bauchi Central",
+                "period": "2007-2010"
+            },
+            {
+                "position": "Minister of FCT",
+                "constituency": "Federal",
+                "period": "2010-2015"
+            },
+            {
+                "position": "Governor",
+                "constituency": "Bauchi State",
+                "period": "2019-present",
+                "notes": "Re-elected 2023"
+            }
+        ],
+        "election_history": [
+            {
+                "year": 2019,
+                "position": "Governor",
+                "party": "PDP",
+                "result": "Won"
+            },
+            {
+                "year": 2023,
+                "position": "Governor",
+                "party": "PDP",
+                "result": "Won (re-elected)"
+            }
+        ]
+    },
+    "term_info": {
+        "current_term": "2nd term",
+        "term_start": "2023-05-29",
+        "term_end": "2027-05-29",
+        "first_elected": 2019
+    },
+    "policy_positions": [],
+    "track_record": {
+        "achievements": [],
+        "failures": [],
+        "promises_vs_delivery": []
+    },
+    "controversies": [],
+    "social_media": {
+        "twitter": null,
+        "facebook": null,
+        "instagram": null,
+        "website": null,
+        "verified": false
+    },
+    "metadata": {
+        "data_quality_score": 0.55,
+        "last_updated": "2025-12-27T20:00:00Z",
+        "sources_count": 4,
+        "reviewed_by": "Antigravity Agent",
+        "notes": "Former FCT Minister. Two-term PDP governor."
+    }
+}

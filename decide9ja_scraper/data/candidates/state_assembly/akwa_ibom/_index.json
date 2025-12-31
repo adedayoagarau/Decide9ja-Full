@@ -1,0 +1,193 @@
+{
+    "state": "Akwa Ibom",
+    "assembly_name": "Akwa Ibom State House of Assembly",
+    "website": "https://akwaibomstate.gov.ng",
+    "assembly_term": "8th Assembly",
+    "inauguration_date": "2023-06-09",
+    "total_members": 26,
+    "party_breakdown": {
+        "PDP": 24,
+        "YPP": 2
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Hon. Udeme Otong",
+            "party": "PDP",
+            "constituency": "Abak"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Kufreabasi Edidem",
+            "party": "PDP",
+            "constituency": "Itu"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Abak",
+            "name": "Hon. Udeme Otong",
+            "party": "PDP",
+            "role": "Speaker",
+            "file": "abak.json"
+        },
+        {
+            "constituency": "Eket",
+            "name": "Hon. Nsidibe Akata",
+            "party": "PDP",
+            "file": "eket.json"
+        },
+        {
+            "constituency": "Esit Eket/Ibeno",
+            "name": "Hon. Udobia Friday Udo",
+            "party": "PDP",
+            "file": "esit_eket_ibeno.json"
+        },
+        {
+            "constituency": "Essien Udim",
+            "name": "Hon. Prince Ukpong Akpabio",
+            "party": "PDP",
+            "file": "essien_udim.json"
+        },
+        {
+            "constituency": "Etim Ekpo/Ika",
+            "name": "Hon. Mfon Idung",
+            "party": "PDP",
+            "file": "etim_ekpo_ika.json"
+        },
+        {
+            "constituency": "Etinan",
+            "name": "Hon. Uduak Obong Ekpo",
+            "party": "PDP",
+            "file": "etinan.json"
+        },
+        {
+            "constituency": "Ibesikpo Asutan",
+            "name": "Hon. Ubong Attah",
+            "party": "PDP",
+            "file": "ibesikpo_asutan.json"
+        },
+        {
+            "constituency": "Ibiono Ibom",
+            "name": "Hon. Moses Essien",
+            "party": "YPP",
+            "file": "ibiono_ibom.json"
+        },
+        {
+            "constituency": "Ikono",
+            "name": "Hon. Asuquo Nana Udo",
+            "party": "YPP",
+            "file": "ikono.json"
+        },
+        {
+            "constituency": "Ikot Abasi/Eastern Obolo",
+            "name": "Mrs. Selina Isotuk Ukpata",
+            "party": "PDP",
+            "file": "ikot_abasi_eastern_obolo.json"
+        },
+        {
+            "constituency": "Ikot Ekpene/Obot Akara",
+            "name": "Hon. Jerry Anson Otu",
+            "party": "PDP",
+            "file": "ikot_ekpene_obot_akara.json"
+        },
+        {
+            "constituency": "Ini",
+            "name": "Hon. Lawrence Udoide",
+            "party": "PDP",
+            "file": "ini.json"
+        },
+        {
+            "constituency": "Itu",
+            "name": "Hon. Kufreabasi Edidem",
+            "party": "PDP",
+            "role": "Deputy Speaker",
+            "file": "itu.json"
+        },
+        {
+            "constituency": "Mbo",
+            "name": "Hon. Effiong Johnson",
+            "party": "PDP",
+            "file": "mbo.json"
+        },
+        {
+            "constituency": "Mkpat Enin",
+            "name": "Hon. Uwem Peter",
+            "party": "PDP",
+            "file": "mkpat_enin.json"
+        },
+        {
+            "constituency": "Nsit Atai",
+            "name": "Hon. Prince Aniefiok Okon",
+            "party": "PDP",
+            "file": "nsit_atai.json"
+        },
+        {
+            "constituency": "Nsit Ibom",
+            "name": "Hon. Eric Akpan",
+            "party": "PDP",
+            "file": "nsit_ibom.json"
+        },
+        {
+            "constituency": "Nsit Ubium",
+            "name": "Hon. Otobong Bob",
+            "party": "PDP",
+            "file": "nsit_ubium.json"
+        },
+        {
+            "constituency": "Okobo",
+            "name": "Hon. Bassey Pius Bassey",
+            "party": "PDP",
+            "file": "okobo.json"
+        },
+        {
+            "constituency": "Onna",
+            "name": "Hon. Sunday Udofot Johnny",
+            "party": "PDP",
+            "file": "onna.json"
+        },
+        {
+            "constituency": "Oron/Udung Uko",
+            "name": "Mrs. Kenim Victor Onofiok",
+            "party": "PDP",
+            "file": "oron_udung_uko.json"
+        },
+        {
+            "constituency": "Oruk Anam",
+            "name": "Hon. Samson Idiong",
+            "party": "PDP",
+            "file": "oruk_anam.json"
+        },
+        {
+            "constituency": "Ukanafun",
+            "name": "Hon. Emem Etokabasi Udom",
+            "party": "PDP",
+            "file": "ukanafun.json"
+        },
+        {
+            "constituency": "Uruan",
+            "name": "Mrs. Itorobong Francis Etim",
+            "party": "PDP",
+            "file": "uruan.json"
+        },
+        {
+            "constituency": "Urue Offong/Oruko",
+            "name": "Mrs. Precious Selong",
+            "party": "PDP",
+            "file": "urue_offong_oruko.json"
+        },
+        {
+            "constituency": "Uyo",
+            "name": "Hon. Uwemedimo Dianabasi",
+            "party": "PDP",
+            "file": "uyo.json"
+        }
+    ],
+    "data_status": "COMPLETE",
+    "sources": [
+        "Vanguard",
+        "nigerianleaders.com",
+        "Premium Times",
+        "Punch",
+        "Wikipedia"
+    ],
+    "last_updated": "2025-12-27T22:15:00Z"
+}

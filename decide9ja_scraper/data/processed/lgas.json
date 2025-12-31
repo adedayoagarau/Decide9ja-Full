@@ -1,0 +1,6194 @@
+[
+  {
+    "id": "abia_aba_north",
+    "name": "Aba North",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "abia_aba_south",
+    "name": "Aba South",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "abia_arochukwu",
+    "name": "Arochukwu",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "abia_bende",
+    "name": "Bende",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "abia_ikwuano",
+    "name": "Ikwuano",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "abia_isiala_ngwa_north",
+    "name": "Isiala Ngwa North",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "abia_isiala_ngwa_south",
+    "name": "Isiala Ngwa South",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "abia_isuikwuato",
+    "name": "Isuikwuato",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "abia_obi_ngwa",
+    "name": "Obi Ngwa",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "abia_ohafia",
+    "name": "Ohafia",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "abia_osisioma",
+    "name": "Osisioma",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "abia_ugwunagbo",
+    "name": "Ugwunagbo",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "abia_ukwa_east",
+    "name": "Ukwa East",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "abia_ukwa_west",
+    "name": "Ukwa West",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "abia_umuahia_north",
+    "name": "Umuahia North",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "abia_umuahia_south",
+    "name": "Umuahia South",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "abia_umu_nneochi",
+    "name": "Umu Nneochi",
+    "state": "Abia",
+    "state_id": "abia",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_demsa",
+    "name": "Demsa",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_fufure",
+    "name": "Fufure",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_ganye",
+    "name": "Ganye",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_gayuk",
+    "name": "Gayuk",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_gombi",
+    "name": "Gombi",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_grie",
+    "name": "Grie",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_hong",
+    "name": "Hong",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_jada",
+    "name": "Jada",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_lamurde",
+    "name": "Lamurde",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_madagali",
+    "name": "Madagali",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_maiha",
+    "name": "Maiha",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_mayo_belwa",
+    "name": "Mayo Belwa",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_michika",
+    "name": "Michika",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_mubi_north",
+    "name": "Mubi North",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_mubi_south",
+    "name": "Mubi South",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_numan",
+    "name": "Numan",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_shelleng",
+    "name": "Shelleng",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_song",
+    "name": "Song",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_toungo",
+    "name": "Toungo",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_yola_north",
+    "name": "Yola North",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "adamawa_yola_south",
+    "name": "Yola South",
+    "state": "Adamawa",
+    "state_id": "adamawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_abak",
+    "name": "Abak",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_eastern_obolo",
+    "name": "Eastern Obolo",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_eket",
+    "name": "Eket",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_esit_eket",
+    "name": "Esit Eket",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_essien_udim",
+    "name": "Essien Udim",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_etim_ekpo",
+    "name": "Etim Ekpo",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_etinan",
+    "name": "Etinan",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_ibeno",
+    "name": "Ibeno",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_ibesikpo_asutan",
+    "name": "Ibesikpo Asutan",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_ibiono_ibom",
+    "name": "Ibiono-Ibom",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_ika",
+    "name": "Ika",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_ikono",
+    "name": "Ikono",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_ikot_abasi",
+    "name": "Ikot Abasi",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_ikot_ekpene",
+    "name": "Ikot Ekpene",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_ini",
+    "name": "Ini",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_itu",
+    "name": "Itu",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_mbo",
+    "name": "Mbo",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_mkpat_enin",
+    "name": "Mkpat-Enin",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_nsit_atai",
+    "name": "Nsit-Atai",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_nsit_ibom",
+    "name": "Nsit-Ibom",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_nsit_ubium",
+    "name": "Nsit-Ubium",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_obot_akara",
+    "name": "Obot Akara",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_okobo",
+    "name": "Okobo",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_onna",
+    "name": "Onna",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_oron",
+    "name": "Oron",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_oruk_anam",
+    "name": "Oruk Anam",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_udung_uko",
+    "name": "Udung-Uko",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_ukanafun",
+    "name": "Ukanafun",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_uruan",
+    "name": "Uruan",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_urue_offong_oruko",
+    "name": "Urue-Offong/Oruko",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "akwa_ibom_uyo",
+    "name": "Uyo",
+    "state": "Akwa Ibom",
+    "state_id": "akwa_ibom",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_aguata",
+    "name": "Aguata",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_anambra_east",
+    "name": "Anambra East",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_anambra_west",
+    "name": "Anambra West",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_anaocha",
+    "name": "Anaocha",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_awka_north",
+    "name": "Awka North",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_awka_south",
+    "name": "Awka South",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_ayamelum",
+    "name": "Ayamelum",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_dunukofia",
+    "name": "Dunukofia",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_ekwusigo",
+    "name": "Ekwusigo",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_idemili_north",
+    "name": "Idemili North",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_idemili_south",
+    "name": "Idemili South",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_ihiala",
+    "name": "Ihiala",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_njikoka",
+    "name": "Njikoka",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_nnewi_north",
+    "name": "Nnewi North",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_nnewi_south",
+    "name": "Nnewi South",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_ogbaru",
+    "name": "Ogbaru",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_onitsha_north",
+    "name": "Onitsha North",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_onitsha_south",
+    "name": "Onitsha South",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_orumba_north",
+    "name": "Orumba North",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_orumba_south",
+    "name": "Orumba South",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "anambra_oyi",
+    "name": "Oyi",
+    "state": "Anambra",
+    "state_id": "anambra",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_alkaleri",
+    "name": "Alkaleri",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_bauchi",
+    "name": "Bauchi",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_bogoro",
+    "name": "Bogoro",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_damban",
+    "name": "Damban",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_darazo",
+    "name": "Darazo",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_dass",
+    "name": "Dass",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_gamawa",
+    "name": "Gamawa",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_ganjuwa",
+    "name": "Ganjuwa",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_giade",
+    "name": "Giade",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_itas_gadau",
+    "name": "Itas/Gadau",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_jama'are",
+    "name": "Jama'are",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_katagum",
+    "name": "Katagum",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_kirfi",
+    "name": "Kirfi",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_misau",
+    "name": "Misau",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_ningi",
+    "name": "Ningi",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_shira",
+    "name": "Shira",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_tafawa_balewa",
+    "name": "Tafawa Balewa",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_toro",
+    "name": "Toro",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_warji",
+    "name": "Warji",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bauchi_zaki",
+    "name": "Zaki",
+    "state": "Bauchi",
+    "state_id": "bauchi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bayelsa_brass",
+    "name": "Brass",
+    "state": "Bayelsa",
+    "state_id": "bayelsa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bayelsa_ekeremor",
+    "name": "Ekeremor",
+    "state": "Bayelsa",
+    "state_id": "bayelsa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bayelsa_kolokuma_opokuma",
+    "name": "Kolokuma/Opokuma",
+    "state": "Bayelsa",
+    "state_id": "bayelsa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bayelsa_nembe",
+    "name": "Nembe",
+    "state": "Bayelsa",
+    "state_id": "bayelsa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bayelsa_ogbia",
+    "name": "Ogbia",
+    "state": "Bayelsa",
+    "state_id": "bayelsa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bayelsa_sagbama",
+    "name": "Sagbama",
+    "state": "Bayelsa",
+    "state_id": "bayelsa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bayelsa_southern_ijaw",
+    "name": "Southern Ijaw",
+    "state": "Bayelsa",
+    "state_id": "bayelsa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "bayelsa_yenagoa",
+    "name": "Yenagoa",
+    "state": "Bayelsa",
+    "state_id": "bayelsa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_ado",
+    "name": "Ado",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_agatu",
+    "name": "Agatu",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_apa",
+    "name": "Apa",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_buruku",
+    "name": "Buruku",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_gboko",
+    "name": "Gboko",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_guma",
+    "name": "Guma",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_gwer_east",
+    "name": "Gwer East",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_gwer_west",
+    "name": "Gwer West",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_katsina_ala",
+    "name": "Katsina-Ala",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_konshisha",
+    "name": "Konshisha",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_kwande",
+    "name": "Kwande",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_logo",
+    "name": "Logo",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_makurdi",
+    "name": "Makurdi",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_obi",
+    "name": "Obi",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_ogbadibo",
+    "name": "Ogbadibo",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_ohimini",
+    "name": "Ohimini",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_oju",
+    "name": "Oju",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_okpokwu",
+    "name": "Okpokwu",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_otukpo",
+    "name": "Otukpo",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_tarka",
+    "name": "Tarka",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_ukum",
+    "name": "Ukum",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_ushongo",
+    "name": "Ushongo",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "benue_vandeikya",
+    "name": "Vandeikya",
+    "state": "Benue",
+    "state_id": "benue",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_abadam",
+    "name": "Abadam",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_askira_uba",
+    "name": "Askira/Uba",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_bama",
+    "name": "Bama",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_bayo",
+    "name": "Bayo",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_biu",
+    "name": "Biu",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_chibok",
+    "name": "Chibok",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_damboa",
+    "name": "Damboa",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_dikwa",
+    "name": "Dikwa",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_gubio",
+    "name": "Gubio",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_guzamala",
+    "name": "Guzamala",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_gwoza",
+    "name": "Gwoza",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_hawul",
+    "name": "Hawul",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_jere",
+    "name": "Jere",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_kaga",
+    "name": "Kaga",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_kala_balge",
+    "name": "Kala/Balge",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_konduga",
+    "name": "Konduga",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_kukawa",
+    "name": "Kukawa",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_kwaya_kusar",
+    "name": "Kwaya Kusar",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_mafa",
+    "name": "Mafa",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_magumeri",
+    "name": "Magumeri",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_maiduguri",
+    "name": "Maiduguri",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_marte",
+    "name": "Marte",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_mobbar",
+    "name": "Mobbar",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_monguno",
+    "name": "Monguno",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_ngala",
+    "name": "Ngala",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_nganzai",
+    "name": "Nganzai",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "borno_shani",
+    "name": "Shani",
+    "state": "Borno",
+    "state_id": "borno",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_abi",
+    "name": "Abi",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_akamkpa",
+    "name": "Akamkpa",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_akpabuyo",
+    "name": "Akpabuyo",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_bakassi",
+    "name": "Bakassi",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_bekwarra",
+    "name": "Bekwarra",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_biase",
+    "name": "Biase",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_boki",
+    "name": "Boki",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_calabar_municipal",
+    "name": "Calabar Municipal",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_calabar_south",
+    "name": "Calabar South",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_etung",
+    "name": "Etung",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_ikom",
+    "name": "Ikom",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_obanliku",
+    "name": "Obanliku",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_obubra",
+    "name": "Obubra",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_obudu",
+    "name": "Obudu",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_odukpani",
+    "name": "Odukpani",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_ogoja",
+    "name": "Ogoja",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_yakuur",
+    "name": "Yakuur",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "cross_river_yala",
+    "name": "Yala",
+    "state": "Cross River",
+    "state_id": "cross_river",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_aniocha_north",
+    "name": "Aniocha North",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_aniocha_south",
+    "name": "Aniocha South",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_bomadi",
+    "name": "Bomadi",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_burutu",
+    "name": "Burutu",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_ethiope_east",
+    "name": "Ethiope East",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_ethiope_west",
+    "name": "Ethiope West",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_ika_north_east",
+    "name": "Ika North East",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_ika_south",
+    "name": "Ika South",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_isoko_north",
+    "name": "Isoko North",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_isoko_south",
+    "name": "Isoko South",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_ndokwa_east",
+    "name": "Ndokwa East",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_ndokwa_west",
+    "name": "Ndokwa West",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_okpe",
+    "name": "Okpe",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_oshimili_north",
+    "name": "Oshimili North",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_oshimili_south",
+    "name": "Oshimili South",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_patani",
+    "name": "Patani",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_sapele",
+    "name": "Sapele",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_udu",
+    "name": "Udu",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_ughelli_north",
+    "name": "Ughelli North",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_ughelli_south",
+    "name": "Ughelli South",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_ukwuani",
+    "name": "Ukwuani",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_uvwie",
+    "name": "Uvwie",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_warri_north",
+    "name": "Warri North",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_warri_south",
+    "name": "Warri South",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "delta_warri_south_west",
+    "name": "Warri South West",
+    "state": "Delta",
+    "state_id": "delta",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ebonyi_abakaliki",
+    "name": "Abakaliki",
+    "state": "Ebonyi",
+    "state_id": "ebonyi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ebonyi_afikpo_north",
+    "name": "Afikpo North",
+    "state": "Ebonyi",
+    "state_id": "ebonyi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ebonyi_afikpo_south",
+    "name": "Afikpo South",
+    "state": "Ebonyi",
+    "state_id": "ebonyi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ebonyi_ebonyi",
+    "name": "Ebonyi",
+    "state": "Ebonyi",
+    "state_id": "ebonyi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ebonyi_ezza_north",
+    "name": "Ezza North",
+    "state": "Ebonyi",
+    "state_id": "ebonyi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ebonyi_ezza_south",
+    "name": "Ezza South",
+    "state": "Ebonyi",
+    "state_id": "ebonyi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ebonyi_ikwo",
+    "name": "Ikwo",
+    "state": "Ebonyi",
+    "state_id": "ebonyi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ebonyi_ishielu",
+    "name": "Ishielu",
+    "state": "Ebonyi",
+    "state_id": "ebonyi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ebonyi_ivo",
+    "name": "Ivo",
+    "state": "Ebonyi",
+    "state_id": "ebonyi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ebonyi_izzi",
+    "name": "Izzi",
+    "state": "Ebonyi",
+    "state_id": "ebonyi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ebonyi_ohaozara",
+    "name": "Ohaozara",
+    "state": "Ebonyi",
+    "state_id": "ebonyi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ebonyi_ohaukwu",
+    "name": "Ohaukwu",
+    "state": "Ebonyi",
+    "state_id": "ebonyi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ebonyi_onicha",
+    "name": "Onicha",
+    "state": "Ebonyi",
+    "state_id": "ebonyi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_akoko_edo",
+    "name": "Akoko-Edo",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_egor",
+    "name": "Egor",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_esan_central",
+    "name": "Esan Central",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_esan_north_east",
+    "name": "Esan North-East",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_esan_south_east",
+    "name": "Esan South-East",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_esan_west",
+    "name": "Esan West",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_etsako_central",
+    "name": "Etsako Central",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_etsako_east",
+    "name": "Etsako East",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_etsako_west",
+    "name": "Etsako West",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_igueben",
+    "name": "Igueben",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_ikpoba_okha",
+    "name": "Ikpoba Okha",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_oredo",
+    "name": "Oredo",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_orhionmwon",
+    "name": "Orhionmwon",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_ovia_north_east",
+    "name": "Ovia North-East",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_ovia_south_west",
+    "name": "Ovia South-West",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_owan_east",
+    "name": "Owan East",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_owan_west",
+    "name": "Owan West",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "edo_uhunmwonde",
+    "name": "Uhunmwonde",
+    "state": "Edo",
+    "state_id": "edo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ekiti_ado_ekiti",
+    "name": "Ado Ekiti",
+    "state": "Ekiti",
+    "state_id": "ekiti",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ekiti_efon",
+    "name": "Efon",
+    "state": "Ekiti",
+    "state_id": "ekiti",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ekiti_ekiti_east",
+    "name": "Ekiti East",
+    "state": "Ekiti",
+    "state_id": "ekiti",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ekiti_ekiti_south_west",
+    "name": "Ekiti South-West",
+    "state": "Ekiti",
+    "state_id": "ekiti",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ekiti_ekiti_west",
+    "name": "Ekiti West",
+    "state": "Ekiti",
+    "state_id": "ekiti",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ekiti_emure",
+    "name": "Emure",
+    "state": "Ekiti",
+    "state_id": "ekiti",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ekiti_gbonyin",
+    "name": "Gbonyin",
+    "state": "Ekiti",
+    "state_id": "ekiti",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ekiti_ido_osi",
+    "name": "Ido Osi",
+    "state": "Ekiti",
+    "state_id": "ekiti",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ekiti_ijero",
+    "name": "Ijero",
+    "state": "Ekiti",
+    "state_id": "ekiti",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ekiti_ikere",
+    "name": "Ikere",
+    "state": "Ekiti",
+    "state_id": "ekiti",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ekiti_ikole",
+    "name": "Ikole",
+    "state": "Ekiti",
+    "state_id": "ekiti",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ekiti_ilejemeje",
+    "name": "Ilejemeje",
+    "state": "Ekiti",
+    "state_id": "ekiti",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ekiti_irepodun_ifelodun",
+    "name": "Irepodun/Ifelodun",
+    "state": "Ekiti",
+    "state_id": "ekiti",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ekiti_ise_orun",
+    "name": "Ise/Orun",
+    "state": "Ekiti",
+    "state_id": "ekiti",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ekiti_moba",
+    "name": "Moba",
+    "state": "Ekiti",
+    "state_id": "ekiti",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ekiti_oye",
+    "name": "Oye",
+    "state": "Ekiti",
+    "state_id": "ekiti",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_aninri",
+    "name": "Aninri",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_awgu",
+    "name": "Awgu",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_enugu_east",
+    "name": "Enugu East",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_enugu_north",
+    "name": "Enugu North",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_enugu_south",
+    "name": "Enugu South",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_ezeagu",
+    "name": "Ezeagu",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_igbo_etiti",
+    "name": "Igbo Etiti",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_igbo_eze_north",
+    "name": "Igbo Eze North",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_igbo_eze_south",
+    "name": "Igbo Eze South",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_isi_uzo",
+    "name": "Isi Uzo",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_nkanu_east",
+    "name": "Nkanu East",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_nkanu_west",
+    "name": "Nkanu West",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_nsukka",
+    "name": "Nsukka",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_oji_river",
+    "name": "Oji River",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_udenu",
+    "name": "Udenu",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_udi",
+    "name": "Udi",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "enugu_uzo_uwani",
+    "name": "Uzo Uwani",
+    "state": "Enugu",
+    "state_id": "enugu",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "fct_abaji",
+    "name": "Abaji",
+    "state": "FCT",
+    "state_id": "fct",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "fct_bwari",
+    "name": "Bwari",
+    "state": "FCT",
+    "state_id": "fct",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "fct_gwagwalada",
+    "name": "Gwagwalada",
+    "state": "FCT",
+    "state_id": "fct",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "fct_kuje",
+    "name": "Kuje",
+    "state": "FCT",
+    "state_id": "fct",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "fct_kwali",
+    "name": "Kwali",
+    "state": "FCT",
+    "state_id": "fct",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "fct_municipal_area_council",
+    "name": "Municipal Area Council",
+    "state": "FCT",
+    "state_id": "fct",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "gombe_akko",
+    "name": "Akko",
+    "state": "Gombe",
+    "state_id": "gombe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "gombe_balanga",
+    "name": "Balanga",
+    "state": "Gombe",
+    "state_id": "gombe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "gombe_billiri",
+    "name": "Billiri",
+    "state": "Gombe",
+    "state_id": "gombe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "gombe_dukku",
+    "name": "Dukku",
+    "state": "Gombe",
+    "state_id": "gombe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "gombe_funakaye",
+    "name": "Funakaye",
+    "state": "Gombe",
+    "state_id": "gombe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "gombe_gombe",
+    "name": "Gombe",
+    "state": "Gombe",
+    "state_id": "gombe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "gombe_kaltungo",
+    "name": "Kaltungo",
+    "state": "Gombe",
+    "state_id": "gombe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "gombe_kwami",
+    "name": "Kwami",
+    "state": "Gombe",
+    "state_id": "gombe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "gombe_nafada",
+    "name": "Nafada",
+    "state": "Gombe",
+    "state_id": "gombe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "gombe_shongom",
+    "name": "Shongom",
+    "state": "Gombe",
+    "state_id": "gombe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "gombe_yamaltu_deba",
+    "name": "Yamaltu/Deba",
+    "state": "Gombe",
+    "state_id": "gombe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_aboh_mbaise",
+    "name": "Aboh Mbaise",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_ahiazu_mbaise",
+    "name": "Ahiazu Mbaise",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_ehime_mbano",
+    "name": "Ehime Mbano",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_ezinihitte",
+    "name": "Ezinihitte",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_ideato_north",
+    "name": "Ideato North",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_ideato_south",
+    "name": "Ideato South",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_ihitte_uboma",
+    "name": "Ihitte/Uboma",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_ikeduru",
+    "name": "Ikeduru",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_isiala_mbano",
+    "name": "Isiala Mbano",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_isu",
+    "name": "Isu",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_mbaitoli",
+    "name": "Mbaitoli",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_ngor_okpala",
+    "name": "Ngor Okpala",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_njaba",
+    "name": "Njaba",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_nkwerre",
+    "name": "Nkwerre",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_nwangele",
+    "name": "Nwangele",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_obowo",
+    "name": "Obowo",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_oguta",
+    "name": "Oguta",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_ohaji_egbema",
+    "name": "Ohaji/Egbema",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_okigwe",
+    "name": "Okigwe",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_orlu",
+    "name": "Orlu",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_orsu",
+    "name": "Orsu",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_oru_east",
+    "name": "Oru East",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_oru_west",
+    "name": "Oru West",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_owerri_municipal",
+    "name": "Owerri Municipal",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_owerri_north",
+    "name": "Owerri North",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_owerri_west",
+    "name": "Owerri West",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "imo_unuimo",
+    "name": "Unuimo",
+    "state": "Imo",
+    "state_id": "imo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_auyo",
+    "name": "Auyo",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_babura",
+    "name": "Babura",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_biriniwa",
+    "name": "Biriniwa",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_birnin_kudu",
+    "name": "Birnin Kudu",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_buji",
+    "name": "Buji",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_dutse",
+    "name": "Dutse",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_gagarawa",
+    "name": "Gagarawa",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_garki",
+    "name": "Garki",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_gumel",
+    "name": "Gumel",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_guri",
+    "name": "Guri",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_gwaram",
+    "name": "Gwaram",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_gwiwa",
+    "name": "Gwiwa",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_hadejia",
+    "name": "Hadejia",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_jahun",
+    "name": "Jahun",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_kafin_hausa",
+    "name": "Kafin Hausa",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_kaugama",
+    "name": "Kaugama",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_kazaure",
+    "name": "Kazaure",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_kiri_kasama",
+    "name": "Kiri Kasama",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_kiyawa",
+    "name": "Kiyawa",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_maigatari",
+    "name": "Maigatari",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_malam_madori",
+    "name": "Malam Madori",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_miga",
+    "name": "Miga",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_ringim",
+    "name": "Ringim",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_roni",
+    "name": "Roni",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_sule_tankarkar",
+    "name": "Sule Tankarkar",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_taura",
+    "name": "Taura",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "jigawa_yankwashi",
+    "name": "Yankwashi",
+    "state": "Jigawa",
+    "state_id": "jigawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_birnin_gwari",
+    "name": "Birnin Gwari",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_chikun",
+    "name": "Chikun",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_giwa",
+    "name": "Giwa",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_igabi",
+    "name": "Igabi",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_ikara",
+    "name": "Ikara",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_jaba",
+    "name": "Jaba",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_jema'a",
+    "name": "Jema'a",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_kachia",
+    "name": "Kachia",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_kaduna_north",
+    "name": "Kaduna North",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_kaduna_south",
+    "name": "Kaduna South",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_kagarko",
+    "name": "Kagarko",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_kajuru",
+    "name": "Kajuru",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_kaura",
+    "name": "Kaura",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_kauru",
+    "name": "Kauru",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_kubau",
+    "name": "Kubau",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_kudan",
+    "name": "Kudan",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_lere",
+    "name": "Lere",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_makarfi",
+    "name": "Makarfi",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_sabon_gari",
+    "name": "Sabon Gari",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_sanga",
+    "name": "Sanga",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_soba",
+    "name": "Soba",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_zangon_kataf",
+    "name": "Zangon Kataf",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kaduna_zaria",
+    "name": "Zaria",
+    "state": "Kaduna",
+    "state_id": "kaduna",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_ajingi",
+    "name": "Ajingi",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_albasu",
+    "name": "Albasu",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_bagwai",
+    "name": "Bagwai",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_bebeji",
+    "name": "Bebeji",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_bichi",
+    "name": "Bichi",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_bunkure",
+    "name": "Bunkure",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_dala",
+    "name": "Dala",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_dambatta",
+    "name": "Dambatta",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_dawakin_kudu",
+    "name": "Dawakin Kudu",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_dawakin_tofa",
+    "name": "Dawakin Tofa",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_doguwa",
+    "name": "Doguwa",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_fagge",
+    "name": "Fagge",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_gabasawa",
+    "name": "Gabasawa",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_garko",
+    "name": "Garko",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_garun_mallam",
+    "name": "Garun Mallam",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_gaya",
+    "name": "Gaya",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_gezawa",
+    "name": "Gezawa",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_gwale",
+    "name": "Gwale",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_gwarzo",
+    "name": "Gwarzo",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_kabo",
+    "name": "Kabo",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_kano_municipal",
+    "name": "Kano Municipal",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_karaye",
+    "name": "Karaye",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_kibiya",
+    "name": "Kibiya",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_kiru",
+    "name": "Kiru",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_kumbotso",
+    "name": "Kumbotso",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_kunchi",
+    "name": "Kunchi",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_kura",
+    "name": "Kura",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_madobi",
+    "name": "Madobi",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_makoda",
+    "name": "Makoda",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_minjibir",
+    "name": "Minjibir",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_nasarawa",
+    "name": "Nasarawa",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_rano",
+    "name": "Rano",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_rimin_gado",
+    "name": "Rimin Gado",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_rogo",
+    "name": "Rogo",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_shanono",
+    "name": "Shanono",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_sumaila",
+    "name": "Sumaila",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_takai",
+    "name": "Takai",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_tarauni",
+    "name": "Tarauni",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_tofa",
+    "name": "Tofa",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_tsanyawa",
+    "name": "Tsanyawa",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_tudun_wada",
+    "name": "Tudun Wada",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_ungogo",
+    "name": "Ungogo",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_warawa",
+    "name": "Warawa",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kano_wudil",
+    "name": "Wudil",
+    "state": "Kano",
+    "state_id": "kano",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_bakori",
+    "name": "Bakori",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_batagarawa",
+    "name": "Batagarawa",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_batsari",
+    "name": "Batsari",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_baure",
+    "name": "Baure",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_bindawa",
+    "name": "Bindawa",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_charanchi",
+    "name": "Charanchi",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_dandume",
+    "name": "Dandume",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_danja",
+    "name": "Danja",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_dan_musa",
+    "name": "Dan Musa",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_daura",
+    "name": "Daura",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_dutsi",
+    "name": "Dutsi",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_dutsin_ma",
+    "name": "Dutsin Ma",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_faskari",
+    "name": "Faskari",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_funtua",
+    "name": "Funtua",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_ingawa",
+    "name": "Ingawa",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_jibia",
+    "name": "Jibia",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_kafur",
+    "name": "Kafur",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_kaita",
+    "name": "Kaita",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_kankara",
+    "name": "Kankara",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_kankia",
+    "name": "Kankia",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_katsina",
+    "name": "Katsina",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_kurfi",
+    "name": "Kurfi",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_kusada",
+    "name": "Kusada",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_mai'adua",
+    "name": "Mai'Adua",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_malumfashi",
+    "name": "Malumfashi",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_mani",
+    "name": "Mani",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_mashi",
+    "name": "Mashi",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_matazu",
+    "name": "Matazu",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_musawa",
+    "name": "Musawa",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_rimi",
+    "name": "Rimi",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_sabuwa",
+    "name": "Sabuwa",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_safana",
+    "name": "Safana",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_sandamu",
+    "name": "Sandamu",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "katsina_zango",
+    "name": "Zango",
+    "state": "Katsina",
+    "state_id": "katsina",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_aleiro",
+    "name": "Aleiro",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_arewa_dandi",
+    "name": "Arewa Dandi",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_argungu",
+    "name": "Argungu",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_augie",
+    "name": "Augie",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_bagudo",
+    "name": "Bagudo",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_birnin_kebbi",
+    "name": "Birnin Kebbi",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_bunza",
+    "name": "Bunza",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_dandi",
+    "name": "Dandi",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_fakai",
+    "name": "Fakai",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_gwandu",
+    "name": "Gwandu",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_jega",
+    "name": "Jega",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_kalgo",
+    "name": "Kalgo",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_koko_besse",
+    "name": "Koko/Besse",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_maiyama",
+    "name": "Maiyama",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_ngaski",
+    "name": "Ngaski",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_sakaba",
+    "name": "Sakaba",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_shanga",
+    "name": "Shanga",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_suru",
+    "name": "Suru",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_wasagu_danko",
+    "name": "Wasagu/Danko",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_yauri",
+    "name": "Yauri",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kebbi_zuru",
+    "name": "Zuru",
+    "state": "Kebbi",
+    "state_id": "kebbi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_adavi",
+    "name": "Adavi",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_ajaokuta",
+    "name": "Ajaokuta",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_ankpa",
+    "name": "Ankpa",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_bassa",
+    "name": "Bassa",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_dekina",
+    "name": "Dekina",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_ibaji",
+    "name": "Ibaji",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_idah",
+    "name": "Idah",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_igalamela_odolu",
+    "name": "Igalamela Odolu",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_ijumu",
+    "name": "Ijumu",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_kabba_bunu",
+    "name": "Kabba/Bunu",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_kogi",
+    "name": "Kogi",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_lokoja",
+    "name": "Lokoja",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_mopa_muro",
+    "name": "Mopa Muro",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_ofu",
+    "name": "Ofu",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_ogori_magongo",
+    "name": "Ogori/Magongo",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_okehi",
+    "name": "Okehi",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_okene",
+    "name": "Okene",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_olamaboro",
+    "name": "Olamaboro",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_omala",
+    "name": "Omala",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_yagba_east",
+    "name": "Yagba East",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kogi_yagba_west",
+    "name": "Yagba West",
+    "state": "Kogi",
+    "state_id": "kogi",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kwara_asa",
+    "name": "Asa",
+    "state": "Kwara",
+    "state_id": "kwara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kwara_baruten",
+    "name": "Baruten",
+    "state": "Kwara",
+    "state_id": "kwara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kwara_edu",
+    "name": "Edu",
+    "state": "Kwara",
+    "state_id": "kwara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kwara_ekiti",
+    "name": "Ekiti",
+    "state": "Kwara",
+    "state_id": "kwara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kwara_ifelodun",
+    "name": "Ifelodun",
+    "state": "Kwara",
+    "state_id": "kwara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kwara_ilorin_east",
+    "name": "Ilorin East",
+    "state": "Kwara",
+    "state_id": "kwara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kwara_ilorin_south",
+    "name": "Ilorin South",
+    "state": "Kwara",
+    "state_id": "kwara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kwara_ilorin_west",
+    "name": "Ilorin West",
+    "state": "Kwara",
+    "state_id": "kwara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kwara_irepodun",
+    "name": "Irepodun",
+    "state": "Kwara",
+    "state_id": "kwara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kwara_isin",
+    "name": "Isin",
+    "state": "Kwara",
+    "state_id": "kwara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kwara_kaiama",
+    "name": "Kaiama",
+    "state": "Kwara",
+    "state_id": "kwara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kwara_moro",
+    "name": "Moro",
+    "state": "Kwara",
+    "state_id": "kwara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kwara_offa",
+    "name": "Offa",
+    "state": "Kwara",
+    "state_id": "kwara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kwara_oke_ero",
+    "name": "Oke Ero",
+    "state": "Kwara",
+    "state_id": "kwara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kwara_oyun",
+    "name": "Oyun",
+    "state": "Kwara",
+    "state_id": "kwara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "kwara_pategi",
+    "name": "Pategi",
+    "state": "Kwara",
+    "state_id": "kwara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_agege",
+    "name": "Agege",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_ajeromi_ifelodun",
+    "name": "Ajeromi-Ifelodun",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_alimosho",
+    "name": "Alimosho",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_amuwo_odofin",
+    "name": "Amuwo-Odofin",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_apapa",
+    "name": "Apapa",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_badagry",
+    "name": "Badagry",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_epe",
+    "name": "Epe",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_eti_osa",
+    "name": "Eti Osa",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_ibeju_lekki",
+    "name": "Ibeju-Lekki",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_ifako_ijaiye",
+    "name": "Ifako-Ijaiye",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_ikeja",
+    "name": "Ikeja",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_ikorodu",
+    "name": "Ikorodu",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_kosofe",
+    "name": "Kosofe",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_lagos_island",
+    "name": "Lagos Island",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_lagos_mainland",
+    "name": "Lagos Mainland",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_mushin",
+    "name": "Mushin",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_ojo",
+    "name": "Ojo",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_oshodi_isolo",
+    "name": "Oshodi-Isolo",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_shomolu",
+    "name": "Shomolu",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "lagos_surulere",
+    "name": "Surulere",
+    "state": "Lagos",
+    "state_id": "lagos",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "nasarawa_akwanga",
+    "name": "Akwanga",
+    "state": "Nasarawa",
+    "state_id": "nasarawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "nasarawa_awe",
+    "name": "Awe",
+    "state": "Nasarawa",
+    "state_id": "nasarawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "nasarawa_doma",
+    "name": "Doma",
+    "state": "Nasarawa",
+    "state_id": "nasarawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "nasarawa_karu",
+    "name": "Karu",
+    "state": "Nasarawa",
+    "state_id": "nasarawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "nasarawa_keana",
+    "name": "Keana",
+    "state": "Nasarawa",
+    "state_id": "nasarawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "nasarawa_keffi",
+    "name": "Keffi",
+    "state": "Nasarawa",
+    "state_id": "nasarawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "nasarawa_kokona",
+    "name": "Kokona",
+    "state": "Nasarawa",
+    "state_id": "nasarawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "nasarawa_lafia",
+    "name": "Lafia",
+    "state": "Nasarawa",
+    "state_id": "nasarawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "nasarawa_nasarawa",
+    "name": "Nasarawa",
+    "state": "Nasarawa",
+    "state_id": "nasarawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "nasarawa_nasarawa_egon",
+    "name": "Nasarawa Egon",
+    "state": "Nasarawa",
+    "state_id": "nasarawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "nasarawa_obi",
+    "name": "Obi",
+    "state": "Nasarawa",
+    "state_id": "nasarawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "nasarawa_toto",
+    "name": "Toto",
+    "state": "Nasarawa",
+    "state_id": "nasarawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "nasarawa_wamba",
+    "name": "Wamba",
+    "state": "Nasarawa",
+    "state_id": "nasarawa",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_agaie",
+    "name": "Agaie",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_agwara",
+    "name": "Agwara",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_bida",
+    "name": "Bida",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_borgu",
+    "name": "Borgu",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_bosso",
+    "name": "Bosso",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_chanchaga",
+    "name": "Chanchaga",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_edati",
+    "name": "Edati",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_gbako",
+    "name": "Gbako",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_gurara",
+    "name": "Gurara",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_katcha",
+    "name": "Katcha",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_kontagora",
+    "name": "Kontagora",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_lapai",
+    "name": "Lapai",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_lavun",
+    "name": "Lavun",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_magama",
+    "name": "Magama",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_mariga",
+    "name": "Mariga",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_mashegu",
+    "name": "Mashegu",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_mokwa",
+    "name": "Mokwa",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_moya",
+    "name": "Moya",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_paikoro",
+    "name": "Paikoro",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_rafi",
+    "name": "Rafi",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_rijau",
+    "name": "Rijau",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_shiroro",
+    "name": "Shiroro",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_suleja",
+    "name": "Suleja",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_tafa",
+    "name": "Tafa",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "niger_wushishi",
+    "name": "Wushishi",
+    "state": "Niger",
+    "state_id": "niger",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_abeokuta_north",
+    "name": "Abeokuta North",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_abeokuta_south",
+    "name": "Abeokuta South",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_ado_odo_ota",
+    "name": "Ado-Odo/Ota",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_egbado_north",
+    "name": "Egbado North",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_egbado_south",
+    "name": "Egbado South",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_ewekoro",
+    "name": "Ewekoro",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_ifo",
+    "name": "Ifo",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_ijebu_east",
+    "name": "Ijebu East",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_ijebu_north",
+    "name": "Ijebu North",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_ijebu_north_east",
+    "name": "Ijebu North East",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_ijebu_ode",
+    "name": "Ijebu Ode",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_ikenne",
+    "name": "Ikenne",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_imeko_afon",
+    "name": "Imeko Afon",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_ipokia",
+    "name": "Ipokia",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_obafemi_owode",
+    "name": "Obafemi Owode",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_odeda",
+    "name": "Odeda",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_odogbolu",
+    "name": "Odogbolu",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_ogun_waterside",
+    "name": "Ogun Waterside",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_remo_north",
+    "name": "Remo North",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ogun_shagamu",
+    "name": "Shagamu",
+    "state": "Ogun",
+    "state_id": "ogun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_akoko_north_east",
+    "name": "Akoko North-East",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_akoko_north_west",
+    "name": "Akoko North-West",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_akoko_south_east",
+    "name": "Akoko South-East",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_akoko_south_west",
+    "name": "Akoko South-West",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_akure_north",
+    "name": "Akure North",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_akure_south",
+    "name": "Akure South",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_ese_odo",
+    "name": "Ese Odo",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_idanre",
+    "name": "Idanre",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_ifedore",
+    "name": "Ifedore",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_ilaje",
+    "name": "Ilaje",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_ile_oluji_okeigbo",
+    "name": "Ile Oluji/Okeigbo",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_irele",
+    "name": "Irele",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_odigbo",
+    "name": "Odigbo",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_okitipupa",
+    "name": "Okitipupa",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_ondo_east",
+    "name": "Ondo East",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_ondo_west",
+    "name": "Ondo West",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_ose",
+    "name": "Ose",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "ondo_owo",
+    "name": "Owo",
+    "state": "Ondo",
+    "state_id": "ondo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_aiyedaade",
+    "name": "Aiyedaade",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_aiyedire",
+    "name": "Aiyedire",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_atakunmosa_east",
+    "name": "Atakunmosa East",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_atakunmosa_west",
+    "name": "Atakunmosa West",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_boluwaduro",
+    "name": "Boluwaduro",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_boripe",
+    "name": "Boripe",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_ede_north",
+    "name": "Ede North",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_ede_south",
+    "name": "Ede South",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_egbedore",
+    "name": "Egbedore",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_ejigbo",
+    "name": "Ejigbo",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_ife_central",
+    "name": "Ife Central",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_ife_east",
+    "name": "Ife East",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_ife_north",
+    "name": "Ife North",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_ife_south",
+    "name": "Ife South",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_ifedayo",
+    "name": "Ifedayo",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_ifelodun",
+    "name": "Ifelodun",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_ila",
+    "name": "Ila",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_ilesa_east",
+    "name": "Ilesa East",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_ilesa_west",
+    "name": "Ilesa West",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_irepodun",
+    "name": "Irepodun",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_irewole",
+    "name": "Irewole",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_isokan",
+    "name": "Isokan",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_iwo",
+    "name": "Iwo",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_obokun",
+    "name": "Obokun",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_odo_otin",
+    "name": "Odo Otin",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_ola_oluwa",
+    "name": "Ola Oluwa",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_olorunda",
+    "name": "Olorunda",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_oriade",
+    "name": "Oriade",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_orolu",
+    "name": "Orolu",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "osun_osogbo",
+    "name": "Osogbo",
+    "state": "Osun",
+    "state_id": "osun",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_afijio",
+    "name": "Afijio",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_akinyele",
+    "name": "Akinyele",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_atiba",
+    "name": "Atiba",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_atisbo",
+    "name": "Atisbo",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_egbeda",
+    "name": "Egbeda",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_ibadan_north",
+    "name": "Ibadan North",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_ibadan_north_east",
+    "name": "Ibadan North-East",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_ibadan_north_west",
+    "name": "Ibadan North-West",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_ibadan_south_east",
+    "name": "Ibadan South-East",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_ibadan_south_west",
+    "name": "Ibadan South-West",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_ibarapa_central",
+    "name": "Ibarapa Central",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_ibarapa_east",
+    "name": "Ibarapa East",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_ibarapa_north",
+    "name": "Ibarapa North",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_ido",
+    "name": "Ido",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_irepo",
+    "name": "Irepo",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_iseyin",
+    "name": "Iseyin",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_itesiwaju",
+    "name": "Itesiwaju",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_iwajowa",
+    "name": "Iwajowa",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_kajola",
+    "name": "Kajola",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_lagelu",
+    "name": "Lagelu",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_ogbomosho_north",
+    "name": "Ogbomosho North",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_ogbomosho_south",
+    "name": "Ogbomosho South",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_ogo_oluwa",
+    "name": "Ogo Oluwa",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_olorunsogo",
+    "name": "Olorunsogo",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_oluyole",
+    "name": "Oluyole",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_ona_ara",
+    "name": "Ona Ara",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_orelope",
+    "name": "Orelope",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_ori_ire",
+    "name": "Ori Ire",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_oyo_east",
+    "name": "Oyo East",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_oyo_west",
+    "name": "Oyo West",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_saki_east",
+    "name": "Saki East",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_saki_west",
+    "name": "Saki West",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "oyo_surulere",
+    "name": "Surulere",
+    "state": "Oyo",
+    "state_id": "oyo",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_barkin_ladi",
+    "name": "Barkin Ladi",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_bassa",
+    "name": "Bassa",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_bokkos",
+    "name": "Bokkos",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_jos_east",
+    "name": "Jos East",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_jos_north",
+    "name": "Jos North",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_jos_south",
+    "name": "Jos South",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_kanam",
+    "name": "Kanam",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_kanke",
+    "name": "Kanke",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_langtang_north",
+    "name": "Langtang North",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_langtang_south",
+    "name": "Langtang South",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_mangu",
+    "name": "Mangu",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_mikang",
+    "name": "Mikang",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_pankshin",
+    "name": "Pankshin",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_qua'an_pan",
+    "name": "Qua'an Pan",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_riyom",
+    "name": "Riyom",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_shendam",
+    "name": "Shendam",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "plateau_wase",
+    "name": "Wase",
+    "state": "Plateau",
+    "state_id": "plateau",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_abua_odual",
+    "name": "Abua/Odual",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_ahoada_east",
+    "name": "Ahoada East",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_ahoada_west",
+    "name": "Ahoada West",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_akuku_toru",
+    "name": "Akuku-Toru",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_andoni",
+    "name": "Andoni",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_asari_toru",
+    "name": "Asari-Toru",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_bonny",
+    "name": "Bonny",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_degema",
+    "name": "Degema",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_eleme",
+    "name": "Eleme",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_emuoha",
+    "name": "Emuoha",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_etche",
+    "name": "Etche",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_gokana",
+    "name": "Gokana",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_ikwerre",
+    "name": "Ikwerre",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_khana",
+    "name": "Khana",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_obio_akpor",
+    "name": "Obio/Akpor",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_ogba_egbema_ndoni",
+    "name": "Ogba/Egbema/Ndoni",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_ogu_bolo",
+    "name": "Ogu/Bolo",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_okrika",
+    "name": "Okrika",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_omuma",
+    "name": "Omuma",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_opobo_nkoro",
+    "name": "Opobo/Nkoro",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_oyigbo",
+    "name": "Oyigbo",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_port_harcourt",
+    "name": "Port Harcourt",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "rivers_tai",
+    "name": "Tai",
+    "state": "Rivers",
+    "state_id": "rivers",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_binji",
+    "name": "Binji",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_bodinga",
+    "name": "Bodinga",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_dange_shuni",
+    "name": "Dange Shuni",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_gada",
+    "name": "Gada",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_goronyo",
+    "name": "Goronyo",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_gudu",
+    "name": "Gudu",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_gwadabawa",
+    "name": "Gwadabawa",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_illela",
+    "name": "Illela",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_isa",
+    "name": "Isa",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_kebbe",
+    "name": "Kebbe",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_kware",
+    "name": "Kware",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_rabah",
+    "name": "Rabah",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_sabon_birni",
+    "name": "Sabon Birni",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_shagari",
+    "name": "Shagari",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_silame",
+    "name": "Silame",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_sokoto_north",
+    "name": "Sokoto North",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_sokoto_south",
+    "name": "Sokoto South",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_tambuwal",
+    "name": "Tambuwal",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_tangaza",
+    "name": "Tangaza",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_tureta",
+    "name": "Tureta",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_wamako",
+    "name": "Wamako",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_wurno",
+    "name": "Wurno",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "sokoto_yabo",
+    "name": "Yabo",
+    "state": "Sokoto",
+    "state_id": "sokoto",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "taraba_ardo_kola",
+    "name": "Ardo Kola",
+    "state": "Taraba",
+    "state_id": "taraba",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "taraba_bali",
+    "name": "Bali",
+    "state": "Taraba",
+    "state_id": "taraba",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "taraba_donga",
+    "name": "Donga",
+    "state": "Taraba",
+    "state_id": "taraba",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "taraba_gashaka",
+    "name": "Gashaka",
+    "state": "Taraba",
+    "state_id": "taraba",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "taraba_gassol",
+    "name": "Gassol",
+    "state": "Taraba",
+    "state_id": "taraba",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "taraba_ibi",
+    "name": "Ibi",
+    "state": "Taraba",
+    "state_id": "taraba",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "taraba_jalingo",
+    "name": "Jalingo",
+    "state": "Taraba",
+    "state_id": "taraba",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "taraba_karim_lamido",
+    "name": "Karim Lamido",
+    "state": "Taraba",
+    "state_id": "taraba",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "taraba_kumi",
+    "name": "Kumi",
+    "state": "Taraba",
+    "state_id": "taraba",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "taraba_lau",
+    "name": "Lau",
+    "state": "Taraba",
+    "state_id": "taraba",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "taraba_sardauna",
+    "name": "Sardauna",
+    "state": "Taraba",
+    "state_id": "taraba",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "taraba_takum",
+    "name": "Takum",
+    "state": "Taraba",
+    "state_id": "taraba",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "taraba_ussa",
+    "name": "Ussa",
+    "state": "Taraba",
+    "state_id": "taraba",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "taraba_wukari",
+    "name": "Wukari",
+    "state": "Taraba",
+    "state_id": "taraba",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "taraba_yorro",
+    "name": "Yorro",
+    "state": "Taraba",
+    "state_id": "taraba",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "taraba_zing",
+    "name": "Zing",
+    "state": "Taraba",
+    "state_id": "taraba",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_bade",
+    "name": "Bade",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_bursari",
+    "name": "Bursari",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_damaturu",
+    "name": "Damaturu",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_fika",
+    "name": "Fika",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_fune",
+    "name": "Fune",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_geidam",
+    "name": "Geidam",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_gujba",
+    "name": "Gujba",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_gulani",
+    "name": "Gulani",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_jakusko",
+    "name": "Jakusko",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_karasuwa",
+    "name": "Karasuwa",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_machina",
+    "name": "Machina",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_nangere",
+    "name": "Nangere",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_nguru",
+    "name": "Nguru",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_potiskum",
+    "name": "Potiskum",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_tarmuwa",
+    "name": "Tarmuwa",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_yunusari",
+    "name": "Yunusari",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "yobe_yusufari",
+    "name": "Yusufari",
+    "state": "Yobe",
+    "state_id": "yobe",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "zamfara_anka",
+    "name": "Anka",
+    "state": "Zamfara",
+    "state_id": "zamfara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "zamfara_bakura",
+    "name": "Bakura",
+    "state": "Zamfara",
+    "state_id": "zamfara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "zamfara_birnin_magaji_kiyaw",
+    "name": "Birnin Magaji/Kiyaw",
+    "state": "Zamfara",
+    "state_id": "zamfara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "zamfara_bukkuyum",
+    "name": "Bukkuyum",
+    "state": "Zamfara",
+    "state_id": "zamfara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "zamfara_bungudu",
+    "name": "Bungudu",
+    "state": "Zamfara",
+    "state_id": "zamfara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "zamfara_gummi",
+    "name": "Gummi",
+    "state": "Zamfara",
+    "state_id": "zamfara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "zamfara_gusau",
+    "name": "Gusau",
+    "state": "Zamfara",
+    "state_id": "zamfara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "zamfara_kaura_namoda",
+    "name": "Kaura Namoda",
+    "state": "Zamfara",
+    "state_id": "zamfara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "zamfara_maradun",
+    "name": "Maradun",
+    "state": "Zamfara",
+    "state_id": "zamfara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "zamfara_maru",
+    "name": "Maru",
+    "state": "Zamfara",
+    "state_id": "zamfara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "zamfara_shinkafi",
+    "name": "Shinkafi",
+    "state": "Zamfara",
+    "state_id": "zamfara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "zamfara_talata_mafara",
+    "name": "Talata Mafara",
+    "state": "Zamfara",
+    "state_id": "zamfara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "zamfara_tsafe",
+    "name": "Tsafe",
+    "state": "Zamfara",
+    "state_id": "zamfara",
+    "headquarters": null,
+    "registered_voters": null
+  },
+  {
+    "id": "zamfara_zurmi",
+    "name": "Zurmi",
+    "state": "Zamfara",
+    "state_id": "zamfara",
+    "headquarters": null,
+    "registered_voters": null
+  }
+]

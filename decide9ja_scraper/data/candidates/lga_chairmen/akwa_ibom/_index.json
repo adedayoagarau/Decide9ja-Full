@@ -1,0 +1,211 @@
+{
+    "state": "Akwa Ibom",
+    "total_lgas": 31,
+    "last_lga_election": "2024-10-05",
+    "next_election_due": "2027",
+    "current_term_status": "Active",
+    "siec_name": "AKISIEC",
+    "party_breakdown": {
+        "PDP": 30,
+        "APC": 1
+    },
+    "data_completeness": "PARTIAL",
+    "data_notes": "PDP won 30 of 31 seats; APC won Essien Udim. Individual names need enrichment.",
+    "chairmen": [
+        {
+            "lga": "Abak",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "abak.json"
+        },
+        {
+            "lga": "Eastern Obolo",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "eastern_obolo.json"
+        },
+        {
+            "lga": "Eket",
+            "name": "Akaninyene Tommy",
+            "party": "PDP",
+            "file": "eket.json"
+        },
+        {
+            "lga": "Esit Eket",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "esit_eket.json"
+        },
+        {
+            "lga": "Essien Udim",
+            "name": "Ntiedo Usoro",
+            "party": "APC",
+            "file": "essien_udim.json"
+        },
+        {
+            "lga": "Etim Ekpo",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "etim_ekpo.json"
+        },
+        {
+            "lga": "Etinan",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "etinan.json"
+        },
+        {
+            "lga": "Ibeno",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ibeno.json"
+        },
+        {
+            "lga": "Ibesikpo Asutan",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ibesikpo_asutan.json"
+        },
+        {
+            "lga": "Ibiono Ibom",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ibiono_ibom.json"
+        },
+        {
+            "lga": "Ika",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ika.json"
+        },
+        {
+            "lga": "Ikono",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ikono.json"
+        },
+        {
+            "lga": "Ikot Abasi",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ikot_abasi.json"
+        },
+        {
+            "lga": "Ikot Ekpene",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ikot_ekpene.json"
+        },
+        {
+            "lga": "Ini",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ini.json"
+        },
+        {
+            "lga": "Itu",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "itu.json"
+        },
+        {
+            "lga": "Mbo",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "mbo.json"
+        },
+        {
+            "lga": "Mkpat Enin",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "mkpat_enin.json"
+        },
+        {
+            "lga": "Nsit Atai",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "nsit_atai.json"
+        },
+        {
+            "lga": "Nsit Ibom",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "nsit_ibom.json"
+        },
+        {
+            "lga": "Nsit Ubium",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "nsit_ubium.json"
+        },
+        {
+            "lga": "Obot Akara",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "obot_akara.json"
+        },
+        {
+            "lga": "Okobo",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "okobo.json"
+        },
+        {
+            "lga": "Onna",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "onna.json"
+        },
+        {
+            "lga": "Oron",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "oron.json"
+        },
+        {
+            "lga": "Oruk Anam",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "oruk_anam.json"
+        },
+        {
+            "lga": "Udung Uko",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "udung_uko.json"
+        },
+        {
+            "lga": "Ukanafun",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "ukanafun.json"
+        },
+        {
+            "lga": "Uruan",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "uruan.json"
+        },
+        {
+            "lga": "Urue Offong/Oruko",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "urue_offong_oruko.json"
+        },
+        {
+            "lga": "Uyo",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "uyo.json"
+        }
+    ],
+    "sources": [
+        "Channels TV",
+        "Legit.ng",
+        "Vanguard",
+        "Punch",
+        "AKISIEC"
+    ],
+    "suggested_enrichment": "Contact AKISIEC for full list of chairman names",
+    "last_updated": "2025-12-28T00:25:00Z"
+}

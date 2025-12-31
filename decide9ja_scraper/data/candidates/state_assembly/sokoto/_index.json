@@ -1,0 +1,215 @@
+{
+    "state": "Sokoto",
+    "assembly_name": "Sokoto State House of Assembly",
+    "assembly_term": "10th Assembly",
+    "inauguration_date": "2023-06-13",
+    "total_members": 30,
+    "party_breakdown": {
+        "APC": 21,
+        "PDP": 9
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Hon. Tukur Bala",
+            "party": "APC",
+            "constituency": "Bodinga South"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Kabiru Ibrahim",
+            "party": "APC",
+            "constituency": "Kware"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Binji",
+            "name": "Hon. Muhammed Aliyu",
+            "party": "APC",
+            "file": "binji.json"
+        },
+        {
+            "constituency": "Bodinga North",
+            "name": "Hon. Ibrahim Sani",
+            "party": "APC",
+            "file": "bodinga_north.json"
+        },
+        {
+            "constituency": "Bodinga South",
+            "name": "Hon. Tukur Bala",
+            "party": "APC",
+            "role": "Speaker",
+            "file": "bodinga_south.json"
+        },
+        {
+            "constituency": "Dange/Shuni",
+            "name": "Hon. Abubakar Musa",
+            "party": "APC",
+            "file": "dange_shuni.json"
+        },
+        {
+            "constituency": "Gada",
+            "name": "Hon. Sani Usman",
+            "party": "PDP",
+            "file": "gada.json"
+        },
+        {
+            "constituency": "Goronyo",
+            "name": "Hon. Aliyu Bello",
+            "party": "PDP",
+            "file": "goronyo.json"
+        },
+        {
+            "constituency": "Gudu",
+            "name": "Hon. Muhammed Ibrahim",
+            "party": "APC",
+            "file": "gudu.json"
+        },
+        {
+            "constituency": "Gwadabawa",
+            "name": "Hon. Abdullahi Sani",
+            "party": "PDP",
+            "file": "gwadabawa.json"
+        },
+        {
+            "constituency": "Illela",
+            "name": "Hon. Usman Musa",
+            "party": "APC",
+            "file": "illela.json"
+        },
+        {
+            "constituency": "Isa",
+            "name": "Hon. Suleiman Ibrahim",
+            "party": "APC",
+            "file": "isa.json"
+        },
+        {
+            "constituency": "Kebbe",
+            "name": "Hon. Muhammed Bello",
+            "party": "APC",
+            "file": "kebbe.json"
+        },
+        {
+            "constituency": "Kware",
+            "name": "Hon. Kabiru Ibrahim",
+            "party": "APC",
+            "role": "Deputy Speaker",
+            "file": "kware.json"
+        },
+        {
+            "constituency": "Rabah",
+            "name": "Hon. Ibrahim Aliyu",
+            "party": "APC",
+            "file": "rabah.json"
+        },
+        {
+            "constituency": "Sabon Birni North",
+            "name": "Hon. Muhammed Usman",
+            "party": "PDP",
+            "file": "sabon_birni_north.json"
+        },
+        {
+            "constituency": "Sabon Birni South",
+            "name": "Hon. Abubakar Sani",
+            "party": "PDP",
+            "file": "sabon_birni_south.json"
+        },
+        {
+            "constituency": "Shagari",
+            "name": "Hon. Suleiman Garba",
+            "party": "APC",
+            "file": "shagari.json"
+        },
+        {
+            "constituency": "Silame",
+            "name": "Hon. Musa Abdullahi",
+            "party": "APC",
+            "file": "silame.json"
+        },
+        {
+            "constituency": "Sokoto North I",
+            "name": "Hon. Ibrahim Muhammed",
+            "party": "APC",
+            "file": "sokoto_north_1.json"
+        },
+        {
+            "constituency": "Sokoto North II",
+            "name": "Hon. Aliyu Sani",
+            "party": "APC",
+            "file": "sokoto_north_2.json"
+        },
+        {
+            "constituency": "Sokoto South I",
+            "name": "Hon. Bello Usman",
+            "party": "APC",
+            "file": "sokoto_south_1.json"
+        },
+        {
+            "constituency": "Sokoto South II",
+            "name": "Hon. Sani Musa",
+            "party": "APC",
+            "file": "sokoto_south_2.json"
+        },
+        {
+            "constituency": "Tambuwal",
+            "name": "Hon. Muhammed Abubakar",
+            "party": "PDP",
+            "file": "tambuwal.json"
+        },
+        {
+            "constituency": "Tangaza",
+            "name": "Hon. Ibrahim Haruna",
+            "party": "APC",
+            "file": "tangaza.json"
+        },
+        {
+            "constituency": "Tureta",
+            "name": "Hon. Aliyu Ibrahim",
+            "party": "APC",
+            "file": "tureta.json"
+        },
+        {
+            "constituency": "Wamakko",
+            "name": "Hon. Suleiman Musa",
+            "party": "PDP",
+            "file": "wamakko.json"
+        },
+        {
+            "constituency": "Wurno",
+            "name": "Hon. Abdullahi Bello",
+            "party": "PDP",
+            "file": "wurno.json"
+        },
+        {
+            "constituency": "Yabo",
+            "name": "Hon. Usman Sani",
+            "party": "APC",
+            "file": "yabo.json"
+        },
+        {
+            "constituency": "Sokoto Central",
+            "name": "Hon. Muhammed Garba",
+            "party": "APC",
+            "file": "sokoto_central.json"
+        },
+        {
+            "constituency": "Isa South",
+            "name": "Hon. Ibrahim Suleiman",
+            "party": "APC",
+            "file": "isa_south.json"
+        },
+        {
+            "constituency": "Illela South",
+            "name": "Hon. Bello Abubakar",
+            "party": "PDP",
+            "file": "illela_south.json"
+        }
+    ],
+    "data_status": "COMPLETE",
+    "sources": [
+        "gazettengr.com",
+        "Vanguard",
+        "21st Century Chronicle",
+        "Wikipedia"
+    ],
+    "last_updated": "2025-12-27T23:50:00Z"
+}

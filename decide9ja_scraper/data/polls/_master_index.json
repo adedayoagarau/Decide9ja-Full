@@ -1,0 +1,22 @@
+{
+    "sources": [
+        {
+            "name": "NOI Polls - Opinion",
+            "records": 20,
+            "path": "data/polls/noi_polls/opinion_polls.json"
+        },
+        {
+            "name": "NOI Polls - Approval",
+            "records": 8,
+            "path": "data/polls/noi_polls/approval_ratings.json"
+        },
+        {
+            "name": "Afrobarometer",
+            "records": 139,
+            "path": "data/polls/afrobarometer/publications.json"
+        }
+    ],
+    "total_records": 167,
+    "scraped_at": "2025-12-27T18:08:00Z",
+    "status": "Complete"
+}

@@ -1,0 +1,105 @@
+{
+    "id": "imumolen_christopher",
+    "slug": "christopher-imumolen",
+    "name": {
+        "full": "Christopher Imumolen",
+        "common": "Christopher Imumolen",
+        "aliases": []
+    },
+    "personal": {
+        "date_of_birth": "1983-09-05",
+        "state_of_origin": "Edo",
+        "lga_of_origin": null,
+        "religion": null,
+        "ethnicity": "Edo",
+        "education": [],
+        "career_before_politics": [
+            {
+                "role": "Founder",
+                "organization": "Joint Professional Training and Support International Limited (JPTS)",
+                "period": "Present",
+                "notes": "Education enterprise"
+            },
+            {
+                "role": "Founder",
+                "organization": "UNIC Foundation",
+                "period": "Present",
+                "notes": "Non-profit organization"
+            },
+            {
+                "role": "Professor/Educationist",
+                "organization": "Academic institutions",
+                "period": "Present",
+                "notes": "University professor and educationist"
+            }
+        ],
+        "family": {
+            "spouse": null,
+            "children": null,
+            "notes": null
+        }
+    },
+    "political_career": {
+        "party_history": [
+            {
+                "party": "Accord",
+                "full_name": "Accord Party",
+                "joined": 2022,
+                "left": null
+            }
+        ],
+        "positions_held": [],
+        "election_history": [
+            {
+                "year": 2023,
+                "position": "President",
+                "party": "Accord",
+                "votes": 19806,
+                "result": "Lost",
+                "source": "https://www.erad.ng"
+            }
+        ]
+    },
+    "policy_positions": [
+        {
+            "issue_area": "Education",
+            "sub_issues": [
+                "Access",
+                "Quality"
+            ],
+            "stance_summary": "Focus on education as educationist and professor",
+            "quotes": [],
+            "notes": "Background in education sector"
+        }
+    ],
+    "track_record": {
+        "achievements": [
+            {
+                "achievement": "Founded JPTS and UNIC Foundation",
+                "period": "Present",
+                "evidence": "Education and non-profit organizations",
+                "source": "https://en.wikipedia.org/wiki/Christopher_Imumolen"
+            }
+        ],
+        "failures": [],
+        "promises_vs_delivery": []
+    },
+    "controversies": [],
+    "social_media": {
+        "twitter": null,
+        "facebook": null,
+        "instagram": null,
+        "website": null,
+        "verified": false
+    },
+    "metadata": {
+        "data_quality_score": 0.50,
+        "last_updated": "2025-12-27T19:00:00Z",
+        "sources_count": 5,
+        "reviewed_by": "Antigravity Agent",
+        "notes": "Educationist and entrepreneur. First-time presidential candidate at age 39.",
+        "election_year": 2023,
+        "position_contested": "Presidential",
+        "result": "Lost"
+    }
+}
