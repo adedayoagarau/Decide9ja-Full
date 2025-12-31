@@ -1,47 +1,55 @@
 """
-Embedding Service using sentence-transformers.
-Runs locally without API key.
+Embedding Service using OpenAI API.
+Lightweight alternative to sentence-transformers (no PyTorch needed).
 """
-from sentence_transformers import SentenceTransformer
-import numpy as np
-from typing import List, Union
+import os
+from typing import List
 import json
+from openai import OpenAI
 
-# Load model once at import (this will download on first run)
-# Using a lightweight model for speed
-MODEL_NAME = "all-MiniLM-L6-v2"  # 384 dimensions, fast
-_model = None
+# Initialize OpenAI client
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-
-def get_model():
-    """Lazy load the embedding model."""
-    global _model
-    if _model is None:
-        print(f"Loading embedding model: {MODEL_NAME}...")
-        _model = SentenceTransformer(MODEL_NAME)
-        print("Model loaded!")
-    return _model
+# Using OpenAI's efficient embedding model
+MODEL_NAME = "text-embedding-3-small"  # 1536 dimensions, fast, cheap
 
 
 def get_embedding(text: str) -> List[float]:
-    """Generate embedding for a single text."""
-    model = get_model()
-    embedding = model.encode(text, convert_to_numpy=True)
-    return embedding.tolist()
+    """Generate embedding for a single text using OpenAI API."""
+    try:
+        response = client.embeddings.create(
+            model=MODEL_NAME,
+            input=text
+        )
+        return response.data[0].embedding
+    except Exception as e:
+        print(f"OpenAI embedding error: {e}")
+        # Return zero vector as fallback
+        return [0.0] * 1536
 
 
 def get_embeddings(texts: List[str]) -> List[List[float]]:
     """Generate embeddings for multiple texts (batched)."""
-    model = get_model()
-    embeddings = model.encode(texts, convert_to_numpy=True, show_progress_bar=True)
-    return embeddings.tolist()
+    try:
+        response = client.embeddings.create(
+            model=MODEL_NAME,
+            input=texts
+        )
+        return [item.embedding for item in response.data]
+    except Exception as e:
+        print(f"OpenAI batch embedding error: {e}")
+        return [[0.0] * 1536 for _ in texts]
 
 
 def cosine_similarity(vec1: List[float], vec2: List[float]) -> float:
     """Calculate cosine similarity between two vectors."""
-    a = np.array(vec1)
-    b = np.array(vec2)
-    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))
+    import math
+    dot_product = sum(a * b for a, b in zip(vec1, vec2))
+    norm1 = math.sqrt(sum(a * a for a in vec1))
+    norm2 = math.sqrt(sum(b * b for b in vec2))
+    if norm1 == 0 or norm2 == 0:
+        return 0.0
+    return dot_product / (norm1 * norm2)
 
 
 def embedding_to_json(embedding: List[float]) -> str:
