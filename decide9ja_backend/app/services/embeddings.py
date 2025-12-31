@@ -3,19 +3,35 @@ Embedding Service using OpenAI API.
 Lightweight alternative to sentence-transformers (no PyTorch needed).
 """
 import os
-from typing import List
+from typing import List, Optional
 import json
-from openai import OpenAI
 
-# Initialize OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# Lazy-loaded client to avoid crash at import time if API key not set
+_client = None
 
 # Using OpenAI's efficient embedding model
 MODEL_NAME = "text-embedding-3-small"  # 1536 dimensions, fast, cheap
 
 
+def _get_client():
+    """Lazy load OpenAI client."""
+    global _client
+    if _client is None:
+        api_key = os.getenv("OPENAI_API_KEY")
+        if not api_key:
+            print("WARNING: OPENAI_API_KEY not set. Embeddings will return zeros.")
+            return None
+        from openai import OpenAI
+        _client = OpenAI(api_key=api_key)
+    return _client
+
+
 def get_embedding(text: str) -> List[float]:
     """Generate embedding for a single text using OpenAI API."""
+    client = _get_client()
+    if client is None:
+        return [0.0] * 1536  # Return zeros if no API key
+    
     try:
         response = client.embeddings.create(
             model=MODEL_NAME,
@@ -24,12 +40,15 @@ def get_embedding(text: str) -> List[float]:
         return response.data[0].embedding
     except Exception as e:
         print(f"OpenAI embedding error: {e}")
-        # Return zero vector as fallback
         return [0.0] * 1536
 
 
 def get_embeddings(texts: List[str]) -> List[List[float]]:
     """Generate embeddings for multiple texts (batched)."""
+    client = _get_client()
+    if client is None:
+        return [[0.0] * 1536 for _ in texts]
+    
     try:
         response = client.embeddings.create(
             model=MODEL_NAME,
