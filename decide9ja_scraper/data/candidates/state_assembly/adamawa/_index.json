@@ -1,0 +1,189 @@
+{
+    "state": "Adamawa",
+    "assembly_name": "Adamawa State House of Assembly",
+    "website": "https://adamawastate.gov.ng",
+    "assembly_term": "8th Assembly",
+    "inauguration_date": "2023-06-13",
+    "total_members": 25,
+    "party_breakdown": {
+        "PDP": 13,
+        "APC": 11,
+        "ADC": 1
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Hon. Wesley Bathiya",
+            "party": "PDP",
+            "constituency": "Hong",
+            "notes": "First physically challenged person elected Speaker in Adamawa"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Buba Mohammed Jijiwa",
+            "party": "PDP",
+            "constituency": "Jada Mbulo"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Demsa",
+            "name": "Hon. Kate Raymond Mamuno",
+            "party": "PDP",
+            "file": "demsa.json"
+        },
+        {
+            "constituency": "Fufore/Gurin",
+            "name": "Hon. Shuaibu Babas",
+            "party": "PDP",
+            "file": "fufore_gurin.json"
+        },
+        {
+            "constituency": "Ganye",
+            "name": "Hon. Alhassan Hamman Joda",
+            "party": "PDP",
+            "file": "ganye.json"
+        },
+        {
+            "constituency": "Girei",
+            "name": "Hon. Mohammed Mutawalli",
+            "party": "PDP",
+            "file": "girei.json"
+        },
+        {
+            "constituency": "Gombi",
+            "name": "Hon. Kefas Japhet",
+            "party": "PDP",
+            "file": "gombi.json"
+        },
+        {
+            "constituency": "Guyuk",
+            "name": "Hon. Dinglok Adawa",
+            "party": "PDP",
+            "file": "guyuk.json"
+        },
+        {
+            "constituency": "Hong",
+            "name": "Hon. Wesley Bathiya",
+            "party": "PDP",
+            "role": "Speaker",
+            "file": "hong.json"
+        },
+        {
+            "constituency": "Jada Mbulo",
+            "name": "Hon. Buba Mohammed Jijiwa",
+            "party": "PDP",
+            "role": "Deputy Speaker",
+            "file": "jada_mbulo.json"
+        },
+        {
+            "constituency": "Lamurde",
+            "name": "Hon. Myandasa Bauna",
+            "party": "PDP",
+            "file": "lamurde.json"
+        },
+        {
+            "constituency": "Madagali",
+            "name": "Hon. Haruna Jkan Tikiri",
+            "party": "APC",
+            "file": "madagali.json"
+        },
+        {
+            "constituency": "Maiha",
+            "name": "Hon. Isa Yahaya",
+            "party": "APC",
+            "file": "maiha.json"
+        },
+        {
+            "constituency": "Mayo Belwa",
+            "name": "Hon. Umar Nashon Gubi",
+            "party": "PDP",
+            "file": "mayo_belwa.json"
+        },
+        {
+            "constituency": "Michika",
+            "name": "Hon. Kwada Joseph Ayuba",
+            "party": "APC",
+            "file": "michika.json"
+        },
+        {
+            "constituency": "Mubi North",
+            "name": "Hon. Safiyanu Aliyu Aminu",
+            "party": "APC",
+            "file": "mubi_north.json"
+        },
+        {
+            "constituency": "Mubi South",
+            "name": "Hon. Yohanna Sahabo Jauro",
+            "party": "APC",
+            "file": "mubi_south.json"
+        },
+        {
+            "constituency": "Nassarawa Binyeri",
+            "name": "Hon. Babangida Mohammed Njidda",
+            "party": "APC",
+            "file": "nassarawa_binyeri.json"
+        },
+        {
+            "constituency": "Numan",
+            "name": "Hon. Mackondo Pwamwa Keno",
+            "party": "PDP",
+            "file": "numan.json"
+        },
+        {
+            "constituency": "Shelleng",
+            "name": "Hon. Kantamo Bulus",
+            "party": "APC",
+            "file": "shelleng.json"
+        },
+        {
+            "constituency": "Song",
+            "name": "Hon. Emmanuel Kefas",
+            "party": "PDP",
+            "file": "song.json"
+        },
+        {
+            "constituency": "Toungo",
+            "name": "Hon. Kefas Kevin",
+            "party": "APC",
+            "file": "toungo.json"
+        },
+        {
+            "constituency": "Uba Gaya",
+            "name": "Hon. Hyellapaburi John",
+            "party": "APC",
+            "file": "uba_gaya.json"
+        },
+        {
+            "constituency": "Yola North",
+            "name": "Hon. Suleiman Umar Alkali",
+            "party": "APC",
+            "file": "yola_north.json"
+        },
+        {
+            "constituency": "Yola South",
+            "name": "Hon. Kabiru Mijinyawa",
+            "party": "APC",
+            "file": "yola_south.json"
+        },
+        {
+            "constituency": "Jada",
+            "name": "Hon. Abdullahi Ahmadu",
+            "party": "ADC",
+            "file": "jada.json"
+        },
+        {
+            "constituency": "Leko/Koma",
+            "name": "Hon. Bulus Geoffrey",
+            "party": "PDP",
+            "file": "leko_koma.json"
+        }
+    ],
+    "data_status": "COMPLETE",
+    "sources": [
+        "adamawastate.gov.ng",
+        "Wikipedia",
+        "Daily Post",
+        "Punch",
+        "citizensciencenigeria.org"
+    ],
+    "last_updated": "2025-12-27T22:15:00Z"
+}

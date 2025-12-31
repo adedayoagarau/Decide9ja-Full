@@ -1,0 +1,1084 @@
+{
+    "metadata": {
+        "total_hashtags": 100,
+        "categories": [
+            "election",
+            "candidate",
+            "party",
+            "movement",
+            "issue",
+            "state",
+            "institution"
+        ],
+        "data_sources": [
+            "Twitter/X trending data",
+            "CDD West Africa",
+            "HumanAngle Media",
+            "Research papers"
+        ],
+        "last_updated": "2025-12-28T00:00:00Z"
+    },
+    "hashtags": [
+        {
+            "tag": "#NigeriaDecides",
+            "category": "election",
+            "popularity": "high",
+            "peak_period": "Election weeks (Feb-Mar 2023, 2024 state elections)",
+            "description": "Official election coverage hashtag used by media and INEC",
+            "associated_with": [
+                "INEC",
+                "all candidates",
+                "media outlets"
+            ]
+        },
+        {
+            "tag": "#NigeriaDecides2023",
+            "category": "election",
+            "popularity": "high",
+            "peak_period": "Feb-Mar 2023",
+            "description": "Year-specific variant for 2023 general elections",
+            "associated_with": [
+                "INEC",
+                "all 2023 candidates"
+            ]
+        },
+        {
+            "tag": "#Obidients",
+            "category": "candidate",
+            "popularity": "high",
+            "peak_period": "2022-2023 campaign season, still active",
+            "description": "Supporter identity for Peter Obi and Labour Party movement",
+            "associated_with": [
+                "Peter Obi",
+                "Labour Party",
+                "youth voters"
+            ]
+        },
+        {
+            "tag": "#PeterObi",
+            "category": "candidate",
+            "popularity": "high",
+            "peak_period": "2022-present",
+            "description": "Direct candidate hashtag",
+            "associated_with": [
+                "Peter Obi",
+                "Labour Party"
+            ]
+        },
+        {
+            "tag": "#BATified",
+            "category": "candidate",
+            "popularity": "high",
+            "peak_period": "2022-2023 campaign",
+            "description": "Supporter identity for Bola Ahmed Tinubu (BAT initials)",
+            "associated_with": [
+                "Bola Tinubu",
+                "APC"
+            ]
+        },
+        {
+            "tag": "#Tinubu",
+            "category": "candidate",
+            "popularity": "high",
+            "peak_period": "2022-present",
+            "description": "Direct candidate hashtag for President Tinubu",
+            "associated_with": [
+                "Bola Tinubu",
+                "APC",
+                "presidency"
+            ]
+        },
+        {
+            "tag": "#Atiku",
+            "category": "candidate",
+            "popularity": "high",
+            "peak_period": "2022-2023",
+            "description": "Direct candidate hashtag for Atiku Abubakar",
+            "associated_with": [
+                "Atiku Abubakar",
+                "PDP"
+            ]
+        },
+        {
+            "tag": "#Atikulated",
+            "category": "candidate",
+            "popularity": "medium",
+            "peak_period": "2022-2023 campaign",
+            "description": "Supporter identity for Atiku Abubakar",
+            "associated_with": [
+                "Atiku Abubakar",
+                "PDP"
+            ]
+        },
+        {
+            "tag": "#Kwankwasiyya",
+            "category": "candidate",
+            "popularity": "high",
+            "peak_period": "2022-2023, regionally strong",
+            "description": "Movement for Rabiu Kwankwaso and NNPP, especially in Kano",
+            "associated_with": [
+                "Rabiu Kwankwaso",
+                "NNPP",
+                "Kano State"
+            ]
+        },
+        {
+            "tag": "#Kwankwaso",
+            "category": "candidate",
+            "popularity": "medium",
+            "peak_period": "2022-2023",
+            "description": "Direct candidate hashtag",
+            "associated_with": [
+                "Rabiu Kwankwaso",
+                "NNPP"
+            ]
+        },
+        {
+            "tag": "#BVAS",
+            "category": "election",
+            "popularity": "high",
+            "peak_period": "Election days 2023",
+            "description": "Bimodal Voter Accreditation System - election technology discussions",
+            "associated_with": [
+                "INEC",
+                "election integrity"
+            ]
+        },
+        {
+            "tag": "#IReVS",
+            "category": "election",
+            "popularity": "high",
+            "peak_period": "Election days 2023",
+            "description": "INEC Result Viewing System - real-time results upload",
+            "associated_with": [
+                "INEC",
+                "election transparency"
+            ]
+        },
+        {
+            "tag": "#EndSARS",
+            "category": "movement",
+            "popularity": "high",
+            "peak_period": "October 2020, legacy continues",
+            "description": "Anti-police brutality movement that influenced 2023 youth voting",
+            "associated_with": [
+                "Youth activists",
+                "Lekki Toll Gate",
+                "police reform"
+            ]
+        },
+        {
+            "tag": "#LekkiMassacre",
+            "category": "movement",
+            "popularity": "high",
+            "peak_period": "October 2020 anniversary dates",
+            "description": "Commemoration of October 20, 2020 Lekki Toll Gate shooting",
+            "associated_with": [
+                "#EndSARS",
+                "human rights"
+            ]
+        },
+        {
+            "tag": "#RevolutionNow",
+            "category": "movement",
+            "popularity": "medium",
+            "peak_period": "August 2019, periodic resurgence",
+            "description": "Omoyele Sowore's anti-corruption protest movement",
+            "associated_with": [
+                "Omoyele Sowore",
+                "AAC",
+                "Take It Back Movement"
+            ]
+        },
+        {
+            "tag": "#TakeItBack",
+            "category": "movement",
+            "popularity": "medium",
+            "peak_period": "2019-present",
+            "description": "Good governance advocacy group led by Sowore",
+            "associated_with": [
+                "Omoyele Sowore",
+                "AAC"
+            ]
+        },
+        {
+            "tag": "#NotTooYoungToRun",
+            "category": "movement",
+            "popularity": "high",
+            "peak_period": "2016-2018, legacy continues",
+            "description": "Successful campaign that lowered age limits for political office",
+            "associated_with": [
+                "Yiaga Africa",
+                "youth candidates"
+            ]
+        },
+        {
+            "tag": "#EndBadGovernance",
+            "category": "issue",
+            "popularity": "high",
+            "peak_period": "August 2024 protests",
+            "description": "Anti-government protest hashtag over economic hardship",
+            "associated_with": [
+                "Fuel subsidy protests",
+                "economic reform demands"
+            ]
+        },
+        {
+            "tag": "#EndBadGovernanceProtest",
+            "category": "issue",
+            "popularity": "high",
+            "peak_period": "August 2024",
+            "description": "Specific protest coordination hashtag",
+            "associated_with": [
+                "Nationwide protests",
+                "economic grievances"
+            ]
+        },
+        {
+            "tag": "#TinubuMustGo",
+            "category": "issue",
+            "popularity": "high",
+            "peak_period": "July-August 2024",
+            "description": "Calls for President Tinubu's resignation",
+            "associated_with": [
+                "Opposition",
+                "economic protests"
+            ]
+        },
+        {
+            "tag": "#BuhariMustGo",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "2021-2023",
+            "description": "Previous administration protest hashtag",
+            "associated_with": [
+                "Buhari opposition",
+                "protest movements"
+            ]
+        },
+        {
+            "tag": "#FuelSubsidy",
+            "category": "issue",
+            "popularity": "high",
+            "peak_period": "May-June 2023 removal",
+            "description": "Discussions around fuel subsidy removal and impact",
+            "associated_with": [
+                "Economic policy",
+                "Tinubu administration"
+            ]
+        },
+        {
+            "tag": "#SubsidyRemoval",
+            "category": "issue",
+            "popularity": "high",
+            "peak_period": "May 2023",
+            "description": "Policy discussions on ending fuel subsidies",
+            "associated_with": [
+                "Economy",
+                "petrol prices"
+            ]
+        },
+        {
+            "tag": "#MinimumWage",
+            "category": "issue",
+            "popularity": "high",
+            "peak_period": "2024 negotiations",
+            "description": "Wage increase advocacy and negotiations",
+            "associated_with": [
+                "NLC",
+                "TUC",
+                "workers"
+            ]
+        },
+        {
+            "tag": "#N70000MinimumWage",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "July 2024",
+            "description": "Specific new minimum wage amount discussions",
+            "associated_with": [
+                "Labour unions",
+                "workers"
+            ]
+        },
+        {
+            "tag": "#Naira",
+            "category": "issue",
+            "popularity": "high",
+            "peak_period": "2023-2024 devaluation periods",
+            "description": "Currency discussions, forex, devaluation",
+            "associated_with": [
+                "CBN",
+                "economy",
+                "exchange rate"
+            ]
+        },
+        {
+            "tag": "#NairaFreefall",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "2024 forex crisis",
+            "description": "Criticism of naira devaluation",
+            "associated_with": [
+                "Economic crisis",
+                "CBN"
+            ]
+        },
+        {
+            "tag": "#APC",
+            "category": "party",
+            "popularity": "high",
+            "peak_period": "Always active",
+            "description": "All Progressives Congress party hashtag",
+            "associated_with": [
+                "Tinubu",
+                "ruling party"
+            ]
+        },
+        {
+            "tag": "#PDP",
+            "category": "party",
+            "popularity": "high",
+            "peak_period": "Always active",
+            "description": "Peoples Democratic Party hashtag",
+            "associated_with": [
+                "Atiku",
+                "opposition"
+            ]
+        },
+        {
+            "tag": "#LabourParty",
+            "category": "party",
+            "popularity": "high",
+            "peak_period": "2022-2023",
+            "description": "Labour Party hashtag during Peter Obi surge",
+            "associated_with": [
+                "Peter Obi",
+                "third force"
+            ]
+        },
+        {
+            "tag": "#LP",
+            "category": "party",
+            "popularity": "high",
+            "peak_period": "2022-2023",
+            "description": "Labour Party abbreviation",
+            "associated_with": [
+                "Peter Obi"
+            ]
+        },
+        {
+            "tag": "#NNPP",
+            "category": "party",
+            "popularity": "medium",
+            "peak_period": "2022-2023",
+            "description": "New Nigeria Peoples Party",
+            "associated_with": [
+                "Kwankwaso",
+                "Kano"
+            ]
+        },
+        {
+            "tag": "#INEC",
+            "category": "institution",
+            "popularity": "high",
+            "peak_period": "Election periods",
+            "description": "Electoral commission discussions and criticism",
+            "associated_with": [
+                "Elections",
+                "Prof. Mahmood Yakubu"
+            ]
+        },
+        {
+            "tag": "#INECMustGoNow",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "Post-2023 elections",
+            "description": "Criticism of INEC performance",
+            "associated_with": [
+                "Election disputes"
+            ]
+        },
+        {
+            "tag": "#PETribunal",
+            "category": "election",
+            "popularity": "medium",
+            "peak_period": "2023 post-election",
+            "description": "Presidential Election Tribunal proceedings",
+            "associated_with": [
+                "Election challenges",
+                "courts"
+            ]
+        },
+        {
+            "tag": "#SupremeCourt",
+            "category": "institution",
+            "popularity": "medium",
+            "peak_period": "Oct 2023 judgment",
+            "description": "Final election petition judgment discussions",
+            "associated_with": [
+                "Election petitions"
+            ]
+        },
+        {
+            "tag": "#LagosIsBleeding",
+            "category": "state",
+            "popularity": "medium",
+            "peak_period": "2023 Lagos elections",
+            "description": "Allegations of violence in Lagos elections",
+            "associated_with": [
+                "Lagos elections",
+                "voter intimidation"
+            ]
+        },
+        {
+            "tag": "#SanwooluLekansi",
+            "category": "state",
+            "popularity": "medium",
+            "peak_period": "2023 gubernatorial campaign",
+            "description": "Support for Governor Sanwo-Olu's re-election",
+            "associated_with": [
+                "Babajide Sanwo-Olu",
+                "Lagos APC"
+            ]
+        },
+        {
+            "tag": "#4Plus4",
+            "category": "state",
+            "popularity": "medium",
+            "peak_period": "2023",
+            "description": "Campaign slogan for gubernatorial continuity",
+            "associated_with": [
+                "Incumbent governors seeking re-election"
+            ]
+        },
+        {
+            "tag": "#SimFubara",
+            "category": "state",
+            "popularity": "medium",
+            "peak_period": "2023-2024",
+            "description": "Rivers State governor hashtag",
+            "associated_with": [
+                "Rivers State",
+                "PDP crisis"
+            ]
+        },
+        {
+            "tag": "#RiversCrisis",
+            "category": "state",
+            "popularity": "medium",
+            "peak_period": "2024",
+            "description": "Political conflict between Fubara and Wike",
+            "associated_with": [
+                "Rivers State",
+                "PDP infighting"
+            ]
+        },
+        {
+            "tag": "#Wike",
+            "category": "candidate",
+            "popularity": "medium",
+            "peak_period": "2022-present",
+            "description": "Nyesom Wike, FCT Minister",
+            "associated_with": [
+                "FCT",
+                "Rivers State politics"
+            ]
+        },
+        {
+            "tag": "#ObiDatti",
+            "category": "candidate",
+            "popularity": "high",
+            "peak_period": "2022-2023",
+            "description": "Peter Obi and Datti Baba-Ahmed ticket",
+            "associated_with": [
+                "Labour Party presidential ticket"
+            ]
+        },
+        {
+            "tag": "#BAT292023",
+            "category": "candidate",
+            "popularity": "medium",
+            "peak_period": "Pre-inauguration May 2023",
+            "description": "Countdown to Tinubu's inauguration",
+            "associated_with": [
+                "Tinubu",
+                "APC"
+            ]
+        },
+        {
+            "tag": "#RenewedHope",
+            "category": "candidate",
+            "popularity": "medium",
+            "peak_period": "2023 campaign",
+            "description": "Tinubu's campaign slogan",
+            "associated_with": [
+                "Tinubu",
+                "APC manifesto"
+            ]
+        },
+        {
+            "tag": "#OneNigeria",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "Unity campaigns",
+            "description": "National unity and anti-secessionism",
+            "associated_with": [
+                "Federalism debates"
+            ]
+        },
+        {
+            "tag": "#Restructuring",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "2023 campaign debates",
+            "description": "Calls for constitutional restructuring",
+            "associated_with": [
+                "Federalism",
+                "resource control"
+            ]
+        },
+        {
+            "tag": "#SecurityMatters",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "2023-2024",
+            "description": "Security concerns and banditry discussions",
+            "associated_with": [
+                "Insecurity",
+                "military operations"
+            ]
+        },
+        {
+            "tag": "#BanditryMustEnd",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "2023-2024",
+            "description": "Calls for end to banditry in North",
+            "associated_with": [
+                "Kaduna",
+                "Zamfara",
+                "Niger states"
+            ]
+        },
+        {
+            "tag": "#InsecurityInNigeria",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "2023-2024",
+            "description": "General insecurity discussions",
+            "associated_with": [
+                "Kidnapping",
+                "terrorism"
+            ]
+        },
+        {
+            "tag": "#SaveOurStudents",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "Kidnapping incidents",
+            "description": "Response to student kidnappings",
+            "associated_with": [
+                "School attacks",
+                "Kaduna"
+            ]
+        },
+        {
+            "tag": "#ASUU",
+            "category": "issue",
+            "popularity": "high",
+            "peak_period": "Strike periods",
+            "description": "Academic Staff Union of Universities strikes",
+            "associated_with": [
+                "Education",
+                "university strikes"
+            ]
+        },
+        {
+            "tag": "#ASUUStrike",
+            "category": "issue",
+            "popularity": "high",
+            "peak_period": "2022 strike, recurring",
+            "description": "University strike discussions",
+            "associated_with": [
+                "Education funding"
+            ]
+        },
+        {
+            "tag": "#ReopenOurSchools",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "Strike periods",
+            "description": "Student advocacy against strikes",
+            "associated_with": [
+                "ASUU",
+                "education"
+            ]
+        },
+        {
+            "tag": "#NigeriaAtwar",
+            "category": "issue",
+            "popularity": "low",
+            "peak_period": "Security crises",
+            "description": "Escalation rhetoric about insecurity",
+            "associated_with": [
+                "Security discussions"
+            ]
+        },
+        {
+            "tag": "#NigeriaMustWork",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "Various",
+            "description": "Patriotic reform advocacy",
+            "associated_with": [
+                "Good governance"
+            ]
+        },
+        {
+            "tag": "#YouthsVote",
+            "category": "election",
+            "popularity": "medium",
+            "peak_period": "2023 elections",
+            "description": "Youth voter mobilization",
+            "associated_with": [
+                "First-time voters",
+                "#NotTooYoungToRun"
+            ]
+        },
+        {
+            "tag": "#GetYourPVC",
+            "category": "election",
+            "popularity": "high",
+            "peak_period": "Pre-election registration",
+            "description": "Voter registration advocacy",
+            "associated_with": [
+                "INEC",
+                "youth mobilization"
+            ]
+        },
+        {
+            "tag": "#PVCisReady",
+            "category": "election",
+            "popularity": "medium",
+            "peak_period": "Pre-election 2023",
+            "description": "PVC collection encouragement",
+            "associated_with": [
+                "Voter registration"
+            ]
+        },
+        {
+            "tag": "#VoteNotFight",
+            "category": "election",
+            "popularity": "medium",
+            "peak_period": "Election periods",
+            "description": "Anti-violence election campaign",
+            "associated_with": [
+                "Civil society"
+            ]
+        },
+        {
+            "tag": "#ProtectYourVote",
+            "category": "election",
+            "popularity": "medium",
+            "peak_period": "Election day 2023",
+            "description": "Election monitoring advocacy",
+            "associated_with": [
+                "Poll watching"
+            ]
+        },
+        {
+            "tag": "#VoteWisely",
+            "category": "election",
+            "popularity": "medium",
+            "peak_period": "Campaign periods",
+            "description": "Voter education hashtag",
+            "associated_with": [
+                "Civil society"
+            ]
+        },
+        {
+            "tag": "#SayNoToBoobooBuyers",
+            "category": "election",
+            "popularity": "medium",
+            "peak_period": "2023 elections",
+            "description": "Anti-vote buying campaign",
+            "associated_with": [
+                "Election integrity"
+            ]
+        },
+        {
+            "tag": "#CorruptionMustGo",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "Various",
+            "description": "Anti-corruption advocacy",
+            "associated_with": [
+                "EFCC",
+                "accountability"
+            ]
+        },
+        {
+            "tag": "#EFCC",
+            "category": "institution",
+            "popularity": "medium",
+            "peak_period": "High-profile cases",
+            "description": "Economic and Financial Crimes Commission",
+            "associated_with": [
+                "Anti-corruption",
+                "prosecutions"
+            ]
+        },
+        {
+            "tag": "#LocoMondey",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "2023",
+            "description": "Pidgin slang criticizing politicians",
+            "associated_with": [
+                "Political satire"
+            ]
+        },
+        {
+            "tag": "#AskThePolitician",
+            "category": "election",
+            "popularity": "low",
+            "peak_period": "Campaign debates",
+            "description": "Townhall/debate engagement",
+            "associated_with": [
+                "Candidate debates"
+            ]
+        },
+        {
+            "tag": "#AbujaZone",
+            "category": "state",
+            "popularity": "low",
+            "peak_period": "FCT politics",
+            "description": "FCT political discussions",
+            "associated_with": [
+                "FCT",
+                "Abuja"
+            ]
+        },
+        {
+            "tag": "#SouthEastMatters",
+            "category": "state",
+            "popularity": "medium",
+            "peak_period": "Regional advocacy",
+            "description": "South East development and political representation",
+            "associated_with": [
+                "Igbo politics",
+                "IPOB debates"
+            ]
+        },
+        {
+            "tag": "#IPOB",
+            "category": "movement",
+            "popularity": "medium",
+            "peak_period": "Sit-at-home periods",
+            "description": "Indigenous People of Biafra discussions",
+            "associated_with": [
+                "South East",
+                "Nnamdi Kanu"
+            ]
+        },
+        {
+            "tag": "#FreeNnamdiKanu",
+            "category": "movement",
+            "popularity": "medium",
+            "peak_period": "Post-arrest 2021+",
+            "description": "Campaign for IPOB leader release",
+            "associated_with": [
+                "IPOB",
+                "Nnamdi Kanu"
+            ]
+        },
+        {
+            "tag": "#Biafra",
+            "category": "movement",
+            "popularity": "medium",
+            "peak_period": "Periodic",
+            "description": "Secessionist movement discussions",
+            "associated_with": [
+                "IPOB",
+                "South East"
+            ]
+        },
+        {
+            "tag": "#OduduwaRepublic",
+            "category": "movement",
+            "popularity": "low",
+            "peak_period": "2021",
+            "description": "Yoruba nation advocacy",
+            "associated_with": [
+                "Sunday Igboho",
+                "South West"
+            ]
+        },
+        {
+            "tag": "#NigerDeltaMatters",
+            "category": "state",
+            "popularity": "low",
+            "peak_period": "Resource control debates",
+            "description": "Niger Delta advocacy",
+            "associated_with": [
+                "Oil communities",
+                "amnesty"
+            ]
+        },
+        {
+            "tag": "#NorthCentral",
+            "category": "state",
+            "popularity": "low",
+            "peak_period": "Regional politics",
+            "description": "North Central zone discussions",
+            "associated_with": [
+                "Middle Belt"
+            ]
+        },
+        {
+            "tag": "#NorthWest",
+            "category": "state",
+            "popularity": "low",
+            "peak_period": "Regional politics",
+            "description": "North West zone, including security",
+            "associated_with": [
+                "Banditry",
+                "Kaduna",
+                "Zamfara"
+            ]
+        },
+        {
+            "tag": "#NorthEast",
+            "category": "state",
+            "popularity": "low",
+            "peak_period": "Regional politics",
+            "description": "North East zone, Boko Haram affected",
+            "associated_with": [
+                "Security",
+                "IDPs"
+            ]
+        },
+        {
+            "tag": "#SouthSouth",
+            "category": "state",
+            "popularity": "low",
+            "peak_period": "Regional politics",
+            "description": "South South zone discussions",
+            "associated_with": [
+                "Oil states",
+                "Rivers"
+            ]
+        },
+        {
+            "tag": "#SouthWest",
+            "category": "state",
+            "popularity": "low",
+            "peak_period": "Regional politics",
+            "description": "South West zone discussions",
+            "associated_with": [
+                "Lagos",
+                "Yoruba politics"
+            ]
+        },
+        {
+            "tag": "#PalliativesMustReach",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "2023 subsidy removal",
+            "description": "Calls for government relief to reach people",
+            "associated_with": [
+                "Economic hardship"
+            ]
+        },
+        {
+            "tag": "#HungerInTheCity",
+            "category": "issue",
+            "popularity": "low",
+            "peak_period": "2024",
+            "description": "Food security concerns",
+            "associated_with": [
+                "Economy",
+                "inflation"
+            ]
+        },
+        {
+            "tag": "#NigeriaIsBleeding",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "Crisis periods",
+            "description": "General crisis/emergency hashtag",
+            "associated_with": [
+                "Security",
+                "economy"
+            ]
+        },
+        {
+            "tag": "#WeAreNotFools",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "Political controversies",
+            "description": "Citizen pushback against political spin",
+            "associated_with": [
+                "Political awareness"
+            ]
+        },
+        {
+            "tag": "#OlorunMaje",
+            "category": "candidate",
+            "popularity": "low",
+            "peak_period": "2023 campaign",
+            "description": "Yoruba phrase used by Tinubu supporters (God forbid)",
+            "associated_with": [
+                "Tinubu",
+                "APC"
+            ]
+        },
+        {
+            "tag": "#2027isLoading",
+            "category": "election",
+            "popularity": "medium",
+            "peak_period": "2024-present",
+            "description": "Early 2027 election positioning",
+            "associated_with": [
+                "Future candidates"
+            ]
+        },
+        {
+            "tag": "#2027Elections",
+            "category": "election",
+            "popularity": "medium",
+            "peak_period": "2024-2027",
+            "description": "Forward-looking election discussions",
+            "associated_with": [
+                "Political realignment"
+            ]
+        },
+        {
+            "tag": "#NigerianPolitics",
+            "category": "election",
+            "popularity": "high",
+            "peak_period": "Always active",
+            "description": "General Nigerian politics discussion",
+            "associated_with": [
+                "All political content"
+            ]
+        },
+        {
+            "tag": "#NigeriaPolitics",
+            "category": "election",
+            "popularity": "high",
+            "peak_period": "Always active",
+            "description": "Variant of general politics hashtag",
+            "associated_with": [
+                "All political content"
+            ]
+        },
+        {
+            "tag": "#NaijaTwitter",
+            "category": "election",
+            "popularity": "high",
+            "peak_period": "Always active",
+            "description": "Nigerian Twitter community identifier",
+            "associated_with": [
+                "All Nigerian content"
+            ]
+        },
+        {
+            "tag": "#OpenNASS",
+            "category": "institution",
+            "popularity": "low",
+            "peak_period": "Legislative sessions",
+            "description": "National Assembly transparency advocacy",
+            "associated_with": [
+                "BudgIT",
+                "civic tech"
+            ]
+        },
+        {
+            "tag": "#BudgetOfRenewedHope",
+            "category": "institution",
+            "popularity": "low",
+            "peak_period": "Budget cycles",
+            "description": "2024 budget discussions",
+            "associated_with": [
+                "Tinubu administration"
+            ]
+        },
+        {
+            "tag": "#CBN",
+            "category": "institution",
+            "popularity": "medium",
+            "peak_period": "Monetary policy changes",
+            "description": "Central Bank of Nigeria discussions",
+            "associated_with": [
+                "Currency",
+                "banking"
+            ]
+        },
+        {
+            "tag": "#NairaCrash",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "2024 forex crisis",
+            "description": "Currency devaluation criticism",
+            "associated_with": [
+                "CBN",
+                "economy"
+            ]
+        },
+        {
+            "tag": "#PetrolQueue",
+            "category": "issue",
+            "popularity": "medium",
+            "peak_period": "Fuel scarcity periods",
+            "description": "Fuel scarcity documentation",
+            "associated_with": [
+                "Petrol prices",
+                "NNPC"
+            ]
+        },
+        {
+            "tag": "#LightUp",
+            "category": "issue",
+            "popularity": "low",
+            "peak_period": "Power outages",
+            "description": "Power sector criticism/advocacy",
+            "associated_with": [
+                "Electricity",
+                "infrastructure"
+            ]
+        },
+        {
+            "tag": "#ElectionPeace",
+            "category": "election",
+            "popularity": "low",
+            "peak_period": "Election periods",
+            "description": "Peace advocacy during elections",
+            "associated_with": [
+                "Civil society"
+            ]
+        },
+        {
+            "tag": "#DefendYourVote",
+            "category": "election",
+            "popularity": "medium",
+            "peak_period": "Election day 2023",
+            "description": "Poll monitoring and staying at polling units",
+            "associated_with": [
+                "Obidients",
+                "LP"
+            ]
+        },
+        {
+            "tag": "#IDecide",
+            "category": "election",
+            "popularity": "low",
+            "peak_period": "2023",
+            "description": "Voter agency messaging",
+            "associated_with": [
+                "Youth voters"
+            ]
+        }
+    ]
+}

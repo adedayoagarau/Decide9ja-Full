@@ -1,0 +1,83 @@
+{
+    "id": "aiyedatiwa_lucky",
+    "slug": "lucky-aiyedatiwa",
+    "state": "Ondo",
+    "name": {
+        "full": "Lucky Orimisan Aiyedatiwa",
+        "common": "Lucky Aiyedatiwa",
+        "aliases": []
+    },
+    "personal": {
+        "date_of_birth": null,
+        "state_of_origin": "Ondo",
+        "lga_of_origin": "Ilaje",
+        "religion": "Christian",
+        "ethnicity": "Yoruba",
+        "education": [],
+        "career_before_politics": [],
+        "family": {
+            "spouse": null,
+            "children": null,
+            "notes": null
+        }
+    },
+    "political_career": {
+        "party_history": [
+            {
+                "party": "APC",
+                "full_name": "All Progressives Congress",
+                "joined": null,
+                "left": null
+            }
+        ],
+        "positions_held": [
+            {
+                "position": "Deputy Governor",
+                "constituency": "Ondo State",
+                "period": "2021-2023"
+            },
+            {
+                "position": "Governor",
+                "constituency": "Ondo State",
+                "period": "2023-present",
+                "notes": "Became governor upon death of Rotimi Akeredolu"
+            }
+        ],
+        "election_history": [
+            {
+                "year": 2024,
+                "position": "Governor",
+                "party": "APC",
+                "result": "Won",
+                "notes": "Won November 2024 election after becoming governor through succession"
+            }
+        ]
+    },
+    "term_info": {
+        "current_term": "1st term (elected)",
+        "term_start": "2024-11",
+        "term_end": "2028-11",
+        "first_elected": 2024
+    },
+    "policy_positions": [],
+    "track_record": {
+        "achievements": [],
+        "failures": [],
+        "promises_vs_delivery": []
+    },
+    "controversies": [],
+    "social_media": {
+        "twitter": null,
+        "facebook": null,
+        "instagram": null,
+        "website": null,
+        "verified": false
+    },
+    "metadata": {
+        "data_quality_score": 0.45,
+        "last_updated": "2025-12-27T20:00:00Z",
+        "sources_count": 3,
+        "reviewed_by": "Antigravity Agent",
+        "notes": "Became governor December 2023 after Akeredolu's death. Won 2024 election."
+    }
+}

@@ -1,0 +1,86 @@
+{
+    "state": "Gombe",
+    "total_lgas": 11,
+    "last_lga_election": "2024-04-27",
+    "next_election_due": "2027",
+    "current_term_status": "Active",
+    "siec_name": "GOSIEC",
+    "party_sweep": "APC",
+    "data_completeness": "100%",
+    "chairmen": [
+        {
+            "lga": "Akko",
+            "name": "Danladi Adamu",
+            "party": "APC",
+            "file": "akko.json"
+        },
+        {
+            "lga": "Balanga",
+            "name": "Ibrahim Salisu",
+            "party": "APC",
+            "file": "balanga.json"
+        },
+        {
+            "lga": "Billiri",
+            "name": "Egla Idris",
+            "party": "APC",
+            "file": "billiri.json"
+        },
+        {
+            "lga": "Dukku",
+            "name": "Adamu Muhammad Waziri",
+            "party": "APC",
+            "file": "dukku.json"
+        },
+        {
+            "lga": "Funakaye",
+            "name": "Shu'aibu Abdularahman",
+            "party": "APC",
+            "file": "funakaye.json"
+        },
+        {
+            "lga": "Gombe",
+            "name": "Sani Ahmed Haruna",
+            "party": "APC",
+            "file": "gombe.json"
+        },
+        {
+            "lga": "Kaltungo",
+            "name": "Iliya Sulaiman",
+            "party": "APC",
+            "file": "kaltungo.json"
+        },
+        {
+            "lga": "Kwami",
+            "name": "Ahmed Wali Doho",
+            "party": "APC",
+            "file": "kwami.json"
+        },
+        {
+            "lga": "Nafada",
+            "name": "Babangida Adamu Jigawa",
+            "party": "APC",
+            "file": "nafada.json"
+        },
+        {
+            "lga": "Shongom",
+            "name": "Fatima Binta Bello",
+            "party": "APC",
+            "notes": "Female chairman",
+            "file": "shongom.json"
+        },
+        {
+            "lga": "Yamaltu Deba",
+            "name": "Abubakar Hassan Deba",
+            "party": "APC",
+            "file": "yamaltu_deba.json"
+        }
+    ],
+    "sources": [
+        "historyrep.com",
+        "Leadership",
+        "Channels TV",
+        "GOSIEC"
+    ],
+    "last_updated": "2025-12-28T00:40:00Z"
+}

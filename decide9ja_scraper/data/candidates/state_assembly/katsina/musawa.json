@@ -1,0 +1,45 @@
+{
+  "id": "dikko_ibrahim",
+  "slug": "ibrahim-umar-dikko",
+  "state": "Katsina",
+  "state_constituency": "Musawa",
+  "name": {
+    "full": "Hon. Ibrahim Umar Dikko",
+    "common": "Ibrahim Umar Dikko",
+    "aliases": []
+  },
+  "party": "APC",
+  "personal": {
+    "date_of_birth": null,
+    "state_of_origin": "Katsina",
+    "lga_of_origin": null,
+    "religion": null,
+    "education": []
+  },
+  "political_career": {
+    "positions_held": [
+      {
+        "position": "Member, State House of Assembly",
+        "constituency": "Musawa State Constituency",
+        "period": "2023-present"
+      }
+    ]
+  },
+  "assembly_info": {
+    "assembly_term": "8th Assembly",
+    "committee_memberships": [],
+    "bills_sponsored": [],
+    "motions": [],
+    "legislative_focus": [],
+    "role": "Chief Whip"
+  },
+  "social_media": {
+    "twitter": null,
+    "facebook": null,
+    "website": null
+  },
+  "metadata": {
+    "data_quality_score": 0.5,
+    "last_updated": "2025-12-27T15:37:41Z"
+  }
+}

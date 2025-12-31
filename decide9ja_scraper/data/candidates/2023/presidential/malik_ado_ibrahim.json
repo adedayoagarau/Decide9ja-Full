@@ -1,0 +1,138 @@
+{
+    "id": "ado_ibrahim_malik",
+    "slug": "malik-ado-ibrahim",
+    "name": {
+        "full": "Malik Ado-Ibrahim",
+        "common": "Malik Ado-Ibrahim",
+        "aliases": [
+            "Prince Malik"
+        ]
+    },
+    "personal": {
+        "date_of_birth": "1963-12-22",
+        "state_of_origin": "Kogi",
+        "lga_of_origin": "Okene",
+        "religion": null,
+        "ethnicity": "Ebira",
+        "education": [],
+        "career_before_politics": [
+            {
+                "role": "CEO and Chairman",
+                "organization": "Nigus Enfinity",
+                "period": "Present",
+                "notes": "Renewable energy focus"
+            },
+            {
+                "role": "Founder",
+                "organization": "Nigus International",
+                "period": "Present",
+                "notes": "Renewable energy solutions across Africa"
+            },
+            {
+                "role": "Co-owner",
+                "organization": "Arrows Formula One Team",
+                "period": "1990s",
+                "notes": "First black co-owner of F1 team; later faced financial controversy"
+            }
+        ],
+        "family": {
+            "spouse": "Adama Indimi (married 2020)",
+            "children": null,
+            "notes": "Prince from Atta Royal Family of Ebiraland; wife is daughter of billionaire Mohammed Indimi"
+        }
+    },
+    "political_career": {
+        "party_history": [
+            {
+                "party": "YPP",
+                "full_name": "Young Progressives Party",
+                "joined": 2022,
+                "left": null
+            }
+        ],
+        "positions_held": [
+            {
+                "position": "Founder",
+                "constituency": "Reset Nigeria Initiative",
+                "period": "Present",
+                "notes": "Advocacy group for good governance"
+            }
+        ],
+        "election_history": [
+            {
+                "year": 2023,
+                "position": "President",
+                "party": "YPP",
+                "votes": 93453,
+                "result": "Lost",
+                "source": "https://www.erad.ng"
+            }
+        ]
+    },
+    "policy_positions": [
+        {
+            "issue_area": "Governance",
+            "sub_issues": [
+                "Good Governance",
+                "Citizen Participation"
+            ],
+            "stance_summary": "Focus on governance reform through Reset Nigeria Initiative",
+            "quotes": []
+        },
+        {
+            "issue_area": "Infrastructure",
+            "sub_issues": [
+                "Renewable Energy"
+            ],
+            "stance_summary": "Renewable energy development; clean energy focus",
+            "quotes": [],
+            "notes": "Background in renewable energy business"
+        }
+    ],
+    "track_record": {
+        "achievements": [
+            {
+                "achievement": "First black F1 team co-owner",
+                "period": "1990s",
+                "evidence": "Arrows F1 team",
+                "source": "https://en.wikipedia.org/wiki/Malik_Ado-Ibrahim"
+            },
+            {
+                "achievement": "Founded Reset Nigeria Initiative",
+                "period": "Present",
+                "evidence": "Advocacy organization",
+                "source": "https://thisdaylive.com"
+            }
+        ],
+        "failures": [],
+        "promises_vs_delivery": []
+    },
+    "controversies": [
+        {
+            "issue": "F1 financial controversy",
+            "allegation": "Financial commitments to Arrows F1 team became subject of controversy",
+            "their_response": null,
+            "status": "Historical",
+            "sources": [
+                "https://en.wikipedia.org/wiki/Malik_Ado-Ibrahim"
+            ]
+        }
+    ],
+    "social_media": {
+        "twitter": null,
+        "facebook": null,
+        "instagram": null,
+        "website": null,
+        "verified": false
+    },
+    "metadata": {
+        "data_quality_score": 0.55,
+        "last_updated": "2025-12-27T19:00:00Z",
+        "sources_count": 6,
+        "reviewed_by": "Antigravity Agent",
+        "notes": "Royal prince and businessman. First black F1 team co-owner. Renewable energy entrepreneur.",
+        "election_year": 2023,
+        "position_contested": "Presidential",
+        "result": "Lost"
+    }
+}

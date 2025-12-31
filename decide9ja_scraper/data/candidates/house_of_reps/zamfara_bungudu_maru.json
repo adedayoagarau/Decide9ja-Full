@@ -1,0 +1,43 @@
+{
+  "id": "ahmed_shehu",
+  "slug": "shehu-ahmed",
+  "state": "Zamfara",
+  "federal_constituency": "Bungudu/Maru",
+  "name": {
+    "full": "Shehu Ahmed",
+    "common": "Shehu Ahmed",
+    "aliases": []
+  },
+  "party": "PDP",
+  "personal": {
+    "date_of_birth": null,
+    "state_of_origin": "Zamfara",
+    "lga_of_origin": null,
+    "religion": null,
+    "education": []
+  },
+  "political_career": {
+    "positions_held": [
+      {
+        "position": "Member, House of Representatives",
+        "constituency": "Bungudu/Maru Federal Constituency",
+        "period": "2023-present"
+      }
+    ]
+  },
+  "house_info": {
+    "committee_memberships": [],
+    "bills_sponsored": [],
+    "motions": [],
+    "legislative_focus": []
+  },
+  "social_media": {
+    "twitter": null,
+    "facebook": null,
+    "website": null
+  },
+  "metadata": {
+    "data_quality_score": 0.45,
+    "last_updated": "2025-12-27T21:35:00Z"
+  }
+}

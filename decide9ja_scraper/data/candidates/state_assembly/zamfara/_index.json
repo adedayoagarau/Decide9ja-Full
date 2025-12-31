@@ -1,0 +1,188 @@
+{
+    "state": "Zamfara",
+    "assembly_name": "Zamfara State House of Assembly",
+    "website": "https://zamfara.gov.ng",
+    "assembly_term": "8th Assembly",
+    "inauguration_date": "2023-06-13",
+    "total_members": 24,
+    "party_breakdown": {
+        "PDP": 11,
+        "APC": 13,
+        "notes": "Originally PDP 17, APC 7; six PDP members defected to APC in December 2025"
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Hon. Biliyaminu Moriki",
+            "party": "PDP",
+            "constituency": "Zurmi North"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Adamu Aliyu",
+            "party": "PDP",
+            "constituency": "Gummi II"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Bakura",
+            "name": "Hon. Sani Musa",
+            "party": "APC",
+            "file": "bakura.json"
+        },
+        {
+            "constituency": "Bukkuyum North",
+            "name": "Hon. Bashir Abubakar Masama",
+            "party": "APC",
+            "notes": "Defected from PDP",
+            "file": "bukkuyum_north.json"
+        },
+        {
+            "constituency": "Bukkuyum South",
+            "name": "Hon. Ibrahim Sani",
+            "party": "PDP",
+            "file": "bukkuyum_south.json"
+        },
+        {
+            "constituency": "Bungudu East",
+            "name": "Hon. Muhammed Usman",
+            "party": "PDP",
+            "file": "bungudu_east.json"
+        },
+        {
+            "constituency": "Bungudu West",
+            "name": "Hon. Bashir Bello",
+            "party": "APC",
+            "notes": "Defected from PDP",
+            "file": "bungudu_west.json"
+        },
+        {
+            "constituency": "Gummi I",
+            "name": "Hon. Bashar Aliyu Gummi",
+            "party": "APC",
+            "notes": "Defected from PDP",
+            "file": "gummi_1.json"
+        },
+        {
+            "constituency": "Gummi II",
+            "name": "Hon. Adamu Aliyu",
+            "party": "PDP",
+            "role": "Deputy Speaker",
+            "file": "gummi_2.json"
+        },
+        {
+            "constituency": "Gusau I",
+            "name": "Hon. Suleiman Ibrahim",
+            "party": "APC",
+            "file": "gusau_1.json"
+        },
+        {
+            "constituency": "Gusau II",
+            "name": "Hon. Abubakar Musa",
+            "party": "APC",
+            "file": "gusau_2.json"
+        },
+        {
+            "constituency": "Kaura North",
+            "name": "Hon. Muktar Nasir Kaura",
+            "party": "APC",
+            "notes": "Defected from PDP",
+            "file": "kaura_north.json"
+        },
+        {
+            "constituency": "Kaura South",
+            "name": "Hon. Ibrahim Haruna",
+            "party": "PDP",
+            "file": "kaura_south.json"
+        },
+        {
+            "constituency": "Maradun",
+            "name": "Hon. Muhammed Bello",
+            "party": "PDP",
+            "file": "maradun.json"
+        },
+        {
+            "constituency": "Maru North",
+            "name": "Hon. Nasiru Abdullahi Maru",
+            "party": "APC",
+            "notes": "Defected from PDP",
+            "file": "maru_north.json"
+        },
+        {
+            "constituency": "Maru South",
+            "name": "Hon. Suleiman Usman",
+            "party": "PDP",
+            "file": "maru_south.json"
+        },
+        {
+            "constituency": "Shinkafi",
+            "name": "Hon. Abubakar Sani",
+            "party": "APC",
+            "file": "shinkafi.json"
+        },
+        {
+            "constituency": "Talata Mafara",
+            "name": "Hon. Ibrahim Musa",
+            "party": "PDP",
+            "file": "talata_mafara.json"
+        },
+        {
+            "constituency": "Tsafe East",
+            "name": "Hon. Muhammed Aliyu",
+            "party": "PDP",
+            "file": "tsafe_east.json"
+        },
+        {
+            "constituency": "Tsafe West",
+            "name": "Hon. Amiru Ahmad Keta",
+            "party": "APC",
+            "notes": "Defected from PDP",
+            "file": "tsafe_west.json"
+        },
+        {
+            "constituency": "Zurmi East",
+            "name": "Hon. Suleiman Bello",
+            "party": "APC",
+            "file": "zurmi_east.json"
+        },
+        {
+            "constituency": "Zurmi North",
+            "name": "Hon. Biliyaminu Moriki",
+            "party": "PDP",
+            "role": "Speaker",
+            "file": "zurmi_north.json"
+        },
+        {
+            "constituency": "Zurmi South",
+            "name": "Hon. Ibrahim Sani",
+            "party": "PDP",
+            "file": "zurmi_south.json"
+        },
+        {
+            "constituency": "Anka",
+            "name": "Hon. Muhammed Usman",
+            "party": "APC",
+            "file": "anka.json"
+        },
+        {
+            "constituency": "Birnin Magaji",
+            "name": "Hon. Haruna Musa",
+            "party": "APC",
+            "file": "birnin_magaji.json"
+        },
+        {
+            "constituency": "Gusau Central",
+            "name": "Hon. Sani Ibrahim",
+            "party": "PDP",
+            "file": "gusau_central.json"
+        }
+    ],
+    "data_status": "COMPLETE",
+    "data_notes": "Political composition changed due to December 2025 defections from PDP to APC",
+    "sources": [
+        "Daily Post",
+        "zamfara.gov.ng",
+        "Premium Times",
+        "Africa Press"
+    ],
+    "last_updated": "2025-12-27T23:50:00Z"
+}

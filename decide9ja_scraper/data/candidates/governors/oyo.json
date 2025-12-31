@@ -1,0 +1,181 @@
+{
+    "id": "makinde_seyi",
+    "slug": "seyi-makinde",
+    "state": "Oyo",
+    "name": {
+        "full": "Oluseyi Abiodun Makinde",
+        "common": "Seyi Makinde",
+        "aliases": [
+            "GSM"
+        ]
+    },
+    "personal": {
+        "date_of_birth": "1967-12-25",
+        "state_of_origin": "Oyo",
+        "lga_of_origin": "Ibadan",
+        "religion": "Christian",
+        "ethnicity": "Yoruba",
+        "education": [
+            {
+                "institution": "St Paul Primary School / St Michael Primary School, Yemetu, Ibadan",
+                "type": "Primary",
+                "year": null
+            },
+            {
+                "institution": "Bishop Phillips Academy, Monatan, Ibadan",
+                "type": "Secondary",
+                "year": null
+            },
+            {
+                "institution": "University of Lagos",
+                "degree": "BSc Electrical Engineering",
+                "year": 1990
+            },
+            {
+                "institution": "Industrial Control Services, Houston, Texas",
+                "type": "Professional Training",
+                "year": 1998
+            },
+            {
+                "institution": "Lagos Business School",
+                "type": "Executive Education",
+                "year": 1999
+            },
+            {
+                "institution": "Jiskoot Auto Control Training Centre, Kent, England",
+                "type": "Professional Training",
+                "year": 2002
+            },
+            {
+                "institution": "Massachusetts Institute of Technology (MIT)",
+                "type": "Executive Education",
+                "year": 2005
+            }
+        ],
+        "career_before_politics": [
+            {
+                "role": "Group Managing Director",
+                "organization": "Makon Group Limited",
+                "period": "Present",
+                "notes": "Oil and gas company he founded"
+            }
+        ],
+        "family": {
+            "spouse": "Tamunominini Makinde",
+            "children": null,
+            "notes": null
+        }
+    },
+    "political_career": {
+        "party_history": [
+            {
+                "party": "ANPP",
+                "full_name": "All Nigeria Peoples Party",
+                "joined": 2007,
+                "left": 2007
+            },
+            {
+                "party": "PDP",
+                "full_name": "Peoples Democratic Party",
+                "joined": 2017,
+                "left": null
+            }
+        ],
+        "positions_held": [
+            {
+                "position": "Governor",
+                "constituency": "Oyo State",
+                "period": "2019-present",
+                "notes": "Re-elected 2023"
+            }
+        ],
+        "election_history": [
+            {
+                "year": 2007,
+                "position": "Senator (Oyo South)",
+                "party": "ANPP",
+                "result": "Lost"
+            },
+            {
+                "year": 2019,
+                "position": "Governor",
+                "party": "PDP",
+                "result": "Won"
+            },
+            {
+                "year": 2023,
+                "position": "Governor",
+                "party": "PDP",
+                "result": "Won (re-elected)",
+                "source": "https://guardian.ng"
+            }
+        ]
+    },
+    "term_info": {
+        "current_term": "2nd term",
+        "term_start": "2023-05-29",
+        "term_end": "2027-05-29",
+        "first_elected": 2019
+    },
+    "policy_positions": [
+        {
+            "issue_area": "Infrastructure",
+            "sub_issues": [
+                "Roads"
+            ],
+            "stance_summary": "Extensive road construction; 152.92km of roads in first year of second term",
+            "achievements": [
+                "Completed 152.92km of roads in Omituntun 2.0"
+            ],
+            "source": "https://seyimakinde.com"
+        },
+        {
+            "issue_area": "Agriculture",
+            "sub_issues": [
+                "Agribusiness"
+            ],
+            "stance_summary": "Focus on agribusiness and farmer training",
+            "achievements": [
+                "Trained 95 youth and women farmers on yam/cassava processing",
+                "Trained 80 farmers on year-round tomato production"
+            ],
+            "source": "https://seyimakinde.com"
+        }
+    ],
+    "track_record": {
+        "achievements": [
+            {
+                "achievement": "Governor of the Year 2023 - Leadership Newspaper",
+                "period": "2023",
+                "source": "https://ibadanmedia.com"
+            },
+            {
+                "achievement": "152.92km road projects completed",
+                "period": "2023-2024",
+                "source": "https://seyimakinde.com"
+            },
+            {
+                "achievement": "55 Omituntun Buses deployed for transportation",
+                "period": "2023",
+                "source": "https://seyimakinde.com"
+            }
+        ],
+        "failures": [],
+        "promises_vs_delivery": []
+    },
+    "controversies": [],
+    "social_media": {
+        "twitter": "@saborlumakinde",
+        "facebook": "Seyi Makinde",
+        "instagram": "saborlumakinde",
+        "website": "https://seyimakinde.com",
+        "verified": true
+    },
+    "metadata": {
+        "data_quality_score": 0.80,
+        "last_updated": "2025-12-27T20:00:00Z",
+        "sources_count": 15,
+        "reviewed_by": "Antigravity Agent",
+        "notes": "Engineer and businessman. Two-term governor. PDP Southwest leader."
+    }
+}

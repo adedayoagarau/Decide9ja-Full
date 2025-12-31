@@ -1,0 +1,123 @@
+{
+    "state": "Plateau",
+    "total_lgas": 17,
+    "last_lga_election": "2024-10-09",
+    "next_election_due": "2027",
+    "current_term_status": "Active",
+    "siec_name": "PLASIEC",
+    "party_sweep": "PDP",
+    "data_completeness": "88%",
+    "data_notes": "PDP won all 17 seats; 2 chairman names pending",
+    "chairmen": [
+        {
+            "lga": "Barkin Ladi",
+            "name": "Stephen Gyang",
+            "party": "PDP",
+            "file": "barkin_ladi.json"
+        },
+        {
+            "lga": "Bassa",
+            "name": "Joshua Sunday Riti",
+            "party": "PDP",
+            "file": "bassa.json"
+        },
+        {
+            "lga": "Bokkos",
+            "name": "Amalau Samuel",
+            "party": "PDP",
+            "file": "bokkos.json"
+        },
+        {
+            "lga": "Jos East",
+            "name": "Markus Nyam",
+            "party": "PDP",
+            "file": "jos_east.json"
+        },
+        {
+            "lga": "Jos North",
+            "name": "John K. Chris",
+            "party": "PDP",
+            "file": "jos_north.json"
+        },
+        {
+            "lga": "Jos South",
+            "name": "Silas Patrick Dung",
+            "party": "PDP",
+            "file": "jos_south.json"
+        },
+        {
+            "lga": "Kanam",
+            "name": "Salihu Musa",
+            "party": "PDP",
+            "file": "kanam.json"
+        },
+        {
+            "lga": "Kanke",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "kanke.json"
+        },
+        {
+            "lga": "Langtang North",
+            "name": "Pirfa Jingfa",
+            "party": "PDP",
+            "file": "langtang_north.json"
+        },
+        {
+            "lga": "Langtang South",
+            "name": "Nanfa Nbin",
+            "party": "PDP",
+            "file": "langtang_south.json"
+        },
+        {
+            "lga": "Mangu",
+            "name": "Emmanuel Mwolpun",
+            "party": "PDP",
+            "file": "mangu.json"
+        },
+        {
+            "lga": "Mikang",
+            "name": "Bernard Alkali",
+            "party": "PDP",
+            "file": "mikang.json"
+        },
+        {
+            "lga": "Pankshin",
+            "name": "DATA_PENDING",
+            "party": "PDP",
+            "file": "pankshin.json"
+        },
+        {
+            "lga": "Qua'an Pan",
+            "name": "Christopher Audu Manshep",
+            "party": "PDP",
+            "file": "quaan_pan.json"
+        },
+        {
+            "lga": "Riyom",
+            "name": "Bature Sati",
+            "party": "PDP",
+            "file": "riyom.json"
+        },
+        {
+            "lga": "Shendam",
+            "name": "Nichokas Kemi Nshe",
+            "party": "PDP",
+            "file": "shendam.json"
+        },
+        {
+            "lga": "Wase",
+            "name": "Hamisu Anani",
+            "party": "PDP",
+            "file": "wase.json"
+        }
+    ],
+    "sources": [
+        "nationalaccordnewspaper.com",
+        "Business Day",
+        "Channels TV",
+        "gazettengr.com",
+        "PLASIEC"
+    ],
+    "last_updated": "2025-12-28T00:50:00Z"
+}

@@ -1,0 +1,140 @@
+{
+    "state": "Lagos",
+    "total_lgas": 20,
+    "last_lga_election": "2021-07-24",
+    "next_election_due": "2024",
+    "current_term_status": "Expired - awaiting new elections",
+    "siec_name": "LASIEC",
+    "siec_website": "lasiec.lg.gov.ng",
+    "party_sweep": "APC",
+    "data_completeness": "100%",
+    "chairmen": [
+        {
+            "lga": "Agege",
+            "name": "Babatunde Azeez",
+            "party": "APC",
+            "file": "agege.json"
+        },
+        {
+            "lga": "Ajeromi-Ifelodun",
+            "name": "Olamilekan Akindipe",
+            "party": "APC",
+            "file": "ajeromi_ifelodun.json"
+        },
+        {
+            "lga": "Alimosho",
+            "name": "Ibrahim Akinpelu",
+            "party": "APC",
+            "file": "alimosho.json"
+        },
+        {
+            "lga": "Amuwo-Odofin",
+            "name": "Sanusi Ismail",
+            "party": "APC",
+            "file": "amuwo_odofin.json"
+        },
+        {
+            "lga": "Apapa",
+            "name": "Senbajo Idowu",
+            "party": "APC",
+            "file": "apapa.json"
+        },
+        {
+            "lga": "Badagry",
+            "name": "Babatunde Hunpe",
+            "party": "APC",
+            "file": "badagry.json"
+        },
+        {
+            "lga": "Epe",
+            "name": "Sura Animashaun",
+            "party": "APC",
+            "file": "epe.json"
+        },
+        {
+            "lga": "Eti-Osa",
+            "name": "Adeola Adetoro",
+            "party": "APC",
+            "file": "eti_osa.json"
+        },
+        {
+            "lga": "Ibeju-Lekki",
+            "name": "Sesan Olowa",
+            "party": "APC",
+            "file": "ibeju_lekki.json"
+        },
+        {
+            "lga": "Ifako-Ijaiye",
+            "name": "Usman Hamzat",
+            "party": "APC",
+            "file": "ifako_ijaiye.json"
+        },
+        {
+            "lga": "Ikeja",
+            "name": "Akeem Dauda",
+            "party": "APC",
+            "file": "ikeja.json"
+        },
+        {
+            "lga": "Ikorodu",
+            "name": "Adedayo Ladega",
+            "party": "APC",
+            "file": "ikorodu.json"
+        },
+        {
+            "lga": "Kosofe",
+            "name": "Moyosore Ogunlewe",
+            "party": "APC",
+            "file": "kosofe.json"
+        },
+        {
+            "lga": "Lagos Island",
+            "name": "Taiwo Oyekan",
+            "party": "APC",
+            "file": "lagos_island.json"
+        },
+        {
+            "lga": "Lagos Mainland",
+            "name": "Alhaji Emilagba Jubril",
+            "party": "APC",
+            "file": "lagos_mainland.json"
+        },
+        {
+            "lga": "Mushin",
+            "name": "Tunbosun Aruwe",
+            "party": "APC",
+            "file": "mushin.json"
+        },
+        {
+            "lga": "Ojo",
+            "name": "Muibat Rufai",
+            "party": "APC",
+            "file": "ojo.json"
+        },
+        {
+            "lga": "Oshodi-Isolo",
+            "name": "Kehinde Oloyede",
+            "party": "APC",
+            "file": "oshodi_isolo.json"
+        },
+        {
+            "lga": "Somolu",
+            "name": "Ashimi Lateef",
+            "party": "APC",
+            "file": "somolu.json"
+        },
+        {
+            "lga": "Surulere",
+            "name": "Suleiman Yusuf",
+            "party": "APC",
+            "file": "surulere.json"
+        }
+    ],
+    "sources": [
+        "ikejarecord.com",
+        "Punch",
+        "Premium Times",
+        "LASIEC"
+    ],
+    "last_updated": "2025-12-27T23:55:00Z"
+}

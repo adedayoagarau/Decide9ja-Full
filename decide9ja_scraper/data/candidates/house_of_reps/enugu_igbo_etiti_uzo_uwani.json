@@ -1,0 +1,43 @@
+{
+  "id": "nwodo_chijioke",
+  "slug": "chijioke-stainless-nwodo",
+  "state": "Enugu",
+  "federal_constituency": "Igbo-Etiti/Uzo-Uwani",
+  "name": {
+    "full": "Chijioke Stainless Nwodo",
+    "common": "Chijioke Stainless Nwodo",
+    "aliases": []
+  },
+  "party": "LP",
+  "personal": {
+    "date_of_birth": null,
+    "state_of_origin": "Enugu",
+    "lga_of_origin": null,
+    "religion": null,
+    "education": []
+  },
+  "political_career": {
+    "positions_held": [
+      {
+        "position": "Member, House of Representatives",
+        "constituency": "Igbo-Etiti/Uzo-Uwani Federal Constituency",
+        "period": "2023-present"
+      }
+    ]
+  },
+  "house_info": {
+    "committee_memberships": [],
+    "bills_sponsored": [],
+    "motions": [],
+    "legislative_focus": []
+  },
+  "social_media": {
+    "twitter": null,
+    "facebook": null,
+    "website": null
+  },
+  "metadata": {
+    "data_quality_score": 0.45,
+    "last_updated": "2025-12-27T21:35:00Z"
+  }
+}

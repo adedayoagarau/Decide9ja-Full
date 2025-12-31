@@ -1,0 +1,50 @@
+{
+  "id": "nwankwo_chimezie",
+  "slug": "chimezie-nwankwo",
+  "state": "Rivers",
+  "state_constituency": "Etche 2",
+  "name": {
+    "full": "Chimezie Nwankwo",
+    "common": "Chimezie Nwankwo",
+    "aliases": []
+  },
+  "party": "APC",
+  "personal": {
+    "date_of_birth": null,
+    "state_of_origin": "Rivers",
+    "lga_of_origin": null,
+    "religion": null,
+    "education": []
+  },
+  "political_career": {
+    "positions_held": [
+      {
+        "position": "Member, State House of Assembly",
+        "constituency": "Etche 2 State Constituency",
+        "period": "2023-present"
+      }
+    ],
+    "defection": {
+      "defected": true,
+      "original_party": "PDP",
+      "new_party": "APC",
+      "date": "December 2023"
+    }
+  },
+  "assembly_info": {
+    "assembly_term": "10th Assembly",
+    "committee_memberships": [],
+    "bills_sponsored": [],
+    "motions": [],
+    "legislative_focus": []
+  },
+  "social_media": {
+    "twitter": null,
+    "facebook": null,
+    "website": null
+  },
+  "metadata": {
+    "data_quality_score": 0.5,
+    "last_updated": "2025-12-27T14:00:20Z"
+  }
+}

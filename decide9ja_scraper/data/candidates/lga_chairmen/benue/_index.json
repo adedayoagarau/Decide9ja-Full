@@ -1,0 +1,158 @@
+{
+    "state": "Benue",
+    "total_lgas": 23,
+    "last_lga_election": "2024-10-05",
+    "next_election_due": "2027",
+    "current_term_status": "Active",
+    "siec_name": "BSIEC",
+    "party_sweep": "APC",
+    "data_completeness": "100%",
+    "chairmen": [
+        {
+            "lga": "Ado",
+            "name": "Mrs. Gloria Ogebe",
+            "party": "APC",
+            "file": "ado.json"
+        },
+        {
+            "lga": "Agatu",
+            "name": "Philip Ebenyaku",
+            "party": "APC",
+            "file": "agatu.json"
+        },
+        {
+            "lga": "Apa",
+            "name": "Ochai Alidu",
+            "party": "APC",
+            "file": "apa.json"
+        },
+        {
+            "lga": "Buruku",
+            "name": "Agber Cephas",
+            "party": "APC",
+            "file": "buruku.json"
+        },
+        {
+            "lga": "Gboko",
+            "name": "Verlumun Avar",
+            "party": "APC",
+            "file": "gboko.json"
+        },
+        {
+            "lga": "Guma",
+            "name": "Unongo Simon",
+            "party": "APC",
+            "file": "guma.json"
+        },
+        {
+            "lga": "Gwer East",
+            "name": "Mrs. Comfort Agbo",
+            "party": "APC",
+            "file": "gwer_east.json"
+        },
+        {
+            "lga": "Gwer West",
+            "name": "Henry Agba",
+            "party": "APC",
+            "file": "gwer_west.json"
+        },
+        {
+            "lga": "Katsina-Ala",
+            "name": "Shaku Justine",
+            "party": "APC",
+            "file": "katsina_ala.json"
+        },
+        {
+            "lga": "Konshisha",
+            "name": "Philip Achuah",
+            "party": "APC",
+            "file": "konshisha.json"
+        },
+        {
+            "lga": "Kwande",
+            "name": "Neji Vitalis Terhile",
+            "party": "APC",
+            "file": "kwande.json"
+        },
+        {
+            "lga": "Logo",
+            "name": "Benjamin Uzenda",
+            "party": "APC",
+            "file": "logo.json"
+        },
+        {
+            "lga": "Makurdi",
+            "name": "James Dwem",
+            "party": "APC",
+            "file": "makurdi.json"
+        },
+        {
+            "lga": "Obi",
+            "name": "Adekpe Onum",
+            "party": "APC",
+            "file": "obi.json"
+        },
+        {
+            "lga": "Ogbadibo",
+            "name": "Emmanuel Agada Aba",
+            "party": "APC",
+            "file": "ogbadibo.json"
+        },
+        {
+            "lga": "Ohimini",
+            "name": "Adugbo Idoko Fred",
+            "party": "APC",
+            "file": "ohimini.json"
+        },
+        {
+            "lga": "Oju",
+            "name": "Ire Arubi",
+            "party": "APC",
+            "file": "oju.json"
+        },
+        {
+            "lga": "Okpokwu",
+            "name": "Onyilo Douglas Omale",
+            "party": "APC",
+            "file": "okpokwu.json"
+        },
+        {
+            "lga": "Otukpo",
+            "name": "Wilson Eche",
+            "party": "APC",
+            "file": "otukpo.json"
+        },
+        {
+            "lga": "Tarka",
+            "name": "Roy Terna Ashirga",
+            "party": "APC",
+            "file": "tarka.json"
+        },
+        {
+            "lga": "Ukum",
+            "name": "Iorzaa Victor",
+            "party": "APC",
+            "file": "ukum.json"
+        },
+        {
+            "lga": "Ushongo",
+            "name": "Mvendaga Atetan",
+            "party": "APC",
+            "file": "ushongo.json"
+        },
+        {
+            "lga": "Vandeikya",
+            "name": "Guda Terkimbi Dennis",
+            "party": "APC",
+            "file": "vandeikya.json"
+        }
+    ],
+    "sources": [
+        "nigerianleaders.com",
+        "The Cable",
+        "Vanguard",
+        "Punch",
+        "BSIEC"
+    ],
+    "last_updated": "2025-12-28T00:40:00Z"
+}

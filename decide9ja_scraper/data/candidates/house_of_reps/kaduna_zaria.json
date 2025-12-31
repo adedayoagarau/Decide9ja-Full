@@ -1,0 +1,223 @@
+{
+  "id": "abbas_tajudeen",
+  "slug": "tajudeen-abbas",
+  "state": "Kaduna",
+  "federal_constituency": "Zaria",
+  "name": {
+    "full": "Tajudeen Abbas",
+    "common": "Tajudeen Abbas",
+    "aliases": []
+  },
+  "party": "APC",
+  "inec_verified": {
+    "candidate_name": "TAJUDEEN ABBAS",
+    "source": "INEC Final List of Candidates for National Elections 2023"
+  },
+  "personal": {
+    "date_of_birth": null,
+    "state_of_origin": "Kaduna",
+    "lga_of_origin": "Zaria",
+    "religion": "Muslim",
+    "education": []
+  },
+  "political_career": {
+    "positions_held": [
+      {
+        "position": "Member, House of Representatives",
+        "constituency": "Zaria Federal Constituency",
+        "period": "2023-present"
+      },
+      {
+        "position": "Speaker of the House of Representatives",
+        "constituency": "10th National Assembly",
+        "period": "2023-present",
+        "elected": "2023-06-13"
+      }
+    ]
+  },
+  "house_info": {
+    "position": "Speaker of the House of Representatives",
+    "assembly": "10th National Assembly",
+    "elected": "2023-06-13",
+    "legislative_agenda": {
+      "title": "Six-Point Legislative Agenda",
+      "unveiled": "July 2023",
+      "pillars": [
+        "Economic Empowerment and Diversification",
+        "Infrastructure Development",
+        "Education and Human Capital Development",
+        "Healthcare for All",
+        "Transparent Governance and Accountability",
+        "Security and Safety of Persons and Property"
+      ]
+    },
+    "performance_stats": {
+      "bills_reviewed": 2263,
+      "bills_passed": 186,
+      "presidential_assent": 51,
+      "period": "June 2023 - June 2025",
+      "source": "Democracy Day 2025 Speech"
+    },
+    "key_bills_sponsored_or_supported": [
+      {
+        "name": "Counter Subversion Bill, 2024 (HB. 1652)",
+        "status": "Introduced July 2024",
+        "notes": "Speaker-sponsored bill to strengthen anti-terrorism framework"
+      },
+      {
+        "name": "2024 Appropriation Act (Repeal and Re-enactment)",
+        "status": "Passed December 2025",
+        "budget": "₦43.561 trillion"
+      },
+      {
+        "name": "2025 Appropriation Act (Repeal and Re-enactment)",
+        "status": "Passed December 2025",
+        "budget": "₦48.316 trillion"
+      },
+      {
+        "name": "Nigerian Tax Bill, 2025",
+        "status": "Passed",
+        "notes": "Tax reform to boost non-oil revenue"
+      },
+      {
+        "name": "Nigerian Tax Administration Bill, 2025",
+        "status": "Passed"
+      },
+      {
+        "name": "Nigerian Revenue Service (Establishment) Bill, 2025",
+        "status": "Passed"
+      },
+      {
+        "name": "Electric Power Sector Reform (Amendment) Bill, 2023",
+        "status": "Passed"
+      },
+      {
+        "name": "Control of Small Arms and Light Weapons Bill",
+        "status": "Passed",
+        "years": [
+          "2023",
+          "2024"
+        ]
+      },
+      {
+        "name": "Student Loans (Access to Higher Education) Act (Repeal and Enactment) Bill, 2024",
+        "status": "Passed/Assented"
+      },
+      {
+        "name": "Cybercrimes Act (Amendment) Bill, 2024",
+        "status": "Passed"
+      },
+      {
+        "name": "National Anthem Bill, 2024",
+        "status": "Passed"
+      },
+      {
+        "name": "Reserved Seats for Women Bill",
+        "status": "Supported",
+        "notes": "Promotes gender equity in Parliament"
+      },
+      {
+        "name": "Nigeria Data Protection Act, 2023",
+        "status": "Passed"
+      },
+      {
+        "name": "AI Regulation Bills",
+        "status": "In progress"
+      }
+    ],
+    "legislative_focus": [
+      "Economic Growth",
+      "Security",
+      "Tax Reform",
+      "Digital Governance",
+      "Gender Equity",
+      "Climate Action"
+    ]
+  },
+  "policy_positions": [
+    {
+      "issue_area": "Economic Development",
+      "stance_summary": "Focus on economic empowerment through non-oil sector investment, job creation, and supporting agriculture, technology, and renewable energy sectors.",
+      "verified_statements": [
+        "Economic growth must translate into job creation, higher incomes, and expanded opportunities for citizens.",
+        "Creative industry has the potential to generate 2.7 million jobs."
+      ],
+      "source": "Office of the Speaker, Various 2024-2025 statements"
+    },
+    {
+      "issue_area": "Budget Management",
+      "stance_summary": "Advocates for credible budget targets and disciplined implementation. Backed single fiscal framework for order and accountability.",
+      "verified_actions": [
+        "Cautioned against unrealistic budget projections (December 2025)",
+        "Approved extension of 2025 capital budget implementation to March 31, 2026"
+      ]
+    },
+    {
+      "issue_area": "National Security",
+      "stance_summary": "Security as fundamental basis for development, food production, and investment. Advocated for ECOWAS standby force to deter coups. Notes porous borders contribute to insecurity.",
+      "quotes": [
+        {
+          "text": "Security is a fundamental basis for development, food production, and investment.",
+          "source": "Legislative address"
+        }
+      ]
+    },
+    {
+      "issue_area": "Healthcare",
+      "stance_summary": "Championed increased health allocations - 5.46% in 2024 leading to revitalization of 4,000 primary healthcare centers.",
+      "verified_data": {
+        "healthcare_allocation_2024": "5.46%",
+        "healthcare_centers_revitalized": 4000
+      }
+    },
+    {
+      "issue_area": "Education",
+      "stance_summary": "Supporter of Student Loans Act and increased education allocations. Focus on human capital development.",
+      "actions": [
+        "Supported passage of Student Loans (Access to Higher Education) Act"
+      ]
+    },
+    {
+      "issue_area": "Governance and Transparency",
+      "stance_summary": "Committed to transparent governance, public engagement, and strengthening National Human Rights Commission. Supports independent body for political party funding oversight.",
+      "quotes": [
+        {
+          "text": "We pledge to engage Nigerians, report on legislative performance, and recalibrate efforts based on feedback.",
+          "source": "Office of the Speaker"
+        }
+      ]
+    },
+    {
+      "issue_area": "International Relations",
+      "stance_summary": "Advocates for Africa's proper inclusion in UN main decision-making system. Urges reform of UN Security Council and Bretton Woods system to reflect Africa's demographic reality.",
+      "source": "National Assembly Library Trust Fund speech"
+    },
+    {
+      "issue_area": "Minimum Wage",
+      "stance_summary": "Supported passage of ₦70,000 minimum wage.",
+      "verified_data": {
+        "minimum_wage_supported": "₦70,000"
+      }
+    }
+  ],
+  "social_media": {
+    "twitter": "@OfficialTAbbas",
+    "facebook": "Tajudeen Abbas",
+    "website": "https://officeofthespeaker.ng"
+  },
+  "metadata": {
+    "data_quality_score": 0.92,
+    "last_updated": "2025-12-27T21:45:00Z",
+    "sources": [
+      "INEC Nigeria",
+      "Office of the Speaker (officeofthespeaker.ng)",
+      "PLAC Nigeria (placng.org)",
+      "TheCable",
+      "Punch",
+      "Guardian",
+      "Vanguard",
+      "ThisDay"
+    ],
+    "notes": "Speaker of the 10th House of Representatives. Profile enriched with comprehensive legislative agenda, bills passed, policy positions, and verified statements from 2023-2025."
+  }
+}

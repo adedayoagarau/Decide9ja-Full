@@ -1,0 +1,83 @@
+{
+    "id": "oborevwori_sheriff",
+    "slug": "sheriff-oborevwori",
+    "state": "Delta",
+    "name": {
+        "full": "Sheriff Francis Oborevwori",
+        "common": "Sheriff Oborevwori",
+        "aliases": [
+            "Sherife"
+        ]
+    },
+    "personal": {
+        "date_of_birth": null,
+        "state_of_origin": "Delta",
+        "lga_of_origin": "Okpe",
+        "religion": "Christian",
+        "ethnicity": "Urhobo",
+        "education": [],
+        "career_before_politics": [],
+        "family": {
+            "spouse": null,
+            "children": null,
+            "notes": null
+        }
+    },
+    "political_career": {
+        "party_history": [
+            {
+                "party": "PDP",
+                "full_name": "Peoples Democratic Party",
+                "joined": null,
+                "left": null
+            }
+        ],
+        "positions_held": [
+            {
+                "position": "Speaker, Delta State House of Assembly",
+                "constituency": "Delta State",
+                "period": "2015-2023"
+            },
+            {
+                "position": "Governor",
+                "constituency": "Delta State",
+                "period": "2023-present"
+            }
+        ],
+        "election_history": [
+            {
+                "year": 2023,
+                "position": "Governor",
+                "party": "PDP",
+                "result": "Won"
+            }
+        ]
+    },
+    "term_info": {
+        "current_term": "1st term",
+        "term_start": "2023-05-29",
+        "term_end": "2027-05-29",
+        "first_elected": 2023
+    },
+    "policy_positions": [],
+    "track_record": {
+        "achievements": [],
+        "failures": [],
+        "promises_vs_delivery": []
+    },
+    "controversies": [],
+    "social_media": {
+        "twitter": null,
+        "facebook": null,
+        "instagram": null,
+        "website": null,
+        "verified": false
+    },
+    "metadata": {
+        "data_quality_score": 0.45,
+        "last_updated": "2025-12-27T20:00:00Z",
+        "sources_count": 3,
+        "reviewed_by": "Antigravity Agent",
+        "notes": "Former Speaker of Delta State House of Assembly."
+    }
+}

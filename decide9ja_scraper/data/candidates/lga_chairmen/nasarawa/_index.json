@@ -1,0 +1,98 @@
+{
+    "state": "Nasarawa",
+    "total_lgas": 13,
+    "last_lga_election": "2024-11-02",
+    "next_election_due": "2027",
+    "current_term_status": "Active",
+    "siec_name": "NASIEC",
+    "party_sweep": "APC",
+    "data_completeness": "100%",
+    "chairmen": [
+        {
+            "lga": "Akwanga",
+            "name": "Safiyanu Isa Akwanga",
+            "party": "APC",
+            "file": "akwanga.json"
+        },
+        {
+            "lga": "Awe",
+            "name": "Umar Dan-Akano",
+            "party": "APC",
+            "file": "awe.json"
+        },
+        {
+            "lga": "Doma",
+            "name": "Jonathan Addra",
+            "party": "APC",
+            "file": "doma.json"
+        },
+        {
+            "lga": "Karu",
+            "name": "Barr. Abubakar Aliyu Madaki",
+            "party": "APC",
+            "file": "karu.json"
+        },
+        {
+            "lga": "Keana",
+            "name": "Adamu Aboki",
+            "party": "APC",
+            "file": "keana.json"
+        },
+        {
+            "lga": "Keffi",
+            "name": "Dr. Idris Ahmed Danmagani",
+            "party": "APC",
+            "file": "keffi.json"
+        },
+        {
+            "lga": "Kokona",
+            "name": "Hon. Agbawu Mek Agbawu",
+            "party": "APC",
+            "file": "kokona.json"
+        },
+        {
+            "lga": "Lafia",
+            "name": "Mohammed Arabo Haliru",
+            "party": "APC",
+            "file": "lafia.json"
+        },
+        {
+            "lga": "Nasarawa",
+            "name": "Mohammed Hassan Ahmed",
+            "party": "APC",
+            "file": "nasarawa.json"
+        },
+        {
+            "lga": "Nasarawa-Eggon",
+            "name": "Barr. Iliya Ibn Aliyu",
+            "party": "APC",
+            "file": "nasarawa_eggon.json"
+        },
+        {
+            "lga": "Obi",
+            "name": "Mohammed Isa KK",
+            "party": "APC",
+            "file": "obi.json"
+        },
+        {
+            "lga": "Toto",
+            "name": "Pharm. Ahmed Baba Yahaya",
+            "party": "APC",
+            "file": "toto.json"
+        },
+        {
+            "lga": "Wamba",
+            "name": "Ezekiel Musa Jagga",
+            "party": "APC",
+            "file": "wamba.json"
+        }
+    ],
+    "sources": [
+        "Blueprint",
+        "naijadetails.com",
+        "Punch",
+        "Channels TV",
+        "NASIEC"
+    ],
+    "last_updated": "2025-12-28T00:50:00Z"
+}

@@ -1,0 +1,146 @@
+{
+    "state": "Anambra",
+    "total_lgas": 21,
+    "last_lga_election": "2024-09-28",
+    "next_election_due": "2027",
+    "current_term_status": "Active",
+    "siec_name": "ANSIEC",
+    "party_sweep": "APGA",
+    "data_completeness": "100%",
+    "chairmen": [
+        {
+            "lga": "Aguata",
+            "name": "Chibueze Ofobuike",
+            "party": "APGA",
+            "file": "aguata.json"
+        },
+        {
+            "lga": "Anambra East",
+            "name": "Ifeanyi Chiweze",
+            "party": "APGA",
+            "file": "anambra_east.json"
+        },
+        {
+            "lga": "Anambra West",
+            "name": "Fidelis Nnazo",
+            "party": "APGA",
+            "file": "anambra_west.json"
+        },
+        {
+            "lga": "Anaocha",
+            "name": "Romanus Ibekwe",
+            "party": "APGA",
+            "file": "anaocha.json"
+        },
+        {
+            "lga": "Awka North",
+            "name": "ThankGod Anago",
+            "party": "APGA",
+            "file": "awka_north.json"
+        },
+        {
+            "lga": "Awka South",
+            "name": "Chinedu Okafor",
+            "party": "APGA",
+            "file": "awka_south.json"
+        },
+        {
+            "lga": "Ayamelum",
+            "name": "Alphonsus Ofumelu",
+            "party": "APGA",
+            "file": "ayamelum.json"
+        },
+        {
+            "lga": "Dunukofia",
+            "name": "Chijioke Ozumba",
+            "party": "APGA",
+            "file": "dunukofia.json"
+        },
+        {
+            "lga": "Ekwusigo",
+            "name": "Chimezie Obi",
+            "party": "APGA",
+            "file": "ekwusigo.json"
+        },
+        {
+            "lga": "Idemili North",
+            "name": "Stanley Nkwoka",
+            "party": "APGA",
+            "file": "idemili_north.json"
+        },
+        {
+            "lga": "Idemili South",
+            "name": "Amaka Obi",
+            "party": "APGA",
+            "file": "idemili_south.json"
+        },
+        {
+            "lga": "Ihiala",
+            "name": "Anayo Orjiako",
+            "party": "APGA",
+            "file": "ihiala.json"
+        },
+        {
+            "lga": "Njikoka",
+            "name": "Chinedu Ononiba",
+            "party": "APGA",
+            "file": "njikoka.json"
+        },
+        {
+            "lga": "Nnewi North",
+            "name": "Echezona Anazodo",
+            "party": "APGA",
+            "file": "nnewi_north.json"
+        },
+        {
+            "lga": "Nnewi South",
+            "name": "Chinedu Ezeogidi",
+            "party": "APGA",
+            "file": "nnewi_south.json"
+        },
+        {
+            "lga": "Ogbaru",
+            "name": "Franklin Nwadialu",
+            "party": "APGA",
+            "file": "ogbaru.json"
+        },
+        {
+            "lga": "Onitsha North",
+            "name": "Anthony Nwaora",
+            "party": "APGA",
+            "file": "onitsha_north.json"
+        },
+        {
+            "lga": "Onitsha South",
+            "name": "Emeka Orji",
+            "party": "APGA",
+            "file": "onitsha_south.json"
+        },
+        {
+            "lga": "Orumba North",
+            "name": "Casmir Nwafor",
+            "party": "APGA",
+            "file": "orumba_north.json"
+        },
+        {
+            "lga": "Orumba South",
+            "name": "Shedrack Azubuike",
+            "party": "APGA",
+            "file": "orumba_south.json"
+        },
+        {
+            "lga": "Oyi",
+            "name": "Emma Nweke",
+            "party": "APGA",
+            "file": "oyi.json"
+        }
+    ],
+    "sources": [
+        "historyrep.com",
+        "upnaija.ng",
+        "Premium Times",
+        "Channels TV",
+        "ANSIEC"
+    ],
+    "last_updated": "2025-12-28T00:10:00Z"
+}

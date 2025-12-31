@@ -1,0 +1,87 @@
+{
+    "id": "radda_dikko",
+    "slug": "dikko-radda",
+    "state": "Katsina",
+    "name": {
+        "full": "Dikko Umaru Radda",
+        "common": "Dikko Radda",
+        "aliases": []
+    },
+    "personal": {
+        "date_of_birth": null,
+        "state_of_origin": "Katsina",
+        "lga_of_origin": "Dutsin-Ma",
+        "religion": "Muslim",
+        "ethnicity": "Hausa",
+        "education": [],
+        "career_before_politics": [
+            {
+                "role": "DG",
+                "organization": "Small and Medium Enterprises Development Agency (SMEDAN)",
+                "period": "2017-2023"
+            }
+        ],
+        "family": {
+            "spouse": null,
+            "children": null,
+            "notes": null
+        }
+    },
+    "political_career": {
+        "party_history": [
+            {
+                "party": "APC",
+                "full_name": "All Progressives Congress",
+                "joined": null,
+                "left": null
+            }
+        ],
+        "positions_held": [
+            {
+                "position": "DG, SMEDAN",
+                "constituency": "Federal",
+                "period": "2017-2023"
+            },
+            {
+                "position": "Governor",
+                "constituency": "Katsina State",
+                "period": "2023-present"
+            }
+        ],
+        "election_history": [
+            {
+                "year": 2023,
+                "position": "Governor",
+                "party": "APC",
+                "result": "Won"
+            }
+        ]
+    },
+    "term_info": {
+        "current_term": "1st term",
+        "term_start": "2023-05-29",
+        "term_end": "2027-05-29",
+        "first_elected": 2023
+    },
+    "policy_positions": [],
+    "track_record": {
+        "achievements": [],
+        "failures": [],
+        "promises_vs_delivery": []
+    },
+    "controversies": [],
+    "social_media": {
+        "twitter": null,
+        "facebook": null,
+        "instagram": null,
+        "website": null,
+        "verified": false
+    },
+    "metadata": {
+        "data_quality_score": 0.50,
+        "last_updated": "2025-12-27T20:00:00Z",
+        "sources_count": 4,
+        "reviewed_by": "Antigravity Agent",
+        "notes": "Former DG of SMEDAN. From Buhari's home state."
+    }
+}

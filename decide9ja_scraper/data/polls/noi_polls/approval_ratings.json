@@ -1,0 +1,60 @@
+{
+  "ratings": [
+    {
+      "title": "Governance approval rating slips to 41% in November",
+      "approval_percentage": 41,
+      "date": "Nov 2024",
+      "trend": "down",
+      "source_url": "https://www.noi-polls.com/post/governance-approval-rating-slips-to-41-in-november"
+    },
+    {
+      "title": "Approval rating slips to 46% in October",
+      "approval_percentage": 46,
+      "date": "Oct 2024",
+      "trend": "down",
+      "source_url": "https://www.noi-polls.com/post/approval-rating-slips-to-46-in-october"
+    },
+    {
+      "title": "Governance approval rating hits record 51% in September",
+      "approval_percentage": 51,
+      "date": "Sep 2024",
+      "trend": "up",
+      "source_url": "https://www.noi-polls.com/post/governance-approval-rating-hits-record-51-in-september"
+    },
+    {
+      "title": "Governance approval rating up to 46% in August",
+      "approval_percentage": 46,
+      "date": "Aug 2024",
+      "trend": "up",
+      "source_url": "https://www.noi-polls.com/post/governance-approval-rating-slides-up-to-46-in-august"
+    },
+    {
+      "title": "Governance approval rating slips to 44% in July",
+      "approval_percentage": 44,
+      "date": "Jul 2024",
+      "trend": "down",
+      "source_url": "https://www.noi-polls.com/post/government-approval-rating-slips-to-44-in-july"
+    },
+    {
+      "title": "Presidential Approval Rating May 2022",
+      "approval_percentage": null,
+      "date": "May 2022",
+      "trend": "unknown",
+      "source_url": "https://www.noi-polls.com/post/presidential-approval-rating-may-2022"
+    },
+    {
+      "title": "Presidential approval rating for March 2022",
+      "approval_percentage": null,
+      "date": "Mar 2022",
+      "trend": "unknown",
+      "source_url": "https://www.noi-polls.com/post/buhari-approval-rating-for-march-2022"
+    },
+    {
+      "title": "President Jonathan’s Approval at 61% in August 2014",
+      "approval_percentage": 61,
+      "date": "Aug 2014",
+      "trend": "unknown",
+      "source_url": "https://www.noi-polls.com/post/president-jonathan-s-approval-at-61-in-august-2014"
+    }
+  ]
+}

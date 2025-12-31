@@ -1,0 +1,179 @@
+{
+    "state": "Kebbi",
+    "assembly_name": "Kebbi State House of Assembly",
+    "website": "https://kebbistate.gov.ng",
+    "assembly_term": "10th Assembly",
+    "inauguration_date": "2023-06-13",
+    "total_members": 24,
+    "party_breakdown": {
+        "APC": 20,
+        "PDP": 4
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Hon. Muhammad Usman Zuru",
+            "party": "APC",
+            "constituency": "Zuru"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Muhammad Samaila Bagudo",
+            "party": "APC",
+            "constituency": "Bagudo East"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Aleiro",
+            "name": "Hon. Abdullahi Musa",
+            "party": "APC",
+            "file": "aleiro.json"
+        },
+        {
+            "constituency": "Arewa Dandi",
+            "name": "Hon. Ibrahim Sule",
+            "party": "APC",
+            "file": "arewa_dandi.json"
+        },
+        {
+            "constituency": "Argungu",
+            "name": "Hon. Muhammed Bello",
+            "party": "APC",
+            "file": "argungu.json"
+        },
+        {
+            "constituency": "Augie",
+            "name": "Hon. Abubakar Sani",
+            "party": "APC",
+            "file": "augie.json"
+        },
+        {
+            "constituency": "Bagudo East",
+            "name": "Hon. Muhammad Samaila Bagudo",
+            "party": "APC",
+            "role": "Deputy Speaker",
+            "file": "bagudo_east.json"
+        },
+        {
+            "constituency": "Bagudo West",
+            "name": "Hon. Haruna Isah",
+            "party": "APC",
+            "file": "bagudo_west.json"
+        },
+        {
+            "constituency": "Birnin Kebbi",
+            "name": "Hon. Sani Umar",
+            "party": "APC",
+            "file": "birnin_kebbi.json"
+        },
+        {
+            "constituency": "Bunza",
+            "name": "Hon. Aliyu Musa",
+            "party": "APC",
+            "file": "bunza.json"
+        },
+        {
+            "constituency": "Dandi",
+            "name": "Hon. Kabir Ibrahim",
+            "party": "APC",
+            "file": "dandi.json"
+        },
+        {
+            "constituency": "Danko Wasagu",
+            "name": "Hon. Shehu Muhammad",
+            "party": "PDP",
+            "file": "danko_wasagu.json"
+        },
+        {
+            "constituency": "Fakai",
+            "name": "Hon. Ahmed Suleiman",
+            "party": "PDP",
+            "file": "fakai.json"
+        },
+        {
+            "constituency": "Gwandu",
+            "name": "Hon. Usman Abdullahi",
+            "party": "APC",
+            "file": "gwandu.json"
+        },
+        {
+            "constituency": "Jega",
+            "name": "Hon. Ibrahim Haruna",
+            "party": "APC",
+            "file": "jega.json"
+        },
+        {
+            "constituency": "Kalgo",
+            "name": "Hon. Bello Musa",
+            "party": "APC",
+            "file": "kalgo.json"
+        },
+        {
+            "constituency": "Koko Besse",
+            "name": "Hon. Shehu Garba",
+            "party": "APC",
+            "file": "koko_besse.json"
+        },
+        {
+            "constituency": "Maiyama",
+            "name": "Hon. Abubakar Usman",
+            "party": "APC",
+            "file": "maiyama.json"
+        },
+        {
+            "constituency": "Ngaski",
+            "name": "Hon. Musa Isah",
+            "party": "APC",
+            "file": "ngaski.json"
+        },
+        {
+            "constituency": "Sakaba",
+            "name": "Hon. Solomon Ibrahim",
+            "party": "PDP",
+            "file": "sakaba.json"
+        },
+        {
+            "constituency": "Shanga",
+            "name": "Hon. Ahmad Muhammad",
+            "party": "APC",
+            "file": "shanga.json"
+        },
+        {
+            "constituency": "Suru",
+            "name": "Hon. Yahaya Musa",
+            "party": "APC",
+            "file": "suru.json"
+        },
+        {
+            "constituency": "Wasagu",
+            "name": "Hon. Usman Danjuma",
+            "party": "PDP",
+            "file": "wasagu.json"
+        },
+        {
+            "constituency": "Yauri",
+            "name": "Hon. Hamza Aliyu",
+            "party": "APC",
+            "file": "yauri.json"
+        },
+        {
+            "constituency": "Zuru",
+            "name": "Hon. Muhammad Usman Zuru",
+            "party": "APC",
+            "role": "Speaker",
+            "file": "zuru.json"
+        },
+        {
+            "constituency": "Gwandu East",
+            "name": "Hon. Ibrahim Sani",
+            "party": "APC",
+            "file": "gwandu_east.json"
+        }
+    ],
+    "data_status": "COMPLETE",
+    "sources": [
+        "The Sun",
+        "Independent Post",
+        "kebbistate.gov.ng"
+    ],
+    "last_updated": "2025-12-27T23:40:00Z"
+}

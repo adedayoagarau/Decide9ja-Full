@@ -1,0 +1,187 @@
+{
+    "state": "Abia",
+    "assembly_name": "Abia State House of Assembly",
+    "website": "https://abiastate.gov.ng",
+    "assembly_term": "8th Assembly",
+    "inauguration_date": "2023-06-06",
+    "total_members": 24,
+    "party_breakdown": {
+        "PDP": 12,
+        "LP": 11,
+        "APC": 1,
+        "notes": "Initial: PDP 11, LP 10, YPP 2, APC 1. YPP members defected to LP. PDP gained Aba North via court ruling."
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Hon. Emmanuel Ihuoma Emeruwa",
+            "party": "LP",
+            "constituency": "Aba South"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Austin Okezie Meregini",
+            "party": "LP",
+            "constituency": "Umuahia East"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Aba Central",
+            "name": "Hon. Ucheonye Stephen",
+            "party": "LP",
+            "file": "aba_central.json"
+        },
+        {
+            "constituency": "Aba North",
+            "name": "Hon. Aaron Uzodike",
+            "party": "PDP",
+            "notes": "Replaced LP member via court ruling",
+            "file": "aba_north.json"
+        },
+        {
+            "constituency": "Aba South",
+            "name": "Hon. Emmanuel Emeruwa",
+            "party": "LP",
+            "role": "Speaker",
+            "file": "aba_south.json"
+        },
+        {
+            "constituency": "Arochukwu",
+            "name": "Hon. Uchenna Okoro",
+            "party": "LP",
+            "file": "arochukwu.json"
+        },
+        {
+            "constituency": "Bende North",
+            "name": "Hon. Nnamdi Ibekwe",
+            "party": "PDP",
+            "file": "bende_north.json"
+        },
+        {
+            "constituency": "Bende South",
+            "name": "Hon. Emmanuel Ndubuisi",
+            "party": "PDP",
+            "file": "bende_south.json"
+        },
+        {
+            "constituency": "Ikwuano",
+            "name": "Hon. Boniface Isienyi",
+            "party": "LP",
+            "file": "ikwuano.json"
+        },
+        {
+            "constituency": "Isiala Ngwa North",
+            "name": "Hon. Ugochukwu Iheonunekwu",
+            "party": "PDP",
+            "file": "isiala_ngwa_north.json"
+        },
+        {
+            "constituency": "Isiala Ngwa South",
+            "name": "Hon. Rowland Ceaser",
+            "party": "PDP",
+            "file": "isiala_ngwa_south.json"
+        },
+        {
+            "constituency": "Isiukwuato",
+            "name": "Hon. Lucky Johnson",
+            "party": "PDP",
+            "file": "isiukwuato.json"
+        },
+        {
+            "constituency": "Obingwa East",
+            "name": "Hon. Solomon Akpulonu",
+            "party": "PDP",
+            "file": "obingwa_east.json"
+        },
+        {
+            "constituency": "Obingwa West",
+            "name": "Hon. Erondu Uchenna Erondu",
+            "party": "PDP",
+            "file": "obingwa_west.json"
+        },
+        {
+            "constituency": "Ohafia North",
+            "name": "Hon. Mandela Obasi",
+            "party": "PDP",
+            "file": "ohafia_north.json"
+        },
+        {
+            "constituency": "Ohafia South",
+            "name": "Hon. Nwoke Kalu Mba",
+            "party": "LP",
+            "file": "ohafia_south.json"
+        },
+        {
+            "constituency": "Osisioma North",
+            "name": "Hon. Nwogu Iheanacho",
+            "party": "LP",
+            "notes": "Defected from YPP",
+            "file": "osisioma_north.json"
+        },
+        {
+            "constituency": "Osisioma South",
+            "name": "Hon. Fyne Ahuama",
+            "party": "LP",
+            "notes": "Defected from YPP",
+            "file": "osisioma_south.json"
+        },
+        {
+            "constituency": "Ugwunagbo",
+            "name": "Hon. Chijioke Uruakpa",
+            "party": "PDP",
+            "file": "ugwunagbo.json"
+        },
+        {
+            "constituency": "Ukwa East",
+            "name": "Hon. Lewis Obianyi",
+            "party": "PDP",
+            "file": "ukwa_east.json"
+        },
+        {
+            "constituency": "Ukwa West",
+            "name": "Hon. Godwin Adiele",
+            "party": "PDP",
+            "file": "ukwa_west.json"
+        },
+        {
+            "constituency": "Umuahia Central",
+            "name": "Hon. Chinasa Anthony",
+            "party": "LP",
+            "file": "umuahia_central.json"
+        },
+        {
+            "constituency": "Umuahia East",
+            "name": "Hon. Austin Okezie Meregini",
+            "party": "LP",
+            "role": "Deputy Speaker",
+            "file": "umuahia_east.json"
+        },
+        {
+            "constituency": "Umuahia North",
+            "name": "Hon. Barr. Akaliro Anderson",
+            "party": "APC",
+            "file": "umuahia_north.json"
+        },
+        {
+            "constituency": "Umuahia South",
+            "name": "Hon. Emeka Jacob Obioma",
+            "party": "LP",
+            "file": "umuahia_south.json"
+        },
+        {
+            "constituency": "Umunneochi",
+            "name": "Hon. Ume Mathias",
+            "party": "LP",
+            "file": "umunneochi.json"
+        }
+    ],
+    "data_status": "COMPLETE",
+    "sources": [
+        "abiastate.gov.ng",
+        "umuahiafirst.com.ng",
+        "Premium Times",
+        "Vanguard",
+        "Leadership",
+        "Punch"
+    ],
+    "last_updated": "2025-12-27T22:10:00Z"
+}

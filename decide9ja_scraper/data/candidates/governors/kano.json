@@ -1,0 +1,144 @@
+{
+    "id": "yusuf_abba_kabir",
+    "slug": "abba-kabir-yusuf",
+    "state": "Kano",
+    "name": {
+        "full": "Abba Kabir Yusuf",
+        "common": "Abba Kabir Yusuf",
+        "aliases": [
+            "AKY"
+        ]
+    },
+    "personal": {
+        "date_of_birth": "1963-01-05",
+        "state_of_origin": "Kano",
+        "lga_of_origin": "Gaya",
+        "religion": "Muslim",
+        "ethnicity": "Fulani",
+        "education": [
+            {
+                "institution": "Sumaila Primary School",
+                "type": "Primary",
+                "year": 1975
+            },
+            {
+                "institution": "Government Secondary School, Dawakin Tofa",
+                "type": "Secondary",
+                "year": null
+            },
+            {
+                "institution": "Government Secondary School, Lautai, Gumel",
+                "type": "Secondary",
+                "year": 1980
+            },
+            {
+                "institution": "Federal Polytechnic, Mubi",
+                "degree": "National Diploma in Civil Engineering",
+                "year": 1985
+            },
+            {
+                "institution": "Kaduna Polytechnic",
+                "degree": "HND Civil Engineering (Water Resources)",
+                "year": 1989
+            },
+            {
+                "institution": "Bayero University, Kano",
+                "degree": "PGD and MBA",
+                "year": null
+            }
+        ],
+        "career_before_politics": [
+            {
+                "role": "Civil Engineer",
+                "organization": "Various",
+                "period": "1989-1999"
+            }
+        ],
+        "family": {
+            "spouse": "Married",
+            "children": null,
+            "notes": "From Sullubawa Fulani clan (Kano Emirate ruling class)"
+        }
+    },
+    "political_career": {
+        "party_history": [
+            {
+                "party": "PDP",
+                "full_name": "Peoples Democratic Party",
+                "joined": 1999,
+                "left": 2022
+            },
+            {
+                "party": "NNPP",
+                "full_name": "New Nigeria Peoples Party",
+                "joined": 2022,
+                "left": null
+            }
+        ],
+        "positions_held": [
+            {
+                "position": "Personal Assistant to Governor",
+                "constituency": "Kano State (under Kwankwaso)",
+                "period": "1999-2003"
+            },
+            {
+                "position": "Commissioner for Works, Housing and Transport",
+                "constituency": "Kano State",
+                "period": "2011-2015"
+            },
+            {
+                "position": "Governor",
+                "constituency": "Kano State",
+                "period": "2023-present"
+            }
+        ],
+        "election_history": [
+            {
+                "year": 2023,
+                "position": "Governor",
+                "party": "NNPP",
+                "result": "Won",
+                "notes": "Victory affirmed by Supreme Court January 2024",
+                "source": "https://en.wikipedia.org/wiki/Abba_Kabir_Yusuf"
+            }
+        ]
+    },
+    "term_info": {
+        "current_term": "1st term",
+        "term_start": "2023-05-29",
+        "term_end": "2027-05-29",
+        "first_elected": 2023
+    },
+    "policy_positions": [],
+    "track_record": {
+        "achievements": [],
+        "failures": [],
+        "promises_vs_delivery": []
+    },
+    "controversies": [
+        {
+            "issue": "Election tribunal nullification",
+            "allegation": "Election initially nullified by tribunal and Court of Appeal",
+            "their_response": "Appealed to Supreme Court",
+            "status": "Supreme Court affirmed election victory January 12, 2024",
+            "sources": [
+                "https://businessday.ng",
+                "https://en.wikipedia.org/wiki/Abba_Kabir_Yusuf"
+            ]
+        }
+    ],
+    "social_media": {
+        "twitter": "@abbabornooffice",
+        "facebook": null,
+        "instagram": null,
+        "website": "https://kanostate.gov.ng",
+        "verified": false
+    },
+    "metadata": {
+        "data_quality_score": 0.70,
+        "last_updated": "2025-12-27T20:00:00Z",
+        "sources_count": 10,
+        "reviewed_by": "Antigravity Agent",
+        "notes": "Protégé of Rabiu Kwankwaso. Only NNPP governor."
+    }
+}

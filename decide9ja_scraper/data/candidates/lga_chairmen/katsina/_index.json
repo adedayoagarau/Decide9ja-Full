@@ -1,0 +1,224 @@
+{
+    "state": "Katsina",
+    "total_lgas": 34,
+    "last_lga_election": "2025-02-15",
+    "next_election_due": "2028",
+    "current_term_status": "Active",
+    "siec_name": "KTSIEC",
+    "party_sweep": "APC",
+    "data_completeness": "100%",
+    "chairmen": [
+        {
+            "lga": "Bakori",
+            "name": "Hon. Aminu Dan-Hamidu",
+            "party": "APC",
+            "file": "bakori.json"
+        },
+        {
+            "lga": "Batagarawa",
+            "name": "Hon. Yahaya Lawal Kawo",
+            "party": "APC",
+            "file": "batagarawa.json"
+        },
+        {
+            "lga": "Batsari",
+            "name": "Hon. Mannir Muazu Rumah",
+            "party": "APC",
+            "file": "batsari.json"
+        },
+        {
+            "lga": "Baure",
+            "name": "Hon. Saminu Sulaiman Baure",
+            "party": "APC",
+            "file": "baure.json"
+        },
+        {
+            "lga": "Bindawa",
+            "name": "Hon. Badaru Musa Giremawa",
+            "party": "APC",
+            "file": "bindawa.json"
+        },
+        {
+            "lga": "Charanchi",
+            "name": "Hon. Ibrahim Sani Koda",
+            "party": "APC",
+            "file": "charanchi.json"
+        },
+        {
+            "lga": "Dandume",
+            "name": "Hon. Bishir Sabu Gyazama",
+            "party": "APC",
+            "file": "dandume.json"
+        },
+        {
+            "lga": "Danja",
+            "name": "Hon. Rabo Tambaya",
+            "party": "APC",
+            "file": "danja.json"
+        },
+        {
+            "lga": "Danmusa",
+            "name": "Hon. Ibrahim Namama",
+            "party": "APC",
+            "file": "danmusa.json"
+        },
+        {
+            "lga": "Daura",
+            "name": "Hon. Bala Musa",
+            "party": "APC",
+            "file": "daura.json"
+        },
+        {
+            "lga": "Dutsi",
+            "name": "Hon. Abdulrazaq Adamu Kayawa",
+            "party": "APC",
+            "file": "dutsi.json"
+        },
+        {
+            "lga": "Dutsinma",
+            "name": "Hon. Kabir Abdul Salam Shema",
+            "party": "APC",
+            "file": "dutsinma.json"
+        },
+        {
+            "lga": "Faskari",
+            "name": "Hon. Surajo Aliyu Daudawa",
+            "party": "APC",
+            "file": "faskari.json"
+        },
+        {
+            "lga": "Funtua",
+            "name": "Hon. Abdullahi Goya",
+            "party": "APC",
+            "file": "funtua.json"
+        },
+        {
+            "lga": "Ingawa",
+            "name": "Hon. Abdullahi Idris",
+            "party": "APC",
+            "file": "ingawa.json"
+        },
+        {
+            "lga": "Jibia",
+            "name": "Hon. Surajo Ado Jibia",
+            "party": "APC",
+            "file": "jibia.json"
+        },
+        {
+            "lga": "Kafur",
+            "name": "Hon. Surajo Bature",
+            "party": "APC",
+            "file": "kafur.json"
+        },
+        {
+            "lga": "Kaita",
+            "name": "Hon. Bello Lawal Yandaki",
+            "party": "APC",
+            "file": "kaita.json"
+        },
+        {
+            "lga": "Kankara",
+            "name": "Hon. Kasimu Dantsoho Katoge",
+            "party": "APC",
+            "file": "kankara.json"
+        },
+        {
+            "lga": "Kankia",
+            "name": "Hon. Lawal Abdul Gezi",
+            "party": "APC",
+            "file": "kankia.json"
+        },
+        {
+            "lga": "Katsina",
+            "name": "Hon. Isah Miqdad AD Saude",
+            "party": "APC",
+            "file": "katsina.json"
+        },
+        {
+            "lga": "Kurfi",
+            "name": "Hon. Babangida Abdullahi",
+            "party": "APC",
+            "file": "kurfi.json"
+        },
+        {
+            "lga": "Kusada",
+            "name": "Hon. Sani Adamu Dan Gamau",
+            "party": "APC",
+            "file": "kusada.json"
+        },
+        {
+            "lga": "Mai'adua",
+            "name": "Hon. Mamman Salisu Na-Allahu",
+            "party": "APC",
+            "file": "maiadua.json"
+        },
+        {
+            "lga": "Malumfashi",
+            "name": "Hon. Muntari Abdullahi City",
+            "party": "APC",
+            "file": "malumfashi.json"
+        },
+        {
+            "lga": "Mani",
+            "name": "Hon. Dr. Yunusa Muhammad Sani",
+            "party": "APC",
+            "file": "mani.json"
+        },
+        {
+            "lga": "Mashi",
+            "name": "Hon. Salisu Kallan Dan Kada",
+            "party": "APC",
+            "file": "mashi.json"
+        },
+        {
+            "lga": "Matazu",
+            "name": "Hon. Shamsuddeen Muhammad",
+            "party": "APC",
+            "file": "matazu.json"
+        },
+        {
+            "lga": "Musawa",
+            "name": "Hon. Aliyu Idris Gin-Gin",
+            "party": "APC",
+            "file": "musawa.json"
+        },
+        {
+            "lga": "Rimi",
+            "name": "Hon. Muhammad Ali Rimi",
+            "party": "APC",
+            "file": "rimi.json"
+        },
+        {
+            "lga": "Sabuwa",
+            "name": "Hon. Sagir Taminu",
+            "party": "APC",
+            "file": "sabuwa.json"
+        },
+        {
+            "lga": "Safana",
+            "name": "Hon. Abdullahi Sani Brazil",
+            "party": "APC",
+            "file": "safana.json"
+        },
+        {
+            "lga": "Sandamu",
+            "name": "Hon. Usman Nalado Matawalle",
+            "party": "APC",
+            "file": "sandamu.json"
+        },
+        {
+            "lga": "Zango",
+            "name": "Hon. Babangida Yardaje",
+            "party": "APC",
+            "file": "zango.json"
+        }
+    ],
+    "sources": [
+        "naijadetails.com",
+        "historyrep.com",
+        "katsinapost.ng",
+        "katsinamirror.ng",
+        "KTSIEC"
+    ],
+    "last_updated": "2025-12-28T00:30:00Z"
+}

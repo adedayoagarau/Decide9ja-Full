@@ -1,0 +1,49 @@
+{
+    "id": "kalu_orji_uzor",
+    "slug": "orji-uzor-kalu",
+    "state": "Abia",
+    "senatorial_district": "North",
+    "name": {
+        "full": "Orji Uzor Kalu",
+        "common": "Orji Uzor Kalu",
+        "aliases": [
+            "OUK"
+        ]
+    },
+    "party": "APC",
+    "personal": {
+        "date_of_birth": "1960-04-21",
+        "state_of_origin": "Abia",
+        "lga_of_origin": "Igbere",
+        "religion": "Christian",
+        "education": []
+    },
+    "political_career": {
+        "positions_held": [
+            {
+                "position": "Governor",
+                "constituency": "Abia State",
+                "period": "1999-2007"
+            },
+            {
+                "position": "Senator",
+                "constituency": "Abia North",
+                "period": "2019-present"
+            }
+        ]
+    },
+    "senate_info": {
+        "committee_memberships": [],
+        "bills_sponsored": [],
+        "legislative_focus": []
+    },
+    "social_media": {
+        "twitter": null,
+        "facebook": null,
+        "website": null
+    },
+    "metadata": {
+        "data_quality_score": 0.60,
+        "last_updated": "2025-12-27T21:00:00Z"
+    }
+}

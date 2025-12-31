@@ -1,0 +1,356 @@
+{
+    "id": "kwankwaso_rabiu_musa",
+    "slug": "rabiu-kwankwaso",
+    "name": {
+        "full": "Rabiu Musa Kwankwaso",
+        "common": "Rabiu Kwankwaso",
+        "aliases": [
+            "Kwankwasiyya"
+        ]
+    },
+    "personal": {
+        "date_of_birth": "1956-10-21",
+        "state_of_origin": "Kano",
+        "lga_of_origin": "Madobi",
+        "religion": "Muslim",
+        "ethnicity": "Hausa-Fulani",
+        "education": [
+            {
+                "institution": "Kwankwaso Primary School",
+                "type": "Primary",
+                "year": null
+            },
+            {
+                "institution": "Gwarzo Boarding Senior Primary School",
+                "type": "Primary",
+                "year": null
+            },
+            {
+                "institution": "Wudil Craft School",
+                "type": "Technical",
+                "year": null
+            },
+            {
+                "institution": "Kano Technical College",
+                "type": "Technical",
+                "year": null
+            },
+            {
+                "institution": "Kaduna Polytechnic",
+                "degree": "National Diploma & Higher National Diploma",
+                "year": null
+            },
+            {
+                "institution": "Middlesex Polytechnic, UK",
+                "type": "Postgraduate Studies",
+                "year": 1983
+            },
+            {
+                "institution": "Loughborough University of Technology, UK",
+                "degree": "MSc Civil Engineering",
+                "year": 1985,
+                "source": "https://en.wikipedia.org/wiki/Rabiu_Kwankwaso"
+            },
+            {
+                "institution": "Sharda University, India",
+                "degree": "PhD Civil Engineering",
+                "year": 2022
+            }
+        ],
+        "career_before_politics": [
+            {
+                "role": "Water Engineer to Principal Water Engineer",
+                "organization": "Kano State Water Resources and Engineering Construction Agency (WRECA)",
+                "period": "1975-1992",
+                "notes": "17 years of service"
+            }
+        ],
+        "family": {
+            "spouse": "Married",
+            "children": "Multiple",
+            "notes": null
+        }
+    },
+    "political_career": {
+        "party_history": [
+            {
+                "party": "SDP",
+                "full_name": "Social Democratic Party",
+                "joined": 1992,
+                "left": 1993
+            },
+            {
+                "party": "PDP",
+                "full_name": "Peoples Democratic Party",
+                "joined": 1998,
+                "left": 2014
+            },
+            {
+                "party": "APC",
+                "full_name": "All Progressives Congress",
+                "joined": 2014,
+                "left": 2018
+            },
+            {
+                "party": "PDP",
+                "full_name": "Peoples Democratic Party",
+                "joined": 2018,
+                "left": 2022
+            },
+            {
+                "party": "NNPP",
+                "full_name": "New Nigeria Peoples Party",
+                "joined": 2022,
+                "left": null,
+                "notes": "National Leader"
+            }
+        ],
+        "positions_held": [
+            {
+                "position": "Member, House of Representatives",
+                "constituency": "Madobi Federal Constituency",
+                "period": "1992-1993",
+                "notes": "Rose to Deputy Speaker"
+            },
+            {
+                "position": "Governor",
+                "constituency": "Kano State",
+                "period": "1999-2003",
+                "notes": "First term",
+                "source": "https://en.wikipedia.org/wiki/Rabiu_Kwankwaso"
+            },
+            {
+                "position": "Minister of Defence",
+                "constituency": "Federal",
+                "period": "2003-2007",
+                "notes": "Under President Obasanjo"
+            },
+            {
+                "position": "Governor",
+                "constituency": "Kano State",
+                "period": "2011-2015",
+                "notes": "Second term"
+            },
+            {
+                "position": "Senator",
+                "constituency": "Kano Central Senatorial District",
+                "period": "2015-2019",
+                "source": "https://en.wikipedia.org/wiki/Rabiu_Kwankwaso"
+            }
+        ],
+        "election_history": [
+            {
+                "year": 1992,
+                "position": "House of Representatives",
+                "party": "SDP",
+                "result": "Won"
+            },
+            {
+                "year": 1999,
+                "position": "Governor",
+                "party": "PDP",
+                "constituency": "Kano State",
+                "result": "Won"
+            },
+            {
+                "year": 2003,
+                "position": "Governor",
+                "party": "PDP",
+                "constituency": "Kano State",
+                "result": "Lost re-election"
+            },
+            {
+                "year": 2011,
+                "position": "Governor",
+                "party": "PDP",
+                "constituency": "Kano State",
+                "result": "Won"
+            },
+            {
+                "year": 2015,
+                "position": "President (Primary)",
+                "party": "APC",
+                "result": "Lost to Muhammadu Buhari"
+            },
+            {
+                "year": 2015,
+                "position": "Senator",
+                "party": "APC",
+                "constituency": "Kano Central",
+                "result": "Won"
+            },
+            {
+                "year": 2018,
+                "position": "President (Primary)",
+                "party": "PDP",
+                "result": "4th place, lost to Atiku Abubakar"
+            },
+            {
+                "year": 2023,
+                "position": "President",
+                "party": "NNPP",
+                "votes": 1496687,
+                "percentage": 6.4,
+                "result": "Lost (4th place)",
+                "running_mate": "Bishop Isaac Idahosa",
+                "source": "https://www.premiumtimesng.com"
+            }
+        ]
+    },
+    "policy_positions": [
+        {
+            "issue_area": "Economy",
+            "sub_issues": [
+                "Development",
+                "Employment"
+            ],
+            "stance_summary": "Focus on economic development and job creation",
+            "quotes": []
+        },
+        {
+            "issue_area": "Security",
+            "sub_issues": [
+                "Defense"
+            ],
+            "stance_summary": "Experience as Defence Minister",
+            "quotes": [],
+            "notes": "Served as Minister of Defence 2003-2007"
+        },
+        {
+            "issue_area": "Education",
+            "sub_issues": [
+                "Free Education",
+                "School Feeding",
+                "Infrastructure"
+            ],
+            "stance_summary": "Pioneer of free school feeding and uniforms; established universities",
+            "quotes": [],
+            "track_record": "First governor in Nigeria to implement free school feeding and provide uniforms for primary school pupils"
+        },
+        {
+            "issue_area": "Healthcare",
+            "sub_issues": [
+                "Access"
+            ],
+            "stance_summary": "Healthcare improvement",
+            "quotes": []
+        },
+        {
+            "issue_area": "Infrastructure",
+            "sub_issues": [
+                "Water",
+                "Engineering"
+            ],
+            "stance_summary": "Engineering and infrastructure background",
+            "quotes": [],
+            "notes": "Civil engineer by profession"
+        },
+        {
+            "issue_area": "Agriculture",
+            "sub_issues": [
+                "Development"
+            ],
+            "stance_summary": "Agricultural development",
+            "quotes": []
+        },
+        {
+            "issue_area": "Corruption",
+            "sub_issues": [
+                "Transparency"
+            ],
+            "stance_summary": "Anti-corruption stance",
+            "quotes": []
+        },
+        {
+            "issue_area": "Federalism",
+            "sub_issues": [
+                "State Development"
+            ],
+            "stance_summary": "Focus on state-level development",
+            "quotes": []
+        },
+        {
+            "issue_area": "Youth",
+            "sub_issues": [
+                "Training",
+                "Employment"
+            ],
+            "stance_summary": "Youth training and empowerment; established training institutes",
+            "quotes": [],
+            "track_record": "Established 26 training institutes, trained over 360,000 youths and women"
+        },
+        {
+            "issue_area": "Women",
+            "sub_issues": [
+                "Training",
+                "Empowerment"
+            ],
+            "stance_summary": "Women training and empowerment programs",
+            "quotes": []
+        }
+    ],
+    "track_record": {
+        "achievements": [
+            {
+                "achievement": "First free school feeding program in Nigeria",
+                "period": "1999-2003, 2011-2015",
+                "evidence": "Implemented during governorship, significantly increased enrollment",
+                "source": "https://en.wikipedia.org/wiki/Rabiu_Kwankwaso"
+            },
+            {
+                "achievement": "Established Kano University of Science and Technology, Wudil",
+                "period": "Governor tenure",
+                "evidence": "State university established",
+                "source": "https://en.wikipedia.org/wiki/Rabiu_Kwankwaso"
+            },
+            {
+                "achievement": "Established North West University, Kano",
+                "period": "Governor tenure",
+                "evidence": "Additional university",
+                "source": "https://en.wikipedia.org/wiki/Rabiu_Kwankwaso"
+            },
+            {
+                "achievement": "26 training institutes established",
+                "period": "Governor tenure",
+                "evidence": "Trained over 360,000 youths and women",
+                "source": "https://blerf.org"
+            },
+            {
+                "achievement": "Built 'Kwankwasiyya' political movement",
+                "period": "2011-present",
+                "evidence": "Major political force in Kano and North-West",
+                "source": "Multiple sources"
+            }
+        ],
+        "failures": [],
+        "promises_vs_delivery": []
+    },
+    "controversies": [
+        {
+            "issue": "Political rivalry in Kano",
+            "allegation": "Intense political rivalry with Ganduje faction",
+            "their_response": "Political competition",
+            "status": "Ongoing political dynamics",
+            "sources": [
+                "https://www.premiumtimesng.com"
+            ]
+        }
+    ],
+    "social_media": {
+        "twitter": "@KwsProject",
+        "facebook": "Rabiu Musa Kwankwaso",
+        "instagram": null,
+        "website": null,
+        "verified": true
+    },
+    "metadata": {
+        "data_quality_score": 0.78,
+        "last_updated": "2025-12-27T19:00:00Z",
+        "sources_count": 15,
+        "reviewed_by": "Antigravity Agent",
+        "notes": "Experienced politician with strong base in North-West. Civil engineer by profession. Known for 'Kwankwasiyya' political movement and education initiatives.",
+        "election_year": 2023,
+        "position_contested": "Presidential",
+        "result": "4th Place"
+    }
+}

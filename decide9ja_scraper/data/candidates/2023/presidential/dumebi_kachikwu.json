@@ -1,0 +1,137 @@
+{
+    "id": "kachikwu_dumebi",
+    "slug": "dumebi-kachikwu",
+    "name": {
+        "full": "Dumebi Kachikwu",
+        "common": "Dumebi Kachikwu",
+        "aliases": []
+    },
+    "personal": {
+        "date_of_birth": "1970-12-20",
+        "state_of_origin": "Delta",
+        "lga_of_origin": null,
+        "religion": null,
+        "ethnicity": "Igbo",
+        "education": [],
+        "career_before_politics": [
+            {
+                "role": "Chairman",
+                "organization": "Roots Television Nigeria",
+                "period": "Present",
+                "notes": "Media entrepreneur"
+            },
+            {
+                "role": "Businessman",
+                "organization": "Various enterprises",
+                "period": "Present",
+                "notes": "Billionaire entrepreneur"
+            }
+        ],
+        "family": {
+            "spouse": "Ikeme Kachikwu",
+            "children": "6",
+            "notes": "Brother of Ibe Kachikwu (former Minister of State for Petroleum)"
+        }
+    },
+    "political_career": {
+        "party_history": [
+            {
+                "party": "YPP",
+                "full_name": "Young Progressives Party",
+                "joined": 2018,
+                "left": 2021
+            },
+            {
+                "party": "ADC",
+                "full_name": "African Democratic Congress",
+                "joined": 2021,
+                "left": null
+            }
+        ],
+        "positions_held": [],
+        "election_history": [
+            {
+                "year": 2019,
+                "position": "President",
+                "party": "YPP",
+                "result": "Lost"
+            },
+            {
+                "year": 2023,
+                "position": "President",
+                "party": "ADC",
+                "votes": 78986,
+                "result": "Lost",
+                "source": "https://www.erad.ng"
+            }
+        ]
+    },
+    "policy_positions": [
+        {
+            "issue_area": "Women",
+            "sub_issues": [
+                "Equal Opportunities"
+            ],
+            "stance_summary": "Pledged equal opportunities for men and women",
+            "quotes": []
+        },
+        {
+            "issue_area": "Education",
+            "sub_issues": [
+                "Technology",
+                "Teacher Welfare"
+            ],
+            "stance_summary": "Technology-driven education; improved teacher welfare",
+            "quotes": []
+        },
+        {
+            "issue_area": "Healthcare",
+            "sub_issues": [
+                "Technology",
+                "Medical Tourism"
+            ],
+            "stance_summary": "Technology-driven healthcare to curb medical tourism",
+            "quotes": []
+        }
+    ],
+    "track_record": {
+        "achievements": [
+            {
+                "achievement": "Established Roots Television",
+                "period": "Present",
+                "evidence": "Major media platform",
+                "source": "https://www.vanguardngr.com"
+            }
+        ],
+        "failures": [],
+        "promises_vs_delivery": []
+    },
+    "controversies": [
+        {
+            "issue": "ADC leadership crisis",
+            "allegation": "Party faced internal leadership disputes during campaign",
+            "their_response": "Affirmed intention to remain in race",
+            "status": "Stayed in race despite crisis",
+            "sources": [
+                "https://nigeriainfo.fm"
+            ]
+        }
+    ],
+    "social_media": {
+        "twitter": null,
+        "facebook": null,
+        "instagram": null,
+        "website": null,
+        "verified": false
+    },
+    "metadata": {
+        "data_quality_score": 0.55,
+        "last_updated": "2025-12-27T19:00:00Z",
+        "sources_count": 6,
+        "reviewed_by": "Antigravity Agent",
+        "notes": "Media entrepreneur and businessman. Second-time presidential candidate. Brother of former petroleum minister.",
+        "election_year": 2023,
+        "position_contested": "Presidential",
+        "result": "Lost"
+    }
+}

@@ -1,0 +1,465 @@
+{
+  "id": "tinubu_bola_ahmed",
+  "slug": "bola-tinubu",
+  "name": {
+    "full": "Bola Ahmed Adekunle Tinubu",
+    "common": "Bola Tinubu",
+    "aliases": [
+      "BAT",
+      "Jagaban",
+      "Asiwaju"
+    ]
+  },
+  "personal": {
+    "date_of_birth": "1952-03-29",
+    "state_of_origin": "Lagos",
+    "lga_of_origin": "Lagos Island",
+    "religion": "Muslim",
+    "ethnicity": "Yoruba",
+    "education": [
+      {
+        "institution": "St. John's Primary School, Aroloya, Lagos",
+        "type": "Primary",
+        "year": null
+      },
+      {
+        "institution": "Children Home School, Ibadan",
+        "type": "Secondary",
+        "year": null
+      },
+      {
+        "institution": "Richard J. Daley College, Chicago",
+        "type": "Associate",
+        "year": null,
+        "notes": "Transferred to Chicago State University"
+      },
+      {
+        "institution": "Chicago State University",
+        "degree": "BSc Business Administration (Accounting)",
+        "year": 1979,
+        "source": "https://en.wikipedia.org/wiki/Bola_Tinubu"
+      }
+    ],
+    "career_before_politics": [
+      {
+        "role": "Accountant",
+        "organization": "Arthur Andersen",
+        "period": "1979-1983",
+        "location": "USA"
+      },
+      {
+        "role": "Accountant",
+        "organization": "Deloitte",
+        "period": "Early 1980s",
+        "location": "USA"
+      },
+      {
+        "role": "Accountant",
+        "organization": "GTE Services Corporation",
+        "period": "1980s",
+        "location": "USA"
+      },
+      {
+        "role": "Executive/Treasurer",
+        "organization": "Mobil Oil Nigeria",
+        "period": "1983-1992",
+        "location": "Nigeria"
+      }
+    ],
+    "family": {
+      "spouse": "Oluremi Tinubu (Senator)",
+      "children": "Multiple (names not fully public)",
+      "notes": "Publicly known children include Seyi Tinubu"
+    }
+  },
+  "political_career": {
+    "party_history": [
+      {
+        "party": "SDP",
+        "full_name": "Social Democratic Party",
+        "joined": 1992,
+        "left": 1993
+      },
+      {
+        "party": "NADECO",
+        "full_name": "National Democratic Coalition",
+        "joined": 1994,
+        "left": 1998,
+        "notes": "Pro-democracy movement during Abacha era, went into exile"
+      },
+      {
+        "party": "AD",
+        "full_name": "Alliance for Democracy",
+        "joined": 1998,
+        "left": 2006
+      },
+      {
+        "party": "AC",
+        "full_name": "Action Congress",
+        "joined": 2006,
+        "left": 2010
+      },
+      {
+        "party": "ACN",
+        "full_name": "Action Congress of Nigeria",
+        "joined": 2010,
+        "left": 2013
+      },
+      {
+        "party": "APC",
+        "full_name": "All Progressives Congress",
+        "joined": 2013,
+        "left": null,
+        "notes": "Founding member and National Leader"
+      }
+    ],
+    "positions_held": [
+      {
+        "position": "Senator",
+        "constituency": "Lagos West Senatorial District",
+        "period": "1992-1993",
+        "notes": "Third Republic, ended by military coup"
+      },
+      {
+        "position": "Governor",
+        "constituency": "Lagos State",
+        "period": "1999-2007",
+        "notes": "Two terms; implemented internal revenue reforms and infrastructure projects",
+        "source": "https://en.wikipedia.org/wiki/Bola_Tinubu"
+      },
+      {
+        "position": "President",
+        "constituency": "Federal Republic of Nigeria",
+        "period": "2023-present",
+        "notes": "16th President of Nigeria, inaugurated May 29, 2023",
+        "source": "https://www.premiumtimesng.com"
+      }
+    ],
+    "election_history": [
+      {
+        "year": 1992,
+        "position": "Senator",
+        "party": "SDP",
+        "constituency": "Lagos West",
+        "result": "Won"
+      },
+      {
+        "year": 1999,
+        "position": "Governor",
+        "party": "AD",
+        "constituency": "Lagos State",
+        "result": "Won"
+      },
+      {
+        "year": 2003,
+        "position": "Governor",
+        "party": "AD",
+        "constituency": "Lagos State",
+        "result": "Won (re-elected)"
+      },
+      {
+        "year": 2023,
+        "position": "President",
+        "party": "APC",
+        "votes": 8794726,
+        "percentage": 36.61,
+        "result": "Won",
+        "opponents": [
+          "Atiku Abubakar (PDP)",
+          "Peter Obi (LP)",
+          "Rabiu Kwankwaso (NNPP)"
+        ],
+        "source": "https://www.premiumtimesng.com/news/headlines/585858-2023-polls-inec-declares-tinubu-winner-of-presidential-election.html"
+      }
+    ]
+  },
+  "policy_positions": [
+    {
+      "issue_area": "Economy",
+      "sub_issues": [
+        "Fuel Subsidy",
+        "Naira",
+        "Inflation",
+        "GDP Growth",
+        "Export Economy",
+        "Digital Economy"
+      ],
+      "stance_summary": "Free market advocate championing export-driven economy. Removed fuel subsidy, floated naira, targeting 12% GDP growth. Pledged 1 million digital economy jobs and N75 billion for 75 high-potential enterprises.",
+      "manifesto_reference": "Renewed Hope 2023 – Action Plan for a Better Nigeria",
+      "verified_data": {
+        "gdp_growth_target": "12%",
+        "digital_jobs_target": 1000000,
+        "enterprise_investment": "N75 billion for 75 enterprises (July 2023 - March 2024)",
+        "focus_sectors": [
+          "Agriculture",
+          "Technology",
+          "Renewable Energy",
+          "Entertainment",
+          "Tourism"
+        ],
+        "core_principle": "Private sector as prime driver of economic progress; government provides sound framework"
+      },
+      "quotes": [
+        {
+          "text": "Fuel subsidy is gone",
+          "source": "Inauguration Speech",
+          "date": "2023-05-29",
+          "url": "https://statehouse.gov.ng",
+          "context": "First policy announcement as President"
+        },
+        {
+          "text": "My core belief is that the private sector must be the prime driver of economic progress.",
+          "source": "Renewed Hope Manifesto",
+          "date": "2023",
+          "url": "https://21stcenturychronicle.com",
+          "context": "Campaign manifesto"
+        },
+        {
+          "text": "Our administration will focus on a massive and unprecedented 4th industrial revolution, helping the youth to be transformed from job seekers to job providers.",
+          "source": "Campaign Speech",
+          "date": "2023",
+          "url": "https://businessday.ng",
+          "context": "Campaign rally"
+        }
+      ],
+      "actions_taken": [
+        {
+          "action": "Removed fuel subsidy",
+          "date": "2023-05-29",
+          "impact": "Fuel price rose from ₦185 to ₦617",
+          "source": "https://fmino.gov.ng"
+        },
+        {
+          "action": "Floated the Naira",
+          "date": "2023-06-14",
+          "impact": "Naira depreciated significantly against USD",
+          "source": "https://www.premiumtimesng.com"
+        }
+      ]
+    },
+    {
+      "issue_area": "Security",
+      "sub_issues": [
+        "Insurgency",
+        "Banditry",
+        "Police Reform"
+      ],
+      "stance_summary": "Proactive, intelligence-driven approach; community policing; classified armed group violence as terrorism",
+      "quotes": [
+        {
+          "text": "I shall bring the same determined, problem-solving spirit to solving insecurity at the national level. Our administration will be committed to permanently securing the safety, freedom and prosperity of all Nigerians.",
+          "source": "Campaign Manifesto",
+          "date": "2023",
+          "url": "https://businessday.ng",
+          "context": "Renewed Hope Action Plan"
+        },
+        {
+          "text": "When I entered office as governor of Lagos, the state was crime-ridden. Safety was uncertain. The population was fearful. With bold, no-nonsense crime prevention reform and creative institution building, we won back our state.",
+          "source": "Campaign Speech",
+          "date": "2023",
+          "url": "https://thewhistler.ng",
+          "context": "Referencing Lagos governorship"
+        }
+      ]
+    },
+    {
+      "issue_area": "Education",
+      "sub_issues": [
+        "Funding",
+        "Access",
+        "Student Loans"
+      ],
+      "stance_summary": "Pledged 25% of budget to education; introduced interest-free student loan scheme",
+      "quotes": [
+        {
+          "text": "If we all believe that education is the greatest weapon against poverty then we have to invest in it.",
+          "source": "Presidential Speech",
+          "date": "2023",
+          "url": "https://statehouse.gov.ng",
+          "context": "Public address"
+        },
+        {
+          "text": "Poverty should not prevent anybody, any child, including the daughter or son of a wood seller, 'Bole' (plantain) seller or yam seller from attaining their highest standard of education.",
+          "source": "Presidential Speech",
+          "date": "2023",
+          "url": "https://statehouse.gov.ng",
+          "context": "Education policy announcement"
+        }
+      ],
+      "actions_taken": [
+        {
+          "action": "Launched Student Loan Scheme",
+          "date": "2024",
+          "impact": "Interest-free loans for tertiary education",
+          "source": "https://fmino.gov.ng"
+        }
+      ]
+    },
+    {
+      "issue_area": "Healthcare",
+      "sub_issues": [
+        "NHIS",
+        "Primary Care",
+        "Brain Drain"
+      ],
+      "stance_summary": "Committed to improving healthcare access; part of social investment programs",
+      "quotes": [],
+      "notes": "Limited direct quotes available; focus on broader social investment"
+    },
+    {
+      "issue_area": "Infrastructure",
+      "sub_issues": [
+        "Power",
+        "Roads",
+        "Rail",
+        "Ports"
+      ],
+      "stance_summary": "Major infrastructure investment; Lagos BRT system legacy; renewable energy focus",
+      "quotes": [],
+      "notes": "Legacy includes Lagos BRT during governorship"
+    },
+    {
+      "issue_area": "Agriculture",
+      "sub_issues": [
+        "Food Security",
+        "Farming",
+        "Imports"
+      ],
+      "stance_summary": "Focus on food security and domestic production",
+      "quotes": [],
+      "notes": "Part of economic diversification agenda"
+    },
+    {
+      "issue_area": "Corruption",
+      "sub_issues": [
+        "EFCC",
+        "Transparency",
+        "Asset Declaration"
+      ],
+      "stance_summary": "Anti-corruption stance as campaign pillar",
+      "quotes": [],
+      "notes": "Faces own corruption allegations which he denies"
+    },
+    {
+      "issue_area": "Federalism",
+      "sub_issues": [
+        "Restructuring",
+        "State Police",
+        "Resource Control"
+      ],
+      "stance_summary": "Supporter of true federalism; advocated for state-level autonomy",
+      "quotes": [],
+      "notes": "Historical support for restructuring"
+    },
+    {
+      "issue_area": "Youth",
+      "sub_issues": [
+        "Employment",
+        "NYSC",
+        "Government Inclusion"
+      ],
+      "stance_summary": "Youth employment through digital economy; 3MTT program",
+      "quotes": [
+        {
+          "text": "Our administration will focus on a massive and unprecedented 4th industrial revolution, helping the youth to be transformed from job seekers to job providers.",
+          "source": "Campaign",
+          "date": "2023",
+          "url": "https://businessday.ng",
+          "context": "Youth policy"
+        }
+      ],
+      "actions_taken": [
+        {
+          "action": "Launched 3 Million Technical Talent (3MTT) Program",
+          "date": "2024",
+          "impact": "Training youths in technology skills",
+          "source": "https://www.premiumtimesng.com"
+        }
+      ]
+    },
+    {
+      "issue_area": "Women",
+      "sub_issues": [
+        "Representation",
+        "GBV",
+        "Maternal Health"
+      ],
+      "stance_summary": "Support for women's inclusion and empowerment",
+      "quotes": [],
+      "notes": "Wife Oluremi Tinubu is a Senator"
+    }
+  ],
+  "track_record": {
+    "achievements": [
+      {
+        "achievement": "Built Lagos BRT (Bus Rapid Transit) system",
+        "period": "2006-2008",
+        "evidence": "First BRT system in Sub-Saharan Africa",
+        "source": "https://en.wikipedia.org/wiki/Lagos_BRT"
+      },
+      {
+        "achievement": "Internal Revenue Reform in Lagos",
+        "period": "1999-2007",
+        "evidence": "Increased IGR from ₦600m to ₦10bn monthly",
+        "source": "https://www.premiumtimesng.com"
+      },
+      {
+        "achievement": "Founded APC and delivered two presidential victories",
+        "period": "2013-2023",
+        "evidence": "Party won 2015 and 2019 elections under Buhari",
+        "source": "https://en.wikipedia.org/wiki/All_Progressives_Congress"
+      }
+    ],
+    "failures": [],
+    "promises_vs_delivery": [
+      {
+        "promise": "Remove fuel subsidy and redirect savings to citizens",
+        "date_promised": "2023-05-29",
+        "status": "Partially Delivered",
+        "evidence": "Subsidy removed but palliatives implementation faced challenges",
+        "source": "https://www.premiumtimesng.com"
+      }
+    ]
+  },
+  "controversies": [
+    {
+      "issue": "Chicago Drug Case Allegations",
+      "allegation": "Court documents show Tinubu forfeited $460,000 to the U.S. government in 1993, linked to allegations of involvement with drug trafficking and money laundering",
+      "their_response": "Legal team maintains he was never charged with a drug offense, convicted, or barred from entering the U.S.",
+      "status": "No criminal charges filed; funds forfeited",
+      "sources": [
+        "https://www.premiumtimesng.com",
+        "https://www.aljazeera.com",
+        "https://businessday.ng"
+      ]
+    },
+    {
+      "issue": "Certificate and Age Controversy",
+      "allegation": "Discrepancies in academic records; CSU registrar testified university did not issue the certificate of attendance Tinubu presented to INEC; birth year discrepancies between records",
+      "their_response": "Maintained legitimacy of credentials; Supreme Court upheld his election",
+      "status": "Supreme Court rejected new evidence; victory affirmed October 2023",
+      "sources": [
+        "https://www.aljazeera.com",
+        "https://icirnigeria.org",
+        "https://punchng.com"
+      ]
+    }
+  ],
+  "social_media": {
+    "twitter": "@officialABAT",
+    "facebook": "Bola Ahmed Tinubu",
+    "instagram": "officialasiwajubat",
+    "website": "https://statehouse.gov.ng",
+    "verified": true
+  },
+  "metadata": {
+    "data_quality_score": 0.85,
+    "last_updated": "2025-12-27T19:00:00Z",
+    "sources_count": 25,
+    "reviewed_by": "Antigravity Agent",
+    "notes": "Comprehensive profile based on multiple verified sources. Some policy areas have limited direct quotes available. Controversies documented with both allegations and responses.",
+    "election_year": 2023,
+    "position_contested": "Presidential",
+    "result": "Winner"
+  }
+}

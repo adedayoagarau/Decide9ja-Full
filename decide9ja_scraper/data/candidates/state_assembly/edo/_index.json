@@ -1,0 +1,180 @@
+{
+    "state": "Edo",
+    "assembly_name": "Edo State House of Assembly",
+    "assembly_term": "8th Assembly",
+    "inauguration_date": "2023-06-16",
+    "total_members": 24,
+    "party_breakdown": {
+        "PDP": 15,
+        "APC": 8,
+        "LP": 1
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Hon. Blessing Agbebaku",
+            "party": "PDP",
+            "constituency": "Owan West"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Maria Edeko",
+            "party": "PDP",
+            "constituency": "Esan North-East II"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Akoko Edo I",
+            "name": "Hon. Idaiye Yekini Oisayemoje",
+            "party": "PDP",
+            "file": "akoko_edo_1.json"
+        },
+        {
+            "constituency": "Akoko Edo II",
+            "name": "Hon. Agbaje Emmanuel Omoladun",
+            "party": "APC",
+            "file": "akoko_edo_2.json"
+        },
+        {
+            "constituency": "Egor",
+            "name": "Hon. Omoregbe Promise Osaretin",
+            "party": "APC",
+            "file": "egor.json"
+        },
+        {
+            "constituency": "Esan Central",
+            "name": "Hon. Edobor Victor",
+            "party": "APC",
+            "file": "esan_central.json"
+        },
+        {
+            "constituency": "Esan North East I",
+            "name": "Hon. Addeh Emankhu",
+            "party": "APC",
+            "file": "esan_north_east_1.json"
+        },
+        {
+            "constituency": "Esan North East II",
+            "name": "Hon. Maria Edeko",
+            "party": "PDP",
+            "role": "Deputy Speaker",
+            "file": "esan_north_east_2.json"
+        },
+        {
+            "constituency": "Esan South East",
+            "name": "Hon. Ojezele Osezua Sunday",
+            "party": "PDP",
+            "file": "esan_south_east.json"
+        },
+        {
+            "constituency": "Esan West",
+            "name": "Hon. Ibhamawu Jonathan",
+            "party": "APC",
+            "file": "esan_west.json"
+        },
+        {
+            "constituency": "Etsako Central",
+            "name": "Hon. Oshmah Ahmed",
+            "party": "APC",
+            "file": "etsako_central.json"
+        },
+        {
+            "constituency": "Etsako East",
+            "name": "Hon. Ugabi Kingsley",
+            "party": "APC",
+            "file": "etsako_east.json"
+        },
+        {
+            "constituency": "Etsako West I",
+            "name": "Hon. Lecky Hussein Mustapha",
+            "party": "APC",
+            "file": "etsako_west_1.json"
+        },
+        {
+            "constituency": "Etsako West II",
+            "name": "Hon. Akokhia Abdulganiyu",
+            "party": "APC",
+            "file": "etsako_west_2.json"
+        },
+        {
+            "constituency": "Igueben",
+            "name": "Hon. Inégbebor Eugine",
+            "party": "PDP",
+            "file": "igueben.json"
+        },
+        {
+            "constituency": "Ikpoba-Okha",
+            "name": "Hon. Asonsere Friday",
+            "party": "PDP",
+            "file": "ikpoba_okha.json"
+        },
+        {
+            "constituency": "Oredo East",
+            "name": "Hon. Usuomon Edoghogho Raphael",
+            "party": "APC",
+            "file": "oredo_east.json"
+        },
+        {
+            "constituency": "Oredo West",
+            "name": "Hon. Edosa Osaro",
+            "party": "LP",
+            "file": "oredo_west.json"
+        },
+        {
+            "constituency": "Orhionmwon I",
+            "name": "Hon. Okunbor Nosayaba",
+            "party": "PDP",
+            "file": "orhionmwon_1.json"
+        },
+        {
+            "constituency": "Orhionmwon II",
+            "name": "Hon. Iyamu Bright",
+            "party": "PDP",
+            "file": "orhionmwon_2.json"
+        },
+        {
+            "constituency": "Ovia North East I",
+            "name": "Hon. Aiguobarueghian Charity",
+            "party": "PDP",
+            "file": "ovia_north_east_1.json"
+        },
+        {
+            "constituency": "Ovia North East II",
+            "name": "Hon. Uzamere Andrew",
+            "party": "PDP",
+            "file": "ovia_north_east_2.json"
+        },
+        {
+            "constituency": "Ovia South West",
+            "name": "Hon. Agheho Sunday",
+            "party": "APC",
+            "file": "ovia_south_west.json"
+        },
+        {
+            "constituency": "Owan East",
+            "name": "Hon. Okaka Eric Allison",
+            "party": "APC",
+            "file": "owan_east.json"
+        },
+        {
+            "constituency": "Owan West",
+            "name": "Hon. Blessing Agbebaku",
+            "party": "PDP",
+            "role": "Speaker",
+            "file": "owan_west.json"
+        },
+        {
+            "constituency": "Uhunmwode",
+            "name": "Hon. Osamwonyi Kaycee",
+            "party": "PDP",
+            "file": "uhunmwode.json"
+        }
+    ],
+    "data_status": "COMPLETE",
+    "sources": [
+        "nigerianleaders.com",
+        "Wikipedia",
+        "Punch",
+        "BusinessDay"
+    ],
+    "last_updated": "2025-12-27T23:30:00Z"
+}

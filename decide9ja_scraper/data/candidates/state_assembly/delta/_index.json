@@ -1,0 +1,227 @@
+{
+    "state": "Delta",
+    "assembly_name": "Delta State House of Assembly",
+    "assembly_term": "8th Assembly",
+    "inauguration_date": "2023-06-13",
+    "total_members": 29,
+    "party_breakdown": {
+        "PDP": 22,
+        "APC": 7
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Rt. Hon. Emomotimi Dennis Guwor",
+            "party": "PDP",
+            "constituency": "Warri South West"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Arthur Akpowowo",
+            "party": "PDP",
+            "constituency": "Ethiope East"
+        },
+        "Majority_Leader": {
+            "name": "Hon. Emeka Nwaobi",
+            "party": "PDP",
+            "constituency": "Aniocha North"
+        },
+        "Chief_Whip": {
+            "name": "Hon. Amatare Sinebe",
+            "party": "PDP",
+            "constituency": "Patani"
+        },
+        "Minority_Leader": {
+            "name": "Hon. Edafe Emakpor",
+            "party": "APC",
+            "constituency": "Uvwie"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Aniocha North",
+            "name": "Hon. Emeka Nwaobi",
+            "party": "PDP",
+            "role": "Majority Leader",
+            "file": "aniocha_north.json"
+        },
+        {
+            "constituency": "Aniocha South",
+            "name": "Hon. Isaac Anwuzia",
+            "party": "PDP",
+            "file": "aniocha_south.json"
+        },
+        {
+            "constituency": "Bomadi",
+            "name": "Hon. Oboro Preyor",
+            "party": "PDP",
+            "file": "bomadi.json"
+        },
+        {
+            "constituency": "Burutu",
+            "name": "Hon. Pereotu Oloye",
+            "party": "PDP",
+            "file": "burutu.json"
+        },
+        {
+            "constituency": "Burutu North",
+            "name": "Hon. Anthony Ebitonmi",
+            "party": "APC",
+            "file": "burutu_north.json"
+        },
+        {
+            "constituency": "Ethiope East",
+            "name": "Hon. Arthur Akpowowo",
+            "party": "PDP",
+            "role": "Deputy Speaker",
+            "file": "ethiope_east.json"
+        },
+        {
+            "constituency": "Ethiope West",
+            "name": "Hon. Blessing Achoja",
+            "party": "APC",
+            "file": "ethiope_west.json"
+        },
+        {
+            "constituency": "Ika North East",
+            "name": "Hon. Marilyn Okowa-Daramola",
+            "party": "PDP",
+            "file": "ika_north_east.json"
+        },
+        {
+            "constituency": "Ika South",
+            "name": "Hon. Festus Okoh",
+            "party": "PDP",
+            "file": "ika_south.json"
+        },
+        {
+            "constituency": "Isoko North",
+            "name": "Hon. Bernard Odior",
+            "party": "PDP",
+            "file": "isoko_north.json"
+        },
+        {
+            "constituency": "Isoko South I",
+            "name": "Hon. Bino Obowomano",
+            "party": "PDP",
+            "file": "isoko_south_1.json"
+        },
+        {
+            "constituency": "Isoko South II",
+            "name": "Hon. Ferguson Onwo",
+            "party": "PDP",
+            "file": "isoko_south_2.json"
+        },
+        {
+            "constituency": "Ndokwa East",
+            "name": "Hon. Emeka Osamuta",
+            "party": "PDP",
+            "file": "ndokwa_east.json"
+        },
+        {
+            "constituency": "Ndokwa West",
+            "name": "Hon. Charles Emetulu",
+            "party": "PDP",
+            "file": "ndokwa_west.json"
+        },
+        {
+            "constituency": "Okpe",
+            "name": "Hon. James Augoye",
+            "party": "PDP",
+            "file": "okpe.json"
+        },
+        {
+            "constituency": "Oshimili North",
+            "name": "Hon. Frank Esenwah",
+            "party": "PDP",
+            "file": "oshimili_north.json"
+        },
+        {
+            "constituency": "Oshimili South",
+            "name": "Hon. Bridget Anyafulu",
+            "party": "PDP",
+            "file": "oshimili_south.json"
+        },
+        {
+            "constituency": "Patani",
+            "name": "Hon. Amatare Sinebe",
+            "party": "PDP",
+            "role": "Chief Whip",
+            "file": "patani.json"
+        },
+        {
+            "constituency": "Sapele",
+            "name": "Hon. Perkins Umukoro",
+            "party": "PDP",
+            "file": "sapele.json"
+        },
+        {
+            "constituency": "Udu",
+            "name": "Hon. Ovie Egbetamah",
+            "party": "APC",
+            "file": "udu.json"
+        },
+        {
+            "constituency": "Ughelli North I",
+            "name": "Hon. Matthew Omonade",
+            "party": "APC",
+            "file": "ughelli_north_1.json"
+        },
+        {
+            "constituency": "Ughelli North II",
+            "name": "Hon. Obokpare Ohwofa",
+            "party": "APC",
+            "file": "ughelli_north_2.json"
+        },
+        {
+            "constituency": "Ughelli South",
+            "name": "Hon. Festus Utuama",
+            "party": "PDP",
+            "file": "ughelli_south.json"
+        },
+        {
+            "constituency": "Ukwuani",
+            "name": "Hon. Chukwudi Dafe",
+            "party": "PDP",
+            "file": "ukwuani.json"
+        },
+        {
+            "constituency": "Uvwie",
+            "name": "Hon. Edafe Emakpor",
+            "party": "APC",
+            "role": "Minority Leader",
+            "file": "uvwie.json"
+        },
+        {
+            "constituency": "Warri North",
+            "name": "Hon. Alfred Martins",
+            "party": "PDP",
+            "file": "warri_north.json"
+        },
+        {
+            "constituency": "Warri South I",
+            "name": "Hon. Augustine Uroye",
+            "party": "PDP",
+            "file": "warri_south_1.json"
+        },
+        {
+            "constituency": "Warri South II",
+            "name": "Hon. Benson Obire",
+            "party": "APC",
+            "file": "warri_south_2.json"
+        },
+        {
+            "constituency": "Warri South West",
+            "name": "Rt. Hon. Emomotimi Guwor",
+            "party": "PDP",
+            "role": "Speaker",
+            "file": "warri_south_west.json"
+        }
+    ],
+    "data_status": "COMPLETE",
+    "sources": [
+        "deltastate.gov.ng",
+        "BusinessDay",
+        "Wikipedia",
+        "nigerianleaders.com"
+    ],
+    "last_updated": "2025-12-27T22:25:00Z"
+}

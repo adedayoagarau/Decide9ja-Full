@@ -1,0 +1,281 @@
+{
+    "metadata": {
+        "source": "Google Trends Nigeria",
+        "period": "2024",
+        "collection_method": "Web search aggregation of Google Trends reports",
+        "last_updated": "2025-12-28T00:00:00Z"
+    },
+    "top_news_searches_2024": [
+        {
+            "rank": 1,
+            "term": "US elections 2024",
+            "category": "international",
+            "trend": "spike_nov"
+        },
+        {
+            "rank": 2,
+            "term": "Nigeria national anthem",
+            "category": "politics",
+            "trend": "spike_may",
+            "context": "Old anthem reinstated May 29, 2024"
+        },
+        {
+            "rank": 3,
+            "term": "National grid",
+            "category": "infrastructure",
+            "trend": "steady",
+            "context": "Power outages and grid collapses"
+        },
+        {
+            "rank": 4,
+            "term": "Minimum wage",
+            "category": "economy",
+            "trend": "spike_jul",
+            "context": "N70,000 minimum wage signed into law"
+        },
+        {
+            "rank": 5,
+            "term": "Ibadan explosion",
+            "category": "disaster",
+            "trend": "spike"
+        },
+        {
+            "rank": 6,
+            "term": "Edo state election",
+            "category": "elections",
+            "trend": "spike_sep"
+        },
+        {
+            "rank": 7,
+            "term": "Labour strike",
+            "category": "economy",
+            "trend": "periodic"
+        },
+        {
+            "rank": 8,
+            "term": "Student loan",
+            "category": "education",
+            "trend": "steady"
+        }
+    ],
+    "political_search_terms": [
+        {
+            "term": "Bola Tinubu",
+            "trend": "stable_high",
+            "peak_period": "Throughout 2024",
+            "related_queries": [
+                "Tinubu age",
+                "Tinubu net worth",
+                "Tinubu health",
+                "Tinubu policies"
+            ],
+            "regional_interest": [
+                "Lagos",
+                "South West",
+                "Nationwide"
+            ]
+        },
+        {
+            "term": "Peter Obi",
+            "trend": "declining_from_2023_peak",
+            "peak_period": "2022-early 2023",
+            "related_queries": [
+                "Peter Obi 2027",
+                "Obidients",
+                "Labour Party"
+            ],
+            "regional_interest": [
+                "South East",
+                "South South",
+                "Lagos"
+            ],
+            "note": "Not in top 2024 trends; peak was 2023 election period"
+        },
+        {
+            "term": "Atiku Abubakar",
+            "trend": "declining",
+            "peak_period": "2022-2023 campaign",
+            "related_queries": [
+                "Atiku PDP",
+                "Atiku 2027"
+            ],
+            "regional_interest": [
+                "North East",
+                "North West"
+            ]
+        },
+        {
+            "term": "Fuel subsidy",
+            "trend": "stable_high",
+            "peak_period": "May 2023 removal, continued 2024",
+            "related_queries": [
+                "Fuel price today",
+                "NNPC petrol",
+                "subsidy removal impact"
+            ],
+            "regional_interest": [
+                "Nationwide"
+            ]
+        },
+        {
+            "term": "INEC",
+            "trend": "spike_during_elections",
+            "peak_period": "Election weeks (Edo Sep, Ondo Nov)",
+            "related_queries": [
+                "INEC result",
+                "PVC collection",
+                "BVAS"
+            ],
+            "regional_interest": [
+                "Nationwide"
+            ]
+        },
+        {
+            "term": "2027 election",
+            "trend": "rising",
+            "peak_period": "Q4 2024 onwards",
+            "related_queries": [
+                "Who will win 2027",
+                "Peter Obi 2027",
+                "Tinubu second term"
+            ],
+            "regional_interest": [
+                "Lagos",
+                "Abuja",
+                "Port Harcourt"
+            ]
+        },
+        {
+            "term": "Sim Fubara",
+            "trend": "spike",
+            "peak_period": "Rivers crisis 2024",
+            "related_queries": [
+                "Rivers crisis",
+                "Fubara vs Wike"
+            ],
+            "regional_interest": [
+                "Rivers",
+                "South South"
+            ]
+        },
+        {
+            "term": "Kwankwaso",
+            "trend": "declining",
+            "peak_period": "2022-2023",
+            "related_queries": [
+                "NNPP crisis",
+                "Kwankwaso expulsion"
+            ],
+            "regional_interest": [
+                "Kano",
+                "North West"
+            ]
+        }
+    ],
+    "governor_search_trends": [
+        {
+            "governor": "Babajide Sanwo-Olu",
+            "state": "Lagos",
+            "trend": "stable",
+            "context": "State policies, taxes"
+        },
+        {
+            "governor": "Sheriff Oborevwori",
+            "state": "Delta",
+            "trend": "spike",
+            "context": "APC defection"
+        },
+        {
+            "governor": "Sim Fubara",
+            "state": "Rivers",
+            "trend": "high",
+            "context": "Political crisis"
+        },
+        {
+            "governor": "Dapo Abiodun",
+            "state": "Ogun",
+            "trend": "stable",
+            "context": "Infrastructure"
+        },
+        {
+            "governor": "Abba Kabir Yusuf",
+            "state": "Kano",
+            "trend": "medium",
+            "context": "NNPP governance"
+        },
+        {
+            "governor": "Peter Mbah",
+            "state": "Enugu",
+            "trend": "rising",
+            "context": "Economic policies"
+        }
+    ],
+    "economic_search_trends": [
+        {
+            "term": "Naira to dollar",
+            "trend": "very_high",
+            "peak_period": "Forex volatility periods",
+            "related_queries": [
+                "Dollar rate today",
+                "CBN exchange rate",
+                "Black market rate"
+            ]
+        },
+        {
+            "term": "Fuel price",
+            "trend": "very_high",
+            "peak_period": "Price change announcements",
+            "related_queries": [
+                "Petrol price today",
+                "NNPC",
+                "Fuel scarcity"
+            ]
+        },
+        {
+            "term": "Inflation Nigeria",
+            "trend": "rising",
+            "peak_period": "June 2024 record inflation",
+            "related_queries": [
+                "Food prices",
+                "Cost of living"
+            ]
+        },
+        {
+            "term": "Minimum wage",
+            "trend": "spike_jul_2024",
+            "context": "N70,000 announcement and debates"
+        }
+    ],
+    "regional_search_patterns": {
+        "south_west": [
+            "Tinubu",
+            "Lagos",
+            "Yoruba politics"
+        ],
+        "south_east": [
+            "Peter Obi",
+            "Biafra",
+            "Igbo"
+        ],
+        "south_south": [
+            "Rivers crisis",
+            "Oil",
+            "Niger Delta"
+        ],
+        "north_central": [
+            "Benue",
+            "Plateau crisis",
+            "Middle Belt"
+        ],
+        "north_west": [
+            "Kaduna",
+            "Banditry",
+            "Kwankwaso"
+        ],
+        "north_east": [
+            "Borno",
+            "Insurgency",
+            "IDPs"
+        ]
+    }
+}

@@ -1,0 +1,305 @@
+{
+    "state": "Kano",
+    "assembly_name": "Kano State House of Assembly",
+    "website": "https://kanoassembly.gov.ng",
+    "assembly_term": "10th Assembly",
+    "inauguration_date": "2023-06-13",
+    "total_members": 40,
+    "party_breakdown": {
+        "NNPP": 26,
+        "APC": 14
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Rt. Hon. Jibril Ismail Falgore",
+            "party": "NNPP",
+            "constituency": "Rogo"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Muhammad Bello Butu-Butu",
+            "party": "NNPP",
+            "constituency": "Rimin Gado/Tofa"
+        },
+        "Majority_Leader": {
+            "name": "Hon. Lawal Husain",
+            "party": "NNPP",
+            "constituency": "Dala"
+        },
+        "Deputy_Majority_Leader": {
+            "name": "Hon. Garba Shehu",
+            "party": "NNPP"
+        },
+        "Chief_Whip": {
+            "name": "Hon. Mudassir Zawachiki",
+            "party": "NNPP",
+            "constituency": "Kumbotso"
+        },
+        "Minority_Leader": {
+            "name": "Hon. Labaran Abdul Madari",
+            "party": "APC",
+            "constituency": "Warawa"
+        },
+        "Minority_Whip": {
+            "name": "Hon. Ayuba Labaran",
+            "party": "APC"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Ajingi",
+            "name": "Hon. Lawal Tini",
+            "party": "NNPP",
+            "file": "ajingi.json"
+        },
+        {
+            "constituency": "Albasu",
+            "name": "Hon. Musa Tahir Haruna",
+            "party": "NNPP",
+            "file": "albasu.json"
+        },
+        {
+            "constituency": "Bagwai/Shanono",
+            "name": "Hon. Ali Lawan Alhassan",
+            "party": "NNPP",
+            "file": "bagwai_shanono.json"
+        },
+        {
+            "constituency": "Bebeji",
+            "name": "Hon. Ali Muhammad Tiga",
+            "party": "NNPP",
+            "file": "bebeji.json"
+        },
+        {
+            "constituency": "Bichi",
+            "name": "Hon. Lawal Shehu",
+            "party": "APC",
+            "file": "bichi.json"
+        },
+        {
+            "constituency": "Bunkure",
+            "name": "Hon. Hafiz Gambo",
+            "party": "NNPP",
+            "file": "bunkure.json"
+        },
+        {
+            "constituency": "Dala",
+            "name": "Hon. Lawal Husain",
+            "party": "NNPP",
+            "role": "Majority Leader",
+            "file": "dala.json"
+        },
+        {
+            "constituency": "Dambatta",
+            "name": "Hon. Murtala Musa Kore",
+            "party": "APC",
+            "file": "dambatta.json"
+        },
+        {
+            "constituency": "Dawakin Kudu",
+            "name": "Hon. Rabiu Shuaibu",
+            "party": "NNPP",
+            "file": "dawakin_kudu.json"
+        },
+        {
+            "constituency": "Dawakin Tofa",
+            "name": "Hon. Saleh Ahmad Marke",
+            "party": "APC",
+            "file": "dawakin_tofa.json"
+        },
+        {
+            "constituency": "Doguwa",
+            "name": "Hon. Salisu Ibrahim Muhammad",
+            "party": "APC",
+            "file": "doguwa.json"
+        },
+        {
+            "constituency": "Fagge",
+            "name": "Hon. Tukur Mohammed",
+            "party": "NNPP",
+            "file": "fagge.json"
+        },
+        {
+            "constituency": "Gabasawa",
+            "name": "Hon. Zakariyya Abdullahi Nuhu",
+            "party": "NNPP",
+            "file": "gabasawa.json"
+        },
+        {
+            "constituency": "Garko",
+            "name": "Hon. Abba Ibrahim",
+            "party": "APC",
+            "file": "garko.json"
+        },
+        {
+            "constituency": "Gaya",
+            "name": "Hon. Abubakar Danladi Isah",
+            "party": "APC",
+            "file": "gaya.json"
+        },
+        {
+            "constituency": "Gezawa",
+            "name": "Hon. Abdullahi Yahya",
+            "party": "APC",
+            "file": "gezawa.json"
+        },
+        {
+            "constituency": "Gwale",
+            "name": "Hon. Abdulmajid Isah Umar",
+            "party": "NNPP",
+            "file": "gwale.json"
+        },
+        {
+            "constituency": "Gwarzo",
+            "name": "Hon. Yunusa Haruna Kayyu",
+            "party": "APC",
+            "file": "gwarzo.json"
+        },
+        {
+            "constituency": "Kabo",
+            "name": "Hon. Ayuba Labaran Alhassan",
+            "party": "APC",
+            "role": "Minority Whip",
+            "file": "kabo.json"
+        },
+        {
+            "constituency": "Kano Municipal",
+            "name": "Hon. Sarki Aliyu Daneji",
+            "party": "NNPP",
+            "file": "kano_municipal.json"
+        },
+        {
+            "constituency": "Karaye",
+            "name": "Hon. Ahmad Ibrahim",
+            "party": "NNPP",
+            "file": "karaye.json"
+        },
+        {
+            "constituency": "Kibiya",
+            "name": "Hon. Garba Shehu Fammar",
+            "party": "NNPP",
+            "role": "Deputy Majority Leader",
+            "file": "kibiya.json"
+        },
+        {
+            "constituency": "Kiru",
+            "name": "Hon. Usman Rabula",
+            "party": "NNPP",
+            "file": "kiru.json"
+        },
+        {
+            "constituency": "Kumbotso",
+            "name": "Hon. Mudassir Ibrahim",
+            "party": "NNPP",
+            "role": "Chief Whip",
+            "file": "kumbotso.json"
+        },
+        {
+            "constituency": "Kunchi/Tsanyawa",
+            "name": "Hon. Garba Ya'u Gwarmai",
+            "party": "APC",
+            "file": "kunchi_tsanyawa.json"
+        },
+        {
+            "constituency": "Kura/Garun Malam",
+            "name": "Hon. Alhassan Zakari Ishaq",
+            "party": "NNPP",
+            "file": "kura_garun_malam.json"
+        },
+        {
+            "constituency": "Madobi",
+            "name": "Hon. Suleiman Mukhtar Ishaq",
+            "party": "NNPP",
+            "file": "madobi.json"
+        },
+        {
+            "constituency": "Makoda",
+            "name": "Hon. Ahmad Muhammad",
+            "party": "APC",
+            "file": "makoda.json"
+        },
+        {
+            "constituency": "Minjibir",
+            "name": "Hon. Abdul Abdulhamid",
+            "party": "NNPP",
+            "file": "minjibir.json"
+        },
+        {
+            "constituency": "Nassarawa",
+            "name": "Hon. Yusuf Bello Aliyu",
+            "party": "NNPP",
+            "file": "nassarawa.json"
+        },
+        {
+            "constituency": "Rano",
+            "name": "Hon. Nuradden Alhassan Ahmad",
+            "party": "NNPP",
+            "file": "rano.json"
+        },
+        {
+            "constituency": "Rimin Gado/Tofa",
+            "name": "Hon. Muhammad Bello Butu-Butu",
+            "party": "NNPP",
+            "role": "Deputy Speaker",
+            "file": "rimin_gado_tofa.json"
+        },
+        {
+            "constituency": "Rogo",
+            "name": "Rt. Hon. Jibril Ismail Falgore",
+            "party": "NNPP",
+            "role": "Speaker",
+            "file": "rogo.json"
+        },
+        {
+            "constituency": "Sumaila",
+            "name": "Hon. Zubairu Hamza Masu",
+            "party": "NNPP",
+            "file": "sumaila.json"
+        },
+        {
+            "constituency": "Takai",
+            "name": "Hon. Musa Ali Kachako",
+            "party": "APC",
+            "file": "takai.json"
+        },
+        {
+            "constituency": "Tarauni",
+            "name": "Hon. Kabiru Sule Dahiru",
+            "party": "NNPP",
+            "file": "tarauni.json"
+        },
+        {
+            "constituency": "Tudun Wada",
+            "name": "Hon. Sule Lawal Shuwaki",
+            "party": "APC",
+            "file": "tudun_wada.json"
+        },
+        {
+            "constituency": "Ungogo",
+            "name": "Hon. Aminu Sa'ad",
+            "party": "NNPP",
+            "file": "ungogo.json"
+        },
+        {
+            "constituency": "Warawa",
+            "name": "Hon. Labaran Abdul Madari",
+            "party": "APC",
+            "role": "Minority Leader",
+            "file": "warawa.json"
+        },
+        {
+            "constituency": "Wudil",
+            "name": "Hon. Abdullahi Ali Manager",
+            "party": "NNPP",
+            "file": "wudil.json"
+        }
+    ],
+    "data_status": "COMPLETE",
+    "sources": [
+        "kanoassembly.gov.ng",
+        "Wikipedia",
+        "ThisDay",
+        "Channels TV",
+        "nigerianleaders.com"
+    ],
+    "last_updated": "2025-12-27T22:00:00Z"
+}

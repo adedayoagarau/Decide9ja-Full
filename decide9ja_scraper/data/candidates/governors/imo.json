@@ -1,0 +1,112 @@
+{
+    "id": "uzodinma_hope",
+    "slug": "hope-uzodinma",
+    "state": "Imo",
+    "name": {
+        "full": "Hope Odidika Uzodinma",
+        "common": "Hope Uzodinma",
+        "aliases": [
+            "Onwa Oyoko"
+        ]
+    },
+    "personal": {
+        "date_of_birth": "1958-12-12",
+        "state_of_origin": "Imo",
+        "lga_of_origin": "Oru West",
+        "religion": "Catholic",
+        "ethnicity": "Igbo",
+        "education": [],
+        "career_before_politics": [
+            {
+                "role": "Businessman",
+                "organization": "Various",
+                "period": "Present"
+            }
+        ],
+        "family": {
+            "spouse": null,
+            "children": null,
+            "notes": null
+        }
+    },
+    "political_career": {
+        "party_history": [
+            {
+                "party": "PDP",
+                "full_name": "Peoples Democratic Party",
+                "joined": null,
+                "left": 2018
+            },
+            {
+                "party": "APC",
+                "full_name": "All Progressives Congress",
+                "joined": 2018,
+                "left": null
+            }
+        ],
+        "positions_held": [
+            {
+                "position": "Senator",
+                "constituency": "Imo West",
+                "period": "2011-2019"
+            },
+            {
+                "position": "Governor",
+                "constituency": "Imo State",
+                "period": "2020-present",
+                "notes": "Re-elected 2023"
+            }
+        ],
+        "election_history": [
+            {
+                "year": 2019,
+                "position": "Governor",
+                "party": "APC",
+                "result": "Won (Supreme Court January 2020)"
+            },
+            {
+                "year": 2023,
+                "position": "Governor",
+                "party": "APC",
+                "result": "Won (re-elected)"
+            }
+        ]
+    },
+    "term_info": {
+        "current_term": "2nd term",
+        "term_start": "2023-05-29",
+        "term_end": "2027-05-29",
+        "first_elected": 2020
+    },
+    "policy_positions": [],
+    "track_record": {
+        "achievements": [],
+        "failures": [],
+        "promises_vs_delivery": []
+    },
+    "controversies": [
+        {
+            "issue": "Supreme Court victory controversy",
+            "allegation": "Victory declared via Supreme Court despite coming 4th in official INEC results",
+            "their_response": "Maintained legitimacy of Supreme Court decision",
+            "status": "Controversial but legally upheld",
+            "sources": [
+                "https://www.premiumtimesng.com"
+            ]
+        }
+    ],
+    "social_media": {
+        "twitter": "@Hope_Uzodimma1",
+        "facebook": null,
+        "instagram": null,
+        "website": null,
+        "verified": false
+    },
+    "metadata": {
+        "data_quality_score": 0.55,
+        "last_updated": "2025-12-27T20:00:00Z",
+        "sources_count": 5,
+        "reviewed_by": "Antigravity Agent",
+        "notes": "Became governor via Supreme Court ruling January 2020. Former Senator."
+    }
+}

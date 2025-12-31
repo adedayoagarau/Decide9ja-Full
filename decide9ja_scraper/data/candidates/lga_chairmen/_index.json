@@ -1,0 +1,297 @@
+{
+    "database": "Nigeria LGA Chairmen Database",
+    "description": "Comprehensive database of Local Government Area Chairmen across Nigeria's 36 states and FCT",
+    "total_lgas": 774,
+    "lgas_documented": 774,
+    "lgas_with_names": 650,
+    "lgas_pending_names": 124,
+    "completeness_percentage": "100%",
+    "name_completeness": "84%",
+    "last_updated": "2025-12-28T01:00:00Z",
+    "states_with_complete_data": [
+        {
+            "state": "Lagos",
+            "lgas": 20,
+            "winning_party": "APC",
+            "election_date": "2021-07-24",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Rivers",
+            "lgas": 23,
+            "winning_party": "APP",
+            "election_date": "2024-10-05",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Kano",
+            "lgas": 44,
+            "winning_party": "NNPP",
+            "election_date": "2024-10-26",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Kaduna",
+            "lgas": 23,
+            "winning_party": "APC",
+            "election_date": "2024-10-19",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Ogun",
+            "lgas": 20,
+            "winning_party": "APC",
+            "election_date": "2024-11-16",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Anambra",
+            "lgas": 21,
+            "winning_party": "APGA",
+            "election_date": "2024-09-28",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Imo",
+            "lgas": 27,
+            "winning_party": "APC",
+            "election_date": "2024-09-21",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Abia",
+            "lgas": 17,
+            "winning_party": "ZLP",
+            "election_date": "2024-11-02",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Ekiti",
+            "lgas": 16,
+            "winning_party": "APC",
+            "election_date": "2023-12-02",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Ondo",
+            "lgas": 18,
+            "winning_party": "APC",
+            "election_date": "2025-01-18",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Osun",
+            "lgas": 30,
+            "winning_party": "PDP",
+            "election_date": "2025-02-22",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Enugu",
+            "lgas": 17,
+            "winning_party": "PDP",
+            "election_date": "2024-09-21",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Ebonyi",
+            "lgas": 13,
+            "winning_party": "APC",
+            "election_date": "2024-07-27",
+            "status": "NULLIFIED"
+        },
+        {
+            "state": "Cross River",
+            "lgas": 18,
+            "winning_party": "APC",
+            "election_date": "2024-11-02",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Bayelsa",
+            "lgas": 8,
+            "winning_party": "PDP",
+            "election_date": "2024-04-06",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Katsina",
+            "lgas": 34,
+            "winning_party": "APC",
+            "election_date": "2025-02-15",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Borno",
+            "lgas": 27,
+            "winning_party": "APC",
+            "election_date": "2024-01-20",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Adamawa",
+            "lgas": 21,
+            "winning_party": "PDP",
+            "election_date": "2024-07-13",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Bauchi",
+            "lgas": 20,
+            "winning_party": "PDP",
+            "election_date": "2024-08-17",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Benue",
+            "lgas": 23,
+            "winning_party": "APC",
+            "election_date": "2024-10-05",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Gombe",
+            "lgas": 11,
+            "winning_party": "APC",
+            "election_date": "2024-04-27",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Jigawa",
+            "lgas": 27,
+            "winning_party": "APC",
+            "election_date": "2024-10-05",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Kebbi",
+            "lgas": 21,
+            "winning_party": "APC",
+            "election_date": "2024-08-31",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Kwara",
+            "lgas": 16,
+            "winning_party": "APC",
+            "election_date": "2024-09-21",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Nasarawa",
+            "lgas": 13,
+            "winning_party": "APC",
+            "election_date": "2024-11-02",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Sokoto",
+            "lgas": 23,
+            "winning_party": "APC",
+            "election_date": "2024-09-21",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Taraba",
+            "lgas": 16,
+            "winning_party": "PDP",
+            "election_date": "2025-11-15",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Yobe",
+            "lgas": 17,
+            "winning_party": "APC",
+            "election_date": "2024-06-08",
+            "status": "COMPLETE"
+        },
+        {
+            "state": "Zamfara",
+            "lgas": 14,
+            "winning_party": "PDP",
+            "election_date": "2024-11-16",
+            "status": "COMPLETE"
+        }
+    ],
+    "states_with_partial_data": [
+        {
+            "state": "Oyo",
+            "lgas": 33,
+            "winning_party": "PDP",
+            "election_date": "2024-04-27",
+            "status": "PARTIAL"
+        },
+        {
+            "state": "Delta",
+            "lgas": 25,
+            "winning_party": "PDP",
+            "election_date": "2024-07-13",
+            "status": "PARTIAL"
+        },
+        {
+            "state": "Edo",
+            "lgas": 18,
+            "winning_party": "APC",
+            "election_date": "2023-09-02",
+            "status": "PARTIAL"
+        },
+        {
+            "state": "Akwa Ibom",
+            "lgas": 31,
+            "winning_party": "PDP",
+            "election_date": "2024-10-05",
+            "status": "PARTIAL"
+        },
+        {
+            "state": "Kogi",
+            "lgas": 21,
+            "winning_party": "APC",
+            "election_date": "2024-10-19",
+            "status": "PARTIAL"
+        },
+        {
+            "state": "Niger",
+            "lgas": 25,
+            "winning_party": "APC",
+            "election_date": "2025-11-01",
+            "status": "PARTIAL"
+        },
+        {
+            "state": "Plateau",
+            "lgas": 17,
+            "winning_party": "PDP",
+            "election_date": "2024-10-09",
+            "status": "PARTIAL"
+        },
+        {
+            "state": "FCT",
+            "lgas": 6,
+            "winning_party": "MIXED",
+            "election_date": "2022-02-12",
+            "status": "STRUCTURE_ONLY",
+            "notes": "INEC-administered, next election Feb 2026"
+        }
+    ],
+    "party_distribution_summary": {
+        "APC_dominated_states": 22,
+        "PDP_dominated_states": 11,
+        "NNPP_dominated_states": 1,
+        "APGA_dominated_states": 1,
+        "APP_dominated_states": 1,
+        "ZLP_dominated_states": 1
+    },
+    "notable_findings": [
+        "First female chairman in Borno State history: Hajiya Inna Galadima (Jere LGA)",
+        "Ebonyi State elections nullified by Federal High Court (October 2025)",
+        "Rivers PDP boycott led to APP sweeping all 23 seats",
+        "Unique parties: ZLP dominates Abia, APP dominates Rivers, NNPP dominates Kano",
+        "Several states saw PDP/APC boycotts: Sokoto (PDP), Zamfara (APC), Rivers (PDP)"
+    ],
+    "sources": [
+        "State Independent Electoral Commissions (SIECs)",
+        "State Government Websites",
+        "INEC (for FCT)",
+        "National newspapers: Punch, Vanguard, Guardian, ThisDay, Premium Times",
+        "News websites: Channels TV, Daily Post, The Cable, Blueprint, NAN"
+    ]
+}

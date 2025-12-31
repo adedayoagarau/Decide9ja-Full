@@ -1,0 +1,43 @@
+{
+  "id": "ukpong-udo_emmanuel",
+  "slug": "emmanuel-ukpong-udo",
+  "state": "Akwa Ibom",
+  "federal_constituency": "Ikono/Ini",
+  "name": {
+    "full": "Emmanuel Ukpong-Udo",
+    "common": "Emmanuel Ukpong-Udo",
+    "aliases": []
+  },
+  "party": "YPP",
+  "personal": {
+    "date_of_birth": null,
+    "state_of_origin": "Akwa Ibom",
+    "lga_of_origin": null,
+    "religion": null,
+    "education": []
+  },
+  "political_career": {
+    "positions_held": [
+      {
+        "position": "Member, House of Representatives",
+        "constituency": "Ikono/Ini Federal Constituency",
+        "period": "2023-present"
+      }
+    ]
+  },
+  "house_info": {
+    "committee_memberships": [],
+    "bills_sponsored": [],
+    "motions": [],
+    "legislative_focus": []
+  },
+  "social_media": {
+    "twitter": null,
+    "facebook": null,
+    "website": null
+  },
+  "metadata": {
+    "data_quality_score": 0.45,
+    "last_updated": "2025-12-27T21:30:00Z"
+  }
+}

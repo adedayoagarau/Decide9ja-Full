@@ -1,0 +1,222 @@
+{
+    "state": "Jigawa",
+    "assembly_name": "Jigawa State House of Assembly",
+    "website": "https://jigawastate.gov.ng",
+    "assembly_term": "8th Assembly",
+    "inauguration_date": "2023-06-15",
+    "total_members": 30,
+    "party_breakdown": {
+        "APC": 28,
+        "PDP": 1,
+        "ADC": 1
+    },
+    "leadership": {
+        "Speaker": {
+            "name": "Hon. Haruna Aliyu Dangyatin",
+            "party": "APC",
+            "constituency": "Miga"
+        },
+        "Deputy_Speaker": {
+            "name": "Hon. Sani Isyaku Abubakar",
+            "party": "APC",
+            "constituency": "Gumel"
+        },
+        "Minority_Whip": {
+            "name": "Hon. Mohd Kabir",
+            "party": "PDP",
+            "constituency": "Birnin Kudu"
+        }
+    },
+    "members": [
+        {
+            "constituency": "Auyo",
+            "name": "Hon. Sani Ishaq",
+            "party": "APC",
+            "file": "auyo.json"
+        },
+        {
+            "constituency": "Babura",
+            "name": "Hon. Abdulrahman Masud Naruwa",
+            "party": "APC",
+            "file": "babura.json"
+        },
+        {
+            "constituency": "Birnin Kudu",
+            "name": "Hon. Ibrahim Kabir",
+            "party": "PDP",
+            "file": "birnin_kudu.json"
+        },
+        {
+            "constituency": "Birniwa",
+            "name": "Hon. Keriya Hassan",
+            "party": "APC",
+            "file": "birniwa.json"
+        },
+        {
+            "constituency": "Buji",
+            "name": "Hon. Alhaji Baba Sale",
+            "party": "APC",
+            "file": "buji.json"
+        },
+        {
+            "constituency": "Dutse",
+            "name": "Hon. Ishaq Tasiu",
+            "party": "APC",
+            "file": "dutse.json"
+        },
+        {
+            "constituency": "Gagarawa",
+            "name": "Hon. Yau Ibrahim",
+            "party": "APC",
+            "file": "gagarawa.json"
+        },
+        {
+            "constituency": "Garki",
+            "name": "Hon. Ila Abdu Muku",
+            "party": "APC",
+            "file": "garki.json"
+        },
+        {
+            "constituency": "Gumel",
+            "name": "Hon. Sani Isyaku Abubakar",
+            "party": "APC",
+            "role": "Deputy Speaker",
+            "file": "gumel.json"
+        },
+        {
+            "constituency": "Guri",
+            "name": "Hon. Abubakar Sani",
+            "party": "APC",
+            "file": "guri.json"
+        },
+        {
+            "constituency": "Gwaram",
+            "name": "Hon. Tura Usman Abdullahi",
+            "party": "APC",
+            "file": "gwaram.json"
+        },
+        {
+            "constituency": "Hadejia",
+            "name": "Hon. Ibrahim Hamza Adamu",
+            "party": "APC",
+            "file": "hadejia.json"
+        },
+        {
+            "constituency": "Jahun",
+            "name": "Hon. Muhammad Abubakar Sadiq",
+            "party": "APC",
+            "file": "jahun.json"
+        },
+        {
+            "constituency": "Kafin Hausa",
+            "name": "Hon. Adamu Muhammad",
+            "party": "APC",
+            "file": "kafin_hausa.json"
+        },
+        {
+            "constituency": "Kanya",
+            "name": "Hon. Ibrahim Hashim Kanya",
+            "party": "APC",
+            "file": "kanya.json"
+        },
+        {
+            "constituency": "Kaugama",
+            "name": "Hon. Sale Sani",
+            "party": "APC",
+            "file": "kaugama.json"
+        },
+        {
+            "constituency": "Kazaure",
+            "name": "Hon. Idris Mohammed Inuwa",
+            "party": "APC",
+            "file": "kazaure.json"
+        },
+        {
+            "constituency": "Kiri Kasamma",
+            "name": "Hon. Abubakar Ibrahim",
+            "party": "APC",
+            "file": "kiri_kasamma.json"
+        },
+        {
+            "constituency": "Kiyawa",
+            "name": "Hon. Mohammed Yahaya",
+            "party": "APC",
+            "file": "kiyawa.json"
+        },
+        {
+            "constituency": "Madori",
+            "name": "Hon. Ibrahim Adamu",
+            "party": "APC",
+            "file": "madori.json"
+        },
+        {
+            "constituency": "Maigatari",
+            "name": "Hon. Yusuf Musa",
+            "party": "APC",
+            "file": "maigatari.json"
+        },
+        {
+            "constituency": "Malam Madori",
+            "name": "Hon. Abubakar Sale",
+            "party": "APC",
+            "file": "malam_madori.json"
+        },
+        {
+            "constituency": "Miga",
+            "name": "Hon. Haruna Aliyu Dangyatin",
+            "party": "APC",
+            "role": "Speaker",
+            "file": "miga.json"
+        },
+        {
+            "constituency": "Ringim",
+            "name": "Hon. Sule Aminu",
+            "party": "APC",
+            "file": "ringim.json"
+        },
+        {
+            "constituency": "Roni",
+            "name": "Hon. Muhammad Lawan Dansure",
+            "party": "APC",
+            "file": "roni.json"
+        },
+        {
+            "constituency": "Sule Tankara",
+            "name": "Hon. Abubakar Saidu Mohammed",
+            "party": "APC",
+            "file": "sule_tankara.json"
+        },
+        {
+            "constituency": "Taura",
+            "name": "Hon. Shehu Dayyabu",
+            "party": "APC",
+            "file": "taura.json"
+        },
+        {
+            "constituency": "Yankwashi",
+            "name": "Hon. Saleh Yawale A.",
+            "party": "ADC",
+            "file": "yankwashi.json"
+        },
+        {
+            "constituency": "Hadejia South",
+            "name": "Hon. Ibrahim Mohammed",
+            "party": "APC",
+            "file": "hadejia_south.json"
+        },
+        {
+            "constituency": "Dutse South",
+            "name": "Hon. Abubakar Hamza",
+            "party": "APC",
+            "file": "dutse_south.json"
+        }
+    ],
+    "data_status": "COMPLETE",
+    "sources": [
+        "nigerianleaders.com",
+        "jigawastate.gov.ng",
+        "Daily Post",
+        "Wikipedia"
+    ],
+    "last_updated": "2025-12-27T23:35:00Z"
+}

@@ -1,0 +1,138 @@
+{
+    "state": "Edo",
+    "total_lgas": 18,
+    "last_lga_election": "2023-09-02",
+    "next_election_due": "2026",
+    "current_term_status": "Active - suspended by House of Assembly Dec 2024",
+    "siec_name": "EDSIEC",
+    "party_notes": "PDP won all 18 in 2023; 17 of 18 chairmen defected to APC in March 2025",
+    "data_completeness": "55%",
+    "chairmen": [
+        {
+            "lga": "Akoko Edo",
+            "name": "Tajudeen Alade Suleiman",
+            "party": "APC",
+            "notes": "Defected from PDP",
+            "file": "akoko_edo.json"
+        },
+        {
+            "lga": "Egor",
+            "name": "DATA_PENDING",
+            "party": "APC",
+            "file": "egor.json"
+        },
+        {
+            "lga": "Esan Central",
+            "name": "DATA_PENDING",
+            "party": "APC",
+            "file": "esan_central.json"
+        },
+        {
+            "lga": "Esan North East",
+            "name": "DATA_PENDING",
+            "party": "APC",
+            "file": "esan_north_east.json"
+        },
+        {
+            "lga": "Esan South East",
+            "name": "DATA_PENDING",
+            "party": "APC",
+            "file": "esan_south_east.json"
+        },
+        {
+            "lga": "Esan West",
+            "name": "DATA_PENDING",
+            "party": "APC",
+            "file": "esan_west.json"
+        },
+        {
+            "lga": "Etsako Central",
+            "name": "Obomigie Imokhae Solomon",
+            "party": "APC",
+            "notes": "Defected from PDP",
+            "file": "etsako_central.json"
+        },
+        {
+            "lga": "Etsako East",
+            "name": "Ato Benedicta",
+            "party": "APC",
+            "notes": "Defected from PDP",
+            "file": "etsako_east.json"
+        },
+        {
+            "lga": "Etsako West",
+            "name": "Zimbiril Marvelous",
+            "party": "APC",
+            "notes": "Defected from PDP",
+            "file": "etsako_west.json"
+        },
+        {
+            "lga": "Igueben",
+            "name": "Asueleme Clement",
+            "party": "APC",
+            "notes": "Defected from PDP",
+            "file": "igueben.json"
+        },
+        {
+            "lga": "Ikpoba-Okha",
+            "name": "Dr. Eric Iyoba Osayande",
+            "party": "APC",
+            "notes": "Defected from PDP",
+            "file": "ikpoba_okha.json"
+        },
+        {
+            "lga": "Oredo",
+            "name": "DATA_PENDING",
+            "party": "APC",
+            "file": "oredo.json"
+        },
+        {
+            "lga": "Orhionmwon",
+            "name": "DATA_PENDING",
+            "party": "APC",
+            "file": "orhionmwon.json"
+        },
+        {
+            "lga": "Ovia North East",
+            "name": "Collins Osamede Ogbewe",
+            "party": "APC",
+            "notes": "Defected from PDP",
+            "file": "ovia_north_east.json"
+        },
+        {
+            "lga": "Ovia South West",
+            "name": "Edusa OM",
+            "party": "APC",
+            "notes": "Defected from PDP",
+            "file": "ovia_south_west.json"
+        },
+        {
+            "lga": "Owan East",
+            "name": "DATA_PENDING",
+            "party": "APC",
+            "file": "owan_east.json"
+        },
+        {
+            "lga": "Owan West",
+            "name": "Ahonsi Dickson Idojemu",
+            "party": "APC",
+            "notes": "Defected from PDP",
+            "file": "owan_west.json"
+        },
+        {
+            "lga": "Uhunmwode",
+            "name": "Adodo O. Kenneth",
+            "party": "APC",
+            "notes": "Defected from PDP",
+            "file": "uhunmwode.json"
+        }
+    ],
+    "sources": [
+        "Channels TV",
+        "Legit.ng",
+        "Vanguard",
+        "ThisDay",
+        "Daily Post"
+    ],
+    "last_updated": "2025-12-28T00:05:00Z"
+}
