@@ -127,11 +127,13 @@ def extract_name(text: str) -> Optional[str]:
             text = text[len(prefix):]
             break
     
-    # Remove trailing pleasantries
+    # Remove trailing pleasantries (extended list)
     suffixes = [
         ", nice to meet you", ", how are you", ", hope you are well",
         ", i hope you are well", ". how are you", ". nice to meet you",
-        ", thanks", ". thanks"
+        ", thanks", ". thanks", ". thank you", ", thank you",
+        ". pleased to meet you", ", pleased to meet you",
+        ". cheers", ", cheers", "!", "."
     ]
     
     text_lower = text.lower()
@@ -179,20 +181,70 @@ def extract_nigerian_state(text: str) -> Optional[str]:
 def extract_lga(text: str, state: str) -> Optional[str]:
     """
     Extract LGA name from text for a given state.
-    For now, accept any reasonable input (proper validation would need LGA database).
+    Uses fuzzy matching against known LGAs in the database.
     """
-    text_clean = text.strip()
+    import os
+    from rapidfuzz import fuzz, process
+    
+    text_clean = text.strip().lower()
+    
+    # Remove common prefixes (conversational text)
+    prefixes = [
+        "i believe i'm from ", "i believe i am from ", "i'm from ",
+        "i am from ", "i live in ", "i stay in ", "it's ", "its ",
+        "my lga is ", "i'm in ", "from "
+    ]
+    for prefix in prefixes:
+        if text_clean.startswith(prefix):
+            text_clean = text_clean[len(prefix):]
+            break
     
     # Remove common suffixes
-    for suffix in [" local government", " lga", " local govt", " lg", " local government area"]:
-        if text_clean.lower().endswith(suffix):
+    suffixes = [
+        " local government", " lga", " local govt", " lg", 
+        " local government area", " area"
+    ]
+    for suffix in suffixes:
+        if text_clean.endswith(suffix):
             text_clean = text_clean[:-len(suffix)]
+            break
     
-    # Basic validation
-    if len(text_clean) < 2 or len(text_clean) > 100:
+    text_clean = text_clean.strip()
+    
+    # Get known LGAs for this state from database
+    try:
+        from sqlalchemy import create_engine, text as sql_text
+        engine = create_engine(os.getenv('DATABASE_URL'))
+        
+        with engine.connect() as conn:
+            result = conn.execute(sql_text('''
+                SELECT DISTINCT lga FROM lga_representatives 
+                WHERE LOWER(state) = :state
+            '''), {'state': state.lower()})
+            known_lgas = [row[0] for row in result]
+        
+        if not known_lgas:
+            # No LGAs in DB for this state, return cleaned input
+            return text_clean.title() if text_clean else None
+        
+        # Fuzzy match against known LGAs
+        match = process.extractOne(
+            text_clean, 
+            known_lgas, 
+            scorer=fuzz.token_set_ratio,
+            score_cutoff=60
+        )
+        
+        if match:
+            return match[0]  # Return the matched LGA name
+        
+        # No good match - return cleaned input as fallback
+        return text_clean.title() if len(text_clean) >= 2 else None
+        
+    except Exception as e:
+        logger.warning(f"LGA extraction error: {e}")
+        # Fallback: return cleaned input
+        if len(text_clean) >= 2 and any(c.isalpha() for c in text_clean):
+            return text_clean.title()
         return None
-    
-    if not any(c.isalpha() for c in text_clean):
-        return None
-    
-    return text_clean.title()
+

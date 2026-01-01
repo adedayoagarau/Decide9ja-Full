@@ -132,10 +132,12 @@ class RAGService:
         name: Optional[str] = None,
         state: Optional[str] = None,
         position: Optional[str] = None,
-        constituency: Optional[str] = None
+        constituency: Optional[str] = None,
+        use_fuzzy: bool = True
     ) -> List[Politician]:
         """
         Direct lookup of politicians by attributes.
+        Falls back to fuzzy matching if exact match fails.
         """
         query = self.db.query(Politician)
         
@@ -148,7 +150,35 @@ class RAGService:
         if constituency:
             query = query.filter(Politician.constituency.ilike(f"%{constituency}%"))
         
-        return query.limit(10).all()
+        results = query.limit(10).all()
+        
+        # If no results and name was provided, try fuzzy matching
+        if not results and name and use_fuzzy:
+            try:
+                from app.services.fuzzy_match import fuzzy_find_politician
+                
+                # Get all politicians for fuzzy search
+                all_politicians = self.db.query(Politician).all()
+                politician_dicts = [
+                    {
+                        "id": p.id,
+                        "name": p.name,
+                        "obj": p  # Keep reference to actual object
+                    }
+                    for p in all_politicians
+                ]
+                
+                fuzzy_result = fuzzy_find_politician(name, politician_dicts, threshold=75)
+                
+                if fuzzy_result:
+                    matched, similarity, suggestion = fuzzy_result
+                    # Return the actual Politician object
+                    return [matched["obj"]]
+            except Exception as e:
+                import logging
+                logging.getLogger(__name__).warning(f"Fuzzy match failed: {e}")
+        
+        return results
     
     def get_senator_by_district(self, state: str, district: str = None) -> Optional[str]:
         """
