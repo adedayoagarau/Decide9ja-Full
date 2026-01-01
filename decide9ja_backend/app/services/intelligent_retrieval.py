@@ -57,7 +57,14 @@ async def intelligent_retrieve(
             politician_name = entities.get("politician_name", "")
             if politician_name:
                 result.politician = await _lookup_politician_by_name(politician_name)
-                result.sources_used.append("politicians_db")
+                if result.politician:
+                    result.sources_used.append("politicians_db")
+                else:
+                    # FALLBACK: If no DB result, try web search
+                    logger.info(f"Politician lookup failed for '{politician_name}', trying web search fallback")
+                    result.web_results = await _search_web(f"{politician_name} Nigeria politician")
+                    if result.web_results:
+                        result.sources_used.append("web_search_fallback")
         
         elif strategy == RetrievalStrategy.POSITION_LOOKUP:
             # Look up by position (president, governor, etc.)
@@ -65,7 +72,17 @@ async def intelligent_retrieve(
             state = entities.get("state", user_state)
             if position:
                 result.politician = await _lookup_politician_by_position(position, state)
-                result.sources_used.append("politicians_db")
+                if result.politician:
+                    result.sources_used.append("politicians_db")
+                else:
+                    # FALLBACK: If no DB result, try web search
+                    logger.info(f"Position lookup failed for '{position}', trying web search fallback")
+                    search_query = f"{position} Nigeria"
+                    if state:
+                        search_query = f"{position} {state} Nigeria"
+                    result.web_results = await _search_web(search_query)
+                    if result.web_results:
+                        result.sources_used.append("web_search_fallback")
         
         elif strategy == RetrievalStrategy.REP_LOOKUP:
             # Look up user's representatives
@@ -336,21 +353,21 @@ async def _search_rag(query: str, limit: int = 3) -> str:
     """Search RAG documents for relevant context."""
     try:
         from app.services.rag import RAGService
-        
-        rag = RAGService()
-        results = rag.search(query, top_k=limit)
-        
-        if results:
-            context_parts = []
-            for doc in results:
-                content = doc.get('content', '')[:500]
-                source = doc.get('title', 'Unknown source')
-                context_parts.append(f"[{source}]: {content}")
-            
-            return "\n\n".join(context_parts)
-        
+        from app.database import get_db
+
+        # Get database session (required by RAGService)
+        db = next(get_db())
+        rag = RAGService(db)
+
+        # Use the correct method: retrieve() returns (context_str, sources_list)
+        context, sources = rag.retrieve(query, top_k=limit)
+
+        # Return the formatted context if we got results
+        if context and not context.startswith("NO"):
+            return context
+
         return ""
-        
+
     except Exception as e:
         logger.error(f"RAG search error: {e}")
         return ""

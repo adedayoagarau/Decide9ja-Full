@@ -175,7 +175,7 @@ async def handle_idle_claude_first(state: UserState, text: str) -> str:
     
     # Voter registration
     if understanding.intent == Intent.VOTER_REGISTRATION:
-        return get_template("voter_registration")
+        return get_template("voter_reg_info")
     
     # ===========================================
     # INTELLIGENT RETRIEVAL
@@ -358,6 +358,7 @@ async def _handle_issue_flow(state: UserState, text: str, media_url: str = None)
         state.flow_data["confirm_action"] = "save_issue"
         
         return get_template("issue_confirm",
+            issue_type="Community Issue",
             location=state.flow_data.get("location", ""),
             description=text
         )
@@ -389,7 +390,12 @@ async def _handle_confirmation(state: UserState, text: str) -> str:
                 db.commit()
                 
                 state.clear_flow()
-                return get_template("issue_saved", reference=f"ISS-{report.id:05d}")
+                return get_template("issue_saved",
+                    issue_type="Community Issue",
+                    location=state.flow_data.get("location", "Unknown"),
+                    authority="relevant authorities",
+                    reference_id=f"ISS-{report.id:05d}"
+                )
                 
             except Exception as e:
                 logger.error(f"Failed to save issue: {e}")

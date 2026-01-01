@@ -326,10 +326,130 @@ NNPP (Kwankwaso): {state_result.get('nnpp_kwankwaso', 0):,} votes
         return 0
 
 
+def seed_presidential_candidates(db):
+    """Load presidential candidates data (including current President)."""
+    print("\n📥 Loading Presidential Candidates...")
+    pres_dir = DATA_DIR / "candidates" / "2023" / "presidential"
+
+    if not pres_dir.exists():
+        print("  ⚠️ Presidential candidates directory not found")
+        return 0
+
+    count = 0
+    skipped = 0
+    for filepath in pres_dir.glob("*.json"):
+        if filepath.name.startswith("_"):  # Skip index files
+            continue
+
+        try:
+            data = load_json_file(filepath)
+
+            # Handle nested name structure
+            raw_name = data.get("name", "Unknown")
+            if isinstance(raw_name, dict):
+                name = raw_name.get("full", raw_name.get("common", "Unknown"))
+            else:
+                name = str(raw_name)
+
+            # Determine current position from positions_held
+            political_career = data.get("political_career", {})
+            positions_held = political_career.get("positions_held", [])
+
+            # Find current position (period contains "present")
+            current_position = "Presidential Candidate (2023)"
+            for pos in positions_held:
+                period = pos.get("period", "")
+                if "present" in period.lower():
+                    current_position = pos.get("position", current_position)
+                    break
+
+            # Get party from party_history (most recent)
+            party_history = political_career.get("party_history", [])
+            party = "Unknown"
+            for ph in party_history:
+                if ph.get("left") is None:  # Current party
+                    party = ph.get("party", "Unknown")
+                    break
+            if party == "Unknown" and party_history:
+                party = party_history[-1].get("party", "Unknown")
+
+            # Get state of origin
+            personal = data.get("personal", {})
+            state = personal.get("state_of_origin", "")
+
+            # Build content for embedding
+            policy_summary = ""
+            for policy in data.get("policy_positions", [])[:3]:
+                issue = policy.get("issue_area", "")
+                stance = policy.get("stance_summary", "")[:200]
+                if issue and stance:
+                    policy_summary += f"{issue}: {stance}\n"
+
+            track_record = ""
+            for achievement in data.get("track_record", {}).get("achievements", [])[:3]:
+                track_record += f"• {achievement.get('achievement', '')}\n"
+
+            content = f"""
+{current_position}: {name}
+Party: {party}
+State of Origin: {state}
+
+POLICY POSITIONS:
+{policy_summary}
+
+TRACK RECORD:
+{track_record}
+
+PERSONAL:
+Date of Birth: {personal.get('date_of_birth', 'N/A')}
+Religion: {personal.get('religion', 'N/A')}
+Education: {', '.join([e.get('institution', '') for e in personal.get('education', [])[-2:]])}
+"""
+
+            embedding = get_embedding(content)
+
+            # Create document
+            _, doc_is_new = safe_add_or_update(
+                db, Document, "doc_id", filepath.stem,
+                doc_type="presidential_candidate",
+                title=f"{current_position} {name} ({party})",
+                content=content.strip(),
+                metadata_json=json.dumps(data),
+                embedding_json=embedding_to_json(embedding),
+                state=state,
+                party=party,
+                position=current_position
+            )
+
+            # Also add to politicians table
+            _, pol_is_new = safe_add_or_update(
+                db, Politician, "slug", filepath.stem,
+                name=name,
+                party=party,
+                position=current_position,
+                state=state,
+                constituency="Federal",
+                data_json=json.dumps(data)
+            )
+
+            if doc_is_new or pol_is_new:
+                count += 1
+            else:
+                skipped += 1
+
+        except Exception as e:
+            db.rollback()
+            print(f"  ⚠️ Error loading {filepath.name}: {e}")
+
+    db.commit()
+    print(f"  ✅ Loaded {count} presidential candidates ({skipped} already existed)")
+    return count
+
+
 def seed_polls(db):
     """Load polling data."""
     print("\n📥 Loading Polling Data...")
-    
+
     polls_file = DATA_DIR / "polls" / "noi_polls" / "opinion_polls.json"
     
     if not polls_file.exists():
@@ -403,6 +523,7 @@ def main():
         total += seed_senators(db)
         total += seed_house_of_reps(db)
         total += seed_governors(db)
+        total += seed_presidential_candidates(db)  # NEW: Load presidential data
         total += seed_election_results(db)
         total += seed_polls(db)
         
