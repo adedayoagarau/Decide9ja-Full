@@ -27,6 +27,7 @@ class RetrievalStrategy(Enum):
     RAG_SEARCH = "rag_search"         # Search document embeddings
     HYBRID = "hybrid"                 # Combine multiple sources
     NONE = "none"                     # No retrieval needed (greetings, help)
+    ELECTION_SYSTEM = "election_system"   # Use 2027 election tracking system
 
 
 class Intent(Enum):
@@ -43,6 +44,17 @@ class Intent(Enum):
     CONFIRMATION = "confirmation"
     CLARIFICATION = "clarification"
     FALLBACK = "fallback"
+    # 2027 Election Intents
+    FOLLOW_CANDIDATE = "follow_candidate"
+    UNFOLLOW_CANDIDATE = "unfollow_candidate"
+    MY_CANDIDATES = "my_candidates"
+    COMPARE_CANDIDATES = "compare_candidates"
+    CANDIDATE_SEARCH = "candidate_search"
+    POLL_LIST = "poll_list"
+    POLL_VOTE = "poll_vote"
+    POLL_RESULTS = "poll_results"
+    TRENDING_TOPICS = "trending_topics"
+    ELECTION_INFO = "election_info"
 
 
 @dataclass
@@ -121,6 +133,38 @@ QUERY: "Why is Nigeria's economy struggling?"
 QUERY: "Who are the senators from Lagos?"
 → {{"intent": "politician_info", "entities": {{"position": "senator", "state": "Lagos"}}, "retrieval_strategy": "db_lookup", "confidence": 0.9, "reasoning": "State-specific politician query"}}
 
+=== 2027 ELECTION EXAMPLES ===
+
+QUERY: "Follow Tinubu"
+→ {{"intent": "follow_candidate", "entities": {{"candidate_name": "Tinubu"}}, "retrieval_strategy": "election_system", "confidence": 0.95, "reasoning": "User wants to follow a candidate"}}
+
+QUERY: "Unfollow Peter Obi"
+→ {{"intent": "unfollow_candidate", "entities": {{"candidate_name": "Peter Obi"}}, "retrieval_strategy": "election_system", "confidence": 0.95, "reasoning": "User wants to stop following a candidate"}}
+
+QUERY: "My candidates" / "Who am I following?"
+→ {{"intent": "my_candidates", "entities": {{}}, "retrieval_strategy": "election_system", "confidence": 0.95, "reasoning": "User wants to see followed candidates"}}
+
+QUERY: "Compare Tinubu and Obi" / "Compare candidates"
+→ {{"intent": "compare_candidates", "entities": {{"candidates": ["Tinubu", "Obi"]}}, "retrieval_strategy": "election_system", "confidence": 0.9, "reasoning": "Candidate comparison request"}}
+
+QUERY: "Who is running for president in 2027?"
+→ {{"intent": "candidate_search", "entities": {{"position": "president"}}, "retrieval_strategy": "election_system", "confidence": 0.9, "reasoning": "Searching for 2027 candidates"}}
+
+QUERY: "Show me polls" / "Current polls" / "Any polls?"
+→ {{"intent": "poll_list", "entities": {{}}, "retrieval_strategy": "election_system", "confidence": 0.95, "reasoning": "User wants to see available polls"}}
+
+QUERY: "Vote in poll" / "I want to vote"
+→ {{"intent": "poll_vote", "entities": {{}}, "retrieval_strategy": "election_system", "confidence": 0.9, "reasoning": "User wants to participate in poll"}}
+
+QUERY: "Poll results" / "Who is winning?"
+→ {{"intent": "poll_results", "entities": {{}}, "retrieval_strategy": "election_system", "confidence": 0.9, "reasoning": "User wants to see poll results"}}
+
+QUERY: "What's trending?" / "Trending topics" / "Hot in politics"
+→ {{"intent": "trending_topics", "entities": {{}}, "retrieval_strategy": "election_system", "confidence": 0.9, "reasoning": "User wants trending political topics"}}
+
+QUERY: "When is the 2027 election?" / "INEC updates"
+→ {{"intent": "election_info", "entities": {{}}, "retrieval_strategy": "election_system", "confidence": 0.9, "reasoning": "General 2027 election information"}}
+
 === CLASSIFICATION RULES ===
 1. "latest", "news", "update", "happening", "recent", "heard" → news_query + web_search
 2. "who is" + position (president, governor) → politician_info + position_lookup
@@ -130,6 +174,14 @@ QUERY: "Who are the senators from Lagos?"
 6. "what has X done", achievements, record → politician_record + hybrid
 7. Only "help", "options", "what can you do" → help
 8. Only greetings → greeting
+9. "follow" + candidate name → follow_candidate + election_system
+10. "unfollow" + candidate name → unfollow_candidate + election_system
+11. "my candidates", "who am I following" → my_candidates + election_system
+12. "compare" + candidate names → compare_candidates + election_system
+13. "who is running", "2027 candidates" → candidate_search + election_system
+14. "polls", "vote in poll" → poll_list or poll_vote + election_system
+15. "poll results", "who is winning" → poll_results + election_system
+16. "trending", "what's hot" → trending_topics + election_system
 
 Now classify this query: "{query}"
 Return ONLY valid JSON."""
@@ -217,6 +269,17 @@ def _parse_intent(intent_str: str) -> Intent:
         "thanks": Intent.THANKS,
         "confirmation": Intent.CONFIRMATION,
         "clarification": Intent.CLARIFICATION,
+        # 2027 Election intents
+        "follow_candidate": Intent.FOLLOW_CANDIDATE,
+        "unfollow_candidate": Intent.UNFOLLOW_CANDIDATE,
+        "my_candidates": Intent.MY_CANDIDATES,
+        "compare_candidates": Intent.COMPARE_CANDIDATES,
+        "candidate_search": Intent.CANDIDATE_SEARCH,
+        "poll_list": Intent.POLL_LIST,
+        "poll_vote": Intent.POLL_VOTE,
+        "poll_results": Intent.POLL_RESULTS,
+        "trending_topics": Intent.TRENDING_TOPICS,
+        "election_info": Intent.ELECTION_INFO,
     }
     return intent_map.get(intent_str.lower(), Intent.FALLBACK)
 
@@ -231,6 +294,7 @@ def _parse_strategy(strategy_str: str) -> RetrievalStrategy:
         "rag_search": RetrievalStrategy.RAG_SEARCH,
         "hybrid": RetrievalStrategy.HYBRID,
         "none": RetrievalStrategy.NONE,
+        "election_system": RetrievalStrategy.ELECTION_SYSTEM,
     }
     return strategy_map.get(strategy_str.lower(), RetrievalStrategy.NONE)
 

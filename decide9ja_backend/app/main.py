@@ -195,7 +195,11 @@ async def startup_event():
     
     # Include Voice router (Twilio Voice AI)
     app.include_router(voice_router.router, tags=["Voice"])
-    
+
+    # Include Election 2027 Analytics API
+    from app.api import election_analytics
+    app.include_router(election_analytics.router, tags=["Election Analytics"])
+
     logger.info("✅ Decide9ja Backend Started")
     logger.info(f"   Environment: {ENVIRONMENT}")
     logger.info(f"   Rate Limiting: {RATE_LIMITING_ENABLED}")
@@ -203,6 +207,7 @@ async def startup_event():
     logger.info(f"   Voice Webhook: /voice/incoming")
     logger.info(f"   Issues API: /api/issues")
     logger.info(f"   Admin API: /api/admin")
+    logger.info(f"   Election Analytics: /api/v1/election")
 
 
 # ===========================================

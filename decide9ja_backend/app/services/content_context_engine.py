@@ -565,6 +565,37 @@ class ContentContextEngine:
             logger.error(f"Error fetching news: {e}")
             return []
 
+    def get_trending_today(self) -> List[Dict]:
+        """
+        Get trending topics in Nigerian politics today.
+        Returns a list of trending topics with summaries.
+        """
+        # For now, return hot topics from our issue database
+        # In production, this would be updated by the Political Data Agent
+        trending = []
+
+        # Add current hot issues
+        for key, issue in self.issues.items():
+            if issue.status and ("today" in issue.status.lower() or "hot" in issue.status.lower() or "breaking" in issue.status.lower()):
+                trending.append({
+                    "name": issue.name,
+                    "summary": issue.simple_explanation[:100] + "..." if len(issue.simple_explanation) > 100 else issue.simple_explanation,
+                    "sentiment": issue.sentiment,
+                    "category": issue.category
+                })
+
+        # If no hot issues, return most recent issues
+        if not trending:
+            for key, issue in list(self.issues.items())[:5]:
+                trending.append({
+                    "name": issue.name,
+                    "summary": issue.simple_explanation[:100] + "..." if len(issue.simple_explanation) > 100 else issue.simple_explanation,
+                    "sentiment": issue.sentiment,
+                    "category": issue.category
+                })
+
+        return trending[:10]
+
     def format_context_for_claude(self, context: Dict) -> str:
         """Format context for Claude prompt."""
         if not context.get("identified_issues"):

@@ -42,6 +42,20 @@ from app.services.explainer import (
     explain,
     explain_simple
 )
+from app.services.election_2027.candidate_tracker import (
+    get_candidate_tracker,
+    get_candidate,
+    follow,
+    get_my_candidates,
+    compare
+)
+from app.services.election_2027.polling_system import (
+    get_polling_system,
+    get_user_polls,
+    submit_vote,
+    get_poll_display,
+    get_results_display
+)
 
 logger = logging.getLogger(__name__)
 
@@ -192,7 +206,146 @@ async def handle_idle_claude_first(state: UserState, text: str) -> str:
     # Voter registration
     if understanding.intent == Intent.VOTER_REGISTRATION:
         return get_template("voter_reg_info")
-    
+
+    # ===========================================
+    # 2027 ELECTION SYSTEM HANDLERS
+    # ===========================================
+
+    # Follow candidate
+    if understanding.intent == Intent.FOLLOW_CANDIDATE:
+        candidate_name = understanding.entities.get("candidate_name", text.replace("follow", "").strip())
+        return follow(state.phone, candidate_name)
+
+    # Unfollow candidate
+    if understanding.intent == Intent.UNFOLLOW_CANDIDATE:
+        candidate_name = understanding.entities.get("candidate_name", text.replace("unfollow", "").strip())
+        tracker = get_candidate_tracker()
+        candidate = get_candidate(candidate_name)
+        if candidate:
+            success, message = tracker.unfollow_candidate(state.phone, candidate.id)
+            return message
+        return f"I couldn't find a candidate matching '{candidate_name}'."
+
+    # My candidates (followed)
+    if understanding.intent == Intent.MY_CANDIDATES:
+        return get_my_candidates(state.phone)
+
+    # Compare candidates
+    if understanding.intent == Intent.COMPARE_CANDIDATES:
+        candidates_list = understanding.entities.get("candidates", [])
+        if not candidates_list:
+            # Try to parse from text
+            import re
+            text_clean = re.sub(r"compare|and|vs|versus", " ", text, flags=re.IGNORECASE)
+            candidates_list = [c.strip() for c in text_clean.split() if c.strip()]
+        return compare(candidates_list[:4])  # Max 4 candidates
+
+    # Candidate search (who is running)
+    if understanding.intent == Intent.CANDIDATE_SEARCH:
+        position = understanding.entities.get("position", "president")
+        tracker = get_candidate_tracker()
+        if position == "president":
+            candidates = tracker.get_presidential_candidates()
+            text = "🗳️ *2027 Presidential Candidates*\n\n"
+            for c in candidates:
+                emoji = "🟢" if c.party == "APC" else "🔴" if c.party == "PDP" else "🟡"
+                incumbent = " (Incumbent)" if c.is_incumbent else ""
+                text += f"{emoji} {c.name} - {c.party}{incumbent}\n"
+            text += "\nSay a name for more details, or 'follow [name]' to get updates."
+            return text
+        else:
+            state_name = understanding.entities.get("state", state.state)
+            candidates = tracker.get_gubernatorial_candidates(state_name)
+            if candidates:
+                text = f"🗳️ *2027 {state_name} Gubernatorial Candidates*\n\n"
+                for c in candidates:
+                    text += f"• {c.name} ({c.party})\n"
+                return text
+            return f"I don't have gubernatorial candidates for {state_name} yet. Check back soon!"
+
+    # Poll list
+    if understanding.intent == Intent.POLL_LIST:
+        polls = get_user_polls(user_state=state.state, user_lga=state.lga)
+        if not polls:
+            return "No active polls right now. Check back soon! 📊"
+        text = "📊 *Available Polls*\n\n"
+        for i, poll in enumerate(polls[:5], 1):
+            text += f"{i}. {poll.title}\n"
+        text += "\nReply with the poll number to participate."
+        state.flow_data["available_polls"] = [p.id for p in polls[:5]]
+        return text
+
+    # Poll vote
+    if understanding.intent == Intent.POLL_VOTE:
+        # Check if we're continuing a poll vote
+        poll_id = state.flow_data.get("active_poll")
+        if poll_id:
+            ps = get_polling_system()
+            poll = ps.get_poll(poll_id)
+            if poll:
+                # Try to match user input to option
+                try:
+                    choice = int(text) - 1
+                    if 0 <= choice < len(poll.options):
+                        option_id = poll.options[choice].id
+                        success, message = submit_vote(poll_id, option_id, state.phone, state.state)
+                        state.flow_data.pop("active_poll", None)
+                        if success:
+                            # Show results after voting
+                            results = get_results_display(poll_id)
+                            return f"{message}\n\n{results}"
+                        return message
+                except ValueError:
+                    pass
+        # Start poll selection
+        polls = get_user_polls(user_state=state.state, user_lga=state.lga)
+        if polls:
+            state.flow_data["active_poll"] = polls[0].id
+            return get_poll_display(polls[0].id)
+        return "No active polls right now. Check back soon! 📊"
+
+    # Poll results
+    if understanding.intent == Intent.POLL_RESULTS:
+        ps = get_polling_system()
+        polls = ps.get_active_polls()
+        if not polls:
+            return "No poll results available yet."
+        # Show most popular poll results
+        main_poll = next((p for p in polls if "president" in p.title.lower()), polls[0])
+        return get_results_display(main_poll.id)
+
+    # Trending topics
+    if understanding.intent == Intent.TRENDING_TOPICS:
+        content_engine = get_content_engine()
+        hot_topics = content_engine.get_trending_today()
+        text = "🔥 *Trending in Nigerian Politics*\n\n"
+        for topic in hot_topics[:5]:
+            text += f"• {topic['name']}: {topic['summary']}\n\n"
+        text += "Ask about any topic for more details."
+        return text
+
+    # Election info
+    if understanding.intent == Intent.ELECTION_INFO:
+        return """🗳️ *2027 General Elections*
+
+📅 *Key Dates:*
+• Presidential/NASS: February 2027
+• Governorship/State Assembly: March 2027
+
+📌 *Current Status:*
+• Campaign season begins: Late 2026
+• Voter registration: Ongoing at INEC offices
+• PVC collection: Check your INEC office
+
+👥 *Key Candidates:*
+• APC: President Tinubu (Incumbent)
+• PDP: Atiku Abubakar (Expected)
+• LP: Peter Obi (Expected)
+• NNPP: Rabiu Kwankwaso (Expected)
+
+Say 'who is running' for full candidate list.
+Say 'follow [name]' to track a candidate."""
+
     # ===========================================
     # INTELLIGENT RETRIEVAL
     # ===========================================
