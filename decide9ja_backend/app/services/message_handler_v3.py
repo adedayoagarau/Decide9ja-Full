@@ -120,6 +120,11 @@ async def handle_idle_state(state: UserState, text: str) -> str:
     # Classify intent
     intent, confidence, entities = classify_intent(text, state)
     
+    # === USE INTELLIGENCE LAYER ===
+    # Import retrieval and context assembly
+    from app.services.retrieval import retrieve
+    from app.services.context_assembler import assemble_context
+    
     # Route to appropriate handler
     if intent == Intent.GREETING:
         return await handle_greeting(state, text)
@@ -131,16 +136,26 @@ async def handle_idle_state(state: UserState, text: str) -> str:
         return TEMPLATES["thanks_response"]
     
     elif intent == Intent.REP_LOOKUP:
-        return await handle_rep_lookup(state, text, entities)
+        # Use retrieval orchestrator for representatives
+        retrieval = await retrieve(intent, text, state, entities)
+        return format_rep_response(retrieval, state)
     
     elif intent == Intent.POLITICIAN_INFO:
-        return await handle_politician_info(state, text, entities)
+        # Use retrieval orchestrator with full intelligence
+        retrieval = await retrieve(intent, text, state, entities)
+        context = assemble_context(retrieval, state, text)
+        return await handle_politician_info_with_context(state, text, retrieval, context)
     
     elif intent == Intent.POLITICIAN_RECORD:
-        return await handle_politician_record(state, text, entities)
+        retrieval = await retrieve(intent, text, state, entities)
+        context = assemble_context(retrieval, state, text)
+        return await handle_politician_record_with_context(state, text, retrieval, context)
     
     elif intent == Intent.NEWS_QUERY:
-        return await handle_news_query(state, text, entities)
+        # Use retrieval orchestrator for news (triggers web search)
+        retrieval = await retrieve(intent, text, state, entities)
+        context = assemble_context(retrieval, state, text)
+        return await handle_news_with_context(state, text, retrieval, context)
     
     elif intent == Intent.VOTER_REGISTRATION:
         return TEMPLATES["voter_reg_info"]
@@ -151,18 +166,28 @@ async def handle_idle_state(state: UserState, text: str) -> str:
         return await handle_issue_flow(state, text, None)
     
     elif intent == Intent.FOLLOWUP:
-        return await handle_followup(state, text, entities)
+        retrieval = await retrieve(intent, text, state, entities)
+        context = assemble_context(retrieval, state, text)
+        return await handle_followup_with_context(state, text, retrieval, context)
     
     elif intent == Intent.CONFIRMATION:
         # Confirmation outside of flow - treat as greeting or fallback
         return await handle_greeting(state, text)
+    
+    elif intent == Intent.PRIVACY_DELETE:
+        # User wants to delete their data - start confirmation flow
+        state.flow = ConversationFlow.CONFIRMING
+        state.flow_data = {"action": "privacy_delete"}
+        return TEMPLATES["privacy_confirm_delete"]
     
     elif intent == Intent.COMMAND:
         # Already handled above
         return TEMPLATES["cancelled"]
     
     else:  # FALLBACK
-        return await handle_fallback(state, text)
+        retrieval = await retrieve(intent, text, state, entities)
+        context = assemble_context(retrieval, state, text)
+        return await handle_fallback_with_context(state, text, retrieval, context)
 
 
 async def handle_greeting(state: UserState, text: str) -> str:
@@ -286,6 +311,22 @@ async def handle_confirmation(state: UserState, text: str) -> str:
     negative = text_lower in {"no", "nope", "nah", "cancel", "n", "2", "wrong"}
     
     confirm_action = state.flow_data.get("confirm_action")
+    action = state.flow_data.get("action")
+    
+    # Handle privacy deletion confirmation
+    if action == "privacy_delete":
+        if text_lower in {"yes delete", "yes, delete", "delete"}:
+            # Actually delete user data
+            success = state_manager.delete_user_data(state.phone)
+            state.clear_flow()
+            if success:
+                return TEMPLATES["privacy_deleted"]
+            else:
+                return "There was an issue deleting some data. Please try again later."
+        else:
+            # Anything else cancels
+            state.clear_flow()
+            return TEMPLATES["privacy_delete_cancelled"]
     
     if affirmative:
         if confirm_action == "save_issue":
@@ -312,33 +353,61 @@ async def handle_confirmation(state: UserState, text: str) -> str:
 # ==========================================
 
 async def handle_rep_lookup(state: UserState, text: str, entities: dict) -> str:
-    """Find user's representatives based on their location."""
+    """Find user's representatives based on their location.
+    
+    Uses the lga_representatives table which directly maps each LGA to:
+    - Governor (state-wide)
+    - Senator (by senatorial district)
+    - House Representative (by federal constituency)
+    """
     try:
-        from app.database import get_db, Politician
+        from app.database import get_db
+        from sqlalchemy import text as sql_text
         
         if not state.state or not state.lga:
             return "I need your location to find your representatives. Which state are you in?"
         
         db = next(get_db())
         
-        # Look up representatives by state/LGA
-        reps = db.query(Politician).filter(
-            Politician.state == state.state
-        ).limit(10).all()
+        # Query the lga_representatives table directly
+        result = db.execute(sql_text("""
+            SELECT state, lga, senatorial_district, governor_name, governor_party, 
+                   senator_name, senator_party, house_rep_name, house_rep_party
+            FROM lga_representatives
+            WHERE state = :state AND lga = :lga
+        """), {"state": state.state, "lga": state.lga})
         
-        if reps:
-            governor = next((r for r in reps if "governor" in (r.position or "").lower()), None)
-            senator = next((r for r in reps if "senator" in (r.position or "").lower()), None)
-            house_rep = next((r for r in reps if "representative" in (r.position or "").lower()), None)
-            
+        row = result.fetchone()
+        
+        if row:
             return get_template("rep_all",
                 lga=state.lga,
                 state=state.state,
-                governor=f"{governor.name} ({governor.party})" if governor else "Not found",
-                senator=f"{senator.name} ({senator.party})" if senator else "Not found",
-                house_rep=f"{house_rep.name} ({house_rep.party})" if house_rep else "Not found"
+                governor=f"{row[3]} ({row[4]})" if row[3] else "Not found",
+                senator=f"{row[5]} ({row[6]})" if row[5] else "Not found",
+                house_rep=f"{row[7]} ({row[8]})" if row[7] else "Not found"
             )
         else:
+            # Fallback: Try fuzzy match on LGA name
+            logger.warning(f"No exact match for {state.lga}, {state.state} - trying fuzzy match")
+            result = db.execute(sql_text("""
+                SELECT state, lga, senatorial_district, governor_name, governor_party, 
+                       senator_name, senator_party, house_rep_name, house_rep_party
+                FROM lga_representatives
+                WHERE state = :state AND (lga ILIKE :lga_pattern OR :lga ILIKE '%' || lga || '%')
+                LIMIT 1
+            """), {"state": state.state, "lga": state.lga, "lga_pattern": f"%{state.lga}%"})
+            
+            row = result.fetchone()
+            if row:
+                return get_template("rep_all",
+                    lga=state.lga,
+                    state=state.state,
+                    governor=f"{row[3]} ({row[4]})" if row[3] else "Not found",
+                    senator=f"{row[5]} ({row[6]})" if row[5] else "Not found",
+                    house_rep=f"{row[7]} ({row[8]})" if row[7] else "Not found"
+                )
+            
             return get_template("rep_not_found", lga=state.lga, state=state.state)
             
     except Exception as e:
@@ -346,16 +415,83 @@ async def handle_rep_lookup(state: UserState, text: str, entities: dict) -> str:
         return get_template("rep_not_found", lga=state.lga, state=state.state)
 
 
+
 async def handle_politician_info(state: UserState, text: str, entities: dict) -> str:
-    """Look up information about a specific politician."""
+    """
+    Look up information about a specific politician.
+    
+    Features:
+    1. Position-based queries (e.g., "who is the president")
+    2. Fuzzy name matching (handles typos like "Dienel" → "Daniel")
+    3. Location-aware suggestions (prioritizes user's representatives)
+    4. Web search fallback for unknown politicians
+    """
     try:
         from app.database import get_db, Politician
+        from app.services.fuzzy_match import (
+            fuzzy_find_politician, 
+            fuzzy_find_among_representatives,
+            extract_politician_name_from_text
+        )
         
-        query = entities.get("politician_query", text)
+        # Extract clean query
+        raw_query = entities.get("politician_query", text)
+        text_lower = raw_query.lower()
         
         db = next(get_db())
         
-        # Search by name
+        # =========================================
+        # STEP 0: Check for position-based queries
+        # E.g., "who is the president", "president of Nigeria"
+        # Order matters: more specific patterns first!
+        # =========================================
+        position_patterns = [
+            (r'\b(the\s+)?vice\s*president\b', 'Vice President'),  # Check BEFORE president
+            (r'\b(the\s+)?president\b', 'President'),
+            (r'\bgovernor\s+of\s+(\w+)', 'Governor'),  # governor of Lagos
+            (r'\b(the\s+)?governor\b', 'Governor'),
+        ]
+        
+        import re
+        for pattern, position in position_patterns:
+            match = re.search(pattern, text_lower)
+            if match:
+                # Special case: "governor of [state]"
+                if 'governor of' in pattern and match.group(1):
+                    state_name = match.group(1).title()
+                    politician = db.query(Politician).filter(
+                        Politician.position == position,
+                        Politician.state.ilike(f"%{state_name}%")
+                    ).first()
+                else:
+                    # Generic position lookup (President, VP, or user's state Governor)
+                    if position == 'Governor' and state.state:
+                        politician = db.query(Politician).filter(
+                            Politician.position == position,
+                            Politician.state.ilike(f"%{state.state}%")
+                        ).first()
+                    else:
+                        politician = db.query(Politician).filter(
+                            Politician.position == position
+                        ).first()
+                
+                if politician:
+                    state.active_politician_id = str(politician.id)
+                    state.active_politician_name = politician.name
+                    
+                    return get_template("politician_info",
+                        name=politician.name,
+                        party=politician.party or "Independent",
+                        position=politician.position or "Politician",
+                        bio=(politician.bio or "No biography available.")[:500]
+                    )
+        
+        # Extract name for regular name-based lookup
+        query = extract_politician_name_from_text(raw_query)
+        
+        # =========================================
+        # STEP 1: Try exact match first
+        # =========================================
         politician = db.query(Politician).filter(
             Politician.name.ilike(f"%{query}%")
         ).first()
@@ -371,8 +507,101 @@ async def handle_politician_info(state: UserState, text: str, entities: dict) ->
                 position=politician.position or "Politician",
                 bio=(politician.bio or "No biography available.")[:500]
             )
-        else:
-            return get_template("politician_not_found", query=query)
+        
+        # =========================================
+        # STEP 2: Try fuzzy match among user's reps
+        # =========================================
+        if state.state:
+            rep_result = fuzzy_find_among_representatives(
+                query=query,
+                user_state=state.state,
+                user_lga=state.lga,
+                db=db
+            )
+            
+            if rep_result:
+                politician_dict, context_note = rep_result
+                state.active_politician_id = str(politician_dict["id"])
+                state.active_politician_name = politician_dict["name"]
+                
+                # Build response with "Did you mean..." hint if applicable
+                response = ""
+                if context_note:
+                    response = f"Did you mean **{politician_dict['name']}**? {context_note}\n\n"
+                
+                response += get_template("politician_info",
+                    name=politician_dict["name"],
+                    party=politician_dict.get("party") or "Independent",
+                    position=politician_dict.get("position") or "Politician",
+                    bio=(politician_dict.get("bio") or "No biography available.")[:500]
+                )
+                return response
+        
+        # =========================================
+        # STEP 3: Try fuzzy match against ALL politicians
+        # =========================================
+        all_politicians = db.query(Politician).limit(500).all()
+        
+        if all_politicians:
+            politician_dicts = [
+                {
+                    "id": p.id,
+                    "name": p.name,
+                    "party": p.party,
+                    "position": p.position,
+                    "state": p.state,
+                    "constituency": p.constituency,
+                    "bio": p.bio
+                }
+                for p in all_politicians
+            ]
+            
+            result = fuzzy_find_politician(query, politician_dicts, threshold=75)
+            
+            if result:
+                politician_dict, similarity, suggestion = result
+                state.active_politician_id = str(politician_dict["id"])
+                state.active_politician_name = politician_dict["name"]
+                
+                response = ""
+                if suggestion:
+                    response = f"{suggestion}\n\n"
+                
+                response += get_template("politician_info",
+                    name=politician_dict["name"],
+                    party=politician_dict.get("party") or "Independent",
+                    position=politician_dict.get("position") or "Politician",
+                    bio=(politician_dict.get("bio") or "No biography available.")[:500]
+                )
+                return response
+        
+        # =========================================
+        # STEP 4: Web search fallback
+        # =========================================
+        try:
+            from app.services.web_search import search_web
+            from app.services.llm import generate_response_sync
+            
+            logger.info(f"Politician not in DB, trying web search: {query}")
+            
+            search_query = f"{query} Nigeria politician"
+            web_context, web_sources = await search_web(search_query)
+            
+            if web_context:
+                response = generate_response_sync(
+                    user_message=f"Who is {query}? Provide brief information.",
+                    context=f"Web search results:\n{web_context}"
+                )
+                
+                if response and "don't have" not in response.lower():
+                    return response
+        except Exception as web_error:
+            logger.warning(f"Web search fallback failed: {web_error}")
+        
+        # =========================================
+        # STEP 5: Final fallback
+        # =========================================
+        return get_template("politician_not_found", query=query)
             
     except Exception as e:
         logger.error(f"Error in politician info: {e}")
@@ -503,6 +732,235 @@ async def handle_fallback(state: UserState, text: str) -> str:
     except Exception as e:
         logger.error(f"Error in fallback: {e}")
         return TEMPLATES["fallback"]
+
+
+# ==========================================
+# CONTEXT-AWARE HANDLERS (INTELLIGENCE LAYER)
+# ==========================================
+
+def format_rep_response(retrieval, state: UserState) -> str:
+    """Format representative lookup response using retrieval results."""
+    if not retrieval.representatives:
+        return get_template("rep_not_found", lga=state.lga, state=state.state)
+    
+    reps = retrieval.representatives
+    
+    # Find specific roles
+    governor = next((r for r in reps if "governor" in (r.get("position") or "").lower()), None)
+    senator = next((r for r in reps if "senator" in (r.get("position") or "").lower()), None)
+    house_rep = next((r for r in reps if "representative" in (r.get("position") or "").lower()), None)
+    
+    return get_template("rep_all",
+        lga=state.lga,
+        state=state.state,
+        governor=f"{governor['name']} ({governor['party']})" if governor else "Not found",
+        senator=f"{senator['name']} ({senator['party']})" if senator else "Not found",
+        house_rep=f"{house_rep['name']} ({house_rep['party']})" if house_rep else "Not found"
+    )
+
+
+async def handle_politician_info_with_context(
+    state: UserState,
+    text: str,
+    retrieval,
+    context
+) -> str:
+    """Handle politician info query with full context from intelligence layer."""
+    from app.services.llm import generate_response
+    
+    # Check for suggestions (fuzzy match, multiple candidates)
+    if retrieval.suggestions:
+        # If we have a politician despite suggestions, show suggestion + info
+        if retrieval.politician:
+            # Update active context
+            state.active_politician_id = str(retrieval.politician.get("id", ""))
+            state.active_politician_name = retrieval.politician.get("name")
+            
+            # Build response with suggestion
+            response_parts = []
+            if "Did you mean" in (retrieval.suggestions[0] if retrieval.suggestions else ""):
+                response_parts.append(retrieval.suggestions[0])
+                response_parts.append("")
+            
+            # Add politician info
+            response_parts.append(get_template("politician_info",
+                name=retrieval.politician.get("name"),
+                party=retrieval.politician.get("party", "Unknown"),
+                position=retrieval.politician.get("position", ""),
+                bio=(retrieval.politician.get("bio") or "No biography available.")[:500]
+            ))
+            
+            return "\n".join(response_parts)
+        else:
+            # Multiple candidates or not found - return suggestions
+            return "\n".join(retrieval.suggestions)
+    
+    if retrieval.politician:
+        # Update active context
+        state.active_politician_id = str(retrieval.politician.get("id", ""))
+        state.active_politician_name = retrieval.politician.get("name")
+        
+        return get_template("politician_info",
+            name=retrieval.politician.get("name"),
+            party=retrieval.politician.get("party", "Unknown"),
+            position=retrieval.politician.get("position", ""),
+            bio=(retrieval.politician.get("bio") or "No biography available.")[:500]
+        )
+    
+    # Web search fallback
+    if retrieval.web_results:
+        try:
+            response = await generate_response(
+                user_message=text,
+                context=context.user_context,
+                user_context=f"User: {state.name or 'Unknown'} from {state.state or 'Unknown'}"
+            )
+            if response:
+                return response
+        except Exception as e:
+            logger.warning(f"LLM generation with web results failed: {e}")
+    
+    return get_template("politician_not_found", query=text)
+
+
+async def handle_politician_record_with_context(
+    state: UserState,
+    text: str,
+    retrieval,
+    context
+) -> str:
+    """Handle politician record query with RAG and web search context."""
+    from app.services.llm import generate_response
+    
+    if not state.active_politician_name and not retrieval.politician:
+        return "Which politician are you asking about?"
+    
+    politician_name = state.active_politician_name or (retrieval.politician.get("name") if retrieval.politician else "Unknown")
+    
+    # Use LLM with the assembled context
+    if context.user_context:
+        try:
+            response = await generate_response(
+                user_message=text,
+                context=context.user_context,
+                user_context=f"Asking about: {politician_name}"
+            )
+            if response:
+                return response
+        except Exception as e:
+            logger.warning(f"LLM generation for record failed: {e}")
+    
+    # Fallback
+    if retrieval.rag_context:
+        return f"Here's what I found about {politician_name}:\n\n{retrieval.rag_context[:1000]}"
+    
+    if retrieval.news_results:
+        news_summary = []
+        for n in retrieval.news_results[:3]:
+            news_summary.append(f"• {n.get('title', 'News')}")
+        return f"Recent news about {politician_name}:\n\n" + "\n".join(news_summary)
+    
+    return f"I don't have detailed records for {politician_name} yet. Try asking about their basic info instead."
+
+
+async def handle_news_with_context(
+    state: UserState,
+    text: str,
+    retrieval,
+    context
+) -> str:
+    """Handle news query with web search results."""
+    from app.services.llm import generate_response
+    
+    if not retrieval.news_results and not retrieval.web_results:
+        return get_template("news_not_found")
+    
+    # Use LLM to synthesize news
+    if context.user_context:
+        try:
+            response = await generate_response(
+                user_message=text,
+                context=context.user_context,
+                user_context="Summarize the news. Be factual and cite sources."
+            )
+            if response:
+                return response
+        except Exception as e:
+            logger.warning(f"LLM synthesis for news failed: {e}")
+    
+    # Fallback: format news directly
+    if retrieval.news_results:
+        news_parts = ["Here's what I found:\n"]
+        for n in retrieval.news_results[:5]:
+            news_parts.append(f"• **{n.get('title', 'News')}**")
+            if n.get('summary') or n.get('snippet'):
+                news_parts.append(f"  {(n.get('summary') or n.get('snippet', ''))[:150]}")
+            source = n.get('source', '')
+            if source:
+                news_parts.append(f"  _Source: {source}_\n")
+        return "\n".join(news_parts)
+    
+    return get_template("news_not_found")
+
+
+async def handle_followup_with_context(
+    state: UserState,
+    text: str,
+    retrieval,
+    context
+) -> str:
+    """Handle followup questions using active context."""
+    from app.services.llm import generate_response
+    
+    if not state.active_politician_id and not getattr(state, 'active_topic', None):
+        return "I'm not sure what you're referring to. Could you be more specific?"
+    
+    # Use LLM with context
+    if context.user_context:
+        try:
+            response = await generate_response(
+                user_message=text,
+                context=context.user_context,
+                user_context=f"User following up on: {state.active_politician_name or 'previous topic'}"
+            )
+            if response:
+                return response
+        except Exception as e:
+            logger.warning(f"LLM generation for followup failed: {e}")
+    
+    # Check what context we have
+    if retrieval.rag_context:
+        return retrieval.rag_context[:1000]
+    
+    if retrieval.news_results:
+        return await handle_news_with_context(state, text, retrieval, context)
+    
+    return "I don't have enough context to answer that. Could you rephrase or ask about something specific?"
+
+
+async def handle_fallback_with_context(
+    state: UserState,
+    text: str,
+    retrieval,
+    context
+) -> str:
+    """Handle unclear queries with hybrid retrieval."""
+    from app.services.llm import generate_response
+    
+    if context.user_context:
+        try:
+            response = await generate_response(
+                user_message=text,
+                context=context.user_context,
+                user_context=f"User: {state.name or 'Unknown'} from {state.state or 'Unknown'}"
+            )
+            if response:
+                return response
+        except Exception as e:
+            logger.warning(f"LLM fallback generation failed: {e}")
+    
+    # Final fallback
+    return TEMPLATES.get("fallback", "I'm not sure how to help with that. Try asking about your representatives, a specific politician, or current political news.")
 
 
 # ==========================================

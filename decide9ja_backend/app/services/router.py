@@ -26,6 +26,7 @@ logger = logging.getLogger(__name__)
 class Intent(Enum):
     """All possible user intents."""
     COMMAND = "command"
+    PRIVACY_DELETE = "privacy_delete"  # User wants to delete their data
     GREETING = "greeting"
     CONFIRMATION = "confirmation"
     VOTER_REGISTRATION = "voter_registration"
@@ -69,6 +70,18 @@ PATTERNS = [
         "priority": 100,
     },
     
+    # 1.5 PRIVACY COMMANDS - very high priority
+    {
+        "intent": Intent.PRIVACY_DELETE,
+        "patterns": [
+            r"\b(delete|remove|erase)\s+(my|all)\s*data\b",
+            r"\bforget\s+(me|my\s*data)\b",
+            r"\bdelete\s+(my|the)?\s*account\b",
+            r"\bprivacy\s+delete\b",
+        ],
+        "priority": 99,
+    },
+    
     # 2. HELP
     {
         "intent": Intent.HELP,
@@ -96,11 +109,14 @@ PATTERNS = [
         "priority": 95,
     },
     
-    # 5. CONFIRMATIONS
+    # 5. CONFIRMATIONS - Must be EXACT single-word responses
     {
         "intent": Intent.CONFIRMATION,
         "patterns": [
-            r"^(yes|yeah|yep|yup|sure|ok|okay|no|nope|nah|y|n|1|2|correct|confirm|wrong)(\s|!|\?|$)",
+            # Exact word only (no additional text)
+            r"^(yes|yeah|yep|yup|sure|ok|okay|nope|nah|correct|confirm|wrong)(\s*[!?.]*)$",
+            r"^(y|n|1|2)$",  # Single character confirmations
+            r"^no\s*[!?.]*$",  # "no" alone (not "no electricity...")
         ],
         "priority": 90,
     },
@@ -189,6 +205,9 @@ PATTERNS = [
             r"\b(no|lack\s+of)\s+(water|electricity|light|power)",
             r"\bi\s+want\s+to\s+report\b",
             r"\bproblem\s+(with|in)\s+(my|our|the)\s+(area|street|community)",
+            r"\bthere'?s?\s+(a\s+)?(pothole|bad\s+road|flooding|blocked\s+drain)",
+            r"\bpothole\s+(on|at|in)\b",
+            r"\bno\s+(electricity|water|light|power)\s+(for|in)\b",
         ],
         "priority": 50,
     },

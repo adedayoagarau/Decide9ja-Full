@@ -214,31 +214,40 @@ class PoliticianIssue(Base):
 class User(Base):
     """
     Stores user profiles for conversation memory.
+    Privacy: Phone number stored as SHA256 hash, never raw.
     """
     __tablename__ = "users"
     
-    phone_number = Column(String(50), primary_key=True)  # WhatsApp phone number
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    phone_hash = Column(String(64), unique=True, nullable=False, index=True)  # SHA256 of phone (privacy)
+    
+    # Collected via onboarding
     name = Column(String(100))
     state = Column(String(50))
     lga = Column(String(100))
     
-    # State Management (JSON)
+    # State Management (JSON) - for backup, primary storage is Redis
     flow_state = Column(Text)  # Stores current state, step, and temp data
     
     # Preferences & Metadata
     preferences_json = Column(Text)  # JSON dict of preferences
+    onboarding_completed = Column(Boolean, default=False)
+    
+    # Timestamps
     last_interaction = Column(DateTime, server_default=func.now(), onupdate=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
     created_at = Column(DateTime, server_default=func.now())
 
 
 class ChatHistory(Base):
     """
     Stores recent conversation history for context (Memory).
+    Privacy: References user by phone_hash, not raw phone.
     """
     __tablename__ = "chat_history"
     
     id = Column(Integer, primary_key=True, autoincrement=True)
-    user_phone = Column(String(50), nullable=False, index=True)
+    phone_hash = Column(String(64), nullable=False, index=True)  # SHA256 hash for privacy
     role = Column(String(20), nullable=False)  # 'user' or 'assistant'
     content = Column(Text, nullable=False)
     timestamp = Column(DateTime, server_default=func.now())

@@ -121,6 +121,57 @@ class StateManager:
         redis_key = f"session:{user_id}"
         self._delete_cached(redis_key)
     
+    def delete_user_data(self, phone: str) -> bool:
+        """
+        Delete ALL user data (for 'delete my data' / 'forget me' commands).
+        This is a GDPR-style full deletion from all systems.
+        
+        Args:
+            phone: User's phone number
+            
+        Returns:
+            True if deletion was successful
+        """
+        user_id = self._hash_phone(phone)
+        redis_key = f"session:{user_id}"
+        
+        success = True
+        
+        # 1. Delete from Redis/cache
+        try:
+            self._delete_cached(redis_key)
+            logger.info(f"Deleted session for user {user_id[:8]}...")
+        except Exception as e:
+            logger.error(f"Failed to delete session: {e}")
+            success = False
+        
+        # 2. Delete from PostgreSQL
+        try:
+            from app.database import get_db, User, ChatHistory, UserReport
+            db = next(get_db())
+            
+            # Delete user profile
+            user = db.query(User).filter(User.phone_hash == user_id).first()
+            if user:
+                db.delete(user)
+            
+            # Delete chat history
+            db.query(ChatHistory).filter(ChatHistory.phone_hash == user_id).delete()
+            
+            # Delete user reports (or anonymize)
+            db.query(UserReport).filter(UserReport.user_hash == user_id).update(
+                {"user_hash": "deleted"},
+                synchronize_session=False
+            )
+            
+            db.commit()
+            logger.info(f"Deleted PostgreSQL data for user {user_id[:8]}...")
+        except Exception as e:
+            logger.error(f"Failed to delete PostgreSQL data: {e}")
+            success = False
+        
+        return success
+    
     # ==========================================
     # Cache Operations (Redis or In-Memory)
     # ==========================================
@@ -160,45 +211,75 @@ class StateManager:
     # ==========================================
     
     def _load_profile_from_db(self, user_id: str) -> Optional[dict]:
-        """Load user profile from PostgreSQL."""
+        """Load user profile from PostgreSQL using raw SQL."""
         try:
-            from app.database import get_db, User
-            db = next(get_db())
-            user = db.query(User).filter(User.phone_hash == user_id).first()
-            if user:
-                return {
-                    "name": user.name,
-                    "state": user.state,
-                    "lga": user.lga
-                }
+            from sqlalchemy import create_engine, text
+            import os
+            
+            engine = create_engine(os.getenv('DATABASE_URL'))
+            with engine.connect() as conn:
+                result = conn.execute(text('''
+                    SELECT name, state, lga FROM users 
+                    WHERE phone_hash = :user_id
+                    LIMIT 1
+                '''), {'user_id': user_id})
+                row = result.fetchone()
+                
+                if row:
+                    return {
+                        "name": row[0],
+                        "state": row[1],
+                        "lga": row[2]
+                    }
         except Exception as e:
             logger.warning(f"Failed to load profile from DB: {e}")
         return None
     
     def _save_profile_to_db(self, state: UserState):
-        """Save/update user profile in PostgreSQL."""
+        """Save/update user profile in PostgreSQL using raw SQL."""
         try:
-            from app.database import get_db, User
-            db = next(get_db())
+            from sqlalchemy import create_engine, text
+            import os
             
-            user = db.query(User).filter(User.phone_hash == state.user_id).first()
-            
-            if user:
-                user.name = state.name
-                user.state = state.state
-                user.lga = state.lga
-                user.updated_at = datetime.utcnow()
-            else:
-                user = User(
-                    phone_hash=state.user_id,
-                    name=state.name,
-                    state=state.state,
-                    lga=state.lga
-                )
-                db.add(user)
-            
-            db.commit()
-            logger.info(f"Saved profile for user {state.user_id[:8]}...")
+            engine = create_engine(os.getenv('DATABASE_URL'))
+            with engine.connect() as conn:
+                # Check if user exists
+                result = conn.execute(text('''
+                    SELECT id FROM users WHERE phone_hash = :user_id
+                '''), {'user_id': state.user_id})
+                existing = result.fetchone()
+                
+                if existing:
+                    # Update existing user
+                    conn.execute(text('''
+                        UPDATE users SET 
+                            name = :name, 
+                            state = :state, 
+                            lga = :lga,
+                            onboarding_completed = TRUE,
+                            updated_at = NOW(),
+                            last_interaction = NOW()
+                        WHERE phone_hash = :user_id
+                    '''), {
+                        'user_id': state.user_id,
+                        'name': state.name,
+                        'state': state.state,
+                        'lga': state.lga
+                    })
+                else:
+                    # Insert new user
+                    conn.execute(text('''
+                        INSERT INTO users (phone_hash, name, state, lga, onboarding_completed)
+                        VALUES (:user_id, :name, :state, :lga, TRUE)
+                    '''), {
+                        'user_id': state.user_id,
+                        'name': state.name,
+                        'state': state.state,
+                        'lga': state.lga
+                    })
+                
+                conn.commit()
+                logger.info(f"Saved profile for user {state.user_id[:8]}... (name={state.name})")
         except Exception as e:
             logger.error(f"Failed to save profile to DB: {e}")
 

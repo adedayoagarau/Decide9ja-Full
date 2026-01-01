@@ -6,7 +6,7 @@ import logging
 import feedparser
 from typing import List, Dict
 from datetime import datetime
-from duckduckgo_search import DDGS
+from ddgs import DDGS  # Updated from deprecated duckduckgo-search
 
 logger = logging.getLogger(__name__)
 
@@ -51,20 +51,32 @@ def fetch_rss_news(topic: str = None, limit: int = 3) -> List[Dict]:
 def fetch_web_search(query: str, limit: int = 3) -> List[Dict]:
     """Perform a web search using DuckDuckGo."""
     results = []
+    logger.info(f"fetch_web_search called with query: {query}")
+    
     try:
-        with DDGS() as ddgs:
-            # "news" region='ng-en' for Nigeria
-            search_results = ddgs.text(f"{query} Nigeria", region="ng-en", max_results=limit)
+        with DDGS(timeout=10) as ddgs:
+            # Use news region='ng-en' for Nigeria
+            search_query = f"{query} Nigeria" if "nigeria" not in query.lower() else query
+            logger.info(f"DDGS searching for: {search_query}")
+            
+            search_results = ddgs.text(search_query, region="ng-en", max_results=limit)
+            logger.info(f"DDGS returned {len(list(search_results)) if hasattr(search_results, '__len__') else 'unknown'} results")
+            
+            # Re-execute since list() consumed the generator
+            search_results = ddgs.text(search_query, region="ng-en", max_results=limit)
             
             for res in search_results:
                 results.append({
-                    "title": res['title'],
-                    "link": res['href'],
+                    "title": res.get('title', 'No title'),
+                    "link": res.get('href', ''),
                     "source": "Web Search",
-                    "summary": res['body']
+                    "summary": res.get('body', '')
                 })
+                
+        logger.info(f"fetch_web_search returning {len(results)} results")
+        
     except Exception as e:
-        logger.error(f"Web search error: {e}")
+        logger.error(f"Web search error: {e}", exc_info=True)
         
     return results
 

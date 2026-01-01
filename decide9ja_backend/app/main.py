@@ -460,8 +460,8 @@ async def whatsapp_webhook(request: Request, db: Session = Depends(get_db)):
         from app.services.twilio_whatsapp import hash_phone
         user_hash = hash_phone(phone_from)
         
-        # Use V3 Handler with proper state management
-        from app.services.message_handler_v3 import handle_message
+        # Use V4 Handler with Claude-First architecture
+        from app.services.message_handler_v4 import handle_message
         
         # Handle incoming voice note
         if media_url and "audio" in media_type:

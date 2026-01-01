@@ -230,6 +230,29 @@ TEMPLATES = {
     ),
     
     # ==========================================
+    # PRIVACY
+    # ==========================================
+    
+    "privacy_confirm_delete": (
+        "Are you sure you want to delete all your data?\n\n"
+        "This will remove:\n"
+        "• Your name and location\n"
+        "• Conversation history\n"
+        "• Any reported issues\n\n"
+        "Type 'yes delete' to confirm, or anything else to cancel."
+    ),
+    
+    "privacy_deleted": (
+        "Your data has been deleted.\n\n"
+        "If you message again, you'll start fresh. Take care! 👋"
+    ),
+    
+    "privacy_delete_cancelled": (
+        "Data deletion cancelled. Your information is safe.\n\n"
+        "What else can I help with?"
+    ),
+    
+    # ==========================================
     # FOLLOWUP
     # ==========================================
     
@@ -246,6 +269,17 @@ TEMPLATES = {
     "followup_no_bills": (
         "{name} hasn't sponsored any bills in the current session.\n\n"
         "Want to know about their committee memberships instead?"
+    ),
+    
+    # Alias for menu
+    "menu": (
+        "I can help you:\n\n"
+        "• Find your representatives — \"Who is my senator?\"\n"
+        "• Learn about politicians — \"Who is Tinubu?\"\n"
+        "• Get political news — \"Latest on the tax bill\"\n"
+        "• Report community issues — \"Report a bad road\"\n"
+        "• Register to vote — \"How do I get my PVC?\"\n\n"
+        "What do you need?"
     ),
 }
 
