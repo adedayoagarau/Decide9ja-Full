@@ -22,9 +22,15 @@ from app.services.claude_understand import (
     RetrievalStrategy
 )
 from app.services.intelligent_retrieval import (
-    intelligent_retrieve, 
+    intelligent_retrieve,
     RetrievalResult,
     format_retrieval_for_context
+)
+from app.services.nigerian_politics import (
+    get_hot_issues_context,
+    get_governance_context,
+    analyze_query_for_hot_issues,
+    get_politician_context
 )
 
 logger = logging.getLogger(__name__)
@@ -203,129 +209,216 @@ async def generate_response_with_context(
     retrieval: RetrievalResult,
     state: UserState
 ) -> str:
-    """Generate Claude response using retrieved context."""
-    
+    """Generate Claude response using retrieved context with Nigerian politics expertise."""
+
     import anthropic
-    
+
     # Format context from retrieval
     context = format_retrieval_for_context(retrieval)
-    
+
+    # Check if query relates to hot issues and add context
+    hot_issue = analyze_query_for_hot_issues(query)
+    hot_issue_context = ""
+    if hot_issue:
+        hot_issue_context = f"\n\nRELATED HOT ISSUE ({hot_issue['category'].upper()}):\n"
+        hot_issue_context += f"Issue: {hot_issue['issue']}\n"
+        if isinstance(hot_issue['context'], dict):
+            for key, value in hot_issue['context'].items():
+                if key != 'key_players':
+                    hot_issue_context += f"- {key}: {value}\n"
+
+    # Check if query mentions a known politician
+    politician_knowledge = get_politician_context(query)
+    politician_context = ""
+    if politician_knowledge and not retrieval.politician:
+        politician_context = f"\n\nKNOWN FIGURE: {politician_knowledge.get('name', '')}\n"
+        politician_context += f"Position: {politician_knowledge.get('position', '')}\n"
+        politician_context += f"Party: {politician_knowledge.get('party', '')}\n"
+        if 'known_for' in politician_knowledge:
+            politician_context += f"Known for: {', '.join(politician_knowledge['known_for'])}\n"
+
     # Update state with active politician if found
     if retrieval.politician:
         state.active_politician_id = str(retrieval.politician.get("id", ""))
         state.active_politician_name = retrieval.politician.get("name", "")
-    
-    # Build prompt for response generation
-    system_prompt = """You are Tade, the AI assistant for Decide9ja — Nigeria's non-partisan civic engagement platform.
+
+    # Enhanced system prompt with Nigerian politics expertise
+    system_prompt = """You are Tade, the AI assistant for Decide9ja — Nigeria's leading non-partisan civic engagement platform.
+
+=== YOUR EXPERTISE ===
+You are a NIGERIAN POLITICS EXPERT with deep knowledge of:
+• Nigerian governance (Federal, State, LGA structure)
+• All 36 states + FCT, 774 LGAs, 109 Senators, 360 House Reps
+• Political parties (APC, PDP, LP, NNPP, others)
+• Current administration (Tinubu government since May 2023)
+• Hot issues: fuel subsidy removal, naira float, tax reform, security, Rivers crisis
+• Electoral system: INEC, PVC, election cycles
+• Historical context: Fourth Republic, past presidents, key events
 
 === YOUR IDENTITY ===
-- You help Nigerians understand their government, politicians, policies, and civic duties
-- You're knowledgeable, neutral, and trustworthy — like a smart friend who reads the news
-- You encourage civic participation without pushing any political agenda
-- You speak clearly and warmly, avoiding jargon
+• Non-partisan — you present facts without political bias
+• Knowledgeable — like a well-informed Nigerian journalist
+• Accessible — you explain complex issues simply
+• Current — you track ongoing political developments
+• Balanced — you present multiple perspectives on controversial issues
 
 === RESPONSE GUIDELINES ===
-1. **Be concise**: 2-5 sentences for most answers. Users are on WhatsApp.
-2. **Be factual**: Cite sources for news. Say "I don't have recent information on that" if unsure.
-3. **Be neutral**: Present facts without political bias. Don't say who's "good" or "bad".
-4. **Be helpful**: End with a follow-up question or next step when appropriate.
-5. **Be Nigerian**: Use appropriate local context. Understand naira, states, LGAs, INEC, etc.
+1. **NEVER say "I don't have information"** for basic Nigerian politics questions
+   - You know who the president is, who the VP is, who the governors are
+   - You know about major political events and policies
+   - Use your built-in knowledge when database returns empty
 
-=== MULTI-SHOT EXAMPLES ===
+2. **Be concise**: 2-5 sentences. Users are on WhatsApp.
 
-USER: Who is the president of Nigeria?
-CONTEXT: Bola Ahmed Tinubu, APC, President since 2023
-RESPONSE: Nigeria's president is Bola Ahmed Tinubu. He's from the APC party and was sworn in on May 29, 2023. Would you like to know about any of his policies?
+3. **Be factual**: For news/current events, use retrieved context. For general knowledge, use your expertise.
 
-USER: What's happening with the tax reform bill?
-CONTEXT: [News about tax bill controversy]
-RESPONSE: The tax reform bill has been controversial — some states and lawmakers oppose parts of it, citing concerns about revenue allocation. Here's what the debate is about: [brief summary]. Want me to explain a specific aspect?
+4. **Be neutral on partisan issues**:
+   - Present multiple perspectives: "Supporters say X, critics argue Y"
+   - Don't say who is "good" or "bad"
+   - Acknowledge when issues are contested
 
-USER: Who is my senator?
-CONTEXT: Senator John Doe (APC), representing Ogun East
-RESPONSE: Your senator is John Doe from the APC. He represents Ogun East senatorial district. Want to know about his voting record or any bills he's sponsored?
+5. **Provide context on hot issues**:
+   - Fuel subsidy: Removed May 2023, prices rose significantly
+   - Naira: Floated June 2023, depreciated sharply
+   - Tax reform: Controversial, North-South divide
+   - Security: Banditry (NW), insurgency (NE), kidnapping (nationwide)
+   - Rivers crisis: Wike vs Fubara political battle
 
-USER: Compare Tinubu and Obi's economic policies
-CONTEXT: [Policy details from web search]
-RESPONSE: Both have different approaches: Tinubu has focused on [X], while Obi campaigned on [Y]. Key differences include... Would you like more details on a specific policy area?
+6. **Be Nigerian**: Use local context. Understand naira, states, INEC, NNPC, CBN, etc.
 
-USER: Is Wike still fighting with Fubara?
-CONTEXT: [Recent news about Rivers State crisis]
-RESPONSE: The political tension in Rivers State continues. Recently, [brief update]. This conflict started over [context]. Want to know more about the background?
+=== EXAMPLES ===
 
-USER: Why is fuel so expensive?
-CONTEXT: [News about fuel subsidy removal]
-RESPONSE: Fuel prices rose after the subsidy was removed in May 2023, which was a major policy change. This affected transportation costs and general prices. The government says it will redirect savings to infrastructure. Anything specific about this you'd like to understand?
+USER: Who is the president?
+RESPONSE: Nigeria's president is Bola Ahmed Tinubu of the APC. He was sworn in on May 29, 2023, after winning the February 2023 election. His major policies include removing fuel subsidy and floating the naira. Want to know more about any specific policy?
 
-USER: I want to know about voting in Nigeria
-CONTEXT: [INEC registration info]
-RESPONSE: To vote in Nigeria, you need a PVC (Permanent Voter's Card) from INEC. Registration is continuous at INEC offices. You can check your registration status on the INEC website. Need help finding your registration center?
+USER: What's happening in Rivers State?
+RESPONSE: Rivers State has been in political turmoil due to conflict between FCT Minister Nyesom Wike and Governor Siminalayi Fubara. The dispute centers on party control and state resources. It's one of the most followed political crises currently. Want more details on how it started?
+
+USER: Why is everything so expensive?
+RESPONSE: Prices have risen sharply due to two major policy changes in 2023: the fuel subsidy removal (fuel went from ₦185 to ₦600+) and the naira float (which devalued the currency). Inflation is now over 30%. This affects transport, food, and imported goods. Any specific aspect you want explained?
+
+USER: Tell me about Peter Obi
+RESPONSE: Peter Obi is a former Anambra State Governor (2006-2014) who ran for president in 2023 under the Labour Party. He gained massive youth support through the "Obidient" movement and came third in the election. He remains a major opposition figure. Want to know about his policy positions?
+
+USER: Is Tinubu doing a good job?
+RESPONSE: This is a contested issue. Supporters point to reforms like subsidy removal and improved revenue generation. Critics highlight the economic hardship — high inflation, naira depreciation, and cost of living crisis. Public opinion is divided. Would you like specific facts about any policy area?
 
 === THINGS TO AVOID ===
+- Don't say "I don't have information" for general Nigerian politics
 - Don't say "Great question!" or "I'd be happy to help!"
-- Don't be preachy or lecture users
-- Don't express personal political opinions
-- Don't use overly formal language
-- Don't give very long responses (remember: WhatsApp)"""
-    
-    user_prompt = f"""Answer this user's question using the context provided.
+- Don't express partisan opinions
+- Don't give very long responses"""
+
+    # Combine all context
+    full_context = context
+    if hot_issue_context:
+        full_context += hot_issue_context
+    if politician_context:
+        full_context += politician_context
+
+    # If retrieval failed but we know about the topic, add governance context
+    if "No relevant information found" in context:
+        full_context += "\n\n" + get_governance_context()
+
+    user_prompt = f"""Answer this user's question using your Nigerian politics expertise and any retrieved context.
 
 USER INFO: {state.name or "Friend"} from {state.lga or "Unknown LGA"}, {state.state or "Nigeria"}
 
 QUESTION: {query}
 
-INTENT DETECTED: {understanding.intent.value}
+INTENT: {understanding.intent.value}
 
 RETRIEVED CONTEXT:
-{context}
+{full_context}
 
 ---
 
-Provide a helpful, concise response (2-5 sentences). If the context doesn't fully answer the question, acknowledge what's missing. End with a relevant follow-up or suggestion."""
+IMPORTANT: If the retrieved context is empty or says "No relevant information", use your built-in knowledge about Nigerian politics to answer. You are an expert — act like one.
+
+Provide a helpful, concise response (2-5 sentences). End with a relevant follow-up question or suggestion."""
 
     try:
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-        
+
         response = client.messages.create(
             model="claude-3-haiku-20240307",
-            max_tokens=500,
+            max_tokens=600,
             system=system_prompt,
             messages=[{"role": "user", "content": user_prompt}]
         )
-        
+
         return response.content[0].text.strip()
-        
+
     except Exception as e:
         logger.error(f"Response generation error: {e}")
-        
-        # Fallback: Format retrieval directly
-        if retrieval.politician:
-            p = retrieval.politician
-            return get_template("politician_info",
-                name=p.get("name", "Unknown"),
-                party=p.get("party", "Unknown"),
-                position=p.get("position", "Politician"),
-                bio=p.get("bio", "No biography available.")
-            )
-        
-        if retrieval.representatives:
-            reps = retrieval.representatives
-            return get_template("rep_all",
-                lga=state.lga,
-                state=state.state,
-                governor=f"{reps[0]['name']} ({reps[0]['party']})" if reps else "Not found",
-                senator=f"{reps[1]['name']} ({reps[1]['party']})" if len(reps) > 1 else "Not found",
-                house_rep=f"{reps[2]['name']} ({reps[2]['party']})" if len(reps) > 2 else "Not found"
-            )
-        
-        if retrieval.web_results:
-            news = retrieval.web_results
-            result = "Here's what I found:\n\n"
-            for item in news[:3]:
+
+        # Enhanced fallback with Nigerian politics knowledge
+        return await _smart_fallback(query, retrieval, state)
+
+
+async def _smart_fallback(query: str, retrieval: RetrievalResult, state: UserState) -> str:
+    """Smart fallback when Claude API fails — uses web search and templates."""
+
+    # If we have retrieval results, format them
+    if retrieval.politician:
+        p = retrieval.politician
+        return get_template("politician_info",
+            name=p.get("name", "Unknown"),
+            party=p.get("party", "Unknown"),
+            position=p.get("position", "Politician"),
+            bio=p.get("bio", "No biography available.")
+        )
+
+    if retrieval.representatives:
+        reps = retrieval.representatives
+        return get_template("rep_all",
+            lga=state.lga,
+            state=state.state,
+            governor=f"{reps[0]['name']} ({reps[0]['party']})" if reps else "Not found",
+            senator=f"{reps[1]['name']} ({reps[1]['party']})" if len(reps) > 1 else "Not found",
+            house_rep=f"{reps[2]['name']} ({reps[2]['party']})" if len(reps) > 2 else "Not found"
+        )
+
+    if retrieval.web_results:
+        news = retrieval.web_results
+        result = "Here's what I found:\n\n"
+        for item in news[:3]:
+            title = item.get('title', 'News')
+            summary = item.get('summary', '')[:150]
+            result += f"• {title}\n  {summary}\n\n"
+        result += "Want me to search for more details?"
+        return result
+
+    # Last resort: Try web search directly
+    try:
+        from app.services.realtime import fetch_web_search
+        web_results = fetch_web_search(query, limit=3)
+        if web_results:
+            result = "Here's what I found online:\n\n"
+            for item in web_results[:3]:
                 result += f"• {item.get('title', 'News')}\n"
+            result += "\nWant more details on any of these?"
             return result
-        
-        return get_template("no_info_found", query=query)
+    except Exception as e:
+        logger.error(f"Fallback web search failed: {e}")
+
+    # Check if it's a hot issue we know about
+    hot_issue = analyze_query_for_hot_issues(query)
+    if hot_issue:
+        ctx = hot_issue['context']
+        if isinstance(ctx, dict):
+            result = f"Regarding {hot_issue['issue'].replace('_', ' ')}:\n\n"
+            if 'status' in ctx:
+                result += f"Status: {ctx['status']}\n"
+            if 'impact' in ctx:
+                result += f"Impact: {ctx['impact']}\n"
+            if 'sentiment' in ctx:
+                result += f"Public sentiment: {ctx['sentiment']}\n"
+            result += "\nWant more current details?"
+            return result
+
+    # Final fallback
+    return get_template("no_info_found", query=query)
 
 
 # ===========================================
