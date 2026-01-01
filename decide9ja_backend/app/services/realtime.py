@@ -6,7 +6,7 @@ import logging
 import feedparser
 from typing import List, Dict
 from datetime import datetime
-from duckduckgo_search import DDGS  # DuckDuckGo search
+from ddgs import DDGS  # ddgs package (in requirements.txt)
 
 logger = logging.getLogger(__name__)
 
