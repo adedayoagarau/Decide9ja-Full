@@ -41,7 +41,17 @@ TEMPLATES = {
         "Ask about your representatives, report an issue, or ask me "
         "anything about Nigerian politics."
     ),
-    
+
+    "incomplete_profile": (
+        "I need a bit more info to help you better.\n\n"
+        "Say 'hi' to get started, or 'help' for options."
+    ),
+
+    "greeting_returning": (
+        "Hey {name}! How can I help you today?\n\n"
+        "Ask about your representatives, politicians, or current political news."
+    ),
+
     "didnt_catch_name": (
         "I didn't catch your name. What should I call you?"
     ),
@@ -198,11 +208,17 @@ TEMPLATES = {
         "You can ask about your representatives, any politician, "
         "current news, or say 'help' for options."
     ),
-    
+
     "fallback_with_context": (
         "I don't have that information.\n\n"
         "Try asking about a specific politician, your representatives, "
         "or current political news."
+    ),
+
+    "no_info_found": (
+        "I don't have information on \"{query}\".\n\n"
+        "Try asking about a specific politician by full name, "
+        "your representatives, or current political news."
     ),
     
     # ==========================================
