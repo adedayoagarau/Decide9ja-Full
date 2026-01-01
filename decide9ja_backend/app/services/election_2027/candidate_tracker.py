@@ -57,6 +57,9 @@ class CandidateProfile:
 # === SAMPLE CANDIDATES ===
 
 SAMPLE_CANDIDATES = {
+    # ==========================================
+    # PRESIDENTIAL CANDIDATES
+    # ==========================================
     "tinubu": CandidateProfile(
         id="tinubu",
         name="Bola Ahmed Tinubu",
@@ -152,6 +155,214 @@ SAMPLE_CANDIDATES = {
         twitter="@KwsOfficial",
         sentiment_score=0.1,
         mention_count_7d=90
+    ),
+
+    # ==========================================
+    # LAGOS STATE GUBERNATORIAL CANDIDATES
+    # ==========================================
+    "sanwo_olu": CandidateProfile(
+        id="sanwo_olu",
+        name="Babajide Sanwo-Olu",
+        party="APC",
+        party_full="All Progressives Congress",
+        position_sought="governor",
+        state="Lagos",
+        bio_short="Current Governor of Lagos State since 2019. Former Managing Director of Lagos State Property Development Corporation.",
+        age=58,
+        state_of_origin="Lagos",
+        religion="Muslim",
+        is_incumbent=True,
+        previous_positions=["Commissioner for Budget", "MD Lagos Property Dev Corp"],
+        key_policies=[
+            "THEMES Agenda",
+            "Lagos Rail Mass Transit",
+            "Healthcare reform",
+            "Education improvement"
+        ],
+        campaign_slogan="Greater Lagos Rising",
+        twitter="@jiaborofficial",
+        sentiment_score=0.2,
+        mention_count_7d=120
+    ),
+
+    "gbadamosi": CandidateProfile(
+        id="gbadamosi",
+        name="Gbadebo Rhodes-Vivour",
+        party="LP",
+        party_full="Labour Party",
+        position_sought="governor",
+        state="Lagos",
+        bio_short="Architect and politician. Labour Party candidate in 2023 who came third. Youth movement leader.",
+        age=40,
+        state_of_origin="Lagos",
+        religion="Christian",
+        is_incumbent=False,
+        previous_positions=["Businessman", "Architect"],
+        key_policies=[
+            "Youth employment",
+            "Urban renewal",
+            "Healthcare access",
+            "Education reform"
+        ],
+        campaign_slogan="A Lagos for All",
+        twitter="@GRVLagos",
+        sentiment_score=0.3,
+        mention_count_7d=85
+    ),
+
+    # ==========================================
+    # RIVERS STATE GUBERNATORIAL CANDIDATES
+    # ==========================================
+    "fubara": CandidateProfile(
+        id="fubara",
+        name="Siminalayi Fubara",
+        party="PDP",
+        party_full="Peoples Democratic Party",
+        position_sought="governor",
+        state="Rivers",
+        bio_short="Current Governor of Rivers State since May 2023. Former Accountant General of Rivers State.",
+        age=48,
+        state_of_origin="Rivers",
+        religion="Christian",
+        is_incumbent=True,
+        previous_positions=["Accountant General of Rivers State"],
+        key_policies=[
+            "Infrastructure development",
+            "Youth empowerment",
+            "Good governance"
+        ],
+        campaign_slogan="Rivers First",
+        sentiment_score=-0.1,
+        mention_count_7d=200
+    ),
+
+    # ==========================================
+    # KANO STATE GUBERNATORIAL CANDIDATES
+    # ==========================================
+    "yusuf_abba": CandidateProfile(
+        id="yusuf_abba",
+        name="Abba Kabir Yusuf",
+        party="NNPP",
+        party_full="New Nigeria Peoples Party",
+        position_sought="governor",
+        state="Kano",
+        bio_short="Current Governor of Kano State. Protege of Kwankwaso. First NNPP Governor.",
+        age=55,
+        state_of_origin="Kano",
+        religion="Muslim",
+        is_incumbent=True,
+        previous_positions=["Commissioner under Kwankwaso"],
+        key_policies=[
+            "Free education continuation",
+            "Healthcare access",
+            "Youth employment"
+        ],
+        campaign_slogan="Kwankwasiyya Continues",
+        sentiment_score=0.15,
+        mention_count_7d=75
+    ),
+
+    # ==========================================
+    # OYO STATE GUBERNATORIAL CANDIDATES
+    # ==========================================
+    "makinde": CandidateProfile(
+        id="makinde",
+        name="Seyi Makinde",
+        party="PDP",
+        party_full="Peoples Democratic Party",
+        position_sought="governor",
+        state="Oyo",
+        bio_short="Current Governor of Oyo State since 2019. Engineer and businessman. Re-elected in 2023.",
+        age=56,
+        state_of_origin="Oyo",
+        religion="Muslim",
+        is_incumbent=True,
+        previous_positions=["Businessman", "Engineer"],
+        key_policies=[
+            "Omituntun 2.0",
+            "Education reform",
+            "Healthcare improvement",
+            "Security enhancement"
+        ],
+        campaign_slogan="Omituntun",
+        twitter="@saborofficial",
+        sentiment_score=0.25,
+        mention_count_7d=95
+    ),
+
+    # ==========================================
+    # KADUNA STATE GUBERNATORIAL CANDIDATES
+    # ==========================================
+    "sani_uba": CandidateProfile(
+        id="sani_uba",
+        name="Uba Sani",
+        party="APC",
+        party_full="All Progressives Congress",
+        position_sought="governor",
+        state="Kaduna",
+        bio_short="Current Governor of Kaduna State. Former Senator representing Kaduna Central.",
+        age=57,
+        state_of_origin="Kaduna",
+        religion="Muslim",
+        is_incumbent=True,
+        previous_positions=["Senator Kaduna Central"],
+        key_policies=[
+            "Peace and security",
+            "Economic development",
+            "Social investment"
+        ],
+        campaign_slogan="Peace and Progress",
+        sentiment_score=0.1,
+        mention_count_7d=60
+    ),
+
+    # ==========================================
+    # KEY SENATORS
+    # ==========================================
+    "akpabio": CandidateProfile(
+        id="akpabio",
+        name="Godswill Akpabio",
+        party="APC",
+        party_full="All Progressives Congress",
+        position_sought="senator",
+        state="Akwa Ibom",
+        constituency="Akwa Ibom North-West",
+        bio_short="Senate President of Nigeria. Former Governor of Akwa Ibom State (2007-2015).",
+        age=60,
+        state_of_origin="Akwa Ibom",
+        religion="Christian",
+        is_incumbent=True,
+        previous_positions=["Governor of Akwa Ibom", "Minister of Niger Delta"],
+        key_policies=[
+            "Legislative efficiency",
+            "Niger Delta development"
+        ],
+        campaign_slogan="Uncommon Transformation",
+        twitter="@officialgaboris",
+        sentiment_score=0.05,
+        mention_count_7d=85
+    ),
+
+    "barau": CandidateProfile(
+        id="barau",
+        name="Jibrin Barau",
+        party="APC",
+        party_full="All Progressives Congress",
+        position_sought="senator",
+        state="Kano",
+        constituency="Kano North",
+        bio_short="Deputy Senate President. Senator representing Kano North.",
+        age=65,
+        state_of_origin="Kano",
+        religion="Muslim",
+        is_incumbent=True,
+        previous_positions=["Senator Kano North"],
+        key_policies=[
+            "Northern development",
+            "Education access"
+        ],
+        sentiment_score=0.1,
+        mention_count_7d=40
     ),
 }
 
