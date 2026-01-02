@@ -485,13 +485,19 @@ async def whatsapp_webhook(request: Request, db: Session = Depends(get_db)):
                 )
         
         if not message_body:
+            logger.info(f"Empty message from {user_hash}")
             return {"status": "no message"}
         
         # SECURITY: Sanitize
         message_body = sanitize_input(message_body)[:1000]
         
-        # Process message with V3 handler
+        # Log for debugging
+        logger.info(f"📨 Processing message from {user_hash[:8]}...: '{message_body[:50]}'")
+        
+        # Process message with V4 Claude-First handler
         response_text = await handle_message(phone_from, message_body, media_url)
+        
+        logger.info(f"📤 Response ready ({len(response_text)} chars): '{response_text[:80]}...'")
         
         # Regular text response (simplified - voice mode can be added later)
         safe_response = escape_xml(response_text[:1500])
