@@ -286,3 +286,15 @@ class StateManager:
 
 # Singleton instance
 state_manager = StateManager()
+
+
+# Async wrapper functions (used by message handlers)
+async def _get_state_async(phone: str) -> UserState:
+    """Async wrapper to get user state."""
+    return state_manager.get_state(phone)
+
+
+async def _save_state_async(state: UserState):
+    """Async wrapper to save user state."""
+    state_manager.save_state(state)
+
