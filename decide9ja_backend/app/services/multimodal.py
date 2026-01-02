@@ -52,11 +52,13 @@ async def process_multimodal_message(message: dict, user_hash: str) -> str:
 
 
 async def process_text(message: dict, user_hash: str) -> str:
-    """Process text message - delegates to existing handler."""
-    from app.services.message_handler import process_text_message
+    """Process text message - delegates to v4 handler."""
+    from app.services.message_handler_v4 import handle_message
     
-    conv_state = conversation.get_conversation_state(user_hash)
-    return await process_text_message(message, conv_state, user_hash)
+    phone = message.get("from_raw", message.get("from", ""))
+    text = message.get("text", "")
+    
+    return await handle_message(phone, text)
 
 
 async def process_voice(message: dict, user_hash: str) -> str:
