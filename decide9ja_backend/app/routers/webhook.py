@@ -9,7 +9,7 @@ from fastapi import APIRouter, Request, HTTPException, Query, BackgroundTasks
 from fastapi.responses import PlainTextResponse
 
 from app.services import whatsapp
-from app.services.message_handler_v2 import handle_whatsapp_message
+from app.services.message_handler_v4 import handle_message as handle_whatsapp_message
 from app.services.security import security
 
 logger = logging.getLogger(__name__)
