@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decide9ja Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .header {
+            background: linear-gradient(135deg, #008751, #006837);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .header .refresh-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .header .refresh-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .stat-card .label {
+            font-size: 13px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .stat-card .value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #008751;
+        }
+        .stat-card .subvalue {
+            font-size: 13px;
+            color: #888;
+            margin-top: 4px;
+        }
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .chart-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .chart-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 30px 0 20px;
+            color: #333;
+        }
+        .table-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+        .table-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            font-weight: 600;
+            color: #666;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+        td {
+            font-size: 14px;
+        }
+        .progress-bar {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-bar .fill {
+            height: 100%;
+            background: #008751;
+            border-radius: 4px;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        .error {
+            background: #fee;
+            color: #c00;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .last-updated {
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+            padding: 20px;
+        }
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+            .container {
+                padding: 15px;
+            }
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Decide9ja Analytics Dashboard</h1>
+        <button class="refresh-btn" onclick="loadData()">Refresh Data</button>
+    </div>
+
+    <div class="container">
+        <div id="error-container"></div>
+
+        <div class="stats-grid" id="stats-grid">
+            <div class="stat-card">
+                <div class="label">Total Users</div>
+                <div class="value" id="total-users">--</div>
+                <div class="subvalue" id="new-users-today">-- new today</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Daily Active Users</div>
+                <div class="value" id="dau">--</div>
+                <div class="subvalue" id="wau">WAU: --</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Messages Today</div>
+                <div class="value" id="messages-today">--</div>
+                <div class="subvalue" id="messages-week">This week: --</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Queries Today</div>
+                <div class="value" id="queries-today">--</div>
+                <div class="subvalue" id="fallback-rate">Fallback rate: --%</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Active Polls</div>
+                <div class="value" id="active-polls">--</div>
+                <div class="subvalue" id="poll-responses">-- responses today</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">PVC Holders</div>
+                <div class="value" id="pvc-holders">--</div>
+                <div class="subvalue" id="pvc-rate">-- of users</div>
+            </div>
+        </div>
+
+        <div class="charts-grid">
+            <div class="chart-card">
+                <h3>Daily Active Users (Last 30 Days)</h3>
+                <div class="chart-container">
+                    <canvas id="dau-chart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Intent Distribution</h3>
+                <div class="chart-container">
+                    <canvas id="intent-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="charts-grid">
+            <div class="chart-card">
+                <h3>Users by State (Top 10)</h3>
+                <div class="chart-container">
+                    <canvas id="state-chart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Response Time Distribution</h3>
+                <div class="chart-container">
+                    <canvas id="response-time-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Top Intents</h2>
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Intent</th>
+                        <th>Count</th>
+                        <th>Percentage</th>
+                        <th>Avg Response Time</th>
+                        <th>Fallback Rate</th>
+                    </tr>
+                </thead>
+                <tbody id="intent-table">
+                    <tr><td colspan="5" class="loading">Loading...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="section-title">Top States</h2>
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>State</th>
+                        <th>Users</th>
+                        <th>Distribution</th>
+                    </tr>
+                </thead>
+                <tbody id="state-table">
+                    <tr><td colspan="3" class="loading">Loading...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="last-updated" id="last-updated"></div>
+    </div>
+
+    <script>
+        let dauChart, intentChart, stateChart, responseTimeChart;
+
+        async function loadData() {
+            try {
+                const response = await fetch('/api/admin/metrics');
+                if (!response.ok) throw new Error('Failed to fetch metrics');
+                const data = await response.json();
+
+                updateStats(data);
+                updateCharts(data);
+                updateTables(data);
+
+                document.getElementById('last-updated').textContent =
+                    'Last updated: ' + new Date(data.generated_at).toLocaleString();
+                document.getElementById('error-container').innerHTML = '';
+
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('error-container').innerHTML =
+                    '<div class="error">Failed to load data: ' + error.message + '</div>';
+            }
+        }
+
+        function updateStats(data) {
+            const users = data.user_metrics || {};
+            const conv = data.conversation_metrics || {};
+            const polls = data.poll_metrics || {};
+
+            document.getElementById('total-users').textContent = formatNumber(users.total_users || 0);
+            document.getElementById('new-users-today').textContent = `${users.new_users_today || 0} new today`;
+            document.getElementById('dau').textContent = formatNumber(users.dau || 0);
+            document.getElementById('wau').textContent = `WAU: ${formatNumber(users.wau || 0)}`;
+            document.getElementById('messages-today').textContent = formatNumber(conv.messages_today || 0);
+            document.getElementById('messages-week').textContent = `This week: ${formatNumber(conv.messages_week || 0)}`;
+            document.getElementById('queries-today').textContent = formatNumber(conv.queries_today || 0);
+            document.getElementById('fallback-rate').textContent = `Fallback rate: ${conv.fallback_rate || 0}%`;
+            document.getElementById('active-polls').textContent = polls.active_polls || 0;
+            document.getElementById('poll-responses').textContent = `${polls.responses_today || 0} responses today`;
+            document.getElementById('pvc-holders').textContent = formatNumber(users.pvc_holders || 0);
+
+            const pvcRate = users.total_users > 0
+                ? ((users.pvc_holders / users.total_users) * 100).toFixed(1)
+                : 0;
+            document.getElementById('pvc-rate').textContent = `${pvcRate}% of users`;
+        }
+
+        function updateCharts(data) {
+            // DAU Chart
+            const dauTrend = data.dau_trend || [];
+            const dauLabels = dauTrend.map(d => d.date).reverse();
+            const dauData = dauTrend.map(d => d.dau).reverse();
+
+            if (dauChart) dauChart.destroy();
+            dauChart = new Chart(document.getElementById('dau-chart'), {
+                type: 'line',
+                data: {
+                    labels: dauLabels,
+                    datasets: [{
+                        label: 'DAU',
+                        data: dauData,
+                        borderColor: '#008751',
+                        backgroundColor: 'rgba(0, 135, 81, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+
+            // Intent Chart
+            const intents = data.intent_distribution || [];
+            const intentLabels = intents.slice(0, 8).map(i => i.intent);
+            const intentData = intents.slice(0, 8).map(i => i.count);
+
+            if (intentChart) intentChart.destroy();
+            intentChart = new Chart(document.getElementById('intent-chart'), {
+                type: 'doughnut',
+                data: {
+                    labels: intentLabels,
+                    datasets: [{
+                        data: intentData,
+                        backgroundColor: [
+                            '#008751', '#00a86b', '#2ecc71', '#27ae60',
+                            '#1abc9c', '#16a085', '#3498db', '#2980b9'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'right' }
+                    }
+                }
+            });
+
+            // State Chart
+            const geo = data.geographic_distribution || {};
+            const states = geo.states || {};
+            const stateLabels = Object.keys(states).slice(0, 10);
+            const stateData = stateLabels.map(s => states[s]);
+
+            if (stateChart) stateChart.destroy();
+            stateChart = new Chart(document.getElementById('state-chart'), {
+                type: 'bar',
+                data: {
+                    labels: stateLabels,
+                    datasets: [{
+                        label: 'Users',
+                        data: stateData,
+                        backgroundColor: '#008751'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+
+            // Response Time Chart (placeholder data)
+            const conv = data.conversation_metrics || {};
+            const avgTime = conv.avg_response_time_ms || 500;
+
+            if (responseTimeChart) responseTimeChart.destroy();
+            responseTimeChart = new Chart(document.getElementById('response-time-chart'), {
+                type: 'bar',
+                data: {
+                    labels: ['< 500ms', '500-1000ms', '1-2s', '2-5s', '> 5s'],
+                    datasets: [{
+                        label: 'Queries',
+                        data: [40, 30, 15, 10, 5],
+                        backgroundColor: ['#2ecc71', '#27ae60', '#f39c12', '#e67e22', '#e74c3c']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        function updateTables(data) {
+            // Intent Table
+            const intents = data.intent_distribution || [];
+            const intentTableBody = document.getElementById('intent-table');
+            intentTableBody.innerHTML = intents.slice(0, 10).map(intent => `
+                <tr>
+                    <td><strong>${intent.intent || 'Unknown'}</strong></td>
+                    <td>${formatNumber(intent.count)}</td>
+                    <td>
+                        <div class="progress-bar">
+                            <div class="fill" style="width: ${intent.percentage}%"></div>
+                        </div>
+                        ${intent.percentage}%
+                    </td>
+                    <td>${intent.avg_response_time_ms || 0}ms</td>
+                    <td>${(intent.fallback_rate || 0).toFixed(1)}%</td>
+                </tr>
+            `).join('') || '<tr><td colspan="5">No data</td></tr>';
+
+            // State Table
+            const geo = data.geographic_distribution || {};
+            const states = geo.states || {};
+            const total = geo.total_with_state || 1;
+            const stateTableBody = document.getElementById('state-table');
+            stateTableBody.innerHTML = Object.entries(states).slice(0, 15).map(([state, count]) => {
+                const pct = ((count / total) * 100).toFixed(1);
+                return `
+                    <tr>
+                        <td><strong>${state}</strong></td>
+                        <td>${formatNumber(count)}</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="fill" style="width: ${pct}%"></div>
+                            </div>
+                            ${pct}%
+                        </td>
+                    </tr>
+                `;
+            }).join('') || '<tr><td colspan="3">No data</td></tr>';
+        }
+
+        function formatNumber(num) {
+            return new Intl.NumberFormat().format(num);
+        }
+
+        // Load data on page load
+        loadData();
+
+        // Auto-refresh every 5 minutes
+        setInterval(loadData, 5 * 60 * 1000);
+    </script>
+</body>
+</html>
