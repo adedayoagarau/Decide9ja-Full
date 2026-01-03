@@ -1,0 +1,412 @@
+{
+  "query_name": "nigerian_newspapers",
+  "total_results": 64,
+  "results": [
+    {
+      "paper": "http://www.wikidata.org/entity/Q527612",
+      "founded": "1995-01-01T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q8673",
+      "paperLabel": "This Day",
+      "paperDescription": "Nigerian national newspaper",
+      "headquartersLabel": "Lagos"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q4736468",
+      "founded": "1990-01-01T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q8673",
+      "paperLabel": "Alternative Press in Nigeria",
+      "paperDescription": "Alternative Press in Nigeria is news paper company that publish magazine news and events",
+      "headquartersLabel": "Lagos"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q4930412",
+      "founded": "2011-01-01T00:00:00Z",
+      "paperLabel": "Blueprint Newspaper",
+      "paperDescription": "Nigerian national newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q5001728",
+      "headquarters": "http://www.wikidata.org/entity/Q8673",
+      "paperLabel": "Business Hallmark",
+      "paperDescription": "financial newspaper in Nigeria",
+      "headquartersLabel": "Lagos"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q5209233",
+      "headquarters": "http://www.wikidata.org/entity/Q8673",
+      "paperLabel": "Daily Champion",
+      "paperDescription": "Nigeria newspaper",
+      "headquartersLabel": "Lagos"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q5209383",
+      "founded": "1925-01-01T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q8673",
+      "paperLabel": "Daily Times of Nigeria",
+      "paperDescription": "newspaper of Nigeria",
+      "headquartersLabel": "Lagos"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q7767316",
+      "founded": "2001-01-01T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q815913",
+      "paperLabel": "The Sun",
+      "paperDescription": "Nigerian daily print newspaper",
+      "headquartersLabel": "Lagos State"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q6805557",
+      "founded": "2001-01-01T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q3787",
+      "paperLabel": "Media Trust",
+      "paperDescription": "newspaper publishing company based in Abuja, Nigeria",
+      "headquartersLabel": "Abuja"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q7020936",
+      "paperLabel": "Next",
+      "paperDescription": "newspaper in Nigeria"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q7032887",
+      "founded": "2008-01-01T00:00:00Z",
+      "paperLabel": "Nigerian Compass",
+      "paperDescription": "Nigerian newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q7033001",
+      "founded": "1968-01-01T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q320704",
+      "paperLabel": "The Nigerian Observer",
+      "paperDescription": "Nigerian daily newspaper",
+      "headquartersLabel": "Benin City"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q7108020",
+      "headquarters": "http://www.wikidata.org/entity/Q868203",
+      "paperLabel": "Osun Defender",
+      "paperDescription": "Nigeria tabloid newspaper",
+      "headquartersLabel": "Osogbo"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q7166054",
+      "founded": "2008-01-01T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q8673",
+      "paperLabel": "Peoples Daily",
+      "paperDescription": "Nigerian newspaper",
+      "headquartersLabel": "Lagos"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q7399506",
+      "founded": "2006-01-01T00:00:00Z",
+      "paperLabel": "Sahara Reporters",
+      "paperDescription": "Nigeria online news"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q7697428",
+      "founded": "1991-04-15T00:00:00Z",
+      "paperLabel": "Tell Magazine",
+      "paperDescription": "Nigerian weekly magazine"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q7728661",
+      "founded": "2001-10-01T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q8673",
+      "paperLabel": "Independent Nigeria",
+      "paperDescription": "Newspaper in Nigeria",
+      "headquartersLabel": "Lagos"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q7738431",
+      "founded": "1983-01-01T00:00:00Z",
+      "paperLabel": "The Guardian",
+      "paperDescription": "Nigerian independent daily newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q7753130",
+      "founded": "2006-07-31T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q3139881",
+      "paperLabel": "The Nation",
+      "paperDescription": "Nigerian newspaper",
+      "headquartersLabel": "Mushin"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q7758737",
+      "founded": "1971-01-01T00:00:00Z",
+      "paperLabel": "The Punch",
+      "paperDescription": "Nigerian newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q7844483",
+      "founded": "1980-06-01T00:00:00Z",
+      "paperLabel": "The Triumph",
+      "paperDescription": "Nigerian English-language newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q7914812",
+      "founded": "1983-01-01T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q8673",
+      "paperLabel": "Vanguard",
+      "paperDescription": "Nigerian newspaper",
+      "headquartersLabel": "Lagos"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q7984264",
+      "founded": "1937-11-22T00:00:00Z",
+      "paperLabel": "West African Pilot",
+      "paperDescription": "Nigerian newspaper launched in 1937 by Nnamdi Azikiwe"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q16943304",
+      "founded": "2011-01-01T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q3787",
+      "paperLabel": "Premium Times",
+      "paperDescription": "Nigerian online newspaper",
+      "headquartersLabel": "Abuja"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q17042398",
+      "founded": "2012-01-01T00:00:00Z",
+      "paperLabel": "Urhobo vanguard",
+      "paperDescription": "Nigerian newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q17109191",
+      "founded": "2013-10-01T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q8673",
+      "paperLabel": "New Telegraph",
+      "paperDescription": "newspaper in Nigeria",
+      "headquartersLabel": "Lagos"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q17109197",
+      "founded": "2013-01-01T00:00:00Z",
+      "paperLabel": "The News Journal",
+      "paperDescription": "Nigerian weekly newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q17109416",
+      "founded": "1971-01-01T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q503923",
+      "paperLabel": "The Tide",
+      "paperDescription": "Nigerian newspaper",
+      "headquartersLabel": "Rivers State"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q16259432",
+      "founded": "2006-01-01T00:00:00Z",
+      "paperLabel": "National Mirror",
+      "paperDescription": "Nigeria daily newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q18353364",
+      "founded": "2009-01-01T00:00:00Z",
+      "paperLabel": "Nigerian Entertainment Today",
+      "paperDescription": "online entertainment news organization"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q18353684",
+      "founded": "2011-01-01T00:00:00Z",
+      "paperLabel": "Entertainment Express Nigeria",
+      "paperDescription": "Nigerian newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q55630186",
+      "founded": "2006-01-01T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q8673",
+      "paperLabel": "Politics Nigeria",
+      "paperDescription": "independent daily newspaper",
+      "headquartersLabel": "Lagos"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q22350740",
+      "founded": "2015-01-01T00:00:00Z",
+      "paperLabel": "Thinkers Newspaper",
+      "paperDescription": "Nigerian online newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q23808654",
+      "paperLabel": "Nigeria CommunicationsWeek",
+      "paperDescription": "ICT newspaper in Nigeria"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q23931913",
+      "founded": "2015-01-01T00:00:00Z",
+      "paperLabel": "The Authority (newspaper)",
+      "paperDescription": "Nigerian daily newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q24196073",
+      "founded": "2015-01-01T00:00:00Z",
+      "paperLabel": "Daily Post",
+      "paperDescription": "Nigerian online news website"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q24911630",
+      "founded": "2014-01-01T00:00:00Z",
+      "paperLabel": "Daylight Nigeria",
+      "paperDescription": "newspaper in Nigeria"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q30590780",
+      "paperLabel": "Alaroye",
+      "paperDescription": "weekly Yoruba language newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q30594856",
+      "paperLabel": "Stears News",
+      "paperDescription": "Nigerian business publication"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q48803445",
+      "founded": "2011-01-01T00:00:00Z",
+      "paperLabel": "TheCable",
+      "paperDescription": "Online newspaper in Nigeria"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q57614340",
+      "founded": "2015-01-01T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q8673",
+      "paperLabel": "Ripples Nigeria",
+      "paperDescription": "Multimedia online news platform",
+      "headquartersLabel": "Lagos"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q84816547",
+      "founded": "2018-08-01T00:00:00Z",
+      "paperLabel": "Muslim News Nigeria",
+      "paperDescription": "bi-monthly print and daily online Islamic newspaper in Nigeria"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q89046960",
+      "founded": "2009-01-01T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q3787",
+      "paperLabel": "NewsDiary Nigeria",
+      "paperDescription": "Online news",
+      "headquartersLabel": "Abuja"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q92600466",
+      "founded": "1972-01-01T00:00:00Z",
+      "paperLabel": "The Nigeria Standard",
+      "paperDescription": "Nigerian newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q93953761",
+      "founded": "2007-01-01T00:00:00Z",
+      "paperLabel": "Uhuru Times",
+      "paperDescription": "Nigerian online newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q96395353",
+      "paperLabel": "New Nigerian",
+      "paperDescription": "defunct Nigerian newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q110608281",
+      "paperLabel": "Naija News",
+      "paperDescription": "Nigerian digital news platform"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q114267317",
+      "founded": "2016-03-01T00:00:00Z",
+      "headquarters": "http://www.wikidata.org/entity/Q682704",
+      "paperLabel": "Prime 9ja Online",
+      "paperDescription": "Newspaper",
+      "headquartersLabel": "Edo State"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q105563053",
+      "founded": "2016-03-06T00:00:00Z",
+      "paperLabel": "Daily Nigerian",
+      "paperDescription": "Nigerian newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q106181847",
+      "paperLabel": "Daily Trust",
+      "paperDescription": "daily newspaper published by Media Trust, a media organization based in Abuja, Nigeria"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q106283154",
+      "founded": "1940-01-01T00:00:00Z",
+      "paperLabel": "Eastern Nigeria guardian",
+      "paperDescription": "was a newspaper in Nigeria published in Portharcourt, Nigeria"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q106289629",
+      "paperLabel": "Daily mail",
+      "paperDescription": "is a Nigerian media organisation and publisher of Daily mail"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q106290491",
+      "paperLabel": "Nigerian outlook",
+      "paperDescription": "is a Nigerian media organisation and publisher of Nigerian outlook"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q106297231",
+      "paperLabel": "Advance",
+      "paperDescription": "Nigerian media organisation and publisher of Advance"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q115223617",
+      "paperLabel": "The Point",
+      "paperDescription": "Nigerian newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q135678611",
+      "paperLabel": "Daylight",
+      "paperDescription": "Nigerian newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q135678618",
+      "headquarters": "http://www.wikidata.org/entity/Q217432",
+      "paperLabel": "National Network Newspaper",
+      "paperDescription": "English language Nigeria newspaper",
+      "headquartersLabel": "Port Harcourt"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q135678731",
+      "founded": "2004-01-01T00:00:00Z",
+      "paperLabel": "Next Newspaper",
+      "paperDescription": "English language Nigeria newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q135678859",
+      "paperLabel": "Investors King",
+      "paperDescription": "Newspaper company"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q135678883",
+      "paperLabel": "Daily intel newspaper",
+      "paperDescription": "Newspaper company"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q135678933",
+      "paperLabel": "Hammertimes news",
+      "paperDescription": "Newspaper company"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q135678960",
+      "paperLabel": "Viewpoint housing news",
+      "paperDescription": "Newspaper company"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q123746563",
+      "paperLabel": "The Herald",
+      "paperDescription": "Nigerian newspaper"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q132531968",
+      "founded": "2024-01-01T00:00:00Z",
+      "paperLabel": "News Feed Nigeria",
+      "paperDescription": "Nigerian online news website"
+    },
+    {
+      "paper": "http://www.wikidata.org/entity/Q132532061",
+      "founded": "2024-01-01T00:00:00Z",
+      "paperLabel": "Tech Cabal Nigeria",
+      "paperDescription": "Nigerian online news website"
+    }
+  ],
+  "collected_at": "2026-01-03T08:51:56.272117"
+}
