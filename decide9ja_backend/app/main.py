@@ -18,14 +18,23 @@ from sqlalchemy.orm import Session
 from app.database import get_db, init_db, Document, Interaction
 from app.routers import webhook as webhook_router
 from app.routers import voice as voice_router
+from app.config import settings, setup_logging, init_sentry
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
+# Initialize infrastructure (logging first, then Sentry)
+setup_logging(settings)
 logger = logging.getLogger(__name__)
 
-# Environment
-ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
-DEBUG = ENVIRONMENT == "development"
+# Initialize Sentry for error monitoring
+sentry_enabled = init_sentry(settings)
+if sentry_enabled:
+    logger.info("Sentry error monitoring enabled")
+else:
+    if settings.is_production:
+        logger.warning("Sentry not configured - errors won't be tracked!")
+
+# Environment from config
+ENVIRONMENT = settings.ENVIRONMENT
+DEBUG = settings.DEBUG
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -62,9 +71,9 @@ except ImportError:
 # ===========================================
 # SECURITY: CORS Configuration
 # ===========================================
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "*").split(",")
-if ENVIRONMENT == "production" and "*" in ALLOWED_ORIGINS:
-    logger.warning("⚠️ CORS allows all origins in production! Set ALLOWED_ORIGINS env var.")
+ALLOWED_ORIGINS = settings.ALLOWED_ORIGINS
+if settings.is_production and "*" in ALLOWED_ORIGINS:
+    logger.warning("CORS allows all origins in production! Set ALLOWED_ORIGINS env var.")
 
 app.add_middleware(
     CORSMiddleware,
@@ -178,21 +187,21 @@ class LocationResponse(BaseModel):
 
 @app.on_event("startup")
 async def startup_event():
-    """Initialize database on startup."""
+    """Initialize database and log infrastructure status on startup."""
     init_db()
-    
+
     # Include WhatsApp webhook router
     app.include_router(webhook_router.router, prefix="/api", tags=["WhatsApp"])
-    
+
     # Include Issues router
     from app.routers import issues as issues_router
     app.include_router(issues_router.router, tags=["Issues"])
     app.include_router(issues_router.admin_router, tags=["Admin"])
-    
-    # Include Admin router  
+
+    # Include Admin router
     from app.routers import admin as admin_router
     app.include_router(admin_router.router, tags=["Admin"])
-    
+
     # Include Voice router (Twilio Voice AI)
     app.include_router(voice_router.router, tags=["Voice"])
 
@@ -200,14 +209,22 @@ async def startup_event():
     from app.api import election_analytics
     app.include_router(election_analytics.router, tags=["Election Analytics"])
 
-    logger.info("✅ Decide9ja Backend Started")
-    logger.info(f"   Environment: {ENVIRONMENT}")
-    logger.info(f"   Rate Limiting: {RATE_LIMITING_ENABLED}")
-    logger.info(f"   WhatsApp Webhook: /api/webhook")
-    logger.info(f"   Voice Webhook: /voice/incoming")
-    logger.info(f"   Issues API: /api/issues")
-    logger.info(f"   Admin API: /api/admin")
-    logger.info(f"   Election Analytics: /api/v1/election")
+    # Validate configuration and log warnings
+    try:
+        warnings = settings.validate()
+        for warning in warnings:
+            logger.warning(f"Config: {warning}")
+    except ValueError as e:
+        logger.error(f"Configuration error: {e}")
+        raise
+
+    # Log startup info
+    logger.info("Decide9ja Backend Started")
+    logger.info(f"Environment: {settings.ENVIRONMENT}")
+    logger.info(f"Rate Limiting: {RATE_LIMITING_ENABLED}")
+    logger.info(f"Redis: {'connected' if settings.has_redis else 'not configured (in-memory)'}")
+    logger.info(f"Sentry: {'enabled' if settings.has_sentry else 'not configured'}")
+    logger.info("Endpoints: /api/webhook, /voice/incoming, /api/issues, /api/admin")
 
 
 # ===========================================
@@ -322,9 +339,7 @@ async def ask_question(request: Request, body: AskRequest, db: Session = Depends
     )
     
     # Check if we have an API key
-    api_key = os.getenv("ANTHROPIC_API_KEY")
-    
-    if api_key:
+    if settings.has_anthropic:
         try:
             response_text = generate_response_sync(
                 user_message=body.query,
@@ -405,8 +420,7 @@ async def search_with_web(request: Request, body: AskRequest, db: Session = Depe
     )
     
     # Generate response
-    api_key = os.getenv("ANTHROPIC_API_KEY")
-    if api_key:
+    if settings.has_anthropic:
         try:
             response_text = generate_response_sync(
                 user_message=body.query,

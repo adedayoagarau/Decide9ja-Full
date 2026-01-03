@@ -7,9 +7,9 @@ import hashlib
 import logging
 from datetime import datetime
 from typing import Optional, Dict
-import os
 
 from app.models.state import UserState, ConversationFlow
+from app.config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -20,29 +20,30 @@ _session_store: Dict[str, str] = {}
 class StateManager:
     """
     Manages user state across conversations.
-    
+
     Storage strategy:
     - Session data (flow, context, history): In-memory dict (or Redis if configured)
     - Profile data (name, state, lga): PostgreSQL for persistence
     """
-    
+
     def __init__(self):
-        self.session_ttl = 1800  # 30 minutes
+        self.session_ttl = settings.REDIS_SESSION_TTL
         self.redis_client = None
         self._init_redis()
     
     def _init_redis(self):
         """Initialize Redis client if URL is configured."""
-        redis_url = os.getenv("REDIS_URL") or os.getenv("UPSTASH_REDIS_URL")
-        if redis_url:
+        if settings.has_redis:
             try:
                 import redis
-                self.redis_client = redis.from_url(redis_url)
+                self.redis_client = redis.from_url(settings.REDIS_URL)
                 self.redis_client.ping()
-                logger.info("Redis connected for session storage")
+                logger.info(f"Redis connected for session storage (TTL: {self.session_ttl}s)")
             except Exception as e:
                 logger.warning(f"Redis not available, using in-memory storage: {e}")
                 self.redis_client = None
+        else:
+            logger.info("Redis not configured, using in-memory session storage")
     
     def _hash_phone(self, phone: str) -> str:
         """Create consistent hash of phone number."""
@@ -214,9 +215,8 @@ class StateManager:
         """Load user profile from PostgreSQL using raw SQL."""
         try:
             from sqlalchemy import create_engine, text
-            import os
-            
-            engine = create_engine(os.getenv('DATABASE_URL'))
+
+            engine = create_engine(settings.DATABASE_URL)
             with engine.connect() as conn:
                 result = conn.execute(text('''
                     SELECT name, state, lga FROM users 
@@ -239,9 +239,8 @@ class StateManager:
         """Save/update user profile in PostgreSQL using raw SQL."""
         try:
             from sqlalchemy import create_engine, text
-            import os
-            
-            engine = create_engine(os.getenv('DATABASE_URL'))
+
+            engine = create_engine(settings.DATABASE_URL)
             with engine.connect() as conn:
                 # Check if user exists
                 result = conn.execute(text('''
