@@ -577,12 +577,31 @@ async def _smart_fallback(query: str, retrieval: RetrievalResult, state: UserSta
 
     if retrieval.representatives:
         reps = retrieval.representatives
+        # Build rep strings by position (not array index)
+        governor = "Not found"
+        senator = "Not found"
+        house_rep = "Not found"
+
+        for rep in reps:
+            pos = rep.get("position", "").lower()
+            name_party = f"{rep['name']} ({rep['party']})"
+            if "governor" in pos:
+                governor = name_party
+            elif "senator" in pos:
+                senator = f"{name_party} — {rep.get('area', '')}"
+            elif "house" in pos or "rep" in pos:
+                house_rep = f"{name_party} — {rep.get('area', '')}"
+
+        # Store context for follow-up questions
+        state.active_topic = "representatives"
+        state.flow_data["last_reps"] = reps
+
         return get_template("rep_all",
             lga=state.lga,
             state=state.state,
-            governor=f"{reps[0]['name']} ({reps[0]['party']})" if reps else "Not found",
-            senator=f"{reps[1]['name']} ({reps[1]['party']})" if len(reps) > 1 else "Not found",
-            house_rep=f"{reps[2]['name']} ({reps[2]['party']})" if len(reps) > 2 else "Not found"
+            governor=governor,
+            senator=senator,
+            house_rep=house_rep
         )
 
     if retrieval.web_results:

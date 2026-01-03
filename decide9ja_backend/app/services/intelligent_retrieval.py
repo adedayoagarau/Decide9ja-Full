@@ -280,30 +280,68 @@ async def _lookup_politician_by_position(position: str, state: Optional[str] = N
 
 
 async def _lookup_representatives(user_state: str, user_lga: str) -> List[Dict]:
-    """Look up user's representatives by state and LGA."""
+    """Look up user's representatives by state and LGA with fuzzy matching."""
     try:
         from sqlalchemy import create_engine, text
-        
-        engine = create_engine(os.getenv('DATABASE_URL'))
-        
+        from app.config import settings
+
+        engine = create_engine(settings.DATABASE_URL)
+
         with engine.connect() as conn:
+            # First try exact match
             result = conn.execute(text('''
-                SELECT 
+                SELECT
                     state, lga,
                     governor_name, governor_party,
                     senator_name, senator_party,
                     house_rep_name, house_rep_party,
                     senatorial_district, federal_constituency
-                FROM lga_representatives 
+                FROM lga_representatives
                 WHERE LOWER(state) = :state AND LOWER(lga) = :lga
                 LIMIT 1
             '''), {'state': user_state.lower(), 'lga': user_lga.lower()})
-            
+
             row = result.fetchone()
-            
+
+            # If no exact match, try fuzzy matching on LGA
+            if not row:
+                # Get all LGAs for this state
+                lga_result = conn.execute(text('''
+                    SELECT DISTINCT lga FROM lga_representatives
+                    WHERE LOWER(state) = :state
+                '''), {'state': user_state.lower()})
+
+                all_lgas = [r[0] for r in lga_result.fetchall()]
+
+                if all_lgas:
+                    try:
+                        from rapidfuzz import fuzz, process
+                        match = process.extractOne(
+                            user_lga,
+                            all_lgas,
+                            scorer=fuzz.token_set_ratio,
+                            score_cutoff=60
+                        )
+                        if match:
+                            matched_lga = match[0]
+                            result = conn.execute(text('''
+                                SELECT
+                                    state, lga,
+                                    governor_name, governor_party,
+                                    senator_name, senator_party,
+                                    house_rep_name, house_rep_party,
+                                    senatorial_district, federal_constituency
+                                FROM lga_representatives
+                                WHERE LOWER(state) = :state AND lga = :lga
+                                LIMIT 1
+                            '''), {'state': user_state.lower(), 'lga': matched_lga})
+                            row = result.fetchone()
+                    except ImportError:
+                        pass  # rapidfuzz not available
+
             if row:
                 reps = []
-                
+
                 if row[2]:  # governor_name
                     reps.append({
                         "position": "Governor",
@@ -311,7 +349,7 @@ async def _lookup_representatives(user_state: str, user_lga: str) -> List[Dict]:
                         "party": row[3] or "Unknown",
                         "area": row[0]  # state
                     })
-                
+
                 if row[4]:  # senator_name
                     reps.append({
                         "position": "Senator",
@@ -319,7 +357,7 @@ async def _lookup_representatives(user_state: str, user_lga: str) -> List[Dict]:
                         "party": row[5] or "Unknown",
                         "area": row[8]  # senatorial_district
                     })
-                
+
                 if row[6]:  # house_rep_name
                     reps.append({
                         "position": "House of Representatives",
@@ -327,11 +365,11 @@ async def _lookup_representatives(user_state: str, user_lga: str) -> List[Dict]:
                         "party": row[7] or "Unknown",
                         "area": row[9]  # federal_constituency
                     })
-                
+
                 return reps
-        
+
         return []
-        
+
     except Exception as e:
         logger.error(f"Rep lookup error: {e}")
         return []
