@@ -33,13 +33,28 @@ TEMPLATES = {
         "Welcome back, {name}! What do you need?"
     ),
 
+    "welcome_back_short_with_topic": (
+        "Welcome back, {name}! Last time we talked about {last_topic}. "
+        "Want to continue that, or something new?"
+    ),
+
     "welcome_back_medium": (
         "Hey {name}! It's been a while. What can I help with?"
+    ),
+
+    "welcome_back_medium_with_topic": (
+        "Hey {name}! It's been a while. Last time you asked about {last_topic}. "
+        "Want an update on that?"
     ),
 
     "welcome_back_long": (
         "Good to see you again, {name}! A lot has happened in Nigerian politics. "
         "What would you like to catch up on?"
+    ),
+
+    "welcome_back_long_with_topic": (
+        "Good to see you again, {name}! A lot has happened since we last talked "
+        "about {last_topic}. Want me to update you?"
     ),
     
     "ask_state": (

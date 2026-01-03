@@ -18,6 +18,7 @@ logger = logging.getLogger(__name__)
 class RetrievalResult:
     """Combined retrieval results from all sources."""
     politician: Optional[Dict] = None
+    multiple_politicians: List[Dict] = field(default_factory=list)  # For disambiguation
     representatives: List[Dict] = field(default_factory=list)
     web_results: List[Dict] = field(default_factory=list)
     rag_context: str = ""
@@ -58,9 +59,19 @@ async def intelligent_retrieve(
             # Look up politician by name
             politician_name = entities.get("politician_name", "")
             if politician_name:
-                result.politician = await _lookup_politician_by_name(politician_name)
-                if result.politician:
-                    result.sources_used.append("politicians_db")
+                lookup_result = await _lookup_politician_by_name(
+                    politician_name, return_multiple=True
+                )
+
+                if lookup_result:
+                    # Check if multiple results returned
+                    if isinstance(lookup_result, dict) and "multiple" in lookup_result:
+                        result.politician = lookup_result["politician"]
+                        result.multiple_politicians = lookup_result["multiple"]
+                        result.sources_used.append("politicians_db")
+                    else:
+                        result.politician = lookup_result
+                        result.sources_used.append("politicians_db")
                 else:
                     # FALLBACK: If no DB result, try web search
                     logger.info(f"Politician lookup failed for '{politician_name}', trying web search fallback")
@@ -69,28 +80,42 @@ async def intelligent_retrieve(
                         result.sources_used.append("web_search_fallback")
         
         elif strategy == RetrievalStrategy.POSITION_LOOKUP:
-            # Look up by position (president, governor, etc.)
+            # Look up by position (president, governor, senator, etc.)
             position = entities.get("position", "")
             state = entities.get("state", user_state)
+            district = entities.get("district")  # For senator lookups
+
             if position:
-                result.politician = await _lookup_politician_by_position(position, state)
+                result.politician = await _lookup_politician_by_position(
+                    position, state, district
+                )
                 if result.politician:
                     result.sources_used.append("politicians_db")
                 else:
                     # FALLBACK: If no DB result, try web search
                     logger.info(f"Position lookup failed for '{position}', trying web search fallback")
                     search_query = f"{position} Nigeria"
-                    if state:
+                    if district:
+                        search_query = f"senator {district} Nigeria"
+                    elif state:
                         search_query = f"{position} {state} Nigeria"
                     result.web_results = await _search_web(search_query)
                     if result.web_results:
                         result.sources_used.append("web_search_fallback")
         
         elif strategy == RetrievalStrategy.REP_LOOKUP:
-            # Look up user's representatives
-            if user_state and user_lga:
-                result.representatives = await _lookup_representatives(user_state, user_lga)
+            # Look up representatives - use entities if provided, otherwise user's location
+            lookup_state = entities.get("state") or user_state
+            lookup_lga = entities.get("lga") or user_lga
+
+            if lookup_state and lookup_lga:
+                result.representatives = await _lookup_representatives(lookup_state, lookup_lga)
                 result.sources_used.append("lga_representatives")
+            elif lookup_state:
+                # State only - try to find governor at least
+                result.politician = await _lookup_politician_by_position("governor", lookup_state)
+                if result.politician:
+                    result.sources_used.append("politicians_db")
         
         elif strategy == RetrievalStrategy.WEB_SEARCH:
             # Search web for news/current events
@@ -159,6 +184,7 @@ async def intelligent_retrieve(
 
         result.success = bool(
             result.politician or
+            result.multiple_politicians or
             result.representatives or
             result.web_results or
             result.rag_context or
@@ -175,8 +201,17 @@ async def intelligent_retrieve(
 
 # === RETRIEVAL IMPLEMENTATIONS ===
 
-async def _lookup_politician_by_name(name: str) -> Optional[Dict]:
-    """Look up politician by name with fuzzy matching and nickname resolution."""
+async def _lookup_politician_by_name(
+    name: str,
+    return_multiple: bool = False
+) -> Optional[Dict]:
+    """
+    Look up politician by name with fuzzy matching and nickname resolution.
+
+    Args:
+        name: The politician name to search for
+        return_multiple: If True, returns dict with 'politician' and 'multiple' keys
+    """
     try:
         from app.database import get_db, Politician
         from app.services.fuzzy_match import fuzzy_find_politician, resolve_nickname
@@ -188,60 +223,87 @@ async def _lookup_politician_by_name(name: str) -> Optional[Dict]:
             name = resolved_name
 
         db = next(get_db())
-        
-        # Try exact match first
-        politician = db.query(Politician).filter(
+
+        # Try exact/partial match first - get ALL matches
+        politicians = db.query(Politician).filter(
             Politician.name.ilike(f"%{name}%")
-        ).first()
-        
-        if politician:
+        ).limit(5).all()
+
+        # Format results
+        def format_politician(p):
             return {
-                "id": politician.id,
-                "name": politician.name,
-                "party": politician.party,
-                "position": politician.position,
-                "state": politician.state,
-                "bio": getattr(politician, 'bio', None)
+                "id": p.id,
+                "name": p.name,
+                "party": p.party,
+                "position": p.position,
+                "state": p.state,
+                "constituency": getattr(p, 'constituency', None),
+                "bio": getattr(p, 'bio', None)
             }
-        
-        # Try fuzzy match
+
+        if politicians:
+            if len(politicians) == 1:
+                # Single match - return it
+                return format_politician(politicians[0])
+            elif return_multiple:
+                # Multiple matches - return all for disambiguation
+                return {
+                    "politician": format_politician(politicians[0]),
+                    "multiple": [format_politician(p) for p in politicians]
+                }
+            else:
+                # Multiple matches but not requesting multiple - return first
+                return format_politician(politicians[0])
+
+        # Try fuzzy match if no exact matches
         all_politicians = db.query(Politician).limit(300).all()
-        politician_names = [p.name for p in all_politicians]
-        
-        match = fuzzy_find_politician(name, politician_names)
+        politician_dicts = [
+            {"name": p.name, "politician": p}
+            for p in all_politicians
+        ]
+
+        match = fuzzy_find_politician(
+            name,
+            [{"name": p.name} for p in all_politicians],
+            name_key="name"
+        )
+
         if match:
+            matched_name = match[0].get("name")
             politician = db.query(Politician).filter(
-                Politician.name == match
+                Politician.name == matched_name
             ).first()
             if politician:
-                return {
-                    "id": politician.id,
-                    "name": politician.name,
-                    "party": politician.party,
-                    "position": politician.position,
-                    "state": politician.state,
-                    "bio": getattr(politician, 'bio', None),
-                    "fuzzy_match": True
-                }
-        
+                result = format_politician(politician)
+                result["fuzzy_match"] = True
+                result["suggestion"] = match[2]  # "Did you mean X?"
+                return result
+
         return None
-        
+
     except Exception as e:
         logger.error(f"Politician lookup error: {e}")
         return None
 
 
-async def _lookup_politician_by_position(position: str, state: Optional[str] = None) -> Optional[Dict]:
-    """Look up politician by position (president, governor, etc.)."""
+async def _lookup_politician_by_position(
+    position: str,
+    state: Optional[str] = None,
+    district: Optional[str] = None
+) -> Optional[Dict]:
+    """
+    Look up politician by position (president, governor, senator, etc.).
+    Supports district-based lookups for senators.
+    """
     try:
         from app.database import get_db, Politician
         from sqlalchemy import text
-        
+
         db = next(get_db())
-        
+
         # Normalize position
         position_lower = position.lower()
-        
+
         if "president" in position_lower and "vice" not in position_lower:
             query_position = "President"
         elif "vice" in position_lower and "president" in position_lower:
@@ -250,15 +312,30 @@ async def _lookup_politician_by_position(position: str, state: Optional[str] = N
             query_position = "Governor"
         elif "senator" in position_lower:
             query_position = "Senator"
+        elif "house" in position_lower or "rep" in position_lower:
+            query_position = "House of Representatives"
         else:
             query_position = position.title()
-        
+
         # Build query
         if query_position in ["President", "Vice President"]:
             # Federal positions - no state filter
             politician = db.query(Politician).filter(
                 Politician.position == query_position
             ).first()
+        elif query_position == "Senator" and district:
+            # Senator with district - search in constituency field
+            politician = db.query(Politician).filter(
+                Politician.position == query_position,
+                Politician.constituency.ilike(f"%{district}%")
+            ).first()
+
+            # If no match, try state-based lookup
+            if not politician and state:
+                politician = db.query(Politician).filter(
+                    Politician.position == query_position,
+                    Politician.state.ilike(f"%{state}%")
+                ).first()
         elif state:
             # State-specific positions
             politician = db.query(Politician).filter(
@@ -267,7 +344,7 @@ async def _lookup_politician_by_position(position: str, state: Optional[str] = N
             ).first()
         else:
             politician = None
-        
+
         if politician:
             return {
                 "id": politician.id,
@@ -275,11 +352,47 @@ async def _lookup_politician_by_position(position: str, state: Optional[str] = N
                 "party": politician.party,
                 "position": politician.position,
                 "state": politician.state,
+                "constituency": getattr(politician, 'constituency', None),
                 "bio": getattr(politician, 'bio', None)
             }
-        
+
+        # Fallback: Try lga_representatives table for senators
+        if query_position == "Senator" and (district or state):
+            try:
+                from sqlalchemy import create_engine
+                from app.config import settings
+
+                engine = create_engine(settings.DATABASE_URL)
+                with engine.connect() as conn:
+                    if district:
+                        result = conn.execute(text('''
+                            SELECT senator_name, senator_party, senatorial_district, state
+                            FROM lga_representatives
+                            WHERE LOWER(senatorial_district) LIKE :district
+                            LIMIT 1
+                        '''), {'district': f"%{district.lower()}%"})
+                    else:
+                        result = conn.execute(text('''
+                            SELECT senator_name, senator_party, senatorial_district, state
+                            FROM lga_representatives
+                            WHERE LOWER(state) = :state
+                            LIMIT 1
+                        '''), {'state': state.lower()})
+
+                    row = result.fetchone()
+                    if row and row[0]:
+                        return {
+                            "name": row[0],
+                            "party": row[1] or "Unknown",
+                            "position": "Senator",
+                            "state": row[3],
+                            "constituency": row[2]
+                        }
+            except Exception as e:
+                logger.warning(f"LGA rep table fallback failed: {e}")
+
         return None
-        
+
     except Exception as e:
         logger.error(f"Position lookup error: {e}")
         return None
@@ -473,7 +586,19 @@ async def _search_knowledge_graph(query: str, limit: int = 5) -> Optional[Dict]:
 def format_retrieval_for_context(result: RetrievalResult) -> str:
     """Format retrieval results as context for Claude response generation."""
     parts = []
-    
+
+    # Handle multiple politician matches (disambiguation needed)
+    if result.multiple_politicians and len(result.multiple_politicians) > 1:
+        multi_text = "MULTIPLE MATCHES FOUND:\n"
+        multi_text += "User may need to clarify which one they meant:\n"
+        for i, p in enumerate(result.multiple_politicians[:5], 1):
+            multi_text += f"{i}. {p.get('name')} ({p.get('party', 'Unknown')}) — {p.get('position', 'Unknown')}"
+            if p.get('state'):
+                multi_text += f", {p['state']}"
+            multi_text += "\n"
+        multi_text += "\nIf context is clear, proceed with most relevant. Otherwise, ask user to clarify."
+        parts.append(multi_text)
+
     if result.politician:
         p = result.politician
         parts.append(f"""POLITICIAN INFORMATION:

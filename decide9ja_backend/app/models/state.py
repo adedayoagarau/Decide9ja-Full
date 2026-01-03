@@ -45,6 +45,9 @@ class UserState:
     active_politician_id: Optional[str] = None
     active_politician_name: Optional[str] = None
     active_topic: Optional[str] = None
+
+    # Last session context (for returning users)
+    last_topic: Optional[str] = None  # What we discussed last time
     
     # Session metadata
     greeted: bool = False                 # Has Tade introduced himself this session?
@@ -68,6 +71,7 @@ class UserState:
             "active_politician_id": self.active_politician_id,
             "active_politician_name": self.active_politician_name,
             "active_topic": self.active_topic,
+            "last_topic": self.last_topic,
             "greeted": self.greeted,
             "last_message_at": self.last_message_at.isoformat(),
             "session_start": self.session_start.isoformat(),
@@ -90,6 +94,7 @@ class UserState:
             active_politician_id=d.get("active_politician_id"),
             active_politician_name=d.get("active_politician_name"),
             active_topic=d.get("active_topic"),
+            last_topic=d.get("last_topic"),
             greeted=d.get("greeted", False),
             last_message_at=datetime.fromisoformat(d["last_message_at"]) if d.get("last_message_at") else datetime.utcnow(),
             session_start=datetime.fromisoformat(d["session_start"]) if d.get("session_start") else datetime.utcnow(),

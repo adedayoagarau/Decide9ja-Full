@@ -89,6 +89,30 @@ QUERY: "What's the latest on Peter Obi?"
 QUERY: "Who is my senator?"
 → {{"intent": "rep_lookup", "entities": {{}}, "retrieval_strategy": "rep_lookup", "confidence": 0.95, "reasoning": "Asking about their own representative"}}
 
+QUERY: "Who represents Ikeja?"
+→ {{"intent": "rep_lookup", "entities": {{"lga": "Ikeja", "state": "Lagos"}}, "retrieval_strategy": "rep_lookup", "confidence": 0.9, "reasoning": "Asking about representatives for specific LGA"}}
+
+QUERY: "Who is the senator for Ogun West?"
+→ {{"intent": "politician_info", "entities": {{"position": "senator", "district": "Ogun West", "state": "Ogun"}}, "retrieval_strategy": "position_lookup", "confidence": 0.9, "reasoning": "Asking about senator for specific district"}}
+
+QUERY: "Show me representatives for Alimosho, Lagos"
+→ {{"intent": "rep_lookup", "entities": {{"lga": "Alimosho", "state": "Lagos"}}, "retrieval_strategy": "rep_lookup", "confidence": 0.95, "reasoning": "Explicit LGA and state for rep lookup"}}
+
+QUERY: "Tell me more about the governor" (after seeing representatives)
+→ {{"intent": "politician_record", "entities": {{"position": "governor", "is_followup": true}}, "retrieval_strategy": "hybrid", "confidence": 0.9, "reasoning": "Follow-up about a rep just shown"}}
+
+QUERY: "What has the senator done?" (after seeing representatives)
+→ {{"intent": "politician_record", "entities": {{"position": "senator", "is_followup": true}}, "retrieval_strategy": "hybrid", "confidence": 0.9, "reasoning": "Follow-up about senator from previous response"}}
+
+QUERY: "What bills has he sponsored?" (Previous Topic: Peter Obi)
+→ {{"intent": "politician_record", "entities": {{"is_followup": true, "record_type": "bills"}}, "retrieval_strategy": "hybrid", "confidence": 0.9, "reasoning": "Follow-up about bills, resolves to active topic"}}
+
+QUERY: "What about his education policies?" (Previous Topic: Tinubu)
+→ {{"intent": "politician_record", "entities": {{"is_followup": true, "topic": "education policies"}}, "retrieval_strategy": "hybrid", "confidence": 0.9, "reasoning": "Follow-up about topic, resolves to active politician"}}
+
+QUERY: "Any recent news about him?" (Previous Topic: Wike)
+→ {{"intent": "news_query", "entities": {{"is_followup": true}}, "retrieval_strategy": "web_search", "confidence": 0.9, "reasoning": "Follow-up news request about active politician"}}
+
 QUERY: "What has Tinubu done since becoming president?"
 → {{"intent": "politician_record", "entities": {{"politician_name": "Tinubu", "topic": "achievements as president"}}, "retrieval_strategy": "hybrid", "confidence": 0.9, "reasoning": "Wants record/achievements, needs DB + web"}}
 

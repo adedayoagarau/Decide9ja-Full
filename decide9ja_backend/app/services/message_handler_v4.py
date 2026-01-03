@@ -190,18 +190,25 @@ async def handle_idle_claude_first(state: UserState, text: str) -> str:
     if understanding.intent == Intent.GREETING:
         # Use time-based greeting for returning users
         welcome_type = state.flow_data.get("welcome_type", "short")
+        last_topic = state.flow_data.get("last_topic") or state.last_topic
 
         if welcome_type == "none":
             # Less than 24 hours - no greeting, just respond naturally
             return get_template("greeting_returning", name=state.name)
         elif welcome_type == "medium":
             state.flow_data["welcome_type"] = "none"  # Don't repeat
+            if last_topic:
+                return get_template("welcome_back_medium_with_topic", name=state.name, last_topic=last_topic)
             return get_template("welcome_back_medium", name=state.name)
         elif welcome_type == "long":
             state.flow_data["welcome_type"] = "none"  # Don't repeat
+            if last_topic:
+                return get_template("welcome_back_long_with_topic", name=state.name, last_topic=last_topic)
             return get_template("welcome_back_long", name=state.name)
         else:
             state.flow_data["welcome_type"] = "none"  # Don't repeat
+            if last_topic:
+                return get_template("welcome_back_short_with_topic", name=state.name, last_topic=last_topic)
             return get_template("welcome_back_short", name=state.name)
     
     if understanding.intent == Intent.HELP:
@@ -361,6 +368,62 @@ Say 'who is running' for full candidate list.
 Say 'follow [name]' to track a candidate."""
 
     # ===========================================
+    # HANDLE FOLLOW-UPS (Representatives & Politicians)
+    # ===========================================
+    if understanding.entities.get("is_followup"):
+        resolved = False
+
+        # 1. Check if follow-up about a representative position
+        if state.flow_data.get("last_reps"):
+            position = understanding.entities.get("position", "").lower()
+            last_reps = state.flow_data.get("last_reps", [])
+
+            for rep in last_reps:
+                rep_position = rep.get("position", "").lower()
+                if position in rep_position or rep_position in position:
+                    understanding.entities["politician_name"] = rep.get("name")
+                    understanding.retrieval_strategy = RetrievalStrategy.HYBRID
+                    logger.info(f"Resolved rep follow-up '{position}' to {rep.get('name')}")
+                    resolved = True
+                    break
+
+        # 2. Check if follow-up about active politician (he/she/they/him/her)
+        if not resolved and state.active_politician_name:
+            understanding.entities["politician_name"] = state.active_politician_name
+            logger.info(f"Resolved pronoun follow-up to active politician: {state.active_politician_name}")
+            resolved = True
+
+        # 3. Check if follow-up from disambiguation options (user selected "1" or "the first one")
+        if not resolved and state.flow_data.get("politician_options"):
+            query_lower = text.lower().strip()
+            options = state.flow_data.get("politician_options", [])
+
+            # Check for number selection ("1", "2", "3", etc.)
+            if query_lower.isdigit():
+                idx = int(query_lower) - 1
+                if 0 <= idx < len(options):
+                    selected = options[idx]
+                    understanding.entities["politician_name"] = selected.get("name")
+                    understanding.intent = Intent.POLITICIAN_INFO
+                    understanding.retrieval_strategy = RetrievalStrategy.DB_LOOKUP
+                    logger.info(f"User selected option {idx + 1}: {selected.get('name')}")
+                    state.flow_data.pop("politician_options", None)
+                    resolved = True
+
+            # Check for "the first one", "the second one", etc.
+            ordinals = {"first": 0, "second": 1, "third": 2, "fourth": 3, "fifth": 4}
+            for word, idx in ordinals.items():
+                if word in query_lower and idx < len(options):
+                    selected = options[idx]
+                    understanding.entities["politician_name"] = selected.get("name")
+                    understanding.intent = Intent.POLITICIAN_INFO
+                    understanding.retrieval_strategy = RetrievalStrategy.DB_LOOKUP
+                    logger.info(f"User selected '{word}': {selected.get('name')}")
+                    state.flow_data.pop("politician_options", None)
+                    resolved = True
+                    break
+
+    # ===========================================
     # INTELLIGENT RETRIEVAL
     # ===========================================
     retrieval_result = await intelligent_retrieve(
@@ -392,6 +455,22 @@ async def generate_response_with_context(
 
     # Format context from retrieval
     context = format_retrieval_for_context(retrieval)
+
+    # Add user's representatives to context if we have their location
+    user_reps_context = ""
+    if state.state and state.lga and not retrieval.representatives:
+        try:
+            from app.services.intelligent_retrieval import _lookup_representatives
+            reps = await _lookup_representatives(state.state, state.lga)
+            if reps:
+                user_reps_context = f"\n\nUSER'S REPRESENTATIVES ({state.lga}, {state.state}):\n"
+                for rep in reps:
+                    user_reps_context += f"• {rep['position']}: {rep['name']} ({rep['party']})"
+                    if rep.get('area'):
+                        user_reps_context += f" — {rep['area']}"
+                    user_reps_context += "\n"
+        except Exception:
+            pass  # Don't fail if rep lookup fails
 
     # Check if query relates to hot issues and add context
     hot_issue = analyze_query_for_hot_issues(query)
@@ -507,6 +586,10 @@ RESPONSE: Nigeria's president is Bola Ahmed Tinubu of the APC. He's been preside
     # Combine all context
     full_context = context
 
+    # Add user's representatives context
+    if user_reps_context:
+        full_context += user_reps_context
+
     # Add Content Engine context (2026 issues, analogies, etc.)
     if engine_context.get("identified_issues"):
         full_context += "\n\n" + content_engine.format_context_for_claude(engine_context)
@@ -564,6 +647,23 @@ Provide a helpful, concise response (2-5 sentences). End with a relevant follow-
 
 async def _smart_fallback(query: str, retrieval: RetrievalResult, state: UserState) -> str:
     """Smart fallback when Claude API fails — uses web search and templates."""
+
+    # If multiple politicians found, show disambiguation options
+    if retrieval.multiple_politicians and len(retrieval.multiple_politicians) > 1:
+        options = ""
+        for i, p in enumerate(retrieval.multiple_politicians[:5], 1):
+            options += f"{i}. {p.get('name')} ({p.get('party', 'Unknown')}) — {p.get('position', 'Politician')}"
+            if p.get('state'):
+                options += f", {p['state']}"
+            options += "\n"
+
+        # Store for follow-up selection
+        state.flow_data["politician_options"] = retrieval.multiple_politicians[:5]
+
+        return get_template("politician_multiple",
+            query=query,
+            options=options
+        )
 
     # If we have retrieval results, format them
     if retrieval.politician:

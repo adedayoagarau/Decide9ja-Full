@@ -88,6 +88,9 @@ class StateManager:
             # Load recent conversation history
             recent_history = self._load_recent_history(user_id, limit=5)
 
+            # Extract last topic from history
+            last_topic = self._extract_last_topic(recent_history)
+
             state = UserState(
                 user_id=user_id,
                 phone=phone,
@@ -96,12 +99,15 @@ class StateManager:
                 lga=profile.get("lga"),
                 greeted=False,  # New session, will greet again
                 session_start=datetime.utcnow(),
-                history=recent_history
+                history=recent_history,
+                last_topic=last_topic
             )
 
             # Store welcome type for handler to use
             state.flow_data["welcome_type"] = welcome_type
             state.flow_data["days_away"] = (datetime.utcnow() - last_interaction).days if last_interaction else 0
+            if last_topic:
+                state.flow_data["last_topic"] = last_topic
         else:
             # New user - start onboarding
             state = UserState(
@@ -274,6 +280,41 @@ class StateManager:
         except Exception as e:
             logger.warning(f"Failed to load chat history: {e}")
             return []
+
+    def _extract_last_topic(self, history: list) -> Optional[str]:
+        """
+        Extract the last meaningful topic from conversation history.
+        Looks for politician names, issues, or topics discussed.
+        """
+        if not history:
+            return None
+
+        # Keywords that indicate a topic was discussed
+        topic_patterns = [
+            ("tinubu", "Tinubu"),
+            ("obi", "Peter Obi"),
+            ("atiku", "Atiku"),
+            ("buhari", "Buhari"),
+            ("sanwo", "Sanwo-Olu"),
+            ("tax", "the tax reform"),
+            ("naira", "the naira"),
+            ("fuel", "fuel prices"),
+            ("security", "security issues"),
+            ("election", "elections"),
+            ("governor", "your governor"),
+            ("senator", "your senator"),
+            ("representative", "your representatives"),
+        ]
+
+        # Check user messages for topics (most recent first)
+        for msg in reversed(history):
+            if msg.get("role") == "user":
+                content_lower = msg.get("content", "").lower()
+                for pattern, topic in topic_patterns:
+                    if pattern in content_lower:
+                        return topic
+
+        return None
 
     def get_welcome_type(self, last_interaction: datetime) -> str:
         """
