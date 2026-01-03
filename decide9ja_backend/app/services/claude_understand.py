@@ -25,6 +25,7 @@ class RetrievalStrategy(Enum):
     REP_LOOKUP = "rep_lookup"         # Look up user's representatives
     WEB_SEARCH = "web_search"         # Search web for news/current events
     RAG_SEARCH = "rag_search"         # Search document embeddings
+    KNOWLEDGE_GRAPH = "knowledge_graph"   # Query Nigeria knowledge graph (history, economics, etc.)
     HYBRID = "hybrid"                 # Combine multiple sources
     NONE = "none"                     # No retrieval needed (greetings, help)
     ELECTION_SYSTEM = "election_system"   # Use 2027 election tracking system

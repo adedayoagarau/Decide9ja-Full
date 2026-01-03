@@ -338,7 +338,8 @@ class NigeriaKnowledgeGraphBuilder:
         logger.info("Building relationships...")
 
         # Connect politicians to parties (from Wikidata)
-        for entity_id, entity in self.entities.items():
+        # Use list() to avoid modifying dict during iteration
+        for entity_id, entity in list(self.entities.items()):
             if entity.get("partyLabel"):
                 party_name = entity["partyLabel"]
                 # Find or create party entity

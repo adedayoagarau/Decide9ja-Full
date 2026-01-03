@@ -21,6 +21,8 @@ class RetrievalResult:
     representatives: List[Dict] = field(default_factory=list)
     web_results: List[Dict] = field(default_factory=list)
     rag_context: str = ""
+    knowledge_graph_results: List[Dict] = field(default_factory=list)
+    knowledge_graph_context: str = ""
     sources_used: List[str] = field(default_factory=list)
     success: bool = False
     error: Optional[str] = None
@@ -104,7 +106,18 @@ async def intelligent_retrieve(
             politician_name = entities.get("politician_name", "")
             result.rag_context = await _search_rag(topic or politician_name)
             result.sources_used.append("rag_documents")
-        
+
+        elif strategy == RetrievalStrategy.KNOWLEDGE_GRAPH:
+            # Search Nigeria knowledge graph (history, economics, politics, etc.)
+            topic = entities.get("topic", "")
+            politician_name = entities.get("politician_name", "")
+            query = topic or politician_name or understanding.interpreted_query
+            kg_results = await _search_knowledge_graph(query)
+            if kg_results:
+                result.knowledge_graph_results = kg_results.get("results", [])
+                result.knowledge_graph_context = kg_results.get("context", "")
+                result.sources_used.append("nigeria_knowledge_graph")
+
         elif strategy == RetrievalStrategy.HYBRID:
             # Combine multiple sources
             topic = entities.get("topic", "")
@@ -130,17 +143,27 @@ async def intelligent_retrieve(
             result.web_results = await _search_web(search_query)
             if result.web_results:
                 result.sources_used.append("web_search")
-            
+
             # Try RAG search
             result.rag_context = await _search_rag(topic or politician_name)
             if result.rag_context:
                 result.sources_used.append("rag_documents")
-        
+
+            # Try knowledge graph for historical/economic data
+            kg_query = topic or politician_name or understanding.interpreted_query
+            kg_results = await _search_knowledge_graph(kg_query)
+            if kg_results and kg_results.get("results"):
+                result.knowledge_graph_results = kg_results.get("results", [])
+                result.knowledge_graph_context = kg_results.get("context", "")
+                result.sources_used.append("nigeria_knowledge_graph")
+
         result.success = bool(
-            result.politician or 
-            result.representatives or 
-            result.web_results or 
-            result.rag_context
+            result.politician or
+            result.representatives or
+            result.web_results or
+            result.rag_context or
+            result.knowledge_graph_results or
+            result.knowledge_graph_context
         )
         
     except Exception as e:
@@ -373,6 +396,36 @@ async def _search_rag(query: str, limit: int = 3) -> str:
         return ""
 
 
+async def _search_knowledge_graph(query: str, limit: int = 5) -> Optional[Dict]:
+    """Search Nigeria knowledge graph for historical, political, economic data."""
+    try:
+        from app.services.nigeria_knowledge.query_engine import get_query_engine
+
+        engine = get_query_engine()
+
+        # Check if engine loaded successfully
+        if not engine.loaded:
+            logger.warning("Knowledge graph not loaded")
+            return None
+
+        # Query the knowledge graph
+        result = engine.query_natural_language(query)
+
+        if result.get("results"):
+            return {
+                "results": result.get("results", [])[:limit],
+                "context": result.get("context", ""),
+                "query_type": result.get("query_type", "general"),
+                "sources": result.get("sources", ["knowledge_graph"])
+            }
+
+        return None
+
+    except Exception as e:
+        logger.error(f"Knowledge graph search error: {e}")
+        return None
+
+
 def format_retrieval_for_context(result: RetrievalResult) -> str:
     """Format retrieval results as context for Claude response generation."""
     parts = []
@@ -400,5 +453,23 @@ Bio: {p.get('bio', 'No biography available.')}""")
     
     if result.rag_context:
         parts.append(f"BACKGROUND INFORMATION:\n{result.rag_context}")
-    
+
+    if result.knowledge_graph_context:
+        parts.append(f"NIGERIA KNOWLEDGE BASE:\n{result.knowledge_graph_context}")
+    elif result.knowledge_graph_results:
+        # Format knowledge graph results if no pre-formatted context
+        kg_text = "NIGERIA KNOWLEDGE BASE:\n"
+        for item in result.knowledge_graph_results[:5]:
+            name = item.get("name", "")
+            item_type = item.get("type", "").replace("_", " ").title()
+            if name:
+                kg_text += f"• {name}"
+                if item_type:
+                    kg_text += f" [{item_type}]"
+                description = item.get("description", item.get("content", ""))
+                if description:
+                    kg_text += f"\n  {description[:200]}..."
+                kg_text += "\n"
+        parts.append(kg_text)
+
     return "\n\n---\n\n".join(parts) if parts else "No relevant information found."
