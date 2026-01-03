@@ -94,42 +94,30 @@ class DataCollector:
     # =========================================================================
 
     async def collect_internet_archive(self, session: aiohttp.ClientSession):
-        """Collect Nigerian content from Internet Archive"""
+        """Collect Nigerian content from Internet Archive using Scraping API"""
 
         output_dir = DATA_DIR / "internet_archive"
         output_dir.mkdir(exist_ok=True)
 
         # Search queries for Nigerian content
         queries = [
-            "nigeria newspaper",
-            "nigerian history",
-            "nigeria independence",
-            "nigeria civil war biafra",
-            "nigeria politics government",
-            "nigerian constitution",
-            "lagos nigeria",
-            "northern nigeria",
-            "eastern nigeria",
-            "western nigeria",
-            "nigeria military",
-            "nigeria election",
-            "ahmadu bello",
+            "nigeria",
+            "nigerian",
+            "lagos",
+            "biafra",
             "nnamdi azikiwe",
             "obafemi awolowo",
+            "ahmadu bello",
             "tafawa balewa",
-            "nigerian daily times",
-            "west african pilot",
-            "daily trust nigeria",
-            "nigerian tribune",
-            "africa nigeria colonial",
-            "british nigeria",
-            "royal niger company",
-            "nigeria oil petroleum",
-            "nigerian economy",
-            "nigeria education",
-            "nigerian literature",
-            "chinua achebe nigeria",
-            "wole soyinka nigeria",
+            "yakubu gowon",
+            "murtala mohammed",
+            "olusegun obasanjo",
+            "shehu shagari",
+            "muhammadu buhari",
+            "ibrahim babangida",
+            "sani abacha",
+            "goodluck jonathan",
+            "bola tinubu",
         ]
 
         all_items = []
@@ -137,12 +125,13 @@ class DataCollector:
         for query in queries:
             logger.info(f"[Internet Archive] Searching: {query}")
 
-            # Search API - fixed URL format
+            # Use the Scraping API - more reliable
+            # Docs: https://archive.org/help/aboutsearch.htm
             search_url = (
-                f"https://archive.org/advancedsearch.php?"
+                f"https://archive.org/services/search/v1/scrape?"
                 f"q={quote(query)}+AND+mediatype:texts"
-                f"&fl=identifier,title,date,creator,description,mediatype,collection"
-                f"&rows=500&output=json"
+                f"&fields=identifier,title,date,creator,description"
+                f"&count=100"
             )
 
             content = await self._fetch(session, search_url)
@@ -151,7 +140,7 @@ class DataCollector:
 
             try:
                 data = json.loads(content)
-                docs = data.get("response", {}).get("docs", [])
+                docs = data.get("items", [])
                 logger.info(f"  Found {len(docs)} items")
 
                 for doc in docs:
