@@ -1,0 +1,457 @@
+{
+  "query_name": "nigerian_states",
+  "total_results": 47,
+  "results": [
+    {
+      "state": "http://www.wikidata.org/entity/Q117714",
+      "capital": "http://www.wikidata.org/entity/Q791766",
+      "population": "5527809",
+      "area": "4844",
+      "established": "1976-02-03T00:00:00Z",
+      "stateLabel": "Anambra State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Awka"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q130626",
+      "capital": "http://www.wikidata.org/entity/Q221436",
+      "population": "5860183",
+      "area": "70898",
+      "established": "1976-02-03T00:00:00Z",
+      "stateLabel": "Borno State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Maiduguri"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q145793",
+      "capital": "http://www.wikidata.org/entity/Q600405",
+      "population": "5482423",
+      "area": "39762",
+      "established": "1996-10-01T00:00:00Z",
+      "stateLabel": "Zamfara State",
+      "stateDescription": "a northern state in Nigeria",
+      "capitalLabel": "Gusau"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q320852",
+      "capital": "http://www.wikidata.org/entity/Q203301",
+      "population": "3727347",
+      "area": "6320",
+      "established": "1991-08-27T00:00:00Z",
+      "stateLabel": "Abia State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Umuahia"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q337514",
+      "capital": "http://www.wikidata.org/entity/Q994114",
+      "population": "4248436",
+      "area": "36917",
+      "established": "1991-08-27T00:00:00Z",
+      "stateLabel": "Adamawa State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Yola"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q376241",
+      "capital": "http://www.wikidata.org/entity/Q591598",
+      "population": "3256962",
+      "area": "18768",
+      "established": "1996-10-01T00:00:00Z",
+      "stateLabel": "Gombe State",
+      "stateDescription": "State in northern Nigeria",
+      "capitalLabel": "Gombe"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q387745",
+      "capital": "http://www.wikidata.org/entity/Q994085",
+      "population": "4473490",
+      "area": "29833",
+      "established": "1991-08-27T00:00:00Z",
+      "stateLabel": "Kogi State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Lokoja"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q424388",
+      "capital": "http://www.wikidata.org/entity/Q1999000",
+      "population": "5482177",
+      "area": "7081",
+      "established": "1987-09-23T00:00:00Z",
+      "stateLabel": "Akwa Ibom State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Uyo"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q429908",
+      "capital": "http://www.wikidata.org/entity/Q994096",
+      "population": "5741815",
+      "area": "34059",
+      "established": "1976-02-03T00:00:00Z",
+      "stateLabel": "Benue State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Makurdi"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q463959",
+      "capital": "http://www.wikidata.org/entity/Q1023720",
+      "population": "3066834",
+      "area": "54473",
+      "established": "1991-08-27T00:00:00Z",
+      "stateLabel": "Taraba State",
+      "stateDescription": "state in the northern part of Nigeria",
+      "capitalLabel": "Jalingo"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q464953",
+      "capital": "http://www.wikidata.org/entity/Q587085",
+      "population": "3192893",
+      "area": "36825",
+      "established": "1967-05-27T00:00:00Z",
+      "stateLabel": "Kwara State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Ilorin"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q503905",
+      "capital": "http://www.wikidata.org/entity/Q183298",
+      "population": "7667318",
+      "area": "28454",
+      "established": "1976-02-03T00:00:00Z",
+      "stateLabel": "Oyo State",
+      "stateDescription": "state of Nigeria",
+      "capitalLabel": "Ibadan"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q503910",
+      "capital": "http://www.wikidata.org/entity/Q1061665",
+      "population": "5663362",
+      "area": "17698",
+      "established": "1991-08-27T00:00:00Z",
+      "stateLabel": "Delta State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Asaba"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q503923",
+      "capital": "http://www.wikidata.org/entity/Q217432",
+      "population": "7000924",
+      "area": "11077",
+      "established": "1967-05-27T00:00:00Z",
+      "stateLabel": "Rivers State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Port Harcourt"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q503928",
+      "capital": "http://www.wikidata.org/entity/Q321079",
+      "population": "4200442",
+      "area": "30913",
+      "established": "1976-02-03T00:00:00Z",
+      "stateLabel": "Plateau State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Jos"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q503932",
+      "capital": "http://www.wikidata.org/entity/Q994105",
+      "population": "5556247",
+      "area": "76363",
+      "established": "1976-02-03T00:00:00Z",
+      "stateLabel": "Niger State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Minna"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q503936",
+      "capital": "http://www.wikidata.org/entity/Q811144",
+      "population": "6834314",
+      "area": "45837",
+      "established": "1976-02-03T00:00:00Z",
+      "stateLabel": "Bauchi State",
+      "stateDescription": "State in Nigeria",
+      "capitalLabel": "Bauchi"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q503941",
+      "capital": "http://www.wikidata.org/entity/Q336350",
+      "population": "4998090",
+      "area": "25973",
+      "established": "1976-02-03T00:00:00Z",
+      "stateLabel": "Sokoto State",
+      "stateDescription": "State in the northern part of Nigeria",
+      "capitalLabel": "Sokoto"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q506808",
+      "capital": "http://www.wikidata.org/entity/Q304976",
+      "population": "3490383",
+      "area": "5533",
+      "established": "1996-10-01T00:00:00Z",
+      "stateLabel": "Ebonyi State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Abakaliki"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q509300",
+      "capital": "http://www.wikidata.org/entity/Q3787",
+      "population": "3564126",
+      "area": "7315",
+      "established": "1976-02-03T00:00:00Z",
+      "stateLabel": "Federal Capital Territory",
+      "stateDescription": "capital territory of Nigeria, which contains the capital city, Abuja",
+      "capitalLabel": "Abuja"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q532153",
+      "capital": "http://www.wikidata.org/entity/Q648749",
+      "population": "2277961",
+      "area": "21110",
+      "established": "1996-10-01T00:00:00Z",
+      "stateLabel": "Bayelsa State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Yenegoa"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q534917",
+      "capital": "http://www.wikidata.org/entity/Q359955",
+      "population": "3270798",
+      "area": "6353",
+      "established": "1996-10-01T00:00:00Z",
+      "stateLabel": "Ekiti State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Ado Ekiti"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q657821",
+      "capital": "http://www.wikidata.org/entity/Q937487",
+      "population": "7831319",
+      "area": "24192",
+      "established": "1987-09-23T00:00:00Z",
+      "stateLabel": "Katsina State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Katsina"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q682571",
+      "capital": "http://www.wikidata.org/entity/Q182984",
+      "population": "16076892",
+      "area": "20131",
+      "established": "1967-05-27T00:00:00Z",
+      "stateLabel": "Kano State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Kano"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q682691",
+      "capital": "http://www.wikidata.org/entity/Q1023713",
+      "population": "6000163",
+      "area": "23154",
+      "established": "1991-08-27T00:00:00Z",
+      "stateLabel": "Jigawa State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Dutse"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q682704",
+      "capital": "http://www.wikidata.org/entity/Q320704",
+      "population": "4235595",
+      "area": "17802",
+      "established": "1991-08-27T00:00:00Z",
+      "stateLabel": "Edo State",
+      "stateDescription": "state of Nigeria",
+      "capitalLabel": "Benin City"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q682721",
+      "capital": "http://www.wikidata.org/entity/Q868203",
+      "population": "4705589",
+      "area": "9251",
+      "established": "1991-08-27T00:00:00Z",
+      "stateLabel": "Osun State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Osogbo"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q682777",
+      "capital": "http://www.wikidata.org/entity/Q1023722",
+      "population": "3294137",
+      "area": "45502",
+      "established": "1991-08-27T00:00:00Z",
+      "stateLabel": "Yobe State",
+      "stateDescription": "state in the northern part of Nigeria",
+      "capitalLabel": "Damaturu"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q739676",
+      "capital": "http://www.wikidata.org/entity/Q844091",
+      "population": "3866269",
+      "area": "20156",
+      "established": "1976-02-03T00:00:00Z",
+      "stateLabel": "Cross River State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Calabar"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q748523",
+      "capital": "http://www.wikidata.org/entity/Q865828",
+      "population": "4440050",
+      "area": "36800",
+      "established": "1991-08-27T00:00:00Z",
+      "stateLabel": "Kebbi State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Birnin Kebbi"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q815913",
+      "capital": "http://www.wikidata.org/entity/Q1024647",
+      "population": "11000598",
+      "area": "3577",
+      "established": "1967-05-27T00:00:00Z",
+      "stateLabel": "Lagos State",
+      "stateDescription": "federal state in southwestern Nigeria",
+      "capitalLabel": "Ikeja"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q836645",
+      "capital": "http://www.wikidata.org/entity/Q1023721",
+      "population": "2523395",
+      "area": "27117",
+      "established": "1996-10-01T00:00:00Z",
+      "stateLabel": "Nasarawa State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Lafia"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q836654",
+      "capital": "http://www.wikidata.org/entity/Q423831",
+      "population": "4671695",
+      "area": "15500",
+      "established": "1976-02-03T00:00:00Z",
+      "stateLabel": "Ondo State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Akure"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q836657",
+      "capital": "http://www.wikidata.org/entity/Q206484",
+      "population": "5217716",
+      "area": "16980.55",
+      "established": "1976-02-03T00:00:00Z",
+      "stateLabel": "Ogun State",
+      "stateDescription": "state of Nigeria",
+      "capitalLabel": "Abeokuta"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q840930",
+      "capital": "http://www.wikidata.org/entity/Q321079",
+      "established": "1967-05-27T00:00:00Z",
+      "stateLabel": "Benue-Plateau State",
+      "stateDescription": "former administrative division of Nigeria",
+      "capitalLabel": "Jos"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q842939",
+      "capital": "http://www.wikidata.org/entity/Q583619",
+      "population": "5408756",
+      "area": "5530",
+      "established": "1976-02-03T00:00:00Z",
+      "stateLabel": "Imo State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Owerri"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q878284",
+      "capital": "http://www.wikidata.org/entity/Q208318",
+      "population": "8252366",
+      "area": "46053",
+      "established": "1976-01-01T00:00:00Z",
+      "stateLabel": "Kaduna State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Kaduna"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q3508968",
+      "capital": "http://www.wikidata.org/entity/Q994114",
+      "established": "1976-02-03T00:00:00Z",
+      "stateLabel": "Gongola State",
+      "stateDescription": "former state of Nigeria",
+      "capitalLabel": "Yola"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q3511658",
+      "capital": "http://www.wikidata.org/entity/Q465022",
+      "established": "1967-05-27T00:00:00Z",
+      "stateLabel": "East Central State",
+      "stateDescription": "former state of Nigeria",
+      "capitalLabel": "Enugu"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q3817714",
+      "capital": "http://www.wikidata.org/entity/Q465022",
+      "population": "4411119",
+      "area": "7161",
+      "established": "1991-08-27T00:00:00Z",
+      "stateLabel": "Enugu State",
+      "stateDescription": "state in Nigeria",
+      "capitalLabel": "Enugu"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q7988329",
+      "capital": "http://www.wikidata.org/entity/Q183298",
+      "established": "1967-05-27T00:00:00Z",
+      "stateLabel": "Western State",
+      "stateDescription": "former state of Nigeria",
+      "capitalLabel": "Ibadan"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q9294802",
+      "capital": "http://www.wikidata.org/entity/Q221436",
+      "established": "1967-05-27T00:00:00Z",
+      "stateLabel": "North-Eastern State",
+      "stateDescription": "former state of Nigeria",
+      "capitalLabel": "Maiduguri"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q10337430",
+      "capital": "http://www.wikidata.org/entity/Q336350",
+      "established": "1967-05-27T00:00:00Z",
+      "stateLabel": "North-Western State",
+      "stateDescription": "former state of Nigeria",
+      "capitalLabel": "Sokoto"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q27536370",
+      "capital": "http://www.wikidata.org/entity/Q844091",
+      "established": "1967-05-27T00:00:00Z",
+      "stateLabel": "South Eastern State",
+      "stateDescription": "former state of Nigeria",
+      "capitalLabel": "Calabar"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q27536429",
+      "capital": "http://www.wikidata.org/entity/Q320704",
+      "established": "1967-05-27T00:00:00Z",
+      "stateLabel": "Mid-Western State",
+      "stateDescription": "former state of Nigeria",
+      "capitalLabel": "Benin City"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q27536437",
+      "capital": "http://www.wikidata.org/entity/Q320704",
+      "established": "1976-03-17T00:00:00Z",
+      "stateLabel": "Bendel State",
+      "stateDescription": "former state of Nigeria",
+      "capitalLabel": "Benin City"
+    },
+    {
+      "state": "http://www.wikidata.org/entity/Q27536865",
+      "capital": "http://www.wikidata.org/entity/Q208318",
+      "established": "1967-05-27T00:00:00Z",
+      "stateLabel": "North-Central state",
+      "stateDescription": "former state of Nigeria",
+      "capitalLabel": "Kaduna"
+    }
+  ],
+  "collected_at": "2026-01-03T08:51:43.556241"
+}

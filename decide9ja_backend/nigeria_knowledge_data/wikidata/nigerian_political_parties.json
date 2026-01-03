@@ -1,0 +1,660 @@
+{
+  "query_name": "nigerian_political_parties",
+  "total_results": 103,
+  "results": [
+    {
+      "party": "http://www.wikidata.org/entity/Q343617",
+      "founded": "2006-01-01T00:00:00Z",
+      "dissolved": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q282739",
+      "partyLabel": "Action Congress of Nigeria",
+      "partyDescription": "political party in Nigeria",
+      "ideologyLabel": "Pan-Africanism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q343617",
+      "founded": "2006-01-01T00:00:00Z",
+      "dissolved": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q794394",
+      "partyLabel": "Action Congress of Nigeria",
+      "partyDescription": "political party in Nigeria",
+      "ideologyLabel": "classical liberalism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q123708",
+      "founded": "1951-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q121254",
+      "partyLabel": "Action Group",
+      "partyDescription": "political party from Nigeria",
+      "ideologyLabel": "social democracy"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q221915",
+      "founded": "1945-01-01T00:00:00Z",
+      "partyLabel": "Egbe Omo Oduduwa",
+      "partyDescription": "political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q1432251",
+      "founded": "1998-01-01T00:00:00Z",
+      "dissolved": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q7169",
+      "partyLabel": "All Nigeria Peoples Party",
+      "partyDescription": "political party in Nigeria",
+      "ideologyLabel": "conservatism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q1432251",
+      "founded": "1998-01-01T00:00:00Z",
+      "dissolved": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q729119",
+      "partyLabel": "All Nigeria Peoples Party",
+      "partyDescription": "political party in Nigeria",
+      "ideologyLabel": "economic liberalism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q1432251",
+      "founded": "1998-01-01T00:00:00Z",
+      "dissolved": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q2641411",
+      "partyLabel": "All Nigeria Peoples Party",
+      "partyDescription": "political party in Nigeria",
+      "ideologyLabel": "Islamic democracy"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q1551163",
+      "founded": "1998-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q729119",
+      "partyLabel": "Peoples Democratic Party",
+      "partyDescription": "Nigerian political party founded 1998",
+      "ideologyLabel": "economic liberalism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q1551163",
+      "founded": "1998-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q1414298",
+      "partyLabel": "Peoples Democratic Party",
+      "partyDescription": "Nigerian political party founded 1998",
+      "ideologyLabel": "social conservatism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q1116016",
+      "founded": "1933-01-01T00:00:00Z",
+      "partyLabel": "Nigerian Youth Movement",
+      "partyDescription": "political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q1167740",
+      "founded": "2002-01-01T00:00:00Z",
+      "dissolved": "1966-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q6186",
+      "partyLabel": "Communist Party of Nigeria",
+      "partyDescription": "political party",
+      "ideologyLabel": "communism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q4672709",
+      "partyLabel": "Accord",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q4686168",
+      "founded": "2006-01-01T00:00:00Z",
+      "partyLabel": "Advanced Congress of Democrats",
+      "partyDescription": "opposition political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q4729266",
+      "founded": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q121254",
+      "partyLabel": "All Progressives Congress",
+      "partyDescription": "Nigerian political party",
+      "ideologyLabel": "social democracy"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q4729266",
+      "founded": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q180490",
+      "partyLabel": "All Progressives Congress",
+      "partyDescription": "Nigerian political party",
+      "ideologyLabel": "populism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q4729266",
+      "founded": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q204886",
+      "partyLabel": "All Progressives Congress",
+      "partyDescription": "Nigerian political party",
+      "ideologyLabel": "federalism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q4729266",
+      "founded": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q590478",
+      "partyLabel": "All Progressives Congress",
+      "partyDescription": "Nigerian political party",
+      "ideologyLabel": "African socialism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q4729266",
+      "founded": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q821102",
+      "partyLabel": "All Progressives Congress",
+      "partyDescription": "Nigerian political party",
+      "ideologyLabel": "progressivism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q4729266",
+      "founded": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q1414298",
+      "partyLabel": "All Progressives Congress",
+      "partyDescription": "Nigerian political party",
+      "ideologyLabel": "social conservatism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q4729271",
+      "founded": "2003-01-01T00:00:00Z",
+      "dissolved": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q6235",
+      "partyLabel": "All Progressives Grand Alliance",
+      "partyDescription": "former Nigerian political party",
+      "ideologyLabel": "nationalism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q4729271",
+      "founded": "2003-01-01T00:00:00Z",
+      "dissolved": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q188961",
+      "partyLabel": "All Progressives Grand Alliance",
+      "partyDescription": "former Nigerian political party",
+      "ideologyLabel": "decentralization"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q4729271",
+      "founded": "2003-01-01T00:00:00Z",
+      "dissolved": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q821102",
+      "partyLabel": "All Progressives Grand Alliance",
+      "partyDescription": "former Nigerian political party",
+      "ideologyLabel": "progressivism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q4732359",
+      "founded": "2010-01-01T00:00:00Z",
+      "partyLabel": "Alliance for Democracy",
+      "partyDescription": "organization"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q894007",
+      "founded": "1954-01-01T00:00:00Z",
+      "partyLabel": "Borno Youth Movement",
+      "partyDescription": "political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q2647821",
+      "founded": "1998-01-01T00:00:00Z",
+      "partyLabel": "All People's Party",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q2649119",
+      "founded": "1998-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q821102",
+      "partyLabel": "Alliance for Democracy",
+      "partyDescription": "defunct Nigerian political party",
+      "ideologyLabel": "progressivism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q1754230",
+      "founded": "1944-01-01T00:00:00Z",
+      "partyLabel": "National Council of Nigeria and the Cameroons",
+      "partyDescription": "Nigerian political party from 1944 to 1966"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q1989646",
+      "founded": "1922-01-01T00:00:00Z",
+      "partyLabel": "Nigerian National Democratic Party",
+      "partyDescription": "The first political party in Nigeria."
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q5160852",
+      "founded": "2009-01-01T00:00:00Z",
+      "dissolved": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q201712",
+      "partyLabel": "Congress for Progressive Change",
+      "partyDescription": "dissolved conservative party in Nigeria",
+      "ideologyLabel": "social liberalism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q5160852",
+      "founded": "2009-01-01T00:00:00Z",
+      "dissolved": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q204886",
+      "partyLabel": "Congress for Progressive Change",
+      "partyDescription": "dissolved conservative party in Nigeria",
+      "ideologyLabel": "federalism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q5160852",
+      "founded": "2009-01-01T00:00:00Z",
+      "dissolved": "2013-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q1414298",
+      "partyLabel": "Congress for Progressive Change",
+      "partyDescription": "dissolved conservative party in Nigeria",
+      "ideologyLabel": "social conservatism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q5255552",
+      "founded": "1994-01-01T00:00:00Z",
+      "partyLabel": "Democratic Alternative",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q5255761",
+      "founded": "2006-01-01T00:00:00Z",
+      "partyLabel": "Democratic People's Party",
+      "partyDescription": "Political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q5255823",
+      "founded": "1986-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q181133",
+      "partyLabel": "Democratic Socialist Movement",
+      "partyDescription": "political party in Nigeria",
+      "ideologyLabel": "Trotskyism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q5318922",
+      "founded": "1951-01-01T00:00:00Z",
+      "partyLabel": "Dynamic Party",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q5502960",
+      "founded": "2007-01-01T00:00:00Z",
+      "partyLabel": "Fresh Democratic Party",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q5599626",
+      "partyLabel": "Great Nigeria People's Party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q5983589",
+      "founded": "1951-01-01T00:00:00Z",
+      "partyLabel": "Ibadan Peoples Party",
+      "partyDescription": "party in Western Region, Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q6467449",
+      "founded": "2002-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q121254",
+      "partyLabel": "Labour Party",
+      "partyDescription": "social democratic political party in Nigeria",
+      "ideologyLabel": "social democracy"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q6843367",
+      "partyLabel": "Midwest Democratic Front",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q6971804",
+      "founded": "1994-01-01T00:00:00Z",
+      "partyLabel": "National Conscience Party",
+      "partyDescription": "nationalist political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q6972210",
+      "founded": "1994-01-01T00:00:00Z",
+      "partyLabel": "National Democratic Coalition",
+      "partyDescription": "coalition of Nigerian democrats formed in 1994"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q6974818",
+      "partyLabel": "National Party of Nigeria",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q6978037",
+      "partyLabel": "National Republican Convention",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q7032885",
+      "ideology": "http://www.wikidata.org/entity/Q6186",
+      "partyLabel": "Nigerian Communist Party",
+      "partyDescription": "political party in Nigeria",
+      "ideologyLabel": "communism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q7033003",
+      "partyLabel": "Nigerian People's Party",
+      "partyDescription": "political party in the Nigerian Second Republic"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q7058854",
+      "founded": "1949-01-01T00:00:00Z",
+      "partyLabel": "Northern People's Congress",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q7165739",
+      "founded": "1978-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q121254",
+      "partyLabel": "People's Redemption Party",
+      "partyDescription": "political party in Nigeria",
+      "ideologyLabel": "social democracy"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q7248799",
+      "founded": "2003-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q821102",
+      "partyLabel": "Progressive Peoples Alliance",
+      "partyDescription": "political party in Nigeria",
+      "ideologyLabel": "progressivism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q7550561",
+      "founded": "1989-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q121254",
+      "partyLabel": "Social Democratic Party",
+      "partyDescription": "political party in Nigeria",
+      "ideologyLabel": "social democracy"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q7550561",
+      "founded": "1989-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q180490",
+      "partyLabel": "Social Democratic Party",
+      "partyDescription": "political party in Nigeria",
+      "ideologyLabel": "populism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q7551826",
+      "founded": "1963-01-01T00:00:00Z",
+      "partyLabel": "Socialist Workers and Farmers Party of Nigeria",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q7888266",
+      "partyLabel": "United Middle Belt Congress",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q7888298",
+      "partyLabel": "United National Independence Party",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q7888995",
+      "partyLabel": "United Nigeria Congress Party",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q7888996",
+      "founded": "1998-01-01T00:00:00Z",
+      "partyLabel": "United Nigeria People's Party",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q7893806",
+      "founded": "1978-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q121254",
+      "partyLabel": "Unity Party of Nigeria",
+      "partyDescription": "political party in Nigeria",
+      "ideologyLabel": "social democracy"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q15991564",
+      "founded": "1963-01-01T00:00:00Z",
+      "partyLabel": "Kano People's Party",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q16258047",
+      "founded": "1978-01-01T00:00:00Z",
+      "partyLabel": "Nigeria Advance Party",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q17109246",
+      "founded": "1950-01-01T00:00:00Z",
+      "partyLabel": "Northern Elements Progressive Union",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q18204315",
+      "partyLabel": "Progressive Governors Forum",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q65081160",
+      "partyLabel": "Allied Peoples Movement",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q65091257",
+      "partyLabel": "KOWA Party",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q65117310",
+      "founded": "2017-06-02T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q354239",
+      "partyLabel": "Action Democratic Party",
+      "partyDescription": "political party in Nigeria",
+      "ideologyLabel": "minor party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q18392128",
+      "founded": "2013-01-01T00:00:00Z",
+      "partyLabel": "Socialist Party of Nigeria",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q18712103",
+      "founded": "2014-01-01T00:00:00Z",
+      "partyLabel": "All Peoples Party",
+      "partyDescription": "political party from Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q20982209",
+      "founded": "1908-01-01T00:00:00Z",
+      "dissolved": "1928-01-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q7169",
+      "partyLabel": "People's Union",
+      "partyDescription": "political party in Nigeria",
+      "ideologyLabel": "conservatism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q55075132",
+      "founded": "2016-12-16T00:00:00Z",
+      "partyLabel": "Abundant Nigeria Renewal Party",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q55393562",
+      "founded": "2017-03-01T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q190044",
+      "partyLabel": "Alliance for New Nigeria",
+      "partyDescription": "Nigerian political party",
+      "ideologyLabel": "technocracy"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q55624765",
+      "partyLabel": "National Interest Party (Nigeria)",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q55640179",
+      "partyLabel": "Justice Must Prevail Party",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60058152",
+      "partyLabel": "Action Alliance",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60058266",
+      "founded": "2018-01-01T00:00:00Z",
+      "partyLabel": "African Action Congress",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60058378",
+      "partyLabel": "Advanced Allied Party",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60058578",
+      "partyLabel": "All Blending Party",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60062071",
+      "partyLabel": "Allied Congress Party of Nigeria",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60134074",
+      "partyLabel": "Action Democratic Party",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60135163",
+      "partyLabel": "All Grassroots Alliance",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60135636",
+      "partyLabel": "All Grand Alliance Party",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60136023",
+      "partyLabel": "Advanced Nigerian Democracy Party",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60137157",
+      "partyLabel": "Alliance National Party",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60137924",
+      "partyLabel": "African Peoples Alliance",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60143323",
+      "founded": "2005-01-01T00:00:00Z",
+      "partyLabel": "African Democratic Congress",
+      "partyDescription": "Nigerian Polictical Party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60164572",
+      "partyLabel": "Advanced Peoples Democratic Alliance",
+      "partyDescription": "Nigerian Political Party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60165672",
+      "partyLabel": "Better Nigeria Progressive Party",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60165949",
+      "partyLabel": "Coalition for Change",
+      "partyDescription": "Nigerian Political Party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60166744",
+      "partyLabel": "Democracy Peoples Congress",
+      "partyDescription": "Nigerian Political Party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60167109",
+      "partyLabel": "Democratic Peoples Party",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60743444",
+      "founded": "2018-08-15T00:00:00Z",
+      "partyLabel": "African Action Congress",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q60769687",
+      "partyLabel": "All Blended Party",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q61274507",
+      "partyLabel": "United Muslim Party",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q63434802",
+      "partyLabel": "Young Progressive Party",
+      "partyDescription": "Political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q23499551",
+      "partyLabel": "Q23499551"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q24251173",
+      "partyLabel": "Enugu State People's Democratic Party",
+      "partyDescription": "Enugu State People's Democratic Party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q104864846",
+      "partyLabel": "Movement for a Socialist Alternative",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q113485137",
+      "partyLabel": "New Nigeria Peoples Party",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q118896450",
+      "partyLabel": "New Nigeria People's Party",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q106315835",
+      "partyLabel": "Q106315835"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q112477489",
+      "partyLabel": "National Democratic Party",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q112478410",
+      "founded": "1998-09-09T00:00:00Z",
+      "ideology": "http://www.wikidata.org/entity/Q821102",
+      "partyLabel": "Alliance for Democracy",
+      "ideologyLabel": "progressivism"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q112577746",
+      "founded": "1958-08-01T00:00:00Z",
+      "partyLabel": "Democratic Party of Nigeria and the Cameroons",
+      "partyDescription": "Nigerian political party"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q135262997",
+      "partyLabel": "National Rescue Movement",
+      "partyDescription": "political party in Nigeria"
+    },
+    {
+      "party": "http://www.wikidata.org/entity/Q135265006",
+      "partyLabel": "BOOT Party",
+      "partyDescription": "political party in Nigeria"
+    }
+  ],
+  "collected_at": "2026-01-03T08:51:45.887949"
+}

@@ -1,0 +1,4509 @@
+{
+  "query_name": "nigerian_elections",
+  "total_results": 829,
+  "results": [
+    {
+      "election": "http://www.wikidata.org/entity/Q105986264",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Kaduna gubernatorial election",
+      "electionDescription": "2007 gubernatorial election in Kaduna State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106011255",
+      "date": "2011-04-28T00:00:00Z",
+      "electionLabel": "2011 Kaduna gubernatorial election",
+      "electionDescription": "2011 gubernatorial election in Kaduna State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106041070",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Kaduna gubernatorial election",
+      "electionDescription": "2015 gubernatorial election in Kaduna State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106076135",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Kaduna gubernatorial election",
+      "electionDescription": "2015 gubernatorial election in Kaduna State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106129703",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Kaduna gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Kaduna State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106129795",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Kaduna gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Kaduna State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106153964",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Nasarawa gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Nasarawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106180282",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Taraba gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Taraba State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106180341",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Oyo gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Oyo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106239077",
+      "date": "2019-11-16T00:00:00Z",
+      "electionLabel": "2019 Bayelsa gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Bayelsa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106239103",
+      "date": "2019-11-16T00:00:00Z",
+      "electionLabel": "2019 Kogi gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Kogi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106254541",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Ebonyi gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Ebonyi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106310829",
+      "electionLabel": "2015 Yobe State gubernatorial election",
+      "electionDescription": "political event"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106322656",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Enugu State gubernatorial election",
+      "electionDescription": "Election in Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106363388",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Benue State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Benue State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106372450",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Plateau State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Plateau State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106492707",
+      "date": "2019-01-01T00:00:00Z",
+      "electionLabel": "2019 Bauchi State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106610436",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Kano State gubernatorial election",
+      "electionDescription": "2011 gubernatorial election in Kano State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106611184",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Niger State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Niger State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106611207",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Borno State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Borno State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106611286",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Delta State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Delta State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106611298",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Cross River State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Cross River State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106617061",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Kano State gubernatorial election",
+      "electionDescription": "2015 gubernatorial election in Kano State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106617103",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Kano State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Kano State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106624300",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Jigawa State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Jigawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106639802",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Katsina State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Katsina State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106645510",
+      "date": "2019-11-16T00:00:00Z",
+      "electionLabel": "2019 Nigerian gubernatorial elections",
+      "electionDescription": "Nigerian election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106646253",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Gombe State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Gombe State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106646275",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Imo State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Imo State, Nigeria",
+      "office": "http://www.wikidata.org/entity/Q53857987",
+      "officeLabel": "Governor of Imo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106652797",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Kano State gubernatorial election",
+      "electionDescription": "2007 gubernatorial election in Kano State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106652994",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Kebbi State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Kebbi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106653000",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Sokoto State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Sokoto State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106679688",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Kwara State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Kwara State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106696636",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Kano State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Kano State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106707452",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Yobe State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Yobe State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106726862",
+      "date": "2019-03-10T00:00:00Z",
+      "electionLabel": "2019 Akwa Ibom State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Akwa Ibom State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106726914",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Zamfara State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Zamfara State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106742146",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Kano State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Kano State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106743085",
+      "date": "2018-07-14T00:00:00Z",
+      "electionLabel": "2018 Ekiti State gubernatorial election",
+      "electionDescription": "2018 gubernatorial election in Ekiti State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106770916",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Kano State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Kano State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106771333",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Adamawa State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Adamawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106778679",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Adamawa State gubernatorial election",
+      "electionDescription": "2015 gubernatorial election in Adamawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106797977",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Abia State gubernatorial election",
+      "electionDescription": "2019 gubernatorial election in Abia State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106808922",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Kaduna State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Kaduna State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106809043",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Kano State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Kano State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106809048",
+      "date": "2015-04-12T00:00:00Z",
+      "electionLabel": "2015 Kwara State gubernatorial election",
+      "electionDescription": "2015 gubernatorial election in Kwara State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106819208",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Akwa Ibom State gubernatorial election",
+      "electionDescription": "2015 gubernatorial election in Akwa Ibom State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106819258",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Katsina State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Katsina State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106819339",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Katsina State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Katsina State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106819376",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Kano State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Kano State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106819384",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Plateau State gubernatorial election",
+      "electionDescription": "2015 gubernatorial election in Plateau State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106830017",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Oyo State gubernatorial election",
+      "electionDescription": "2015 gubernatorial election in Oyo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106830329",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Katsina State gubernatorial election",
+      "electionDescription": "2007 gubernatorial election in Katsina State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106830347",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Katsina State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Katsina State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106830381",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Borno State gubernatorial election",
+      "electionDescription": "2015 gubernatorial election in Borno State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106830387",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Katsina State gubernatorial election",
+      "electionDescription": "2011 gubernatorial election in Katsina State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839107",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Ebonyi State gubernatorial election",
+      "electionDescription": "5th gubernatorial election of Ebonyi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839114",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Enugu State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839117",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Gombe State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839390",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Kebbi State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839427",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Katsina State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839455",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Imo State gubernatorial election",
+      "office": "http://www.wikidata.org/entity/Q53857987",
+      "officeLabel": "Governor of Imo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839501",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Sokoto State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839515",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Jigawa State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839545",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Niger State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839578",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Nasarawa State gubernatorial election",
+      "electionDescription": "2015 gubernatorial election in Nasarawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839647",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Taraba State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839701",
+      "date": "2016-11-26T00:00:00Z",
+      "electionLabel": "2016 Ondo State gubernatorial election",
+      "electionDescription": "2016 gubernatorial election in Ondo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839704",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Bauchi State gubernatorial election",
+      "electionDescription": "house of representatives election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839792",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Ogun State gubernatorial election",
+      "electionDescription": "2015 gubernatorial election in Ogun State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839862",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Benue State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839867",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Delta State gubernatorial election",
+      "electionDescription": "election for Governor of Delta State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106839868",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Cross River State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106856411",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Zamfara State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106867863",
+      "date": "2014-06-21T00:00:00Z",
+      "electionLabel": "2014 Ekiti State gubernatorial election",
+      "electionDescription": "2014 gubernatorial election in Ekiti State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106881009",
+      "date": "2014-08-09T00:00:00Z",
+      "electionLabel": "2014 Osun State gubernatorial election",
+      "electionDescription": "2014 gubernatorial election in Osun State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106900887",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Kebbi State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Kebbi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106912749",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Kebbi State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Kebbi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106920503",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Kebbi State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Kebbi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106936181",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Kebbi State gubernatorial election",
+      "electionDescription": "2007 gubernatorial election in Kebbi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106946695",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Kebbi State gubernatorial election",
+      "electionDescription": "2011 gubernatorial election in Kebbi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106959064",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Sokoto State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Sokoto State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106959143",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Sokoto State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Sokoto State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106959235",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Sokoto State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Sokoto State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106959417",
+      "date": "2012-03-31T00:00:00Z",
+      "electionLabel": "2012 Kebbi State gubernatorial by-election",
+      "electionDescription": "2012 gubernatorial by-election in Kebbi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106959491",
+      "date": "2014-07-14T00:00:00Z",
+      "electionLabel": "2012 Edo State gubernatorial election",
+      "electionDescription": "2012 gubernatorial election in Edo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106970234",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Rivers State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106970387",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Yobe State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106970395",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Zamfara State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106970544",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Plateau State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106970627",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Taraba State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106970631",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Oyo State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106970658",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Sokoto State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Sokoto State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106971686",
+      "date": "2008-05-24T00:00:00Z",
+      "electionLabel": "2008 Sokoto State gubernatorial by-election",
+      "electionDescription": "2008 gubernatorial by-election in Sokoto State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106971866",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Sokoto State gubernatorial election",
+      "electionDescription": "2007 gubernatorial election in Sokoto State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106971936",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Sokoto State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Sokoto State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106973336",
+      "date": "2017-11-18T00:00:00Z",
+      "electionLabel": "2017 Anambra State gubernatorial election",
+      "electionDescription": "2017 gubernatorial election in Anambra State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106982356",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Ogun State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q106995579",
+      "date": "2013-11-16T00:00:00Z",
+      "electionLabel": "2013 Anambra State gubernatorial election",
+      "electionDescription": "2013 gubernatorial election in Anambra State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107007129",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Ebonyi State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104151",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Kwara State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Kwara State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104153",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Ogun State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Ogun State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104154",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Lagos State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Lagos State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104157",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Plateau State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Plateau State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104160",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Rivers State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Rivers State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104164",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Ondo State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Ondo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104279",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Enugu State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Enugu State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104286",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Delta State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Delta State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104287",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Abia State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Abia State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104288",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Kogi State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Kogi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104291",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Osun State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Osun State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104292",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Edo State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Edo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104298",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Akwa Ibom State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Akwa Ibom State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104299",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Imo State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Imo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104300",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Oyo State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Oyo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104302",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Imo State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Imo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104304",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Benue State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Benue State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104305",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Niger State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Niger State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104307",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Jigawa State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Jigawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104308",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Ogun State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Ogun State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104311",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Adamawa State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Adamawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104313",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Ondo State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Ondo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104316",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Lagos State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Lagos State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104317",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Bauchi State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Bauchi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104318",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Borno State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Borno State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104320",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Plateau State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Plateau State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104327",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Rivers State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Rivers State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104337",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Anambra State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Anambra State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104339",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Kwara State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Kwara State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104340",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Cross River State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Cross River State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104370",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Imo State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Imo State, Nigeria",
+      "office": "http://www.wikidata.org/entity/Q53857987",
+      "officeLabel": "Governor of Imo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104374",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Benue State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Benue State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104378",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Bauchi State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Bauchi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104394",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Enugu State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Enugu State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104399",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Kogi State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Kogi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104401",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Anambra State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Anambra State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104409",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Gombe State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Gombe State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104466",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Jigawa State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Jigawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104573",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Oyo State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Oyo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104579",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Osun State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Osun State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104586",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Rivers State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Rivers State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104590",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Plateau State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Plateau State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104649",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Ebonyi State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Ebonyi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104653",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Ekiti State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Ekiti State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104655",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Nasarawa State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Nasarawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104657",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Kogi State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Kogi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104658",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Imo State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Imo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104659",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Ogun State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Ogun State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104661",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Delta State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Delta State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104663",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Kwara State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Kwara State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104666",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Ondo State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Ondo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104668",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Gombe State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Gombe State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104672",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Lagos State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Lagos State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104674",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Niger State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Niger State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104676",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Enugu State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Enugu State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104679",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Edo State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Edo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104681",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Jigawa State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Jigawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104688",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Cross River State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Cross River State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104715",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Bendel State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Bendel State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104720",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Niger State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Niger State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104765",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Gongola State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Gongola State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104772",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Bauchi State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Bauchi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104783",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Cross River State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Cross River State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104791",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Bendel State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Bendel State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104811",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Oyo State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Oyo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104833",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Benue State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Benue State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104858",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Borno State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Borno State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104928",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Gongola State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Gongola State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104941",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Anambra State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Anambra State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104952",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Bauchi State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Bauchi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104959",
+      "date": "2008-05-24T00:00:00Z",
+      "electionLabel": "2008 Bayelsa State gubernatorial by-election",
+      "electionDescription": "2008 gubernatorial election in Bayelsa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104962",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Benue State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Benue State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104965",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Borno State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Borno State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104971",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Akwa Ibom State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Akwa Ibom State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104973",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Bauchi State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Bauchi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104977",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Benue State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Benue State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107105025",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Anambra State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Anambra State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107105060",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Abia State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Abia State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107105076",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Adamawa State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Adamawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107105080",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Imo State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Imo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107105081",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Anambra State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Anambra State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107105084",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Bayelsa State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Bayelsa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107105094",
+      "date": "2008-08-23T00:00:00Z",
+      "electionLabel": "2008 Cross River State gubernatorial by-election",
+      "electionDescription": "2008 gubernatorial election in Cross River State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107105095",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Akwa Ibom State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Akwa Ibom State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107105130",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Borno State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Borno State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107105163",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Bayelsa State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Bayelsa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107105212",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Cross River State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Cross River State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107105219",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Delta State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Delta State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107122199",
+      "date": "2008-04-26T00:00:00Z",
+      "electionLabel": "2008 Adamawa State gubernatorial by-election",
+      "electionDescription": "2008 gubernatorial election in Adamawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107324819",
+      "date": "2020-10-10T00:00:00Z",
+      "electionLabel": "2020 Nigerian gubernatorial elections",
+      "electionDescription": "Nigerian election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107389445",
+      "date": "2022-07-16T00:00:00Z",
+      "electionLabel": "2022 Nigerian gubernatorial elections",
+      "electionDescription": "Nigerian election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107389456",
+      "date": "2022-06-18T00:00:00Z",
+      "electionLabel": "2022 Ekiti State gubernatorial election",
+      "electionDescription": "2022 gubernatorial election in Ekiti State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107394980",
+      "date": "2022-07-16T00:00:00Z",
+      "electionLabel": "2022 Osun State gubernatorial election",
+      "electionDescription": "2022 gubernatorial election in Osun State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107410767",
+      "date": "2021-11-06T00:00:00Z",
+      "electionLabel": "2021 Anambra State gubernatorial election",
+      "electionDescription": "Nigerian election",
+      "office": "http://www.wikidata.org/entity/Q19671587",
+      "officeLabel": "Governor of Anambra State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107410767",
+      "date": "2021-11-06T00:00:00Z",
+      "electionLabel": "2021 Anambra State gubernatorial election",
+      "electionDescription": "Nigerian election",
+      "office": "http://www.wikidata.org/entity/Q111080339",
+      "officeLabel": "Deputy Governor of Anambra State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107427374",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Adamawa State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Adamawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107427391",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Abia State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Abia State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107427398",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Bauchi State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Bauchi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107428195",
+      "date": "2024-01-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian gubernatorial elections",
+      "electionDescription": "Nigerian election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107439744",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Akwa Ibom State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Akwa Ibom State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107007131",
+      "date": "2011-04-26T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q53857987",
+      "electionLabel": "2011 Imo State gubernatorial election",
+      "officeLabel": "Governor of Imo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107007132",
+      "date": "2011-04-28T00:00:00Z",
+      "electionLabel": "2011 Bauchi State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107007134",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Kwara State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107007136",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Benue State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107007141",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Lagos State gubernatorial election",
+      "electionDescription": "State election in Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107007142",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Nasarawa State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107007144",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Enugu State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107007155",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Borno State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107007160",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Niger State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107007163",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Kogi State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107007165",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Gombe State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107007166",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Akwa Ibom State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107007172",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Jigawa State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107007179",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Delta State gubernatorial election",
+      "electionDescription": "election for Governor of Delta State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107007569",
+      "date": "2011-01-06T00:00:00Z",
+      "electionLabel": "2011 Delta State gubernatorial by-election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107008219",
+      "date": "2015-12-05T00:00:00Z",
+      "electionLabel": "2015 Bayelsa State gubernatorial election",
+      "electionDescription": "2015 gubernatorial election in Bayelsa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107015970",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Yobe State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Yobe State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107015992",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Zamfara State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Zamfara State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107016030",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Zamfara State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Zamfara State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107016057",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Zamfara State gubernatorial election",
+      "electionDescription": "2007 gubernatorial election in Zamfara State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107016231",
+      "date": "2012-02-18T00:00:00Z",
+      "electionLabel": "2012 Sokoto State gubernatorial election",
+      "electionDescription": "2012 gubernatorial election in Sokoto State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107027055",
+      "date": "1991-12-14T00:00:00Z",
+      "electionLabel": "1991 Taraba State gubernatorial election",
+      "electionDescription": "1991 gubernatorial election in Taraba State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107027070",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Taraba State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Taraba State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107027072",
+      "date": "1999-01-09T00:00:00Z",
+      "electionLabel": "1999 Yobe State gubernatorial election",
+      "electionDescription": "1999 gubernatorial election in Yobe State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107027188",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Yobe State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Yobe State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107027245",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Yobe State gubernatorial election",
+      "electionDescription": "2007 gubernatorial election in Yobe State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107040251",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Taraba State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Taraba State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107040946",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Lagos State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Lagos State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056330",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Jigawa State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056335",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Benue State gubernatorial election",
+      "electionDescription": "election to determine the governor of Benue State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056342",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Ondo State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056348",
+      "date": "2007-04-14T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q53857987",
+      "electionLabel": "2007 Imo State gubernatorial election",
+      "officeLabel": "Governor of Imo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056354",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Enugu State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056357",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Taraba State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056361",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Rivers State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056380",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Adamawa State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056392",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Ekiti State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056395",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Bauchi State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056407",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Ogun State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056414",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Ebonyi State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056419",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Edo State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056424",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Plateau State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056428",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Borno State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056435",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Osun State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056440",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Akwa Ibom State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056443",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Nasarawa State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056449",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Oyo State gubernatorial election",
+      "electionDescription": "Nigerian state election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056452",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Bayelsa State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056458",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Niger State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056485",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Kogi State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056497",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Kwara State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056531",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Delta State gubernatorial election",
+      "electionDescription": "election for Governor of Delta State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056552",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Cross River State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056555",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Anambra State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107056567",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Gombe State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107072354",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Kaduna State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Kaduna State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107072823",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Kaduna State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Kaduna State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107072871",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Lagos State gubernatorial election",
+      "electionDescription": "2007 gubernatorial election in Lagos State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107072875",
+      "date": "2012-02-11T00:00:00Z",
+      "electionLabel": "2012 Bayelsa State gubernatorial election",
+      "electionDescription": "2012 gubernatorial election in Bayelsa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107073221",
+      "date": "2012-10-20T00:00:00Z",
+      "electionLabel": "2012 Ondo State gubernatorial election",
+      "electionDescription": "2012 gubernatorial election in Ondo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107087756",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Kwara State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Kwara State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107087760",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Niger State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Niger State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107087761",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Nasarawa State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Nasarawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107087787",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Ogun State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Ogun State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107087992",
+      "date": "2012-02-25T00:00:00Z",
+      "electionLabel": "2012 Cross River State gubernatorial election",
+      "electionDescription": "2012 gubernatorial election in Cross River State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107088069",
+      "date": "2009-05-05T00:00:00Z",
+      "electionLabel": "2009 Ekiti State gubernatorial by-election",
+      "electionDescription": "2009 gubernatorial election in Ekiti State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107088174",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Ekiti State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Ekiti State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107088181",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Adamawa State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Adamawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107088194",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Rivers State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Rivers State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107088234",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Osun State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Osun State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107088274",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Abia State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Abia State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107088282",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Ebonyi State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Ebonyi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107088339",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Ondo State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Ondo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107088349",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Oyo State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Oyo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107088369",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Edo State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Edo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107088378",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Plateau State gubernatorial election",
+      "electionDescription": "2003 gubernatorial election in Plateau State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107088379",
+      "date": "2010-02-06T00:00:00Z",
+      "electionLabel": "2010 Anambra State gubernatorial election",
+      "electionDescription": "2010 gubernatorial election in Anambra State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107088399",
+      "date": "2012-02-04T00:00:00Z",
+      "electionLabel": "2012 Adamawa State gubernatorial election",
+      "electionDescription": "2012 gubernatorial election in Adamawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104045",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Ogun State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Ogun State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104046",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Lagos State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Lagos State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104055",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Borno State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Borno State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104057",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Niger State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Niger State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104060",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Plateau State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Plateau State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104061",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Kwara State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Kwara State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104063",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Rivers State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Rivers State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104065",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Ondo State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Ondo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104081",
+      "date": "1983-08-13T00:00:00Z",
+      "electionLabel": "1983 Cross River State gubernatorial election",
+      "electionDescription": "1983 gubernatorial election in Cross River State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107104134",
+      "date": "1979-07-28T00:00:00Z",
+      "electionLabel": "1979 Oyo State gubernatorial election",
+      "electionDescription": "1979 gubernatorial election in Oyo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108131521",
+      "electionLabel": "2019 Nigerian Senate elections in Lagos State",
+      "electionDescription": "2019 Nigerian Senate election in Lagos State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108167104",
+      "electionLabel": "2019 Nigerian Senate elections in Edo State",
+      "electionDescription": "2019 Nigerian Senate election in Osun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108167127",
+      "electionLabel": "2019 Nigerian Senate elections in Kano State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108179270",
+      "electionLabel": "2019 Nigerian Senate elections in Kaduna State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108179300",
+      "electionLabel": "2019 Nigerian Senate elections in Ogun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108195932",
+      "electionLabel": "2019 Nigerian Senate elections in Kwara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108208457",
+      "electionLabel": "2019 Nigerian Senate elections in Borno State",
+      "electionDescription": "2019 Nigerian Senate election in Bornu State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108208561",
+      "electionLabel": "2019 Nigerian Senate elections in Delta State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108208574",
+      "electionLabel": "2019 Nigerian Senate elections in Ekiti State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108240462",
+      "electionLabel": "2019 Nigerian Senate elections in Cross River State",
+      "electionDescription": "2019 Nigerian Senate election in Lagos State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108240560",
+      "electionLabel": "2019 Nigerian Senate elections in Bayelsa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108266320",
+      "electionLabel": "2019 Nigerian Senate elections in Akwa Ibom State",
+      "electionDescription": "2019 Nigerian Senate election in Akwa Ibom State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108266328",
+      "electionLabel": "2019 Nigerian Senate elections in Adamawa State",
+      "electionDescription": "2019 Nigerian Senate election in Adamawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108266346",
+      "electionLabel": "2019 Nigerian Senate elections in Zamfara State",
+      "electionDescription": "2019 Nigerian Senate election in Zamfara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108266357",
+      "electionLabel": "2019 Nigerian Senate elections in Abia State",
+      "electionDescription": "2019 Nigerian Senate election in Abia State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108266379",
+      "electionLabel": "2019 Nigerian Senate elections in Yobe State",
+      "electionDescription": "2019 Nigerian Senate election in Yobe State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108281133",
+      "electionLabel": "2019 Nigerian Senate election in the Federal Capital Territory"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108281300",
+      "electionLabel": "2019 Nigerian Senate elections in Bauchi State",
+      "electionDescription": "2019 Nigerian Senate election in Bauchi State",
+      "date": "2019-02-23T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108281303",
+      "electionLabel": "2019 Nigerian Senate elections in Ebonyi State",
+      "electionDescription": "2019 Nigerian Senate election in Ebonyi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108281309",
+      "electionLabel": "2019 Nigerian Senate elections in Enugu State",
+      "electionDescription": "2019 Nigerian Senate election in Enugu State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108281317",
+      "electionLabel": "2019 Nigerian Senate elections in Anambra State",
+      "electionDescription": "2019 Nigerian Senate election in Akwa Ibom State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108281319",
+      "electionLabel": "2019 Nigerian Senate elections in Jigawa State",
+      "electionDescription": "2019 Nigerian Senate election in Jigawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108281338",
+      "electionLabel": "2019 Nigerian Senate elections in Benue State",
+      "electionDescription": "2019 Nigerian Senate election in Benue State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108281356",
+      "electionLabel": "2019 Nigerian Senate elections in Katsina State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108281367",
+      "electionLabel": "2019 Nigerian Senate elections in Gombe State",
+      "electionDescription": "2019 Nigerian Senate election in Gombe State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108281370",
+      "electionLabel": "2019 Nigerian Senate elections in Taraba State",
+      "electionDescription": "2019 Nigerian Senate election in Taraba State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108281378",
+      "electionLabel": "2019 Nigerian Senate elections in Ondo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108281382",
+      "electionLabel": "2019 Nigerian Senate elections in Sokoto State",
+      "electionDescription": "2019 Nigerian Senate election in Sokoto State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108281424",
+      "electionLabel": "2019 Nigerian Senate elections in Imo State",
+      "electionDescription": "2019 Nigerian Senate election in Imo State",
+      "date": "2019-02-23T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108293265",
+      "electionLabel": "2015 Nigerian Senate elections in Lagos State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108293393",
+      "electionLabel": "2019 Nigerian Senate elections in Plateau State",
+      "electionDescription": "2019 Nigerian Senate election in Plateau State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108293410",
+      "electionLabel": "2019 Nigerian Senate elections in Niger State",
+      "electionDescription": "Nigerian Senate Election in Niger State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108303851",
+      "electionLabel": "2015 Nigerian Senate election in the Federal Capital Territory",
+      "electionDescription": "2015 Nigerian Senate election in Federal Capital Territory"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304078",
+      "electionLabel": "2015 Nigerian Senate elections in Kebbi State",
+      "electionDescription": "2015 Nigerian Senate election in Kebbi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304079",
+      "electionLabel": "2015 Nigerian Senate elections in Ogun State",
+      "electionDescription": "2015 Nigerian Senate election in Ogun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304083",
+      "electionLabel": "2015 Nigerian Senate elections in Kwara State",
+      "electionDescription": "2015 Nigerian Senate election in Kwara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304084",
+      "electionLabel": "2015 Nigerian Senate elections in Kano State",
+      "electionDescription": "2015 Nigerian Senate election in Kano State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304086",
+      "electionLabel": "2015 Nigerian Senate elections in Adamawa State",
+      "electionDescription": "2015 Nigerian Senate election in Adamawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304087",
+      "electionLabel": "2015 Nigerian Senate elections in Kogi State",
+      "electionDescription": "2015 Nigerian Senate election in Kogi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304089",
+      "electionLabel": "2015 Nigerian Senate elections in Plateau State",
+      "electionDescription": "2015 Nigerian Senate election in Plateau State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304090",
+      "electionLabel": "2015 Nigerian Senate elections in Zamfara State",
+      "electionDescription": "2015 Nigerian Senate election in Zamfara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304091",
+      "electionLabel": "2015 Nigerian Senate elections in Sokoto State",
+      "electionDescription": "2015 Nigerian Senate election in Sokoto State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304093",
+      "electionLabel": "2015 Nigerian Senate elections in Katsina State",
+      "electionDescription": "2015 Nigerian Senate election in Katsina State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304096",
+      "electionLabel": "2015 Nigerian Senate elections in Nasarawa State",
+      "electionDescription": "2015 Nigerian Senate election in Nasarawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304097",
+      "electionLabel": "2015 Nigerian Senate elections in Benue State",
+      "electionDescription": "2015 Nigerian Senate election in Benue State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304104",
+      "electionLabel": "2015 Nigerian Senate elections in Anambra State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304105",
+      "electionLabel": "2015 Nigerian Senate elections in Jigawa State",
+      "electionDescription": "2015 Nigerian Senate election in Jigawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304112",
+      "electionLabel": "2019 Nigerian Senate elections in Nasarawa State",
+      "electionDescription": "2019 Nigerian Senate election in Nasarawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304193",
+      "electionLabel": "2019 Nigerian Senate elections in Rivers State",
+      "electionDescription": "2019 Nigerian Senate election in Rivers State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108304226",
+      "electionLabel": "2019 Nigerian Senate elections in Kebbi State",
+      "electionDescription": "2019 Nigerian Senate election in Kebbi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314447",
+      "electionLabel": "2011 Nigerian Senate election in the Federal Capital Territory",
+      "electionDescription": "2011 Nigerian Senate election in Federal Capital Territory"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314666",
+      "electionLabel": "2011 Nigerian Senate elections in Akwa Ibom State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314667",
+      "electionLabel": "2011 Nigerian Senate elections in Bauchi State",
+      "date": "2011-01-01T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314674",
+      "electionLabel": "2015 Nigerian Senate elections in Abia State",
+      "electionDescription": "2015 Senate elections in Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314676",
+      "electionLabel": "2011 Nigerian Senate elections in Kogi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314679",
+      "electionLabel": "2011 Nigerian Senate elections in Adamawa State",
+      "electionDescription": "2011 Nigerian Senate election in Adamawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314690",
+      "electionLabel": "2011 Nigerian Senate elections in Abia State",
+      "electionDescription": "2011 Nigerian Senate election in Abia State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314701",
+      "electionLabel": "2015 Nigerian Senate elections in Cross River State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314707",
+      "electionLabel": "2011 Nigerian Senate elections in Edo State",
+      "electionDescription": "2011 Nigerian Senate election in Edo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314714",
+      "electionLabel": "2011 Nigerian Senate elections in Osun State",
+      "electionDescription": "2011 Nigerian Senate election in Osun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314715",
+      "electionLabel": "2011 Nigerian Senate elections in Enugu State",
+      "electionDescription": "2011 Nigerian Senate election in Enugu State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314716",
+      "electionLabel": "2011 Nigerian Senate elections in Ogun State",
+      "electionDescription": "2011 Nigerian Senate election in Ogun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314724",
+      "electionLabel": "2011 Nigerian Senate elections in Borno State",
+      "electionDescription": "2011 Nigerian Senate election in Borno State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314729",
+      "electionLabel": "2011 Nigerian Senate elections in Imo State",
+      "electionDescription": "2011 Nigerian Senate election in Imo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314734",
+      "electionLabel": "2011 Nigerian Senate elections in Ondo State",
+      "electionDescription": "2011 Nigerian Senate election in Ondo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314736",
+      "electionLabel": "2011 Nigerian Senate elections in Oyo State",
+      "electionDescription": "2011 Nigerian Senate election in Oyo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314759",
+      "electionLabel": "2011 Nigerian Senate elections in Kwara State",
+      "electionDescription": "2011 Nigerian Senate election in Kwara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314761",
+      "electionLabel": "2011 Nigerian Senate elections in Katsina State",
+      "electionDescription": "2011 Nigerian Senate election in Katsina State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314763",
+      "electionLabel": "2011 Nigerian Senate elections in Plateau State",
+      "electionDescription": "2011 Nigerian Senate election in Plateau State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314767",
+      "electionLabel": "2011 Nigerian Senate elections in Kebbi State",
+      "electionDescription": "2011 Nigerian Senate election in Kebbi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314769",
+      "electionLabel": "2011 Nigerian Senate elections in Kano State",
+      "electionDescription": "2011 Nigerian Senate election in Kano State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314775",
+      "electionLabel": "2011 Nigerian Senate elections in Sokoto State",
+      "electionDescription": "2011 Nigerian Senate election in Sokoto State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314776",
+      "electionLabel": "2011 Nigerian Senate elections in Rivers State",
+      "electionDescription": "2011 Nigerian Senate election in Rivers State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314786",
+      "electionLabel": "2011 Nigerian Senate elections in Benue State",
+      "electionDescription": "2011 Nigerian Senate election in Benue State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314789",
+      "electionLabel": "2011 Nigerian Senate elections in Jigawa State",
+      "electionDescription": "2011 Nigerian Senate election in Jigawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314791",
+      "electionLabel": "2011 Nigerian Senate elections in Taraba State",
+      "electionDescription": "2011 Nigerian Senate election in Taraba State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314792",
+      "electionLabel": "2011 Nigerian Senate elections in Ebonyi State",
+      "electionDescription": "2011 Nigerian Senate election in Ebonyi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314794",
+      "electionLabel": "2011 Nigerian Senate elections in Bayelsa State",
+      "electionDescription": "2011 Nigerian Senate election in Bayelsa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314800",
+      "electionLabel": "2011 Nigerian Senate elections in Niger State",
+      "electionDescription": "Public election",
+      "date": "2011-04-11T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314802",
+      "electionLabel": "2015 Nigerian Senate elections in Bayelsa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314811",
+      "electionLabel": "2011 Nigerian Senate elections in Nasarawa State",
+      "electionDescription": "senate elections in Nasara (2011)"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314827",
+      "electionLabel": "2015 Nigerian Senate elections in Ebonyi State",
+      "electionDescription": "2015 Nigerian Senate election in Ebonyi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314830",
+      "electionLabel": "2015 Nigerian Senate elections in Ondo State",
+      "electionDescription": "2015 Nigerian Senate election in Ondo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314832",
+      "electionLabel": "2015 Nigerian Senate elections in Osun State",
+      "electionDescription": "2015 Nigerian Senate election in Osun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314833",
+      "electionLabel": "2015 Nigerian Senate elections in Enugu State",
+      "electionDescription": "2015 Nigerian Senate election in Enugu State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314839",
+      "electionLabel": "2015 Nigerian Senate elections in Imo State",
+      "electionDescription": "2015 Nigerian Senate election in Imo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314845",
+      "electionLabel": "2015 Nigerian Senate elections in Ekiti State",
+      "electionDescription": "2015 Nigerian Senate election in Ekiti State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314846",
+      "electionLabel": "2015 Nigerian Senate elections in Taraba State",
+      "electionDescription": "2015 Nigerian Senate election in Taraba State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314858",
+      "electionLabel": "2015 Nigerian Senate elections in Niger State",
+      "electionDescription": "2015 Nigerian Senate election in Niger State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314861",
+      "electionLabel": "2015 Nigerian Senate elections in Bauchi State",
+      "electionDescription": "2015 Nigerian Senate election in Bauchi State",
+      "date": "2015-03-28T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314863",
+      "electionLabel": "2015 Nigerian Senate elections in Gombe State",
+      "electionDescription": "2015 Nigerian Senate election in Gombe State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314941",
+      "electionLabel": "2015 Nigerian Senate elections in Kaduna State",
+      "electionDescription": "2015 Nigerian Senate election in Kaduna State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314949",
+      "electionLabel": "2015 Nigerian Senate elections in Edo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314952",
+      "electionLabel": "2015 Nigerian Senate elections in Delta State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314953",
+      "electionLabel": "2011 Nigerian Senate elections in Lagos State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108314964",
+      "electionLabel": "2011 Nigerian Senate elections in Anambra State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108325409",
+      "electionLabel": "2011 Nigerian Senate elections in Gombe State",
+      "electionDescription": "2011 Nigerian Senate election in Gombe State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108325434",
+      "electionLabel": "2015 Nigerian Senate elections in Oyo State",
+      "electionDescription": "2015 Nigerian Senate election in Ogun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108325457",
+      "electionLabel": "2011 Nigerian Senate elections in Kaduna State",
+      "electionDescription": "2011 Nigerian Senate election in Kaduna State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108325458",
+      "electionLabel": "2011 Nigerian Senate elections in Yobe State",
+      "electionDescription": "elections in Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108325466",
+      "electionLabel": "2011 Nigerian Senate elections in Delta State",
+      "electionDescription": "2011 Nigerian Senate election in Delta State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108325485",
+      "electionLabel": "2011 Nigerian Senate elections in Zamfara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108325491",
+      "electionLabel": "2015 Nigerian Senate elections in Yobe State",
+      "electionDescription": "2015 Nigerian Senate election in Yobe State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108325495",
+      "electionLabel": "2015 Nigerian Senate elections in Rivers State",
+      "electionDescription": "2015 Nigerian Senate election in Rivers State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108325501",
+      "electionLabel": "2015 Nigerian Senate elections in Akwa Ibom State",
+      "electionDescription": "2015 Nigerian Senate election in Akwa Ibom State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108325503",
+      "electionLabel": "2015 Nigerian Senate elections in Borno State",
+      "electionDescription": "2015 Nigerian Senate election in Borno State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108365984",
+      "electionLabel": "2011 Nigerian Senate elections in Cross River State",
+      "electionDescription": "2011 Nigerian Senate election in Cross River State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108366268",
+      "electionLabel": "2023 Nigerian Senate election",
+      "electionDescription": "elections in Nigeria",
+      "date": "2023-02-18T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q19822359",
+      "officeLabel": "member of the Senate of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108379161",
+      "electionLabel": "1992 Nigerian Senate election in the Federal Capital Territory",
+      "electionDescription": "election in the Federal Capital Territory of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108392587",
+      "electionLabel": "2007 Nigerian Senate elections in Ondo State",
+      "electionDescription": "2007 Nigerian Senate election in Ondo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108392592",
+      "electionLabel": "2007 Nigerian Senate elections in Kaduna State",
+      "electionDescription": "2007 Nigerian Senate election in Kaduna State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108392639",
+      "electionLabel": "2007 Nigerian Senate elections in Rivers State",
+      "electionDescription": "2007 Nigerian Senate election in Rivers State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108392673",
+      "electionLabel": "2007 Nigerian Senate elections in Nasarawa State",
+      "electionDescription": "2007 Nigerian Senate election in Nasarawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108392687",
+      "electionLabel": "2007 Nigerian Senate elections in Kwara State",
+      "electionDescription": "2007 Nigerian Senate election in Kwara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108403432",
+      "electionLabel": "2007 Nigerian Senate elections in Borno State",
+      "electionDescription": "2007 Nigerian Senate election in Borno State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108403434",
+      "electionLabel": "2007 Nigerian Senate elections in Kano State",
+      "electionDescription": "2007 Nigerian Senate election in Kano State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108403436",
+      "electionLabel": "2007 Nigerian Senate elections in Bauchi State",
+      "electionDescription": "2007 Nigerian Senate election in Bauchi State",
+      "date": "2007-04-21T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108403439",
+      "electionLabel": "2007 Nigerian Senate elections in Kogi State",
+      "electionDescription": "2007 Nigerian Senate election in Kogi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108403442",
+      "electionLabel": "2007 Nigerian Senate elections in Enugu State",
+      "electionDescription": "2007 Nigerian Senate election in Enugu State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108403443",
+      "electionLabel": "2007 Nigerian Senate elections in Edo State",
+      "electionDescription": "2007 Nigerian Senate election in Edo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108403445",
+      "electionLabel": "2007 Nigerian Senate elections in Delta State",
+      "electionDescription": "2007 Nigerian Senate election in Delta State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108403447",
+      "electionLabel": "2007 Nigerian Senate elections in Gombe State",
+      "electionDescription": "2007 Nigerian Senate election in Gombe State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108403448",
+      "electionLabel": "2007 Nigerian Senate elections in Benue State",
+      "electionDescription": "2007 Nigerian Senate election in Benue State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108403452",
+      "electionLabel": "2007 Nigerian Senate elections in Ekiti State",
+      "electionDescription": "2007 Nigerian Senate election in Ekiti State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108403453",
+      "electionLabel": "2007 Nigerian Senate elections in Sokoto State",
+      "electionDescription": "2007 Nigerian Senate election in Sokoto State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108403454",
+      "electionLabel": "2007 Nigerian Senate elections in Katsina State",
+      "electionDescription": "2007 Nigerian Senate election in Katsina State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108403457",
+      "electionLabel": "2007 Nigerian Senate elections in Bayelsa State",
+      "electionDescription": "2007 Nigerian Senate election in Bayelsa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415171",
+      "electionLabel": "2007 Nigerian Senate election in the Federal Capital Territory",
+      "electionDescription": "2007 Nigerian Senate election in Federal Capital Territory"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415222",
+      "electionLabel": "2011 Nigerian Senate elections in Ekiti State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415321",
+      "electionLabel": "2007 Nigerian Senate elections in Zamfara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415376",
+      "electionLabel": "2007 Nigerian Senate elections in Lagos State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415410",
+      "electionLabel": "2007 Nigerian Senate elections in Ogun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415445",
+      "electionLabel": "2007 Nigerian Senate elections in Imo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415448",
+      "electionLabel": "2007 Nigerian Senate elections in Ebonyi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415450",
+      "electionLabel": "2007 Nigerian Senate elections in Anambra State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415453",
+      "electionLabel": "2007 Nigerian Senate elections in Osun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415456",
+      "electionLabel": "2007 Nigerian Senate elections in Taraba State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415457",
+      "electionLabel": "2007 Nigerian Senate elections in Adamawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415462",
+      "electionLabel": "2007 Nigerian Senate elections in Niger State",
+      "electionDescription": "Nigerian Senate elections in Niger State in April 21, 2007"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415465",
+      "electionLabel": "2007 Nigerian Senate elections in Abia State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415466",
+      "electionLabel": "2007 Nigerian Senate elections in Plateau State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415468",
+      "electionLabel": "2007 Nigerian Senate elections in Cross River State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415470",
+      "electionLabel": "2007 Nigerian Senate elections in Akwa Ibom State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415473",
+      "electionLabel": "2007 Nigerian Senate elections in Jigawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415480",
+      "electionLabel": "2007 Nigerian Senate elections in Kebbi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415482",
+      "electionLabel": "2007 Nigerian Senate elections in Oyo State",
+      "electionDescription": "Nigerian Senate elections in Oyo State (2007)"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415643",
+      "electionLabel": "2003 Nigerian Senate elections in Abia State",
+      "electionDescription": "2003 Nigerian Senate election in Abia State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415653",
+      "electionLabel": "2003 Nigerian Senate elections in Adamawa State",
+      "electionDescription": "2003 Nigerian Senate election in Adamawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108415723",
+      "electionLabel": "2007 Nigerian Senate elections in Yobe State",
+      "electionDescription": "2007 Nigerian Senate election in Yobe State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427449",
+      "electionLabel": "2003 Nigerian Senate election in the Federal Capital Territory",
+      "electionDescription": "2003 Nigerian Senate election in Federal Capital Territory"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427683",
+      "electionLabel": "2003 Nigerian Senate elections in Yobe State",
+      "electionDescription": "2003 Nigerian Senate election in Yobe State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427686",
+      "electionLabel": "2003 Nigerian Senate elections in Kebbi State",
+      "electionDescription": "2003 Nigerian Senate election in Kebbi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427689",
+      "electionLabel": "2003 Nigerian Senate elections in Sokoto State",
+      "electionDescription": "2003 Nigerian Senate election in Sokoto State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427690",
+      "electionLabel": "2003 Nigerian Senate elections in Zamfara State",
+      "electionDescription": "2003 Nigerian Senate election in Zamfara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427726",
+      "electionLabel": "2003 Nigerian Senate elections in Jigawa State",
+      "electionDescription": "2003 Nigerian Senate election in Jigawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427730",
+      "electionLabel": "2003 Nigerian Senate elections in Borno State",
+      "electionDescription": "2003 Nigerian Senate election in Borno State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427734",
+      "electionLabel": "2003 Nigerian Senate elections in Kano State",
+      "electionDescription": "2003 Nigerian Senate election in Kano State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427738",
+      "electionLabel": "2003 Nigerian Senate elections in Imo State",
+      "electionDescription": "2003 Nigerian Senate election in Imo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427741",
+      "electionLabel": "1999 Nigerian Senate elections in Adamawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427747",
+      "electionLabel": "2003 Nigerian Senate elections in Lagos State",
+      "electionDescription": "2003 Nigerian Senate election in Lagos State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427751",
+      "electionLabel": "2003 Nigerian Senate elections in Kogi State",
+      "electionDescription": "2003 Nigerian Senate election in Kogi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427752",
+      "electionLabel": "2003 Nigerian Senate elections in Gombe State",
+      "electionDescription": "2003 Nigerian Senate election in Gombe State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427754",
+      "electionLabel": "2003 Nigerian Senate elections in Plateau State",
+      "electionDescription": "2003 Nigerian Senate election in Plateau State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427757",
+      "electionLabel": "2003 Nigerian Senate elections in Edo State",
+      "electionDescription": "2003 Nigerian Senate election in Edo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427759",
+      "electionLabel": "2003 Nigerian Senate elections in Enugu State",
+      "electionDescription": "2003 Nigerian Senate election in Enugu State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427764",
+      "electionLabel": "2003 Nigerian Senate elections in Delta State",
+      "electionDescription": "2003 Nigerian Senate election in Delta State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427767",
+      "electionLabel": "2003 Nigerian Senate elections in Kaduna State",
+      "electionDescription": "2003 Nigerian Senate election in Kaduna State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427772",
+      "electionLabel": "2003 Nigerian Senate elections in Ogun State",
+      "electionDescription": "2003 Nigerian Senate election in Ogun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427773",
+      "electionLabel": "2003 Nigerian Senate elections in Ebonyi State",
+      "electionDescription": "2003 Nigerian Senate election in Ebonyi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427776",
+      "electionLabel": "2003 Nigerian Senate elections in Osun State",
+      "electionDescription": "2003 Nigerian Senate election in Osun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427778",
+      "electionLabel": "2003 Nigerian Senate elections in Nasarawa State",
+      "electionDescription": "2003 Nigerian Senate election in Nasarawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427779",
+      "electionLabel": "2003 Nigerian Senate elections in Niger State",
+      "electionDescription": "2003 Nigerian Senate election in Niger State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427781",
+      "electionLabel": "1999 Nigerian Senate elections in Akwa Ibom State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427782",
+      "electionLabel": "2003 Nigerian Senate elections in Oyo State",
+      "electionDescription": "2003 Nigerian Senate election in Oyo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427784",
+      "electionLabel": "2003 Nigerian Senate elections in Taraba State",
+      "electionDescription": "2003 Nigerian Senate election in Taraba State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427787",
+      "electionLabel": "2003 Nigerian Senate elections in Kwara State",
+      "electionDescription": "2003 Nigerian Senate election in Kwara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427790",
+      "electionLabel": "2003 Nigerian Senate elections in Ekiti State",
+      "electionDescription": "2003 Nigerian Senate election in Ekiti State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427794",
+      "electionLabel": "2003 Nigerian Senate elections in Rivers State",
+      "electionDescription": "2003 Nigerian Senate election in Rivers State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427795",
+      "electionLabel": "2003 Nigerian Senate elections in Ondo State",
+      "electionDescription": "2003 Nigerian Senate election in Ondo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427800",
+      "electionLabel": "2003 Nigerian Senate elections in Katsina State",
+      "electionDescription": "2003 Nigerian Senate election in Katsina State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427805",
+      "electionLabel": "2003 Nigerian Senate elections in Cross River State",
+      "electionDescription": "2003 Nigerian Senate election in Cross River State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108427998",
+      "electionLabel": "2003 Nigerian Senate elections in Benue State",
+      "electionDescription": "2003 Nigerian Senate election in Benue State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108428010",
+      "electionLabel": "2003 Nigerian Senate elections in Bauchi State",
+      "electionDescription": "2003 Nigerian Senate election in Bauchi State",
+      "date": "2003-04-12T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108428026",
+      "electionLabel": "2003 Nigerian Senate elections in Anambra State",
+      "electionDescription": "2003 Nigerian Senate election in Anambra State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108428032",
+      "electionLabel": "2003 Nigerian Senate elections in Bayelsa State",
+      "electionDescription": "2003 Nigerian Senate election in Bayelsa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108428036",
+      "electionLabel": "2003 Nigerian Senate elections in Akwa Ibom State",
+      "electionDescription": "2003 Nigerian Senate election in Akwa Ibom State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108443945",
+      "electionLabel": "1999 Nigerian Senate election in the Federal Capital Territory",
+      "electionDescription": "1999 Nigerian Senate election in Federal Capital Territory"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444221",
+      "electionLabel": "1992 Nigerian Senate elections in Taraba State",
+      "electionDescription": "1992 Nigerian Senate election in Taraba State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444224",
+      "electionLabel": "1999 Nigerian Senate elections in Abia State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444225",
+      "electionLabel": "1999 Nigerian Senate elections in Zamfara State",
+      "electionDescription": "1999 Nigerian Senate election in Zamfara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444227",
+      "electionLabel": "1999 Nigerian Senate elections in Benue State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444232",
+      "electionLabel": "1999 Nigerian Senate elections in Sokoto State",
+      "electionDescription": "1999 Nigerian Senate election in Sokoto State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444237",
+      "electionLabel": "1999 Nigerian Senate elections in Imo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444245",
+      "electionLabel": "1999 Nigerian Senate elections in Kogi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444247",
+      "electionLabel": "1999 Nigerian Senate elections in Lagos State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444252",
+      "electionLabel": "1999 Nigerian Senate elections in Oyo State",
+      "electionDescription": "1999 Nigerian Senate election in Oyo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444253",
+      "electionLabel": "1999 Nigerian Senate elections in Kwara State",
+      "electionDescription": "1999 Nigerian Senate election in Kwara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444255",
+      "electionLabel": "1999 Nigerian Senate elections in Plateau State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444259",
+      "electionLabel": "1999 Nigerian Senate elections in Edo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444262",
+      "electionLabel": "1999 Nigerian Senate elections in Bauchi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444263",
+      "electionLabel": "1999 Nigerian Senate elections in Delta State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444266",
+      "electionLabel": "1999 Nigerian Senate elections in Ebonyi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444269",
+      "electionLabel": "1999 Nigerian Senate elections in Kebbi State",
+      "electionDescription": "1999 Nigerian Senate election in Kebbi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444271",
+      "electionLabel": "1999 Nigerian Senate elections in Cross River State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444272",
+      "electionLabel": "1999 Nigerian Senate elections in Niger State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444274",
+      "electionLabel": "1999 Nigerian Senate elections in Jigawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444276",
+      "electionLabel": "1999 Nigerian Senate elections in Osun State",
+      "electionDescription": "1999 Nigerian Senate election in Osun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444277",
+      "electionLabel": "1999 Nigerian Senate elections in Anambra State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444279",
+      "electionLabel": "1999 Nigerian Senate elections in Ondo State",
+      "electionDescription": "1999 Nigerian Senate election in Ondo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444285",
+      "electionLabel": "1999 Nigerian Senate elections in Nasarawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444288",
+      "electionLabel": "1999 Nigerian Senate elections in Ogun State",
+      "electionDescription": "1999 Nigerian Senate election in Ogun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444291",
+      "electionLabel": "1999 Nigerian Senate elections in Kano State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444294",
+      "electionLabel": "1999 Nigerian Senate elections in Yobe State",
+      "electionDescription": "1999 Nigerian Senate election in Yobe State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444298",
+      "electionLabel": "1999 Nigerian Senate elections in Rivers State",
+      "electionDescription": "20th century Nigerian senate elections"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444303",
+      "electionLabel": "1999 Nigerian Senate elections in Borno State",
+      "electionDescription": "1999 Nigerian Senate election in Borno State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444305",
+      "electionLabel": "1999 Nigerian Senate elections in Kaduna State",
+      "electionDescription": "1999 Nigerian Senate election in Kaduna State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444306",
+      "electionLabel": "1992 Nigerian Senate elections in Yobe State",
+      "electionDescription": "1992 Nigerian Senate election in Yobe State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444311",
+      "electionLabel": "1999 Nigerian Senate elections in Enugu State",
+      "electionDescription": "1999 Nigerian Senate election in Enugu State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444314",
+      "electionLabel": "1999 Nigerian Senate elections in Gombe State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444325",
+      "electionLabel": "1999 Nigerian Senate elections in Ekiti State",
+      "electionDescription": "1999 Nigerian Senate election in Ekiti State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444330",
+      "electionLabel": "1999 Nigerian Senate elections in Taraba State",
+      "electionDescription": "1999 Nigerian Senate election in Taraba State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444331",
+      "electionLabel": "1999 Nigerian Senate elections in Katsina State",
+      "electionDescription": "1999 Nigerian Senate election in Katsina State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444341",
+      "electionLabel": "1999 Nigerian Senate elections in Bayelsa State",
+      "electionDescription": "1999 Nigerian Senate election in Borno State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108444674",
+      "electionLabel": "1992 Nigerian Senate elections in Lagos State",
+      "electionDescription": "1992 Nigerian Senate election in Lagos State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108456383",
+      "electionLabel": "1992 Nigerian Senate elections in Rivers State",
+      "electionDescription": "1992 Nigerian Senate election in Rivers State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108456385",
+      "electionLabel": "1992 Nigerian Senate elections in Sokoto State",
+      "electionDescription": "1992 Nigerian Senate election in Sokoto State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108456419",
+      "electionLabel": "1992 Nigerian Senate elections in Osun State",
+      "electionDescription": "1992 Nigerian Senate election in Osun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108456423",
+      "electionLabel": "1992 Nigerian Senate elections in Ondo State",
+      "electionDescription": "1992 Nigerian Senate election in Ondo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108456425",
+      "electionLabel": "1992 Nigerian Senate elections in Plateau State",
+      "electionDescription": "1992 Nigerian Senate election in Plateau State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108456428",
+      "electionLabel": "1992 Nigerian Senate elections in Oyo State",
+      "electionDescription": "1992 Nigerian Senate election in Oyo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108456432",
+      "electionLabel": "1992 Nigerian Senate elections in Ogun State",
+      "electionDescription": "1992 Nigerian Senate election in Ogun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108470916",
+      "electionLabel": "1992 Nigerian Senate elections in Bauchi State",
+      "electionDescription": "1992 Nigerian Senate election in Bauchi State",
+      "date": "1992-07-04T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108470925",
+      "electionLabel": "1992 Nigerian Senate elections in Adamawa State",
+      "electionDescription": "1992 Nigerian Senate election in Adamawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108470926",
+      "electionLabel": "1992 Nigerian Senate elections in Akwa Ibom State",
+      "electionDescription": "1992 Nigerian Senate election in Akwa Ibom State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108470931",
+      "electionLabel": "1992 Nigerian Senate elections in Cross River State",
+      "electionDescription": "1992 Nigerian Senate election in Cross River State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108470936",
+      "electionLabel": "1992 Nigerian Senate elections in Delta State",
+      "electionDescription": "1992 Nigerian Senate election in Delta State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108470941",
+      "electionLabel": "1992 Nigerian Senate elections in Benue State",
+      "electionDescription": "1992 Nigerian Senate election in Benue State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108470943",
+      "electionLabel": "1992 Nigerian Senate elections in Abia State",
+      "electionDescription": "1992 Nigerian Senate election in Abia State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108470949",
+      "electionLabel": "1992 Nigerian Senate elections in Borno State",
+      "electionDescription": "1992 Nigerian Senate election in Borno State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108470962",
+      "electionLabel": "1992 Nigerian Senate elections in Anambra State",
+      "electionDescription": "1992 Nigerian Senate election in Anambra State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108485690",
+      "electionLabel": "1992 Nigerian Senate elections in Kogi State",
+      "electionDescription": "1992 Nigerian Senate election in Kogi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108485695",
+      "electionLabel": "1992 Nigerian Senate elections in Kebbi State",
+      "electionDescription": "1992 Nigerian Senate election in Kebbi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108485697",
+      "electionLabel": "1992 Nigerian Senate elections in Imo State",
+      "electionDescription": "1992 Nigerian Senate election in Imo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108485707",
+      "electionLabel": "1992 Nigerian Senate elections in Edo State",
+      "electionDescription": "1992 Nigerian Senate election in Edo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108485714",
+      "electionLabel": "1992 Nigerian Senate elections in Jigawa State",
+      "electionDescription": "1992 Nigerian Senate election in Jigawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108502224",
+      "electionLabel": "1992 Nigerian Senate elections in Niger State",
+      "electionDescription": "1992 Nigerian Senate election in Niger State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108502250",
+      "electionLabel": "1992 Nigerian Senate elections in Kaduna State",
+      "electionDescription": "1992 Nigerian Senate election in Kaduna State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108502251",
+      "electionLabel": "1992 Nigerian Senate elections in Enugu State",
+      "electionDescription": "1992 Nigerian Senate election in Enugu State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108502258",
+      "electionLabel": "1992 Nigerian Senate elections in Kano State",
+      "electionDescription": "1992 Nigerian Senate election in Kano State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108502263",
+      "electionLabel": "1992 Nigerian Senate elections in Kwara State",
+      "electionDescription": "1992 Nigerian Senate election in Kwara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108502325",
+      "electionLabel": "1992 Nigerian Senate elections in Katsina State",
+      "electionDescription": "1992 Nigerian Senate election in Katsina State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108503216",
+      "electionLabel": "2019 Nigerian Senate election",
+      "electionDescription": "elections in Nigeria",
+      "date": "2019-02-23T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q5330406",
+      "date": "1961-11-16T00:00:00Z",
+      "electionLabel": "1961 Eastern Region legislative election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q6840839",
+      "date": "1964-01-01T00:00:00Z",
+      "electionLabel": "1964 Mid-West Region legislative election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q7058911",
+      "date": "1961-01-01T00:00:00Z",
+      "electionLabel": "1961 Northern Region legislative election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q3587404",
+      "date": "2007-01-01T00:00:00Z",
+      "electionLabel": "Q3587404"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q7988226",
+      "date": "1960-01-01T00:00:00Z",
+      "electionLabel": "1960 Western Region legislative election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108167138",
+      "date": "2019-02-23T00:00:00Z",
+      "electionLabel": "2019 Nigerian Senate elections in Oyo State",
+      "office": "http://www.wikidata.org/entity/Q19822359",
+      "electionDescription": "2019 Nigerian Senate election in Oyo State",
+      "officeLabel": "member of the Senate of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q84035932",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian parliamentary election",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q6425799",
+      "date": "2008-03-29T00:00:00Z",
+      "electionLabel": "2008 Kogi State gubernatorial by-election",
+      "office": "http://www.wikidata.org/entity/Q53865201",
+      "electionDescription": "governor election in Nigeria",
+      "officeLabel": "Governor of Kogi State",
+      "winner": "http://www.wikidata.org/entity/Q3510788",
+      "winnerLabel": "Ibrahim Idris"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109918443",
+      "date": "2019-02-23T00:00:00Z",
+      "electionLabel": "2019 Nigerian National Assembly election",
+      "office": "http://www.wikidata.org/entity/Q19822359",
+      "electionDescription": "elections in Nigeria",
+      "officeLabel": "member of the Senate of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109918443",
+      "date": "2019-02-23T00:00:00Z",
+      "electionLabel": "2019 Nigerian National Assembly election",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionDescription": "elections in Nigeria",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q20647383",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Rivers State gubernatorial election",
+      "office": "http://www.wikidata.org/entity/Q132050",
+      "officeLabel": "governor",
+      "winner": "http://www.wikidata.org/entity/Q18354468",
+      "winnerLabel": "Ezenwo Nyesom Wike"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q15853372",
+      "date": "1952-03-30T00:00:00Z",
+      "electionLabel": "1952 Nigerien Territorial Assembly election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q15853373",
+      "date": "1957-03-31T00:00:00Z",
+      "electionLabel": "1957 Nigerien Territorial Assembly election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q22338770",
+      "date": "2015-04-25T00:00:00Z",
+      "electionLabel": "2015 Abia gubernatorial election",
+      "office": "http://www.wikidata.org/entity/Q132050",
+      "officeLabel": "governor",
+      "winner": "http://www.wikidata.org/entity/Q19958158",
+      "winnerLabel": "Victor Okezie Ikpeazu"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q22340131",
+      "date": "2011-04-26T00:00:00Z",
+      "electionLabel": "2011 Abia gubernatorial election",
+      "office": "http://www.wikidata.org/entity/Q132050",
+      "officeLabel": "governor"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q23058319",
+      "date": "2015-11-21T00:00:00Z",
+      "electionLabel": "2015 Kogi gubernatorial election",
+      "office": "http://www.wikidata.org/entity/Q132050",
+      "officeLabel": "governor",
+      "winner": "http://www.wikidata.org/entity/Q22295109",
+      "winnerLabel": "Yahaya Adoza Bello"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q23540882",
+      "date": "2007-04-14T00:00:00Z",
+      "electionLabel": "2007 Abia gubernatorial election",
+      "office": "http://www.wikidata.org/entity/Q132050",
+      "officeLabel": "governor"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q24900859",
+      "date": "2016-06-20T00:00:00Z",
+      "electionLabel": "2016 Edo State gubernatorial election",
+      "office": "http://www.wikidata.org/entity/Q19682857",
+      "officeLabel": "Governor of Edo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q177483",
+      "date": "2007-04-21T00:00:00Z",
+      "electionLabel": "2007 Nigerian general election",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "electionDescription": "general election held in Nigeria",
+      "officeLabel": "President of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q28401618",
+      "date": "2019-03-02T00:00:00Z",
+      "electionLabel": "2019 Rivers State gubernatorial election",
+      "office": "http://www.wikidata.org/entity/Q23020727",
+      "electionDescription": "Nigerian state election",
+      "officeLabel": "Governor of Rivers State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q28941231",
+      "date": "2011-01-01T00:00:00Z",
+      "electionLabel": "2011 Nigerian general election",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "electionDescription": "general election held in Nigeria",
+      "officeLabel": "President of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q30594192",
+      "date": "2019-02-23T00:00:00Z",
+      "electionLabel": "2019 Nigerian general election",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "electionDescription": "general election held in Nigeria",
+      "officeLabel": "President of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q42317672",
+      "date": "2018-09-22T00:00:00Z",
+      "electionLabel": "2018 Osun State gubernatorial election",
+      "office": "http://www.wikidata.org/entity/Q53869191",
+      "officeLabel": "Governor of Osun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q62071390",
+      "date": "2003-04-12T00:00:00Z",
+      "electionLabel": "2003 Nigerian general election",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "electionDescription": "general election held in Nigeria",
+      "officeLabel": "President of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q62071390",
+      "date": "2003-04-19T00:00:00Z",
+      "electionLabel": "2003 Nigerian general election",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "electionDescription": "general election held in Nigeria",
+      "officeLabel": "President of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q104881916",
+      "date": "2023-02-18T00:00:00Z",
+      "electionLabel": "2023 Nigerian general election",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "electionDescription": "general election held in Nigeria",
+      "officeLabel": "President of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q117268507",
+      "date": "1999-02-20T00:00:00Z",
+      "electionLabel": "1999 Nigerian general election",
+      "electionDescription": "general election held in Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q60771397",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Lagos State gubernatorial election",
+      "office": "http://www.wikidata.org/entity/Q19901457",
+      "electionDescription": "2019 election to choose the Governor of Lagos State",
+      "officeLabel": "Lagos State Governor"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q65073775",
+      "date": "2015-04-11T00:00:00Z",
+      "electionLabel": "2015 Lagos State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q65082956",
+      "date": "2019-03-09T00:00:00Z",
+      "electionLabel": "2019 Ogun State gubernatorial election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q20648098",
+      "date": "2015-03-28T00:00:00Z",
+      "electionLabel": "2015 Nigerian parliamentary election in Rivers State",
+      "electionDescription": "Election held in Rivers State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q104857891",
+      "date": "2020-09-19T00:00:00Z",
+      "electionLabel": "2020 Edo State gubernatorial election",
+      "electionDescription": "2020 gubernatorial election in Edo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q104862358",
+      "date": "2020-10-10T00:00:00Z",
+      "electionLabel": "2020 Ondo State gubernatorial election",
+      "electionDescription": "2020 gubernatorial election in Ondo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107610378",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Borno State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Borno State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107610651",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Delta State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Delta State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107610669",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Cross River State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Cross River State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107630462",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Ebonyi State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Ebonyi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107639294",
+      "date": "2023-11-11T00:00:00Z",
+      "electionLabel": "2023 Kogi State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Kogi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107639297",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Kebbi State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Kebbi State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107639309",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Gombe State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Gombe State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107639352",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Katsina State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Katsina State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107639403",
+      "date": "2024-01-06T00:00:00Z",
+      "electionLabel": "2023 Jigawa State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Jigawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107639422",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Kaduna State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Kaduna State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107639477",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Kano State gubernatorial election",
+      "office": "http://www.wikidata.org/entity/Q53864915",
+      "electionDescription": "2023 gubernatorial election in Kano State, Nigeria",
+      "officeLabel": "Governor of Kano State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108101728",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Kwara State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Kwara State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108101755",
+      "date": "2023-12-11T00:00:00Z",
+      "electionLabel": "2023 Enugu State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Enugu State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108113067",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Ogun State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Ogun State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108113106",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Nasarawa State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Nasarawa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108113126",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Niger State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Niger State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108113231",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Lagos State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Lagos State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108113264",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Oyo State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Oyo State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108123023",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Yobe State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Yobe State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108123068",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Zamfara State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Zamfara State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108123096",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Sokoto State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Sokoto State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108123158",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Taraba State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Taraba State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108123244",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Rivers State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Rivers State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108123319",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Plateau State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Plateau State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q25045142",
+      "electionLabel": "Nigerian regional elections, 1956−57"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q25045144",
+      "electionLabel": "Nigerian regional elections, 1960−61"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108704271",
+      "date": "2023-11-11T00:00:00Z",
+      "electionLabel": "2023 Bayelsa State gubernatorial election",
+      "electionDescription": "2023 gubernatorial election in Bayelsa State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110677565",
+      "date": "2023-11-11T00:00:00Z",
+      "electionLabel": "2023 Imo State gubernatorial election",
+      "office": "http://www.wikidata.org/entity/Q53857987",
+      "electionDescription": "2024 gubernatorial election in Imo State, Nigeria",
+      "officeLabel": "Governor of Imo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107439991",
+      "date": "2023-03-18T00:00:00Z",
+      "electionLabel": "2023 Benue State gubernatorial election",
+      "office": "http://www.wikidata.org/entity/Q66712772",
+      "electionDescription": "2023 gubernatorial election in Benue State, Nigeria",
+      "officeLabel": "governor's office",
+      "winner": "http://www.wikidata.org/entity/Q117234043",
+      "winnerLabel": "Hyacinth Alia"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q19604765",
+      "date": "2014-04-05T00:00:00Z",
+      "electionLabel": "2014 Ilaje-Ese Odo by-election",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q23019998",
+      "date": "1940-01-01T00:00:00Z",
+      "electionLabel": "1940 Lagos by-election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q23019999",
+      "date": "1941-03-05T00:00:00Z",
+      "electionLabel": "1941 Lagos by-election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q23020000",
+      "date": "1945-01-01T00:00:00Z",
+      "electionLabel": "1945 Lagos by-election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q23020194",
+      "date": "1926-04-30T00:00:00Z",
+      "electionLabel": "1926 Lagos by-election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q30594192",
+      "date": "2019-02-23T00:00:00Z",
+      "electionLabel": "2019 Nigerian general election",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "electionDescription": "general election held in Nigeria",
+      "officeLabel": "President of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q104881916",
+      "date": "2023-02-18T00:00:00Z",
+      "electionLabel": "2023 Nigerian general election",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "electionDescription": "general election held in Nigeria",
+      "officeLabel": "President of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q177483",
+      "date": "2007-04-21T00:00:00Z",
+      "electionLabel": "2007 Nigerian general election",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "electionDescription": "general election held in Nigeria",
+      "officeLabel": "President of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q18205072",
+      "date": "2015-03-28T00:00:00Z",
+      "electionLabel": "2015 Nigerian general election",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "electionDescription": "general election held in Nigeria",
+      "officeLabel": "President of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q65082984",
+      "electionLabel": "2019 Nigerian National Assembly election in Ogun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q65083124",
+      "electionLabel": "2019 Nigerian National Assembly election in Lagos State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107675609",
+      "date": "2021-01-16T00:00:00Z",
+      "electionLabel": "2021 Kano local elections",
+      "electionDescription": "2021 local elections in Kano State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107675815",
+      "electionLabel": "2019 Nigerian Senate election in Osun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q107969779",
+      "electionLabel": "2019 Nigerian Senate election in Kogi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108607356",
+      "date": "2021-03-06T00:00:00Z",
+      "electionLabel": "2021 Delta State local elections"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108607423",
+      "date": "2021-02-27T00:00:00Z",
+      "electionLabel": "2021 Yobe State local elections"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108907518",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Niger State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108913518",
+      "electionLabel": "2019 Nigerian House of Representatives elections in the Federal Capital Territory",
+      "electionDescription": "federal Capital Territory elections, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108913662",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Nasarawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108913683",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Bayelsa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108913700",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Kwara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108913731",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Delta State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108919869",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Ebonyi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108940352",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Abia State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q108940357",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Adamawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109000840",
+      "electionLabel": "2015 Nigerian House of Representatives elections in the Federal Capital Territory",
+      "electionDescription": "federal Capital Territory elections, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109001892",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Ekiti State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109001893",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Gombe State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109002041",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Cross River State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109002080",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Akwa Ibom State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109059405",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Taraba State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109059827",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Kogi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109059830",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Enugu State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109116356",
+      "electionLabel": "1999 Nigerian House of Representatives elections in the Federal Capital Territory",
+      "electionDescription": "federal Capital Territory elections, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109116366",
+      "electionLabel": "2003 Nigerian House of Representatives elections in the Federal Capital Territory",
+      "electionDescription": "federal Capital Territory elections, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109116374",
+      "electionLabel": "2007 Nigerian House of Representatives elections in the Federal Capital Territory",
+      "electionDescription": "federal Capital Territory elections, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109116402",
+      "electionLabel": "2011 Nigerian House of Representatives elections in the Federal Capital Territory",
+      "electionDescription": "federal Capital Territory elections, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109116500",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Lagos state"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109116577",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Yobe State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109116596",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Zamfara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109172071",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Plateau State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109172267",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Anambra State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109229224",
+      "electionLabel": "1999 Nigerian House of Representatives elections in Kwara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109229529",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Rivers State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109229877",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Lagos State",
+      "electionDescription": "2019 House of representatives election in Lagos State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109252973",
+      "electionLabel": "2003 Nigerian House of Representatives elections in Kwara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109252974",
+      "electionLabel": "2007 Nigerian House of Representatives elections in Kwara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109278632",
+      "electionLabel": "2011 Nigerian House of Representatives elections in Kwara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109278643",
+      "electionLabel": "2015 Nigerian House of Representatives elections in Kwara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109283652",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Ondo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109283657",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Imo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109283668",
+      "electionLabel": "1999 Nigerian House of Representatives elections in Nasarawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109283670",
+      "electionLabel": "2003 Nigerian House of Representatives elections in Nasarawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109283674",
+      "electionLabel": "2007 Nigerian House of Representatives elections in Nasarawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109283712",
+      "electionLabel": "2011 Nigerian House of Representatives elections in Nasarawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109283912",
+      "electionLabel": "2015 Nigerian House of Representatives elections in Nasarawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109313260",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Oyo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109329330",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Ogun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q1479981",
+      "date": "1959-12-12T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "1959 Nigerian general election",
+      "electionDescription": "Article is devoid of verifiable facts",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q7033040",
+      "date": "1992-07-04T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "1992 Nigerian parliamentary election",
+      "electionDescription": "Parliamentary Election.",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q7033041",
+      "date": "1998-04-25T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "1998 Nigerian parliamentary election",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q7033042",
+      "date": "1999-02-20T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "1999 Nigerian parliamentary election",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q7033044",
+      "date": "2011-04-09T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q19822359",
+      "electionLabel": "2011 Nigerian parliamentary election",
+      "officeLabel": "member of the Senate of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q7033044",
+      "date": "2011-04-09T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "2011 Nigerian parliamentary election",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q7033046",
+      "date": "2003-04-12T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "2003 Nigerian parliamentary election",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q17091809",
+      "date": "1964-12-30T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "1964 Nigerian general election",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q17091809",
+      "date": "1965-03-18T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "1964 Nigerian general election",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q17091814",
+      "date": "1979-07-07T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "1979 Nigerian parliamentary election",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q17091819",
+      "date": "1983-08-27T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "1983 Nigerian parliamentary election",
+      "electionDescription": "elections",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q22283777",
+      "date": "1954-01-01T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "1954 Nigerian general election",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q22283781",
+      "date": "1947-01-01T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "1947 Nigerian general election",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q22283785",
+      "date": "1943-01-01T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "1943 Nigerian general election",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q22283787",
+      "date": "1938-10-21T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "1938 Nigerian general election",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q22283790",
+      "date": "1933-01-01T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "1933 Nigerian general election",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q22283791",
+      "date": "1928-09-28T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "1928 Nigerian general election",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q22283794",
+      "date": "1923-01-01T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "1923 Nigerian general election",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q28941223",
+      "date": "2007-04-21T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "Nigerian legislative election, 2007",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q28941248",
+      "office": "http://www.wikidata.org/entity/Q19822359",
+      "electionLabel": "Nigerian legislative election, 2015",
+      "officeLabel": "member of the Senate of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q28941248",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "electionLabel": "Nigerian legislative election, 2015",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q115959929",
+      "electionLabel": "2023 Nigerian Senate elections in Nasarawa State",
+      "electionDescription": "2023 Senate elections in Nasarawa"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116371899",
+      "electionLabel": "2023 Nigerian presidential election in Zamfara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116371901",
+      "electionLabel": "2023 Nigerian presidential election in Yobe State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116371913",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian presidential election in Taraba State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116443614",
+      "electionLabel": "2023 Nigerian presidential election in Plateau State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116443624",
+      "electionLabel": "2023 Nigerian presidential election in Sokoto State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116443631",
+      "electionLabel": "2023 Nigerian presidential election in Rivers State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116449527",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian presidential election in Nasarawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116449531",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian presidential election in Kwara State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116449537",
+      "electionLabel": "2023 Nigerian presidential election in Ogun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116449547",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian presidential election in Niger State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116449550",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian presidential election in Oyo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116457413",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian presidential election in Kebbi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116457414",
+      "electionLabel": "2023 Nigerian presidential election in Kogi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116457423",
+      "electionLabel": "2023 Nigerian presidential election in Katsina State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116457424",
+      "electionLabel": "2023 Nigerian presidential election in Lagos State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116457428",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian presidential election in Kano State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116470959",
+      "electionLabel": "2023 Nigerian presidential election in the Federal Capital Territory"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116471005",
+      "electionLabel": "2023 Nigerian presidential election in Bayelsa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116471032",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian presidential election in Gombe State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116471036",
+      "electionLabel": "2023 Nigerian presidential election in Ebonyi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116471055",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian presidential election in Cross River State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116471056",
+      "electionLabel": "2023 Nigerian presidential election in Enugu State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116471057",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian presidential election in Adamawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116471060",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian presidential election in Abia State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116471076",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian presidential election in Bauchi State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116471081",
+      "electionLabel": "2023 Nigerian presidential election in Delta State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116471082",
+      "electionLabel": "2023 Nigerian presidential election in Benue State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116471083",
+      "electionLabel": "2023 Nigerian presidential election in Imo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116471087",
+      "electionLabel": "2023 Nigerian presidential election in Borno State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116471093",
+      "electionLabel": "2023 Nigerian presidential election in Jigawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116471094",
+      "electionLabel": "2023 Nigerian presidential election in Kaduna State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116471096",
+      "electionLabel": "2023 Nigerian presidential election in Akwa Ibom State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116736699",
+      "electionLabel": "2023 Nigerian presidential election in Edo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116736791",
+      "electionLabel": "2023 Nigerian presidential election in Anambra State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116756659",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian presidential election in Ekiti State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116756666",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian presidential election in Osun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116764070",
+      "date": "2023-02-23T00:00:00Z",
+      "electionLabel": "2023 Nigerian presidential election in Ondo State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116922512",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian Senate elections in Niger State",
+      "electionDescription": "2023 Senate elections in Niger"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116922513",
+      "electionLabel": "2023 Nigerian Senate elections in Ogun State",
+      "electionDescription": "2023 Senate elections in Niger"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116939056",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian Senate elections in Yobe State",
+      "electionDescription": "2023 Senate elections in Yobe"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116939063",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian Senate elections in Ondo State",
+      "electionDescription": "2023 Senate elections in Ondo"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116939066",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian Senate elections in Taraba State",
+      "electionDescription": "2023 Senate elections in Taraba"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116939069",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian Senate elections in Sokoto State",
+      "electionDescription": "2023 Senate elections in Sokoto"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116939070",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian Senate elections in Osun State",
+      "electionDescription": "2023 Senate elections in Osun"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116939072",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian Senate elections in Zamfara State",
+      "electionDescription": "2023 Senate elections in Zamfara"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116939076",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian Senate elections in Rivers State",
+      "electionDescription": "2023 Senate elections in Rivers"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116939077",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian Senate elections in Plateau State",
+      "electionDescription": "2023 Senate elections in Plateau"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116939078",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian Senate elections in Oyo State",
+      "electionDescription": "2023 Senate elections in Oyo"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116967463",
+      "date": "2023-02-25T00:00:00Z",
+      "electionLabel": "2023 Nigerian House of Representatives elections in Abia State",
+      "electionDescription": "2023 House of Representatives elections in Abia"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q116980414",
+      "date": "2023-04-28T00:00:00Z",
+      "electionLabel": "2023 Abia State elections",
+      "electionDescription": "2023 elections in Abia State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109466937",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Osun State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109524563",
+      "electionLabel": "1999 Nigerian House of Representatives elections in Bayelsa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109544665",
+      "electionLabel": "2003 Nigerian House of Representatives elections in Bayelsa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109544696",
+      "electionLabel": "2007 Nigerian House of Representatives elections in Bayelsa State",
+      "electionDescription": "2007 Nigerian House of Representatives elections in Nasarawa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109546697",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Benue State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109546707",
+      "electionLabel": "2015 Nigerian House of Representatives elections in Lagos State",
+      "electionDescription": "Nigerian Election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109546722",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Kano State",
+      "electionDescription": "kano State elections, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109546724",
+      "electionLabel": "2019 Nigerian House of Representatives elections in Sokoto State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109546725",
+      "electionLabel": "2015 Nigerian House of Representatives elections in Kano State",
+      "electionDescription": "kano State elections, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109558282",
+      "electionLabel": "2011 Nigerian House of Representatives elections in Bayelsa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109558289",
+      "electionLabel": "2015 Nigerian House of Representatives elections in Bayelsa State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109567527",
+      "electionLabel": "1999 Nigerian House of Representatives elections in Taraba State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109581297",
+      "electionLabel": "2015 Nigerian House of Representatives elections in Taraba State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109581298",
+      "electionLabel": "2011 Nigerian House of Representatives elections in Taraba State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109581301",
+      "electionLabel": "2007 Nigerian House of Representatives elections in Taraba State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109581336",
+      "electionLabel": "2003 Nigerian House of Representatives elections in Taraba State"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109581425",
+      "electionLabel": "1999 Nigerian House of Representatives elections in Katsina State",
+      "electionDescription": "katsina State elections, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109875851",
+      "electionLabel": "2023 Nigerian House of Representatives election",
+      "electionDescription": "elections in Nigeria",
+      "date": "2023-02-18T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109918443",
+      "electionLabel": "2019 Nigerian National Assembly election",
+      "electionDescription": "elections in Nigeria",
+      "date": "2019-02-23T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q19822359",
+      "officeLabel": "member of the Senate of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q109918443",
+      "electionLabel": "2019 Nigerian National Assembly election",
+      "electionDescription": "elections in Nigeria",
+      "date": "2019-02-23T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q21290864",
+      "officeLabel": "member of the House of Representatives of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110223648",
+      "electionLabel": "2019 Enugu State House of Assembly election",
+      "date": "2019-03-09T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110223664",
+      "electionLabel": "2019 Abia State House of Assembly election",
+      "date": "2019-03-09T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110236095",
+      "electionLabel": "2007 Abia State House of Assembly election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110239817",
+      "electionLabel": "2003 Abia State House of Assembly election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110269263",
+      "electionLabel": "2003 Ebonyi State House of Assembly election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110269310",
+      "electionLabel": "1999 Ebonyi State House of Assembly election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110269743",
+      "electionLabel": "2015 Abia State House of Assembly election",
+      "date": "2015-04-11T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110269745",
+      "electionLabel": "2011 Abia State House of Assembly election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110269829",
+      "electionLabel": "2007 Ebonyi State House of Assembly election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110281164",
+      "electionLabel": "1999 Abia State House of Assembly election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110361874",
+      "electionLabel": "2022 Nigerian state legislative elections",
+      "electionDescription": "2022 by-elections in Nigeria to fill legislative vacancies"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110361878",
+      "electionLabel": "2022 Nigerian House of Representatives elections"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110363018",
+      "electionLabel": "2021 Nigerian House of Representatives elections",
+      "electionDescription": "2021 House elections in Nigeria to fill legislative vacancies"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110363019",
+      "electionLabel": "2021 Nigerian state legislative elections",
+      "electionDescription": "2022 elections in Nigeria to fill state legislative vacancies"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110376853",
+      "electionLabel": "2015 Enugu State House of Assembly election",
+      "date": "2015-03-09T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110419453",
+      "electionLabel": "2015 Ebonyi State House of Assembly election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110442528",
+      "electionLabel": "2011 Ebonyi State House of Assembly election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110442610",
+      "electionLabel": "2015 Zamfara State House of Assembly election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110442624",
+      "electionLabel": "2019 Lagos State House of Assembly election",
+      "date": "2019-03-09T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110442627",
+      "electionLabel": "2015 Lagos State House of Assembly election",
+      "date": "2015-04-11T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110442651",
+      "electionLabel": "2019 Ogun State House of Assembly election",
+      "date": "2019-03-09T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110442653",
+      "electionLabel": "2015 Ogun State House of Assembly election",
+      "date": "2015-04-11T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110442662",
+      "electionLabel": "2019 Oyo State House of Assembly election",
+      "date": "2019-03-09T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110442706",
+      "electionLabel": "2011 Ogun State House of Assembly election",
+      "electionDescription": "2015 Ogun State House of Assembly election",
+      "date": "2011-04-26T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110442754",
+      "electionLabel": "2019 Bayelsa State House of Assembly election",
+      "electionDescription": "election in Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110442772",
+      "electionLabel": "2003 Bayelsa State House of Assembly election",
+      "electionDescription": "Nigerian state legislative election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q110550816",
+      "electionLabel": "2022 Nigerian elections"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q111953909",
+      "electionLabel": "2023 Nigerian Senate elections in Adamawa State",
+      "electionDescription": "senate elections in Adamawa"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q111963111",
+      "electionLabel": "2023 Nigerian Senate elections in Abia State",
+      "electionDescription": "senate elections in Abia",
+      "date": "2023-02-25T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q112261917",
+      "electionLabel": "2022 Imo State local elections",
+      "electionDescription": "local Election in Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113512238",
+      "electionLabel": "2023 Nigerian Senate elections in Akwa Ibom State",
+      "electionDescription": "2023 Senate elections in Akwa Ibom"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113518881",
+      "electionLabel": "2023 Nigerian Senate elections in Anambra State",
+      "electionDescription": "2023 Senate elections in Anambra",
+      "date": "2023-02-25T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113541189",
+      "electionLabel": "2023 Abia State House of Assembly election",
+      "electionDescription": "2023 House of Assembly election in Abia State, Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113541199",
+      "electionLabel": "2023 Nigerian Senate elections in Borno State",
+      "electionDescription": "2023 Senate elections in Borno",
+      "date": "2023-02-25T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113541222",
+      "electionLabel": "2023 Nigerian Senate elections in Benue State",
+      "electionDescription": "2023 Senate elections in Benue"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113541231",
+      "electionLabel": "2023 Nigerian Senate elections in Bayelsa State",
+      "electionDescription": "2023 Senate elections in Bayelsa",
+      "date": "2023-02-25T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113541243",
+      "electionLabel": "2023 Nigerian Senate elections in Bauchi State",
+      "electionDescription": "2023 Senate elections in Bauchi",
+      "date": "2023-02-25T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113549406",
+      "electionLabel": "2023 Adamawa State House of Assembly election",
+      "electionDescription": "Nigerian elections"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113561710",
+      "electionLabel": "2023 Yobe State House of Assembly election",
+      "date": "2023-03-11T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113561856",
+      "electionLabel": "2023 Akwa Ibom State House of Assembly election",
+      "date": "2023-03-11T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113561886",
+      "electionLabel": "2023 Nigerian Senate elections in Cross River State",
+      "electionDescription": "2023 Senate elections in Cross River"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113576442",
+      "electionLabel": "2023 Nigerian Senate elections in Delta State",
+      "electionDescription": "senate elections in Delta"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113582141",
+      "electionLabel": "2023 Nigerian Senate elections in Ebonyi State",
+      "electionDescription": "2023 Senate elections in Ebonyi",
+      "date": "2023-02-25T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113614566",
+      "electionLabel": "2023 Nigerian Senate election in the Federal Capital Territory",
+      "electionDescription": "2023 Senate election in the FCT",
+      "date": "2023-02-25T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113614888",
+      "electionLabel": "2023 Nigerian Senate elections in Enugu State",
+      "electionDescription": "2023 Senate elections in Enugu"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113614949",
+      "electionLabel": "2023 Nigerian Senate elections in Ekiti State",
+      "electionDescription": "2023 Senate elections in Ekiti"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113614971",
+      "electionLabel": "2023 Nigerian Senate elections in Edo State",
+      "electionDescription": "2023 Senate elections in Edo",
+      "date": "2023-02-25T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113625038",
+      "electionLabel": "2023 Nigerian Senate elections in Gombe State",
+      "electionDescription": "2023 Senate elections in Gombe"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113669529",
+      "electionLabel": "2023 Nigerian Senate elections in Jigawa State",
+      "electionDescription": "2023 Senate elections in Jigawa"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113669623",
+      "electionLabel": "2023 Nigerian Senate elections in Imo State",
+      "electionDescription": "2023 Senate elections in Imo",
+      "date": "2023-02-25T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113678157",
+      "electionLabel": "2023 Nigerian Senate elections in Kaduna State",
+      "electionDescription": "2023 Senate elections in Kaduna"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113685950",
+      "electionLabel": "2023 Nigerian Senate elections in Kano State",
+      "electionDescription": "2023 Senate elections in Kano"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113697363",
+      "electionLabel": "2023 Nigerian Senate elections in Katsina State",
+      "electionDescription": "2023 Senate elections in Katsina"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113758390",
+      "electionLabel": "2023 Nigerian Senate elections in Kebbi State",
+      "electionDescription": "2023 Senate elections in Kebbi",
+      "date": "2023-02-25T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q113947407",
+      "electionLabel": "2023 Nigerian Senate elections in Kogi State",
+      "electionDescription": "2023 Senate elections in Kogi",
+      "date": "2023-02-25T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q114056791",
+      "electionLabel": "2023 Nigerian Senate elections in Kwara State",
+      "electionDescription": "2023 Senate elections in Kwara",
+      "date": "2023-02-25T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q114197932",
+      "electionLabel": "2023 Nigerian Senate elections in Lagos State",
+      "electionDescription": "2023 Senate elections in Lagos"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q115803685",
+      "electionLabel": "2023 Nigerian elections",
+      "electionDescription": "national, state and local elections in Nigeria, early 2023"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q117196317",
+      "electionLabel": "Issues in the 2023 Nigerian presidential election"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q118941829",
+      "electionLabel": "2023 Nigerian state legislative elections"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q124759062",
+      "electionLabel": "2023 Bayelsa State House of Assembly election",
+      "electionDescription": "election in Nigeria",
+      "date": "2023-03-18T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q130540604",
+      "electionLabel": "2011 Nigerian House of Assembly elections",
+      "date": "2011-04-26T00:00:00Z"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q41316",
+      "electionLabel": "2011 Nigerian presidential election",
+      "date": "2011-04-16T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "officeLabel": "President of Nigeria",
+      "winner": "http://www.wikidata.org/entity/Q57380",
+      "winnerLabel": "Goodluck Jonathan"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q41316",
+      "electionLabel": "2011 Nigerian presidential election",
+      "date": "2011-04-16T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q2625960",
+      "officeLabel": "Vice President of Nigeria",
+      "winner": "http://www.wikidata.org/entity/Q57380",
+      "winnerLabel": "Goodluck Jonathan"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q1318985",
+      "electionLabel": "2003 Nigerian presidential election",
+      "date": "2003-04-19T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "officeLabel": "President of Nigeria",
+      "winner": "http://www.wikidata.org/entity/Q202006",
+      "winnerLabel": "Olusegun Obasanjo"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q1603123",
+      "electionLabel": "1999 Nigerian presidential election",
+      "electionDescription": "presidential election",
+      "date": "1999-02-27T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "officeLabel": "President of Nigeria",
+      "winner": "http://www.wikidata.org/entity/Q202006",
+      "winnerLabel": "Olusegun Obasanjo"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q7033048",
+      "electionLabel": "1979 Nigerian presidential election",
+      "date": "1979-08-11T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "officeLabel": "President of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q7033049",
+      "electionLabel": "1983 Nigerian presidential election",
+      "date": "1983-08-06T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "officeLabel": "President of Nigeria",
+      "winner": "http://www.wikidata.org/entity/Q380668",
+      "winnerLabel": "Shehu Shagari"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q7033051",
+      "electionLabel": "1993 Nigerian presidential election",
+      "date": "1993-06-12T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "officeLabel": "President of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q24961921",
+      "electionLabel": "2015 Nigerian presidential election",
+      "date": "2015-03-28T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "officeLabel": "President of Nigeria",
+      "winner": "http://www.wikidata.org/entity/Q361567",
+      "winnerLabel": "Muhammadu Buhari"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q28941222",
+      "electionLabel": "2007 Nigerian presidential election",
+      "date": "2007-04-21T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "officeLabel": "President of Nigeria",
+      "winner": "http://www.wikidata.org/entity/Q104705",
+      "winnerLabel": "Umaru Musa Yar'Adua"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q56684494",
+      "electionLabel": "2019 Nigerian presidential election",
+      "date": "2019-02-23T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "officeLabel": "President of Nigeria",
+      "winner": "http://www.wikidata.org/entity/Q361567",
+      "winnerLabel": "Muhammadu Buhari"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q83974481",
+      "electionLabel": "2023 Nigerian presidential election",
+      "electionDescription": "2023 presidential election in Nigeria",
+      "date": "2023-02-25T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "officeLabel": "President of Nigeria",
+      "winner": "http://www.wikidata.org/entity/Q3510872",
+      "winnerLabel": "Bola Ahmed Tinubu"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q83974481",
+      "electionLabel": "2023 Nigerian presidential election",
+      "electionDescription": "2023 presidential election in Nigeria",
+      "date": "2023-02-25T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q2625960",
+      "officeLabel": "Vice President of Nigeria",
+      "winner": "http://www.wikidata.org/entity/Q3510872",
+      "winnerLabel": "Bola Ahmed Tinubu"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q28941231",
+      "electionLabel": "2011 Nigerian general election",
+      "electionDescription": "general election held in Nigeria",
+      "date": "2011-01-01T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "officeLabel": "President of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q62071390",
+      "electionLabel": "2003 Nigerian general election",
+      "electionDescription": "general election held in Nigeria",
+      "date": "2003-04-12T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "officeLabel": "President of Nigeria"
+    },
+    {
+      "election": "http://www.wikidata.org/entity/Q62071390",
+      "electionLabel": "2003 Nigerian general election",
+      "electionDescription": "general election held in Nigeria",
+      "date": "2003-04-19T00:00:00Z",
+      "office": "http://www.wikidata.org/entity/Q500282",
+      "officeLabel": "President of Nigeria"
+    }
+  ],
+  "collected_at": "2026-01-03T08:52:28.918514"
+}

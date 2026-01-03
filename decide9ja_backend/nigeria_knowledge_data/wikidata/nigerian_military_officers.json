@@ -1,0 +1,1169 @@
+{
+  "query_name": "nigerian_military_officers",
+  "total_results": 155,
+  "results": [
+    {
+      "person": "http://www.wikidata.org/entity/Q100897630",
+      "personLabel": "Mackson Kadiri",
+      "personDescription": "Nigerian naval officer",
+      "rankLabel": "rear admiral"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q105082321",
+      "personLabel": "Ibrahim Attahiru",
+      "personDescription": "21st Chief of Army Staff of Nigeria",
+      "rankLabel": "major general",
+      "birthDate": "1966-08-10T00:00:00Z",
+      "deathDate": "2021-05-21T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q105083954",
+      "personLabel": "Awwal Zubairu Gambo",
+      "personDescription": "chief of Naval Staff of Nigeria",
+      "rankLabel": "counter admiral",
+      "birthDate": "1966-04-22T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q123759299",
+      "personLabel": "Ferguson Bobai",
+      "personDescription": "a Nigerian naval officer",
+      "rankLabel": "rear admiral"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q124134818",
+      "personLabel": "Danjuma Karau",
+      "personDescription": "a former president of the Atyap Community Development Association",
+      "rankLabel": "wing commander",
+      "birthDate": "1960-07-27T00:00:00Z",
+      "deathDate": "2022-12-11T00:00:00Z",
+      "branchLabel": "Nigerian Air Force"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q131556181",
+      "personLabel": "Ferguson Bobai",
+      "personDescription": "former Nigerian flag officer commanding, Western naval command",
+      "rankLabel": "rear admiral"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q459205",
+      "birthDate": "1948-04-08T00:00:00Z",
+      "personLabel": "David Mark",
+      "personDescription": "Nigerian politician and general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q546873",
+      "birthDate": "1926-03-15T00:00:00Z",
+      "personLabel": "Henry Adefope",
+      "personDescription": "Foreign minister of Nigeria (1926-2012)",
+      "rankLabel": "major general of tank forces",
+      "deathDate": "2012-03-11T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q333415",
+      "birthDate": "1941-08-17T00:00:00Z",
+      "personLabel": "Ibrahim Babangida",
+      "personDescription": "Head of State of Nigeria",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q339020",
+      "birthDate": "1930-08-16T00:00:00Z",
+      "personLabel": "Christopher Okigbo",
+      "personDescription": "Nigerian poet (1930–1967)",
+      "rankLabel": "soldier",
+      "deathDate": "1967-09-20T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q354695",
+      "birthDate": "1934-10-19T00:00:00Z",
+      "personLabel": "Yakubu Gowon",
+      "personDescription": "Nigerian politician and Military general",
+      "rankLabel": "general",
+      "branchLabel": "Nigerian Army"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q361567",
+      "birthDate": "1942-12-17T00:00:00Z",
+      "personLabel": "Muhammadu Buhari",
+      "personDescription": "former President of Nigeria from 1983 to 1985 and 2015 to 2025 (born 1942–2025)",
+      "rankLabel": "major general",
+      "deathDate": "2025-07-13T00:00:00Z",
+      "branchLabel": "Nigerian Army"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q373628",
+      "birthDate": "1938-11-08T00:00:00Z",
+      "personLabel": "Murtala Muhammed",
+      "personDescription": "Nigerian politician and general (1938–1976)",
+      "rankLabel": "general",
+      "deathDate": "1976-02-13T00:00:00Z",
+      "branchLabel": "Nigerian Army"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q379888",
+      "birthDate": "1924-03-03T00:00:00Z",
+      "personLabel": "Johnson Aguiyi-Ironsi",
+      "personDescription": "Nigerian military leader (1924-1966)",
+      "rankLabel": "general",
+      "deathDate": "1966-07-29T00:00:00Z",
+      "branchLabel": "Nigerian Army"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q380670",
+      "birthDate": "1933-11-04T00:00:00Z",
+      "personLabel": "Chukwuemeka Odumegwu Ojukwu",
+      "personDescription": "Nigerian politician and military leader (1933-2011)",
+      "rankLabel": "lieutenant colonel",
+      "deathDate": "2011-11-26T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q202006",
+      "birthDate": "1937-03-05T00:00:00Z",
+      "personLabel": "Olusegun Obasanjo",
+      "personDescription": "Nigerian president (1999-2007) and military leader (1976–79)",
+      "rankLabel": "general",
+      "branchLabel": "Nigerian Army"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q207942",
+      "birthDate": "1943-09-20T00:00:00Z",
+      "personLabel": "Sani Abacha",
+      "personDescription": "Nigerian military ruler (1943-1998)",
+      "rankLabel": "lieutenant general",
+      "deathDate": "1998-06-08T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q262346",
+      "birthDate": "1942-06-13T00:00:00Z",
+      "personLabel": "Abdulsalami Abubakar",
+      "personDescription": "Nigerian general and brief head of state",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q282519",
+      "birthDate": "1943-07-17T00:00:00Z",
+      "personLabel": "Joseph Nanven Garba",
+      "personDescription": "Nigerian general, diplomat and politician (1943–2002)",
+      "rankLabel": "general",
+      "deathDate": "2002-06-01T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5097349",
+      "birthDate": "1951-02-18T00:00:00Z",
+      "personLabel": "Chikadibia Isaac Obiakor",
+      "personDescription": "Nigerian general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5101386",
+      "birthDate": "1946-11-21T00:00:00Z",
+      "personLabel": "Chinyere Ike Nwosu",
+      "personDescription": "Nigerian politician",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5112991",
+      "birthDate": "1928-03-09T00:00:00Z",
+      "personLabel": "Christopher Oluwole Rotimi",
+      "personDescription": "Nigerian politician",
+      "rankLabel": "brigadier general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4837544",
+      "birthDate": "1939-01-01T00:00:00Z",
+      "personLabel": "Babatunde Elegbede",
+      "personDescription": "Nigerian politician and admiral",
+      "rankLabel": "admiral",
+      "deathDate": "1994-06-19T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4866857",
+      "personLabel": "Bashir Salihi Magashi",
+      "personDescription": "Nigerian politician and general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4868128",
+      "personLabel": "Bassey Asuquo",
+      "personDescription": "Nigerian politician and general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4888183",
+      "birthDate": "1936-06-26T00:00:00Z",
+      "personLabel": "Benjamin Adekunle",
+      "personDescription": "Nigerian general (1936-2014)",
+      "rankLabel": "general",
+      "deathDate": "2014-09-13T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5290614",
+      "birthDate": "1948-05-26T00:00:00Z",
+      "personLabel": "Dominic Oneya",
+      "personDescription": "Nigerian politician and general (1948–2021)",
+      "rankLabel": "general",
+      "deathDate": "2021-08-04T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5291266",
+      "birthDate": "1940-02-27T00:00:00Z",
+      "personLabel": "Domkat Bali",
+      "personDescription": "Nigerian politician and general (1940–2020)",
+      "rankLabel": "general",
+      "deathDate": "2020-12-04T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5350626",
+      "birthDate": "1946-04-07T00:00:00Z",
+      "personLabel": "Ekundayo Opaleye",
+      "personDescription": "Nigerian general and politician (1946–2023)",
+      "rankLabel": "general",
+      "deathDate": "2023-11-18T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5213095",
+      "birthDate": "1943-10-04T00:00:00Z",
+      "personLabel": "Dan Archibong",
+      "personDescription": "Nigerian politician",
+      "rankLabel": "general",
+      "deathDate": "1990-03-11T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5214465",
+      "birthDate": "1942-01-01T00:00:00Z",
+      "personLabel": "Dan Suleiman",
+      "personDescription": "Nigerian politician",
+      "rankLabel": "air commodore",
+      "deathDate": "2023-02-01T00:00:00Z",
+      "branchLabel": "Nigerian Air Force"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5219982",
+      "personLabel": "Danladi Mohammed Zakari",
+      "personDescription": "General and first Military Administrator of Kogi State, Nigeria",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5231086",
+      "birthDate": "1940-12-07T00:00:00Z",
+      "personLabel": "David Bamigboye",
+      "personDescription": "Nigerian politician and general",
+      "rankLabel": "general",
+      "deathDate": "2018-09-21T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5233320",
+      "birthDate": "1932-01-10T00:00:00Z",
+      "personLabel": "David Ejoor",
+      "personDescription": "Nigerian politician and general (1932-2019)",
+      "rankLabel": "general",
+      "deathDate": "2019-02-10T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7410799",
+      "birthDate": "1940-01-01T00:00:00Z",
+      "personLabel": "Samuel Atukum",
+      "personDescription": "Nigerian politician and navy officer",
+      "rankLabel": "admiral"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7418254",
+      "personLabel": "Sani Daura Ahmed",
+      "personDescription": "Governor of Yobe State, Nigeria",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7424966",
+      "birthDate": "1946-03-13T00:00:00Z",
+      "personLabel": "Sasaenia Oresanya",
+      "personDescription": "Nigerian politician and general",
+      "rankLabel": "general",
+      "deathDate": "1998-01-01T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7639414",
+      "birthDate": "1943-12-19T00:00:00Z",
+      "personLabel": "Sunday Ifere",
+      "personDescription": "Nigerian general-politician",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7639588",
+      "birthDate": "1938-01-01T00:00:00Z",
+      "personLabel": "Sunday Tuoyo",
+      "personDescription": "Nigerian military governor (1938–2022)",
+      "rankLabel": "general",
+      "deathDate": "2022-12-17T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7645321",
+      "birthDate": "1954-09-09T00:00:00Z",
+      "personLabel": "Suraj Abdurrahman",
+      "personDescription": "Nigerian general (1954-2015)",
+      "rankLabel": "general",
+      "deathDate": "2015-01-28T00:00:00Z",
+      "branchLabel": "Nigerian Army"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7822681",
+      "birthDate": "1921-10-19T00:00:00Z",
+      "personLabel": "Tony Jonsson",
+      "personDescription": "Icelandic aviator (1921-2001)",
+      "rankLabel": "flight lieutenant",
+      "deathDate": "2001-12-30T00:00:00Z",
+      "branchLabel": "Royal Air Force"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7852884",
+      "birthDate": "1947-01-01T00:00:00Z",
+      "personLabel": "Tunde Ogbeha",
+      "personDescription": "Nigerian general, Senator and governor",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7881174",
+      "personLabel": "Umaru Mohammed",
+      "personDescription": "Military general who was appointed Governor of North-Western State in Nigeria",
+      "rankLabel": "general",
+      "deathDate": "1980-05-26T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q19267820",
+      "birthDate": "1879-01-01T00:00:00Z",
+      "personLabel": "Frank Percy Crozier",
+      "personDescription": "Nigerian military personnel",
+      "rankLabel": "brigadier general",
+      "deathDate": "1937-08-31T00:00:00Z",
+      "branchLabel": "British Army"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q19667813",
+      "birthDate": "1959-07-27T00:00:00Z",
+      "personLabel": "Kenneth Minimah",
+      "personDescription": "Nigerian general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q20675806",
+      "birthDate": "1954-03-14T00:00:00Z",
+      "personLabel": "Abdulrahman Bello Dambazau",
+      "personDescription": "Nigerian politician",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q20712433",
+      "birthDate": "1909-08-09T00:00:00Z",
+      "personLabel": "Christopher Welby-Everard",
+      "personDescription": "Nigerian Military officer (1909-1996)",
+      "rankLabel": "major-general",
+      "deathDate": "1996-05-10T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q20740520",
+      "birthDate": "1961-12-02T00:00:00Z",
+      "personLabel": "Abayomi Olonisakin",
+      "personDescription": "Chief of Defence Staff of Nigeria",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q20740980",
+      "birthDate": "1960-09-27T00:00:00Z",
+      "personLabel": "Ibok Ekwe Ibas",
+      "personDescription": "Chief of Naval Staff of Nigeria",
+      "rankLabel": "admiral"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q20794864",
+      "birthDate": "1960-11-24T00:00:00Z",
+      "personLabel": "Tukur Yusuf Buratai",
+      "personDescription": "Chief of Army Staff of Nigeria",
+      "rankLabel": "lieutenant general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q1506834",
+      "birthDate": "1938-09-25T00:00:00Z",
+      "personLabel": "George Agbazika Innih",
+      "personDescription": "Nigerian politician and general (1938-2002)",
+      "rankLabel": "general",
+      "deathDate": "2002-08-15T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q1595620",
+      "birthDate": "1956-08-24T00:00:00Z",
+      "personLabel": "Sa'adu Abubakar",
+      "personDescription": "Sultan of Sokoto",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q1984846",
+      "birthDate": "1952-11-10T00:00:00Z",
+      "personLabel": "Nicholas Okoh",
+      "personDescription": "Nigerian bishop (born 1952)",
+      "rankLabel": "podpolkovnik"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q3294849",
+      "birthDate": "1939-10-20T00:00:00Z",
+      "personLabel": "Augustus Aikhomu",
+      "personDescription": "Admiral and politician (1939–2011)",
+      "rankLabel": "admiral",
+      "deathDate": "2011-08-17T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q3296213",
+      "birthDate": "1946-09-29T00:00:00Z",
+      "personLabel": "Mike Akhigbe",
+      "personDescription": "Nigerian Navy Vice Admiral (1946–2013)",
+      "rankLabel": "admiral",
+      "deathDate": "2013-10-28T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q3509379",
+      "birthDate": "1943-03-05T00:00:00Z",
+      "personLabel": "Shehu Musa Yar'Adua",
+      "personDescription": "Vice President of Nigeria (1943–1997)",
+      "rankLabel": "general",
+      "deathDate": "1997-12-08T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q3509444",
+      "birthDate": "1918-03-01T00:00:00Z",
+      "personLabel": "Joseph Edet Akinwale Wey",
+      "personDescription": "Nigerian naval officer",
+      "rankLabel": "admiral",
+      "deathDate": "1990-12-12T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q3509487",
+      "birthDate": "1942-09-14T00:00:00Z",
+      "personLabel": "Tunde Idiagbon",
+      "personDescription": "Nigerian military general, political office-holder",
+      "rankLabel": "general",
+      "deathDate": "1999-03-24T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q3510426",
+      "birthDate": "1924-09-06T00:00:00Z",
+      "personLabel": "Babafemi Ogundipe",
+      "personDescription": "Nigerian politician and general (1924–1971)",
+      "rankLabel": "general",
+      "deathDate": "1971-11-20T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q3511542",
+      "birthDate": "1940-01-01T00:00:00Z",
+      "personLabel": "Buka Suka Dimka",
+      "personDescription": "Nigerian military personnel",
+      "rankLabel": "podpolkovnik",
+      "deathDate": "1976-05-15T00:00:00Z",
+      "branchLabel": "Nigerian Armed Forces"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4665649",
+      "birthDate": "1937-01-01T00:00:00Z",
+      "personLabel": "Abdul Rahman Mamudu",
+      "personDescription": "Nigerian general",
+      "rankLabel": "general",
+      "deathDate": "1992-01-01T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4665863",
+      "birthDate": "1949-01-01T00:00:00Z",
+      "personLabel": "Abdulkareem Adisa",
+      "personDescription": "Nigerian politician and army officer (1949–2005)",
+      "rankLabel": "general",
+      "deathDate": "2005-02-25T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4666134",
+      "birthDate": "1939-01-01T00:00:00Z",
+      "personLabel": "Abdullahi Mohammed",
+      "personDescription": "Nigerian general",
+      "rankLabel": "general",
+      "deathDate": "2025-11-05T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4666138",
+      "birthDate": "1949-07-05T00:00:00Z",
+      "personLabel": "Abdullahi Sarki Mukhtar",
+      "personDescription": "Nigerian politician and general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4670510",
+      "birthDate": "1938-01-01T00:00:00Z",
+      "personLabel": "Abubakar Waziri",
+      "personDescription": "Nigerian general (1938–2002)",
+      "rankLabel": "general",
+      "deathDate": "2002-01-01T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4682397",
+      "personLabel": "Adetoye Oyetola Sode",
+      "personDescription": "Nigerian military governor",
+      "rankLabel": "admiral"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4682425",
+      "birthDate": "1949-12-26T00:00:00Z",
+      "personLabel": "Adeyemi Afolahan",
+      "personDescription": "Nigerian politician, administator of Taraba State",
+      "rankLabel": "admiral",
+      "branchLabel": "Nigerian Navy"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4695709",
+      "personLabel": "Ahmed Aboki Abdullahi",
+      "personDescription": "Nigerian politician and brigadier",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4695710",
+      "birthDate": "1945-08-22T00:00:00Z",
+      "personLabel": "Ahmed Abdullahi",
+      "personDescription": "Military administrator",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4695941",
+      "birthDate": "1944-01-01T00:00:00Z",
+      "personLabel": "Ahmed Muhammad Daku",
+      "personDescription": "Nigerian politician and general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4696051",
+      "birthDate": "1951-08-20T00:00:00Z",
+      "personLabel": "Ahmed Usman",
+      "personDescription": "Nigerian governor (1951-2021)",
+      "rankLabel": "colonel",
+      "deathDate": "2021-04-14T00:00:00Z",
+      "branchLabel": "Nigerian Army"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4701088",
+      "birthDate": "1944-11-11T00:00:00Z",
+      "personLabel": "Akintunde Akinsehinwa",
+      "personDescription": "Nigerian military person (1944–1976)",
+      "rankLabel": "lieutenant",
+      "deathDate": "1976-02-13T00:00:00Z",
+      "branchLabel": "Nigerian Army"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4701090",
+      "birthDate": "1938-06-12T00:00:00Z",
+      "personLabel": "Akintunde Aduwo",
+      "personDescription": "Military Governor of Nigeria's Western State",
+      "rankLabel": "admiral"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4710923",
+      "personLabel": "Albert Okonkwo",
+      "personDescription": "Nigerian general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4719782",
+      "birthDate": "1949-12-29T00:00:00Z",
+      "personLabel": "Alexander Ogomudia",
+      "personDescription": "Nigerian general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4727553",
+      "birthDate": "1949-06-15T00:00:00Z",
+      "personLabel": "Aliyu Kama",
+      "personDescription": "Nigerian politician and officer",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4727556",
+      "birthDate": "1943-05-18T00:00:00Z",
+      "personLabel": "Aliyu Mohammed Gusau",
+      "personDescription": "Nigerian politician",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q4772775",
+      "birthDate": "1901-01-01T00:00:00Z",
+      "personLabel": "Anthony Ikhazoboh",
+      "personDescription": "Nigerian footballer",
+      "rankLabel": "general",
+      "deathDate": "1999-07-27T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5516898",
+      "personLabel": "Gaha",
+      "personDescription": "Oyo noble and military leader",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5521967",
+      "birthDate": "1944-04-15T00:00:00Z",
+      "personLabel": "Garba Mohammed",
+      "personDescription": "Nigerian politician",
+      "rankLabel": "general",
+      "deathDate": "2021-04-10T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5559362",
+      "birthDate": "1939-03-01T00:00:00Z",
+      "personLabel": "Gibson Jalo",
+      "personDescription": "Nigerian chief of Army Staff (1939-2000)",
+      "rankLabel": "general",
+      "deathDate": "2000-01-10T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5576962",
+      "birthDate": "1949-01-10T00:00:00Z",
+      "personLabel": "Godwin Abbe",
+      "personDescription": "Nigerian politician",
+      "rankLabel": "general",
+      "deathDate": "2024-12-21T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5646492",
+      "birthDate": "1945-03-02T00:00:00Z",
+      "personLabel": "Hamza Abdullahi",
+      "personDescription": "Nigerian politician (1945-2019)",
+      "rankLabel": "air vice-marshal",
+      "deathDate": "2019-01-03T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5730192",
+      "birthDate": "1792-02-02T00:00:00Z",
+      "personLabel": "Henry William Bruce",
+      "personDescription": "British Royal Navy admiral (1792-1863)",
+      "rankLabel": "admiral",
+      "deathDate": "1863-12-14T00:00:00Z",
+      "branchLabel": "Royal Navy"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q5984512",
+      "personLabel": "Ibrahim Dada",
+      "personDescription": "Military Governor of Borno State, Nigeria",
+      "rankLabel": "air commodore"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q6000164",
+      "personLabel": "Illiya Bisalla",
+      "personDescription": "Nigerian army officer",
+      "rankLabel": "major general",
+      "deathDate": "1976-03-11T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q6080062",
+      "birthDate": "1947-08-16T00:00:00Z",
+      "personLabel": "Ishaya Bakut",
+      "personDescription": "Nigerian politician and military general (1947-2015)",
+      "rankLabel": "general",
+      "deathDate": "2015-03-21T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q6243428",
+      "birthDate": "1941-01-03T00:00:00Z",
+      "personLabel": "John Kpera",
+      "personDescription": "Nigerian politician and general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q6271948",
+      "birthDate": "1948-11-23T00:00:00Z",
+      "personLabel": "Jonah Wuyep",
+      "personDescription": "Nigerian Air Force air Marshal",
+      "rankLabel": "air marshal",
+      "branchLabel": "Nigerian Air Force"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q6280930",
+      "birthDate": "1937-04-12T00:00:00Z",
+      "personLabel": "Joseph Akahan",
+      "personDescription": "Chief of Army Staff of Nigeria (1937-1968)",
+      "rankLabel": "general",
+      "deathDate": "1968-05-01T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q6503557",
+      "personLabel": "Lawal Jafaru Isa",
+      "personDescription": "Nigerian military governor",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q6504442",
+      "birthDate": "1948-08-10T00:00:00Z",
+      "personLabel": "Lawrence Onoja",
+      "personDescription": "Nigerian politician and general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q6524226",
+      "personLabel": "Leo Segun Ajiborisha",
+      "personDescription": "Military Administrator of Osun State",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q6776044",
+      "birthDate": "1948-11-08T00:00:00Z",
+      "personLabel": "Martin Luther Agwai",
+      "personDescription": "A retired Nigerian Army general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q6887391",
+      "birthDate": "1936-02-09T00:00:00Z",
+      "personLabel": "Mobolaji Johnson",
+      "personDescription": "Nigerian politician (1936-2019)",
+      "rankLabel": "general",
+      "deathDate": "2019-10-30T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q6893155",
+      "birthDate": "1940-01-01T00:00:00Z",
+      "personLabel": "Mohammed Inuwa Wushishi",
+      "personDescription": "Chief of Army Staff, Nigeria",
+      "rankLabel": "general",
+      "deathDate": "2021-12-04T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q6893159",
+      "personLabel": "Mohammed Jega",
+      "personDescription": "Nigerian general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q6893159",
+      "personLabel": "Mohammed Jega",
+      "personDescription": "Nigerian general",
+      "rankLabel": "major general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q6893191",
+      "birthDate": "1941-05-07T00:00:00Z",
+      "personLabel": "Mohammed Magoro",
+      "personDescription": "Nigerian politician",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q6893199",
+      "birthDate": "1950-10-07T00:00:00Z",
+      "personLabel": "Mohammed Mana",
+      "personDescription": "Nigerian politician and army officer",
+      "rankLabel": "general",
+      "deathDate": "2025-08-22T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q6939966",
+      "personLabel": "Musa Usman",
+      "personDescription": "Nigerian politician",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7082916",
+      "birthDate": "1944-02-26T00:00:00Z",
+      "personLabel": "Oladayo Popoola",
+      "personDescription": "Nigerian politician and general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7083266",
+      "birthDate": "1948-05-04T00:00:00Z",
+      "personLabel": "Olayinka Sule",
+      "personDescription": "Nigerian governor (1948–2020)",
+      "rankLabel": "general",
+      "deathDate": "2020-08-23T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7114962",
+      "birthDate": "1952-02-01T00:00:00Z",
+      "personLabel": "Owoye Andrew Azazi",
+      "personDescription": "Nigerian general (1952-2012)",
+      "rankLabel": "general",
+      "deathDate": "2012-12-15T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7146067",
+      "birthDate": "1947-12-23T00:00:00Z",
+      "personLabel": "Patrick Aziza",
+      "personDescription": "Nigerian politician and general",
+      "rankLabel": "general",
+      "deathDate": "2014-08-16T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7167361",
+      "birthDate": "1867-01-26T00:00:00Z",
+      "personLabel": "Percy Girouard",
+      "personDescription": "Northern Nigerian governor and railway builder from Canada (1867-1932)",
+      "rankLabel": "colonel",
+      "deathDate": "1932-09-26T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7167361",
+      "birthDate": "1867-01-26T00:00:00Z",
+      "personLabel": "Percy Girouard",
+      "personDescription": "Northern Nigerian governor and railway builder from Canada (1867-1932)",
+      "rankLabel": "major general",
+      "deathDate": "1932-09-26T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7286136",
+      "birthDate": "1947-01-07T00:00:00Z",
+      "personLabel": "Raji Rasaki",
+      "personDescription": "Nigerian politician and general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7294836",
+      "personLabel": "Rasheed Adisa Raji",
+      "personDescription": "Nigerian military governor",
+      "rankLabel": "captain",
+      "branchLabel": "navy"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7294851",
+      "personLabel": "Rasheed Shekoni",
+      "personDescription": "Nigerian military governor",
+      "rankLabel": "colonel"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7341367",
+      "birthDate": "1928-03-09T00:00:00Z",
+      "personLabel": "Robert Adeyinka Adebayo",
+      "personDescription": "Governor of Nigeria (1928–2017)",
+      "rankLabel": "general",
+      "deathDate": "2017-03-08T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7399989",
+      "birthDate": "1941-01-01T00:00:00Z",
+      "personLabel": "Saidu Ayodele Balogun",
+      "personDescription": "Nigerian politician, Governor of Ogun State",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7404519",
+      "birthDate": "1935-06-25T00:00:00Z",
+      "personLabel": "Salihu Ibrahim",
+      "personDescription": "Nigerian general",
+      "rankLabel": "general",
+      "deathDate": "2018-12-10T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q7404523",
+      "personLabel": "Salihu Tunde Bello",
+      "personDescription": "Nigerian politician and general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q10969003",
+      "birthDate": "1944-12-03T00:00:00Z",
+      "personLabel": "Tunji Olurin",
+      "personDescription": "Nigerian politician and general (1944-2021)",
+      "rankLabel": "general",
+      "deathDate": "2021-08-21T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q10985905",
+      "birthDate": "1933-03-31T00:00:00Z",
+      "personLabel": "Hassan Katsina",
+      "personDescription": "Nigerian Army general",
+      "rankLabel": "general",
+      "deathDate": "1995-07-24T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q10986593",
+      "birthDate": "1947-05-05T00:00:00Z",
+      "personLabel": "Ibrahim Aliyu",
+      "personDescription": "military administrator of Jigawa State, Nigeria 1993-1996",
+      "rankLabel": "general",
+      "deathDate": "2021-01-01T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q11058367",
+      "birthDate": "1934-03-08T00:00:00Z",
+      "personLabel": "Harris Eghagha",
+      "personDescription": "Nigerian politician and general",
+      "rankLabel": "general",
+      "deathDate": "2009-03-19T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q11880729",
+      "birthDate": "1940-12-03T00:00:00Z",
+      "personLabel": "Mamman Jiya Vatsa",
+      "personDescription": "Nigerian general",
+      "rankLabel": "general",
+      "deathDate": "1986-03-05T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q13140668",
+      "birthDate": "1939-03-03T00:00:00Z",
+      "personLabel": "Husaini Abdullahi",
+      "personDescription": "Nigerian military officer",
+      "rankLabel": "admiral",
+      "deathDate": "2019-07-09T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q13140838",
+      "personLabel": "Samaila Bature Chamah",
+      "personDescription": "Nigerian politician, General and administrator of Katsina State",
+      "rankLabel": "general",
+      "deathDate": "2007-01-15T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q13638397",
+      "birthDate": "1939-10-03T00:00:00Z",
+      "personLabel": "Ipoola Alani Akinrinade",
+      "personDescription": "Nigerian military officer",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q14472315",
+      "birthDate": "1943-01-01T00:00:00Z",
+      "personLabel": "Patrick Koshoni",
+      "personDescription": "Nigerian politician and admiral",
+      "rankLabel": "admiral",
+      "deathDate": "2020-01-25T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q14479063",
+      "birthDate": "1947-01-15T00:00:00Z",
+      "personLabel": "Victor Malu",
+      "personDescription": "Nigerian general (1947-2017)",
+      "rankLabel": "general",
+      "deathDate": "2017-10-09T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q16005761",
+      "birthDate": "1930-04-01T00:00:00Z",
+      "personLabel": "Victor Banjo",
+      "personDescription": "Nigerian Army officer",
+      "rankLabel": "lieutenant colonel",
+      "deathDate": "1967-09-22T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q16005761",
+      "birthDate": "1930-04-01T00:00:00Z",
+      "personLabel": "Victor Banjo",
+      "personDescription": "Nigerian Army officer",
+      "rankLabel": "lieutenant colonel",
+      "deathDate": "1967-09-24T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q16006825",
+      "personLabel": "Timothy Onwuatuegwu",
+      "personDescription": "Nigerian army officer",
+      "rankLabel": "major",
+      "deathDate": "1970-01-09T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q16091102",
+      "birthDate": "1929-01-01T00:00:00Z",
+      "personLabel": "Joseph Achuzie",
+      "personDescription": "General in the Biafran Army",
+      "rankLabel": "colonel",
+      "deathDate": "2018-02-26T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q16186714",
+      "birthDate": "1955-06-15T00:00:00Z",
+      "personLabel": "Ola Ibrahim",
+      "personDescription": "Nigerian naval officer",
+      "rankLabel": "admiral"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q18684390",
+      "birthDate": "1956-02-13T00:00:00Z",
+      "personLabel": "Azubuike Ihejirika",
+      "personDescription": "Nigerian general",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q18685677",
+      "birthDate": "1958-07-01T00:00:00Z",
+      "personLabel": "Dele Joseph Ezeoba",
+      "personDescription": "Nigerian admiral",
+      "rankLabel": "admiral"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q18685677",
+      "birthDate": "1958-07-25T00:00:00Z",
+      "personLabel": "Dele Joseph Ezeoba",
+      "personDescription": "Nigerian admiral",
+      "rankLabel": "admiral"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q20810648",
+      "birthDate": "1959-03-18T00:00:00Z",
+      "personLabel": "Chris Olukolade",
+      "personDescription": "Nigerian military personnel",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q20979662",
+      "birthDate": "1939-09-01T00:00:00Z",
+      "personLabel": "Mohammed Shuwa",
+      "personDescription": "Nigerian Army Major General and murder victim (1939-2012)",
+      "rankLabel": "general",
+      "deathDate": "2012-11-02T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q21062617",
+      "birthDate": "1959-09-25T00:00:00Z",
+      "personLabel": "Usman Oyibe Jibrin",
+      "personDescription": "Nigerian admiral",
+      "rankLabel": "admiral"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q21063459",
+      "birthDate": "1957-01-01T00:00:00Z",
+      "personLabel": "Babagana Monguno",
+      "personDescription": "Nigerian general and politician (born 1957)",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q21063501",
+      "birthDate": "1960-01-01T00:00:00Z",
+      "personLabel": "Muhammad Inuwa Idris",
+      "rankLabel": "general",
+      "deathDate": "2018-01-01T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q21063508",
+      "birthDate": "1950-01-01T00:00:00Z",
+      "personLabel": "Maxwell Khobe",
+      "personDescription": "Nigerian general (1950–2000)",
+      "rankLabel": "general",
+      "deathDate": "2000-04-18T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q21063680",
+      "birthDate": "1959-12-08T00:00:00Z",
+      "personLabel": "John Michael Ogidi",
+      "personDescription": "Nigerian military personnel",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q21066714",
+      "birthDate": "1964-11-20T00:00:00Z",
+      "personLabel": "Johnson Bamidele Olawumi",
+      "personDescription": "Nigerian military personnel",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q23071624",
+      "birthDate": "1952-09-22T00:00:00Z",
+      "personLabel": "Luka Yusuf",
+      "personDescription": "Nigerian military personnel",
+      "rankLabel": "general",
+      "deathDate": "2009-06-02T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q23541000",
+      "birthDate": "1930-04-20T00:00:00Z",
+      "personLabel": "James Oluleye",
+      "personDescription": "Nigerian Army general (1930–2009)",
+      "rankLabel": "general",
+      "deathDate": "2009-07-02T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q23541058",
+      "birthDate": "1959-08-25T00:00:00Z",
+      "personLabel": "Mansur Dan Ali",
+      "personDescription": "Nigerian military personnel",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q28043257",
+      "birthDate": "1980-08-15T00:00:00Z",
+      "personLabel": "Muhammad Abu Ali",
+      "personDescription": "Nigerian military personnel",
+      "rankLabel": "lieutenant colonel",
+      "deathDate": "2016-11-04T00:00:00Z",
+      "branchLabel": "Nigerian Army"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q28835116",
+      "birthDate": "1929-06-24T00:00:00Z",
+      "personLabel": "R.M. Dpppee",
+      "personDescription": "Nigerian Army officer and businessman",
+      "rankLabel": "major general",
+      "deathDate": "2008-05-09T00:00:00Z",
+      "branchLabel": "Nigerian Army"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q30594580",
+      "personLabel": "Yohanna Kure",
+      "personDescription": "retired Nigerian army officer.",
+      "rankLabel": "general",
+      "deathDate": "2023-11-02T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q41690423",
+      "birthDate": "1940-01-01T00:00:00Z",
+      "personLabel": "IBM Haruna",
+      "personDescription": "Nigerian General",
+      "rankLabel": "general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q44147463",
+      "birthDate": "1939-07-31T00:00:00Z",
+      "personLabel": "Aderonke Kale",
+      "personDescription": "Nigerian army psychiatrist",
+      "rankLabel": "general",
+      "deathDate": "2023-11-08T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q44147495",
+      "birthDate": "1959-01-18T00:00:00Z",
+      "personLabel": "Itunu Hotonu",
+      "personDescription": "Nigerian naval officer and architect",
+      "rankLabel": "admiral"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q110300795",
+      "birthDate": "1962-12-13T00:00:00Z",
+      "personLabel": "Yusuf Shalangwa",
+      "personDescription": "Nigerian soldier and lawyer",
+      "rankLabel": "major general"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q89680786",
+      "birthDate": "1948-11-14T00:00:00Z",
+      "personLabel": "Ibrahim Ogohi",
+      "personDescription": "Nigerian Admiral, 8th Chief of Defense Staff Nigeria",
+      "rankLabel": "admiral",
+      "deathDate": "2024-06-30T00:00:00Z"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q93454341",
+      "birthDate": "1965-01-01T00:00:00Z",
+      "personLabel": "Jamila Abubakar Sadiq Malafa",
+      "personDescription": "Nigerian international maritime lawyer",
+      "rankLabel": "commodore"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q93504319",
+      "birthDate": "1995-12-13T00:00:00Z",
+      "personLabel": "Tolulope Arotile",
+      "personDescription": "Nigerian combat helicopter pilot",
+      "rankLabel": "flying officer",
+      "deathDate": "2020-07-14T00:00:00Z",
+      "branchLabel": "Nigerian Army"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q95183802",
+      "personLabel": "Habiba Ruth Garba",
+      "personDescription": "Air Commodore in Nigerian Air Force",
+      "rankLabel": "air commodore"
+    },
+    {
+      "person": "http://www.wikidata.org/entity/Q109513000",
+      "birthDate": "1762-01-01T00:00:00Z",
+      "personLabel": "Buba Yero",
+      "personDescription": "Nigerian traditional state leader",
+      "rankLabel": "Amir",
+      "deathDate": "1862-01-01T00:00:00Z"
+    }
+  ],
+  "collected_at": "2026-01-03T08:51:42.956672"
+}
