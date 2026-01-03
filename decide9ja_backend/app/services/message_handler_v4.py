@@ -14,7 +14,7 @@ from typing import Optional
 
 from app.models.state import UserState, ConversationFlow
 from app.services.state_manager import state_manager, _get_state_async, _save_state_async
-from app.services.templates import get_template, TEMPLATES
+from app.services.templates import get_template, TEMPLATES, get_time_aware_greeting
 from app.services.claude_understand import (
     claude_understand, 
     QueryUnderstanding, 
@@ -55,6 +55,16 @@ from app.services.election_2027.polling_system import (
     submit_vote,
     get_poll_display,
     get_results_display
+)
+from app.services.progressive_profiling import (
+    get_profile_prompt,
+    update_interests_from_query,
+    progressive_profiling
+)
+from app.services.user_segmentation import (
+    get_user_segment,
+    get_personalization,
+    user_segmentation
 )
 
 logger = logging.getLogger(__name__)
@@ -181,14 +191,24 @@ async def handle_idle_claude_first(state: UserState, text: str) -> str:
     logger.info(f"Claude understanding: intent={understanding.intent.value}, "
                 f"strategy={understanding.retrieval_strategy.value}, "
                 f"confidence={understanding.confidence}")
-    
+
+    # ===========================================
+    # PROGRESSIVE PROFILING: Track interests
+    # ===========================================
+    update_interests_from_query(state, text)
+    state.add_topic_asked(understanding.intent.value)
+
     # ===========================================
     # ROUTE BY INTENT
     # ===========================================
     
     # Simple responses (no retrieval needed)
     if understanding.intent == Intent.GREETING:
-        return get_template("greeting_returning", name=state.name)
+        return get_time_aware_greeting(
+            name=state.name,
+            last_active_at=state.last_active_at,
+            message_count=state.message_count
+        )
     
     if understanding.intent == Intent.HELP:
         return get_template("menu")
@@ -512,9 +532,17 @@ RESPONSE: Nigeria's president is Bola Ahmed Tinubu of the APC. He's been preside
         for analogy in engine_context["analogies"][:3]:
             full_context += f"• {analogy}\n"
 
+    # Get personalization context for this user
+    personalization = get_personalization(state)
+
+    # Get memory recall if relevant
+    memory_recall = user_segmentation.get_memory_recall(state, query)
+
     user_prompt = f"""Answer this user's question using your Nigerian politics expertise and any retrieved context.
 
 USER INFO: {state.name or "Friend"} from {state.lga or "Unknown LGA"}, {state.state or "Nigeria"}
+PERSONALIZATION: {personalization or "New user"}
+{f"MEMORY: {memory_recall}" if memory_recall else ""}
 
 QUESTION: {query}
 
@@ -539,7 +567,16 @@ Provide a helpful, concise response (2-5 sentences). End with a relevant follow-
             messages=[{"role": "user", "content": user_prompt}]
         )
 
-        return response.content[0].text.strip()
+        final_response = response.content[0].text.strip()
+
+        # ===========================================
+        # PROGRESSIVE PROFILING: Add profile prompt
+        # ===========================================
+        profile_prompt = get_profile_prompt(state, understanding.intent.value)
+        if profile_prompt:
+            final_response += profile_prompt
+
+        return final_response
 
     except Exception as e:
         logger.error(f"Response generation error: {e}")
