@@ -87,7 +87,9 @@ class StateManager:
                 state=profile.get("state"),
                 lga=profile.get("lga"),
                 greeted=False,  # New session, will greet again
-                session_start=datetime.utcnow()
+                session_start=datetime.utcnow(),
+                last_active_at=profile.get("last_active_at"),  # When they last used the bot
+                message_count=profile.get("message_count", 0)
             )
         else:
             # New user - start onboarding
@@ -215,21 +217,24 @@ class StateManager:
         try:
             from sqlalchemy import create_engine, text
             import os
-            
+
             engine = create_engine(os.getenv('DATABASE_URL'))
             with engine.connect() as conn:
                 result = conn.execute(text('''
-                    SELECT name, state, lga FROM users 
+                    SELECT name, state, lga, last_interaction, message_count
+                    FROM users
                     WHERE phone_hash = :user_id
                     LIMIT 1
                 '''), {'user_id': user_id})
                 row = result.fetchone()
-                
+
                 if row:
                     return {
                         "name": row[0],
                         "state": row[1],
-                        "lga": row[2]
+                        "lga": row[2],
+                        "last_active_at": row[3],  # datetime or None
+                        "message_count": row[4] or 0
                     }
         except Exception as e:
             logger.warning(f"Failed to load profile from DB: {e}")
@@ -252,13 +257,14 @@ class StateManager:
                 if existing:
                     # Update existing user
                     conn.execute(text('''
-                        UPDATE users SET 
-                            name = :name, 
-                            state = :state, 
+                        UPDATE users SET
+                            name = :name,
+                            state = :state,
                             lga = :lga,
                             onboarding_completed = TRUE,
                             updated_at = NOW(),
-                            last_interaction = NOW()
+                            last_interaction = NOW(),
+                            message_count = COALESCE(message_count, 0) + 1
                         WHERE phone_hash = :user_id
                     '''), {
                         'user_id': state.user_id,
@@ -269,8 +275,8 @@ class StateManager:
                 else:
                     # Insert new user
                     conn.execute(text('''
-                        INSERT INTO users (phone_hash, name, state, lga, onboarding_completed)
-                        VALUES (:user_id, :name, :state, :lga, TRUE)
+                        INSERT INTO users (phone_hash, name, state, lga, onboarding_completed, message_count, last_interaction)
+                        VALUES (:user_id, :name, :state, :lga, TRUE, 1, NOW())
                     '''), {
                         'user_id': state.user_id,
                         'name': state.name,

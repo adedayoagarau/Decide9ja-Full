@@ -23,9 +23,39 @@ TEMPLATES = {
     "welcome_back": (
         "Tade here. Welcome back, {name}. What do you need?"
     ),
-    
+
     "welcome_back_no_name": (
         "Tade here. Welcome back. What do you need?"
+    ),
+
+    # Time-aware greetings for returning users
+    "welcome_back_today": (
+        "Back so soon, {name}! What else can I help with?"
+    ),
+
+    "welcome_back_yesterday": (
+        "Hey {name}, good to see you again. How can I help today?"
+    ),
+
+    "welcome_back_few_days": (
+        "Welcome back, {name}! It's been a few days. What do you need?"
+    ),
+
+    "welcome_back_week": (
+        "{name}! Been about a week — hope all is well. What can I help with?"
+    ),
+
+    "welcome_back_long": (
+        "Long time, {name}! Good to have you back. What do you need?"
+    ),
+
+    "welcome_back_first_time_today": (
+        "Morning/afternoon/evening, {name}! Ready to help. What's on your mind?"
+    ),
+
+    # Active user recognition (high message count)
+    "welcome_regular_user": (
+        "Hey {name}! You're becoming a regular. What do you need today?"
     ),
     
     "ask_state": (
@@ -96,6 +126,32 @@ TEMPLATES = {
         "This information is being updated.\n\n"
         "Try asking about a specific politician by name."
     ),
+
+    # Specific representative lookups
+    "rep_governor_only": (
+        "Your Governor ({state} State):\n"
+        "{governor}\n\n"
+        "Ask me anything about them."
+    ),
+
+    "rep_senator_only": (
+        "Your Senator ({district}):\n"
+        "{senator}\n\n"
+        "Ask me anything about them."
+    ),
+
+    "rep_house_only": (
+        "Your House Rep ({constituency}):\n"
+        "{house_rep}\n\n"
+        "Ask me anything about them."
+    ),
+
+    "rep_house_not_available": (
+        "House Representative data for {lga} is being updated.\n\n"
+        "In the meantime, here are your other representatives:\n"
+        "• Governor: {governor}\n"
+        "• Senator: {senator}"
+    ),
     
     # ==========================================
     # POLITICIAN INFO
@@ -107,13 +163,63 @@ TEMPLATES = {
         "{bio}\n\n"
         "Want to know about their record?"
     ),
-    
+
+    # Enhanced politician info with structured format
+    "politician_info_rich": (
+        "*{name}*\n"
+        "{party} • {position}\n"
+        "{state_or_constituency}\n\n"
+        "{bio}\n\n"
+        "Ask me about:\n"
+        "• Their legislative record\n"
+        "• Bills they've sponsored\n"
+        "• Their voting history"
+    ),
+
+    # Governor-specific template
+    "politician_info_governor": (
+        "*{name}* ({party})\n"
+        "Governor of {state} State\n"
+        "Since {since}\n\n"
+        "{bio}\n\n"
+        "Ask about:\n"
+        "• Their budget allocations\n"
+        "• Key projects\n"
+        "• Policy achievements"
+    ),
+
+    # Senator-specific template
+    "politician_info_senator": (
+        "*{name}* ({party})\n"
+        "Senator - {district}\n\n"
+        "{bio}\n\n"
+        "Ask about:\n"
+        "• Bills sponsored\n"
+        "• Committee memberships\n"
+        "• Constituency projects"
+    ),
+
+    # Fuzzy match suggestion
+    "politician_fuzzy_match": (
+        "Did you mean *{matched_name}*?\n\n"
+        "{name} ({party})\n"
+        "{position}\n\n"
+        "{bio}"
+    ),
+
     "politician_not_found": (
         "I don't have information on \"{query}\".\n\n"
         "Try the full name, or ask about a specific position like "
         "\"Who is the governor of Lagos?\""
     ),
-    
+
+    "politician_not_found_with_suggestions": (
+        "I couldn't find \"{query}\".\n\n"
+        "Did you mean one of these?\n"
+        "{suggestions}\n\n"
+        "Or try: \"Who is my senator?\" or \"Governor of Lagos\""
+    ),
+
     "politician_multiple": (
         "I found several matches for \"{query}\":\n\n"
         "{options}\n\n"
@@ -123,17 +229,58 @@ TEMPLATES = {
     # ==========================================
     # NEWS & CURRENT EVENTS
     # ==========================================
-    
+
     "news_summary": (
         "{summary}\n\n"
         "Source: {source}"
     ),
-    
+
+    # Enhanced news with multiple sources
+    "news_summary_multi": (
+        "*{headline}*\n\n"
+        "{summary}\n\n"
+        "Sources: {sources}\n"
+        "Updated: {date}"
+    ),
+
+    # Hot topic / trending
+    "news_hot_topic": (
+        "*Trending: {topic}*\n\n"
+        "{summary}\n\n"
+        "Key points:\n"
+        "{key_points}\n\n"
+        "Want more details or perspectives?"
+    ),
+
+    # News about a politician
+    "news_politician": (
+        "*Recent news about {politician}*\n\n"
+        "{summary}\n\n"
+        "Source: {source}\n"
+        "Date: {date}"
+    ),
+
+    # Policy news
+    "news_policy": (
+        "*{policy_name}*\n\n"
+        "{summary}\n\n"
+        "Supporters: {supporters}\n"
+        "Opponents: {opponents}\n\n"
+        "Want to know more about the debate?"
+    ),
+
     "news_not_found": (
         "I don't have recent news on that topic.\n\n"
         "Try asking about a specific politician or policy."
     ),
-    
+
+    "news_not_found_with_suggestions": (
+        "No recent news on \"{query}\".\n\n"
+        "Here's what's trending:\n"
+        "{trending_topics}\n\n"
+        "Ask about any of these."
+    ),
+
     "news_political_balance": (
         "That's a political question with different perspectives.\n\n"
         "{balanced_summary}\n\n"
@@ -271,22 +418,85 @@ TEMPLATES = {
     # ==========================================
     # FOLLOWUP
     # ==========================================
-    
+
     "followup_no_context": (
         "Who are you asking about?"
     ),
-    
+
     "followup_bills": (
         "{name} has sponsored {count} bills:\n\n"
         "{bills_summary}\n\n"
         "Want details on any of these?"
     ),
-    
+
     "followup_no_bills": (
         "{name} hasn't sponsored any bills in the current session.\n\n"
         "Want to know about their committee memberships instead?"
     ),
-    
+
+    # Record/achievements
+    "followup_record": (
+        "*{name}'s Record*\n\n"
+        "{achievements}\n\n"
+        "Ask about specific bills or projects."
+    ),
+
+    "followup_no_record": (
+        "I don't have detailed record information for {name} yet.\n\n"
+        "This data is being collected. Try asking about recent news instead."
+    ),
+
+    # Voting history
+    "followup_voting": (
+        "*{name}'s Voting Record*\n\n"
+        "{voting_summary}\n\n"
+        "Want to see specific votes?"
+    ),
+
+    "followup_no_voting": (
+        "Voting records for {name} are not yet available.\n\n"
+        "Ask about their bills or committee assignments instead."
+    ),
+
+    # Committee memberships
+    "followup_committees": (
+        "*{name}'s Committee Assignments*\n\n"
+        "{committees}\n\n"
+        "Ask about their work in any committee."
+    ),
+
+    "followup_no_committees": (
+        "Committee data for {name} isn't available yet.\n\n"
+        "Try asking about their bills or recent news."
+    ),
+
+    # Projects (for governors/executives)
+    "followup_projects": (
+        "*{name}'s Key Projects*\n\n"
+        "{projects}\n\n"
+        "Want details on any project?"
+    ),
+
+    "followup_no_projects": (
+        "Project data for {name} is being compiled.\n\n"
+        "Ask about their policies or recent statements instead."
+    ),
+
+    # Budget (for governors)
+    "followup_budget": (
+        "*{name}'s Budget Priorities ({year})*\n\n"
+        "Total Budget: {total}\n\n"
+        "{allocations}\n\n"
+        "Compare with previous years?"
+    ),
+
+    # Comparison
+    "followup_compare": (
+        "*Comparison: {name1} vs {name2}*\n\n"
+        "{comparison}\n\n"
+        "Want more details on either?"
+    ),
+
     # Alias for menu
     "menu": (
         "I can help you:\n\n"
@@ -308,3 +518,60 @@ def get_template(key: str, **kwargs) -> str:
     except KeyError as e:
         # Missing placeholder, return template as-is
         return template
+
+
+def get_time_aware_greeting(name: str, last_active_at=None, message_count: int = 0) -> str:
+    """
+    Select appropriate greeting based on when user was last active.
+
+    Args:
+        name: User's name
+        last_active_at: datetime of last activity (or None for first time)
+        message_count: Total messages sent by user
+
+    Returns:
+        Personalized greeting string
+    """
+    from datetime import datetime, timedelta
+
+    # Regular user recognition (50+ messages)
+    if message_count >= 50:
+        return get_template("welcome_regular_user", name=name)
+
+    # First time or no last_active_at
+    if not last_active_at:
+        return get_template("greeting_returning", name=name)
+
+    now = datetime.utcnow()
+
+    # Handle timezone-aware vs naive datetime
+    if hasattr(last_active_at, 'tzinfo') and last_active_at.tzinfo is not None:
+        from datetime import timezone
+        now = datetime.now(timezone.utc)
+
+    time_diff = now - last_active_at
+    hours = time_diff.total_seconds() / 3600
+    days = time_diff.days
+
+    # Same session (< 30 min) - shouldn't happen as they'd still be in Redis
+    if hours < 0.5:
+        return get_template("welcome_back_today", name=name)
+
+    # Same day (< 12 hours)
+    if hours < 12:
+        return get_template("welcome_back_today", name=name)
+
+    # Yesterday (12-36 hours)
+    if hours < 36:
+        return get_template("welcome_back_yesterday", name=name)
+
+    # Few days (2-5 days)
+    if days < 6:
+        return get_template("welcome_back_few_days", name=name)
+
+    # About a week (6-10 days)
+    if days < 11:
+        return get_template("welcome_back_week", name=name)
+
+    # Long time (> 10 days)
+    return get_template("welcome_back_long", name=name)

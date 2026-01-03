@@ -14,7 +14,7 @@ from typing import Optional
 
 from app.models.state import UserState, ConversationFlow
 from app.services.state_manager import state_manager, _get_state_async, _save_state_async
-from app.services.templates import get_template, TEMPLATES
+from app.services.templates import get_template, TEMPLATES, get_time_aware_greeting
 from app.services.claude_understand import (
     claude_understand, 
     QueryUnderstanding, 
@@ -188,7 +188,11 @@ async def handle_idle_claude_first(state: UserState, text: str) -> str:
     
     # Simple responses (no retrieval needed)
     if understanding.intent == Intent.GREETING:
-        return get_template("greeting_returning", name=state.name)
+        return get_time_aware_greeting(
+            name=state.name,
+            last_active_at=state.last_active_at,
+            message_count=state.message_count
+        )
     
     if understanding.intent == Intent.HELP:
         return get_template("menu")

@@ -50,6 +50,8 @@ class UserState:
     greeted: bool = False                 # Has Tade introduced himself this session?
     last_message_at: datetime = field(default_factory=datetime.utcnow)
     session_start: datetime = field(default_factory=datetime.utcnow)
+    last_active_at: Optional[datetime] = None  # Last activity before this session (from DB)
+    message_count: int = 0                # Total messages sent by user
     
     # Conversation History (last 6 turns for LLM context)
     history: List[dict] = field(default_factory=list)
@@ -71,6 +73,8 @@ class UserState:
             "greeted": self.greeted,
             "last_message_at": self.last_message_at.isoformat(),
             "session_start": self.session_start.isoformat(),
+            "last_active_at": self.last_active_at.isoformat() if self.last_active_at else None,
+            "message_count": self.message_count,
             "history": self.history[-6:]  # Keep last 6 turns only
         })
     
@@ -93,6 +97,8 @@ class UserState:
             greeted=d.get("greeted", False),
             last_message_at=datetime.fromisoformat(d["last_message_at"]) if d.get("last_message_at") else datetime.utcnow(),
             session_start=datetime.fromisoformat(d["session_start"]) if d.get("session_start") else datetime.utcnow(),
+            last_active_at=datetime.fromisoformat(d["last_active_at"]) if d.get("last_active_at") else None,
+            message_count=d.get("message_count", 0),
             history=d.get("history", [])
         )
     
