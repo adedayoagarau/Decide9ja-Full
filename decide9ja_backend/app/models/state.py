@@ -30,11 +30,39 @@ class UserState:
     # Identity
     user_id: str                          # Hashed phone number
     phone: str                            # For sending responses
-    
+
     # Profile (persisted to PostgreSQL)
     name: Optional[str] = None
-    state: Optional[str] = None           # Nigerian state
-    lga: Optional[str] = None             # Local government area
+    state: Optional[str] = None           # Nigerian state (primary/residence)
+    lga: Optional[str] = None             # Local government area (primary/residence)
+
+    # Enhanced Location Profile
+    origin_state: Optional[str] = None    # State of origin
+    origin_lga: Optional[str] = None
+    residence_state: Optional[str] = None # Where user currently lives
+    residence_lga: Optional[str] = None
+    registered_state: Optional[str] = None  # Voter registration state
+    registered_lga: Optional[str] = None
+    ward: Optional[str] = None
+
+    # Political Geography (auto-derived from LGA)
+    senatorial_district: Optional[str] = None
+    federal_constituency: Optional[str] = None
+    state_constituency: Optional[str] = None
+
+    # Demographics
+    age_range: Optional[str] = None       # '18-24', '25-34', '35-44', '45-54', '55-64', '65+'
+    gender: Optional[str] = None          # 'male', 'female', 'other', 'prefer_not_to_say'
+
+    # Voter Status
+    has_pvc: Optional[bool] = None
+
+    # Interests & Engagement
+    interests: List[str] = field(default_factory=list)  # Topics user cares about
+    topics_asked: List[str] = field(default_factory=list)  # Topics queried
+
+    # Profile Metadata
+    profile_completeness: int = 0         # 0-100 score
     
     # Flow State (stored in Redis, TTL 30 min)
     flow: ConversationFlow = ConversationFlow.IDLE
@@ -64,6 +92,27 @@ class UserState:
             "name": self.name,
             "state": self.state,
             "lga": self.lga,
+            # Enhanced location profile
+            "origin_state": self.origin_state,
+            "origin_lga": self.origin_lga,
+            "residence_state": self.residence_state,
+            "residence_lga": self.residence_lga,
+            "registered_state": self.registered_state,
+            "registered_lga": self.registered_lga,
+            "ward": self.ward,
+            # Political geography
+            "senatorial_district": self.senatorial_district,
+            "federal_constituency": self.federal_constituency,
+            "state_constituency": self.state_constituency,
+            # Demographics
+            "age_range": self.age_range,
+            "gender": self.gender,
+            "has_pvc": self.has_pvc,
+            # Interests
+            "interests": self.interests,
+            "topics_asked": self.topics_asked,
+            "profile_completeness": self.profile_completeness,
+            # Flow state
             "flow": self.flow.value,
             "flow_step": self.flow_step,
             "flow_data": self.flow_data,
@@ -88,6 +137,27 @@ class UserState:
             name=d.get("name"),
             state=d.get("state"),
             lga=d.get("lga"),
+            # Enhanced location profile
+            origin_state=d.get("origin_state"),
+            origin_lga=d.get("origin_lga"),
+            residence_state=d.get("residence_state"),
+            residence_lga=d.get("residence_lga"),
+            registered_state=d.get("registered_state"),
+            registered_lga=d.get("registered_lga"),
+            ward=d.get("ward"),
+            # Political geography
+            senatorial_district=d.get("senatorial_district"),
+            federal_constituency=d.get("federal_constituency"),
+            state_constituency=d.get("state_constituency"),
+            # Demographics
+            age_range=d.get("age_range"),
+            gender=d.get("gender"),
+            has_pvc=d.get("has_pvc"),
+            # Interests
+            interests=d.get("interests", []),
+            topics_asked=d.get("topics_asked", []),
+            profile_completeness=d.get("profile_completeness", 0),
+            # Flow state
             flow=ConversationFlow(d.get("flow", "idle")),
             flow_step=d.get("flow_step", 0),
             flow_data=d.get("flow_data", {}),
@@ -143,3 +213,94 @@ class UserState:
     def get_history_for_llm(self) -> List[dict]:
         """Get conversation history formatted for LLM context."""
         return [{"role": h["role"], "content": h["content"]} for h in self.history]
+
+    def calculate_profile_completeness(self) -> int:
+        """
+        Calculate profile completeness score (0-100).
+
+        Weighted scoring:
+        - Basic info (name, state, lga): 30 points
+        - Political geography derived: 15 points
+        - Registration info: 20 points
+        - Demographics: 15 points
+        - Engagement (has interests): 20 points
+        """
+        score = 0
+
+        # Basic info (30 points total)
+        if self.name:
+            score += 10
+        if self.state:
+            score += 10
+        if self.lga:
+            score += 10
+
+        # Political geography (15 points total)
+        if self.senatorial_district:
+            score += 5
+        if self.federal_constituency:
+            score += 5
+        if self.state_constituency:
+            score += 5
+
+        # Registration info (20 points total)
+        if self.registered_state:
+            score += 7
+        if self.registered_lga:
+            score += 7
+        if self.has_pvc is not None:
+            score += 6
+
+        # Demographics (15 points total)
+        if self.age_range:
+            score += 8
+        if self.gender:
+            score += 7
+
+        # Engagement - has interests (20 points)
+        if self.interests and len(self.interests) >= 1:
+            score += 10
+        if self.interests and len(self.interests) >= 3:
+            score += 10
+
+        return min(score, 100)
+
+    def update_profile_completeness(self):
+        """Recalculate and update the profile completeness score."""
+        self.profile_completeness = self.calculate_profile_completeness()
+
+    def add_topic_asked(self, topic: str):
+        """Track a topic the user has asked about."""
+        if topic and topic not in self.topics_asked:
+            self.topics_asked.append(topic)
+            # Keep only last 50 topics
+            self.topics_asked = self.topics_asked[-50:]
+
+    def add_interest(self, interest: str):
+        """Add an inferred interest (deduplicated)."""
+        if interest and interest.lower() not in [i.lower() for i in self.interests]:
+            self.interests.append(interest)
+            # Keep only last 20 interests
+            self.interests = self.interests[-20:]
+
+    def get_engagement_tier(self) -> str:
+        """Get user's engagement tier based on message count."""
+        if self.message_count >= 100:
+            return "power_user"
+        elif self.message_count >= 50:
+            return "regular"
+        elif self.message_count >= 10:
+            return "engaged"
+        elif self.message_count >= 1:
+            return "new"
+        return "inactive"
+
+    def get_profile_tier(self) -> str:
+        """Get profile completion tier."""
+        if self.profile_completeness >= 80:
+            return "complete"
+        elif self.profile_completeness >= 50:
+            return "partial"
+        elif self.profile_completeness >= 20:
+            return "minimal"
+        return "new"
