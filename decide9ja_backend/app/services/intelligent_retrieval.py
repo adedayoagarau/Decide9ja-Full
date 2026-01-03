@@ -176,11 +176,17 @@ async def intelligent_retrieve(
 # === RETRIEVAL IMPLEMENTATIONS ===
 
 async def _lookup_politician_by_name(name: str) -> Optional[Dict]:
-    """Look up politician by name with fuzzy matching."""
+    """Look up politician by name with fuzzy matching and nickname resolution."""
     try:
         from app.database import get_db, Politician
-        from app.services.fuzzy_match import fuzzy_find_politician
-        
+        from app.services.fuzzy_match import fuzzy_find_politician, resolve_nickname
+
+        # Resolve nicknames first (BAT → Tinubu, PO → Peter Obi)
+        resolved_name = resolve_nickname(name)
+        if resolved_name != name:
+            logger.info(f"Resolved nickname: '{name}' → '{resolved_name}'")
+            name = resolved_name
+
         db = next(get_db())
         
         # Try exact match first

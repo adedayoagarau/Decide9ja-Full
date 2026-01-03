@@ -24,6 +24,73 @@ logger = logging.getLogger(__name__)
 # Minimum similarity threshold (0-100)
 SIMILARITY_THRESHOLD = 75  # 75% match required
 
+# Nigerian politician nicknames/aliases mapping
+POLITICIAN_NICKNAMES = {
+    # Current Leaders
+    "bat": "Bola Ahmed Tinubu",
+    "jagaban": "Bola Ahmed Tinubu",
+    "asiwaju": "Bola Ahmed Tinubu",
+    "po": "Peter Obi",
+    "obi": "Peter Obi",
+    "atiku": "Atiku Abubakar",
+    "waziri": "Atiku Abubakar",
+    "kwankwaso": "Rabiu Musa Kwankwaso",
+    "kwanks": "Rabiu Musa Kwankwaso",
+    "baba go slow": "Muhammadu Buhari",
+    "bubu": "Muhammadu Buhari",
+    "obj": "Olusegun Obasanjo",
+    "baba iyabo": "Olusegun Obasanjo",
+    "ebele": "Goodluck Jonathan",
+    "gej": "Goodluck Jonathan",
+    "sanwo": "Babajide Sanwo-Olu",
+    "bos": "Babajide Sanwo-Olu",
+    "wike": "Nyesom Wike",
+    "fubara": "Siminalayi Fubara",
+    "ganduje": "Abdullahi Ganduje",
+    "el rufai": "Nasir El-Rufai",
+    "elrufai": "Nasir El-Rufai",
+    "fashola": "Babatunde Fashola",
+    "ambode": "Akinwunmi Ambode",
+    # Historical
+    "awo": "Obafemi Awolowo",
+    "zik": "Nnamdi Azikiwe",
+    "sardauna": "Ahmadu Bello",
+    "mko": "Moshood Abiola",
+    "abacha": "Sani Abacha",
+    "ibb": "Ibrahim Babangida",
+    "oduduwa": "Obafemi Awolowo",
+    "tafawa": "Abubakar Tafawa Balewa",
+}
+
+
+def resolve_nickname(query: str) -> str:
+    """
+    Resolve a politician nickname to their full name.
+
+    Examples:
+        "BAT" → "Bola Ahmed Tinubu"
+        "PO" → "Peter Obi"
+        "Atiku" → "Atiku Abubakar"
+
+    Args:
+        query: User's query (may contain nickname)
+
+    Returns:
+        Resolved full name or original query
+    """
+    query_lower = query.lower().strip()
+
+    # Check direct nickname match
+    if query_lower in POLITICIAN_NICKNAMES:
+        return POLITICIAN_NICKNAMES[query_lower]
+
+    # Check if query starts with nickname
+    for nickname, full_name in POLITICIAN_NICKNAMES.items():
+        if query_lower.startswith(nickname + " ") or query_lower == nickname:
+            return full_name
+
+    return query
+
 
 def fuzzy_find_politician(
     query: str,
