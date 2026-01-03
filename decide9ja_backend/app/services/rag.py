@@ -1,26 +1,73 @@
 """
 RAG Service - Retrieval-Augmented Generation.
-Retrieves relevant documents for a query using semantic search.
+
+Retrieves relevant context from multiple sources:
+1. SQLAlchemy database (semantic search with embeddings)
+2. Knowledge Graph (structured Nigerian political data)
+3. News pipeline (recent news articles)
+4. Web search fallback (when local data is insufficient)
+
+Data Sources Available:
+- 4,789+ Nigerian politicians from Wikidata
+- 8,392 entities (states, parties, military officers, etc.)
+- 1,646 Wikipedia articles (coups, events, biographies)
+- BudgIT financial data (budgets, FAAC allocations, economic indicators)
+- INEC scraped data (LGAs, senatorial districts, election results)
+- Real-time news from Nigerian outlets
 """
 from typing import List, Dict, Optional, Tuple
 from sqlalchemy.orm import Session
 import json
+import logging
 
 from app.database import Document, Politician
 from app.services.embeddings import get_embedding, cosine_similarity, json_to_embedding
 
+logger = logging.getLogger(__name__)
+
+# Try to import knowledge graph components
+try:
+    from app.services.nigeria_knowledge import (
+        get_knowledge_graph,
+        query_knowledge,
+        QueryEngine,
+    )
+    from app.services.nigeria_knowledge.historical_data import get_data_summary
+    KNOWLEDGE_GRAPH_AVAILABLE = True
+except ImportError as e:
+    logger.warning(f"Knowledge graph not available: {e}")
+    KNOWLEDGE_GRAPH_AVAILABLE = False
+
 
 class RAGService:
     """
-    Retrieves relevant context from the knowledge base.
+    Retrieves relevant context from multiple knowledge sources.
+
+    This service combines:
+    - Database semantic search (embeddings-based)
+    - Knowledge Graph queries (structured entity/relationship data)
+    - News pipeline (recent Nigerian political news)
+    - Web search fallback (when local data is insufficient)
+
     CRITICAL: The LLM only sees what this service returns.
     """
-    
+
     def __init__(self, db: Session):
         self.db = db
         self.max_context_tokens = 3000  # Approximate limit for Claude context
         self.web_search_enabled = True  # Enable web search fallback
         self.min_confidence_threshold = 0.5  # Trigger web search below this
+
+        # Initialize knowledge graph if available
+        self.knowledge_graph = None
+        self.query_engine = None
+        if KNOWLEDGE_GRAPH_AVAILABLE:
+            try:
+                self.knowledge_graph = get_knowledge_graph()
+                self.query_engine = QueryEngine(self.knowledge_graph)
+                logger.info(f"Knowledge graph loaded: {self.knowledge_graph.get_statistics()}")
+            except Exception as e:
+                logger.error(f"Failed to initialize knowledge graph: {e}")
     
     def retrieve(
         self,
@@ -30,17 +77,38 @@ class RAGService:
         include_web_search: bool = True
     ) -> Tuple[str, List[Dict]]:
         """
-        Main retrieval function.
-        
+        Main retrieval function combining multiple data sources.
+
+        Sources queried (in order):
+        1. Knowledge Graph - structured entity/relationship data
+        2. Database - semantic search with embeddings
+        3. News pipeline - recent articles
+        4. Web search - fallback for missing data
+
         Args:
             query: User's question
             top_k: Number of documents to retrieve
             filters: Optional dict with state, party, position filters
-            
+
         Returns:
             Tuple of (formatted_context_string, list_of_source_documents)
         """
-        # Generate query embedding
+        all_context_parts = []
+        all_sources = []
+
+        # 1. Query Knowledge Graph first (structured data)
+        kg_context = self._query_knowledge_graph(query)
+        if kg_context:
+            all_context_parts.append("=== KNOWLEDGE BASE ===")
+            all_context_parts.append(kg_context)
+            all_sources.append({
+                "doc_id": "knowledge_graph",
+                "title": "Nigeria Knowledge Graph",
+                "doc_type": "knowledge_graph",
+                "similarity": 1.0
+            })
+
+        # 2. Generate query embedding for semantic search
         query_embedding = get_embedding(query)
         
         # Get all documents (in production, use vector DB with index)
@@ -111,21 +179,48 @@ class RAGService:
             })
         
         if not context_parts:
-            return "NO RELEVANT DATA FOUND with sufficient confidence.", []
-        
-        context = "\n".join(context_parts)
-        
-        # Add recent news if available
+            # No DB results, but we may have KG results
+            pass
+        else:
+            all_context_parts.append("\n=== DATABASE DOCUMENTS ===")
+            all_context_parts.extend(context_parts)
+            all_sources.extend(sources)
+
+        # 3. Add recent news if available
         try:
             from app.services.news_pipeline import get_news_context_for_rag
             news_context = get_news_context_for_rag(query, self.db, limit=3)
             if news_context:
-                context = f"{context}\n\n{news_context}"
+                all_context_parts.append("\n=== RECENT NEWS ===")
+                all_context_parts.append(news_context)
         except Exception as e:
             # News module not available or error, continue without news
             pass
-        
-        return context, sources
+
+        # Combine all context
+        if not all_context_parts:
+            return "NO RELEVANT DATA FOUND for your query.", []
+
+        context = "\n".join(all_context_parts)
+        return context, all_sources
+
+    def _query_knowledge_graph(self, query: str) -> Optional[str]:
+        """
+        Query the knowledge graph for structured Nigerian political data.
+
+        Returns formatted context string if results found, None otherwise.
+        """
+        if not self.query_engine:
+            return None
+
+        try:
+            result = self.query_engine.query(query)
+            if result.success and result.entities:
+                return result.to_context_string()
+        except Exception as e:
+            logger.warning(f"Knowledge graph query failed: {e}")
+
+        return None
     
     def find_politician(
         self,
