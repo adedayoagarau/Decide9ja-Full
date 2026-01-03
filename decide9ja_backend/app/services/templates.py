@@ -23,9 +23,23 @@ TEMPLATES = {
     "welcome_back": (
         "Tade here. Welcome back, {name}. What do you need?"
     ),
-    
+
     "welcome_back_no_name": (
         "Tade here. Welcome back. What do you need?"
+    ),
+
+    # Time-based returning user greetings
+    "welcome_back_short": (
+        "Welcome back, {name}! What do you need?"
+    ),
+
+    "welcome_back_medium": (
+        "Hey {name}! It's been a while. What can I help with?"
+    ),
+
+    "welcome_back_long": (
+        "Good to see you again, {name}! A lot has happened in Nigerian politics. "
+        "What would you like to catch up on?"
     ),
     
     "ask_state": (

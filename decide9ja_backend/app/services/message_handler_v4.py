@@ -188,7 +188,21 @@ async def handle_idle_claude_first(state: UserState, text: str) -> str:
     
     # Simple responses (no retrieval needed)
     if understanding.intent == Intent.GREETING:
-        return get_template("greeting_returning", name=state.name)
+        # Use time-based greeting for returning users
+        welcome_type = state.flow_data.get("welcome_type", "short")
+
+        if welcome_type == "none":
+            # Less than 24 hours - no greeting, just respond naturally
+            return get_template("greeting_returning", name=state.name)
+        elif welcome_type == "medium":
+            state.flow_data["welcome_type"] = "none"  # Don't repeat
+            return get_template("welcome_back_medium", name=state.name)
+        elif welcome_type == "long":
+            state.flow_data["welcome_type"] = "none"  # Don't repeat
+            return get_template("welcome_back_long", name=state.name)
+        else:
+            state.flow_data["welcome_type"] = "none"  # Don't repeat
+            return get_template("welcome_back_short", name=state.name)
     
     if understanding.intent == Intent.HELP:
         return get_template("menu")

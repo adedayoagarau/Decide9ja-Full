@@ -79,8 +79,15 @@ class StateManager:
         
         # Try PostgreSQL (user exists but session expired)
         profile = self._load_profile_from_db(user_id)
-        
+
         if profile:
+            # Determine welcome type based on time away
+            last_interaction = profile.get("last_interaction")
+            welcome_type = self.get_welcome_type(last_interaction)
+
+            # Load recent conversation history
+            recent_history = self._load_recent_history(user_id, limit=5)
+
             state = UserState(
                 user_id=user_id,
                 phone=phone,
@@ -88,8 +95,13 @@ class StateManager:
                 state=profile.get("state"),
                 lga=profile.get("lga"),
                 greeted=False,  # New session, will greet again
-                session_start=datetime.utcnow()
+                session_start=datetime.utcnow(),
+                history=recent_history
             )
+
+            # Store welcome type for handler to use
+            state.flow_data["welcome_type"] = welcome_type
+            state.flow_data["days_away"] = (datetime.utcnow() - last_interaction).days if last_interaction else 0
         else:
             # New user - start onboarding
             state = UserState(
@@ -219,21 +231,74 @@ class StateManager:
             engine = create_engine(settings.DATABASE_URL)
             with engine.connect() as conn:
                 result = conn.execute(text('''
-                    SELECT name, state, lga FROM users 
+                    SELECT name, state, lga, last_interaction, created_at
+                    FROM users
                     WHERE phone_hash = :user_id
                     LIMIT 1
                 '''), {'user_id': user_id})
                 row = result.fetchone()
-                
+
                 if row:
                     return {
                         "name": row[0],
                         "state": row[1],
-                        "lga": row[2]
+                        "lga": row[2],
+                        "last_interaction": row[3],
+                        "created_at": row[4]
                     }
         except Exception as e:
             logger.warning(f"Failed to load profile from DB: {e}")
         return None
+
+    def _load_recent_history(self, user_id: str, limit: int = 5) -> list:
+        """Load recent chat history from PostgreSQL."""
+        try:
+            from sqlalchemy import create_engine, text
+
+            engine = create_engine(settings.DATABASE_URL)
+            with engine.connect() as conn:
+                result = conn.execute(text('''
+                    SELECT role, content, created_at
+                    FROM chat_history
+                    WHERE phone_hash = :user_id
+                    ORDER BY created_at DESC
+                    LIMIT :limit
+                '''), {'user_id': user_id, 'limit': limit})
+
+                rows = result.fetchall()
+                # Reverse to get chronological order
+                return [
+                    {"role": row[0], "content": row[1], "timestamp": row[2].isoformat() if row[2] else None}
+                    for row in reversed(rows)
+                ]
+        except Exception as e:
+            logger.warning(f"Failed to load chat history: {e}")
+            return []
+
+    def get_welcome_type(self, last_interaction: datetime) -> str:
+        """
+        Determine appropriate welcome type based on time since last interaction.
+
+        Returns:
+            'none' - Less than 24 hours (no greeting needed)
+            'short' - 1-7 days ("Welcome back, {name}!")
+            'medium' - 7-30 days ("Hey {name}! It's been a while.")
+            'long' - Over 30 days ("Good to see you again! A lot has happened...")
+        """
+        if not last_interaction:
+            return 'new'
+
+        now = datetime.utcnow()
+        delta = now - last_interaction
+
+        if delta.days < 1:
+            return 'none'
+        elif delta.days <= 7:
+            return 'short'
+        elif delta.days <= 30:
+            return 'medium'
+        else:
+            return 'long'
     
     def _save_profile_to_db(self, state: UserState):
         """Save/update user profile in PostgreSQL using raw SQL."""
