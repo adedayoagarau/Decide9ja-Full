@@ -454,11 +454,11 @@ Bio: {p.get('bio', 'No biography available.')}""")
     if result.rag_context:
         parts.append(f"BACKGROUND INFORMATION:\n{result.rag_context}")
 
+    # Knowledge Graph results with rich formatting
     if result.knowledge_graph_context:
-        parts.append(f"NIGERIA KNOWLEDGE BASE:\n{result.knowledge_graph_context}")
+        parts.append(f"NIGERIA KNOWLEDGE GRAPH:\n{result.knowledge_graph_context}")
     elif result.knowledge_graph_results:
-        # Format knowledge graph results if no pre-formatted context
-        kg_text = "NIGERIA KNOWLEDGE BASE:\n"
+        kg_text = "NIGERIA KNOWLEDGE GRAPH:\n"
         for item in result.knowledge_graph_results[:5]:
             name = item.get("name", "")
             item_type = item.get("type", "").replace("_", " ").title()
@@ -466,9 +466,22 @@ Bio: {p.get('bio', 'No biography available.')}""")
                 kg_text += f"• {name}"
                 if item_type:
                     kg_text += f" [{item_type}]"
-                description = item.get("description", item.get("content", ""))
+
+                # Include multiple content fields
+                description = item.get("description", "")
+                content = item.get("content", "")
+                data = item.get("data", {})
+
                 if description:
-                    kg_text += f"\n  {description[:200]}..."
+                    kg_text += f"\n  {description[:300]}"
+                elif content:
+                    kg_text += f"\n  {content[:300]}"
+
+                # Add economic/structured data if present
+                if data and isinstance(data, dict):
+                    for key, value in list(data.items())[:3]:
+                        kg_text += f"\n  - {key}: {value}"
+
                 kg_text += "\n"
         parts.append(kg_text)
 
