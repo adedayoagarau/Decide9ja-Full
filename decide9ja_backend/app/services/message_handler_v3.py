@@ -17,7 +17,7 @@ from app.models.state import UserState, ConversationFlow
 from app.services.state_manager import state_manager
 from app.services.router import classify_intent, Intent, is_greeting
 from app.services.flows.onboarding import handle_onboarding, extract_nigerian_state, extract_lga
-from app.services.templates import get_template, TEMPLATES
+from app.services.templates import get_template, TEMPLATES, get_time_aware_greeting
 from app.services.handlers.followup import handle_followup
 
 logger = logging.getLogger(__name__)
@@ -191,11 +191,15 @@ async def handle_idle_state(state: UserState, text: str) -> str:
 
 
 async def handle_greeting(state: UserState, text: str) -> str:
-    """Handle greeting from existing user."""
+    """Handle greeting from existing user with time-aware response."""
     if state.name:
         if not state.greeted:
             state.greeted = True
-            return get_template("welcome_back", name=state.name)
+            return get_time_aware_greeting(
+                name=state.name,
+                last_active_at=state.last_active_at,
+                message_count=state.message_count
+            )
         else:
             # Already greeted this session
             return TEMPLATES["help"]
@@ -354,62 +358,141 @@ async def handle_confirmation(state: UserState, text: str) -> str:
 
 async def handle_rep_lookup(state: UserState, text: str, entities: dict) -> str:
     """Find user's representatives based on their location.
-    
+
     Uses the lga_representatives table which directly maps each LGA to:
     - Governor (state-wide)
     - Senator (by senatorial district)
     - House Representative (by federal constituency)
+
+    Supports specific lookups: "my senator", "my governor", "my rep"
     """
     try:
         from app.database import get_db
         from sqlalchemy import text as sql_text
-        
+
         if not state.state or not state.lga:
             return "I need your location to find your representatives. Which state are you in?"
-        
+
         db = next(get_db())
-        
-        # Query the lga_representatives table directly
-        result = db.execute(sql_text("""
-            SELECT state, lga, senatorial_district, governor_name, governor_party, 
-                   senator_name, senator_party, house_rep_name, house_rep_party
-            FROM lga_representatives
-            WHERE state = :state AND lga = :lga
-        """), {"state": state.state, "lga": state.lga})
-        
-        row = result.fetchone()
-        
-        if row:
-            return get_template("rep_all",
-                lga=state.lga,
-                state=state.state,
-                governor=f"{row[3]} ({row[4]})" if row[3] else "Not found",
-                senator=f"{row[5]} ({row[6]})" if row[5] else "Not found",
-                house_rep=f"{row[7]} ({row[8]})" if row[7] else "Not found"
-            )
-        else:
+        text_lower = text.lower()
+
+        # Detect specific rep type requested
+        specific_type = None
+        if "senator" in text_lower:
+            specific_type = "senator"
+        elif "governor" in text_lower:
+            specific_type = "governor"
+        elif "rep" in text_lower or "representative" in text_lower or "house" in text_lower:
+            specific_type = "house_rep"
+
+        # Try query with all columns (including optional house_rep columns)
+        try:
+            result = db.execute(sql_text("""
+                SELECT state, lga, senatorial_district, governor_name, governor_party,
+                       senator_name, senator_party, house_rep_name, house_rep_party,
+                       federal_constituency
+                FROM lga_representatives
+                WHERE state = :state AND lga = :lga
+            """), {"state": state.state, "lga": state.lga})
+            row = result.fetchone()
+            has_house_rep_cols = True
+        except Exception:
+            # Fallback: house_rep columns might not exist
+            result = db.execute(sql_text("""
+                SELECT state, lga, senatorial_district, governor_name, governor_party,
+                       senator_name, senator_party
+                FROM lga_representatives
+                WHERE state = :state AND lga = :lga
+            """), {"state": state.state, "lga": state.lga})
+            row = result.fetchone()
+            has_house_rep_cols = False
+
+        if not row:
             # Fallback: Try fuzzy match on LGA name
             logger.warning(f"No exact match for {state.lga}, {state.state} - trying fuzzy match")
-            result = db.execute(sql_text("""
-                SELECT state, lga, senatorial_district, governor_name, governor_party, 
-                       senator_name, senator_party, house_rep_name, house_rep_party
-                FROM lga_representatives
-                WHERE state = :state AND (lga ILIKE :lga_pattern OR :lga ILIKE '%' || lga || '%')
-                LIMIT 1
-            """), {"state": state.state, "lga": state.lga, "lga_pattern": f"%{state.lga}%"})
-            
-            row = result.fetchone()
-            if row:
-                return get_template("rep_all",
-                    lga=state.lga,
-                    state=state.state,
-                    governor=f"{row[3]} ({row[4]})" if row[3] else "Not found",
-                    senator=f"{row[5]} ({row[6]})" if row[5] else "Not found",
-                    house_rep=f"{row[7]} ({row[8]})" if row[7] else "Not found"
-                )
-            
+            try:
+                result = db.execute(sql_text("""
+                    SELECT state, lga, senatorial_district, governor_name, governor_party,
+                           senator_name, senator_party, house_rep_name, house_rep_party,
+                           federal_constituency
+                    FROM lga_representatives
+                    WHERE state = :state AND (lga ILIKE :lga_pattern OR :lga ILIKE '%' || lga || '%')
+                    LIMIT 1
+                """), {"state": state.state, "lga": state.lga, "lga_pattern": f"%{state.lga}%"})
+                row = result.fetchone()
+                has_house_rep_cols = True
+            except Exception:
+                result = db.execute(sql_text("""
+                    SELECT state, lga, senatorial_district, governor_name, governor_party,
+                           senator_name, senator_party
+                    FROM lga_representatives
+                    WHERE state = :state AND (lga ILIKE :lga_pattern OR :lga ILIKE '%' || lga || '%')
+                    LIMIT 1
+                """), {"state": state.state, "lga": state.lga, "lga_pattern": f"%{state.lga}%"})
+                row = result.fetchone()
+                has_house_rep_cols = False
+
+        if not row:
             return get_template("rep_not_found", lga=state.lga, state=state.state)
-            
+
+        # Extract data from row
+        senatorial_district = row[2] if len(row) > 2 else None
+        governor_name = row[3] if len(row) > 3 else None
+        governor_party = row[4] if len(row) > 4 else None
+        senator_name = row[5] if len(row) > 5 else None
+        senator_party = row[6] if len(row) > 6 else None
+        house_rep_name = row[7] if has_house_rep_cols and len(row) > 7 else None
+        house_rep_party = row[8] if has_house_rep_cols and len(row) > 8 else None
+        federal_constituency = row[9] if has_house_rep_cols and len(row) > 9 else None
+
+        # Format strings
+        governor_str = f"{governor_name} ({governor_party})" if governor_name else "Not found"
+        senator_str = f"{senator_name} ({senator_party})" if senator_name else "Not found"
+        house_rep_str = f"{house_rep_name} ({house_rep_party})" if house_rep_name else None
+
+        # Store politician in context for follow-up
+        if specific_type == "senator" and senator_name:
+            state.active_politician_name = senator_name
+        elif specific_type == "governor" and governor_name:
+            state.active_politician_name = governor_name
+        elif specific_type == "house_rep" and house_rep_name:
+            state.active_politician_name = house_rep_name
+
+        # Return specific type if requested
+        if specific_type == "governor":
+            return get_template("rep_governor_only",
+                state=state.state,
+                governor=governor_str
+            )
+
+        if specific_type == "senator":
+            return get_template("rep_senator_only",
+                district=senatorial_district or f"{state.state} Senatorial District",
+                senator=senator_str
+            )
+
+        if specific_type == "house_rep":
+            if house_rep_str:
+                return get_template("rep_house_only",
+                    constituency=federal_constituency or f"{state.lga} Constituency",
+                    house_rep=house_rep_str
+                )
+            else:
+                return get_template("rep_house_not_available",
+                    lga=state.lga,
+                    governor=governor_str,
+                    senator=senator_str
+                )
+
+        # Return all representatives
+        return get_template("rep_all",
+            lga=state.lga,
+            state=state.state,
+            governor=governor_str,
+            senator=senator_str,
+            house_rep=house_rep_str or "Data being updated"
+        )
+
     except Exception as e:
         logger.error(f"Error in rep lookup: {e}")
         return get_template("rep_not_found", lga=state.lga, state=state.state)
@@ -869,25 +952,38 @@ async def handle_news_with_context(
     retrieval,
     context
 ) -> str:
-    """Handle news query with web search results."""
+    """Handle news query with web search results and political balance."""
     from app.services.llm import generate_response
-    
+
     if not retrieval.news_results and not retrieval.web_results:
         return get_template("news_not_found")
-    
+
+    # Check if topic is controversial and needs balanced treatment
+    is_controversial = _is_controversial_topic(text)
+
+    # Build LLM context with appropriate instructions
+    if is_controversial:
+        llm_instruction = (
+            "This is a politically sensitive topic. Summarize the news FACTUALLY. "
+            "Present MULTIPLE perspectives if they exist. Do NOT take sides. "
+            "Cite sources. If asked for your opinion, redirect to facts."
+        )
+    else:
+        llm_instruction = "Summarize the news. Be factual and cite sources."
+
     # Use LLM to synthesize news
     if context.user_context:
         try:
             response = await generate_response(
                 user_message=text,
                 context=context.user_context,
-                user_context="Summarize the news. Be factual and cite sources."
+                user_context=llm_instruction
             )
             if response:
                 return response
         except Exception as e:
             logger.warning(f"LLM synthesis for news failed: {e}")
-    
+
     # Fallback: format news directly
     if retrieval.news_results:
         news_parts = ["Here's what I found:\n"]
@@ -899,8 +995,30 @@ async def handle_news_with_context(
             if source:
                 news_parts.append(f"  _Source: {source}_\n")
         return "\n".join(news_parts)
-    
+
     return get_template("news_not_found")
+
+
+# Controversial topics that need balanced treatment
+CONTROVERSIAL_TOPICS = [
+    "tax reform", "tax bill", "vat", "derivation",
+    "pdp crisis", "apc crisis", "party", "defection",
+    "north vs south", "northern governors", "southern governors",
+    "restructuring", "true federalism", "secession",
+    "election", "rigging", "inec", "tribunal",
+    "subsidy", "fuel price", "palliative",
+    "insecurity", "banditry", "terrorism",
+    "muslim-muslim", "christian", "religion",
+    "ethnic", "tribe", "marginalization",
+    "obi vs tinubu", "atiku vs tinubu", "labour party",
+    "wike", "fubara", "rivers crisis",
+]
+
+
+def _is_controversial_topic(query: str) -> bool:
+    """Detect if a query touches on politically controversial topics."""
+    query_lower = query.lower()
+    return any(topic in query_lower for topic in CONTROVERSIAL_TOPICS)
 
 
 async def handle_followup_with_context(
