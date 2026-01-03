@@ -952,25 +952,38 @@ async def handle_news_with_context(
     retrieval,
     context
 ) -> str:
-    """Handle news query with web search results."""
+    """Handle news query with web search results and political balance."""
     from app.services.llm import generate_response
-    
+
     if not retrieval.news_results and not retrieval.web_results:
         return get_template("news_not_found")
-    
+
+    # Check if topic is controversial and needs balanced treatment
+    is_controversial = _is_controversial_topic(text)
+
+    # Build LLM context with appropriate instructions
+    if is_controversial:
+        llm_instruction = (
+            "This is a politically sensitive topic. Summarize the news FACTUALLY. "
+            "Present MULTIPLE perspectives if they exist. Do NOT take sides. "
+            "Cite sources. If asked for your opinion, redirect to facts."
+        )
+    else:
+        llm_instruction = "Summarize the news. Be factual and cite sources."
+
     # Use LLM to synthesize news
     if context.user_context:
         try:
             response = await generate_response(
                 user_message=text,
                 context=context.user_context,
-                user_context="Summarize the news. Be factual and cite sources."
+                user_context=llm_instruction
             )
             if response:
                 return response
         except Exception as e:
             logger.warning(f"LLM synthesis for news failed: {e}")
-    
+
     # Fallback: format news directly
     if retrieval.news_results:
         news_parts = ["Here's what I found:\n"]
@@ -982,8 +995,30 @@ async def handle_news_with_context(
             if source:
                 news_parts.append(f"  _Source: {source}_\n")
         return "\n".join(news_parts)
-    
+
     return get_template("news_not_found")
+
+
+# Controversial topics that need balanced treatment
+CONTROVERSIAL_TOPICS = [
+    "tax reform", "tax bill", "vat", "derivation",
+    "pdp crisis", "apc crisis", "party", "defection",
+    "north vs south", "northern governors", "southern governors",
+    "restructuring", "true federalism", "secession",
+    "election", "rigging", "inec", "tribunal",
+    "subsidy", "fuel price", "palliative",
+    "insecurity", "banditry", "terrorism",
+    "muslim-muslim", "christian", "religion",
+    "ethnic", "tribe", "marginalization",
+    "obi vs tinubu", "atiku vs tinubu", "labour party",
+    "wike", "fubara", "rivers crisis",
+]
+
+
+def _is_controversial_topic(query: str) -> bool:
+    """Detect if a query touches on politically controversial topics."""
+    query_lower = query.lower()
+    return any(topic in query_lower for topic in CONTROVERSIAL_TOPICS)
 
 
 async def handle_followup_with_context(
