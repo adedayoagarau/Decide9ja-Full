@@ -48,8 +48,8 @@ TEMPLATES = {
     ),
 
     "greeting_returning": (
-        "Hey {name}! How can I help you today?\n\n"
-        "Ask about your representatives, politicians, or current political news."
+        "Hey {name}! What do you need?\n\n"
+        "Ask about your reps, any politician, or the latest political news."
     ),
 
     "didnt_catch_name": (
@@ -240,9 +240,17 @@ TEMPLATES = {
     "error_generic": (
         "Something went wrong on my end. Try again, or type 'reset' to start fresh."
     ),
-    
+
+    "error_timeout": (
+        "That's taking too long. Try a simpler question, or ask again in a moment."
+    ),
+
     "error_overloaded": (
         "I'm getting a lot of requests. Try again in a moment."
+    ),
+
+    "error_rate_limit": (
+        "Slow down a bit — too many messages. Wait a minute and try again."
     ),
     
     # ==========================================
