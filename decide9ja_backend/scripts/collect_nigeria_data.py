@@ -137,11 +137,12 @@ class DataCollector:
         for query in queries:
             logger.info(f"[Internet Archive] Searching: {query}")
 
-            # Search API
+            # Search API - fixed URL format
             search_url = (
                 f"https://archive.org/advancedsearch.php?"
-                f"q={quote(query)}&fl[]=identifier,title,date,creator,description,mediatype,collection"
-                f"&rows=500&output=json&mediatype=texts"
+                f"q={quote(query)}+AND+mediatype:texts"
+                f"&fl=identifier,title,date,creator,description,mediatype,collection"
+                f"&rows=500&output=json"
             )
 
             content = await self._fetch(session, search_url)
