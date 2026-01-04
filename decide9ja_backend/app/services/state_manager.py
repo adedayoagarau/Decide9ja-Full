@@ -10,6 +10,7 @@ from typing import Optional, Dict
 import os
 
 from app.models.state import UserState, ConversationFlow
+from app.utils.encryption import encrypt_phone, hash_phone as encryption_hash_phone
 
 logger = logging.getLogger(__name__)
 
@@ -416,10 +417,13 @@ class StateManager:
                         'profile_completeness': state.profile_completeness,
                     })
                 else:
+                    # Encrypt phone number for new users (enables proactive messaging)
+                    encrypted = encrypt_phone(state.phone) if state.phone else None
+
                     # Insert new user with all fields
                     conn.execute(text('''
                         INSERT INTO users (
-                            phone_hash, name, state, lga,
+                            phone_hash, encrypted_phone, name, state, lga,
                             origin_state, origin_lga, residence_state, residence_lga,
                             registered_state, registered_lga, ward,
                             senatorial_district, federal_constituency, state_constituency,
@@ -428,7 +432,7 @@ class StateManager:
                             onboarding_completed, message_count, last_interaction
                         )
                         VALUES (
-                            :user_id, :name, :state, :lga,
+                            :user_id, :encrypted_phone, :name, :state, :lga,
                             :origin_state, :origin_lga, :residence_state, :residence_lga,
                             :registered_state, :registered_lga, :ward,
                             :senatorial_district, :federal_constituency, :state_constituency,
@@ -438,6 +442,7 @@ class StateManager:
                         )
                     '''), {
                         'user_id': state.user_id,
+                        'encrypted_phone': encrypted,
                         'name': state.name,
                         'state': state.state,
                         'lga': state.lga,
