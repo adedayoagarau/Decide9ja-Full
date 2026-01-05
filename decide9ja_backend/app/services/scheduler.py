@@ -1,10 +1,21 @@
 """
+DEPRECATED: This scheduler has been replaced by app.scheduler_unified
+
+Please use the new unified scheduler instead:
+    python -m app.scheduler_unified
+
+This file is kept for backwards compatibility but will be removed in a future version.
+
+Original description:
 Scheduler Service for Decide9ja.
-Runs background tasks on schedule:
-- News scraping every hour
-- Issue extraction every 2 hours
-- Card regeneration daily
+Runs background tasks on schedule.
 """
+import warnings
+warnings.warn(
+    "app.services.scheduler is deprecated. Use app.scheduler_unified instead.",
+    DeprecationWarning,
+    stacklevel=2
+)
 import os
 import schedule
 import time

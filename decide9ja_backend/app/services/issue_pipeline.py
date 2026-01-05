@@ -1,6 +1,13 @@
 """
 Issue Pipeline Service
 Processes news articles through the issue extraction agent and stores results.
+
+This module handles:
+- Extracting political issues from news articles using Claude AI
+- Storing and linking issues to politicians
+- Managing issue lifecycle and events
+
+Uses safe async helpers to avoid event loop conflicts when called from scheduler.
 """
 import json
 import logging
@@ -15,6 +22,7 @@ from app.services.issue_agent import (
     find_similar_issue,
     match_politician_name,
 )
+from app.utils.async_helpers import run_async_with_fallback
 
 logger = logging.getLogger(__name__)
 
@@ -74,15 +82,19 @@ def store_issue(issue_data: Dict, extraction: Dict) -> str:
         # Check for similar existing issue
         existing_issues = get_active_issues(domain=issue_data.get("domain"))
         
-        import asyncio
-        similar_id = asyncio.run(find_similar_issue(
-            title=issue_data.get("title", ""),
-            domain=issue_data.get("domain", ""),
-            location=issue_data.get("location", ""),
-            summary=issue_data.get("summary", ""),
-            keywords=extraction.get("similar_issue_keywords", []),
-            existing_issues=existing_issues,
-        ))
+        # Use safe async execution with fallback (returns None if fails, creating new issue)
+        similar_id = run_async_with_fallback(
+            find_similar_issue(
+                title=issue_data.get("title", ""),
+                domain=issue_data.get("domain", ""),
+                location=issue_data.get("location", ""),
+                summary=issue_data.get("summary", ""),
+                keywords=extraction.get("similar_issue_keywords", []),
+                existing_issues=existing_issues,
+            ),
+            fallback_value=None,  # If similarity check fails, create new issue
+            log_error=True
+        )
         
         if similar_id:
             # Update existing issue
@@ -168,11 +180,15 @@ def store_event(
         politician_slugs = []
         
         for pol in politicians:
-            import asyncio
-            slug = asyncio.run(match_politician_name(pol.get("name", ""), all_politicians))
+            # Use safe async execution with fallback (returns None if matching fails)
+            slug = run_async_with_fallback(
+                match_politician_name(pol.get("name", ""), all_politicians),
+                fallback_value=None,  # Skip politician if matching fails
+                log_error=False  # Don't spam logs for every failed match
+            )
             if slug:
                 politician_slugs.append(slug)
-                
+
                 # Create politician-issue link
                 link_politician_to_issue(slug, issue_id, pol.get("role", "mentioned"))
         

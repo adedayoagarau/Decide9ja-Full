@@ -279,14 +279,31 @@ def run_news_pipeline():
     Called by scheduler.
     """
     try:
-        # Import from local services (copied from scraper for deployment)
-        from app.services.news_scraper import scrape_all_sources
-        
+        # Try resilient scraper first, fall back to original if unavailable
+        try:
+            from app.services.news_scraper_resilient import scrape_all_sources, get_source_health
+            logger.info("Using resilient news scraper...")
+            use_resilient = True
+        except ImportError:
+            from app.services.news_scraper import scrape_all_sources
+            logger.info("Using standard news scraper (resilient scraper not available)...")
+            use_resilient = False
+
         logger.info("Starting news pipeline...")
-        
+
         # 1. Scrape
         articles = scrape_all_sources(max_per_source=10)
         logger.info(f"Scraped {len(articles)} articles")
+
+        # Log source health if using resilient scraper
+        if use_resilient:
+            try:
+                health = get_source_health()
+                unhealthy = [k for k, v in health.items() if not v.get("is_healthy", True)]
+                if unhealthy:
+                    logger.warning(f"Unhealthy sources: {', '.join(unhealthy)}")
+            except Exception:
+                pass
         
         # 2. Store
         article_dicts = [a.to_dict() for a in articles]

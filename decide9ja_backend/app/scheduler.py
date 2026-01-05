@@ -1,15 +1,21 @@
 """
+DEPRECATED: This scheduler has been replaced by scheduler_unified.py
+
+Please use the new unified scheduler instead:
+    python -m app.scheduler_unified
+
+This file is kept for backwards compatibility but will be removed in a future version.
+
+Original description:
 Scheduler for Decide9ja background jobs.
 Runs news scraping, indexing, and other periodic tasks.
-
-Usage:
-    python -m app.scheduler  # Run as module
-    python app/scheduler.py  # Run directly
-
-For production, use:
-    - Celery + Redis for distributed task queue
-    - Or run this as a separate service
 """
+import warnings
+warnings.warn(
+    "app.scheduler is deprecated. Use app.scheduler_unified instead.",
+    DeprecationWarning,
+    stacklevel=2
+)
 import os
 import sys
 import time
