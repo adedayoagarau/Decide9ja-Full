@@ -200,6 +200,26 @@ async def startup_event():
     from app.api import election_analytics
     app.include_router(election_analytics.router, tags=["Election Analytics"])
 
+    # Include Notifications router
+    from app.routers import notifications as notifications_router
+    app.include_router(notifications_router.router, tags=["Notifications"])
+
+    # Include Politician Comparison router
+    from app.routers import comparison as comparison_router
+    app.include_router(comparison_router.router, tags=["Comparison"])
+
+    # Include Scheduler Status router
+    from app.routers import scheduler_status as scheduler_router
+    app.include_router(scheduler_router.router, tags=["Scheduler"])
+
+    # Include Bills & Voting Records router
+    from app.routers import bills as bills_router
+    app.include_router(bills_router.router, tags=["Bills"])
+
+    # Include User Personalization router
+    from app.routers import personalization as personalization_router
+    app.include_router(personalization_router.router, tags=["Personalization"])
+
     logger.info("✅ Decide9ja Backend Started")
     logger.info(f"   Environment: {ENVIRONMENT}")
     logger.info(f"   Rate Limiting: {RATE_LIMITING_ENABLED}")
@@ -208,6 +228,11 @@ async def startup_event():
     logger.info(f"   Issues API: /api/issues")
     logger.info(f"   Admin API: /api/admin")
     logger.info(f"   Election Analytics: /api/v1/election")
+    logger.info(f"   Notifications API: /api/notifications")
+    logger.info(f"   Comparison API: /api/compare")
+    logger.info(f"   Scheduler API: /api/scheduler")
+    logger.info(f"   Bills API: /api/bills")
+    logger.info(f"   Personalization API: /api/me")
 
 
 # ===========================================

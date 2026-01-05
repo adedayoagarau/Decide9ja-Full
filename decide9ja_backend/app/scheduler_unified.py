@@ -462,6 +462,58 @@ def run_news_cleanup():
         db.close()
 
 
+@with_retry(max_retries=2, base_delay=5.0)
+def run_notification_processor():
+    """
+    Process pending notifications in the queue.
+    Frequency: Every 5 minutes
+    """
+    logger.info("📬 Starting notification processor job...")
+
+    try:
+        from app.services.notification_service import get_notification_service
+        from app.utils.async_helpers import run_async_safely
+
+        service = get_notification_service()
+        result = run_async_safely(service.process_pending_notifications(batch_size=50))
+
+        logger.info(f"✅ Notification processor complete: {result}")
+        return result
+
+    except ImportError:
+        logger.warning("Notification service not available, skipping")
+        return {"skipped": True, "reason": "service_not_available"}
+    except Exception as e:
+        logger.error(f"Notification processor error: {e}")
+        raise
+
+
+@with_retry(max_retries=2, base_delay=10.0)
+def run_daily_digest():
+    """
+    Send daily digest notifications to all subscribed users.
+    Frequency: Daily at 7 AM
+    """
+    logger.info("📊 Starting daily digest job...")
+
+    try:
+        from app.services.notification_service import get_notification_service
+        from app.utils.async_helpers import run_async_safely
+
+        service = get_notification_service()
+        result = run_async_safely(service.send_all_daily_digests())
+
+        logger.info(f"✅ Daily digest complete: {result}")
+        return result
+
+    except ImportError:
+        logger.warning("Notification service not available, skipping")
+        return {"skipped": True, "reason": "service_not_available"}
+    except Exception as e:
+        logger.error(f"Daily digest error: {e}")
+        raise
+
+
 def run_health_check():
     """
     Log scheduler health and job metrics.
@@ -601,6 +653,24 @@ def create_scheduler() -> BackgroundScheduler:
         replace_existing=True
     )
 
+    # === Notification Queue Processing - Every 5 minutes ===
+    scheduler.add_job(
+        run_notification_processor,
+        IntervalTrigger(minutes=5),
+        id="notification_processor",
+        name="Process notification queue",
+        replace_existing=True
+    )
+
+    # === Daily Digest - Every day at 7 AM ===
+    scheduler.add_job(
+        run_daily_digest,
+        CronTrigger(hour=7, minute=0),
+        id="daily_digest",
+        name="Send daily digest notifications",
+        replace_existing=True
+    )
+
     return scheduler
 
 
@@ -640,6 +710,8 @@ def run_job_once(job_name: str):
         "cards": run_card_generator,
         "cleanup": run_news_cleanup,
         "health": run_health_check,
+        "notifications": run_notification_processor,
+        "digest": run_daily_digest,
     }
 
     if job_name not in jobs:
