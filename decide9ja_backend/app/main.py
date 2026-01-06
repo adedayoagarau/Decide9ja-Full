@@ -11,7 +11,8 @@ from datetime import datetime
 from typing import Optional
 from fastapi import FastAPI, Depends, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import Response
+from fastapi.responses import Response, FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, field_validator
 from sqlalchemy.orm import Session
 
@@ -199,6 +200,13 @@ async def startup_event():
     # Include Election 2027 Analytics API
     from app.api import election_analytics
     app.include_router(election_analytics.router, tags=["Election Analytics"])
+
+    # Mount static files for admin dashboard
+    import pathlib
+    static_dir = pathlib.Path(__file__).parent / "static"
+    if static_dir.exists():
+        app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
+        logger.info(f"   Static Files: /static")
 
     logger.info("✅ Decide9ja Backend Started")
     logger.info(f"   Environment: {ENVIRONMENT}")
