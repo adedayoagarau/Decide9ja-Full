@@ -561,6 +561,366 @@ class PoliticianVotingRecord(Base):
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
 
 
+# ===========================================
+# BROADCAST & PROACTIVE MESSAGING MODELS
+# ===========================================
+
+class BroadcastCampaign(Base):
+    """
+    Broadcast campaign for proactive WhatsApp messaging.
+    Supports targeted campaigns by state, LGA, interests, etc.
+    """
+    __tablename__ = "broadcast_campaigns"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    campaign_id = Column(String(100), unique=True, nullable=False, index=True)
+
+    # Campaign info
+    name = Column(String(200), nullable=False)
+    description = Column(Text)
+    category = Column(String(50), index=True)  # news, election, civic, alert, digest
+
+    # Message content
+    message_content = Column(Text, nullable=False)
+    message_title = Column(String(200))
+    cta_text = Column(String(200))  # Call to action
+    cta_options_json = Column(Text)  # JSON array of reply options
+
+    # Audience targeting (JSON)
+    audience_criteria_json = Column(Text)  # JSON with targeting rules
+
+    # Scheduling
+    priority = Column(String(20), default="normal")  # breaking, high, normal, low
+    scheduled_at = Column(DateTime, index=True)
+    send_window_start = Column(Integer)  # Hour (0-23)
+    send_window_end = Column(Integer)
+
+    # Status
+    status = Column(String(20), default="draft", index=True)  # draft, scheduled, sending, completed, paused, cancelled
+
+    # Statistics
+    total_recipients = Column(Integer, default=0)
+    sent_count = Column(Integer, default=0)
+    delivered_count = Column(Integer, default=0)
+    read_count = Column(Integer, default=0)
+    replied_count = Column(Integer, default=0)
+    failed_count = Column(Integer, default=0)
+
+    # Timestamps
+    created_by = Column(String(100))
+    started_at = Column(DateTime)
+    completed_at = Column(DateTime)
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+class BroadcastMessage(Base):
+    """
+    Individual messages in a broadcast campaign.
+    Tracks delivery status per recipient.
+    """
+    __tablename__ = "broadcast_messages"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    message_id = Column(String(100), unique=True, nullable=False, index=True)
+
+    # Links
+    campaign_id = Column(String(100), index=True)  # Links to BroadcastCampaign
+    user_hash = Column(String(64), nullable=False, index=True)
+
+    # Content (personalized)
+    content = Column(Text, nullable=False)
+
+    # Delivery
+    priority = Column(String(20), default="normal")
+    status = Column(String(20), default="queued", index=True)  # queued, sent, delivered, read, failed
+    twilio_sid = Column(String(100))  # Twilio message SID
+
+    # Tracking
+    queued_at = Column(DateTime, server_default=func.now())
+    sent_at = Column(DateTime)
+    delivered_at = Column(DateTime)
+    read_at = Column(DateTime)
+    failed_at = Column(DateTime)
+    error_message = Column(Text)
+
+    # Response tracking
+    user_replied = Column(Boolean, default=False)
+    reply_content = Column(Text)
+    reply_at = Column(DateTime)
+
+
+class DigestSubscription(Base):
+    """
+    User subscriptions to news digests.
+    Controls what and when users receive digests.
+    """
+    __tablename__ = "digest_subscriptions"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    user_hash = Column(String(64), unique=True, nullable=False, index=True)
+
+    # Subscription settings
+    is_active = Column(Boolean, default=True, index=True)
+    frequency = Column(String(20), default="daily")  # daily, weekly, breaking
+    send_time = Column(String(10), default="07:00")  # HH:MM in WAT
+    send_days_json = Column(Text)  # JSON array [0,1,2,3,4,5,6] for days of week
+
+    # Content preferences
+    categories_json = Column(Text)  # JSON array of preferred categories
+    states_of_interest_json = Column(Text)  # JSON array of states
+    max_items = Column(Integer, default=5)
+    include_polls = Column(Boolean, default=True)
+    include_election_updates = Column(Boolean, default=True)
+    language = Column(String(10), default="en")
+
+    # Stats
+    digests_sent = Column(Integer, default=0)
+    last_sent_at = Column(DateTime)
+
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+# ===========================================
+# FACT-CHECK MODELS
+# ===========================================
+
+class FactCheck(Base):
+    """
+    Fact-checked political claims.
+    Stores verified claims with verdicts and sources.
+    """
+    __tablename__ = "fact_checks"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    fact_check_id = Column(String(100), unique=True, nullable=False, index=True)
+
+    # The claim
+    claim = Column(Text, nullable=False)
+    claim_hash = Column(String(64), nullable=False, index=True)  # For deduplication
+    claimant = Column(String(200))  # Who made the claim
+    claim_date = Column(DateTime)
+    claim_context = Column(Text)
+
+    # Verdict
+    verdict = Column(String(30), nullable=False, index=True)  # true, mostly_true, half_true, mostly_false, false, unverifiable, satire, outdated
+    explanation = Column(Text, nullable=False)
+
+    # Sources (JSON array)
+    sources_json = Column(Text)  # [{name, url, credibility}, ...]
+
+    # Classification
+    category = Column(String(50), index=True)  # election, politician, policy, economy, security, statistics
+    tags_json = Column(Text)
+
+    # Tracking
+    is_viral = Column(Boolean, default=False, index=True)
+    alert_level = Column(String(20), default="normal")  # normal, elevated, critical
+    times_queried = Column(Integer, default=0)
+
+    # Verification
+    checked_by = Column(String(100))
+    verified = Column(Boolean, default=False)
+
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+class FactCheckRequest(Base):
+    """
+    User requests for fact-checking.
+    Queue of claims submitted by users.
+    """
+    __tablename__ = "fact_check_requests"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    request_id = Column(String(100), unique=True, nullable=False, index=True)
+
+    # Submitter
+    user_hash = Column(String(64), nullable=False, index=True)
+
+    # The claim
+    claim = Column(Text, nullable=False)
+    claim_hash = Column(String(64), index=True)
+
+    # Status
+    status = Column(String(20), default="pending", index=True)  # pending, processing, completed, rejected
+    result_id = Column(String(100))  # Links to FactCheck.fact_check_id when completed
+
+    # Processing
+    assigned_to = Column(String(100))
+    notes = Column(Text)
+
+    submitted_at = Column(DateTime, server_default=func.now())
+    processed_at = Column(DateTime)
+
+
+# ===========================================
+# COMMUNITY & GAMIFICATION MODELS
+# ===========================================
+
+class CommunityIssue(Base):
+    """
+    Community-reported issues.
+    Crowdsourced civic problem reporting.
+    """
+    __tablename__ = "community_issues"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    issue_id = Column(String(50), unique=True, nullable=False, index=True)  # e.g., ISS00123
+
+    # Issue details
+    title = Column(String(200), nullable=False)
+    description = Column(Text, nullable=False)
+    category = Column(String(50), nullable=False, index=True)  # roads, electricity, water, security, sanitation, etc.
+
+    # Location
+    state = Column(String(50), nullable=False, index=True)
+    lga = Column(String(100), nullable=False, index=True)
+    ward = Column(String(100))
+    address = Column(String(500))
+    latitude = Column(Float)
+    longitude = Column(Float)
+
+    # Reporter
+    reporter_hash = Column(String(64), nullable=False, index=True)
+    reporter_name = Column(String(100))
+
+    # Status
+    status = Column(String(20), default="reported", index=True)  # reported, verified, acknowledged, in_progress, resolved, closed, rejected
+
+    # Engagement
+    upvotes = Column(Integer, default=0)
+    downvotes = Column(Integer, default=0)
+    verification_count = Column(Integer, default=0)
+    comment_count = Column(Integer, default=0)
+
+    # Authority tracking
+    responsible_authority = Column(String(200))
+    official_response = Column(Text)
+    reference_number = Column(String(100))
+
+    # Media (JSON array of URLs)
+    photo_urls_json = Column(Text)
+
+    # Timestamps
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+    resolved_at = Column(DateTime)
+
+
+class CommunityIssueUpdate(Base):
+    """
+    Updates to community issues.
+    Comments, status changes, photos.
+    """
+    __tablename__ = "community_issue_updates"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    update_id = Column(String(100), unique=True, nullable=False, index=True)
+
+    # Links
+    issue_id = Column(String(50), nullable=False, index=True)  # Links to CommunityIssue
+
+    # Update content
+    update_type = Column(String(30), nullable=False)  # status_change, comment, photo_update, verification, official_response
+    content = Column(Text, nullable=False)
+    photo_url = Column(String(500))
+
+    # Author
+    author_hash = Column(String(64), nullable=False)
+    author_name = Column(String(100))
+    is_official = Column(Boolean, default=False)
+
+    created_at = Column(DateTime, server_default=func.now())
+
+
+class CommunityIssueVote(Base):
+    """
+    Votes on community issues.
+    Tracks who voted on what.
+    """
+    __tablename__ = "community_issue_votes"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    issue_id = Column(String(50), nullable=False, index=True)
+    voter_hash = Column(String(64), nullable=False, index=True)
+    vote_type = Column(String(10), nullable=False)  # up, down
+
+    created_at = Column(DateTime, server_default=func.now())
+
+    # Unique constraint: one vote per user per issue
+    __table_args__ = (
+        # Handled in code for SQLite compatibility
+    )
+
+
+class CivicProfile(Base):
+    """
+    User's civic engagement profile.
+    Gamification tracking: points, badges, streaks.
+    """
+    __tablename__ = "civic_profiles"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    user_hash = Column(String(64), unique=True, nullable=False, index=True)
+
+    # Display
+    display_name = Column(String(100))
+    state = Column(String(50), index=True)
+    lga = Column(String(100))
+
+    # Points
+    total_points = Column(Integer, default=0, index=True)
+    points_this_month = Column(Integer, default=0)
+    points_this_week = Column(Integer, default=0)
+
+    # Level
+    level = Column(Integer, default=1)
+    title = Column(String(100), default="Civic Observer")
+
+    # Streaks
+    current_streak = Column(Integer, default=0)
+    longest_streak = Column(Integer, default=0)
+    last_active_date = Column(DateTime)
+
+    # Badges (JSON array of badge IDs)
+    badges_json = Column(Text)
+
+    # Action counts (JSON: {action: count})
+    action_counts_json = Column(Text)
+
+    # Timestamps
+    joined_at = Column(DateTime, server_default=func.now())
+    last_points_earned = Column(DateTime)
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+class PointTransaction(Base):
+    """
+    Point earning transactions.
+    Audit log of all points earned.
+    """
+    __tablename__ = "point_transactions"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    transaction_id = Column(String(100), unique=True, nullable=False, index=True)
+
+    # User
+    user_hash = Column(String(64), nullable=False, index=True)
+
+    # Transaction
+    action = Column(String(50), nullable=False, index=True)  # daily_login, report_issue, verify_issue, etc.
+    points = Column(Integer, nullable=False)
+    description = Column(String(500))
+
+    # Metadata (JSON)
+    metadata_json = Column(Text)
+
+    created_at = Column(DateTime, server_default=func.now())
+
+
 def init_db():
     """Create all tables."""
     Base.metadata.create_all(bind=engine)
