@@ -1,46 +1,130 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useScrollProgress } from "@/hooks/use-scroll-reveal";
 
 const WHATSAPP_LINK = "https://wa.me/2348160179151?text=Hi%20Tade";
 
 export function Hero() {
+    const scrollProgress = useScrollProgress();
+
+    // Parallax values based on scroll
+    const heroOpacity = Math.max(0, 1 - scrollProgress * 2);
+    const heroScale = 1 - scrollProgress * 0.1;
+    const headingY = scrollProgress * 100;
+    const chatY = scrollProgress * 50;
+
     return (
         <section className="relative min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden">
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background" />
-
-            {/* Subtle grid pattern */}
+            {/* Animated background gradient */}
             <div
-                className="absolute inset-0 opacity-[0.02]"
+                className="absolute inset-0 transition-opacity duration-1000"
                 style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                    background: `
+                        radial-gradient(ellipse 80% 50% at 50% -20%, var(--mint-light) 0%, transparent 50%),
+                        linear-gradient(to bottom, var(--background), var(--background))
+                    `,
+                    opacity: heroOpacity,
                 }}
             />
 
-            <div className="container relative z-10">
+            {/* Floating grid pattern */}
+            <div
+                className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02]"
+                style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23004737' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                    transform: `translateY(${scrollProgress * 30}px)`,
+                }}
+            />
+
+            {/* Floating orbs */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div
+                    className="absolute w-96 h-96 rounded-full blur-3xl"
+                    style={{
+                        background: "var(--mint)",
+                        opacity: 0.08,
+                        top: "10%",
+                        right: "-10%",
+                        transform: `translate(${scrollProgress * 50}px, ${scrollProgress * 30}px)`,
+                    }}
+                />
+                <div
+                    className="absolute w-64 h-64 rounded-full blur-3xl"
+                    style={{
+                        background: "var(--primary)",
+                        opacity: 0.05,
+                        bottom: "20%",
+                        left: "-5%",
+                        transform: `translate(${-scrollProgress * 30}px, ${-scrollProgress * 20}px)`,
+                    }}
+                />
+            </div>
+
+            <div
+                className="container relative z-10"
+                style={{
+                    opacity: heroOpacity,
+                    transform: `scale(${heroScale})`,
+                }}
+            >
                 <div className="max-w-4xl mx-auto text-center space-y-8">
-                    {/* Main heading */}
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-in-up">
+                    {/* Badge */}
+                    <div className="animate-fade-in-up">
+                        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium bg-mint-light/50 dark:bg-mint/10 text-primary dark:text-mint border border-primary/10 dark:border-mint/20">
+                            <span className="w-2 h-2 rounded-full bg-mint animate-pulse" />
+                            Nigeria&apos;s Civic Intelligence Platform
+                        </span>
+                    </div>
+
+                    {/* Main heading with parallax */}
+                    <h1
+                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-in-up"
+                        style={{
+                            animationDelay: "0.1s",
+                            transform: `translateY(${headingY * 0.3}px)`,
+                        }}
+                    >
                         Civic intelligence,{" "}
-                        <span className="gradient-text">on WhatsApp.</span>
+                        <span className="gradient-text relative">
+                            on WhatsApp.
+                            <svg
+                                className="absolute -bottom-2 left-0 w-full h-3 text-mint/30"
+                                viewBox="0 0 200 12"
+                                preserveAspectRatio="none"
+                            >
+                                <path
+                                    d="M0 9c50-6 100-6 200 0"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="3"
+                                    strokeLinecap="round"
+                                />
+                            </svg>
+                        </span>
                     </h1>
 
                     {/* Subheading */}
-                    <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+                    <p
+                        className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-up"
+                        style={{ animationDelay: "0.2s" }}
+                    >
                         Find your reps. Track their work. Report issues in your area.
                     </p>
 
                     {/* CTAs */}
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+                    <div
+                        className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up"
+                        style={{ animationDelay: "0.3s" }}
+                    >
                         <a
                             href={WHATSAPP_LINK}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <Button className="whatsapp-button pulse-glow text-base px-8 py-4 h-auto">
+                            <Button className="whatsapp-button pulse-glow text-base px-8 py-4 h-auto group">
                                 <svg
-                                    className="w-6 h-6"
+                                    className="w-6 h-6 transition-transform duration-300 group-hover:scale-110"
                                     viewBox="0 0 24 24"
                                     fill="currentColor"
                                 >
@@ -50,65 +134,99 @@ export function Hero() {
                             </Button>
                         </a>
                         <a href="#demo">
-                            <Button variant="outline" className="ghost-button text-base px-8 py-4 h-auto">
+                            <Button variant="outline" className="ghost-button text-base px-8 py-4 h-auto group">
                                 See example answers
+                                <svg
+                                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
                             </Button>
                         </a>
                     </div>
 
                     {/* Trust chips */}
-                    <div className="flex flex-wrap items-center justify-center gap-3 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-                        <span className="trust-chip">
-                            <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                            No app download
-                        </span>
-                        <span className="trust-chip">
-                            <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                            Works on low-end phones
-                        </span>
-                        <span className="trust-chip">
-                            <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                            Neutral summaries
-                        </span>
+                    <div
+                        className="flex flex-wrap items-center justify-center gap-3 animate-fade-in-up"
+                        style={{ animationDelay: "0.4s" }}
+                    >
+                        {[
+                            "No app download",
+                            "Works on low-end phones",
+                            "Neutral summaries"
+                        ].map((text) => (
+                            <span key={text} className="trust-chip">
+                                <svg className="w-4 h-4 text-mint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                {text}
+                            </span>
+                        ))}
                     </div>
                 </div>
 
                 {/* Hero visual - Chat bubble mockup */}
-                <div className="mt-16 max-w-md mx-auto animate-fade-in-up animate-float" style={{ animationDelay: "0.4s" }}>
-                    <div className="glass-card p-1 rounded-3xl">
+                <div
+                    className="mt-16 max-w-md mx-auto animate-fade-in-up"
+                    style={{
+                        animationDelay: "0.5s",
+                        transform: `translateY(${chatY * 0.5}px)`,
+                    }}
+                >
+                    <div className="glass-card p-1 rounded-3xl hover:shadow-lg transition-shadow duration-500">
                         <div className="bg-[#0b141a] rounded-2xl overflow-hidden">
                             {/* Chat header */}
                             <div className="bg-[#202c33] px-4 py-3 flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                                <div className="w-10 h-10 rounded-full bg-mint/20 flex items-center justify-center">
                                     <span className="text-lg">🇳🇬</span>
                                 </div>
-                                <div>
+                                <div className="flex-1">
                                     <p className="text-white font-medium text-sm">Tade • Decide9ja</p>
-                                    <p className="text-[#8696a0] text-xs">Online</p>
+                                    <p className="text-[#8696a0] text-xs flex items-center gap-1">
+                                        <span className="w-2 h-2 rounded-full bg-mint animate-pulse" />
+                                        Online
+                                    </p>
+                                </div>
+                                <div className="flex gap-4 text-[#8696a0]">
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                    </svg>
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    </svg>
                                 </div>
                             </div>
 
                             {/* Chat messages */}
-                            <div className="p-4 space-y-3">
+                            <div className="p-4 space-y-3 min-h-[180px]">
                                 {/* User message */}
-                                <div className="flex justify-end">
+                                <div className="flex justify-end animate-fade-in-up" style={{ animationDelay: "0.7s" }}>
                                     <div className="bg-[#005c4b] text-white text-sm px-3 py-2 rounded-lg rounded-tr-none max-w-[80%]">
                                         Who is my senator?
                                     </div>
                                 </div>
 
-                                {/* Bot response */}
-                                <div className="flex justify-start">
+                                {/* Typing indicator then response */}
+                                <div className="flex justify-start animate-fade-in-up" style={{ animationDelay: "1s" }}>
                                     <div className="bg-[#202c33] text-white text-sm px-3 py-2 rounded-lg rounded-tl-none max-w-[85%]">
-                                        <p className="mb-2">Your senator for Lagos West is <strong>Oluranti Adebule</strong> (APC).</p>
+                                        <p className="mb-2">Your senator for Lagos West is <strong className="text-mint">Oluranti Adebule</strong> (APC).</p>
                                         <p className="text-[#8696a0]">Want to know more about her voting record?</p>
                                     </div>
+                                </div>
+                            </div>
+
+                            {/* Input area */}
+                            <div className="px-4 py-3 flex items-center gap-3 border-t border-[#202c33]">
+                                <div className="flex-1 bg-[#2a3942] rounded-full px-4 py-2 text-[#8696a0] text-sm">
+                                    Type a message<span className="animate-blink">|</span>
+                                </div>
+                                <div className="w-10 h-10 rounded-full bg-mint flex items-center justify-center">
+                                    <svg className="w-5 h-5 text-[#0b141a]" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -117,7 +235,8 @@ export function Hero() {
             </div>
 
             {/* Scroll indicator */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+                <span className="text-xs text-muted-foreground">Scroll to explore</span>
                 <svg className="w-6 h-6 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
