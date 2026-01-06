@@ -3,7 +3,7 @@
 import { useTheme } from "./theme-provider";
 
 export function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme, mounted } = useTheme();
 
   const cycleTheme = () => {
     if (theme === "light") {
@@ -14,6 +14,13 @@ export function ThemeToggle() {
       setTheme("light");
     }
   };
+
+  // Prevent hydration mismatch - show placeholder until mounted
+  if (!mounted) {
+    return (
+      <div className="w-10 h-10 rounded-full bg-foreground/5 border border-foreground/10" />
+    );
+  }
 
   return (
     <button
