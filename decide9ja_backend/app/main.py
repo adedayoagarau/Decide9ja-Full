@@ -228,6 +228,10 @@ async def startup_event():
     from app.routers import chatbot as chatbot_router
     app.include_router(chatbot_router.router, tags=["Chatbot"])
 
+    # Include Search & Discovery router
+    from app.routers import search as search_router
+    app.include_router(search_router.router, tags=["Search"])
+
     logger.info("✅ Decide9ja Backend Started")
     logger.info(f"   Environment: {ENVIRONMENT}")
     logger.info(f"   Rate Limiting: {RATE_LIMITING_ENABLED}")
@@ -243,6 +247,7 @@ async def startup_event():
     logger.info(f"   Personalization API: /api/me")
     logger.info(f"   Election 2027 API: /api/election/2027")
     logger.info(f"   Chatbot API: /api/chatbot")
+    logger.info(f"   Search API: /api/search")
 
 
 # ===========================================
