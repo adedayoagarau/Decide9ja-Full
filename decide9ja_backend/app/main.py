@@ -240,6 +240,30 @@ async def startup_event():
     from app.routers import constituency as constituency_router
     app.include_router(constituency_router.router, tags=["Constituency"])
 
+    # Include Auth & Security router
+    from app.routers import auth as auth_router
+    app.include_router(auth_router.router, tags=["Authentication"])
+
+    # Include Media Upload router
+    from app.routers import media as media_router
+    app.include_router(media_router.router, tags=["Media"])
+
+    # Include Localization router
+    from app.routers import localization as localization_router
+    app.include_router(localization_router.router, tags=["Localization"])
+
+    # Include Data Pipeline router
+    from app.routers import pipeline as pipeline_router
+    app.include_router(pipeline_router.router, tags=["Data Pipeline"])
+
+    # Include Analytics Dashboard router
+    from app.routers import dashboard as dashboard_router
+    app.include_router(dashboard_router.router, tags=["Dashboard"])
+
+    # Include Performance & Caching router
+    from app.routers import performance as performance_router
+    app.include_router(performance_router.router, tags=["Performance"])
+
     logger.info("✅ Decide9ja Backend Started")
     logger.info(f"   Environment: {ENVIRONMENT}")
     logger.info(f"   Rate Limiting: {RATE_LIMITING_ENABLED}")
@@ -258,6 +282,12 @@ async def startup_event():
     logger.info(f"   Search API: /api/search")
     logger.info(f"   Broadcast API: /api/broadcast")
     logger.info(f"   Constituency API: /api/constituency")
+    logger.info(f"   Auth API: /api/auth")
+    logger.info(f"   Media API: /api/media")
+    logger.info(f"   Localization API: /api/localization")
+    logger.info(f"   Data Pipeline API: /api/pipeline")
+    logger.info(f"   Dashboard API: /api/dashboard")
+    logger.info(f"   Performance API: /api/performance")
 
 
 # ===========================================
