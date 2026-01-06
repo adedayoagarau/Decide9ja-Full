@@ -56,6 +56,10 @@ from app.services.election_2027.polling_system import (
     get_poll_display,
     get_results_display
 )
+from app.services.gamification_service import GamificationService
+from app.services.fact_check_service import FactCheckService
+from app.services.community_service import CommunityService
+from app.services.news_digest_service import NewsDigestService
 
 logger = logging.getLogger(__name__)
 
@@ -347,8 +351,299 @@ Say 'who is running' for full candidate list.
 Say 'follow [name]' to track a candidate."""
 
     # ===========================================
-    # INTELLIGENT RETRIEVAL
+    # PROACTIVE MESSAGING & COMMUNITY HANDLERS
     # ===========================================
+
+    # Subscribe to daily digest
+    if understanding.intent == Intent.SUBSCRIBE_DIGEST:
+        try:
+            from app.services.twilio_whatsapp import hash_phone
+            user_hash = hash_phone(state.phone)
+            digest_service = NewsDigestService()
+            frequency = understanding.entities.get("frequency", "daily")
+            success = digest_service.subscribe_user(user_hash, frequency)
+            if success:
+                return f"""✅ *Subscribed to {frequency.title()} Digest!*
+
+You'll receive political news and updates {frequency} at 7 AM WAT.
+
+📰 What you'll get:
+• Breaking political news
+• Policy updates and explainers
+• 2027 election updates
+• Local updates for {state.state or 'your state'}
+
+Reply "unsubscribe" anytime to stop.
+
+Is there anything specific you want me to focus on? (e.g., elections, economy, security)"""
+            else:
+                return "You're already subscribed to the digest! Reply 'unsubscribe' to stop receiving updates."
+        except Exception as e:
+            logger.error(f"Subscribe error: {e}")
+            return "Sorry, I couldn't process your subscription. Please try again later."
+
+    # Unsubscribe from digest
+    if understanding.intent == Intent.UNSUBSCRIBE_DIGEST:
+        try:
+            from app.services.twilio_whatsapp import hash_phone
+            user_hash = hash_phone(state.phone)
+            digest_service = NewsDigestService()
+            success = digest_service.unsubscribe_user(user_hash)
+            if success:
+                return """✅ *Unsubscribed from Digest*
+
+You won't receive automatic updates anymore.
+
+You can still:
+• Ask me questions anytime
+• Say "subscribe" to get updates again
+• Follow specific politicians for their news
+
+Anything else I can help with?"""
+            else:
+                return "You're not currently subscribed to any digest. Say 'subscribe' to start receiving updates."
+        except Exception as e:
+            logger.error(f"Unsubscribe error: {e}")
+            return "Sorry, I couldn't process that. Please try again."
+
+    # Fact-check / Verify claim
+    if understanding.intent == Intent.VERIFY_CLAIM:
+        try:
+            claim = understanding.entities.get("claim", text)
+            # Clean up common prefixes
+            for prefix in ["verify", "fact check", "is it true that", "check if"]:
+                if claim.lower().startswith(prefix):
+                    claim = claim[len(prefix):].strip()
+
+            from app.services.twilio_whatsapp import hash_phone
+            user_hash = hash_phone(state.phone)
+            fact_service = FactCheckService()
+            result = fact_service.check_claim(claim, user_hash)
+
+            if result.get("found"):
+                fc = result["fact_check"]
+                verdict_emoji = {
+                    "true": "✅",
+                    "mostly_true": "🟢",
+                    "half_true": "🟡",
+                    "mostly_false": "🟠",
+                    "false": "❌",
+                    "unverifiable": "❓"
+                }
+                emoji = verdict_emoji.get(fc.get("verdict", ""), "🔍")
+                return f"""{emoji} *Fact Check Result*
+
+📋 *Claim:* {claim[:100]}...
+
+🔍 *Verdict:* {fc.get('verdict', 'Unknown').replace('_', ' ').title()}
+
+📝 *Explanation:*
+{fc.get('explanation', 'No explanation available')[:400]}
+
+📰 *Sources:* {len(fc.get('sources', []))} verified source(s)
+
+Want me to explain more about this topic?"""
+            else:
+                # Submit for review
+                request_id = result.get("request_id", "pending")
+                return f"""🔍 *Fact Check Request Submitted*
+
+I'm checking: "{claim[:80]}..."
+
+This claim hasn't been verified yet. Your request has been submitted for review by our fact-checkers.
+
+📋 Request ID: {request_id}
+
+I'll check our database and news sources. You can also:
+• Ask me to explain the topic
+• Share where you heard this claim
+• Check back later for updates
+
+Want me to search for related news on this topic?"""
+        except Exception as e:
+            logger.error(f"Fact check error: {e}")
+            return "Sorry, I couldn't process that fact-check. Please try again with a clearer claim."
+
+    # Report community issue
+    if understanding.intent == Intent.REPORT_COMMUNITY_ISSUE:
+        # Start the community issue reporting flow
+        state.flow = ConversationFlow.ISSUE_FLOW
+        state.flow_step = 0
+        state.flow_data = {
+            "type": "community",
+            "initial_description": understanding.entities.get("description", text)
+        }
+
+        category = understanding.entities.get("category", "")
+        category_options = """
+📂 *Issue Categories:*
+1️⃣ Roads/Potholes
+2️⃣ Electricity (NEPA)
+3️⃣ Water Supply
+4️⃣ Security
+5️⃣ Sanitation/Waste
+6️⃣ Education
+7️⃣ Health
+8️⃣ Other
+
+Reply with the number or name of the category."""
+
+        if category:
+            state.flow_data["category"] = category
+            state.flow_step = 1
+            return f"""📍 *Reporting: {category.title()} Issue*
+
+Got it! Now I need more details:
+
+1. What's the exact location? (Street, area, LGA)
+2. Brief description of the problem
+
+Please share the location first:"""
+
+        return f"""📢 *Report a Community Issue*
+
+I'll help you report this issue to the relevant authorities and track it.
+
+{category_options}"""
+
+    # My points / civic score
+    if understanding.intent == Intent.MY_POINTS:
+        try:
+            from app.services.twilio_whatsapp import hash_phone
+            user_hash = hash_phone(state.phone)
+            gamification = GamificationService()
+            profile = gamification.get_profile(user_hash, state.name, state.state, state.lga)
+
+            # Format badges
+            badges_text = ""
+            if profile.get("badges"):
+                badges_text = "\n🏅 *Badges:* " + " ".join(profile["badges"][:5])
+
+            streak_emoji = "🔥" if profile.get("current_streak", 0) >= 3 else "📅"
+
+            return f"""🏆 *Your Civic Score*
+
+👤 *{profile.get('display_name', state.name or 'Citizen')}*
+📍 {profile.get('state', state.state or 'Nigeria')}
+
+⭐ *Total Points:* {profile.get('total_points', 0):,}
+📊 *Level:* {profile.get('level', 1)} - {profile.get('title', 'Civic Observer')}
+{streak_emoji} *Current Streak:* {profile.get('current_streak', 0)} days{badges_text}
+
+📈 *This Week:* {profile.get('points_this_week', 0)} points
+📆 *This Month:* {profile.get('points_this_month', 0)} points
+
+💡 *Earn more points by:*
+• Asking questions (+5)
+• Reporting issues (+20)
+• Verifying facts (+15)
+• Daily check-ins (+10)
+
+Say 'leaderboard' to see top citizens!"""
+        except Exception as e:
+            logger.error(f"Points error: {e}")
+            return "Sorry, I couldn't load your points. Please try again."
+
+    # Leaderboard
+    if understanding.intent == Intent.LEADERBOARD:
+        try:
+            from app.services.twilio_whatsapp import hash_phone
+            user_hash = hash_phone(state.phone)
+            gamification = GamificationService()
+            leaderboard = gamification.get_leaderboard(
+                state=state.state,
+                lga=state.lga,
+                user_hash=user_hash
+            )
+
+            location = state.lga or state.state or "Nigeria"
+
+            text = f"""🏆 *{location} Leaderboard*
+
+"""
+            medals = ["🥇", "🥈", "🥉", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "🔟"]
+
+            for i, entry in enumerate(leaderboard.get("top_10", [])[:10]):
+                medal = medals[i] if i < len(medals) else f"{i+1}."
+                name = entry.get("display_name", "Anonymous")[:15]
+                points = entry.get("total_points", 0)
+                level = entry.get("level", 1)
+                text += f"{medal} {name} - {points:,} pts (Lv.{level})\n"
+
+            # User's position if not in top 10
+            user_rank = leaderboard.get("user_rank")
+            if user_rank and user_rank > 10:
+                text += f"\n📍 *Your rank:* #{user_rank}"
+
+            text += f"""
+
+🎯 *Weekly Challenge:*
+Be more active to climb the ranks!
+
+Say 'my points' to see your score."""
+
+            return text
+        except Exception as e:
+            logger.error(f"Leaderboard error: {e}")
+            return "Sorry, I couldn't load the leaderboard. Please try again."
+
+    # My civic profile (detailed)
+    if understanding.intent == Intent.MY_CIVIC_PROFILE:
+        try:
+            from app.services.twilio_whatsapp import hash_phone
+            user_hash = hash_phone(state.phone)
+            gamification = GamificationService()
+            profile = gamification.get_profile(user_hash, state.name, state.state, state.lga)
+
+            # Badge details
+            badges_section = ""
+            all_badges = profile.get("all_badges", [])
+            earned = profile.get("badges", [])
+
+            if earned:
+                badges_section = "\n\n🏅 *Your Badges:*\n"
+                for badge in earned[:5]:
+                    badges_section += f"✅ {badge}\n"
+
+            # Action counts
+            actions = profile.get("action_counts", {})
+            actions_section = ""
+            if actions:
+                actions_section = "\n\n📊 *Your Activity:*\n"
+                action_names = {
+                    "daily_login": "Daily Logins",
+                    "question_asked": "Questions Asked",
+                    "issue_reported": "Issues Reported",
+                    "fact_checked": "Fact Checks",
+                    "poll_voted": "Polls Voted"
+                }
+                for action, count in actions.items():
+                    name = action_names.get(action, action.replace("_", " ").title())
+                    actions_section += f"• {name}: {count}\n"
+
+            return f"""👤 *Your Civic Profile*
+
+📛 *Name:* {profile.get('display_name', state.name or 'Citizen')}
+📍 *Location:* {profile.get('lga', state.lga or '')} {profile.get('state', state.state or 'Nigeria')}
+
+⭐ *Total Points:* {profile.get('total_points', 0):,}
+📊 *Level:* {profile.get('level', 1)}
+🎖️ *Title:* {profile.get('title', 'Civic Observer')}
+
+🔥 *Streaks:*
+• Current: {profile.get('current_streak', 0)} days
+• Longest: {profile.get('longest_streak', 0)} days{badges_section}{actions_section}
+
+📅 *Member Since:* {profile.get('joined_at', 'Recently')[:10] if profile.get('joined_at') else 'Recently'}
+
+Keep engaging to earn more badges and climb the ranks! 🚀"""
+        except Exception as e:
+            logger.error(f"Profile error: {e}")
+            return "Sorry, I couldn't load your profile. Please try again."
+
+    # ===========================================
+    # INTELLIGENT RETRIEVAL
+    # ============================================
     retrieval_result = await intelligent_retrieve(
         understanding=understanding,
         user_state=state.state,
