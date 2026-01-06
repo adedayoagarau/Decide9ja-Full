@@ -256,6 +256,99 @@ class ChatHistory(Base):
     intent = Column(String(50))
     
 
+class UserSubscription(Base):
+    """
+    User subscriptions for notifications.
+    Tracks what politicians, issues, and topics users want alerts for.
+    """
+    __tablename__ = "user_subscriptions"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    user_hash = Column(String(64), nullable=False, index=True)  # SHA256 of phone
+
+    # Subscription type
+    subscription_type = Column(String(50), nullable=False, index=True)  # politician, issue, topic, state
+    target_id = Column(String(200), nullable=False, index=True)  # politician slug, issue_id, topic name, or state
+    target_name = Column(String(300))  # Human readable name for display
+
+    # Notification preferences
+    notify_news = Column(Boolean, default=True)  # Notify on news mentions
+    notify_updates = Column(Boolean, default=True)  # Notify on status updates
+    notify_daily_digest = Column(Boolean, default=False)  # Include in daily digest
+
+    # Status
+    is_active = Column(Boolean, default=True, index=True)
+
+    # Timestamps
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+class Notification(Base):
+    """
+    Notifications to be sent to users.
+    Central queue for all notification types.
+    """
+    __tablename__ = "notifications"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    notification_id = Column(String(50), unique=True, nullable=False, index=True)
+
+    # Target user
+    user_hash = Column(String(64), nullable=False, index=True)
+
+    # Notification content
+    notification_type = Column(String(50), nullable=False, index=True)  # news_alert, issue_update, daily_digest, election_reminder
+    title = Column(String(500), nullable=False)
+    body = Column(Text, nullable=False)
+
+    # Reference to trigger
+    reference_type = Column(String(50))  # politician, issue, article, election
+    reference_id = Column(String(200))  # The ID of the referenced item
+    reference_url = Column(String(1000))  # Optional URL for more info
+
+    # Priority and scheduling
+    priority = Column(String(20), default="normal")  # low, normal, high, urgent
+    scheduled_for = Column(DateTime)  # When to send (null = immediately)
+
+    # Status
+    status = Column(String(20), default="pending", index=True)  # pending, sent, failed, cancelled
+
+    # Delivery tracking
+    attempts = Column(Integer, default=0)
+    last_attempt = Column(DateTime)
+    sent_at = Column(DateTime)
+    error_message = Column(Text)
+
+    # Channel used
+    channel = Column(String(20), default="whatsapp")  # whatsapp, sms, web_push
+
+    # Timestamps
+    created_at = Column(DateTime, server_default=func.now())
+    expires_at = Column(DateTime)  # Don't send if expired
+
+
+class DailyDigest(Base):
+    """
+    Aggregated daily digest for users.
+    Sent once per day with summary of tracked items.
+    """
+    __tablename__ = "daily_digests"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    user_hash = Column(String(64), nullable=False, index=True)
+    digest_date = Column(DateTime, nullable=False, index=True)
+
+    # Content (JSON structure)
+    content_json = Column(Text)  # JSON with sections: politicians, issues, news
+
+    # Status
+    status = Column(String(20), default="pending")  # pending, sent, failed
+    sent_at = Column(DateTime)
+
+    created_at = Column(DateTime, server_default=func.now())
+
+
 class UserReport(Base):
     """
     Issues reported by WhatsApp users.
@@ -288,6 +381,617 @@ class UserReport(Base):
     
     created_at = Column(DateTime, server_default=func.now())
     reviewed_at = Column(DateTime)
+
+
+class Bill(Base):
+    """
+    Legislative bills tracked from National Assembly.
+    Tracks bills from introduction through passage.
+    """
+    __tablename__ = "bills"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    bill_id = Column(String(100), unique=True, nullable=False, index=True)  # e.g., "HB.123.2024" or "SB.456.2024"
+
+    # Basic info
+    title = Column(String(1000), nullable=False)
+    short_title = Column(String(200))  # Abbreviated title for display
+    description = Column(Text)
+    bill_type = Column(String(50), index=True)  # executive, private_member, appropriation, constitutional
+
+    # Chamber
+    chamber = Column(String(20), nullable=False, index=True)  # senate, house
+    originating_chamber = Column(String(20))  # senate or house
+
+    # Sponsors
+    sponsor_slug = Column(String(200), index=True)  # Primary sponsor politician slug
+    sponsor_name = Column(String(300))
+    co_sponsors_json = Column(Text)  # JSON array of co-sponsor slugs
+
+    # Status tracking
+    status = Column(String(50), default="introduced", index=True)  # introduced, first_reading, second_reading, committee, third_reading, passed, presidential_assent, enacted, rejected, withdrawn
+    current_stage = Column(String(100))  # Detailed stage description
+    introduced_date = Column(DateTime, index=True)
+    last_action_date = Column(DateTime, index=True)
+    last_action = Column(String(500))
+
+    # Timeline (JSON array of actions)
+    timeline_json = Column(Text)  # [{date, action, chamber, details}, ...]
+
+    # Content
+    full_text_url = Column(String(1000))  # Link to bill text
+    summary = Column(Text)  # AI-generated or official summary
+
+    # Classification
+    category = Column(String(100), index=True)  # health, education, finance, security, infrastructure
+    tags_json = Column(Text)  # JSON array of tags
+    states_affected_json = Column(Text)  # JSON array of states affected (null = nationwide)
+
+    # Voting results (after passed/rejected)
+    ayes_count = Column(Integer)
+    nays_count = Column(Integer)
+    abstentions_count = Column(Integer)
+    vote_date = Column(DateTime)
+
+    # Metadata
+    source_url = Column(String(1000))
+    last_scraped = Column(DateTime)
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+class Vote(Base):
+    """
+    Individual votes cast by politicians on bills or motions.
+    Tracks each politician's voting record.
+    """
+    __tablename__ = "votes"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    vote_id = Column(String(100), unique=True, nullable=False, index=True)  # e.g., "vote-SB.123-tinubu-2024-01-15"
+
+    # Bill/Motion being voted on
+    bill_id = Column(String(100), index=True)  # Links to Bill.bill_id
+    motion_title = Column(String(500))  # For non-bill votes (motions, resolutions)
+    motion_description = Column(Text)
+
+    # Vote session
+    session_id = Column(String(100), index=True)  # Links to VotingSession
+    chamber = Column(String(20), nullable=False, index=True)  # senate, house
+    vote_date = Column(DateTime, nullable=False, index=True)
+
+    # Politician casting the vote
+    politician_slug = Column(String(200), nullable=False, index=True)
+    politician_name = Column(String(300))
+    politician_party = Column(String(20), index=True)
+    politician_state = Column(String(50), index=True)
+
+    # The vote itself
+    vote_cast = Column(String(20), nullable=False, index=True)  # aye, nay, abstain, absent, excused
+
+    # Context
+    party_position = Column(String(20))  # What the party leadership recommended
+    voted_with_party = Column(Boolean)  # Did they follow party line?
+
+    # Source
+    source_url = Column(String(1000))
+    verified = Column(Boolean, default=False)
+
+    created_at = Column(DateTime, server_default=func.now())
+
+
+class VotingSession(Base):
+    """
+    A voting session in the legislature.
+    Groups multiple individual votes together.
+    """
+    __tablename__ = "voting_sessions"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    session_id = Column(String(100), unique=True, nullable=False, index=True)
+
+    # Session details
+    chamber = Column(String(20), nullable=False, index=True)  # senate, house
+    session_date = Column(DateTime, nullable=False, index=True)
+    session_type = Column(String(50))  # plenary, committee, joint
+
+    # What was voted on
+    bill_id = Column(String(100), index=True)  # Links to Bill.bill_id
+    motion_title = Column(String(500))
+    vote_type = Column(String(50))  # second_reading, third_reading, amendment, motion, resolution
+
+    # Results
+    total_votes = Column(Integer)
+    ayes = Column(Integer)
+    nays = Column(Integer)
+    abstentions = Column(Integer)
+    absent = Column(Integer)
+    result = Column(String(20))  # passed, rejected, tied
+
+    # Quorum
+    required_majority = Column(String(50))  # simple, two-thirds, absolute
+    quorum_present = Column(Boolean, default=True)
+
+    # Party breakdown (JSON)
+    party_breakdown_json = Column(Text)  # {APC: {aye: X, nay: Y}, PDP: {...}}
+
+    # Source
+    source_url = Column(String(1000))
+    source_document = Column(String(500))  # Hansard reference
+
+    created_at = Column(DateTime, server_default=func.now())
+
+
+class PoliticianVotingRecord(Base):
+    """
+    Aggregated voting statistics for politicians.
+    Pre-calculated for performance.
+    """
+    __tablename__ = "politician_voting_records"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    politician_slug = Column(String(200), unique=True, nullable=False, index=True)
+
+    # Overall stats
+    total_votes = Column(Integer, default=0)
+    total_ayes = Column(Integer, default=0)
+    total_nays = Column(Integer, default=0)
+    total_abstentions = Column(Integer, default=0)
+    total_absent = Column(Integer, default=0)
+
+    # Percentages
+    attendance_rate = Column(Float)  # % of sessions attended
+    participation_rate = Column(Float)  # % of votes cast (not abstained/absent)
+    party_loyalty_rate = Column(Float)  # % voting with party
+
+    # By category (JSON: {category: {aye: X, nay: Y}})
+    votes_by_category_json = Column(Text)
+
+    # Notable votes (JSON array of significant votes)
+    notable_votes_json = Column(Text)
+
+    # Bills sponsored/co-sponsored
+    bills_sponsored = Column(Integer, default=0)
+    bills_co_sponsored = Column(Integer, default=0)
+    bills_passed = Column(Integer, default=0)
+
+    # Last updated
+    last_calculated = Column(DateTime, server_default=func.now())
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+# ===========================================
+# BROADCAST & PROACTIVE MESSAGING MODELS
+# ===========================================
+
+class BroadcastCampaign(Base):
+    """
+    Broadcast campaign for proactive WhatsApp messaging.
+    Supports targeted campaigns by state, LGA, interests, etc.
+    """
+    __tablename__ = "broadcast_campaigns"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    campaign_id = Column(String(100), unique=True, nullable=False, index=True)
+
+    # Campaign info
+    name = Column(String(200), nullable=False)
+    description = Column(Text)
+    category = Column(String(50), index=True)  # news, election, civic, alert, digest
+
+    # Message content
+    message_content = Column(Text, nullable=False)
+    message_title = Column(String(200))
+    cta_text = Column(String(200))  # Call to action
+    cta_options_json = Column(Text)  # JSON array of reply options
+
+    # Audience targeting (JSON)
+    audience_criteria_json = Column(Text)  # JSON with targeting rules
+
+    # Scheduling
+    priority = Column(String(20), default="normal")  # breaking, high, normal, low
+    scheduled_at = Column(DateTime, index=True)
+    send_window_start = Column(Integer)  # Hour (0-23)
+    send_window_end = Column(Integer)
+
+    # Status
+    status = Column(String(20), default="draft", index=True)  # draft, scheduled, sending, completed, paused, cancelled
+
+    # Statistics
+    total_recipients = Column(Integer, default=0)
+    sent_count = Column(Integer, default=0)
+    delivered_count = Column(Integer, default=0)
+    read_count = Column(Integer, default=0)
+    replied_count = Column(Integer, default=0)
+    failed_count = Column(Integer, default=0)
+
+    # Timestamps
+    created_by = Column(String(100))
+    started_at = Column(DateTime)
+    completed_at = Column(DateTime)
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+class BroadcastMessage(Base):
+    """
+    Individual messages in a broadcast campaign.
+    Tracks delivery status per recipient.
+    """
+    __tablename__ = "broadcast_messages"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    message_id = Column(String(100), unique=True, nullable=False, index=True)
+
+    # Links
+    campaign_id = Column(String(100), index=True)  # Links to BroadcastCampaign
+    user_hash = Column(String(64), nullable=False, index=True)
+
+    # Content (personalized)
+    content = Column(Text, nullable=False)
+
+    # Delivery
+    priority = Column(String(20), default="normal")
+    status = Column(String(20), default="queued", index=True)  # queued, sent, delivered, read, failed
+    twilio_sid = Column(String(100))  # Twilio message SID
+
+    # Tracking
+    queued_at = Column(DateTime, server_default=func.now())
+    sent_at = Column(DateTime)
+    delivered_at = Column(DateTime)
+    read_at = Column(DateTime)
+    failed_at = Column(DateTime)
+    error_message = Column(Text)
+
+    # Response tracking
+    user_replied = Column(Boolean, default=False)
+    reply_content = Column(Text)
+    reply_at = Column(DateTime)
+
+
+class DigestSubscription(Base):
+    """
+    User subscriptions to news digests.
+    Controls what and when users receive digests.
+    """
+    __tablename__ = "digest_subscriptions"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    user_hash = Column(String(64), unique=True, nullable=False, index=True)
+
+    # Subscription settings
+    is_active = Column(Boolean, default=True, index=True)
+    frequency = Column(String(20), default="daily")  # daily, weekly, breaking
+    send_time = Column(String(10), default="07:00")  # HH:MM in WAT
+    send_days_json = Column(Text)  # JSON array [0,1,2,3,4,5,6] for days of week
+
+    # Content preferences
+    categories_json = Column(Text)  # JSON array of preferred categories
+    states_of_interest_json = Column(Text)  # JSON array of states
+    max_items = Column(Integer, default=5)
+    include_polls = Column(Boolean, default=True)
+    include_election_updates = Column(Boolean, default=True)
+    language = Column(String(10), default="en")
+
+    # Stats
+    digests_sent = Column(Integer, default=0)
+    last_sent_at = Column(DateTime)
+
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+# ===========================================
+# FACT-CHECK MODELS
+# ===========================================
+
+class FactCheck(Base):
+    """
+    Fact-checked political claims.
+    Stores verified claims with verdicts and sources.
+    """
+    __tablename__ = "fact_checks"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    fact_check_id = Column(String(100), unique=True, nullable=False, index=True)
+
+    # The claim
+    claim = Column(Text, nullable=False)
+    claim_hash = Column(String(64), nullable=False, index=True)  # For deduplication
+    claimant = Column(String(200))  # Who made the claim
+    claim_date = Column(DateTime)
+    claim_context = Column(Text)
+
+    # Verdict
+    verdict = Column(String(30), nullable=False, index=True)  # true, mostly_true, half_true, mostly_false, false, unverifiable, satire, outdated
+    explanation = Column(Text, nullable=False)
+
+    # Sources (JSON array)
+    sources_json = Column(Text)  # [{name, url, credibility}, ...]
+
+    # Classification
+    category = Column(String(50), index=True)  # election, politician, policy, economy, security, statistics
+    tags_json = Column(Text)
+
+    # Tracking
+    is_viral = Column(Boolean, default=False, index=True)
+    alert_level = Column(String(20), default="normal")  # normal, elevated, critical
+    times_queried = Column(Integer, default=0)
+
+    # Verification
+    checked_by = Column(String(100))
+    verified = Column(Boolean, default=False)
+
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+class FactCheckRequest(Base):
+    """
+    User requests for fact-checking.
+    Queue of claims submitted by users.
+    """
+    __tablename__ = "fact_check_requests"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    request_id = Column(String(100), unique=True, nullable=False, index=True)
+
+    # Submitter
+    user_hash = Column(String(64), nullable=False, index=True)
+
+    # The claim
+    claim = Column(Text, nullable=False)
+    claim_hash = Column(String(64), index=True)
+
+    # Status
+    status = Column(String(20), default="pending", index=True)  # pending, processing, completed, rejected
+    result_id = Column(String(100))  # Links to FactCheck.fact_check_id when completed
+
+    # Processing
+    assigned_to = Column(String(100))
+    notes = Column(Text)
+
+    submitted_at = Column(DateTime, server_default=func.now())
+    processed_at = Column(DateTime)
+
+
+# ===========================================
+# COMMUNITY & GAMIFICATION MODELS
+# ===========================================
+
+class CommunityIssue(Base):
+    """
+    Community-reported issues.
+    Crowdsourced civic problem reporting.
+    """
+    __tablename__ = "community_issues"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    issue_id = Column(String(50), unique=True, nullable=False, index=True)  # e.g., ISS00123
+
+    # Issue details
+    title = Column(String(200), nullable=False)
+    description = Column(Text, nullable=False)
+    category = Column(String(50), nullable=False, index=True)  # roads, electricity, water, security, sanitation, etc.
+
+    # Location
+    state = Column(String(50), nullable=False, index=True)
+    lga = Column(String(100), nullable=False, index=True)
+    ward = Column(String(100))
+    address = Column(String(500))
+    latitude = Column(Float)
+    longitude = Column(Float)
+
+    # Reporter
+    reporter_hash = Column(String(64), nullable=False, index=True)
+    reporter_name = Column(String(100))
+
+    # Status
+    status = Column(String(20), default="reported", index=True)  # reported, verified, acknowledged, in_progress, resolved, closed, rejected
+
+    # Engagement
+    upvotes = Column(Integer, default=0)
+    downvotes = Column(Integer, default=0)
+    verification_count = Column(Integer, default=0)
+    comment_count = Column(Integer, default=0)
+
+    # Authority tracking
+    responsible_authority = Column(String(200))
+    official_response = Column(Text)
+    reference_number = Column(String(100))
+
+    # Media (JSON array of URLs)
+    photo_urls_json = Column(Text)
+
+    # Timestamps
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+    resolved_at = Column(DateTime)
+
+
+class CommunityIssueUpdate(Base):
+    """
+    Updates to community issues.
+    Comments, status changes, photos.
+    """
+    __tablename__ = "community_issue_updates"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    update_id = Column(String(100), unique=True, nullable=False, index=True)
+
+    # Links
+    issue_id = Column(String(50), nullable=False, index=True)  # Links to CommunityIssue
+
+    # Update content
+    update_type = Column(String(30), nullable=False)  # status_change, comment, photo_update, verification, official_response
+    content = Column(Text, nullable=False)
+    photo_url = Column(String(500))
+
+    # Author
+    author_hash = Column(String(64), nullable=False)
+    author_name = Column(String(100))
+    is_official = Column(Boolean, default=False)
+
+    created_at = Column(DateTime, server_default=func.now())
+
+
+class CommunityIssueVote(Base):
+    """
+    Votes on community issues.
+    Tracks who voted on what.
+    """
+    __tablename__ = "community_issue_votes"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    issue_id = Column(String(50), nullable=False, index=True)
+    voter_hash = Column(String(64), nullable=False, index=True)
+    vote_type = Column(String(10), nullable=False)  # up, down
+
+    created_at = Column(DateTime, server_default=func.now())
+
+    # Unique constraint: one vote per user per issue
+    __table_args__ = (
+        # Handled in code for SQLite compatibility
+    )
+
+
+class CivicProfile(Base):
+    """
+    User's civic engagement profile.
+    Gamification tracking: points, badges, streaks.
+    """
+    __tablename__ = "civic_profiles"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    user_hash = Column(String(64), unique=True, nullable=False, index=True)
+
+    # Display
+    display_name = Column(String(100))
+    state = Column(String(50), index=True)
+    lga = Column(String(100))
+
+    # Points
+    total_points = Column(Integer, default=0, index=True)
+    points_this_month = Column(Integer, default=0)
+    points_this_week = Column(Integer, default=0)
+
+    # Level
+    level = Column(Integer, default=1)
+    title = Column(String(100), default="Civic Observer")
+
+    # Streaks
+    current_streak = Column(Integer, default=0)
+    longest_streak = Column(Integer, default=0)
+    last_active_date = Column(DateTime)
+
+    # Badges (JSON array of badge IDs)
+    badges_json = Column(Text)
+
+    # Action counts (JSON: {action: count})
+    action_counts_json = Column(Text)
+
+    # Timestamps
+    joined_at = Column(DateTime, server_default=func.now())
+    last_points_earned = Column(DateTime)
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+class PointTransaction(Base):
+    """
+    Point earning transactions.
+    Audit log of all points earned.
+    """
+    __tablename__ = "point_transactions"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    transaction_id = Column(String(100), unique=True, nullable=False, index=True)
+
+    # User
+    user_hash = Column(String(64), nullable=False, index=True)
+
+    # Transaction
+    action = Column(String(50), nullable=False, index=True)  # daily_login, report_issue, verify_issue, etc.
+    points = Column(Integer, nullable=False)
+    description = Column(String(500))
+
+    # Metadata (JSON)
+    metadata_json = Column(Text)
+
+    created_at = Column(DateTime, server_default=func.now())
+
+
+# ===========================================
+# SECURITY & AUTHENTICATION MODELS
+# ===========================================
+
+class APIKeyDB(Base):
+    """
+    Persistent API key storage.
+    Keys are hashed for security.
+    """
+    __tablename__ = "api_keys"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    key_id = Column(String(50), unique=True, nullable=False, index=True)
+    key_hash = Column(String(64), unique=True, nullable=False, index=True)
+
+    # Metadata
+    name = Column(String(200), nullable=False)
+    description = Column(Text)
+    role = Column(String(50), nullable=False, index=True)  # admin, moderator, viewer, api
+    scopes_json = Column(Text)  # JSON array of scopes
+
+    # Ownership
+    created_by = Column(String(100), nullable=False)
+    organization = Column(String(200))
+
+    # Status
+    is_active = Column(Boolean, default=True, index=True)
+    rate_limit = Column(Integer, default=1000)  # requests per hour
+
+    # Usage tracking
+    last_used = Column(DateTime)
+    usage_count = Column(Integer, default=0)
+
+    # Timestamps
+    expires_at = Column(DateTime)
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+class AuditLog(Base):
+    """
+    Audit log for tracking admin operations.
+    Immutable record for compliance.
+    """
+    __tablename__ = "audit_logs"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    log_id = Column(String(50), unique=True, nullable=False, index=True)
+
+    # Action details
+    action = Column(String(100), nullable=False, index=True)
+    resource_type = Column(String(50), nullable=False, index=True)
+    resource_id = Column(String(100), index=True)
+    details_json = Column(Text)
+
+    # Actor
+    actor_id = Column(String(100), nullable=False, index=True)
+    actor_role = Column(String(50))
+    actor_name = Column(String(200))
+
+    # Request context
+    ip_address = Column(String(45))
+    user_agent = Column(String(500))
+    request_id = Column(String(100))
+
+    # Outcome
+    success = Column(Boolean, default=True)
+    error_message = Column(Text)
+
+    # Timestamp
+    timestamp = Column(DateTime, server_default=func.now(), index=True)
 
 
 def init_db():

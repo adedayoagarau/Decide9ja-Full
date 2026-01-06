@@ -55,6 +55,14 @@ class Intent(Enum):
     POLL_RESULTS = "poll_results"
     TRENDING_TOPICS = "trending_topics"
     ELECTION_INFO = "election_info"
+    # Proactive Messaging & Community Intents
+    SUBSCRIBE_DIGEST = "subscribe_digest"
+    UNSUBSCRIBE_DIGEST = "unsubscribe_digest"
+    VERIFY_CLAIM = "verify_claim"
+    REPORT_COMMUNITY_ISSUE = "report_community_issue"
+    MY_POINTS = "my_points"
+    LEADERBOARD = "leaderboard"
+    MY_CIVIC_PROFILE = "my_civic_profile"
 
 
 @dataclass
@@ -165,6 +173,29 @@ QUERY: "What's trending?" / "Trending topics" / "Hot in politics"
 QUERY: "When is the 2027 election?" / "INEC updates"
 → {{"intent": "election_info", "entities": {{}}, "retrieval_strategy": "election_system", "confidence": 0.9, "reasoning": "General 2027 election information"}}
 
+=== COMMUNITY & PROACTIVE MESSAGING EXAMPLES ===
+
+QUERY: "Subscribe" / "Subscribe to daily updates" / "Send me news"
+→ {{"intent": "subscribe_digest", "entities": {{"frequency": "daily"}}, "retrieval_strategy": "none", "confidence": 0.95, "reasoning": "User wants to subscribe to news digest"}}
+
+QUERY: "Unsubscribe" / "Stop sending me messages" / "Cancel subscription"
+→ {{"intent": "unsubscribe_digest", "entities": {{}}, "retrieval_strategy": "none", "confidence": 0.95, "reasoning": "User wants to stop receiving digests"}}
+
+QUERY: "Verify this claim" / "Is it true that Tinubu increased VAT?" / "Fact check: the naira will rise"
+→ {{"intent": "verify_claim", "entities": {{"claim": "the naira will rise"}}, "retrieval_strategy": "rag_search", "confidence": 0.9, "reasoning": "User wants to fact-check a political claim"}}
+
+QUERY: "Report pothole in Ikeja" / "There's no light in my area for 2 weeks" / "Report bad road"
+→ {{"intent": "report_community_issue", "entities": {{"category": "roads", "description": "pothole in Ikeja"}}, "retrieval_strategy": "none", "confidence": 0.9, "reasoning": "User wants to report a community issue"}}
+
+QUERY: "My points" / "How many points do I have?" / "Check my points"
+→ {{"intent": "my_points", "entities": {{}}, "retrieval_strategy": "none", "confidence": 0.95, "reasoning": "User checking their civic engagement points"}}
+
+QUERY: "Leaderboard" / "Who has the most points?" / "Show rankings"
+→ {{"intent": "leaderboard", "entities": {{}}, "retrieval_strategy": "none", "confidence": 0.95, "reasoning": "User wants to see community leaderboard"}}
+
+QUERY: "My profile" / "My civic profile" / "Show my badges"
+→ {{"intent": "my_civic_profile", "entities": {{}}, "retrieval_strategy": "none", "confidence": 0.95, "reasoning": "User wants to see their civic profile"}}
+
 === CLASSIFICATION RULES ===
 1. "latest", "news", "update", "happening", "recent", "heard" → news_query + web_search
 2. "who is" + position (president, governor) → politician_info + position_lookup
@@ -182,6 +213,13 @@ QUERY: "When is the 2027 election?" / "INEC updates"
 14. "polls", "vote in poll" → poll_list or poll_vote + election_system
 15. "poll results", "who is winning" → poll_results + election_system
 16. "trending", "what's hot" → trending_topics + election_system
+17. "subscribe", "send me updates", "daily news" → subscribe_digest + none
+18. "unsubscribe", "stop messages" → unsubscribe_digest + none
+19. "verify", "is it true", "fact check" → verify_claim + rag_search
+20. "report pothole", "no light", "bad road", "report issue" → report_community_issue + none
+21. "my points", "how many points" → my_points + none
+22. "leaderboard", "rankings", "who has most points" → leaderboard + none
+23. "my profile", "my badges", "civic profile" → my_civic_profile + none
 
 Now classify this query: "{query}"
 Return ONLY valid JSON."""
@@ -280,6 +318,14 @@ def _parse_intent(intent_str: str) -> Intent:
         "poll_results": Intent.POLL_RESULTS,
         "trending_topics": Intent.TRENDING_TOPICS,
         "election_info": Intent.ELECTION_INFO,
+        # Proactive Messaging & Community intents
+        "subscribe_digest": Intent.SUBSCRIBE_DIGEST,
+        "unsubscribe_digest": Intent.UNSUBSCRIBE_DIGEST,
+        "verify_claim": Intent.VERIFY_CLAIM,
+        "report_community_issue": Intent.REPORT_COMMUNITY_ISSUE,
+        "my_points": Intent.MY_POINTS,
+        "leaderboard": Intent.LEADERBOARD,
+        "my_civic_profile": Intent.MY_CIVIC_PROFILE,
     }
     return intent_map.get(intent_str.lower(), Intent.FALLBACK)
 
