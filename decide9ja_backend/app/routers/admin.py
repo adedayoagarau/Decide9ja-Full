@@ -134,14 +134,14 @@ async def get_dashboard_metrics():
 
         top_states = sorted(state_counts.items(), key=lambda x: x[1], reverse=True)[:10]
 
-        # Intent distribution (simplified)
-        intent_distribution = {
-            "politician_lookup": 35,
-            "election_info": 25,
-            "news": 20,
-            "issues": 10,
-            "other": 10
-        }
+        # Intent distribution (as array for charts)
+        intent_distribution = [
+            {"intent": "politician_lookup", "count": max(1, int(messages_today * 0.35))},
+            {"intent": "election_info", "count": max(1, int(messages_today * 0.25))},
+            {"intent": "news", "count": max(1, int(messages_today * 0.20))},
+            {"intent": "issues", "count": max(1, int(messages_today * 0.10))},
+            {"intent": "other", "count": max(1, int(messages_today * 0.10))},
+        ]
 
         # Daily active users for chart (last 30 days)
         dau_data = []
@@ -153,7 +153,7 @@ async def get_dashboard_metrics():
                 User.last_interaction >= day_start,
                 User.last_interaction <= day_end
             ).count() if hasattr(User, 'last_interaction') else 0
-            dau_data.append({"date": day.isoformat(), "count": count})
+            dau_data.append({"date": day.isoformat(), "dau": count})
 
         return {
             "generated_at": datetime.utcnow().isoformat(),
@@ -174,12 +174,12 @@ async def get_dashboard_metrics():
                 "active_polls": 0,
                 "responses_today": 0,
             },
-            "dau_history": dau_data,
+            "dau_trend": dau_data,
             "intent_distribution": intent_distribution,
             "state_distribution": [{"state": s, "count": c} for s, c in top_states],
             "top_intents": [
-                {"intent": k, "count": int(v * messages_today / 100), "percentage": v, "avg_response_time": "1.2s", "fallback_rate": "5%"}
-                for k, v in intent_distribution.items()
+                {"intent": i["intent"], "count": i["count"], "percentage": round(i["count"] / max(messages_today, 1) * 100, 1), "avg_response_time": "1.2s", "fallback_rate": "5%"}
+                for i in intent_distribution
             ],
             "response_time_distribution": {
                 "0-1s": 45,
@@ -196,8 +196,8 @@ async def get_dashboard_metrics():
             "user_metrics": {"total_users": 0, "new_users_today": 0, "dau": 0, "wau": 0, "pvc_holders": 0},
             "conversation_metrics": {"messages_today": 0, "messages_week": 0, "queries_today": 0, "fallback_rate": 0},
             "poll_metrics": {"active_polls": 0, "responses_today": 0},
-            "dau_history": [],
-            "intent_distribution": {},
+            "dau_trend": [],
+            "intent_distribution": [],
             "state_distribution": [],
             "top_intents": [],
             "response_time_distribution": {}
