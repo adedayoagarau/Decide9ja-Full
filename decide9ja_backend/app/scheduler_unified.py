@@ -514,6 +514,84 @@ def run_daily_digest():
         raise
 
 
+@with_retry(max_retries=2, base_delay=5.0)
+def run_broadcast_queue_processor():
+    """
+    Process pending broadcast messages and send via Twilio WhatsApp.
+    Frequency: Every 5 minutes
+    """
+    logger.info("📤 Starting broadcast queue processor...")
+
+    try:
+        from app.services.broadcast_sender import get_broadcast_sender
+        from app.utils.async_helpers import run_async_safely
+
+        sender = get_broadcast_sender()
+        result = run_async_safely(sender.process_queue(limit=50))
+
+        logger.info(f"✅ Broadcast queue processor complete: {result}")
+        return result
+
+    except ImportError as e:
+        logger.warning(f"Broadcast sender not available: {e}")
+        return {"skipped": True, "reason": "service_not_available"}
+    except Exception as e:
+        logger.error(f"Broadcast queue error: {e}")
+        raise
+
+
+@with_retry(max_retries=2, base_delay=10.0)
+def run_whatsapp_daily_digest():
+    """
+    Send daily news digest via WhatsApp to subscribed users.
+    Frequency: Daily at 7 AM WAT (6 AM UTC)
+    """
+    logger.info("📰 Starting WhatsApp daily digest job...")
+
+    try:
+        from app.services.broadcast_sender import get_broadcast_sender
+        from app.utils.async_helpers import run_async_safely
+
+        sender = get_broadcast_sender()
+        result = run_async_safely(sender.send_daily_digests())
+
+        logger.info(f"✅ WhatsApp daily digest complete: {result}")
+        return result
+
+    except ImportError as e:
+        logger.warning(f"Broadcast sender not available: {e}")
+        return {"skipped": True, "reason": "service_not_available"}
+    except Exception as e:
+        logger.error(f"WhatsApp daily digest error: {e}")
+        raise
+
+
+@with_retry(max_retries=2, base_delay=10.0)
+def run_whatsapp_weekly_summary():
+    """
+    Send weekly political summary via WhatsApp.
+    Frequency: Sundays at 9 AM WAT (8 AM UTC)
+    """
+    logger.info("📊 Starting WhatsApp weekly summary job...")
+
+    try:
+        from app.services.broadcast_sender import get_broadcast_sender
+        from app.utils.async_helpers import run_async_safely
+
+        sender = get_broadcast_sender()
+        result = run_async_safely(sender.send_weekly_summaries())
+
+        logger.info(f"✅ WhatsApp weekly summary complete: {result}")
+        return result
+
+    except ImportError as e:
+        logger.warning(f"Broadcast sender not available: {e}")
+        return {"skipped": True, "reason": "service_not_available"}
+    except Exception as e:
+        logger.error(f"WhatsApp weekly summary error: {e}")
+        raise
+
+
 def run_health_check():
     """
     Log scheduler health and job metrics.
@@ -671,6 +749,33 @@ def create_scheduler() -> BackgroundScheduler:
         replace_existing=True
     )
 
+    # === Broadcast Queue Processor - Every 5 minutes ===
+    scheduler.add_job(
+        run_broadcast_queue_processor,
+        IntervalTrigger(minutes=5),
+        id="broadcast_queue_processor",
+        name="Process broadcast message queue via Twilio",
+        replace_existing=True
+    )
+
+    # === WhatsApp Daily Digest - Every day at 6 AM UTC (7 AM WAT) ===
+    scheduler.add_job(
+        run_whatsapp_daily_digest,
+        CronTrigger(hour=6, minute=0),
+        id="whatsapp_daily_digest",
+        name="Send WhatsApp daily news digest",
+        replace_existing=True
+    )
+
+    # === WhatsApp Weekly Summary - Sundays at 8 AM UTC (9 AM WAT) ===
+    scheduler.add_job(
+        run_whatsapp_weekly_summary,
+        CronTrigger(day_of_week='sun', hour=8, minute=0),
+        id="whatsapp_weekly_summary",
+        name="Send WhatsApp weekly political summary",
+        replace_existing=True
+    )
+
     return scheduler
 
 
@@ -712,6 +817,9 @@ def run_job_once(job_name: str):
         "health": run_health_check,
         "notifications": run_notification_processor,
         "digest": run_daily_digest,
+        "broadcast": run_broadcast_queue_processor,
+        "whatsapp_digest": run_whatsapp_daily_digest,
+        "whatsapp_weekly": run_whatsapp_weekly_summary,
     }
 
     if job_name not in jobs:
