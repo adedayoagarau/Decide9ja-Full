@@ -921,6 +921,79 @@ class PointTransaction(Base):
     created_at = Column(DateTime, server_default=func.now())
 
 
+# ===========================================
+# SECURITY & AUTHENTICATION MODELS
+# ===========================================
+
+class APIKeyDB(Base):
+    """
+    Persistent API key storage.
+    Keys are hashed for security.
+    """
+    __tablename__ = "api_keys"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    key_id = Column(String(50), unique=True, nullable=False, index=True)
+    key_hash = Column(String(64), unique=True, nullable=False, index=True)
+
+    # Metadata
+    name = Column(String(200), nullable=False)
+    description = Column(Text)
+    role = Column(String(50), nullable=False, index=True)  # admin, moderator, viewer, api
+    scopes_json = Column(Text)  # JSON array of scopes
+
+    # Ownership
+    created_by = Column(String(100), nullable=False)
+    organization = Column(String(200))
+
+    # Status
+    is_active = Column(Boolean, default=True, index=True)
+    rate_limit = Column(Integer, default=1000)  # requests per hour
+
+    # Usage tracking
+    last_used = Column(DateTime)
+    usage_count = Column(Integer, default=0)
+
+    # Timestamps
+    expires_at = Column(DateTime)
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+class AuditLog(Base):
+    """
+    Audit log for tracking admin operations.
+    Immutable record for compliance.
+    """
+    __tablename__ = "audit_logs"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    log_id = Column(String(50), unique=True, nullable=False, index=True)
+
+    # Action details
+    action = Column(String(100), nullable=False, index=True)
+    resource_type = Column(String(50), nullable=False, index=True)
+    resource_id = Column(String(100), index=True)
+    details_json = Column(Text)
+
+    # Actor
+    actor_id = Column(String(100), nullable=False, index=True)
+    actor_role = Column(String(50))
+    actor_name = Column(String(200))
+
+    # Request context
+    ip_address = Column(String(45))
+    user_agent = Column(String(500))
+    request_id = Column(String(100))
+
+    # Outcome
+    success = Column(Boolean, default=True)
+    error_message = Column(Text)
+
+    # Timestamp
+    timestamp = Column(DateTime, server_default=func.now(), index=True)
+
+
 def init_db():
     """Create all tables."""
     Base.metadata.create_all(bind=engine)
