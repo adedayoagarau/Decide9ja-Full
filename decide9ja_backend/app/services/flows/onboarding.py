@@ -103,27 +103,53 @@ async def handle_onboarding(state: UserState, text: str) -> str:
     return TEMPLATES["welcome_new"]
 
 
+def normalize_apostrophes(text: str) -> str:
+    """
+    Normalize various apostrophe/quote characters to standard ASCII apostrophe.
+    Handles smart quotes, curly quotes, and other Unicode variants.
+    """
+    # Map of various apostrophe-like characters to standard apostrophe
+    apostrophe_variants = [
+        '\u2019',  # RIGHT SINGLE QUOTATION MARK (')
+        '\u2018',  # LEFT SINGLE QUOTATION MARK (')
+        '\u02BC',  # MODIFIER LETTER APOSTROPHE (ʼ)
+        '\u02BB',  # MODIFIER LETTER TURNED COMMA (ʻ)
+        '\u0060',  # GRAVE ACCENT (`)
+        '\u00B4',  # ACUTE ACCENT (´)
+        '\u2032',  # PRIME (′)
+    ]
+
+    for char in apostrophe_variants:
+        text = text.replace(char, "'")
+
+    return text
+
+
 def extract_name(text: str) -> Optional[str]:
     """
     Extract name from user input.
     Handles: "John", "My name is John", "I'm John", "Call me John", etc.
     """
     text = text.strip()
-    
+
+    # Normalize apostrophes FIRST (handles smart quotes from WhatsApp, etc.)
+    text = normalize_apostrophes(text)
+
     # Skip if it's just a greeting
     greetings = {"hi", "hello", "hey", "good morning", "good afternoon", "good evening", "yo", "sup"}
     if text.lower() in greetings:
         return None
-    
-    # Remove common prefixes
+
+    # Remove common prefixes (case-insensitive matching)
     prefixes = [
         "my name is ", "i'm ", "i am ", "call me ", "it's ", "its ",
         "this is ", "the name is ", "name is ", "i go by ", "they call me "
     ]
-    
+
     text_lower = text.lower()
     for prefix in prefixes:
         if text_lower.startswith(prefix):
+            # Extract just the name part (everything after the prefix)
             text = text[len(prefix):]
             break
     
