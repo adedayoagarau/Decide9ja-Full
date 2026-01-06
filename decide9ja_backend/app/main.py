@@ -236,6 +236,10 @@ async def startup_event():
     from app.routers import broadcast as broadcast_router
     app.include_router(broadcast_router.router, tags=["Broadcast"])
 
+    # Include Constituency & Community router
+    from app.routers import constituency as constituency_router
+    app.include_router(constituency_router.router, tags=["Constituency"])
+
     logger.info("✅ Decide9ja Backend Started")
     logger.info(f"   Environment: {ENVIRONMENT}")
     logger.info(f"   Rate Limiting: {RATE_LIMITING_ENABLED}")
@@ -253,6 +257,7 @@ async def startup_event():
     logger.info(f"   Chatbot API: /api/chatbot")
     logger.info(f"   Search API: /api/search")
     logger.info(f"   Broadcast API: /api/broadcast")
+    logger.info(f"   Constituency API: /api/constituency")
 
 
 # ===========================================
