@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState, useEffect } from "react";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 const WHATSAPP_LINK = "https://wa.me/2348160179151?text=Hi%20Tade";
 
@@ -76,8 +77,9 @@ export function Header() {
                     ))}
                 </nav>
 
-                {/* CTA Button - Desktop */}
-                <div className="hidden md:flex items-center gap-3">
+                {/* CTA Button + Theme Toggle - Desktop */}
+                <div className="hidden md:flex items-center gap-4">
+                    <ThemeToggle />
                     <a
                         href={WHATSAPP_LINK}
                         target="_blank"
@@ -97,9 +99,11 @@ export function Header() {
                 </div>
 
                 {/* Mobile Menu */}
-                <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-                    <SheetTrigger asChild className="lg:hidden">
-                        <Button variant="ghost" size="icon" className="text-foreground">
+                <div className="flex items-center gap-2 lg:hidden">
+                    <ThemeToggle />
+                    <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+                        <SheetTrigger asChild>
+                            <Button variant="ghost" size="icon" className="text-foreground">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -148,7 +152,8 @@ export function Header() {
                             </a>
                         </nav>
                     </SheetContent>
-                </Sheet>
+                    </Sheet>
+                </div>
             </div>
         </header>
     );

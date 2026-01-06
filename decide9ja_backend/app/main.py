@@ -11,8 +11,7 @@ from datetime import datetime
 from typing import Optional
 from fastapi import FastAPI, Depends, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import Response, FileResponse
-from fastapi.staticfiles import StaticFiles
+from fastapi.responses import Response
 from pydantic import BaseModel, field_validator
 from sqlalchemy.orm import Session
 
@@ -201,12 +200,69 @@ async def startup_event():
     from app.api import election_analytics
     app.include_router(election_analytics.router, tags=["Election Analytics"])
 
-    # Mount static files for admin dashboard
-    import pathlib
-    static_dir = pathlib.Path(__file__).parent / "static"
-    if static_dir.exists():
-        app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
-        logger.info(f"   Static Files: /static")
+    # Include Notifications router
+    from app.routers import notifications as notifications_router
+    app.include_router(notifications_router.router, tags=["Notifications"])
+
+    # Include Politician Comparison router
+    from app.routers import comparison as comparison_router
+    app.include_router(comparison_router.router, tags=["Comparison"])
+
+    # Include Scheduler Status router
+    from app.routers import scheduler_status as scheduler_router
+    app.include_router(scheduler_router.router, tags=["Scheduler"])
+
+    # Include Bills & Voting Records router
+    from app.routers import bills as bills_router
+    app.include_router(bills_router.router, tags=["Bills"])
+
+    # Include User Personalization router
+    from app.routers import personalization as personalization_router
+    app.include_router(personalization_router.router, tags=["Personalization"])
+
+    # Include Election 2027 Enhanced Features router
+    from app.routers import election_2027 as election_2027_router
+    app.include_router(election_2027_router.router, tags=["Election 2027"])
+
+    # Include Chatbot Enhancements router
+    from app.routers import chatbot as chatbot_router
+    app.include_router(chatbot_router.router, tags=["Chatbot"])
+
+    # Include Search & Discovery router
+    from app.routers import search as search_router
+    app.include_router(search_router.router, tags=["Search"])
+
+    # Include Broadcast & Proactive Messaging router
+    from app.routers import broadcast as broadcast_router
+    app.include_router(broadcast_router.router, tags=["Broadcast"])
+
+    # Include Constituency & Community router
+    from app.routers import constituency as constituency_router
+    app.include_router(constituency_router.router, tags=["Constituency"])
+
+    # Include Auth & Security router
+    from app.routers import auth as auth_router
+    app.include_router(auth_router.router, tags=["Authentication"])
+
+    # Include Media Upload router
+    from app.routers import media as media_router
+    app.include_router(media_router.router, tags=["Media"])
+
+    # Include Localization router
+    from app.routers import localization as localization_router
+    app.include_router(localization_router.router, tags=["Localization"])
+
+    # Include Data Pipeline router
+    from app.routers import pipeline as pipeline_router
+    app.include_router(pipeline_router.router, tags=["Data Pipeline"])
+
+    # Include Analytics Dashboard router
+    from app.routers import dashboard as dashboard_router
+    app.include_router(dashboard_router.router, tags=["Dashboard"])
+
+    # Include Performance & Caching router
+    from app.routers import performance as performance_router
+    app.include_router(performance_router.router, tags=["Performance"])
 
     logger.info("✅ Decide9ja Backend Started")
     logger.info(f"   Environment: {ENVIRONMENT}")
@@ -216,6 +272,22 @@ async def startup_event():
     logger.info(f"   Issues API: /api/issues")
     logger.info(f"   Admin API: /api/admin")
     logger.info(f"   Election Analytics: /api/v1/election")
+    logger.info(f"   Notifications API: /api/notifications")
+    logger.info(f"   Comparison API: /api/compare")
+    logger.info(f"   Scheduler API: /api/scheduler")
+    logger.info(f"   Bills API: /api/bills")
+    logger.info(f"   Personalization API: /api/me")
+    logger.info(f"   Election 2027 API: /api/election/2027")
+    logger.info(f"   Chatbot API: /api/chatbot")
+    logger.info(f"   Search API: /api/search")
+    logger.info(f"   Broadcast API: /api/broadcast")
+    logger.info(f"   Constituency API: /api/constituency")
+    logger.info(f"   Auth API: /api/auth")
+    logger.info(f"   Media API: /api/media")
+    logger.info(f"   Localization API: /api/localization")
+    logger.info(f"   Data Pipeline API: /api/pipeline")
+    logger.info(f"   Dashboard API: /api/dashboard")
+    logger.info(f"   Performance API: /api/performance")
 
 
 # ===========================================
