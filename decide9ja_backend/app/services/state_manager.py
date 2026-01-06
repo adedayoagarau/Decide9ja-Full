@@ -10,6 +10,7 @@ from typing import Optional, Dict
 import os
 
 from app.models.state import UserState, ConversationFlow
+from app.utils.encryption import encrypt_phone, hash_phone as encryption_hash_phone
 
 logger = logging.getLogger(__name__)
 
@@ -78,7 +79,7 @@ class StateManager:
         
         # Try PostgreSQL (user exists but session expired)
         profile = self._load_profile_from_db(user_id)
-        
+
         if profile:
             state = UserState(
                 user_id=user_id,
@@ -86,8 +87,31 @@ class StateManager:
                 name=profile.get("name"),
                 state=profile.get("state"),
                 lga=profile.get("lga"),
+                # Enhanced location profile
+                origin_state=profile.get("origin_state"),
+                origin_lga=profile.get("origin_lga"),
+                residence_state=profile.get("residence_state"),
+                residence_lga=profile.get("residence_lga"),
+                registered_state=profile.get("registered_state"),
+                registered_lga=profile.get("registered_lga"),
+                ward=profile.get("ward"),
+                # Political geography
+                senatorial_district=profile.get("senatorial_district"),
+                federal_constituency=profile.get("federal_constituency"),
+                state_constituency=profile.get("state_constituency"),
+                # Demographics
+                age_range=profile.get("age_range"),
+                gender=profile.get("gender"),
+                has_pvc=profile.get("has_pvc"),
+                # Interests
+                interests=profile.get("interests", []),
+                topics_asked=profile.get("topics_asked", []),
+                profile_completeness=profile.get("profile_completeness", 0),
+                # Session
                 greeted=False,  # New session, will greet again
-                session_start=datetime.utcnow()
+                session_start=datetime.utcnow(),
+                last_active_at=profile.get("last_active_at"),  # When they last used the bot
+                message_count=profile.get("message_count", 0)
             )
         else:
             # New user - start onboarding
@@ -107,10 +131,14 @@ class StateManager:
         """Save state to cache (and PostgreSQL for profile data)."""
         state.last_message_at = datetime.utcnow()
         redis_key = f"session:{state.user_id}"
-        
+
+        # Auto-derive political geography if user has location
+        if state.is_onboarding_complete():
+            self.derive_political_geography(state)
+
         # Save to cache
         self._set_cached(redis_key, state.to_redis(), self.session_ttl)
-        
+
         # Save profile to PostgreSQL if onboarding complete
         if state.is_onboarding_complete():
             self._save_profile_to_db(state)
@@ -207,29 +235,115 @@ class StateManager:
         _session_store.pop(key, None)
     
     # ==========================================
+    # Political Geography Derivation
+    # ==========================================
+
+    def derive_political_geography(self, state: UserState) -> bool:
+        """
+        Auto-derive political geography (senatorial district, federal constituency)
+        from the user's state and LGA using the lga_representatives table.
+
+        Returns True if geography was updated, False otherwise.
+        """
+        if not state.state or not state.lga:
+            return False
+
+        # Skip if already derived
+        if state.senatorial_district and state.federal_constituency:
+            return False
+
+        try:
+            from sqlalchemy import create_engine, text
+            import os
+
+            engine = create_engine(os.getenv('DATABASE_URL'))
+            with engine.connect() as conn:
+                result = conn.execute(text('''
+                    SELECT senatorial_district, federal_constituency
+                    FROM lga_representatives
+                    WHERE state = :state AND lga = :lga
+                    LIMIT 1
+                '''), {'state': state.state, 'lga': state.lga})
+                row = result.fetchone()
+
+                if row:
+                    state.senatorial_district = row[0]
+                    state.federal_constituency = row[1]
+                    logger.info(f"Derived geography for {state.state}/{state.lga}: {row[0]}, {row[1]}")
+                    return True
+
+                # Try fuzzy match
+                result = conn.execute(text('''
+                    SELECT senatorial_district, federal_constituency
+                    FROM lga_representatives
+                    WHERE state = :state AND (lga ILIKE :lga_pattern OR :lga ILIKE '%' || lga || '%')
+                    LIMIT 1
+                '''), {'state': state.state, 'lga': state.lga, 'lga_pattern': f"%{state.lga}%"})
+                row = result.fetchone()
+
+                if row:
+                    state.senatorial_district = row[0]
+                    state.federal_constituency = row[1]
+                    logger.info(f"Derived geography (fuzzy) for {state.state}/{state.lga}: {row[0]}, {row[1]}")
+                    return True
+
+        except Exception as e:
+            logger.warning(f"Failed to derive political geography: {e}")
+
+        return False
+
+    # ==========================================
     # Database Operations
     # ==========================================
-    
+
     def _load_profile_from_db(self, user_id: str) -> Optional[dict]:
         """Load user profile from PostgreSQL using raw SQL."""
         try:
             from sqlalchemy import create_engine, text
             import os
-            
+
             engine = create_engine(os.getenv('DATABASE_URL'))
             with engine.connect() as conn:
                 result = conn.execute(text('''
-                    SELECT name, state, lga FROM users 
+                    SELECT name, state, lga, last_interaction, message_count,
+                           origin_state, origin_lga, residence_state, residence_lga,
+                           registered_state, registered_lga, ward,
+                           senatorial_district, federal_constituency, state_constituency,
+                           age_range, gender, has_pvc, interests, topics_asked,
+                           profile_completeness
+                    FROM users
                     WHERE phone_hash = :user_id
                     LIMIT 1
                 '''), {'user_id': user_id})
                 row = result.fetchone()
-                
+
                 if row:
                     return {
                         "name": row[0],
                         "state": row[1],
-                        "lga": row[2]
+                        "lga": row[2],
+                        "last_active_at": row[3],  # datetime or None
+                        "message_count": row[4] or 0,
+                        # Enhanced location profile
+                        "origin_state": row[5],
+                        "origin_lga": row[6],
+                        "residence_state": row[7],
+                        "residence_lga": row[8],
+                        "registered_state": row[9],
+                        "registered_lga": row[10],
+                        "ward": row[11],
+                        # Political geography
+                        "senatorial_district": row[12],
+                        "federal_constituency": row[13],
+                        "state_constituency": row[14],
+                        # Demographics
+                        "age_range": row[15],
+                        "gender": row[16],
+                        "has_pvc": row[17],
+                        # Interests (stored as TEXT[] in PostgreSQL)
+                        "interests": list(row[18]) if row[18] else [],
+                        "topics_asked": list(row[19]) if row[19] else [],
+                        "profile_completeness": row[20] or 0,
                     }
         except Exception as e:
             logger.warning(f"Failed to load profile from DB: {e}")
@@ -240,7 +354,10 @@ class StateManager:
         try:
             from sqlalchemy import create_engine, text
             import os
-            
+
+            # Update profile completeness before saving
+            state.update_profile_completeness()
+
             engine = create_engine(os.getenv('DATABASE_URL'))
             with engine.connect() as conn:
                 # Check if user exists
@@ -248,38 +365,107 @@ class StateManager:
                     SELECT id FROM users WHERE phone_hash = :user_id
                 '''), {'user_id': state.user_id})
                 existing = result.fetchone()
-                
+
                 if existing:
-                    # Update existing user
+                    # Update existing user with all fields
                     conn.execute(text('''
-                        UPDATE users SET 
-                            name = :name, 
-                            state = :state, 
+                        UPDATE users SET
+                            name = :name,
+                            state = :state,
                             lga = :lga,
+                            origin_state = COALESCE(:origin_state, origin_state),
+                            origin_lga = COALESCE(:origin_lga, origin_lga),
+                            residence_state = COALESCE(:residence_state, residence_state),
+                            residence_lga = COALESCE(:residence_lga, residence_lga),
+                            registered_state = COALESCE(:registered_state, registered_state),
+                            registered_lga = COALESCE(:registered_lga, registered_lga),
+                            ward = COALESCE(:ward, ward),
+                            senatorial_district = COALESCE(:senatorial_district, senatorial_district),
+                            federal_constituency = COALESCE(:federal_constituency, federal_constituency),
+                            state_constituency = COALESCE(:state_constituency, state_constituency),
+                            age_range = COALESCE(:age_range, age_range),
+                            gender = COALESCE(:gender, gender),
+                            has_pvc = COALESCE(:has_pvc, has_pvc),
+                            interests = :interests,
+                            topics_asked = :topics_asked,
+                            profile_completeness = :profile_completeness,
                             onboarding_completed = TRUE,
                             updated_at = NOW(),
-                            last_interaction = NOW()
+                            last_interaction = NOW(),
+                            message_count = COALESCE(message_count, 0) + 1
                         WHERE phone_hash = :user_id
                     '''), {
                         'user_id': state.user_id,
                         'name': state.name,
                         'state': state.state,
-                        'lga': state.lga
+                        'lga': state.lga,
+                        'origin_state': state.origin_state,
+                        'origin_lga': state.origin_lga,
+                        'residence_state': state.residence_state,
+                        'residence_lga': state.residence_lga,
+                        'registered_state': state.registered_state,
+                        'registered_lga': state.registered_lga,
+                        'ward': state.ward,
+                        'senatorial_district': state.senatorial_district,
+                        'federal_constituency': state.federal_constituency,
+                        'state_constituency': state.state_constituency,
+                        'age_range': state.age_range,
+                        'gender': state.gender,
+                        'has_pvc': state.has_pvc,
+                        'interests': state.interests if state.interests else None,
+                        'topics_asked': state.topics_asked if state.topics_asked else None,
+                        'profile_completeness': state.profile_completeness,
                     })
                 else:
-                    # Insert new user
+                    # Encrypt phone number for new users (enables proactive messaging)
+                    encrypted = encrypt_phone(state.phone) if state.phone else None
+
+                    # Insert new user with all fields
                     conn.execute(text('''
-                        INSERT INTO users (phone_hash, name, state, lga, onboarding_completed)
-                        VALUES (:user_id, :name, :state, :lga, TRUE)
+                        INSERT INTO users (
+                            phone_hash, encrypted_phone, name, state, lga,
+                            origin_state, origin_lga, residence_state, residence_lga,
+                            registered_state, registered_lga, ward,
+                            senatorial_district, federal_constituency, state_constituency,
+                            age_range, gender, has_pvc,
+                            interests, topics_asked, profile_completeness,
+                            onboarding_completed, message_count, last_interaction
+                        )
+                        VALUES (
+                            :user_id, :encrypted_phone, :name, :state, :lga,
+                            :origin_state, :origin_lga, :residence_state, :residence_lga,
+                            :registered_state, :registered_lga, :ward,
+                            :senatorial_district, :federal_constituency, :state_constituency,
+                            :age_range, :gender, :has_pvc,
+                            :interests, :topics_asked, :profile_completeness,
+                            TRUE, 1, NOW()
+                        )
                     '''), {
                         'user_id': state.user_id,
+                        'encrypted_phone': encrypted,
                         'name': state.name,
                         'state': state.state,
-                        'lga': state.lga
+                        'lga': state.lga,
+                        'origin_state': state.origin_state,
+                        'origin_lga': state.origin_lga,
+                        'residence_state': state.residence_state,
+                        'residence_lga': state.residence_lga,
+                        'registered_state': state.registered_state,
+                        'registered_lga': state.registered_lga,
+                        'ward': state.ward,
+                        'senatorial_district': state.senatorial_district,
+                        'federal_constituency': state.federal_constituency,
+                        'state_constituency': state.state_constituency,
+                        'age_range': state.age_range,
+                        'gender': state.gender,
+                        'has_pvc': state.has_pvc,
+                        'interests': state.interests if state.interests else None,
+                        'topics_asked': state.topics_asked if state.topics_asked else None,
+                        'profile_completeness': state.profile_completeness,
                     })
-                
+
                 conn.commit()
-                logger.info(f"Saved profile for user {state.user_id[:8]}... (name={state.name})")
+                logger.info(f"Saved profile for user {state.user_id[:8]}... (name={state.name}, completeness={state.profile_completeness}%)")
         except Exception as e:
             logger.error(f"Failed to save profile to DB: {e}")
 
