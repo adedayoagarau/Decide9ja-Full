@@ -356,15 +356,47 @@ def fallback_card_generator():
 def run_news_scraper():
     """
     Scrape news from all Nigerian political news sources.
+    Now includes automatic issue extraction for new articles.
     Frequency: Every 1 hour
     """
     logger.info("🗞️ Starting news scraper job...")
 
     from app.services.news_pipeline import run_news_pipeline
-    result = run_news_pipeline()
+    # Enable integrated issue extraction
+    result = run_news_pipeline(extract_issues=True, issue_limit=20)
 
     logger.info(f"✅ News scraper complete: {result}")
     return result
+
+
+@with_retry(max_retries=2, base_delay=5.0)
+def run_news_agent_processor():
+    """
+    Process articles through NewsAgent for continuous updates.
+    Handles any articles missed by the main scraper job.
+    Frequency: Every 15 minutes
+    """
+    logger.info("📰 Starting news agent processor job...")
+
+    try:
+        import asyncio
+        from app.services.news_agent import NewsAgent
+
+        async def process():
+            with NewsAgent() as agent:
+                return await agent.process_unprocessed_articles(limit=15)
+
+        stats = asyncio.run(process())
+
+        logger.info(f"✅ News agent processor complete: {stats}")
+        return stats
+
+    except ImportError:
+        logger.warning("NewsAgent not available, skipping")
+        return {"skipped": True, "reason": "news_agent_not_available"}
+    except Exception as e:
+        logger.error(f"News agent processor error: {e}")
+        raise
 
 
 @with_retry(max_retries=3, base_delay=5.0, fallback_func=fallback_news_indexer)
@@ -686,6 +718,15 @@ def create_scheduler() -> BackgroundScheduler:
         replace_existing=True
     )
 
+    # === News Agent Processor - Every 15 minutes ===
+    scheduler.add_job(
+        run_news_agent_processor,
+        IntervalTrigger(minutes=15),
+        id="news_agent_processor",
+        name="Process articles via NewsAgent",
+        replace_existing=True
+    )
+
     # === Issue Extraction - Every 3 hours ===
     scheduler.add_job(
         run_issue_extractor,
@@ -810,6 +851,7 @@ def run_job_once(job_name: str):
     jobs = {
         "news": run_news_scraper,
         "index": run_news_indexer,
+        "agent": run_news_agent_processor,
         "issues": run_issue_extractor,
         "dossiers": run_dossier_generator,
         "cards": run_card_generator,
