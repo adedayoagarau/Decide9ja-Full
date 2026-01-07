@@ -27,6 +27,11 @@ from app.services.intelligent_retrieval import (
     RetrievalResult,
     format_retrieval_for_context
 )
+from app.services.agentic_retrieval import (
+    agentic_retrieve,
+    AgenticResult,
+    ToolGroup
+)
 from app.services.nigerian_politics import (
     get_hot_issues_context,
     get_governance_context,
@@ -704,14 +709,33 @@ Keep engaging to earn more badges and climb the ranks! 🚀"""
             return "Sorry, I couldn't load your profile. Please try again."
 
     # ===========================================
-    # INTELLIGENT RETRIEVAL
-    # ============================================
+    # AGENTIC RETRIEVAL (Self-correcting, graded)
+    # ===========================================
+    # Use new agentic retrieval system with:
+    # - Pattern-matching fast path
+    # - Tool grouping and routing
+    # - Document grading
+    # - Query rewriting on failure
+    # - Self-correction loop
+    # - Handoff between tool groups
+
+    user_context = {
+        "state": state.state,
+        "lga": state.lga,
+        "name": state.first_name or state.name
+    }
+
+    agentic_result = await agentic_retrieve(text, user_context)
+
+    logger.info(f"Agentic retrieval: {agentic_result.total_attempts} attempts, success={agentic_result.success}, sources={agentic_result.sources_used}")
+
+    # Also run legacy retrieval for fallback/comparison
     retrieval_result = await intelligent_retrieve(
         understanding=understanding,
         user_state=state.state,
         user_lga=state.lga
     )
-    
+
     # ===========================================
     # GENERATE RESPONSE WITH CONTEXT
     # ===========================================
@@ -719,6 +743,7 @@ Keep engaging to earn more badges and climb the ranks! 🚀"""
         query=text,
         understanding=understanding,
         retrieval=retrieval_result,
+        agentic=agentic_result,
         state=state
     )
 
@@ -727,7 +752,8 @@ async def generate_response_with_context(
     query: str,
     understanding: QueryUnderstanding,
     retrieval: RetrievalResult,
-    state: UserState
+    state: UserState,
+    agentic: AgenticResult = None
 ) -> str:
     """Generate Claude response using retrieved context with Nigerian politics expertise."""
 
@@ -736,8 +762,19 @@ async def generate_response_with_context(
     # Load conversation history for multi-turn context
     conversation_history = user_memory.get_conversation_context(state.phone, limit=6)  # Last 6 messages
 
-    # Format context from retrieval
-    context = format_retrieval_for_context(retrieval)
+    # Format context from retrieval (legacy)
+    legacy_context = format_retrieval_for_context(retrieval)
+
+    # Prefer agentic context if available and successful
+    if agentic and agentic.success and agentic.graded_context:
+        context = f"""AGENTIC RETRIEVAL (graded, self-corrected):
+{agentic.graded_context}
+
+LEGACY RETRIEVAL (for reference):
+{legacy_context}"""
+        logger.info(f"Using agentic context ({agentic.total_attempts} attempts, confidence={agentic.confidence:.2f})")
+    else:
+        context = legacy_context
 
     # Check if query relates to hot issues and add context
     hot_issue = analyze_query_for_hot_issues(query)
