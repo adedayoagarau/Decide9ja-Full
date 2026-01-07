@@ -32,7 +32,9 @@ class UserState:
     phone: str                            # For sending responses
 
     # Profile (persisted to PostgreSQL)
-    name: Optional[str] = None
+    first_name: Optional[str] = None      # User's first name (used for addressing)
+    last_name: Optional[str] = None       # User's last name/surname
+    name: Optional[str] = None            # Full name (computed: first_name + last_name)
     state: Optional[str] = None           # Nigerian state (primary/residence)
     lga: Optional[str] = None             # Local government area (primary/residence)
 
@@ -174,7 +176,8 @@ class UserState:
     
     def is_onboarding_complete(self) -> bool:
         """Check if user has completed basic onboarding."""
-        return all([self.name, self.state, self.lga])
+        # Require first_name (and optionally last_name through name), state, and lga
+        return all([self.first_name, self.state, self.lga])
     
     def is_flow_expired(self, timeout_minutes: int = 30) -> bool:
         """Check if current flow has timed out."""

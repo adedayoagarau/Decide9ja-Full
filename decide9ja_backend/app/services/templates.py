@@ -17,11 +17,15 @@ TEMPLATES = {
     "welcome_new": (
         "Welcome to Decide9ja. I'm Tade, and I help Nigerians stay informed "
         "about their representatives and government.\n\n"
-        "What's your name?"
+        "What's your first name?"
     ),
-    
+
+    "ask_last_name": (
+        "Nice to meet you, {first_name}. What's your surname?"
+    ),
+
     "welcome_back": (
-        "Tade here. Welcome back, {name}. What do you need?"
+        "Tade here. Welcome back, {first_name}. What do you need?"
     ),
 
     "welcome_back_no_name": (
@@ -30,44 +34,44 @@ TEMPLATES = {
 
     # Time-aware greetings for returning users
     "welcome_back_today": (
-        "Back so soon, {name}! What else can I help with?"
+        "Back so soon, {first_name}! What else can I help with?"
     ),
 
     "welcome_back_yesterday": (
-        "Hey {name}, good to see you again. How can I help today?"
+        "Hey {first_name}, good to see you again. How can I help today?"
     ),
 
     "welcome_back_few_days": (
-        "Welcome back, {name}! It's been a few days. What do you need?"
+        "Welcome back, {first_name}! It's been a few days. What do you need?"
     ),
 
     "welcome_back_week": (
-        "{name}! Been about a week — hope all is well. What can I help with?"
+        "{first_name}! Been about a week — hope all is well. What can I help with?"
     ),
 
     "welcome_back_long": (
-        "Long time, {name}! Good to have you back. What do you need?"
+        "Long time, {first_name}! Good to have you back. What do you need?"
     ),
 
     "welcome_back_first_time_today": (
-        "Morning/afternoon/evening, {name}! Ready to help. What's on your mind?"
+        "Morning/afternoon/evening, {first_name}! Ready to help. What's on your mind?"
     ),
 
     # Active user recognition (high message count)
     "welcome_regular_user": (
-        "Hey {name}! You're becoming a regular. What do you need today?"
+        "Hey {first_name}! You're becoming a regular. What do you need today?"
     ),
-    
+
     "ask_state": (
-        "Good to meet you, {name}. Which state are you in?"
+        "Good to meet you, {first_name}. Which state are you in?"
     ),
-    
+
     "ask_lga": (
         "Which local government in {state}?"
     ),
-    
+
     "onboarding_complete": (
-        "You're set — {lga}, {state} State.\n\n"
+        "You're set, {first_name} — {lga}, {state} State.\n\n"
         "Ask about your representatives, report an issue, or ask me "
         "anything about Nigerian politics."
     ),
@@ -78,12 +82,20 @@ TEMPLATES = {
     ),
 
     "greeting_returning": (
-        "Hey {name}! How can I help you today?\n\n"
+        "Hey {first_name}! How can I help you today?\n\n"
         "Ask about your representatives, politicians, or current political news."
     ),
 
     "didnt_catch_name": (
         "I didn't catch your name. What should I call you?"
+    ),
+
+    "didnt_catch_first_name": (
+        "I didn't catch that. What's your first name?"
+    ),
+
+    "didnt_catch_last_name": (
+        "I didn't catch that. What's your surname?"
     ),
     
     "didnt_recognize_state": (
