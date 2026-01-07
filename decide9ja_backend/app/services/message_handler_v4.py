@@ -195,18 +195,16 @@ async def handle_idle_claude_first(state: UserState, text: str, memory=None) -> 
     # Check Onboarding
     # ===========================================
     if not state.is_onboarding_complete():
-        # User hasn't completed onboarding
+        # User hasn't completed onboarding - start it regardless of what they said
+        # Users can start with anything: "hi", "who is the governor?", "help", etc.
         from app.services.flows.onboarding import handle_onboarding
 
-        # Check if this is a greeting to start onboarding
-        greetings = {"hi", "hello", "hey", "good morning", "good afternoon", "good evening", "start"}
-        if text.lower().strip() in greetings:
-            state.flow = ConversationFlow.ONBOARDING
+        state.flow = ConversationFlow.ONBOARDING
+        # Only reset flow_step if not already in onboarding
+        if state.flow_step == 0 or state.flow != ConversationFlow.ONBOARDING:
             state.flow_step = 0
-            return await handle_onboarding(state, text)
-        else:
-            # Prompt them to complete onboarding
-            return get_template("incomplete_profile")
+            state.greeted = False
+        return await handle_onboarding(state, text)
     
     # ===========================================
     # CLAUDE UNDERSTANDING
