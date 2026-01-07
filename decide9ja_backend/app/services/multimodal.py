@@ -1,13 +1,15 @@
 """
 Multimodal Message Processor for Decide9ja.
 Orchestrates voice, image, document, and location handling.
-Routes to appropriate handler and integrates with RAG.
+Routes to v4 handler for all processing.
+
+Updated to use message_handler_v4 exclusively.
 """
 import logging
 from typing import Dict, Optional, Union
 
 from app.services import conversation
-from app.services.message_handler import generate_rag_response, start_issue_flow
+from app.services.message_handler_v4 import handle_message
 
 logger = logging.getLogger(__name__)
 
@@ -53,11 +55,9 @@ async def process_multimodal_message(message: dict, user_hash: str) -> str:
 
 async def process_text(message: dict, user_hash: str) -> str:
     """Process text message - delegates to v4 handler."""
-    from app.services.message_handler_v4 import handle_message
-    
     phone = message.get("from_raw", message.get("from", ""))
     text = message.get("text", "")
-    
+
     return await handle_message(phone, text)
 
 
@@ -157,14 +157,10 @@ async def process_image(message: dict, user_hash: str) -> str:
         return f"📷 I can see an issue in your photo:\n\n{analysis}\n\n📍 To complete the report, please share your location or type the address."
     
     elif detected_type == "politician" and suggested_action == "fetch_profile":
-        # Extract politician name and fetch more info
-        # Add analysis to RAG query
-        rag_response = await generate_rag_response(
-            f"Profile information for: {analysis[:200]}",
-            user_hash,
-            conv_state
-        )
-        return f"📷 {analysis}\n\n{rag_response}"
+        # Extract politician name and fetch more info via v4 handler
+        phone = message.get("from_raw", message.get("from", ""))
+        profile_response = await handle_message(phone, f"Who is {analysis[:200]}")
+        return f"📷 {analysis}\n\n{profile_response}"
     
     else:
         # General response
@@ -229,8 +225,10 @@ async def process_location(message: dict, user_hash: str) -> str:
     # Check if in issue reporting flow
     conv_state = conversation.get_conversation_state(user_hash)
     if conv_state.get("active_flow") == "issue_reporting":
-        from app.services.message_handler import continue_issue_flow_with_location
-        return await continue_issue_flow_with_location(result, user_hash)
+        # v4 handler will detect issue flow and continue it with location data
+        phone = message.get("from_raw", message.get("from", ""))
+        location_text = f"Location: {addr.get('lga', 'Unknown')}, {addr.get('state', 'Unknown')}"
+        return await handle_message(phone, location_text)
     
     # Format response with representative info
     formatted = format_location_response(result)
