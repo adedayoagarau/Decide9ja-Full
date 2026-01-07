@@ -78,6 +78,7 @@ class UserState:
     
     # Session metadata
     greeted: bool = False                 # Has Tade introduced himself this session?
+    pending_query: Optional[str] = None   # User's first question (asked before onboarding complete)
     last_message_at: datetime = field(default_factory=datetime.utcnow)
     session_start: datetime = field(default_factory=datetime.utcnow)
     last_active_at: Optional[datetime] = None  # Last activity before this session (from DB)
