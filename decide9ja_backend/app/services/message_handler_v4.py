@@ -79,6 +79,27 @@ logger = logging.getLogger(__name__)
 # Escape commands that reset conversation
 ESCAPE_COMMANDS = {"reset", "restart", "cancel", "menu", "stop", "start over", "new"}
 
+# Controversial topics that need balanced treatment (from v3)
+CONTROVERSIAL_TOPICS = [
+    "tax reform", "tax bill", "vat", "derivation",
+    "pdp crisis", "apc crisis", "party", "defection",
+    "north vs south", "northern governors", "southern governors",
+    "restructuring", "true federalism", "secession",
+    "election", "rigging", "inec", "tribunal",
+    "subsidy", "fuel price", "palliative",
+    "insecurity", "banditry", "terrorism",
+    "muslim-muslim", "christian", "religion",
+    "ethnic", "tribe", "marginalization",
+    "obi vs tinubu", "atiku vs tinubu", "labour party",
+    "wike", "fubara", "rivers crisis",
+]
+
+
+def is_controversial_topic(query: str) -> bool:
+    """Detect if a query touches on politically controversial topics."""
+    query_lower = query.lower()
+    return any(topic in query_lower for topic in CONTROVERSIAL_TOPICS)
+
 
 async def handle_message(phone: str, text: str, media_url: str = None) -> str:
     """
