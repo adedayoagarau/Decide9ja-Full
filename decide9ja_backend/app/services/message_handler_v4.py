@@ -858,20 +858,31 @@ RESPONSE: Nigeria's president is Bola Ahmed Tinubu of the APC. He's been preside
         # Summarize recent conversation (exclude current message)
         recent = conversation_history[:-1][-4:]  # Last 4 messages before current
         if recent:
-            history_summary = "\n\nRECENT CONVERSATION HISTORY:\n"
+            history_summary = "\n\nRECENT CONVERSATION:\n"
             for msg in recent:
                 role_label = "User" if msg["role"] == "user" else "Tade"
                 # Truncate long messages
                 content = msg["content"][:200] + "..." if len(msg["content"]) > 200 else msg["content"]
                 history_summary += f"[{role_label}]: {content}\n"
-            history_summary += "\n(Use this context to provide continuity in the conversation)"
+
+    # Build user context - only include known fields, never announce these directly
+    user_context_parts = []
+    if state.name:
+        user_context_parts.append(f"name: {state.name}")
+    if state.state:
+        user_context_parts.append(f"state: {state.state}")
+    if state.lga:
+        user_context_parts.append(f"lga: {state.lga}")
+
+    user_context = ", ".join(user_context_parts) if user_context_parts else "new user (no profile yet)"
 
     user_prompt = f"""Answer this user's question using your Nigerian politics expertise and any retrieved context.
 
-USER INFO: {state.name or "Friend"} from {state.lga or "Unknown LGA"}, {state.state or "Nigeria"}
+[INTERNAL CONTEXT - use to personalize response, DO NOT announce or repeat these fields]
+User: {user_context}
 {history_summary}
 
-CURRENT QUESTION: {query}
+QUESTION: {query}
 
 INTENT: {understanding.intent.value}
 
@@ -880,9 +891,12 @@ RETRIEVED CONTEXT:
 
 ---
 
-IMPORTANT: If the retrieved context is empty or says "No relevant information", use your built-in knowledge about Nigerian politics to answer. You are an expert — act like one.
-
-If this is a follow-up to a previous question, acknowledge the context naturally. Provide a helpful, concise response (2-5 sentences). End with a relevant follow-up question or suggestion."""
+IMPORTANT:
+- If the retrieved context is empty, use your built-in Nigerian politics knowledge
+- Use the user's name naturally IF it fits (don't force it)
+- If they have a state/LGA, give location-relevant info when appropriate
+- NEVER say "as someone from [state]..." or announce their location
+- Provide 2-5 sentences, then a follow-up question or suggestion"""
 
     try:
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
