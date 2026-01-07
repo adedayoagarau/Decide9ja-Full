@@ -30,7 +30,7 @@ from app.services.intelligent_retrieval import (
 from app.services.agentic_retrieval import (
     agentic_retrieve,
     AgenticResult,
-    ToolGroup
+    RetrievalStatus
 )
 from app.services.nigerian_politics import (
     get_hot_issues_context,
