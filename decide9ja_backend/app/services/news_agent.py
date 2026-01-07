@@ -369,30 +369,60 @@ class NewsAgent:
         return self._build_result(articles, parsed, f"search results for: {' '.join(parsed.keywords)}")
 
     def _build_result(self, articles: List, parsed: NewsQuery, context_desc: str) -> NewsResult:
-        """Build NewsResult from query results."""
+        """Build NewsResult from query results with source verification."""
         article_dicts = []
         sources_used = set()
 
+        # Import verifier for source checking
+        try:
+            from app.services.verifier_agent import quick_verify_source, TrustTier
+            verifier_available = True
+        except ImportError:
+            verifier_available = False
+
         for a in articles:
-            sources_used.add(a.source_name or a.source or "Unknown")
+            source_name = a.source_name or a.source or "Unknown"
+            sources_used.add(source_name)
+
+            # Verify source trust tier
+            trust_tier = "UNKNOWN"
+            trust_score = 0.5
+            if verifier_available and a.url:
+                verification = quick_verify_source(a.url)
+                trust_tier = verification.get("trust_tier", "UNKNOWN")
+                trust_score = verification.get("trust_score", 0.5)
+
             article_dicts.append({
                 "id": a.article_id,
                 "title": a.title,
                 "url": a.url,
-                "source": a.source_name or a.source,
+                "source": source_name,
                 "excerpt": (a.excerpt or "")[:200],
                 "scraped_at": a.scraped_at.isoformat() if a.scraped_at else None,
                 "politicians": json.loads(a.politicians_json or "[]"),
-                "topics": json.loads(a.topics_json or "[]")
+                "topics": json.loads(a.topics_json or "[]"),
+                "trust_tier": trust_tier,
+                "trust_score": trust_score
             })
 
-        # Format response for LLM context
+        # Format response for LLM context with trust indicators
         if article_dicts:
+            # Sort by trust score (highest first)
+            sorted_articles = sorted(article_dicts, key=lambda x: x.get("trust_score", 0), reverse=True)
+
             formatted_parts = [f"*{context_desc.title()}* ({len(article_dicts)} articles):\n"]
-            for i, a in enumerate(article_dicts[:5], 1):
-                formatted_parts.append(f"{i}. **{a['title']}** ({a['source']})")
+            for i, a in enumerate(sorted_articles[:5], 1):
+                tier = a.get("trust_tier", "UNKNOWN")
+                tier_indicator = "✓" if tier in ["OFFICIAL", "WATCHDOG", "VETTED_NEWS"] else "○"
+                formatted_parts.append(f"{i}. {tier_indicator} **{a['title']}** ({a['source']})")
                 if a['excerpt']:
                     formatted_parts.append(f"   {a['excerpt'][:150]}...")
+
+            # Add trust legend if mixed tiers
+            tiers = set(a.get("trust_tier") for a in sorted_articles[:5])
+            if len(tiers) > 1:
+                formatted_parts.append("\n_✓ = Verified source, ○ = Requires verification_")
+
             formatted_response = "\n".join(formatted_parts)
         else:
             formatted_response = f"No {context_desc} found in the last {parsed.hours_back} hours."
