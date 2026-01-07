@@ -6,6 +6,7 @@ Key changes from V3:
 2. Claude decides retrieval strategy
 3. Intelligent retrieval orchestration
 4. Still maintains flow-first routing for active flows
+5. Persistent conversation memory across sessions
 """
 import os
 import logging
@@ -16,9 +17,9 @@ from app.models.state import UserState, ConversationFlow
 from app.services.state_manager import state_manager, _get_state_async, _save_state_async
 from app.services.templates import get_template, TEMPLATES
 from app.services.claude_understand import (
-    claude_understand, 
-    QueryUnderstanding, 
-    Intent, 
+    claude_understand,
+    QueryUnderstanding,
+    Intent,
     RetrievalStrategy
 )
 from app.services.intelligent_retrieval import (
@@ -60,6 +61,7 @@ from app.services.gamification_service import GamificationService
 from app.services.fact_check_service import FactCheckService
 from app.services.community_service import CommunityService
 from app.services.news_digest_service import NewsDigestService
+from app.services.user_memory import user_memory
 
 logger = logging.getLogger(__name__)
 
@@ -69,23 +71,28 @@ ESCAPE_COMMANDS = {"reset", "restart", "cancel", "menu", "stop", "start over", "
 
 async def handle_message(phone: str, text: str, media_url: str = None) -> str:
     """
-    Main entry point — Claude-First Architecture.
-    
+    Main entry point — Claude-First Architecture with Persistent Memory.
+
     Flow:
-    1. Load state
-    2. Check escape commands
-    3. If in active flow → handle flow (skip Claude understanding)
-    4. If IDLE → Claude understands → intelligent retrieval → Claude responds
-    5. Save state
+    1. Load state & memory
+    2. Save user message to persistent history
+    3. Check escape commands
+    4. Check for returning user greeting
+    5. If in active flow → handle flow (skip Claude understanding)
+    6. If IDLE → Claude understands → intelligent retrieval → Claude responds
+    7. Save state & response to persistent history
     """
     text = text.strip() if text else ""
     text_lower = text.lower()
-    
+
     # ===========================================
-    # STEP 1: Load State
+    # STEP 1: Load State & Check Returning User
     # ===========================================
     try:
         state = await _get_state_async(phone)
+        # Load user memory for context
+        memory = user_memory.get_user_memory(phone)
+        is_returning = memory.is_returning_user
     except Exception as e:
         logger.error(f"Failed to load state: {e}")
         state = UserState(
@@ -93,74 +100,104 @@ async def handle_message(phone: str, text: str, media_url: str = None) -> str:
             phone=phone,
             flow=ConversationFlow.IDLE
         )
-    
+        memory = None
+        is_returning = False
+
     # ===========================================
-    # STEP 2: Check Escape Commands
+    # STEP 2: Save User Message to Persistent History
+    # ===========================================
+    user_memory.save_message(phone, "user", text)
+
+    # ===========================================
+    # STEP 2.5: Check for Progressive Onboarding Responses
+    # ===========================================
+    progressive_response = _detect_progressive_onboarding_response(phone, text_lower)
+    if progressive_response:
+        # Save the response and acknowledge it, but continue processing normally
+        pass  # The detection function handles saving
+
+    # ===========================================
+    # STEP 3: Check Escape Commands
     # ===========================================
     if text_lower in ESCAPE_COMMANDS:
         state.clear_flow()
         state.clear_context()
         await _save_state_async(state)
-        return get_template("menu")
-    
+        response = get_template("menu")
+        user_memory.save_message(phone, "assistant", response)
+        return response
+
     # ===========================================
-    # STEP 3: Add to History
+    # STEP 4: Add to Session History
     # ===========================================
     state.add_to_history("user", text)
-    
+
     # ===========================================
-    # STEP 4: Route Based on Flow State
+    # STEP 5: Route Based on Flow State
     # Flow-first: active flows skip Claude understanding
     # ===========================================
     try:
         if state.flow == ConversationFlow.ONBOARDING:
             from app.services.flows.onboarding import handle_onboarding
             response = await handle_onboarding(state, text)
-        
+
         elif state.flow == ConversationFlow.ISSUE_FLOW:
             response = await _handle_issue_flow(state, text, media_url)
-        
+
         elif state.flow == ConversationFlow.CONFIRMING:
             response = await _handle_confirmation(state, text)
-        
+
         elif state.flow == ConversationFlow.AWAITING_CLARIFY:
             response = await _handle_clarification(state, text)
-        
+
         else:
             # IDLE state — use Claude-First architecture
-            response = await handle_idle_claude_first(state, text)
-    
+            # Pass memory for context awareness
+            response = await handle_idle_claude_first(state, text, memory)
+
     except Exception as e:
         logger.exception(f"Error handling message: {e}")
         response = TEMPLATES.get("error_generic", "Something went wrong. Please try again.")
-    
+
     # ===========================================
-    # STEP 5: Update State
+    # STEP 6: Update State & Save to Persistent History
     # ===========================================
     state.add_to_history("assistant", response)
     await _save_state_async(state)
-    
+
+    # Save assistant response to persistent memory
+    user_memory.save_message(phone, "assistant", response)
+
+    # ===========================================
+    # STEP 7: Check for Progressive Onboarding
+    # ===========================================
+    # Occasionally ask for more user info at milestones
+    progressive_prompt = user_memory.get_progressive_onboarding_prompt(phone)
+    if progressive_prompt:
+        response = response + "\n\n---\n" + progressive_prompt
+
     return response
 
 
-async def handle_idle_claude_first(state: UserState, text: str) -> str:
+async def handle_idle_claude_first(state: UserState, text: str, memory=None) -> str:
     """
     Handle IDLE state using Claude-First architecture.
-    
+
     Flow:
     1. Check if onboarding complete
-    2. Claude understands the query
-    3. Route to intelligent retrieval
-    4. Claude generates response with context
+    2. Handle returning user greetings with memory context
+    3. Claude understands the query
+    4. Route to intelligent retrieval
+    5. Claude generates response with context
     """
-    
+
     # ===========================================
     # Check Onboarding
     # ===========================================
     if not state.is_onboarding_complete():
         # User hasn't completed onboarding
         from app.services.flows.onboarding import handle_onboarding
-        
+
         # Check if this is a greeting to start onboarding
         greetings = {"hi", "hello", "hey", "good morning", "good afternoon", "good evening", "start"}
         if text.lower().strip() in greetings:
@@ -189,9 +226,14 @@ async def handle_idle_claude_first(state: UserState, text: str) -> str:
     # ===========================================
     # ROUTE BY INTENT
     # ===========================================
-    
+
     # Simple responses (no retrieval needed)
     if understanding.intent == Intent.GREETING:
+        # Check if returning user with memory context
+        if memory and memory.is_returning_user:
+            welcome_back = user_memory.get_returning_user_summary(state.phone)
+            if welcome_back:
+                return welcome_back + "\n\nHow can I help you today?"
         return get_template("greeting_returning", name=state.name)
     
     if understanding.intent == Intent.HELP:
@@ -671,6 +713,9 @@ async def generate_response_with_context(
 
     import anthropic
 
+    # Load conversation history for multi-turn context
+    conversation_history = user_memory.get_conversation_context(state.phone, limit=6)  # Last 6 messages
+
     # Format context from retrieval
     context = format_retrieval_for_context(retrieval)
 
@@ -807,9 +852,40 @@ RESPONSE: Nigeria's president is Bola Ahmed Tinubu of the APC. He's been preside
         for analogy in engine_context["analogies"][:3]:
             full_context += f"• {analogy}\n"
 
+    # Build conversation history summary for the prompt
+    history_summary = ""
+    if conversation_history and len(conversation_history) > 1:
+        # Summarize recent conversation (exclude current message)
+        recent = conversation_history[:-1][-4:]  # Last 4 messages before current
+        if recent:
+            history_summary = "\n\nRECENT CONVERSATION:\n"
+            for msg in recent:
+                role_label = "User" if msg["role"] == "user" else "Tade"
+                # Truncate long messages
+                content = msg["content"][:200] + "..." if len(msg["content"]) > 200 else msg["content"]
+                history_summary += f"[{role_label}]: {content}\n"
+
+    # Build user context - only include known fields, never announce these directly
+    user_context_parts = []
+    if state.first_name:
+        user_context_parts.append(f"first_name: {state.first_name}")
+        if state.last_name:
+            user_context_parts.append(f"full_name: {state.first_name} {state.last_name}")
+    elif state.name:
+        # Fallback for legacy users without first_name
+        user_context_parts.append(f"name: {state.name}")
+    if state.state:
+        user_context_parts.append(f"state: {state.state}")
+    if state.lga:
+        user_context_parts.append(f"lga: {state.lga}")
+
+    user_context = ", ".join(user_context_parts) if user_context_parts else "new user (no profile yet)"
+
     user_prompt = f"""Answer this user's question using your Nigerian politics expertise and any retrieved context.
 
-USER INFO: {state.name or "Friend"} from {state.lga or "Unknown LGA"}, {state.state or "Nigeria"}
+[INTERNAL CONTEXT - use to personalize response, DO NOT announce or repeat these fields]
+User: {user_context}
+{history_summary}
 
 QUESTION: {query}
 
@@ -820,18 +896,50 @@ RETRIEVED CONTEXT:
 
 ---
 
-IMPORTANT: If the retrieved context is empty or says "No relevant information", use your built-in knowledge about Nigerian politics to answer. You are an expert — act like one.
-
-Provide a helpful, concise response (2-5 sentences). End with a relevant follow-up question or suggestion."""
+IMPORTANT:
+- If the retrieved context is empty, use your built-in Nigerian politics knowledge
+- Use the user's name naturally IF it fits (don't force it)
+- If they have a state/LGA, give location-relevant info when appropriate
+- NEVER say "as someone from [state]..." or announce their location
+- Provide 2-5 sentences, then a follow-up question or suggestion"""
 
     try:
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+        # Build messages array with conversation history for multi-turn context
+        messages = []
+
+        # Add past conversation history (excluding current message since we saved it earlier)
+        # This gives Claude context about what was discussed before
+        if conversation_history and len(conversation_history) > 1:
+            # Skip the last message since it's the current query (already saved to DB)
+            past_messages = conversation_history[:-1]
+
+            # Ensure messages alternate properly (Claude API requirement)
+            # Start from the first user message in history
+            for msg in past_messages:
+                # Skip if this would create consecutive same-role messages
+                if messages and messages[-1]["role"] == msg["role"]:
+                    continue
+                messages.append({
+                    "role": msg["role"],
+                    "content": msg["content"]
+                })
+
+            # If last message in history is from assistant, we're good
+            # If not, ensure proper alternation by clearing messages that don't end with assistant
+            if messages and messages[-1]["role"] == "user":
+                # Pop the last user message to allow our current user_prompt
+                messages.pop()
+
+        # Add current query with full context (always from user)
+        messages.append({"role": "user", "content": user_prompt})
 
         response = client.messages.create(
             model="claude-3-haiku-20240307",
             max_tokens=600,
             system=system_prompt,
-            messages=[{"role": "user", "content": user_prompt}]
+            messages=messages
         )
 
         return response.content[0].text.strip()
@@ -906,6 +1014,70 @@ async def _smart_fallback(query: str, retrieval: RetrievalResult, state: UserSta
 
     # Final fallback
     return get_template("no_info_found", query=query)
+
+
+def _detect_progressive_onboarding_response(phone: str, text_lower: str) -> bool:
+    """
+    Detect and save responses to progressive onboarding questions.
+    Returns True if a progressive onboarding response was detected.
+    """
+    # Get user preferences to check what we've asked about
+    prefs = user_memory.get_user_preferences(phone)
+
+    # Check for PVC response (asked at 5 messages)
+    pvc_keywords_yes = ["yes", "i have", "got pvc", "registered", "have pvc", "i do"]
+    pvc_keywords_no = ["no", "i don't", "not yet", "haven't", "no pvc", "not registered"]
+
+    last_asked = prefs.get("last_onboarding_ask_at", 0)
+
+    # If we just asked about PVC
+    if last_asked == 5 and not prefs.get("has_pvc"):
+        for keyword in pvc_keywords_yes:
+            if keyword in text_lower:
+                user_memory.save_progressive_response(phone, "has_pvc", "yes")
+                logger.info(f"Saved PVC status: yes for user")
+                return True
+        for keyword in pvc_keywords_no:
+            if keyword in text_lower:
+                user_memory.save_progressive_response(phone, "has_pvc", "no")
+                logger.info(f"Saved PVC status: no for user")
+                return True
+
+    # Check for interests response (asked at 15 messages)
+    if last_asked == 15 and not prefs.get("interests"):
+        interest_keywords = {
+            "economy": ["economy", "money", "jobs", "business", "naira", "dollar", "inflation"],
+            "security": ["security", "safety", "police", "army", "crime", "bandits"],
+            "education": ["education", "school", "university", "students", "teachers"],
+            "healthcare": ["healthcare", "health", "hospital", "doctors", "medicine"]
+        }
+
+        detected_interests = []
+        for interest, keywords in interest_keywords.items():
+            for keyword in keywords:
+                if keyword in text_lower:
+                    detected_interests.append(interest)
+                    break
+
+        if detected_interests:
+            user_memory.save_progressive_response(phone, "interests", ",".join(detected_interests))
+            logger.info(f"Saved interests: {detected_interests} for user")
+            return True
+
+    # Check for 2027 election tracking response (asked at 30 messages)
+    if last_asked == 30 and not prefs.get("following_2027"):
+        for keyword in ["yes", "i want", "help me", "track", "interested"]:
+            if keyword in text_lower:
+                user_memory.save_progressive_response(phone, "following_2027", "yes")
+                logger.info(f"Saved 2027 election interest: yes for user")
+                return True
+        for keyword in ["no", "not now", "later", "not interested"]:
+            if keyword in text_lower:
+                user_memory.save_progressive_response(phone, "following_2027", "no")
+                logger.info(f"Saved 2027 election interest: no for user")
+                return True
+
+    return False
 
 
 # ===========================================

@@ -370,6 +370,8 @@ class StateManager:
                     # Update existing user with all fields
                     conn.execute(text('''
                         UPDATE users SET
+                            first_name = :first_name,
+                            last_name = :last_name,
                             name = :name,
                             state = :state,
                             lga = :lga,
@@ -396,6 +398,8 @@ class StateManager:
                         WHERE phone_hash = :user_id
                     '''), {
                         'user_id': state.user_id,
+                        'first_name': state.first_name,
+                        'last_name': state.last_name,
                         'name': state.name,
                         'state': state.state,
                         'lga': state.lga,
@@ -423,7 +427,7 @@ class StateManager:
                     # Insert new user with all fields
                     conn.execute(text('''
                         INSERT INTO users (
-                            phone_hash, encrypted_phone, name, state, lga,
+                            phone_hash, encrypted_phone, first_name, last_name, name, state, lga,
                             origin_state, origin_lga, residence_state, residence_lga,
                             registered_state, registered_lga, ward,
                             senatorial_district, federal_constituency, state_constituency,
@@ -432,7 +436,7 @@ class StateManager:
                             onboarding_completed, message_count, last_interaction
                         )
                         VALUES (
-                            :user_id, :encrypted_phone, :name, :state, :lga,
+                            :user_id, :encrypted_phone, :first_name, :last_name, :name, :state, :lga,
                             :origin_state, :origin_lga, :residence_state, :residence_lga,
                             :registered_state, :registered_lga, :ward,
                             :senatorial_district, :federal_constituency, :state_constituency,
@@ -443,6 +447,8 @@ class StateManager:
                     '''), {
                         'user_id': state.user_id,
                         'encrypted_phone': encrypted,
+                        'first_name': state.first_name,
+                        'last_name': state.last_name,
                         'name': state.name,
                         'state': state.state,
                         'lga': state.lga,
