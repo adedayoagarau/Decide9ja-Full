@@ -1,25 +1,18 @@
 """
-Agentic Retrieval System for Decide9ja/Tade Chatbot.
+Agentic Retrieval System v2 for Decide9ja/Tade Chatbot.
 
-Implements advanced retrieval patterns based on research from major AI labs:
-- Manus AI: Tool grouping, context engineering
-- Anthropic: Tool search, strict schemas
-- OpenAI: Handoff patterns, mega-agent approach
-- Google: Layered RAG architecture
+Redesigned with:
+1. Dynamic/implicit tool routing (not hard-coded groups)
+2. Latest Claude models (Sonnet 4, Haiku 3.5) with 2024-2025 cutoffs
+3. OpenAI fallback when Claude fails
+4. Memory as a callable tool in the stack
+5. Graceful degradation for out-of-scope intents
+6. Web search integration (NOT eliminated)
 
-Key Features:
-1. Tool Groups - Organized tools with semantic routing
-2. Pattern-matching Fast Path - Instant routing for common queries
-3. Query Rewriting - Reformulate failed queries
-4. Document Grading - LLM-scored relevance filtering
-5. Multi-step Retrieval - Query decomposition for complex questions
-6. Self-correction Loop - Retry with reflection on failure
-7. Handoff Protocol - Tools can transfer to other tools
-
-References:
-- https://cookbook.openai.com/examples/orchestrating_agents
-- https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns
-- https://weaviate.io/blog/what-is-agentic-rag
+Based on research from:
+- https://arize.com/blog/best-practices-for-building-an-ai-agent-router/
+- https://www.patronus.ai/ai-agent-development/ai-agent-routing
+- https://platform.claude.com/docs/en/about-claude/models/overview
 
 Author: Decide9ja Team
 """
@@ -28,757 +21,827 @@ import re
 import json
 import logging
 import asyncio
-from typing import Dict, List, Optional, Tuple, Any, Callable
+from typing import Dict, List, Optional, Tuple, Any, Callable, Union
 from dataclasses import dataclass, field
 from enum import Enum
 from datetime import datetime
-
-import anthropic
+from abc import ABC, abstractmethod
 
 logger = logging.getLogger(__name__)
 
 
 # =============================================================================
-# ENUMS & DATA CLASSES
+# MODEL CONFIGURATION - Use latest models with recent knowledge cutoffs
 # =============================================================================
 
-class ToolGroup(Enum):
-    """Tool groups for efficient routing."""
-    POLITICIAN = "politician"       # DB lookups, position lookups
-    NEWS = "news"                   # Web search, RSS, trending
-    KNOWLEDGE = "knowledge"         # RAG, knowledge graph, documents
-    ELECTION = "election"           # 2027 candidates, polls, compare
-    COMMUNITY = "community"         # Issues, fact-check, gamification
-    CONVERSATION = "conversation"   # Greetings, help, simple responses
-    NONE = "none"                   # No tools needed
+# Claude models - Updated January 2025 knowledge cutoff
+CLAUDE_MODELS = {
+    "fast": "claude-3-5-haiku-20241022",      # July 2024 cutoff, fast & cheap
+    "balanced": "claude-sonnet-4-20250514",    # January 2025 cutoff, balanced
+    "powerful": "claude-opus-4-1-20250805",    # January 2025 cutoff, most capable
+}
+
+# OpenAI models - Fallback
+OPENAI_MODELS = {
+    "fast": "gpt-4o-mini",
+    "balanced": "gpt-4o",
+    "powerful": "gpt-4-turbo",
+}
+
+# Default model tier for routing
+DEFAULT_MODEL_TIER = "fast"  # Use fast for routing, balanced for generation
+
+
+# =============================================================================
+# TOOL DEFINITIONS - Dynamic, not hard-coded groups
+# =============================================================================
+
+@dataclass
+class Tool:
+    """A callable tool in the agentic system."""
+    name: str
+    description: str
+    keywords: List[str]              # For semantic matching
+    executor: Callable               # The function to call
+    requires_context: List[str] = field(default_factory=list)  # e.g., ["state", "lga"]
+    can_handoff_to: List[str] = field(default_factory=list)    # Tools it can transfer to
+    is_fallback: bool = False        # Is this a fallback tool?
+    priority: int = 5                # 1-10, higher = more specific
+
+
+@dataclass
+class ToolResult:
+    """Result from executing a tool."""
+    tool_name: str
+    success: bool
+    data: Any
+    confidence: float               # 0-1, how confident in the result
+    source: str                     # Where the data came from
+    error: Optional[str] = None
+    handoff_to: Optional[str] = None  # Suggest handoff to another tool
+    metadata: Dict = field(default_factory=dict)
 
 
 class RetrievalStatus(Enum):
     """Status of retrieval attempt."""
     SUCCESS = "success"
-    PARTIAL = "partial"           # Got some results but incomplete
-    FAILED = "failed"             # No results
-    NEEDS_REWRITE = "needs_rewrite"
-    NEEDS_DECOMPOSITION = "needs_decomposition"
-    HANDOFF = "handoff"           # Transfer to another tool group
-
-
-@dataclass
-class GradedDocument:
-    """A retrieved document with relevance score."""
-    content: str
-    source: str
-    relevance_score: float  # 0-1
-    metadata: Dict = field(default_factory=dict)
-
-
-@dataclass
-class RetrievalAttempt:
-    """Record of a single retrieval attempt."""
-    query: str
-    tool_group: ToolGroup
-    tools_used: List[str]
-    documents: List[GradedDocument]
-    status: RetrievalStatus
-    error: Optional[str] = None
-    rewrite_suggestion: Optional[str] = None
+    PARTIAL = "partial"
+    FAILED = "failed"
+    FALLBACK = "fallback"
+    HANDOFF = "handoff"
+    OUT_OF_SCOPE = "out_of_scope"
 
 
 @dataclass
 class AgenticResult:
     """Final result from agentic retrieval."""
     original_query: str
-    final_query: str  # May be rewritten
-    attempts: List[RetrievalAttempt]
+    final_query: str
+    tool_results: List[ToolResult]
     graded_context: str
     sources_used: List[str]
     confidence: float
     total_attempts: int
-    success: bool
+    status: RetrievalStatus
+    model_used: str
+    fallback_used: bool = False
 
 
 # =============================================================================
-# TOOL DEFINITIONS
+# LLM PROVIDER ABSTRACTION - Claude + OpenAI fallback
 # =============================================================================
 
-# Tool Group Definitions with descriptions for semantic routing
-TOOL_GROUPS = {
-    ToolGroup.POLITICIAN: {
-        "description": "Information about politicians, government officials, their positions, parties, and biographical details",
-        "keywords": ["who is", "governor", "senator", "president", "minister", "representative", "politician", "party", "APC", "PDP", "LP"],
-        "tools": ["db_lookup", "position_lookup", "rep_lookup"]
-    },
-    ToolGroup.NEWS: {
-        "description": "Current events, news, updates, recent happenings, trending topics in Nigerian politics",
-        "keywords": ["news", "latest", "update", "recent", "happening", "today", "trending", "current"],
-        "tools": ["web_search", "rss_search", "news_db"]
-    },
-    ToolGroup.KNOWLEDGE: {
-        "description": "Historical information, policy explanations, educational content, background knowledge",
-        "keywords": ["explain", "what is", "how does", "history", "policy", "law", "constitution", "budget", "FAAC"],
-        "tools": ["rag_search", "knowledge_graph", "document_search"]
-    },
-    ToolGroup.ELECTION: {
-        "description": "2027 elections, candidates, polls, comparisons, voting information",
-        "keywords": ["2027", "election", "candidate", "vote", "poll", "compare", "follow", "running for"],
-        "tools": ["candidate_tracker", "polling_system", "compare_candidates"]
-    },
-    ToolGroup.COMMUNITY: {
-        "description": "Community issues, fact-checking, civic engagement, user reports, gamification",
-        "keywords": ["report", "issue", "verify", "fact check", "points", "leaderboard", "subscribe"],
-        "tools": ["issue_reporter", "fact_checker", "gamification"]
-    },
-    ToolGroup.CONVERSATION: {
-        "description": "Greetings, help requests, simple conversational responses",
-        "keywords": ["hi", "hello", "help", "thanks", "menu", "options"],
-        "tools": ["greeting_handler", "help_handler", "template_response"]
-    }
-}
+class LLMProvider(ABC):
+    """Abstract LLM provider for routing and generation."""
+
+    @abstractmethod
+    async def complete(self, prompt: str, max_tokens: int = 200) -> str:
+        pass
+
+    @abstractmethod
+    async def is_available(self) -> bool:
+        pass
 
 
-# =============================================================================
-# PATTERN MATCHING (FAST PATH)
-# =============================================================================
+class ClaudeProvider(LLMProvider):
+    """Anthropic Claude provider."""
 
-# Fast patterns for instant routing (bypasses LLM classification)
-FAST_PATTERNS: List[Tuple[str, ToolGroup, str, Dict]] = [
-    # Greetings - highest priority
-    (r"^(hi|hello|hey|good\s*(morning|afternoon|evening))[\s!.,]*$", ToolGroup.CONVERSATION, "greeting", {}),
-    (r"^(help|menu|options|what can you do)[\s?]*$", ToolGroup.CONVERSATION, "help", {}),
-    (r"^(thanks?|thank you|ok|okay)[\s!.,]*$", ToolGroup.CONVERSATION, "thanks", {}),
+    def __init__(self, model_tier: str = "fast"):
+        self.model = CLAUDE_MODELS.get(model_tier, CLAUDE_MODELS["fast"])
+        self._client = None
 
-    # Representative lookups - clear patterns
-    (r"(my|who is my|who'?s my)\s*(senator|governor|rep|representative)", ToolGroup.POLITICIAN, "rep_lookup", {}),
+    def _get_client(self):
+        if self._client is None:
+            import anthropic
+            self._client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        return self._client
 
-    # Position lookups
-    (r"who is (the )?(president|vice president|vp)", ToolGroup.POLITICIAN, "position_lookup", {"position": "president"}),
-    (r"who is (the )?governor of (\w+)", ToolGroup.POLITICIAN, "position_lookup", {"position": "governor"}),
-
-    # Election system - 2027
-    (r"^follow\s+(.+)$", ToolGroup.ELECTION, "follow_candidate", {"candidate_name": 1}),
-    (r"^unfollow\s+(.+)$", ToolGroup.ELECTION, "unfollow_candidate", {"candidate_name": 1}),
-    (r"(my candidates|who am i following)", ToolGroup.ELECTION, "my_candidates", {}),
-    (r"compare\s+(.+)\s+(and|vs|versus)\s+(.+)", ToolGroup.ELECTION, "compare_candidates", {}),
-    (r"(who is running|candidates for|2027 candidates)", ToolGroup.ELECTION, "candidate_search", {}),
-    (r"(show|list|any)\s*polls?", ToolGroup.ELECTION, "poll_list", {}),
-    (r"poll results", ToolGroup.ELECTION, "poll_results", {}),
-
-    # Community
-    (r"(my points|check.*points|how many points)", ToolGroup.COMMUNITY, "my_points", {}),
-    (r"leaderboard|rankings", ToolGroup.COMMUNITY, "leaderboard", {}),
-    (r"^subscribe", ToolGroup.COMMUNITY, "subscribe", {}),
-    (r"^unsubscribe", ToolGroup.COMMUNITY, "unsubscribe", {}),
-    (r"(fact check|verify|is it true)", ToolGroup.COMMUNITY, "fact_check", {}),
-    (r"report.*(issue|problem|pothole|road|light|water)", ToolGroup.COMMUNITY, "report_issue", {}),
-
-    # News patterns
-    (r"(latest|news|update|what'?s happening).*(about|on|with)?\s*(.+)?", ToolGroup.NEWS, "web_search", {}),
-    (r"trending|what'?s hot", ToolGroup.NEWS, "trending", {}),
-]
-
-
-def fast_route(query: str) -> Optional[Tuple[ToolGroup, str, Dict]]:
-    """
-    Fast pattern-matching routing.
-    Returns (tool_group, intent, entities) if matched, None otherwise.
-    """
-    query_lower = query.lower().strip()
-
-    for pattern, tool_group, intent, entity_template in FAST_PATTERNS:
-        match = re.search(pattern, query_lower, re.IGNORECASE)
-        if match:
-            # Extract entities from capture groups
-            entities = {}
-            for key, value in entity_template.items():
-                if isinstance(value, int) and value <= len(match.groups()):
-                    entities[key] = match.group(value)
-                else:
-                    entities[key] = value
-
-            logger.info(f"Fast route matched: {intent} -> {tool_group.value}")
-            return (tool_group, intent, entities)
-
-    return None
-
-
-# =============================================================================
-# LLM-BASED ROUTING
-# =============================================================================
-
-async def llm_route_to_tool_group(
-    query: str,
-    user_context: Dict = None
-) -> Tuple[ToolGroup, str, Dict, float]:
-    """
-    Use LLM to route query to appropriate tool group.
-    Returns (tool_group, intent, entities, confidence).
-    """
-    user_context = user_context or {}
-
-    prompt = f"""You are a router for Decide9ja, Nigeria's civic engagement platform.
-
-Route this query to ONE tool group based on what the user needs:
-
-TOOL GROUPS:
-1. POLITICIAN - Info about politicians, positions, parties, bios
-2. NEWS - Current events, latest updates, trending topics
-3. KNOWLEDGE - Historical info, policy explanations, background
-4. ELECTION - 2027 elections, candidates, polls, comparisons
-5. COMMUNITY - Report issues, fact-check, civic points
-6. CONVERSATION - Greetings, help, simple responses
-
-USER CONTEXT:
-State: {user_context.get('state', 'Unknown')}
-Name: {user_context.get('name', 'Unknown')}
-
-QUERY: "{query}"
-
-Respond in JSON:
-{{
-    "tool_group": "POLITICIAN|NEWS|KNOWLEDGE|ELECTION|COMMUNITY|CONVERSATION",
-    "intent": "specific_intent_name",
-    "entities": {{"key": "extracted_value"}},
-    "confidence": 0.0-1.0,
-    "reasoning": "brief explanation"
-}}
-
-Be decisive. Choose the MOST relevant group."""
-
-    try:
-        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-        response = client.messages.create(
-            model="claude-3-haiku-20240307",
-            max_tokens=200,
-            messages=[{"role": "user", "content": prompt}]
-        )
-
-        result_text = response.content[0].text.strip()
-
-        # Parse JSON
-        if "```" in result_text:
-            result_text = result_text.split("```")[1]
-            if result_text.startswith("json"):
-                result_text = result_text[4:]
-            result_text = result_text.split("```")[0]
-
-        data = json.loads(result_text)
-
-        tool_group_str = data.get("tool_group", "CONVERSATION").upper()
-        tool_group = getattr(ToolGroup, tool_group_str, ToolGroup.CONVERSATION)
-
-        return (
-            tool_group,
-            data.get("intent", "unknown"),
-            data.get("entities", {}),
-            float(data.get("confidence", 0.5))
-        )
-
-    except Exception as e:
-        logger.error(f"LLM routing error: {e}")
-        return (ToolGroup.KNOWLEDGE, "fallback", {}, 0.3)
-
-
-# =============================================================================
-# QUERY ANALYSIS & DECOMPOSITION
-# =============================================================================
-
-async def analyze_query_complexity(query: str) -> Dict:
-    """
-    Analyze query to determine if it needs decomposition.
-    Returns analysis with complexity score and sub-queries if needed.
-    """
-    # Simple heuristics first
-    complexity_indicators = {
-        "compare": 0.3,
-        "and": 0.2,
-        "vs": 0.3,
-        "versus": 0.3,
-        "difference between": 0.4,
-        "both": 0.2,
-        "all": 0.2,
-        "multiple": 0.2,
-    }
-
-    complexity_score = 0
-    for indicator, score in complexity_indicators.items():
-        if indicator in query.lower():
-            complexity_score += score
-
-    # If potentially complex, use LLM to decompose
-    if complexity_score >= 0.3:
-        return await llm_decompose_query(query)
-
-    return {
-        "is_complex": False,
-        "complexity_score": complexity_score,
-        "sub_queries": [query],
-        "strategy": "single"
-    }
-
-
-async def llm_decompose_query(query: str) -> Dict:
-    """
-    Use LLM to decompose complex query into sub-queries.
-    """
-    prompt = f"""Analyze this query and determine if it should be broken into sub-queries.
-
-QUERY: "{query}"
-
-If the query asks about multiple things (e.g., comparing politicians, multiple topics), break it down.
-If it's a single focused question, keep it as-is.
-
-Respond in JSON:
-{{
-    "is_complex": true|false,
-    "complexity_score": 0.0-1.0,
-    "sub_queries": ["query1", "query2"],
-    "strategy": "single|parallel|sequential",
-    "reasoning": "brief explanation"
-}}
-
-Examples:
-- "Compare Tinubu and Obi" → ["Tinubu profile and policies", "Peter Obi profile and policies"]
-- "What has Tinubu done?" → ["Tinubu achievements as president"] (single)
-- "Who is the president and what's the latest news?" → ["Who is the president?", "Latest Nigerian politics news"]"""
-
-    try:
-        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-        response = client.messages.create(
-            model="claude-3-haiku-20240307",
-            max_tokens=200,
-            messages=[{"role": "user", "content": prompt}]
-        )
-
-        result_text = response.content[0].text.strip()
-        if "```" in result_text:
-            result_text = result_text.split("```json")[-1].split("```")[0]
-
-        return json.loads(result_text)
-
-    except Exception as e:
-        logger.error(f"Query decomposition error: {e}")
-        return {
-            "is_complex": False,
-            "complexity_score": 0.3,
-            "sub_queries": [query],
-            "strategy": "single"
-        }
-
-
-# =============================================================================
-# DOCUMENT GRADING
-# =============================================================================
-
-async def grade_documents(
-    query: str,
-    documents: List[Dict],
-    threshold: float = 0.4
-) -> List[GradedDocument]:
-    """
-    Grade retrieved documents for relevance using LLM.
-    Filters out documents below threshold.
-    """
-    if not documents:
-        return []
-
-    # Format documents for grading
-    doc_texts = []
-    for i, doc in enumerate(documents[:10]):  # Limit to 10 docs
-        content = doc.get("content", doc.get("summary", doc.get("title", "")))[:300]
-        doc_texts.append(f"[{i}] {content}")
-
-    docs_formatted = "\n".join(doc_texts)
-
-    prompt = f"""Grade these documents for relevance to the query.
-
-QUERY: "{query}"
-
-DOCUMENTS:
-{docs_formatted}
-
-For each document, rate relevance 0.0-1.0:
-- 0.0-0.3: Not relevant
-- 0.4-0.6: Somewhat relevant
-- 0.7-1.0: Highly relevant
-
-Respond in JSON:
-{{
-    "grades": [
-        {{"index": 0, "score": 0.8, "reason": "directly answers question"}},
-        {{"index": 1, "score": 0.3, "reason": "tangentially related"}}
-    ]
-}}"""
-
-    try:
-        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-        response = client.messages.create(
-            model="claude-3-haiku-20240307",
-            max_tokens=300,
-            messages=[{"role": "user", "content": prompt}]
-        )
-
-        result_text = response.content[0].text.strip()
-        if "```" in result_text:
-            result_text = result_text.split("```json")[-1].split("```")[0]
-
-        data = json.loads(result_text)
-
-        # Build graded documents
-        graded = []
-        for grade in data.get("grades", []):
-            idx = grade.get("index", 0)
-            score = float(grade.get("score", 0))
-
-            if score >= threshold and idx < len(documents):
-                doc = documents[idx]
-                graded.append(GradedDocument(
-                    content=doc.get("content", doc.get("summary", doc.get("title", ""))),
-                    source=doc.get("source", "unknown"),
-                    relevance_score=score,
-                    metadata=doc
-                ))
-
-        # Sort by relevance
-        graded.sort(key=lambda x: x.relevance_score, reverse=True)
-        return graded
-
-    except Exception as e:
-        logger.error(f"Document grading error: {e}")
-        # Fallback: return all documents with default score
-        return [
-            GradedDocument(
-                content=doc.get("content", doc.get("summary", "")),
-                source=doc.get("source", "unknown"),
-                relevance_score=0.5,
-                metadata=doc
+    async def complete(self, prompt: str, max_tokens: int = 200) -> str:
+        try:
+            client = self._get_client()
+            response = client.messages.create(
+                model=self.model,
+                max_tokens=max_tokens,
+                messages=[{"role": "user", "content": prompt}]
             )
-            for doc in documents[:5]
-        ]
+            return response.content[0].text.strip()
+        except Exception as e:
+            logger.error(f"Claude error: {e}")
+            raise
+
+    async def is_available(self) -> bool:
+        return bool(os.getenv("ANTHROPIC_API_KEY"))
 
 
-# =============================================================================
-# QUERY REWRITING
-# =============================================================================
+class OpenAIProvider(LLMProvider):
+    """OpenAI provider as fallback."""
 
-async def rewrite_query(
-    original_query: str,
-    failed_attempt: RetrievalAttempt,
-    user_context: Dict = None
-) -> str:
+    def __init__(self, model_tier: str = "fast"):
+        self.model = OPENAI_MODELS.get(model_tier, OPENAI_MODELS["fast"])
+        self._client = None
+
+    def _get_client(self):
+        if self._client is None:
+            from openai import OpenAI
+            self._client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        return self._client
+
+    async def complete(self, prompt: str, max_tokens: int = 200) -> str:
+        try:
+            client = self._get_client()
+            response = client.chat.completions.create(
+                model=self.model,
+                max_tokens=max_tokens,
+                messages=[{"role": "user", "content": prompt}]
+            )
+            return response.choices[0].message.content.strip()
+        except Exception as e:
+            logger.error(f"OpenAI error: {e}")
+            raise
+
+    async def is_available(self) -> bool:
+        return bool(os.getenv("OPENAI_API_KEY"))
+
+
+async def get_llm_provider(tier: str = "fast", prefer_claude: bool = True) -> Tuple[LLMProvider, str]:
     """
-    Rewrite query based on failed retrieval attempt.
+    Get an available LLM provider with fallback.
+    Returns (provider, provider_name).
     """
-    user_context = user_context or {}
+    claude = ClaudeProvider(tier)
+    openai = OpenAIProvider(tier)
 
-    prompt = f"""The following query didn't retrieve good results. Rewrite it to be more specific.
-
-ORIGINAL QUERY: "{original_query}"
-
-WHAT WE TRIED:
-- Tool group: {failed_attempt.tool_group.value}
-- Tools used: {', '.join(failed_attempt.tools_used)}
-- Status: {failed_attempt.status.value}
-{f'- Error: {failed_attempt.error}' if failed_attempt.error else ''}
-
-USER CONTEXT:
-State: {user_context.get('state', 'Unknown')}
-
-REWRITING STRATEGIES:
-1. Add "Nigeria" if missing
-2. Use full names instead of nicknames
-3. Add relevant timeframe (e.g., "2024", "recent")
-4. Be more specific about what's being asked
-5. Include relevant keywords
-
-Respond with ONLY the rewritten query, nothing else."""
-
-    try:
-        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-        response = client.messages.create(
-            model="claude-3-haiku-20240307",
-            max_tokens=100,
-            messages=[{"role": "user", "content": prompt}]
-        )
-
-        rewritten = response.content[0].text.strip()
-        # Remove quotes if present
-        rewritten = rewritten.strip('"\'')
-
-        logger.info(f"Query rewritten: '{original_query}' -> '{rewritten}'")
-        return rewritten
-
-    except Exception as e:
-        logger.error(f"Query rewrite error: {e}")
-        # Simple fallback: add "Nigeria" if not present
-        if "nigeria" not in original_query.lower():
-            return f"{original_query} Nigeria"
-        return original_query
+    if prefer_claude and await claude.is_available():
+        return claude, "claude"
+    elif await openai.is_available():
+        return openai, "openai"
+    elif await claude.is_available():
+        return claude, "claude"
+    else:
+        raise RuntimeError("No LLM provider available. Set ANTHROPIC_API_KEY or OPENAI_API_KEY")
 
 
 # =============================================================================
-# TOOL EXECUTORS
+# TOOL REGISTRY - Dynamic tool discovery
 # =============================================================================
 
-async def execute_politician_tools(
-    query: str,
-    intent: str,
-    entities: Dict,
-    user_context: Dict = None
-) -> List[Dict]:
-    """Execute politician-related tools."""
+class ToolRegistry:
+    """
+    Dynamic tool registry with semantic matching.
+    Tools are discovered implicitly, not hard-grouped.
+    """
+
+    def __init__(self):
+        self.tools: Dict[str, Tool] = {}
+        self._embeddings_cache: Dict[str, List[float]] = {}
+
+    def register(self, tool: Tool):
+        """Register a tool in the registry."""
+        self.tools[tool.name] = tool
+        logger.info(f"Registered tool: {tool.name}")
+
+    def get_tool(self, name: str) -> Optional[Tool]:
+        """Get a tool by name."""
+        return self.tools.get(name)
+
+    def get_all_tools(self) -> List[Tool]:
+        """Get all registered tools."""
+        return list(self.tools.values())
+
+    def get_tool_descriptions(self) -> str:
+        """Get formatted descriptions for LLM routing."""
+        descriptions = []
+        for tool in sorted(self.tools.values(), key=lambda t: -t.priority):
+            keywords = ", ".join(tool.keywords[:5])
+            descriptions.append(f"- {tool.name}: {tool.description} (keywords: {keywords})")
+        return "\n".join(descriptions)
+
+    async def find_relevant_tools(
+        self,
+        query: str,
+        max_tools: int = 3
+    ) -> List[Tuple[Tool, float]]:
+        """
+        Find relevant tools for a query using keyword matching + semantic similarity.
+        Returns list of (tool, relevance_score) tuples.
+        """
+        query_lower = query.lower()
+        scores = []
+
+        for tool in self.tools.values():
+            score = 0.0
+
+            # Keyword matching (fast)
+            for keyword in tool.keywords:
+                if keyword.lower() in query_lower:
+                    score += 0.3
+
+            # Description matching
+            if any(word in tool.description.lower() for word in query_lower.split()):
+                score += 0.2
+
+            # Priority boost
+            score += tool.priority * 0.05
+
+            if score > 0:
+                scores.append((tool, min(score, 1.0)))
+
+        # Sort by score descending
+        scores.sort(key=lambda x: -x[1])
+        return scores[:max_tools]
+
+    def get_fallback_tools(self) -> List[Tool]:
+        """Get tools marked as fallback."""
+        return [t for t in self.tools.values() if t.is_fallback]
+
+
+# Global registry
+tool_registry = ToolRegistry()
+
+
+# =============================================================================
+# TOOL IMPLEMENTATIONS
+# =============================================================================
+
+async def _tool_politician_lookup(query: str, entities: Dict, context: Dict) -> ToolResult:
+    """Look up politician by name or position."""
     from app.services.intelligent_retrieval import (
         _lookup_politician_by_name,
-        _lookup_politician_by_position,
-        _lookup_representatives
+        _lookup_politician_by_position
     )
 
-    results = []
-    user_context = user_context or {}
-
     try:
-        if intent == "rep_lookup":
-            state = user_context.get("state")
-            lga = user_context.get("lga")
-            if state and lga:
-                reps = await _lookup_representatives(state, lga)
-                for rep in reps:
-                    results.append({
-                        "content": f"{rep['position']}: {rep['name']} ({rep['party']}) - {rep.get('area', '')}",
-                        "source": "lga_representatives",
-                        "type": "representative",
-                        "data": rep
-                    })
+        politician_name = entities.get("politician_name", "")
+        position = entities.get("position", "")
+        state = context.get("state")
 
-        elif intent == "position_lookup":
-            position = entities.get("position", "")
-            state = entities.get("state", user_context.get("state"))
-            politician = await _lookup_politician_by_position(position, state)
-            if politician:
-                results.append({
-                    "content": f"{politician['name']} is the {politician['position']}. Party: {politician.get('party', 'Unknown')}. {politician.get('bio', '')}",
-                    "source": "politicians_db",
-                    "type": "politician",
-                    "data": politician
-                })
+        result = None
 
-        elif intent in ["db_lookup", "politician_info"]:
-            name = entities.get("politician_name", query)
-            politician = await _lookup_politician_by_name(name)
-            if politician:
-                results.append({
-                    "content": f"{politician['name']} - {politician['position']}. Party: {politician.get('party', 'Unknown')}. {politician.get('bio', '')}",
-                    "source": "politicians_db",
-                    "type": "politician",
-                    "data": politician
-                })
+        if politician_name:
+            result = await _lookup_politician_by_name(politician_name)
+        elif position:
+            result = await _lookup_politician_by_position(position, state)
+
+        if result:
+            content = f"{result['name']} - {result.get('position', 'Unknown position')}. Party: {result.get('party', 'Unknown')}. {result.get('bio', '')}"
+            return ToolResult(
+                tool_name="politician_lookup",
+                success=True,
+                data=result,
+                confidence=0.85,
+                source="politicians_db",
+                metadata={"type": "politician"}
+            )
+        else:
+            return ToolResult(
+                tool_name="politician_lookup",
+                success=False,
+                data=None,
+                confidence=0.0,
+                source="politicians_db",
+                error="No politician found",
+                handoff_to="web_search"  # Suggest handoff
+            )
 
     except Exception as e:
-        logger.error(f"Politician tools error: {e}")
+        logger.error(f"Politician lookup error: {e}")
+        return ToolResult(
+            tool_name="politician_lookup",
+            success=False,
+            data=None,
+            confidence=0.0,
+            source="politicians_db",
+            error=str(e),
+            handoff_to="web_search"
+        )
 
-    return results
 
-
-async def execute_news_tools(
-    query: str,
-    intent: str,
-    entities: Dict,
-    user_context: Dict = None
-) -> List[Dict]:
-    """Execute news-related tools."""
-    from app.services.intelligent_retrieval import _search_web
-
-    results = []
+async def _tool_representative_lookup(query: str, entities: Dict, context: Dict) -> ToolResult:
+    """Look up user's representatives by state/LGA."""
+    from app.services.intelligent_retrieval import _lookup_representatives
 
     try:
-        # Add Nigeria context if not present
+        state = context.get("state")
+        lga = context.get("lga")
+
+        if not state or not lga:
+            return ToolResult(
+                tool_name="representative_lookup",
+                success=False,
+                data=None,
+                confidence=0.0,
+                source="lga_representatives",
+                error="Need user's state and LGA to look up representatives"
+            )
+
+        reps = await _lookup_representatives(state, lga)
+
+        if reps:
+            content = "\n".join([
+                f"• {r['position']}: {r['name']} ({r['party']}) - {r.get('area', '')}"
+                for r in reps
+            ])
+            return ToolResult(
+                tool_name="representative_lookup",
+                success=True,
+                data=reps,
+                confidence=0.9,
+                source="lga_representatives",
+                metadata={"type": "representatives", "count": len(reps)}
+            )
+        else:
+            return ToolResult(
+                tool_name="representative_lookup",
+                success=False,
+                data=None,
+                confidence=0.0,
+                source="lga_representatives",
+                error="No representatives found for this LGA"
+            )
+
+    except Exception as e:
+        logger.error(f"Representative lookup error: {e}")
+        return ToolResult(
+            tool_name="representative_lookup",
+            success=False,
+            data=None,
+            confidence=0.0,
+            source="lga_representatives",
+            error=str(e)
+        )
+
+
+async def _tool_web_search(query: str, entities: Dict, context: Dict) -> ToolResult:
+    """Search the web for current news and events."""
+    from app.services.intelligent_retrieval import _search_web
+
+    try:
+        # Always add Nigeria context for relevant queries
         search_query = query
         if "nigeria" not in query.lower():
             search_query = f"{query} Nigeria"
 
-        web_results = await _search_web(search_query, limit=5)
+        results = await _search_web(search_query, limit=5)
 
-        for item in web_results:
-            results.append({
-                "content": f"{item.get('title', '')}\n{item.get('summary', '')[:300]}",
-                "source": item.get("source", "web_search"),
-                "type": "news",
-                "url": item.get("url", ""),
-                "data": item
-            })
+        if results:
+            return ToolResult(
+                tool_name="web_search",
+                success=True,
+                data=results,
+                confidence=0.75,
+                source="web_search",
+                metadata={"type": "news", "count": len(results)}
+            )
+        else:
+            return ToolResult(
+                tool_name="web_search",
+                success=False,
+                data=None,
+                confidence=0.0,
+                source="web_search",
+                error="No web results found",
+                handoff_to="knowledge_base"
+            )
 
     except Exception as e:
-        logger.error(f"News tools error: {e}")
+        logger.error(f"Web search error: {e}")
+        return ToolResult(
+            tool_name="web_search",
+            success=False,
+            data=None,
+            confidence=0.0,
+            source="web_search",
+            error=str(e)
+        )
 
-    return results
 
-
-async def execute_knowledge_tools(
-    query: str,
-    intent: str,
-    entities: Dict,
-    user_context: Dict = None
-) -> List[Dict]:
-    """Execute knowledge/RAG tools."""
+async def _tool_knowledge_base(query: str, entities: Dict, context: Dict) -> ToolResult:
+    """Search RAG knowledge base for background information."""
     from app.services.intelligent_retrieval import _search_rag
-
-    results = []
 
     try:
         rag_context = await _search_rag(query, limit=5)
 
-        if rag_context:
-            results.append({
-                "content": rag_context,
-                "source": "rag_documents",
-                "type": "knowledge",
-                "data": {}
-            })
+        if rag_context and not rag_context.startswith("NO"):
+            return ToolResult(
+                tool_name="knowledge_base",
+                success=True,
+                data=rag_context,
+                confidence=0.7,
+                source="rag_documents",
+                metadata={"type": "knowledge"}
+            )
+        else:
+            return ToolResult(
+                tool_name="knowledge_base",
+                success=False,
+                data=None,
+                confidence=0.0,
+                source="rag_documents",
+                error="No relevant documents found"
+            )
 
     except Exception as e:
-        logger.error(f"Knowledge tools error: {e}")
+        logger.error(f"Knowledge base error: {e}")
+        return ToolResult(
+            tool_name="knowledge_base",
+            success=False,
+            data=None,
+            confidence=0.0,
+            source="rag_documents",
+            error=str(e)
+        )
 
-    return results
+
+async def _tool_memory_retrieval(query: str, entities: Dict, context: Dict) -> ToolResult:
+    """Retrieve relevant context from user's conversation memory."""
+    try:
+        from app.services.enhanced_memory import enhanced_memory
+
+        phone = context.get("phone", "")
+        if not phone:
+            return ToolResult(
+                tool_name="memory_retrieval",
+                success=False,
+                data=None,
+                confidence=0.0,
+                source="user_memory",
+                error="No phone context available"
+            )
+
+        # Get personalization context
+        personalization = enhanced_memory.get_personalization_context(phone)
+
+        # Get semantically relevant past conversations
+        relevant_past = enhanced_memory.get_relevant_context(phone, query, max_context=3)
+
+        # Get recent episodes
+        episodes = enhanced_memory.get_recent_episodes(phone, limit=2)
+
+        memory_data = {
+            "personalization": personalization,
+            "relevant_past": relevant_past,
+            "episodes": episodes
+        }
+
+        has_data = bool(personalization or relevant_past or episodes)
+
+        return ToolResult(
+            tool_name="memory_retrieval",
+            success=has_data,
+            data=memory_data,
+            confidence=0.6 if has_data else 0.0,
+            source="user_memory",
+            metadata={"type": "memory", "has_episodes": bool(episodes)}
+        )
+
+    except Exception as e:
+        logger.error(f"Memory retrieval error: {e}")
+        return ToolResult(
+            tool_name="memory_retrieval",
+            success=False,
+            data=None,
+            confidence=0.0,
+            source="user_memory",
+            error=str(e)
+        )
 
 
-async def execute_election_tools(
-    query: str,
-    intent: str,
-    entities: Dict,
-    user_context: Dict = None
-) -> List[Dict]:
-    """Execute election-related tools."""
-    from app.services.election_2027.candidate_tracker import (
-        get_candidate_tracker,
-        get_candidate
+async def _tool_election_info(query: str, entities: Dict, context: Dict) -> ToolResult:
+    """Get 2027 election information, candidates, polls."""
+    try:
+        from app.services.election_2027.candidate_tracker import get_candidate_tracker, get_candidate
+
+        tracker = get_candidate_tracker()
+        candidate_name = entities.get("candidate_name", "")
+
+        if candidate_name:
+            candidate = get_candidate(candidate_name)
+            if candidate:
+                return ToolResult(
+                    tool_name="election_info",
+                    success=True,
+                    data={"name": candidate.name, "party": candidate.party, "bio": candidate.bio},
+                    confidence=0.85,
+                    source="candidate_tracker",
+                    metadata={"type": "candidate"}
+                )
+
+        # Get all presidential candidates
+        candidates = tracker.get_presidential_candidates()
+        if candidates:
+            return ToolResult(
+                tool_name="election_info",
+                success=True,
+                data=[{"name": c.name, "party": c.party} for c in candidates],
+                confidence=0.8,
+                source="candidate_tracker",
+                metadata={"type": "candidate_list", "count": len(candidates)}
+            )
+
+        return ToolResult(
+            tool_name="election_info",
+            success=False,
+            data=None,
+            confidence=0.0,
+            source="candidate_tracker",
+            error="No election data found",
+            handoff_to="web_search"
+        )
+
+    except Exception as e:
+        logger.error(f"Election info error: {e}")
+        return ToolResult(
+            tool_name="election_info",
+            success=False,
+            data=None,
+            confidence=0.0,
+            source="candidate_tracker",
+            error=str(e)
+        )
+
+
+async def _tool_fallback(query: str, entities: Dict, context: Dict) -> ToolResult:
+    """Fallback tool when nothing else matches - uses LLM knowledge."""
+    return ToolResult(
+        tool_name="fallback",
+        success=True,
+        data={"message": "Using LLM general knowledge for this query"},
+        confidence=0.4,
+        source="llm_knowledge",
+        metadata={"type": "fallback", "reason": "No specific tool matched"}
     )
 
-    results = []
+
+# =============================================================================
+# REGISTER ALL TOOLS
+# =============================================================================
+
+def _register_default_tools():
+    """Register all default tools."""
+
+    tool_registry.register(Tool(
+        name="politician_lookup",
+        description="Look up information about Nigerian politicians by name or position (president, governor, senator, minister)",
+        keywords=["who is", "politician", "president", "governor", "senator", "minister", "rep", "APC", "PDP", "LP", "party", "bio", "profile"],
+        executor=_tool_politician_lookup,
+        can_handoff_to=["web_search", "knowledge_base"],
+        priority=8
+    ))
+
+    tool_registry.register(Tool(
+        name="representative_lookup",
+        description="Find user's elected representatives based on their state and LGA (senator, governor, house rep)",
+        keywords=["my senator", "my governor", "my representative", "who represents", "my rep", "my constituency"],
+        executor=_tool_representative_lookup,
+        requires_context=["state", "lga"],
+        priority=9
+    ))
+
+    tool_registry.register(Tool(
+        name="web_search",
+        description="Search for current news, recent events, and live updates about Nigerian politics",
+        keywords=["news", "latest", "recent", "update", "today", "happening", "trending", "current", "breaking"],
+        executor=_tool_web_search,
+        can_handoff_to=["knowledge_base"],
+        priority=7
+    ))
+
+    tool_registry.register(Tool(
+        name="knowledge_base",
+        description="Search background knowledge, history, policies, constitution, and educational content",
+        keywords=["explain", "what is", "how does", "history", "policy", "law", "constitution", "budget", "meaning", "definition"],
+        executor=_tool_knowledge_base,
+        can_handoff_to=["web_search"],
+        priority=6
+    ))
+
+    tool_registry.register(Tool(
+        name="memory_retrieval",
+        description="Retrieve user's conversation history, preferences, and past interactions for personalization",
+        keywords=["remember", "we discussed", "last time", "you said", "my preference", "earlier"],
+        executor=_tool_memory_retrieval,
+        requires_context=["phone"],
+        priority=5
+    ))
+
+    tool_registry.register(Tool(
+        name="election_info",
+        description="Information about 2027 elections, candidates, polls, and voting",
+        keywords=["2027", "election", "candidate", "running for", "vote", "poll", "INEC", "campaign"],
+        executor=_tool_election_info,
+        can_handoff_to=["web_search", "politician_lookup"],
+        priority=7
+    ))
+
+    tool_registry.register(Tool(
+        name="fallback",
+        description="General fallback when no specific tool matches - uses LLM knowledge",
+        keywords=[],
+        executor=_tool_fallback,
+        is_fallback=True,
+        priority=1
+    ))
+
+
+# Initialize default tools
+_register_default_tools()
+
+
+# =============================================================================
+# DYNAMIC ROUTING - Implicit intent classification
+# =============================================================================
+
+async def route_to_tools(
+    query: str,
+    context: Dict = None,
+    provider: LLMProvider = None
+) -> List[Tuple[str, Dict, float]]:
+    """
+    Dynamically route query to relevant tools.
+    Returns list of (tool_name, entities, confidence) tuples.
+
+    Uses hybrid approach:
+    1. Keyword matching (fast)
+    2. LLM classification (if needed)
+    3. Graceful fallback
+    """
+    context = context or {}
+
+    # Step 1: Fast keyword matching
+    matched_tools = await tool_registry.find_relevant_tools(query, max_tools=3)
+
+    if matched_tools and matched_tools[0][1] >= 0.5:
+        # High confidence keyword match
+        results = []
+        for tool, score in matched_tools:
+            entities = await _extract_entities_fast(query, tool.name)
+            results.append((tool.name, entities, score))
+        logger.info(f"Fast routing matched: {[r[0] for r in results]}")
+        return results
+
+    # Step 2: LLM classification for ambiguous queries
+    if provider is None:
+        provider, _ = await get_llm_provider("fast")
+
+    tool_descriptions = tool_registry.get_tool_descriptions()
+
+    prompt = f"""You are routing a user query to the most relevant tools.
+
+AVAILABLE TOOLS:
+{tool_descriptions}
+
+USER QUERY: "{query}"
+
+USER CONTEXT:
+- State: {context.get('state', 'Unknown')}
+- LGA: {context.get('lga', 'Unknown')}
+
+Analyze the query and select 1-3 most relevant tools. Extract any entities.
+
+Respond in JSON:
+{{
+    "tools": [
+        {{
+            "name": "tool_name",
+            "confidence": 0.0-1.0,
+            "entities": {{"key": "value"}},
+            "reasoning": "brief reason"
+        }}
+    ],
+    "is_out_of_scope": false,
+    "fallback_reason": null
+}}
+
+If the query is completely unrelated to Nigerian politics/governance, set is_out_of_scope=true.
+If no tool fits well but it's related to politics, include "fallback" tool."""
 
     try:
-        tracker = get_candidate_tracker()
+        response = await provider.complete(prompt, max_tokens=300)
 
-        if intent == "candidate_search":
-            candidates = tracker.get_presidential_candidates()
-            for c in candidates:
-                results.append({
-                    "content": f"{c.name} ({c.party}) - {'Incumbent' if c.is_incumbent else 'Challenger'}",
-                    "source": "candidate_tracker",
-                    "type": "candidate",
-                    "data": {"name": c.name, "party": c.party}
-                })
+        # Parse JSON
+        if "```" in response:
+            response = response.split("```json")[-1].split("```")[0]
 
-        elif intent in ["follow_candidate", "politician_info"]:
-            name = entities.get("candidate_name", query)
-            candidate = get_candidate(name)
-            if candidate:
-                results.append({
-                    "content": f"{candidate.name} - {candidate.party}. {candidate.bio or ''}",
-                    "source": "candidate_tracker",
-                    "type": "candidate",
-                    "data": {"name": candidate.name, "party": candidate.party}
-                })
+        data = json.loads(response)
+
+        results = []
+        for tool_data in data.get("tools", []):
+            tool_name = tool_data.get("name", "fallback")
+            confidence = float(tool_data.get("confidence", 0.5))
+            entities = tool_data.get("entities", {})
+
+            # Verify tool exists
+            if tool_registry.get_tool(tool_name):
+                results.append((tool_name, entities, confidence))
+
+        # Handle out of scope
+        if data.get("is_out_of_scope"):
+            return [("fallback", {"out_of_scope": True, "reason": data.get("fallback_reason")}, 0.3)]
+
+        # Always have at least fallback
+        if not results:
+            results = [("fallback", {}, 0.3)]
+
+        logger.info(f"LLM routing: {[r[0] for r in results]}")
+        return results
 
     except Exception as e:
-        logger.error(f"Election tools error: {e}")
+        logger.error(f"LLM routing error: {e}")
+        # Graceful fallback to keyword matches or general fallback
+        if matched_tools:
+            return [(matched_tools[0][0].name, {}, matched_tools[0][1])]
+        return [("fallback", {"error": str(e)}, 0.2)]
 
-    return results
 
+async def _extract_entities_fast(query: str, tool_name: str) -> Dict:
+    """Fast entity extraction using patterns."""
+    entities = {}
+    query_lower = query.lower()
 
-# Tool group executor mapping
-TOOL_EXECUTORS = {
-    ToolGroup.POLITICIAN: execute_politician_tools,
-    ToolGroup.NEWS: execute_news_tools,
-    ToolGroup.KNOWLEDGE: execute_knowledge_tools,
-    ToolGroup.ELECTION: execute_election_tools,
-}
+    if tool_name == "politician_lookup":
+        # Extract politician names (capitalized words)
+        words = query.split()
+        potential_names = [w for w in words if w[0].isupper() and len(w) > 2]
+        if potential_names:
+            entities["politician_name"] = " ".join(potential_names[:2])
+
+        # Extract positions
+        positions = ["president", "governor", "senator", "minister", "rep"]
+        for pos in positions:
+            if pos in query_lower:
+                entities["position"] = pos
+
+    elif tool_name == "election_info":
+        # Extract candidate names
+        if "follow" in query_lower or "candidate" in query_lower:
+            words = query.split()
+            for i, w in enumerate(words):
+                if w.lower() in ["follow", "unfollow"] and i + 1 < len(words):
+                    entities["candidate_name"] = words[i + 1]
+
+    return entities
 
 
 # =============================================================================
-# SELF-CORRECTION LOOP
+# GRACEFUL DEGRADATION
 # =============================================================================
 
-async def retrieval_with_self_correction(
+async def graceful_degrade(
     query: str,
-    tool_group: ToolGroup,
-    intent: str,
-    entities: Dict,
-    user_context: Dict = None,
-    max_attempts: int = 3
-) -> RetrievalAttempt:
+    failed_tools: List[str],
+    context: Dict,
+    provider: LLMProvider = None
+) -> Tuple[str, str]:
     """
-    Execute retrieval with self-correction loop.
-
-    Pattern:
-    1. Execute tools
-    2. Grade results
-    3. If insufficient, reflect and rewrite
-    4. Retry with rewritten query
-    5. Max 3 attempts
+    Handle graceful degradation when tools fail.
+    Returns (fallback_response, reason).
     """
-    user_context = user_context or {}
-    current_query = query
-    attempts = []
+    if provider is None:
+        provider, _ = await get_llm_provider("fast")
 
-    for attempt_num in range(max_attempts):
-        logger.info(f"Retrieval attempt {attempt_num + 1}/{max_attempts}: {current_query}")
+    prompt = f"""A user asked about Nigerian politics but our tools couldn't find specific information.
 
-        # Execute appropriate tools
-        executor = TOOL_EXECUTORS.get(tool_group)
-        if not executor:
-            # Fallback to knowledge tools
-            executor = execute_knowledge_tools
+QUERY: "{query}"
+TOOLS TRIED: {', '.join(failed_tools)}
+USER STATE: {context.get('state', 'Unknown')}
 
-        raw_results = await executor(current_query, intent, entities, user_context)
+Generate a helpful response that:
+1. Acknowledges we don't have specific data
+2. Provides general knowledge if applicable
+3. Suggests how the user might find more info
+4. Keeps the Nigerian political context
 
-        # Grade the results
-        graded_docs = await grade_documents(current_query, raw_results)
+Be conversational, not robotic. 2-3 sentences max."""
 
-        # Determine status
-        if graded_docs and any(d.relevance_score >= 0.6 for d in graded_docs):
-            status = RetrievalStatus.SUCCESS
-        elif graded_docs:
-            status = RetrievalStatus.PARTIAL
-        else:
-            status = RetrievalStatus.FAILED
-
-        attempt = RetrievalAttempt(
-            query=current_query,
-            tool_group=tool_group,
-            tools_used=[tool_group.value],
-            documents=graded_docs,
-            status=status
+    try:
+        response = await provider.complete(prompt, max_tokens=200)
+        return response, "graceful_degradation"
+    except:
+        return (
+            "I don't have specific information about that right now, but I can help you explore related topics. What aspect would you like to know more about?",
+            "default_fallback"
         )
-        attempts.append(attempt)
-
-        # If successful or partial with good docs, we're done
-        if status == RetrievalStatus.SUCCESS:
-            logger.info(f"Retrieval succeeded on attempt {attempt_num + 1}")
-            return attempt
-
-        # If failed and we have more attempts, rewrite query
-        if attempt_num < max_attempts - 1:
-            # Check if we should try a different tool group (handoff)
-            if status == RetrievalStatus.FAILED and attempt_num == 0:
-                # Try news if politician failed, or vice versa
-                if tool_group == ToolGroup.POLITICIAN:
-                    logger.info("Handing off from POLITICIAN to NEWS")
-                    tool_group = ToolGroup.NEWS
-                elif tool_group == ToolGroup.NEWS:
-                    logger.info("Handing off from NEWS to KNOWLEDGE")
-                    tool_group = ToolGroup.KNOWLEDGE
-
-            # Rewrite query for next attempt
-            current_query = await rewrite_query(query, attempt, user_context)
-
-    # Return last attempt
-    return attempts[-1] if attempts else RetrievalAttempt(
-        query=query,
-        tool_group=tool_group,
-        tools_used=[],
-        documents=[],
-        status=RetrievalStatus.FAILED,
-        error="Max attempts reached"
-    )
 
 
 # =============================================================================
@@ -793,152 +856,172 @@ async def agentic_retrieve(
     Main entry point for agentic retrieval.
 
     Flow:
-    1. Try fast pattern matching
-    2. If no match, use LLM routing
-    3. Analyze query complexity (decompose if needed)
-    4. Execute retrieval with self-correction
-    5. Grade and merge results
-    6. Return formatted context
+    1. Get LLM provider (Claude preferred, OpenAI fallback)
+    2. Dynamic routing to relevant tools
+    3. Execute tools with handoff support
+    4. Grade and combine results
+    5. Graceful degradation if needed
     """
     user_context = user_context or {}
-    all_attempts = []
+    tool_results = []
+    sources_used = []
+    fallback_used = False
 
-    # Step 1: Fast pattern matching
-    fast_result = fast_route(query)
-
-    if fast_result:
-        tool_group, intent, entities = fast_result
-        confidence = 0.95  # High confidence for pattern match
-    else:
-        # Step 2: LLM routing
-        tool_group, intent, entities, confidence = await llm_route_to_tool_group(
-            query, user_context
-        )
-
-    logger.info(f"Routed to {tool_group.value} with intent={intent}, confidence={confidence}")
-
-    # Step 3: Check if we need the conversation handler (no retrieval)
-    if tool_group == ToolGroup.CONVERSATION:
+    # Step 1: Get LLM provider
+    try:
+        provider, provider_name = await get_llm_provider("fast")
+    except RuntimeError as e:
+        logger.error(f"No LLM provider: {e}")
         return AgenticResult(
             original_query=query,
             final_query=query,
-            attempts=[],
-            graded_context="",
+            tool_results=[],
+            graded_context="LLM provider unavailable",
             sources_used=[],
-            confidence=confidence,
+            confidence=0.0,
             total_attempts=0,
-            success=True
+            status=RetrievalStatus.FAILED,
+            model_used="none",
+            fallback_used=True
         )
 
-    # Step 4: Analyze complexity
-    complexity = await analyze_query_complexity(query)
+    # Step 2: Route to tools
+    routed_tools = await route_to_tools(query, user_context, provider)
 
-    if complexity.get("is_complex") and complexity.get("strategy") == "parallel":
-        # Execute sub-queries in parallel
-        sub_queries = complexity.get("sub_queries", [query])
-        tasks = [
-            retrieval_with_self_correction(
-                sq, tool_group, intent, entities, user_context
-            )
-            for sq in sub_queries
-        ]
-        sub_results = await asyncio.gather(*tasks)
+    # Step 3: Execute tools
+    executed = set()
+    max_attempts = 5  # Prevent infinite loops
 
-        # Merge results
-        all_docs = []
-        for result in sub_results:
-            all_attempts.append(result)
-            all_docs.extend(result.documents)
+    for attempt in range(max_attempts):
+        if not routed_tools:
+            break
 
-        # Re-grade merged documents
-        final_docs = await grade_documents(query, [
-            {"content": d.content, "source": d.source}
-            for d in all_docs
-        ])
+        tool_name, entities, confidence = routed_tools.pop(0)
 
+        if tool_name in executed:
+            continue
+        executed.add(tool_name)
+
+        tool = tool_registry.get_tool(tool_name)
+        if not tool:
+            continue
+
+        # Check required context
+        missing_context = [c for c in tool.requires_context if not user_context.get(c)]
+        if missing_context:
+            logger.warning(f"Tool {tool_name} missing context: {missing_context}")
+            continue
+
+        # Execute tool
+        try:
+            result = await tool.executor(query, entities, user_context)
+            tool_results.append(result)
+
+            if result.success:
+                sources_used.append(result.source)
+            elif result.handoff_to and result.handoff_to not in executed:
+                # Add handoff tool to queue
+                routed_tools.insert(0, (result.handoff_to, entities, confidence * 0.8))
+
+        except Exception as e:
+            logger.error(f"Tool {tool_name} execution error: {e}")
+            tool_results.append(ToolResult(
+                tool_name=tool_name,
+                success=False,
+                data=None,
+                confidence=0.0,
+                source=tool_name,
+                error=str(e)
+            ))
+
+    # Step 4: Determine status and confidence
+    successful_results = [r for r in tool_results if r.success]
+    failed_tools = [r.tool_name for r in tool_results if not r.success]
+
+    if successful_results:
+        max_confidence = max(r.confidence for r in successful_results)
+        status = RetrievalStatus.SUCCESS if max_confidence >= 0.6 else RetrievalStatus.PARTIAL
+    elif tool_results:
+        status = RetrievalStatus.FAILED
+        max_confidence = 0.0
     else:
-        # Single query retrieval
-        result = await retrieval_with_self_correction(
-            query, tool_group, intent, entities, user_context
-        )
-        all_attempts.append(result)
-        final_docs = result.documents
+        status = RetrievalStatus.OUT_OF_SCOPE
+        max_confidence = 0.0
 
-    # Step 5: Format final context
-    graded_context = format_graded_context(final_docs)
-    sources_used = list(set(d.source for d in final_docs))
-
-    success = bool(final_docs) and any(d.relevance_score >= 0.4 for d in final_docs)
+    # Step 5: Graceful degradation if needed
+    graded_context = ""
+    if successful_results:
+        graded_context = _format_tool_results(successful_results)
+    elif failed_tools:
+        fallback_response, reason = await graceful_degrade(query, failed_tools, user_context, provider)
+        graded_context = f"[FALLBACK] {fallback_response}"
+        status = RetrievalStatus.FALLBACK
+        fallback_used = True
 
     return AgenticResult(
         original_query=query,
-        final_query=all_attempts[-1].query if all_attempts else query,
-        attempts=all_attempts,
+        final_query=query,
+        tool_results=tool_results,
         graded_context=graded_context,
         sources_used=sources_used,
-        confidence=confidence,
-        total_attempts=len(all_attempts),
-        success=success
+        confidence=max_confidence,
+        total_attempts=len(tool_results),
+        status=status,
+        model_used=provider_name,
+        fallback_used=fallback_used
     )
 
 
-def format_graded_context(documents: List[GradedDocument]) -> str:
-    """Format graded documents into context string."""
-    if not documents:
-        return "No relevant information found."
-
+def _format_tool_results(results: List[ToolResult]) -> str:
+    """Format successful tool results into context string."""
     parts = []
-    for i, doc in enumerate(documents[:5]):  # Top 5 documents
-        relevance_label = "HIGH" if doc.relevance_score >= 0.7 else "MEDIUM" if doc.relevance_score >= 0.5 else "LOW"
-        parts.append(f"[{doc.source.upper()}] ({relevance_label} relevance)\n{doc.content}")
 
-    return "\n\n---\n\n".join(parts)
+    for result in results:
+        if not result.success:
+            continue
 
+        data = result.data
+        source = result.source.upper()
+        confidence = "HIGH" if result.confidence >= 0.7 else "MEDIUM" if result.confidence >= 0.5 else "LOW"
 
-# =============================================================================
-# HANDOFF PROTOCOL
-# =============================================================================
+        if isinstance(data, str):
+            parts.append(f"[{source}] ({confidence})\n{data}")
+        elif isinstance(data, dict):
+            if "content" in data:
+                parts.append(f"[{source}] ({confidence})\n{data['content']}")
+            elif "message" in data:
+                parts.append(f"[{source}] ({confidence})\n{data['message']}")
+            else:
+                # Format dict as key-value pairs
+                formatted = "\n".join([f"  {k}: {v}" for k, v in data.items() if v])
+                parts.append(f"[{source}] ({confidence})\n{formatted}")
+        elif isinstance(data, list):
+            items = []
+            for item in data[:5]:  # Max 5 items
+                if isinstance(item, dict):
+                    if "title" in item:
+                        items.append(f"• {item['title']}: {item.get('summary', '')[:150]}")
+                    elif "name" in item:
+                        items.append(f"• {item['name']}: {item.get('party', '')} - {item.get('position', '')}")
+                    else:
+                        items.append(f"• {str(item)[:150]}")
+                else:
+                    items.append(f"• {str(item)[:150]}")
+            parts.append(f"[{source}] ({confidence})\n" + "\n".join(items))
 
-class ToolHandoff:
-    """Represents a handoff from one tool to another."""
-
-    def __init__(self, from_tool: str, to_tool: str, reason: str, context: Dict = None):
-        self.from_tool = from_tool
-        self.to_tool = to_tool
-        self.reason = reason
-        self.context = context or {}
-        self.timestamp = datetime.utcnow()
-
-
-def transfer_to_news(context: Dict = None) -> ToolHandoff:
-    """Transfer conversation to news tools."""
-    return ToolHandoff("current", "news", "Query requires current events", context)
-
-
-def transfer_to_politician(context: Dict = None) -> ToolHandoff:
-    """Transfer conversation to politician tools."""
-    return ToolHandoff("current", "politician", "Query about specific politician", context)
-
-
-def transfer_to_knowledge(context: Dict = None) -> ToolHandoff:
-    """Transfer conversation to knowledge/RAG tools."""
-    return ToolHandoff("current", "knowledge", "Query requires background information", context)
-
-
-def transfer_to_election(context: Dict = None) -> ToolHandoff:
-    """Transfer conversation to election tools."""
-    return ToolHandoff("current", "election", "Query about 2027 elections", context)
+    return "\n\n---\n\n".join(parts) if parts else "No relevant information found."
 
 
 # =============================================================================
-# INTEGRATION HELPER
+# HELPER FOR MESSAGE HANDLER INTEGRATION
 # =============================================================================
 
 async def get_agentic_context(
     query: str,
     user_state: str = None,
     user_lga: str = None,
-    user_name: str = None
+    user_name: str = None,
+    phone: str = None
 ) -> Tuple[str, List[str], bool]:
     """
     Helper function to get agentic retrieval context.
@@ -947,7 +1030,8 @@ async def get_agentic_context(
     user_context = {
         "state": user_state,
         "lga": user_lga,
-        "name": user_name
+        "name": user_name,
+        "phone": phone
     }
 
     result = await agentic_retrieve(query, user_context)
@@ -955,5 +1039,5 @@ async def get_agentic_context(
     return (
         result.graded_context,
         result.sources_used,
-        result.success
+        result.status in [RetrievalStatus.SUCCESS, RetrievalStatus.PARTIAL]
     )
