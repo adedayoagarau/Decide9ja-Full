@@ -222,7 +222,9 @@ class User(Base):
     phone_hash = Column(String(64), unique=True, nullable=False, index=True)  # SHA256 of phone (privacy)
     
     # Collected via onboarding
-    name = Column(String(100))
+    first_name = Column(String(50))       # User's first name (used for addressing)
+    last_name = Column(String(50))        # User's last name/surname
+    name = Column(String(100))            # Full name (for backward compatibility)
     state = Column(String(50))
     lga = Column(String(100))
     

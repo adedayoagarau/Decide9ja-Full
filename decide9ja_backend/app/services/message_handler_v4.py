@@ -867,7 +867,12 @@ RESPONSE: Nigeria's president is Bola Ahmed Tinubu of the APC. He's been preside
 
     # Build user context - only include known fields, never announce these directly
     user_context_parts = []
-    if state.name:
+    if state.first_name:
+        user_context_parts.append(f"first_name: {state.first_name}")
+        if state.last_name:
+            user_context_parts.append(f"full_name: {state.first_name} {state.last_name}")
+    elif state.name:
+        # Fallback for legacy users without first_name
         user_context_parts.append(f"name: {state.name}")
     if state.state:
         user_context_parts.append(f"state: {state.state}")
