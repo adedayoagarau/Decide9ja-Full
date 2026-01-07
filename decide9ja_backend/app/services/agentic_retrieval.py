@@ -704,37 +704,11 @@ async def route_to_tools(
     if provider is None:
         provider, _ = await get_llm_provider("fast")
 
-    tool_descriptions = tool_registry.get_tool_descriptions()
+    # Use layered prompt system for routing
+    from app.services.agentic_prompts import build_routing_prompt
 
-    prompt = f"""You are routing a user query to the most relevant tools.
-
-AVAILABLE TOOLS:
-{tool_descriptions}
-
-USER QUERY: "{query}"
-
-USER CONTEXT:
-- State: {context.get('state', 'Unknown')}
-- LGA: {context.get('lga', 'Unknown')}
-
-Analyze the query and select 1-3 most relevant tools. Extract any entities.
-
-Respond in JSON:
-{{
-    "tools": [
-        {{
-            "name": "tool_name",
-            "confidence": 0.0-1.0,
-            "entities": {{"key": "value"}},
-            "reasoning": "brief reason"
-        }}
-    ],
-    "is_out_of_scope": false,
-    "fallback_reason": null
-}}
-
-If the query is completely unrelated to Nigerian politics/governance, set is_out_of_scope=true.
-If no tool fits well but it's related to politics, include "fallback" tool."""
+    available_tools = [t.name for t in tool_registry.get_all_tools()]
+    prompt = build_routing_prompt(query, available_tools, context)
 
     try:
         response = await provider.complete(prompt, max_tokens=300)
@@ -820,19 +794,15 @@ async def graceful_degrade(
     if provider is None:
         provider, _ = await get_llm_provider("fast")
 
-    prompt = f"""A user asked about Nigerian politics but our tools couldn't find specific information.
+    # Use layered prompt template for graceful fallback
+    from app.services.agentic_prompts import get_prompt_template
 
-QUERY: "{query}"
-TOOLS TRIED: {', '.join(failed_tools)}
-USER STATE: {context.get('state', 'Unknown')}
-
-Generate a helpful response that:
-1. Acknowledges we don't have specific data
-2. Provides general knowledge if applicable
-3. Suggests how the user might find more info
-4. Keeps the Nigerian political context
-
-Be conversational, not robotic. 2-3 sentences max."""
+    prompt = get_prompt_template(
+        "graceful_fallback",
+        query=query,
+        tools_tried=", ".join(failed_tools),
+        state=context.get("state", "Unknown")
+    )
 
     try:
         response = await provider.complete(prompt, max_tokens=200)
