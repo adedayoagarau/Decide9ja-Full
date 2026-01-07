@@ -27,6 +27,11 @@ from app.services.intelligent_retrieval import (
     RetrievalResult,
     format_retrieval_for_context
 )
+from app.services.agentic_retrieval import (
+    agentic_retrieve,
+    AgenticResult,
+    RetrievalStatus
+)
 from app.services.nigerian_politics import (
     get_hot_issues_context,
     get_governance_context,
@@ -62,11 +67,38 @@ from app.services.fact_check_service import FactCheckService
 from app.services.community_service import CommunityService
 from app.services.news_digest_service import NewsDigestService
 from app.services.user_memory import user_memory
+from app.services.enhanced_memory import enhanced_memory
+from app.services.prompts import (
+    build_tade_system_prompt,
+    build_tade_user_prompt,
+    get_current_context
+)
 
 logger = logging.getLogger(__name__)
 
 # Escape commands that reset conversation
 ESCAPE_COMMANDS = {"reset", "restart", "cancel", "menu", "stop", "start over", "new"}
+
+# Controversial topics that need balanced treatment (from v3)
+CONTROVERSIAL_TOPICS = [
+    "tax reform", "tax bill", "vat", "derivation",
+    "pdp crisis", "apc crisis", "party", "defection",
+    "north vs south", "northern governors", "southern governors",
+    "restructuring", "true federalism", "secession",
+    "election", "rigging", "inec", "tribunal",
+    "subsidy", "fuel price", "palliative",
+    "insecurity", "banditry", "terrorism",
+    "muslim-muslim", "christian", "religion",
+    "ethnic", "tribe", "marginalization",
+    "obi vs tinubu", "atiku vs tinubu", "labour party",
+    "wike", "fubara", "rivers crisis",
+]
+
+
+def is_controversial_topic(query: str) -> bool:
+    """Detect if a query touches on politically controversial topics."""
+    query_lower = query.lower()
+    return any(topic in query_lower for topic in CONTROVERSIAL_TOPICS)
 
 
 async def handle_message(phone: str, text: str, media_url: str = None) -> str:
@@ -169,7 +201,28 @@ async def handle_message(phone: str, text: str, media_url: str = None) -> str:
     user_memory.save_message(phone, "assistant", response)
 
     # ===========================================
-    # STEP 7: Check for Progressive Onboarding
+    # STEP 7: Enhanced Memory Processing
+    # ===========================================
+    # Store embeddings for semantic search (async, non-blocking)
+    try:
+        import asyncio
+        # Store user message embedding for future semantic search
+        asyncio.create_task(
+            enhanced_memory.embed_and_store_message(
+                phone, "user", text,
+                metadata={"intent": state.flow.value if state.flow else "idle"}
+            )
+        )
+
+        # Periodic memory consolidation (every 10 messages)
+        memory_stats = enhanced_memory.get_memory_stats(phone)
+        if memory_stats.get("total_messages", 0) % 10 == 0:
+            asyncio.create_task(enhanced_memory.consolidate_memory(phone))
+    except Exception as e:
+        logger.warning(f"Enhanced memory processing error: {e}")
+
+    # ===========================================
+    # STEP 8: Check for Progressive Onboarding
     # ===========================================
     # Occasionally ask for more user info at milestones
     progressive_prompt = user_memory.get_progressive_onboarding_prompt(phone)
@@ -682,14 +735,34 @@ Keep engaging to earn more badges and climb the ranks! 🚀"""
             return "Sorry, I couldn't load your profile. Please try again."
 
     # ===========================================
-    # INTELLIGENT RETRIEVAL
-    # ============================================
+    # AGENTIC RETRIEVAL (Self-correcting, graded)
+    # ===========================================
+    # Use new agentic retrieval system with:
+    # - Pattern-matching fast path
+    # - Tool grouping and routing
+    # - Document grading
+    # - Query rewriting on failure
+    # - Self-correction loop
+    # - Handoff between tool groups
+
+    user_context = {
+        "state": state.state,
+        "lga": state.lga,
+        "name": state.first_name or state.name,
+        "phone": phone  # Pass phone for memory retrieval tool
+    }
+
+    agentic_result = await agentic_retrieve(text, user_context)
+
+    logger.info(f"Agentic retrieval: {agentic_result.total_attempts} attempts, status={agentic_result.status.value}, sources={agentic_result.sources_used}")
+
+    # Also run legacy retrieval for fallback/comparison
     retrieval_result = await intelligent_retrieve(
         understanding=understanding,
         user_state=state.state,
         user_lga=state.lga
     )
-    
+
     # ===========================================
     # GENERATE RESPONSE WITH CONTEXT
     # ===========================================
@@ -697,6 +770,7 @@ Keep engaging to earn more badges and climb the ranks! 🚀"""
         query=text,
         understanding=understanding,
         retrieval=retrieval_result,
+        agentic=agentic_result,
         state=state
     )
 
@@ -705,7 +779,8 @@ async def generate_response_with_context(
     query: str,
     understanding: QueryUnderstanding,
     retrieval: RetrievalResult,
-    state: UserState
+    state: UserState,
+    agentic: AgenticResult = None
 ) -> str:
     """Generate Claude response using retrieved context with Nigerian politics expertise."""
 
@@ -714,8 +789,22 @@ async def generate_response_with_context(
     # Load conversation history for multi-turn context
     conversation_history = user_memory.get_conversation_context(state.phone, limit=6)  # Last 6 messages
 
-    # Format context from retrieval
-    context = format_retrieval_for_context(retrieval)
+    # Format context from retrieval (legacy)
+    legacy_context = format_retrieval_for_context(retrieval)
+
+    # Prefer agentic context if available and successful
+    from app.services.agentic_retrieval import RetrievalStatus
+    agentic_success = agentic and agentic.status in [RetrievalStatus.SUCCESS, RetrievalStatus.PARTIAL]
+
+    if agentic_success and agentic.graded_context:
+        context = f"""AGENTIC RETRIEVAL (graded, self-corrected):
+{agentic.graded_context}
+
+LEGACY RETRIEVAL (for reference):
+{legacy_context}"""
+        logger.info(f"Using agentic context ({agentic.total_attempts} attempts, status={agentic.status.value}, confidence={agentic.confidence:.2f})")
+    else:
+        context = legacy_context
 
     # Check if query relates to hot issues and add context
     hot_issue = analyze_query_for_hot_issues(query)
@@ -750,83 +839,21 @@ async def generate_response_with_context(
     # Get explainer for potential analogies
     explainer = get_explainer()
 
-    # Enhanced system prompt with Nigerian politics expertise (2026 Updated)
-    system_prompt = """You are Tade, the AI assistant for Decide9ja — Nigeria's leading non-partisan civic engagement platform.
+    # Build system prompt using federated prompt architecture (Source of Truth)
+    user_context_for_prompt = {
+        "name": state.first_name or state.name,
+        "state": state.state,
+        "lga": state.lga
+    }
 
-TODAY'S DATE: January 1, 2026
-🔥 HOT TOPIC: The 2026 Tax Reform Laws took effect TODAY!
+    # Build Tade's system prompt from Source of Truth
+    system_prompt = build_tade_system_prompt(
+        user_context=user_context_for_prompt,
+        include_full_sot=False  # Use minimal SOT for faster inference
+    )
 
-=== YOUR EXPERTISE ===
-You are a NIGERIAN POLITICS EXPERT with deep knowledge of:
-• Nigerian governance (Federal, State, LGA structure)
-• All 36 states + FCT, 774 LGAs, 109 Senators, 360 House Reps
-• Political parties (APC, PDP, LP, NNPP, others)
-• Current administration (Tinubu government since May 2023)
-• 2026 Hot issues: NEW TAX LAWS (effective today!), cost of living, naira, security, Rivers crisis
-• Electoral system: INEC, PVC, 2027 elections coming
-• Historical context: Fourth Republic, past presidents, key events
-
-=== YOUR COMMUNICATION STYLE ===
-You explain like NotebookLM — using:
-• SIMPLE LANGUAGE: No jargon, explain like talking to your grandmother
-• LOCAL ANALOGIES: Use Nigerian examples (market, NEPA, danfo, landlord, DSTV)
-• RELATABLE EXAMPLES: Connect to everyday Nigerian experiences
-• PIDGIN OPTION: You can explain in Pidgin if it helps
-
-Example analogies you use:
-- "VAT is like the 'change' the trader adds when you buy something"
-- "It's like when your landlord changes how bills are calculated"
-- "Like NEPA meter units that now run faster"
-- "Think of it like DSTV changing their bouquet"
-
-=== RESPONSE GUIDELINES ===
-
-1. **EXPLAIN SIMPLY FIRST, DETAILS IF ASKED**
-   - Start with 2-3 simple sentences
-   - Offer to explain more if they want
-   - Use analogies to make complex things clear
-
-2. **NEVER SAY "I DON'T HAVE INFORMATION"** for basic questions
-   - You know Nigerian politics
-   - You know about the 2026 tax reform
-   - You know who the president, VP, governors are
-   - Use your knowledge when database is empty
-
-3. **BE NEUTRAL ON PARTISAN ISSUES**
-   - "Supporters say X, critics argue Y"
-   - Don't say who is "good" or "bad"
-   - Present multiple perspectives
-
-4. **CURRENT 2026 CONTEXT**:
-   - Tax Reform: NEW LAWS EFFECTIVE TODAY (Jan 1, 2026) — VAT sharing changed, new rules for businesses
-   - Naira: Trading around ₦1,500-1,800 per dollar
-   - Fuel: Still expensive since 2023 subsidy removal
-   - Security: Mixed progress — banditry (NW), insurgency (NE)
-   - Rivers crisis: Wike vs Fubara ongoing
-   - 2027 Elections: 13 months away, positioning has begun
-
-5. **BE CONCISE**: Users are on WhatsApp. 2-5 sentences, then ask if they want more.
-
-=== EXAMPLES FOR TODAY ===
-
-USER: What's this new tax thing?
-RESPONSE: The 2026 Tax Reform Laws came into effect today! The biggest change is how VAT (the tax added when you buy things) is shared between states. Think of it like a family where they changed who contributes what to the food pot. Lagos and commercial states might keep more of what they generate, while others are worried they'll get less. Want me to explain how it affects you specifically?
-
-USER: Will things become more expensive because of tax?
-RESPONSE: Some things might adjust slightly, but basic food items like rice, beans, and vegetables are still VAT-exempt, so those shouldn't change from this law. The bigger cost increases we've been experiencing are from the Naira falling and fuel prices — those started in 2023. Shall I explain any specific item you're concerned about?
-
-USER: Explain the tax in Pidgin
-RESPONSE: Na so e be: Government don change how dem dey collect and share tax money. Before, all states dey share the money equal-equal. Now, state wey dey generate more money go keep more. That's why Lagos dey happy, but some other states dey vex. For you wey dey buy things, some prices fit adjust small, but your garri and rice no go change because of this one. Anything else wey you wan know?
-
-USER: Who is the president?
-RESPONSE: Nigeria's president is Bola Ahmed Tinubu of the APC. He's been president since May 29, 2023. His major policies include removing fuel subsidy (why fuel is expensive now) and floating the Naira (why dollar is high). The new tax reform that started today is also his government's initiative. Want to know more about any of these policies?
-
-=== THINGS TO AVOID ===
-- Don't say "I don't have information" for Nigerian politics
-- Don't say "Great question!" or "I'd be happy to help!"
-- Don't use big grammar when simple words work
-- Don't express partisan opinions
-- Don't give very long responses without asking if they want more"""
+    # Add dynamic current context
+    system_prompt += get_current_context()
 
     # Combine all context
     full_context = context
@@ -879,27 +906,25 @@ RESPONSE: Nigeria's president is Bola Ahmed Tinubu of the APC. He's been preside
 
     user_context = ", ".join(user_context_parts) if user_context_parts else "new user (no profile yet)"
 
-    user_prompt = f"""Answer this user's question using your Nigerian politics expertise and any retrieved context.
+    # Get enhanced memory personalization context
+    personalization_context = ""
+    try:
+        personalization_context = enhanced_memory.get_personalization_context(state.phone)
+        # Also get relevant semantic context from past conversations
+        relevant_past = enhanced_memory.get_relevant_context(state.phone, query, max_context=3)
+        if relevant_past:
+            personalization_context += f"\n\n{relevant_past}"
+    except Exception as e:
+        logger.warning(f"Enhanced memory error: {e}")
 
-[INTERNAL CONTEXT - use to personalize response, DO NOT announce or repeat these fields]
-User: {user_context}
-{history_summary}
-
-QUESTION: {query}
-
-INTENT: {understanding.intent.value}
-
-RETRIEVED CONTEXT:
-{full_context}
-
----
-
-IMPORTANT:
-- If the retrieved context is empty, use your built-in Nigerian politics knowledge
-- Use the user's name naturally IF it fits (don't force it)
-- If they have a state/LGA, give location-relevant info when appropriate
-- NEVER say "as someone from [state]..." or announce their location
-- Provide 2-5 sentences, then a follow-up question or suggestion"""
+    # Build user prompt using federated prompt system
+    user_prompt = build_tade_user_prompt(
+        query=query,
+        retrieved_context=full_context,
+        intent=understanding.intent.value,
+        conversation_history=history_summary if history_summary else None,
+        personalization=f"User: {user_context}\n{personalization_context}" if personalization_context else f"User: {user_context}"
+    )
 
     try:
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))

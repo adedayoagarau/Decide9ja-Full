@@ -1,0 +1,157 @@
+# Docker Compose for Decide9ja Background Services
+#
+# Usage:
+#   docker-compose up -d                    # Start all services
+#   docker-compose up -d scheduler          # Start scheduler only
+#   docker-compose logs -f scheduler        # View logs
+#   docker-compose down                     # Stop all services
+#
+# Environment:
+#   Create a .env file with required variables (see .env.example)
+
+version: '3.8'
+
+services:
+  # ============================================
+  # Core Services
+  # ============================================
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: decide9ja-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-decide9ja}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-decide9ja_secret}
+      POSTGRES_DB: ${POSTGRES_DB:-decide9ja}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-decide9ja}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: decide9ja-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ============================================
+  # Background Workers
+  # ============================================
+
+  # Main Scheduler (runs all scheduled jobs)
+  scheduler:
+    build:
+      context: ../../
+      dockerfile: deployment/docker/Dockerfile.scheduler
+    container_name: decide9ja-scheduler
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-decide9ja}:${POSTGRES_PASSWORD:-decide9ja_secret}@postgres:5432/${POSTGRES_DB:-decide9ja}
+      REDIS_URL: redis://redis:6379/0
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID:-}
+      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN:-}
+    volumes:
+      - scheduler_logs:/app/logs
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+
+  # News Worker (continuous article processing)
+  news-worker:
+    build:
+      context: ../../
+      dockerfile: deployment/docker/Dockerfile.scheduler
+    container_name: decide9ja-news-worker
+    restart: unless-stopped
+    depends_on:
+      - scheduler
+    command: ["python", "-m", "app.services.news_agent", "--worker", "--interval", "300"]
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-decide9ja}:${POSTGRES_PASSWORD:-decide9ja_secret}@postgres:5432/${POSTGRES_DB:-decide9ja}
+      REDIS_URL: redis://redis:6379/0
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    volumes:
+      - worker_logs:/app/logs
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "3"
+
+  # ============================================
+  # Optional: Monitoring
+  # ============================================
+
+  # Prometheus metrics (optional)
+  # prometheus:
+  #   image: prom/prometheus:latest
+  #   container_name: decide9ja-prometheus
+  #   volumes:
+  #     - ./prometheus.yml:/etc/prometheus/prometheus.yml
+  #     - prometheus_data:/prometheus
+  #   ports:
+  #     - "9090:9090"
+
+  # Grafana dashboards (optional)
+  # grafana:
+  #   image: grafana/grafana:latest
+  #   container_name: decide9ja-grafana
+  #   depends_on:
+  #     - prometheus
+  #   volumes:
+  #     - grafana_data:/var/lib/grafana
+  #   ports:
+  #     - "3001:3000"
+
+# ============================================
+# Volumes
+# ============================================
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  scheduler_logs:
+    driver: local
+  worker_logs:
+    driver: local
+  # prometheus_data:
+  #   driver: local
+  # grafana_data:
+  #   driver: local
+
+# ============================================
+# Networks
+# ============================================
+
+networks:
+  default:
+    name: decide9ja-network

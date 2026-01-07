@@ -273,10 +273,17 @@ def get_news_context_for_rag(query: str, db: Session = None, limit: int = 5) -> 
             db.close()
 
 
-def run_news_pipeline():
+def run_news_pipeline(extract_issues: bool = True, issue_limit: int = 20):
     """
-    Complete pipeline: scrape, store, index.
+    Complete pipeline: scrape, store, index, and optionally extract issues.
     Called by scheduler.
+
+    Args:
+        extract_issues: Whether to run issue extraction on new articles
+        issue_limit: Max articles to process for issue extraction per run
+
+    Returns:
+        Dict with pipeline results
     """
     try:
         # Try resilient scraper first, fall back to original if unavailable
@@ -304,21 +311,72 @@ def run_news_pipeline():
                     logger.warning(f"Unhealthy sources: {', '.join(unhealthy)}")
             except Exception:
                 pass
-        
+
         # 2. Store
         article_dicts = [a.to_dict() for a in articles]
         new_count = store_articles(article_dicts)
         logger.info(f"Stored {new_count} new articles")
-        
-        # 3. Index
+
+        # 3. Index for RAG
         indexed = index_articles_for_rag(batch_size=50)
         logger.info(f"Indexed {indexed} articles")
-        
+
+        # 4. Extract issues from new articles (if enabled)
+        issues_extracted = 0
+        if extract_issues and new_count > 0:
+            try:
+                from app.services.issue_pipeline import run_issue_extraction_pipeline
+                issues = run_issue_extraction_pipeline(limit=issue_limit)
+                issues_extracted = len(issues)
+                logger.info(f"Extracted {issues_extracted} issues from new articles")
+            except ImportError:
+                logger.warning("Issue pipeline not available, skipping issue extraction")
+            except Exception as e:
+                logger.error(f"Issue extraction failed: {e}")
+
         logger.info("News pipeline complete!")
-        return {"scraped": len(articles), "stored": new_count, "indexed": indexed}
-        
+        return {
+            "scraped": len(articles),
+            "stored": new_count,
+            "indexed": indexed,
+            "issues_extracted": issues_extracted
+        }
+
     except Exception as e:
         logger.error(f"News pipeline error: {e}")
+        return {"error": str(e)}
+
+
+def run_news_pipeline_with_worker():
+    """
+    Run news pipeline with integrated NewsAgent worker.
+    This provides continuous processing capability.
+    """
+    import asyncio
+
+    try:
+        from app.services.news_agent import NewsAgent
+
+        # Run standard pipeline first
+        result = run_news_pipeline(extract_issues=False)
+
+        # Then use NewsAgent to process articles for issues
+        async def process_with_agent():
+            with NewsAgent() as agent:
+                stats = await agent.process_unprocessed_articles(limit=30)
+                return stats
+
+        agent_stats = asyncio.run(process_with_agent())
+        result["agent_processed"] = agent_stats.get("processed", 0)
+        result["agent_issues"] = agent_stats.get("issues_created", 0)
+
+        return result
+
+    except ImportError:
+        logger.warning("NewsAgent not available, using standard pipeline")
+        return run_news_pipeline(extract_issues=True)
+    except Exception as e:
+        logger.error(f"News pipeline with worker error: {e}")
         return {"error": str(e)}
 
 
