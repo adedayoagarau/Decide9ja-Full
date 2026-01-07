@@ -85,6 +85,8 @@ class StateManager:
                 user_id=user_id,
                 phone=phone,
                 name=profile.get("name"),
+                first_name=profile.get("first_name"),
+                last_name=profile.get("last_name"),
                 state=profile.get("state"),
                 lga=profile.get("lga"),
                 # Enhanced location profile
@@ -310,7 +312,7 @@ class StateManager:
                            registered_state, registered_lga, ward,
                            senatorial_district, federal_constituency, state_constituency,
                            age_range, gender, has_pvc, interests, topics_asked,
-                           profile_completeness
+                           profile_completeness, first_name, last_name
                     FROM users
                     WHERE phone_hash = :user_id
                     LIMIT 1
@@ -344,6 +346,9 @@ class StateManager:
                         "interests": list(row[18]) if row[18] else [],
                         "topics_asked": list(row[19]) if row[19] else [],
                         "profile_completeness": row[20] or 0,
+                        # Name components for onboarding state
+                        "first_name": row[21],
+                        "last_name": row[22],
                     }
         except Exception as e:
             logger.warning(f"Failed to load profile from DB: {e}")
