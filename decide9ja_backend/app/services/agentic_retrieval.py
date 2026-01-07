@@ -473,6 +473,74 @@ async def _tool_knowledge_base(query: str, entities: Dict, context: Dict) -> Too
         )
 
 
+async def _tool_verify_claim(query: str, entities: Dict, context: Dict) -> ToolResult:
+    """
+    Verify a claim or news item against trusted sources.
+
+    Cross-checks information against:
+    - Official government sources (INEC, NBS, CBN)
+    - Civil society watchdogs (BudgIT, CISLAC)
+    - Knowledge base
+    """
+    try:
+        from app.services.verifier_agent import verify_content, VerificationStatus
+
+        # Extract the claim to verify
+        claim = entities.get("claim", query)
+
+        # Run verification
+        result = await verify_content(claim)
+
+        if result.overall_status in [VerificationStatus.VERIFIED, VerificationStatus.PARTIALLY_VERIFIED]:
+            return ToolResult(
+                tool_name="verify_claim",
+                success=True,
+                data={
+                    "status": result.overall_status.value,
+                    "trust_score": result.trust_score,
+                    "balanced_framing": result.balanced_framing,
+                    "gaps": result.gaps_acknowledged,
+                    "sources": result.sources_cited
+                },
+                confidence=result.trust_score,
+                source="verifier_agent",
+                metadata={"checks": len(result.checks)}
+            )
+        else:
+            return ToolResult(
+                tool_name="verify_claim",
+                success=False,
+                data={
+                    "status": result.overall_status.value,
+                    "warnings": result.warnings,
+                    "gaps": result.gaps_acknowledged
+                },
+                confidence=result.trust_score,
+                source="verifier_agent",
+                error=f"Claim status: {result.overall_status.value}"
+            )
+
+    except ImportError:
+        return ToolResult(
+            tool_name="verify_claim",
+            success=False,
+            data=None,
+            confidence=0.0,
+            source="verifier_agent",
+            error="Verifier agent not available"
+        )
+    except Exception as e:
+        logger.error(f"Verification error: {e}")
+        return ToolResult(
+            tool_name="verify_claim",
+            success=False,
+            data=None,
+            confidence=0.0,
+            source="verifier_agent",
+            error=str(e)
+        )
+
+
 async def _tool_news_db(query: str, entities: Dict, context: Dict) -> ToolResult:
     """
     Query local news database for Nigerian political news.
@@ -691,8 +759,17 @@ def _register_default_tools():
         description="Query local database of scraped Nigerian political news articles (faster than web search)",
         keywords=["news", "latest", "recent", "update", "today", "happening", "headline", "article", "naija news"],
         executor=_tool_news_db,
-        can_handoff_to=["web_search"],
+        can_handoff_to=["web_search", "verify_claim"],
         priority=8  # Higher priority than web_search for news queries
+    ))
+
+    tool_registry.register(Tool(
+        name="verify_claim",
+        description="Verify claims against official government sources and civil society watchdogs",
+        keywords=["verify", "fact check", "is it true", "confirm", "source", "accurate", "correct", "real"],
+        executor=_tool_verify_claim,
+        can_handoff_to=["knowledge_base"],
+        priority=9  # High priority for verification requests
     ))
 
     tool_registry.register(Tool(
