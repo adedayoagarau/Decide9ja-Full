@@ -62,6 +62,7 @@ from app.services.fact_check_service import FactCheckService
 from app.services.community_service import CommunityService
 from app.services.news_digest_service import NewsDigestService
 from app.services.user_memory import user_memory
+from app.services.enhanced_memory import enhanced_memory
 
 logger = logging.getLogger(__name__)
 
@@ -169,7 +170,28 @@ async def handle_message(phone: str, text: str, media_url: str = None) -> str:
     user_memory.save_message(phone, "assistant", response)
 
     # ===========================================
-    # STEP 7: Check for Progressive Onboarding
+    # STEP 7: Enhanced Memory Processing
+    # ===========================================
+    # Store embeddings for semantic search (async, non-blocking)
+    try:
+        import asyncio
+        # Store user message embedding for future semantic search
+        asyncio.create_task(
+            enhanced_memory.embed_and_store_message(
+                phone, "user", text,
+                metadata={"intent": state.flow.value if state.flow else "idle"}
+            )
+        )
+
+        # Periodic memory consolidation (every 10 messages)
+        memory_stats = enhanced_memory.get_memory_stats(phone)
+        if memory_stats.get("total_messages", 0) % 10 == 0:
+            asyncio.create_task(enhanced_memory.consolidate_memory(phone))
+    except Exception as e:
+        logger.warning(f"Enhanced memory processing error: {e}")
+
+    # ===========================================
+    # STEP 8: Check for Progressive Onboarding
     # ===========================================
     # Occasionally ask for more user info at milestones
     progressive_prompt = user_memory.get_progressive_onboarding_prompt(phone)
@@ -879,11 +901,23 @@ RESPONSE: Nigeria's president is Bola Ahmed Tinubu of the APC. He's been preside
 
     user_context = ", ".join(user_context_parts) if user_context_parts else "new user (no profile yet)"
 
+    # Get enhanced memory personalization context
+    personalization_context = ""
+    try:
+        personalization_context = enhanced_memory.get_personalization_context(state.phone)
+        # Also get relevant semantic context from past conversations
+        relevant_past = enhanced_memory.get_relevant_context(state.phone, query, max_context=3)
+        if relevant_past:
+            personalization_context += f"\n\n{relevant_past}"
+    except Exception as e:
+        logger.warning(f"Enhanced memory error: {e}")
+
     user_prompt = f"""Answer this user's question using your Nigerian politics expertise and any retrieved context.
 
 [INTERNAL CONTEXT - use to personalize response, DO NOT announce or repeat these fields]
 User: {user_context}
 {history_summary}
+{personalization_context}
 
 QUESTION: {query}
 
