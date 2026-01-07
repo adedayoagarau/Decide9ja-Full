@@ -18,7 +18,9 @@ logger = logging.getLogger(__name__)
 class ConversationMemory:
     """Represents a user's conversation memory bucket."""
     user_hash: str
-    name: Optional[str] = None
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    name: Optional[str] = None  # Full name (first_name + last_name)
     state: Optional[str] = None
     lga: Optional[str] = None
 
@@ -119,6 +121,8 @@ class UserMemoryService:
             memory = ConversationMemory(user_hash=user_hash)
 
             if user:
+                memory.first_name = getattr(user, 'first_name', None)
+                memory.last_name = getattr(user, 'last_name', None)
                 memory.name = user.name
                 memory.state = user.state
                 memory.lga = user.lga
@@ -198,14 +202,15 @@ class UserMemoryService:
 
         parts = []
 
-        # Name greeting
-        if memory.name:
+        # Name greeting - use first_name for natural addressing
+        display_name = memory.first_name or memory.name
+        if display_name:
             if memory.days_since_last_chat > 7:
-                parts.append(f"Welcome back, {memory.name}! It's been a while.")
+                parts.append(f"Welcome back, {display_name}! It's been a while.")
             elif memory.days_since_last_chat > 0:
-                parts.append(f"Hey {memory.name}, good to see you again!")
+                parts.append(f"Hey {display_name}, good to see you again!")
             else:
-                parts.append(f"Back so soon, {memory.name}?")
+                parts.append(f"Back so soon, {display_name}?")
 
         # What they were discussing
         if memory.politicians_asked_about:

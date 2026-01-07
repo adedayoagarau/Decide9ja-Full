@@ -1,6 +1,6 @@
 """
 Onboarding flow handler.
-Collects: name → state → LGA (minimum required)
+Collects: first_name → last_name → state → LGA (minimum required)
 """
 import logging
 from typing import Optional
@@ -24,79 +24,92 @@ NIGERIAN_STATES = {
 async def handle_onboarding(state: UserState, text: str) -> str:
     """
     Handle onboarding flow steps.
-    
+
     Steps:
-        0: Initial greeting, ask for name
-        1: Got name, ask for state
-        2: Got state, ask for LGA
-        3: Got LGA, complete onboarding
+        0: Initial greeting, ask for first name
+        1: Got first name, ask for last name
+        2: Got last name, ask for state
+        3: Got state, ask for LGA
+        4: Got LGA, complete onboarding
     """
     text = text.strip()
-    
-    # STEP 0: Initial greeting
+
+    # STEP 0: Initial greeting, ask for first name
     if state.flow_step == 0:
-        # Check if they already included their name
-        name = extract_name(text)
-        
+        first_name = extract_first_name(text)
+
         if not state.greeted:
             state.greeted = True
-            
-            if name:
-                state.name = name
+
+            if first_name:
+                state.first_name = first_name
                 state.flow_step = 1
-                return get_template("ask_state", name=name)
+                return get_template("ask_last_name", first_name=first_name)
             else:
                 return TEMPLATES["welcome_new"]
         else:
             # Already greeted, they sent another message
-            if name:
-                state.name = name
+            if first_name:
+                state.first_name = first_name
                 state.flow_step = 1
-                return get_template("ask_state", name=name)
+                return get_template("ask_last_name", first_name=first_name)
             else:
-                return TEMPLATES["didnt_catch_name"]
-    
-    # STEP 1: Waiting for state (name already captured)
-    if state.flow_step == 1 and state.name and not state.state:
+                return TEMPLATES["didnt_catch_first_name"]
+
+    # STEP 1: Waiting for last name (first name captured)
+    if state.flow_step == 1 and state.first_name and not state.last_name:
+        last_name = extract_last_name(text)
+
+        if last_name:
+            state.last_name = last_name
+            state.name = f"{state.first_name} {state.last_name}"  # Set full name
+            state.flow_step = 2
+            return get_template("ask_state", first_name=state.first_name)
+        else:
+            return TEMPLATES["didnt_catch_last_name"]
+
+    # Edge case: Step 1 but no first name yet
+    if state.flow_step == 1 and not state.first_name:
+        first_name = extract_first_name(text)
+        if first_name:
+            state.first_name = first_name
+            return get_template("ask_last_name", first_name=first_name)
+        else:
+            return TEMPLATES["didnt_catch_first_name"]
+
+    # STEP 2: Waiting for state (names captured)
+    if state.flow_step == 2 and state.first_name and not state.state:
         extracted_state = extract_nigerian_state(text)
-        
+
         if extracted_state:
             state.state = extracted_state
-            state.flow_step = 2
+            state.flow_step = 3
             return get_template("ask_lga", state=extracted_state)
         else:
             return TEMPLATES["didnt_recognize_state"]
-    
-    # Edge case: Step 1 but no name yet
-    if state.flow_step == 1 and not state.name:
-        name = extract_name(text)
-        if name:
-            state.name = name
-            return get_template("ask_state", name=name)
-        else:
-            return TEMPLATES["didnt_catch_name"]
-    
-    # STEP 2: Waiting for LGA (name and state captured)
-    if state.flow_step == 2 and state.state and not state.lga:
+
+    # STEP 3: Waiting for LGA (names and state captured)
+    if state.flow_step == 3 and state.state and not state.lga:
         extracted_lga = extract_lga(text, state.state)
-        
+
         if extracted_lga:
             state.lga = extracted_lga
-            state.flow_step = 3
+            state.flow_step = 4
             state.flow = ConversationFlow.IDLE  # Onboarding complete
-            
+
             return get_template("onboarding_complete",
+                first_name=state.first_name,
                 lga=state.lga,
                 state=state.state
             )
         else:
             return get_template("didnt_recognize_lga", state=state.state)
-    
+
     # Onboarding already complete
     if state.is_onboarding_complete():
         state.flow = ConversationFlow.IDLE
         return "You're all set. What can I help you with?"
-    
+
     # Something went wrong, restart
     state.flow_step = 0
     state.greeted = False
@@ -125,9 +138,116 @@ def normalize_apostrophes(text: str) -> str:
     return text
 
 
+def extract_first_name(text: str) -> Optional[str]:
+    """
+    Extract first name from user input.
+    Handles: "John", "My name is John", "I'm John", "Call me John", etc.
+    Only extracts the FIRST word as the first name.
+    """
+    text = text.strip()
+
+    # Normalize apostrophes FIRST (handles smart quotes from WhatsApp, etc.)
+    text = normalize_apostrophes(text)
+
+    # Skip if it's just a greeting
+    greetings = {"hi", "hello", "hey", "good morning", "good afternoon", "good evening", "yo", "sup"}
+    if text.lower() in greetings:
+        return None
+
+    # Remove common prefixes (case-insensitive matching)
+    prefixes = [
+        "my name is ", "my first name is ", "i'm ", "i am ", "call me ", "it's ", "its ",
+        "this is ", "the name is ", "name is ", "i go by ", "they call me ", "first name is "
+    ]
+
+    text_lower = text.lower()
+    for prefix in prefixes:
+        if text_lower.startswith(prefix):
+            text = text[len(prefix):]
+            break
+
+    # Remove trailing pleasantries
+    suffixes = [
+        ", nice to meet you", ", how are you", ", hope you are well",
+        ", i hope you are well", ". how are you", ". nice to meet you",
+        ", thanks", ". thanks", ". thank you", ", thank you",
+        ". pleased to meet you", ", pleased to meet you",
+        ". cheers", ", cheers", "!", "."
+    ]
+
+    text_lower = text.lower()
+    for suffix in suffixes:
+        if text_lower.endswith(suffix):
+            text = text[:-len(suffix)]
+            break
+
+    # Clean up
+    text = text.strip().strip(".,!?")
+
+    # If they gave full name, take only first word
+    words = text.split()
+    if words:
+        first_name = words[0]
+    else:
+        return None
+
+    # Validate: first name should be 2-30 chars, mostly letters
+    if len(first_name) < 2 or len(first_name) > 30:
+        return None
+
+    if not any(c.isalpha() for c in first_name):
+        return None
+
+    # Capitalize properly
+    return first_name.title()
+
+
+def extract_last_name(text: str) -> Optional[str]:
+    """
+    Extract last name/surname from user input.
+    Handles: "Agarau", "My surname is Agarau", "Last name is Agarau", etc.
+    """
+    text = text.strip()
+
+    # Normalize apostrophes
+    text = normalize_apostrophes(text)
+
+    # Remove common prefixes
+    prefixes = [
+        "my surname is ", "my last name is ", "surname is ", "last name is ",
+        "family name is ", "it's ", "its ", "i am ", "i'm "
+    ]
+
+    text_lower = text.lower()
+    for prefix in prefixes:
+        if text_lower.startswith(prefix):
+            text = text[len(prefix):]
+            break
+
+    # Clean up
+    text = text.strip().strip(".,!?")
+
+    # If they gave multiple words, take only first (the surname)
+    words = text.split()
+    if words:
+        last_name = words[0]
+    else:
+        return None
+
+    # Validate: last name should be 2-30 chars, mostly letters
+    if len(last_name) < 2 or len(last_name) > 30:
+        return None
+
+    if not any(c.isalpha() for c in last_name):
+        return None
+
+    # Capitalize properly
+    return last_name.title()
+
+
 def extract_name(text: str) -> Optional[str]:
     """
-    Extract name from user input.
+    Extract full name from user input (legacy function).
     Handles: "John", "My name is John", "I'm John", "Call me John", etc.
     """
     text = text.strip()
@@ -152,7 +272,7 @@ def extract_name(text: str) -> Optional[str]:
             # Extract just the name part (everything after the prefix)
             text = text[len(prefix):]
             break
-    
+
     # Remove trailing pleasantries (extended list)
     suffixes = [
         ", nice to meet you", ", how are you", ", hope you are well",
@@ -161,23 +281,23 @@ def extract_name(text: str) -> Optional[str]:
         ". pleased to meet you", ", pleased to meet you",
         ". cheers", ", cheers", "!", "."
     ]
-    
+
     text_lower = text.lower()
     for suffix in suffixes:
         if text_lower.endswith(suffix):
             text = text[:-len(suffix)]
             break
-    
+
     # Clean up
     text = text.strip().strip(".,!?")
-    
+
     # Validate: name should be 2-50 chars, mostly letters
     if len(text) < 2 or len(text) > 50:
         return None
-    
+
     if not any(c.isalpha() for c in text):
         return None
-    
+
     # Capitalize properly
     return text.title()
 
