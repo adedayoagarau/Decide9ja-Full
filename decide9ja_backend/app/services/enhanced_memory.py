@@ -24,6 +24,13 @@ from dataclasses import dataclass, field
 from app.database import SessionLocal, ChatHistory, User
 from app.services.embeddings import get_embedding, get_embeddings, cosine_similarity
 
+# Import memory prompts from federated prompt system
+from app.services.prompts import (
+    build_episode_summary_prompt,
+    build_fact_extraction_prompt,
+    build_personalization_prompt
+)
+
 logger = logging.getLogger(__name__)
 
 
@@ -146,41 +153,8 @@ class EnhancedMemoryService:
 
         session_id = session_id or datetime.utcnow().strftime("%Y%m%d_%H%M%S")
 
-        # Format conversation for LLM
-        conv_text = "\n".join([
-            f"{'User' if m['role'] == 'user' else 'Tade'}: {m['content']}"
-            for m in conversation
-        ])
-
-        prompt = f"""Analyze this conversation and extract:
-1. A 2-3 sentence summary of what was discussed
-2. Key facts about the user (preferences, concerns, interests, location, demographics)
-3. Topics discussed
-4. Overall sentiment (positive/neutral/negative/mixed)
-5. Importance score (0.0-1.0) - how important is this conversation to remember?
-
-Conversation:
-{conv_text}
-
-Respond in JSON format:
-{{
-    "summary": "...",
-    "key_facts": [
-        {{"type": "interest|preference|concern|demographic|opinion", "content": "...", "confidence": 0.0-1.0}}
-    ],
-    "topics": ["topic1", "topic2"],
-    "sentiment": "positive|neutral|negative|mixed",
-    "importance": 0.0-1.0
-}}
-
-Key fact examples:
-- interest: "User is interested in 2027 elections"
-- preference: "User prefers explanations in Pidgin"
-- concern: "User worried about security in their LGA"
-- demographic: "User mentioned they are a teacher"
-- opinion: "User thinks roads are poorly maintained"
-
-Be specific and extract only facts clearly stated or strongly implied."""
+        # Build prompt using federated prompt system
+        prompt = build_episode_summary_prompt(conversation)
 
         try:
             client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))

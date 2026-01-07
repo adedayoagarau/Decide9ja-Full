@@ -2,6 +2,8 @@
 Issue Extraction Agent v2
 Uses Claude to extract structured issue data from news articles.
 Includes retry logic, fallback prompts, and chunking for long articles.
+
+Now integrated with federated prompt system (Source of Truth).
 """
 import os
 import json
@@ -16,6 +18,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from anthropic import Anthropic
+
+# Import issue prompts from federated prompt system
+from app.services.prompts import (
+    build_issue_analysis_prompt,
+    build_daily_intelligence_prompt
+)
 
 logger = logging.getLogger(__name__)
 
@@ -256,6 +264,69 @@ def extract_issue_sync(
     """Synchronous version of extract_issue_from_article."""
     import asyncio
     return asyncio.run(extract_issue_from_article(headline, text, source, date))
+
+
+async def extract_issue_with_sot(
+    headline: str,
+    text: str,
+    source: str = "Unknown",
+    date: str = None,
+) -> Dict[str, Any]:
+    """
+    Enhanced extraction using Source of Truth prompts.
+    Provides more detailed analysis including user_relevance.
+
+    Use this for comprehensive extraction when needed.
+    Falls back to simple extraction on failure.
+    """
+    from app.services.json_utils import extract_json
+
+    # Truncate text smartly
+    truncated_text = truncate_text_smartly(text, 3000)
+
+    # Build prompt using federated prompt system
+    prompt = build_issue_analysis_prompt(
+        title=headline,
+        content=truncated_text,
+        source=source,
+        date=date or datetime.now().strftime("%Y-%m-%d")
+    )
+
+    try:
+        response = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=800,
+            temperature=0,
+            messages=[{"role": "user", "content": prompt}]
+        )
+
+        result = extract_json(response.content[0].text, default=None)
+
+        if result and result.get("title"):
+            # Map SOT output to expected format
+            normalized = {
+                "is_trackable": True,
+                "domain": result.get("domain", "governance").lower(),
+                "severity": result.get("severity", "moderate").lower(),
+                "title": result.get("title", headline)[:80],
+                "location": ", ".join(result.get("states_affected", ["Nigeria"])),
+                "summary": result.get("summary", ""),
+                "politicians": result.get("politicians_mentioned", []),
+                "confidence": result.get("confidence", 0.7),
+                # Additional SOT fields
+                "user_relevance": result.get("user_relevance", {}),
+                "tags": result.get("tags", []),
+                "sentiment": result.get("sentiment", "neutral"),
+                "parties_mentioned": result.get("parties_mentioned", []),
+            }
+            logger.info(f"SOT extraction success: {normalized['title'][:50]}")
+            return normalize_extraction_result(normalized, headline)
+
+    except Exception as e:
+        logger.warning(f"SOT extraction failed: {e}, falling back to simple extraction")
+
+    # Fallback to simple extraction
+    return await extract_issue_from_article(headline, text, source, date)
 
 
 # ===========================================
