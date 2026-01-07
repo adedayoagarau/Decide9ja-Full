@@ -36,23 +36,28 @@ async def handle_onboarding(state: UserState, text: str) -> str:
 
     # STEP 0: Initial greeting, ask for first name
     if state.flow_step == 0:
+        # Check if this is just a greeting (not a name)
+        greetings = {"hi", "hello", "hey", "good morning", "good afternoon", "good evening", "yo", "sup", "start"}
+        is_greeting = text.lower().strip() in greetings or text.lower().startswith("hi ")
+
+        if is_greeting:
+            # User is greeting, show welcome and ask for name
+            state.greeted = True
+            return TEMPLATES["welcome_new"]
+
+        # Try to extract first name
         first_name = extract_first_name(text)
 
-        if not state.greeted:
+        if first_name:
+            state.first_name = first_name
             state.greeted = True
-
-            if first_name:
-                state.first_name = first_name
-                state.flow_step = 1
-                return get_template("ask_last_name", first_name=first_name)
-            else:
-                return TEMPLATES["welcome_new"]
+            state.flow_step = 1
+            return get_template("ask_last_name", first_name=first_name)
         else:
-            # Already greeted, they sent another message
-            if first_name:
-                state.first_name = first_name
-                state.flow_step = 1
-                return get_template("ask_last_name", first_name=first_name)
+            # Couldn't extract name
+            if not state.greeted:
+                state.greeted = True
+                return TEMPLATES["welcome_new"]
             else:
                 return TEMPLATES["didnt_catch_first_name"]
 

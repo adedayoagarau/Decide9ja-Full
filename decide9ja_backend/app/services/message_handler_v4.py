@@ -199,10 +199,19 @@ async def handle_idle_claude_first(state: UserState, text: str, memory=None) -> 
         from app.services.flows.onboarding import handle_onboarding
 
         # Check if this is a greeting to start onboarding
+        text_lower = text.lower().strip()
         greetings = {"hi", "hello", "hey", "good morning", "good afternoon", "good evening", "start"}
-        if text.lower().strip() in greetings:
+        # Match exact greetings OR greetings followed by other words (e.g., "hi tade", "hello there")
+        is_greeting = (
+            text_lower in greetings or
+            text_lower.startswith("hi ") or
+            text_lower.startswith("hello ") or
+            text_lower.startswith("hey ")
+        )
+        if is_greeting:
             state.flow = ConversationFlow.ONBOARDING
             state.flow_step = 0
+            state.greeted = False  # Reset greeted flag for fresh start
             return await handle_onboarding(state, text)
         else:
             # Prompt them to complete onboarding
