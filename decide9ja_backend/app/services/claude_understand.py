@@ -5,6 +5,9 @@ Uses Claude to semantically understand user queries and extract:
 1. Intent - What the user wants to do
 2. Entities - Key information (politician name, position, topic, etc.)
 3. Retrieval Strategy - How to find the answer
+
+Now integrated with federated prompt system (Source of Truth).
+Uses fast_pattern_match to skip LLM for simple queries.
 """
 import json
 import logging
@@ -14,6 +17,9 @@ from dataclasses import dataclass
 from enum import Enum
 
 import anthropic
+
+# Import fast pattern matching from prompts system
+from app.services.prompts import fast_pattern_match
 
 logger = logging.getLogger(__name__)
 
@@ -234,17 +240,30 @@ async def claude_understand(
 ) -> QueryUnderstanding:
     """
     Use Claude to semantically understand a user query.
-    
+
     Args:
         query: The user's message
         user_state: User's Nigerian state (for context)
         user_lga: User's LGA (for context)
         user_name: User's name (for personalization)
         active_topic: Current conversation topic (for follow-ups)
-    
+
     Returns:
         QueryUnderstanding with intent, entities, and retrieval strategy
     """
+    # OPTIMIZATION: Try fast pattern matching first (skips LLM for simple queries)
+    pattern_result = fast_pattern_match(query)
+    if pattern_result:
+        logger.info(f"Fast pattern match for '{query[:30]}': {pattern_result['intent']}")
+        return QueryUnderstanding(
+            intent=_parse_intent(pattern_result["intent"]),
+            entities=pattern_result.get("entities", {}),
+            retrieval_strategy=_parse_strategy(pattern_result["retrieval_strategy"]),
+            confidence=pattern_result.get("confidence", 0.8),
+            reasoning=f"Pattern matched: {pattern_result.get('matched_by', 'pattern')}"
+        )
+
+    # Full LLM classification for complex queries
     try:
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
         

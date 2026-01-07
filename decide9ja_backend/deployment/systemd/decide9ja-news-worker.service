@@ -1,0 +1,46 @@
+[Unit]
+Description=Decide9ja News Agent Worker (Continuous Processing)
+Documentation=https://github.com/decide9ja/Decide9ja-Full
+After=network.target postgresql.service decide9ja-scheduler.service
+Wants=decide9ja-scheduler.service
+
+[Service]
+Type=simple
+User=decide9ja
+Group=decide9ja
+WorkingDirectory=/opt/decide9ja/decide9ja_backend
+
+# Environment
+Environment=PYTHONUNBUFFERED=1
+EnvironmentFile=/opt/decide9ja/.env
+
+# Python path
+Environment=PYTHONPATH=/opt/decide9ja/decide9ja_backend
+
+# Start command - runs NewsWorker in background mode
+ExecStart=/opt/decide9ja/venv/bin/python -m app.services.news_agent --worker --interval 300
+
+# Restart policy
+Restart=always
+RestartSec=30
+StartLimitIntervalSec=600
+StartLimitBurst=3
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=decide9ja-news-worker
+
+# Resource limits (lower than scheduler since it's secondary)
+MemoryMax=512M
+CPUQuota=30%
+
+# Security hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/decide9ja/data /opt/decide9ja/logs
+
+[Install]
+WantedBy=multi-user.target

@@ -1,18 +1,17 @@
 """
 Twilio Voice Router - AI Phone Call Handler
 Enables live AI conversations over phone calls.
+
+Updated to use message_handler_v4 (unified handler with SOT prompts).
 """
 import os
 import logging
 from fastapi import APIRouter, Request, Response, Depends, BackgroundTasks
 from sqlalchemy.orm import Session
-from urllib.parse import urlencode
 
 from app.database import get_db
 from app.services import voice
-from app.services.message_handler_v2 import IntegratedMessageHandler
-from app.services import llm
-from app.services.rag import RAGService
+from app.services.message_handler_v4 import handle_message
 
 logger = logging.getLogger(__name__)
 
@@ -95,20 +94,9 @@ async def process_speech(request: Request, background_tasks: BackgroundTasks, db
         scheme = "https" if "ngrok" in host else "http"
         base_url = f"{scheme}://{host}"
         
-        # Hash caller for user identification
-        from app.services.twilio_whatsapp import hash_phone
-        user_hash = hash_phone(caller)
-        
-        # Initialize handler
-        rag = RAGService(db)
-        handler = IntegratedMessageHandler(
-            db_session=db,
-            llm_service=llm,
-            rag_service=rag
-        )
-        
-        # Process with AI (shorter response for voice)
-        ai_response = await handler.handle(user_hash, speech_result)
+        # Process with v4 handler (unified with SOT prompts)
+        # Uses caller phone as identifier
+        ai_response = await handle_message(caller, speech_result)
         
         # Truncate for voice (max 500 chars for natural speech)
         if len(ai_response) > 500:

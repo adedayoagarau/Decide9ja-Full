@@ -1,9 +1,11 @@
 """
 Onboarding flow handler.
 Collects: first_name → last_name → state → LGA (minimum required)
+Uses LLM for intelligent intent classification during onboarding.
 """
 import logging
-from typing import Optional
+import os
+from typing import Optional, Tuple
 
 from app.models.state import UserState, ConversationFlow
 from app.services.templates import get_template, TEMPLATES
@@ -21,9 +23,78 @@ NIGERIAN_STATES = {
 }
 
 
+async def classify_onboarding_input(text: str, expected: str) -> Tuple[str, Optional[str]]:
+    """
+    Use LLM to classify user input during onboarding.
+
+    Args:
+        text: User's message
+        expected: What we're expecting ("first_name", "last_name", "state", "lga")
+
+    Returns:
+        Tuple of (intent, extracted_value)
+        - intent: "name", "greeting", "question", "state", "lga", "other"
+        - extracted_value: The actual name/state/lga if applicable
+    """
+    import anthropic
+
+    try:
+        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+        prompt = f"""Classify this user input during onboarding. We asked for their {expected}.
+
+User said: "{text}"
+
+Rules:
+- If providing a {expected}, extract it (intent: name/state/lga)
+- If asking a question or making a statement, intent: question
+- If greeting (hi, hello, hey), intent: greeting
+- Common Nigerian names: Adedayo, Chinedu, Oluwaseun, Fatima, Aisha, Emeka, Ngozi, Yusuf, Tunde, Amara, Bola, Kemi, etc.
+- Words like "so", "what", "who", "why", "how", "the", "is", "are", "can", "will", "about" are NOT names
+- A sentence or question is NOT a name
+
+Respond ONLY in this format:
+INTENT: [name|greeting|question|state|lga|other]
+VALUE: [extracted value or NONE]"""
+
+        response = client.messages.create(
+            model="claude-3-haiku-20240307",
+            max_tokens=50,
+            messages=[{"role": "user", "content": prompt}]
+        )
+
+        result = response.content[0].text.strip()
+
+        # Parse response
+        intent = "other"
+        value = None
+
+        for line in result.split("\n"):
+            line = line.strip()
+            if line.startswith("INTENT:"):
+                intent = line.replace("INTENT:", "").strip().lower()
+            elif line.startswith("VALUE:"):
+                val = line.replace("VALUE:", "").strip()
+                if val.upper() != "NONE" and val:
+                    value = val.title()
+
+        logger.info(f"Onboarding LLM: '{text[:50]}' → intent={intent}, value={value}")
+        return (intent, value)
+
+    except Exception as e:
+        logger.error(f"Onboarding classification error: {e}")
+        # Fallback - assume it's a question if it's long or has question words
+        text_lower = text.lower()
+        if any(w in text_lower for w in ["?", "what", "who", "how", "why", "where", "when", "can", "will", "is there", "tell me"]):
+            return ("question", None)
+        if len(text.split()) > 3:
+            return ("question", None)
+        return ("other", None)
+
+
 async def handle_onboarding(state: UserState, text: str) -> str:
     """
-    Handle onboarding flow steps.
+    Handle onboarding flow steps with LLM-powered intent classification.
 
     Steps:
         0: Initial greeting, ask for first name
@@ -34,72 +105,81 @@ async def handle_onboarding(state: UserState, text: str) -> str:
     """
     text = text.strip()
 
-    # STEP 0: Initial greeting, ask for first name
+    # STEP 0: Ask for first name
     if state.flow_step == 0:
-        # Check if this is just a greeting (not a name or question)
-        text_lower = text.lower().strip()
-        greetings = {"hi", "hello", "hey", "good morning", "good afternoon", "good evening", "yo", "sup", "start"}
-        is_greeting = text_lower in greetings or text_lower.startswith(("hi ", "hello ", "hey "))
+        # Use LLM to classify the input
+        intent, value = await classify_onboarding_input(text, "first_name")
 
-        if is_greeting:
-            # User is greeting, show welcome and ask for name
+        if intent == "greeting":
             state.greeted = True
             return TEMPLATES["welcome_new"]
 
-        # Try to extract first name (in case they gave their name directly)
-        first_name = extract_first_name(text)
-
-        if first_name:
-            # They gave their name, proceed
-            state.first_name = first_name
+        if intent == "name" and value:
+            state.first_name = value
             state.greeted = True
             state.flow_step = 1
-            return get_template("ask_last_name", first_name=first_name)
-        else:
-            # They said something else (question, statement, etc.)
-            # Acknowledge it and ask for their name
-            if not state.greeted:
-                state.greeted = True
-                # Store their original message so we can reference it later
-                state.pending_query = text
-                return TEMPLATES["welcome_with_acknowledgment"]
-            else:
-                return TEMPLATES["didnt_catch_first_name"]
+            return get_template("ask_last_name", first_name=value)
 
-    # STEP 1: Waiting for last name (first name captured)
-    if state.flow_step == 1 and state.first_name and not state.last_name:
-        last_name = extract_last_name(text)
-
-        if last_name:
-            state.last_name = last_name
-            state.name = f"{state.first_name} {state.last_name}"  # Set full name
-            state.flow_step = 2
-            return get_template("ask_state", first_name=state.first_name)
-        else:
-            return TEMPLATES["didnt_catch_last_name"]
-
-    # Edge case: Step 1 but no first name yet
-    if state.flow_step == 1 and not state.first_name:
-        first_name = extract_first_name(text)
-        if first_name:
-            state.first_name = first_name
-            return get_template("ask_last_name", first_name=first_name)
+        # It's a question or something else - acknowledge and ask for name
+        if not state.greeted:
+            state.greeted = True
+            state.pending_query = text
+            return TEMPLATES["welcome_with_acknowledgment"]
         else:
             return TEMPLATES["didnt_catch_first_name"]
 
+    # STEP 1: Waiting for last name
+    if state.flow_step == 1 and state.first_name and not state.last_name:
+        intent, value = await classify_onboarding_input(text, "last_name")
+
+        if intent == "name" and value:
+            state.last_name = value
+            state.name = f"{state.first_name} {state.last_name}"
+            state.flow_step = 2
+            return get_template("ask_state", first_name=state.first_name)
+
+        if intent == "question":
+            state.pending_query = text
+            return f"I'll help with that shortly! First, what's your surname, {state.first_name}?"
+
+        return TEMPLATES["didnt_catch_last_name"]
+
+    # Edge case: Step 1 but no first name yet
+    if state.flow_step == 1 and not state.first_name:
+        intent, value = await classify_onboarding_input(text, "first_name")
+        if intent == "name" and value:
+            state.first_name = value
+            return get_template("ask_last_name", first_name=value)
+        return TEMPLATES["didnt_catch_first_name"]
+
     # STEP 2: Waiting for state (names captured)
     if state.flow_step == 2 and state.first_name and not state.state:
+        intent, value = await classify_onboarding_input(text, "state")
+
+        # Also try regex extraction for states
         extracted_state = extract_nigerian_state(text)
 
         if extracted_state:
             state.state = extracted_state
             state.flow_step = 3
             return get_template("ask_lga", state=extracted_state)
-        else:
-            return TEMPLATES["didnt_recognize_state"]
+
+        if intent == "state" and value:
+            # Validate against known states
+            if value.lower() in NIGERIAN_STATES or value.lower() == "fct":
+                state.state = value if value.lower() != "fct" else "FCT"
+                state.flow_step = 3
+                return get_template("ask_lga", state=state.state)
+
+        if intent == "question":
+            state.pending_query = text
+            return f"I'll answer that soon, {state.first_name}! Which Nigerian state are you in?"
+
+        return TEMPLATES["didnt_recognize_state"]
 
     # STEP 3: Waiting for LGA (names and state captured)
     if state.flow_step == 3 and state.state and not state.lga:
+        # For LGA, use the existing fuzzy matching (it's good at this)
         extracted_lga = extract_lga(text, state.state)
 
         if extracted_lga:
@@ -112,8 +192,14 @@ async def handle_onboarding(state: UserState, text: str) -> str:
                 lga=state.lga,
                 state=state.state
             )
-        else:
-            return get_template("didnt_recognize_lga", state=state.state)
+
+        # Check if it's a question
+        intent, _ = await classify_onboarding_input(text, "lga")
+        if intent == "question":
+            state.pending_query = text
+            return f"Almost done! Which local government (LGA) in {state.state}?"
+
+        return get_template("didnt_recognize_lga", state=state.state)
 
     # Onboarding already complete
     if state.is_onboarding_complete():
@@ -131,7 +217,6 @@ def normalize_apostrophes(text: str) -> str:
     Normalize various apostrophe/quote characters to standard ASCII apostrophe.
     Handles smart quotes, curly quotes, and other Unicode variants.
     """
-    # Map of various apostrophe-like characters to standard apostrophe
     apostrophe_variants = [
         '\u2019',  # RIGHT SINGLE QUOTATION MARK (')
         '\u2018',  # LEFT SINGLE QUOTATION MARK (')
@@ -150,21 +235,16 @@ def normalize_apostrophes(text: str) -> str:
 
 def extract_first_name(text: str) -> Optional[str]:
     """
-    Extract first name from user input.
-    Handles: "John", "My name is John", "I'm John", "Call me John", etc.
-    Only extracts the FIRST word as the first name.
+    Extract first name from user input (legacy regex-based function).
+    Kept as fallback but LLM classification is preferred.
     """
     text = text.strip()
-
-    # Normalize apostrophes FIRST (handles smart quotes from WhatsApp, etc.)
     text = normalize_apostrophes(text)
 
-    # Skip if it's just a greeting
     greetings = {"hi", "hello", "hey", "good morning", "good afternoon", "good evening", "yo", "sup"}
     if text.lower() in greetings:
         return None
 
-    # Remove common prefixes (case-insensitive matching)
     prefixes = [
         "my name is ", "my first name is ", "i'm ", "i am ", "call me ", "it's ", "its ",
         "this is ", "the name is ", "name is ", "i go by ", "they call me ", "first name is "
@@ -176,7 +256,6 @@ def extract_first_name(text: str) -> Optional[str]:
             text = text[len(prefix):]
             break
 
-    # Remove trailing pleasantries
     suffixes = [
         ", nice to meet you", ", how are you", ", hope you are well",
         ", i hope you are well", ". how are you", ". nice to meet you",
@@ -191,38 +270,30 @@ def extract_first_name(text: str) -> Optional[str]:
             text = text[:-len(suffix)]
             break
 
-    # Clean up
     text = text.strip().strip(".,!?")
 
-    # If they gave full name, take only first word
     words = text.split()
     if words:
         first_name = words[0]
     else:
         return None
 
-    # Validate: first name should be 2-30 chars, mostly letters
     if len(first_name) < 2 or len(first_name) > 30:
         return None
 
     if not any(c.isalpha() for c in first_name):
         return None
 
-    # Capitalize properly
     return first_name.title()
 
 
 def extract_last_name(text: str) -> Optional[str]:
     """
-    Extract last name/surname from user input.
-    Handles: "Agarau", "My surname is Agarau", "Last name is Agarau", etc.
+    Extract last name/surname from user input (legacy regex-based function).
     """
     text = text.strip()
-
-    # Normalize apostrophes
     text = normalize_apostrophes(text)
 
-    # Remove common prefixes
     prefixes = [
         "my surname is ", "my last name is ", "surname is ", "last name is ",
         "family name is ", "it's ", "its ", "i am ", "i'm "
@@ -234,43 +305,34 @@ def extract_last_name(text: str) -> Optional[str]:
             text = text[len(prefix):]
             break
 
-    # Clean up
     text = text.strip().strip(".,!?")
 
-    # If they gave multiple words, take only first (the surname)
     words = text.split()
     if words:
         last_name = words[0]
     else:
         return None
 
-    # Validate: last name should be 2-30 chars, mostly letters
     if len(last_name) < 2 or len(last_name) > 30:
         return None
 
     if not any(c.isalpha() for c in last_name):
         return None
 
-    # Capitalize properly
     return last_name.title()
 
 
 def extract_name(text: str) -> Optional[str]:
     """
     Extract full name from user input (legacy function).
-    Handles: "John", "My name is John", "I'm John", "Call me John", etc.
     """
     text = text.strip()
-
-    # Normalize apostrophes FIRST (handles smart quotes from WhatsApp, etc.)
     text = normalize_apostrophes(text)
 
-    # Skip if it's just a greeting
     greetings = {"hi", "hello", "hey", "good morning", "good afternoon", "good evening", "yo", "sup"}
     if text.lower() in greetings:
         return None
 
-    # Remove common prefixes (case-insensitive matching)
     prefixes = [
         "my name is ", "i'm ", "i am ", "call me ", "it's ", "its ",
         "this is ", "the name is ", "name is ", "i go by ", "they call me "
@@ -279,11 +341,9 @@ def extract_name(text: str) -> Optional[str]:
     text_lower = text.lower()
     for prefix in prefixes:
         if text_lower.startswith(prefix):
-            # Extract just the name part (everything after the prefix)
             text = text[len(prefix):]
             break
 
-    # Remove trailing pleasantries (extended list)
     suffixes = [
         ", nice to meet you", ", how are you", ", hope you are well",
         ", i hope you are well", ". how are you", ". nice to meet you",
@@ -298,31 +358,28 @@ def extract_name(text: str) -> Optional[str]:
             text = text[:-len(suffix)]
             break
 
-    # Clean up
     text = text.strip().strip(".,!?")
 
-    # Validate: name should be 2-50 chars, mostly letters
     if len(text) < 2 or len(text) > 50:
         return None
 
     if not any(c.isalpha() for c in text):
         return None
 
-    # Capitalize properly
     return text.title()
 
 
 def extract_nigerian_state(text: str) -> Optional[str]:
     """Extract Nigerian state name from text."""
     text_lower = text.lower().strip()
-    
+
     # Direct match
     for state in NIGERIAN_STATES:
         if state in text_lower:
             if state == "fct" or state == "abuja":
                 return "FCT"
             return state.title()
-    
+
     # Handle "Rivers State" format
     if "rivers" in text_lower:
         return "Rivers"
@@ -330,7 +387,7 @@ def extract_nigerian_state(text: str) -> Optional[str]:
         return "Cross River"
     if "akwa" in text_lower and "ibom" in text_lower:
         return "Akwa Ibom"
-    
+
     return None
 
 
@@ -339,12 +396,11 @@ def extract_lga(text: str, state: str) -> Optional[str]:
     Extract LGA name from text for a given state.
     Uses fuzzy matching against known LGAs in the database.
     """
-    import os
     from rapidfuzz import fuzz, process
-    
+
     text_clean = text.strip().lower()
-    
-    # Remove common prefixes (conversational text)
+
+    # Remove common prefixes
     prefixes = [
         "i believe i'm from ", "i believe i am from ", "i'm from ",
         "i am from ", "i live in ", "i stay in ", "it's ", "its ",
@@ -354,53 +410,49 @@ def extract_lga(text: str, state: str) -> Optional[str]:
         if text_clean.startswith(prefix):
             text_clean = text_clean[len(prefix):]
             break
-    
+
     # Remove common suffixes
     suffixes = [
-        " local government", " lga", " local govt", " lg", 
+        " local government", " lga", " local govt", " lg",
         " local government area", " area"
     ]
     for suffix in suffixes:
         if text_clean.endswith(suffix):
             text_clean = text_clean[:-len(suffix)]
             break
-    
+
     text_clean = text_clean.strip()
-    
+
     # Get known LGAs for this state from database
     try:
         from sqlalchemy import create_engine, text as sql_text
         engine = create_engine(os.getenv('DATABASE_URL'))
-        
+
         with engine.connect() as conn:
             result = conn.execute(sql_text('''
-                SELECT DISTINCT lga FROM lga_representatives 
+                SELECT DISTINCT lga FROM lga_representatives
                 WHERE LOWER(state) = :state
             '''), {'state': state.lower()})
             known_lgas = [row[0] for row in result]
-        
+
         if not known_lgas:
-            # No LGAs in DB for this state, return cleaned input
             return text_clean.title() if text_clean else None
-        
+
         # Fuzzy match against known LGAs
         match = process.extractOne(
-            text_clean, 
-            known_lgas, 
+            text_clean,
+            known_lgas,
             scorer=fuzz.token_set_ratio,
             score_cutoff=60
         )
-        
+
         if match:
-            return match[0]  # Return the matched LGA name
-        
-        # No good match - return cleaned input as fallback
+            return match[0]
+
         return text_clean.title() if len(text_clean) >= 2 else None
-        
+
     except Exception as e:
         logger.warning(f"LGA extraction error: {e}")
-        # Fallback: return cleaned input
         if len(text_clean) >= 2 and any(c.isalpha() for c in text_clean):
             return text_clean.title()
         return None
-
