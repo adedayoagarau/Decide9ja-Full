@@ -1,0 +1,46 @@
+[Unit]
+Description=Decide9ja News & Background Jobs Scheduler
+Documentation=https://github.com/decide9ja/Decide9ja-Full
+After=network.target postgresql.service redis.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=decide9ja
+Group=decide9ja
+WorkingDirectory=/opt/decide9ja/decide9ja_backend
+
+# Environment
+Environment=PYTHONUNBUFFERED=1
+EnvironmentFile=/opt/decide9ja/.env
+
+# Python path
+Environment=PYTHONPATH=/opt/decide9ja/decide9ja_backend
+
+# Start command
+ExecStart=/opt/decide9ja/venv/bin/python -m app.scheduler_unified
+
+# Restart policy
+Restart=always
+RestartSec=10
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=decide9ja-scheduler
+
+# Resource limits
+MemoryMax=1G
+CPUQuota=50%
+
+# Security hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/decide9ja/data /opt/decide9ja/logs
+
+[Install]
+WantedBy=multi-user.target

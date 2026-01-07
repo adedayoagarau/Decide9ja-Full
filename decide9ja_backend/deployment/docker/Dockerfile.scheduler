@@ -1,0 +1,47 @@
+# Dockerfile for Decide9ja Scheduler & News Agent
+# Handles background jobs: news scraping, indexing, issue extraction
+
+FROM python:3.11-slim
+
+LABEL maintainer="Decide9ja Team"
+LABEL description="Decide9ja Background Jobs Scheduler"
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/app \
+    TZ=Africa/Lagos
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set timezone
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# Create app directory and user
+RUN useradd --create-home --shell /bin/bash decide9ja
+WORKDIR /app
+
+# Copy requirements first for caching
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY . .
+
+# Change ownership
+RUN chown -R decide9ja:decide9ja /app
+
+# Switch to non-root user
+USER decide9ja
+
+# Health check
+HEALTHCHECK --interval=60s --timeout=10s --start-period=30s --retries=3 \
+    CMD python -c "from app.scheduler_unified import get_scheduler_status; print(get_scheduler_status())" || exit 1
+
+# Default command: run scheduler
+CMD ["python", "-m", "app.scheduler_unified"]

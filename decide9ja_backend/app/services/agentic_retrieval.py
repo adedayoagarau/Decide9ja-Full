@@ -473,6 +473,74 @@ async def _tool_knowledge_base(query: str, entities: Dict, context: Dict) -> Too
         )
 
 
+async def _tool_news_db(query: str, entities: Dict, context: Dict) -> ToolResult:
+    """
+    Query local news database for Nigerian political news.
+
+    This tool searches the scraped news articles stored locally,
+    providing faster and more reliable results than web search
+    for recent Nigerian political news.
+    """
+    try:
+        from app.services.news_agent import news_agent_tool
+
+        # Delegate to news agent
+        result = await news_agent_tool(query, entities, context)
+        return result
+
+    except ImportError:
+        # Fallback if news_agent not available
+        logger.warning("NewsAgent not available, using direct DB query")
+        from app.database import SessionLocal, NewsArticle
+        from datetime import datetime, timedelta
+
+        db = SessionLocal()
+        try:
+            cutoff = datetime.now() - timedelta(hours=48)
+
+            articles = db.query(NewsArticle).filter(
+                NewsArticle.scraped_at >= cutoff
+            ).order_by(NewsArticle.scraped_at.desc()).limit(5).all()
+
+            if articles:
+                formatted = "*Recent Nigerian News:*\n"
+                for i, a in enumerate(articles[:5], 1):
+                    formatted += f"{i}. {a.title} ({a.source_name})\n"
+
+                return ToolResult(
+                    tool_name="news_db",
+                    success=True,
+                    data={"articles": [{"title": a.title, "source": a.source_name} for a in articles]},
+                    confidence=0.8,
+                    source="local_news_db",
+                    metadata={"count": len(articles)}
+                )
+            else:
+                return ToolResult(
+                    tool_name="news_db",
+                    success=False,
+                    data=None,
+                    confidence=0.2,
+                    source="local_news_db",
+                    error="No recent news in database",
+                    handoff_to="web_search"
+                )
+        finally:
+            db.close()
+
+    except Exception as e:
+        logger.error(f"News DB error: {e}")
+        return ToolResult(
+            tool_name="news_db",
+            success=False,
+            data=None,
+            confidence=0.0,
+            source="local_news_db",
+            error=str(e),
+            handoff_to="web_search"
+        )
+
+
 async def _tool_memory_retrieval(query: str, entities: Dict, context: Dict) -> ToolResult:
     """Retrieve relevant context from user's conversation memory."""
     try:
@@ -619,9 +687,18 @@ def _register_default_tools():
     ))
 
     tool_registry.register(Tool(
+        name="news_db",
+        description="Query local database of scraped Nigerian political news articles (faster than web search)",
+        keywords=["news", "latest", "recent", "update", "today", "happening", "headline", "article", "naija news"],
+        executor=_tool_news_db,
+        can_handoff_to=["web_search"],
+        priority=8  # Higher priority than web_search for news queries
+    ))
+
+    tool_registry.register(Tool(
         name="web_search",
-        description="Search for current news, recent events, and live updates about Nigerian politics",
-        keywords=["news", "latest", "recent", "update", "today", "happening", "trending", "current", "breaking"],
+        description="Search live web for current events, breaking news, and real-time updates (fallback for news_db)",
+        keywords=["live", "breaking", "just now", "happening now", "real-time", "trending", "viral"],
         executor=_tool_web_search,
         can_handoff_to=["knowledge_base"],
         priority=7
