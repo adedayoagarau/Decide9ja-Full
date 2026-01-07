@@ -15,8 +15,14 @@ TEMPLATES = {
     # ==========================================
     
     "welcome_new": (
-        "Welcome to Decide9ja. I'm Tade, and I help Nigerians stay informed "
+        "Welcome to Decide9ja! I'm Tade, and I help Nigerians stay informed "
         "about their representatives and government.\n\n"
+        "What's your first name?"
+    ),
+
+    "welcome_with_acknowledgment": (
+        "I can help with that! But first, let me get to know you quickly "
+        "so I can give you the most relevant info.\n\n"
         "What's your first name?"
     ),
 
