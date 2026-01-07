@@ -722,12 +722,13 @@ Keep engaging to earn more badges and climb the ranks! 🚀"""
     user_context = {
         "state": state.state,
         "lga": state.lga,
-        "name": state.first_name or state.name
+        "name": state.first_name or state.name,
+        "phone": phone  # Pass phone for memory retrieval tool
     }
 
     agentic_result = await agentic_retrieve(text, user_context)
 
-    logger.info(f"Agentic retrieval: {agentic_result.total_attempts} attempts, success={agentic_result.success}, sources={agentic_result.sources_used}")
+    logger.info(f"Agentic retrieval: {agentic_result.total_attempts} attempts, status={agentic_result.status.value}, sources={agentic_result.sources_used}")
 
     # Also run legacy retrieval for fallback/comparison
     retrieval_result = await intelligent_retrieve(
@@ -766,13 +767,16 @@ async def generate_response_with_context(
     legacy_context = format_retrieval_for_context(retrieval)
 
     # Prefer agentic context if available and successful
-    if agentic and agentic.success and agentic.graded_context:
+    from app.services.agentic_retrieval import RetrievalStatus
+    agentic_success = agentic and agentic.status in [RetrievalStatus.SUCCESS, RetrievalStatus.PARTIAL]
+
+    if agentic_success and agentic.graded_context:
         context = f"""AGENTIC RETRIEVAL (graded, self-corrected):
 {agentic.graded_context}
 
 LEGACY RETRIEVAL (for reference):
 {legacy_context}"""
-        logger.info(f"Using agentic context ({agentic.total_attempts} attempts, confidence={agentic.confidence:.2f})")
+        logger.info(f"Using agentic context ({agentic.total_attempts} attempts, status={agentic.status.value}, confidence={agentic.confidence:.2f})")
     else:
         context = legacy_context
 
