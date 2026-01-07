@@ -68,6 +68,11 @@ from app.services.community_service import CommunityService
 from app.services.news_digest_service import NewsDigestService
 from app.services.user_memory import user_memory
 from app.services.enhanced_memory import enhanced_memory
+from app.services.prompts import (
+    build_tade_system_prompt,
+    build_tade_user_prompt,
+    get_current_context
+)
 
 logger = logging.getLogger(__name__)
 
@@ -813,39 +818,21 @@ LEGACY RETRIEVAL (for reference):
     # Get explainer for potential analogies
     explainer = get_explainer()
 
-    # Build layered system prompt using agentic_prompts
-    from app.services.agentic_prompts import build_system_prompt, PromptLayer
-    from datetime import datetime
-
+    # Build system prompt using federated prompt architecture (Source of Truth)
     user_context_for_prompt = {
         "name": state.first_name or state.name,
         "state": state.state,
         "lga": state.lga
     }
 
-    # Build comprehensive layered system prompt
-    layered_system_prompt = build_system_prompt(
-        include_layers=[
-            PromptLayer.IDENTITY,
-            PromptLayer.CAPABILITIES,
-            PromptLayer.BEHAVIORS,
-            PromptLayer.RESPONSES,
-            PromptLayer.GUARDRAILS,
-        ],
+    # Build Tade's system prompt from Source of Truth
+    system_prompt = build_tade_system_prompt(
         user_context=user_context_for_prompt,
-        current_date=datetime.now().strftime("%B %d, %Y")
+        include_full_sot=False  # Use minimal SOT for faster inference
     )
 
-    # Add dynamic current context (date, hot topics) to layered prompt
-    current_date = datetime.now().strftime("%B %d, %Y")
-    system_prompt = layered_system_prompt + f"""
-
-<current_context>
-TODAY'S DATE: {current_date}
-HOT TOPICS: Tax Reform Bills debate, 2027 election positioning, Rivers political crisis
-CURRENT NAIRA: Trading around ₦1,500-1,800 per dollar
-KEY EVENTS: 2027 elections 13 months away, positioning has begun
-</current_context>"""
+    # Add dynamic current context
+    system_prompt += get_current_context()
 
     # Combine all context
     full_context = context
@@ -909,28 +896,14 @@ KEY EVENTS: 2027 elections 13 months away, positioning has begun
     except Exception as e:
         logger.warning(f"Enhanced memory error: {e}")
 
-    user_prompt = f"""Answer this user's question using your Nigerian politics expertise and any retrieved context.
-
-[INTERNAL CONTEXT - use to personalize response, DO NOT announce or repeat these fields]
-User: {user_context}
-{history_summary}
-{personalization_context}
-
-QUESTION: {query}
-
-INTENT: {understanding.intent.value}
-
-RETRIEVED CONTEXT:
-{full_context}
-
----
-
-IMPORTANT:
-- If the retrieved context is empty, use your built-in Nigerian politics knowledge
-- Use the user's name naturally IF it fits (don't force it)
-- If they have a state/LGA, give location-relevant info when appropriate
-- NEVER say "as someone from [state]..." or announce their location
-- Provide 2-5 sentences, then a follow-up question or suggestion"""
+    # Build user prompt using federated prompt system
+    user_prompt = build_tade_user_prompt(
+        query=query,
+        retrieved_context=full_context,
+        intent=understanding.intent.value,
+        conversation_history=history_summary if history_summary else None,
+        personalization=f"User: {user_context}\n{personalization_context}" if personalization_context else f"User: {user_context}"
+    )
 
     try:
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
