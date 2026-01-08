@@ -217,24 +217,47 @@ class User(Base):
     Privacy: Phone number stored as SHA256 hash, never raw.
     """
     __tablename__ = "users"
-    
+
     id = Column(Integer, primary_key=True, autoincrement=True)
     phone_hash = Column(String(64), unique=True, nullable=False, index=True)  # SHA256 of phone (privacy)
-    
+
     # Collected via onboarding
     first_name = Column(String(50))       # User's first name (used for addressing)
     last_name = Column(String(50))        # User's last name/surname
     name = Column(String(100))            # Full name (for backward compatibility)
     state = Column(String(50))
     lga = Column(String(100))
-    
+
+    # Extended location info (progressive profiling)
+    origin_state = Column(String(50))           # State of origin
+    origin_lga = Column(String(100))            # LGA of origin
+    residence_state = Column(String(50))        # Current residence state
+    residence_lga = Column(String(100))         # Current residence LGA
+    registered_state = Column(String(50))       # Voter registration state
+    registered_lga = Column(String(100))        # Voter registration LGA
+    ward = Column(String(100))                  # Voting ward
+    senatorial_district = Column(String(100))   # Senatorial district
+    federal_constituency = Column(String(100))  # Federal constituency
+    state_constituency = Column(String(100))    # State constituency
+
+    # Demographics (progressive profiling)
+    age_range = Column(String(20))              # e.g., "25-34"
+    gender = Column(String(20))                 # e.g., "male", "female"
+    has_pvc = Column(Boolean)                   # Has voter card?
+
+    # Interests & Engagement
+    interests = Column(Text)                    # JSON array of interests
+    topics_asked = Column(Text)                 # JSON array of topics queried
+    profile_completeness = Column(Integer, default=0)  # 0-100 percentage
+    message_count = Column(Integer, default=0)  # Total messages sent
+
     # State Management (JSON) - for backup, primary storage is Redis
     flow_state = Column(Text)  # Stores current state, step, and temp data
-    
+
     # Preferences & Metadata
     preferences_json = Column(Text)  # JSON dict of preferences
     onboarding_completed = Column(Boolean, default=False)
-    
+
     # Timestamps
     last_interaction = Column(DateTime, server_default=func.now(), onupdate=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
