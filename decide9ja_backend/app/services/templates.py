@@ -554,11 +554,11 @@ def get_time_aware_greeting(name: str, last_active_at=None, message_count: int =
 
     # Regular user recognition (50+ messages)
     if message_count >= 50:
-        return get_template("welcome_regular_user", name=name)
+        return get_template("welcome_regular_user", first_name=name)
 
     # First time or no last_active_at
     if not last_active_at:
-        return get_template("greeting_returning", name=name)
+        return get_template("greeting_returning", first_name=name)
 
     now = datetime.utcnow()
 
@@ -573,23 +573,23 @@ def get_time_aware_greeting(name: str, last_active_at=None, message_count: int =
 
     # Same session (< 30 min) - shouldn't happen as they'd still be in Redis
     if hours < 0.5:
-        return get_template("welcome_back_today", name=name)
+        return get_template("welcome_back_today", first_name=name)
 
     # Same day (< 12 hours)
     if hours < 12:
-        return get_template("welcome_back_today", name=name)
+        return get_template("welcome_back_today", first_name=name)
 
     # Yesterday (12-36 hours)
     if hours < 36:
-        return get_template("welcome_back_yesterday", name=name)
+        return get_template("welcome_back_yesterday", first_name=name)
 
     # Few days (2-5 days)
     if days < 6:
-        return get_template("welcome_back_few_days", name=name)
+        return get_template("welcome_back_few_days", first_name=name)
 
     # About a week (6-10 days)
     if days < 11:
-        return get_template("welcome_back_week", name=name)
+        return get_template("welcome_back_week", first_name=name)
 
     # Long time (> 10 days)
-    return get_template("welcome_back_long", name=name)
+    return get_template("welcome_back_long", first_name=name)
