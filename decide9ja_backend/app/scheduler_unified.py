@@ -348,6 +348,23 @@ def fallback_card_generator():
         return {"error": str(e), "action": "none"}
 
 
+def fallback_politician_dossier_generator():
+    """Fallback when politician dossier generation fails - use existing dossiers."""
+    logger.info("Fallback: Using existing politician dossiers...")
+    try:
+        from app.services.politician_dossier_generator import list_all_dossiers
+        dossiers = list_all_dossiers()
+        return {"existing_dossiers": len(dossiers), "action": "using_cached"}
+    except Exception as e:
+        return {"error": str(e), "action": "none"}
+
+
+def fallback_politician_dossier_news_update():
+    """Fallback when dossier news update fails - mark for later."""
+    logger.info("Fallback: Politician dossier news update deferred to next cycle...")
+    return {"action": "deferred", "reason": "will_retry_next_cycle"}
+
+
 # =============================================================================
 # Job Implementations
 # =============================================================================
@@ -465,6 +482,40 @@ def run_card_generator():
 
     logger.info(f"✅ Card generator complete: {count} cards generated")
     return {"cards_generated": count}
+
+
+@with_retry(max_retries=2, base_delay=10.0, fallback_func=fallback_politician_dossier_generator)
+def run_politician_dossier_generator():
+    """
+    Generate/regenerate politician dossiers for all politicians.
+    Creates individual source-of-truth files for each politician.
+    Frequency: Daily at 4 AM
+    """
+    logger.info("📁 Starting politician dossier generator job...")
+
+    from app.services.politician_dossier_generator import generate_all_dossiers
+
+    stats = generate_all_dossiers()
+
+    logger.info(f"✅ Politician dossier generator complete: {stats}")
+    return stats
+
+
+@with_retry(max_retries=2, base_delay=5.0, fallback_func=fallback_politician_dossier_news_update)
+def run_politician_dossier_news_update():
+    """
+    Update all politician dossiers with recent news.
+    Adds today's news mentions to each politician's dossier file.
+    Frequency: Every 6 hours
+    """
+    logger.info("📰 Starting politician dossier news update job...")
+
+    from app.services.politician_dossier_generator import update_all_dossiers_with_news
+
+    stats = update_all_dossiers_with_news(days=1)
+
+    logger.info(f"✅ Politician dossier news update complete: {stats}")
+    return stats
 
 
 @with_retry(max_retries=1, base_delay=2.0)
@@ -760,6 +811,24 @@ def create_scheduler() -> BackgroundScheduler:
         CronTrigger(hour=3, minute=30),  # 30 min after card gen
         id="news_cleanup",
         name="Clean up old news articles",
+        replace_existing=True
+    )
+
+    # === Politician Dossier Generator - Daily at 4 AM ===
+    scheduler.add_job(
+        run_politician_dossier_generator,
+        CronTrigger(hour=4, minute=0),
+        id="politician_dossier_generator",
+        name="Generate politician dossier files",
+        replace_existing=True
+    )
+
+    # === Politician Dossier News Update - Every 6 hours ===
+    scheduler.add_job(
+        run_politician_dossier_news_update,
+        IntervalTrigger(hours=6),
+        id="politician_dossier_news_update",
+        name="Update politician dossiers with news",
         replace_existing=True
     )
 
