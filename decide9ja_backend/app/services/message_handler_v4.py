@@ -252,9 +252,12 @@ async def handle_idle_claude_first(state: UserState, text: str, memory=None) -> 
         # Users can start with anything: "hi", "who is the governor?", "help", etc.
         from app.services.flows.onboarding import handle_onboarding
 
+        # Capture old flow state BEFORE changing it
+        was_already_onboarding = state.flow == ConversationFlow.ONBOARDING
         state.flow = ConversationFlow.ONBOARDING
-        # Only reset flow_step if not already in onboarding
-        if state.flow_step == 0 or state.flow != ConversationFlow.ONBOARDING:
+
+        # Only reset flow_step if not already in onboarding (prevents restarting mid-flow)
+        if not was_already_onboarding:
             state.flow_step = 0
             state.greeted = False
         return await handle_onboarding(state, text)
@@ -285,7 +288,7 @@ async def handle_idle_claude_first(state: UserState, text: str, memory=None) -> 
             welcome_back = user_memory.get_returning_user_summary(state.phone)
             if welcome_back:
                 return welcome_back + "\n\nHow can I help you today?"
-        return get_template("greeting_returning", name=state.name)
+        return get_template("greeting_returning", first_name=state.first_name or state.name)
     
     if understanding.intent == Intent.HELP:
         return get_template("menu")
