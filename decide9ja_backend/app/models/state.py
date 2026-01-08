@@ -92,6 +92,8 @@ class UserState:
         return json.dumps({
             "user_id": self.user_id,
             "phone": self.phone,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
             "name": self.name,
             "state": self.state,
             "lga": self.lga,
@@ -137,6 +139,8 @@ class UserState:
         return cls(
             user_id=d["user_id"],
             phone=phone,
+            first_name=d.get("first_name"),
+            last_name=d.get("last_name"),
             name=d.get("name"),
             state=d.get("state"),
             lga=d.get("lga"),
