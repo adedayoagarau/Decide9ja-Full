@@ -73,6 +73,7 @@ from app.services.prompts import (
     build_tade_user_prompt,
     get_current_context
 )
+from app.services.output_guard import guard_output
 
 logger = logging.getLogger(__name__)
 
@@ -968,7 +969,9 @@ LEGACY RETRIEVAL (for reference):
             messages=messages
         )
 
-        return response.content[0].text.strip()
+        # Apply output guardrails (neutrality, sources, hallucination check)
+        raw_response = response.content[0].text.strip()
+        return await guard_output(raw_response, context=query)
 
     except Exception as e:
         logger.error(f"Response generation error: {e}")
