@@ -9,7 +9,7 @@ import html
 import logging
 from datetime import datetime
 from typing import Optional
-from fastapi import FastAPI, Depends, HTTPException, Request
+from fastapi import FastAPI, Depends, HTTPException, Request, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from fastapi.staticfiles import StaticFiles
@@ -535,11 +535,15 @@ async def search_with_web(request: Request, body: AskRequest, db: Session = Depe
 
 @app.post("/webhook")
 @limiter.limit("200/minute")
-async def whatsapp_webhook(request: Request, db: Session = Depends(get_db)):
+async def whatsapp_webhook(request: Request, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
     """
     WhatsApp webhook endpoint (Twilio format).
-    Receives incoming messages and returns TwiML response.
-    Supports text and voice note messages.
+    Uses ASYNC processing to avoid timeout issues.
+    
+    Flow:
+    1. Receive message
+    2. Return immediate acknowledgment (empty TwiML)
+    3. Process in background and send response via Twilio API
     """
     try:
         # Parse form data (Twilio sends as form)
@@ -556,26 +560,7 @@ async def whatsapp_webhook(request: Request, db: Session = Depends(get_db)):
         from app.services.twilio_whatsapp import hash_phone
         user_hash = hash_phone(phone_from)
         
-        # Use V4 Handler with Claude-First architecture
-        from app.services.message_handler_v4 import handle_message
-        
-        # Handle incoming voice note
-        if media_url and "audio" in media_type:
-            logger.info(f"Incoming voice note from {user_hash}")
-            from app.services import voice
-            try:
-                transcribed = await voice.speech_to_text(media_url)
-                if transcribed:
-                    message_body = transcribed
-                    logger.info(f"Transcribed: {transcribed[:100]}...")
-            except Exception as e:
-                logger.error(f"Voice transcription error: {e}")
-                return Response(
-                    content="""<?xml version="1.0" encoding="UTF-8"?><Response><Message>Sorry, I couldn't understand that voice note. Please try again.</Message></Response>""",
-                    media_type="application/xml"
-                )
-        
-        if not message_body:
+        if not message_body and not media_url:
             logger.info(f"Empty message from {user_hash}")
             return {"status": "no message"}
         
@@ -585,26 +570,79 @@ async def whatsapp_webhook(request: Request, db: Session = Depends(get_db)):
         # Log for debugging
         logger.info(f"📨 Processing message from {user_hash[:8]}...: '{message_body[:50]}'")
         
+        # Process message in BACKGROUND to avoid Twilio timeout
+        background_tasks.add_task(
+            _process_and_respond,
+            phone_from,
+            message_body,
+            media_url,
+            media_type
+        )
+        
+        # Return empty TwiML immediately (acknowledgment)
+        # Response will be sent via Twilio API in background
+        return Response(
+            content="""<?xml version="1.0" encoding="UTF-8"?><Response></Response>""",
+            media_type="application/xml"
+        )
+        
+    except Exception as e:
+        logger.error(f"Webhook error: {e}")
+        return Response(
+            content="""<?xml version="1.0" encoding="UTF-8"?><Response></Response>""",
+            media_type="application/xml"
+        )
+
+
+async def _process_and_respond(phone_from: str, message_body: str, media_url: str, media_type: str):
+    """
+    Background task to process message and send response via Twilio API.
+    This avoids Twilio's 15-second webhook timeout.
+    """
+    from app.services.message_handler_v4 import handle_message
+    from app.services.twilio_whatsapp import send_message, hash_phone
+    from app.services import voice
+    
+    try:
+        user_hash = hash_phone(phone_from)
+        
+        # Handle incoming voice note
+        if media_url and "audio" in media_type:
+            logger.info(f"Transcribing voice note from {user_hash[:8]}...")
+            try:
+                transcribed = await voice.speech_to_text(media_url)
+                if transcribed:
+                    message_body = transcribed
+                    logger.info(f"Transcribed: {transcribed[:100]}...")
+            except Exception as e:
+                logger.error(f"Voice transcription error: {e}")
+                send_message(phone_from, "Sorry, I couldn't understand that voice note. Please try again or type your message.")
+                return
+        
+        if not message_body:
+            return
+        
         # Process message with V4 Claude-First handler
         response_text = await handle_message(phone_from, message_body, media_url)
         
         logger.info(f"📤 Response ready ({len(response_text)} chars): '{response_text[:80]}...'")
         
-        # Regular text response (simplified - voice mode can be added later)
-        safe_response = escape_xml(response_text[:1500])
-        twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-    <Message>{safe_response}</Message>
-</Response>"""
+        # Send response via Twilio API (NOT TwiML)
+        result = send_message(phone_from, response_text[:1500])
         
-        return Response(content=twiml, media_type="application/xml")
-        
+        if result.get("error"):
+            logger.error(f"Twilio send error: {result['error']}")
+        else:
+            logger.info(f"✅ Response sent via Twilio API: {result.get('sid', 'unknown')}")
+            
     except Exception as e:
-        logger.error(f"Webhook error: {e}")
-        return Response(
-            content="""<?xml version="1.0" encoding="UTF-8"?><Response><Message>Sorry, an error occurred.</Message></Response>""",
-            media_type="application/xml"
-        )
+        logger.error(f"Background processing error: {e}")
+        # Try to send error message to user
+        try:
+            from app.services.twilio_whatsapp import send_message
+            send_message(phone_from, "Sorry, something went wrong. Please try again.")
+        except:
+            pass
 
 
 # ===========================================

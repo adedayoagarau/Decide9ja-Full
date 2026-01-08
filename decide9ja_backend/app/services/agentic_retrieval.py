@@ -878,6 +878,9 @@ async def route_to_tools(
             tool_name = tool_data.get("name", "fallback")
             confidence = float(tool_data.get("confidence", 0.5))
             entities = tool_data.get("entities", {})
+            # Safety: ensure entities is always a dict
+            if not isinstance(entities, dict):
+                entities = {"raw": str(entities)} if entities else {}
 
             # Verify tool exists
             if tool_registry.get_tool(tool_name):
@@ -910,7 +913,8 @@ async def _extract_entities_fast(query: str, tool_name: str) -> Dict:
     if tool_name == "politician_lookup":
         # Extract politician names (capitalized words)
         words = query.split()
-        potential_names = [w for w in words if w[0].isupper() and len(w) > 2]
+        # Safety: filter out empty strings and short words, then check uppercase
+        potential_names = [w for w in words if len(w) > 2 and w[0].isupper()]
         if potential_names:
             entities["politician_name"] = " ".join(potential_names[:2])
 

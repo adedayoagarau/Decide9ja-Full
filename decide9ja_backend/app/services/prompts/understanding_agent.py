@@ -473,7 +473,8 @@ def _extract_entities_from_pattern(query: str, intent: str) -> Dict:
     if intent == "POLITICIAN_INFO":
         # Extract capitalized names
         words = query.split()
-        names = [w for w in words if w[0].isupper() and len(w) > 2]
+        # Safety: filter out empty/short words first, then check uppercase
+        names = [w for w in words if len(w) > 2 and w[0].isupper()]
         if names:
             entities["politician_name"] = " ".join(names[:2])
 
