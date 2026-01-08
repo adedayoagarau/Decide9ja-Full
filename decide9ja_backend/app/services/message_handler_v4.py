@@ -753,7 +753,7 @@ Keep engaging to earn more badges and climb the ranks! 🚀"""
         "state": state.state,
         "lga": state.lga,
         "name": state.first_name or state.name,
-        "phone": phone  # Pass phone for memory retrieval tool
+        "phone": state.phone  # Pass phone for memory retrieval tool
     }
 
     agentic_result = await agentic_retrieve(text, user_context)
