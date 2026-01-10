@@ -299,6 +299,14 @@ async def startup_event():
     logger.info(f"   Data Pipeline API: /api/pipeline")
     logger.info(f"   Dashboard API: /api/dashboard")
     logger.info(f"   Performance API: /api/performance")
+    
+    # Start background scheduler for cron jobs
+    try:
+        from app.scheduler_unified import start_scheduler
+        scheduler = start_scheduler()
+        logger.info("📅 Background scheduler started with cron jobs")
+    except Exception as e:
+        logger.warning(f"⚠️ Scheduler startup failed (non-critical): {e}")
 
 
 # ===========================================
