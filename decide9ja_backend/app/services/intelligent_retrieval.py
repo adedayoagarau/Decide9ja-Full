@@ -157,7 +157,17 @@ async def _lookup_politician_by_name(name: str) -> Optional[Dict]:
     try:
         from app.database import get_db, Politician
         from app.services.fuzzy_match import fuzzy_find_politician
-        
+
+        # Handle unexpected types for name
+        if name is None:
+            return None
+        if isinstance(name, list):
+            name = name[0] if name else ""
+        if not isinstance(name, str):
+            name = str(name)
+        if not name.strip():
+            return None
+
         db = next(get_db())
         
         # Try exact match first
@@ -207,9 +217,17 @@ async def _lookup_politician_by_position(position: str, state: Optional[str] = N
     try:
         from app.database import get_db, Politician
         from sqlalchemy import text
-        
+
         db = next(get_db())
-        
+
+        # Handle unexpected types for position
+        if position is None:
+            return None
+        if isinstance(position, list):
+            position = position[0] if position else ""
+        if not isinstance(position, str):
+            position = str(position)
+
         # Normalize position
         position_lower = position.lower()
         
@@ -231,6 +249,11 @@ async def _lookup_politician_by_position(position: str, state: Optional[str] = N
                 Politician.position == query_position
             ).first()
         elif state:
+            # Handle unexpected types for state
+            if isinstance(state, list):
+                state = state[0] if state else ""
+            if not isinstance(state, str):
+                state = str(state)
             # State-specific positions
             politician = db.query(Politician).filter(
                 Politician.position == query_position,
@@ -376,15 +399,28 @@ async def _search_rag(query: str, limit: int = 3) -> str:
 def format_retrieval_for_context(result: RetrievalResult) -> str:
     """Format retrieval results as context for Claude response generation."""
     parts = []
-    
+
     if result.politician:
         p = result.politician
-        parts.append(f"""POLITICIAN INFORMATION:
-Name: {p.get('name')}
-Position: {p.get('position')}
+        # Handle case where politician is a string or unexpected type
+        if isinstance(p, str):
+            parts.append(f"POLITICIAN INFORMATION:\n{p}")
+        elif isinstance(p, dict):
+            parts.append(f"""POLITICIAN INFORMATION:
+Name: {p.get('name', 'Unknown')}
+Position: {p.get('position', 'Unknown')}
 Party: {p.get('party', 'Unknown')}
 State: {p.get('state', 'Federal')}
 Bio: {p.get('bio', 'No biography available.')}""")
+        elif isinstance(p, list):
+            # Handle list of politicians
+            for pol in p[:3]:  # Limit to 3
+                if isinstance(pol, dict):
+                    parts.append(f"• {pol.get('name', 'Unknown')} - {pol.get('position', 'Unknown')} ({pol.get('party', 'Unknown')})")
+                else:
+                    parts.append(f"• {pol}")
+        else:
+            parts.append(f"POLITICIAN INFORMATION:\n{str(p)}")
     
     if result.representatives:
         reps_text = "USER'S REPRESENTATIVES:\n"

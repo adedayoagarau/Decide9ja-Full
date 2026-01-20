@@ -193,11 +193,17 @@ def validate_response(
         is_safe, hallucination_issues = check_hallucination_risk(response, known_politicians)
         all_issues.extend(hallucination_issues)
 
-    is_valid = len(all_issues) == 0
+    # Separate critical issues (neutrality, hallucination) from informational (sources)
+    critical_issues = [i for i in all_issues if "source" not in i.lower() and "citation" not in i.lower()]
+    source_issues = [i for i in all_issues if "source" in i.lower() or "citation" in i.lower()]
 
-    # Log any issues found
-    if not is_valid:
-        logger.warning(f"Output validation issues: {all_issues}")
+    is_valid = len(critical_issues) == 0  # Only block on critical issues
+
+    # Log critical issues at WARNING, source issues at DEBUG
+    if critical_issues:
+        logger.warning(f"Output validation CRITICAL issues: {critical_issues}")
+    if source_issues:
+        logger.debug(f"Output validation source issues (will add reminder): {source_issues}")
 
     return OutputValidation(
         is_valid=is_valid,
@@ -277,8 +283,8 @@ async def guard_output(response: str, context: Optional[str] = None) -> str:
     if any("source" in issue.lower() for issue in validation.issues):
         response = add_source_reminder(response)
 
-    # Log for monitoring
+    # Log for monitoring (debug level to reduce noise)
     if validation.issues:
-        logger.info(f"Output guard applied modifications. Issues: {validation.issues}")
+        logger.debug(f"Output guard applied modifications. Issues: {validation.issues}")
 
     return response

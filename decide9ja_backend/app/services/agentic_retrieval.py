@@ -867,16 +867,22 @@ async def route_to_tools(
     try:
         response = await provider.complete(prompt, max_tokens=300)
 
-        # Parse JSON
-        if "```" in response:
-            response = response.split("```json")[-1].split("```")[0]
+        # Robust JSON extraction
+        data = _extract_json_safely(response)
 
-        data = json.loads(response)
+        if not data:
+            logger.warning(f"Failed to parse routing response, using fallback")
+            if matched_tools:
+                return [(matched_tools[0][0].name, {}, matched_tools[0][1])]
+            return [("fallback", {"parse_error": True}, 0.3)]
 
         results = []
         for tool_data in data.get("tools", []):
             tool_name = tool_data.get("name", "fallback")
-            confidence = float(tool_data.get("confidence", 0.5))
+            try:
+                confidence = float(tool_data.get("confidence", 0.5))
+            except (TypeError, ValueError):
+                confidence = 0.5
             entities = tool_data.get("entities", {})
             # Safety: ensure entities is always a dict
             if not isinstance(entities, dict):
@@ -903,6 +909,62 @@ async def route_to_tools(
         if matched_tools:
             return [(matched_tools[0][0].name, {}, matched_tools[0][1])]
         return [("fallback", {"error": str(e)}, 0.2)]
+
+
+def _extract_json_safely(text: str) -> Optional[Dict]:
+    """
+    Robustly extract JSON from LLM response.
+    Handles:
+    - Markdown code blocks (```json ... ```)
+    - Plain code blocks (``` ... ```)
+    - Extra text before/after JSON
+    - Malformed responses
+    """
+    if not text:
+        return None
+
+    # Try 1: Direct parse (response is clean JSON)
+    try:
+        return json.loads(text.strip())
+    except json.JSONDecodeError:
+        pass
+
+    # Try 2: Extract from markdown code block
+    # Handle ```json ... ``` or ``` ... ```
+    code_block_patterns = [
+        r'```json\s*([\s\S]*?)\s*```',
+        r'```\s*([\s\S]*?)\s*```',
+    ]
+    for pattern in code_block_patterns:
+        match = re.search(pattern, text)
+        if match:
+            try:
+                return json.loads(match.group(1).strip())
+            except json.JSONDecodeError:
+                continue
+
+    # Try 3: Find JSON object in text (starts with { ends with })
+    # This handles extra text before/after
+    brace_match = re.search(r'\{[\s\S]*\}', text)
+    if brace_match:
+        try:
+            return json.loads(brace_match.group())
+        except json.JSONDecodeError:
+            pass
+
+    # Try 4: Find JSON array in text (starts with [ ends with ])
+    bracket_match = re.search(r'\[[\s\S]*\]', text)
+    if bracket_match:
+        try:
+            parsed = json.loads(bracket_match.group())
+            # Wrap array in expected format
+            return {"tools": parsed} if isinstance(parsed, list) else parsed
+        except json.JSONDecodeError:
+            pass
+
+    # All attempts failed
+    logger.warning(f"Could not extract JSON from: {text[:200]}...")
+    return None
 
 
 async def _extract_entities_fast(query: str, tool_name: str) -> Dict:
