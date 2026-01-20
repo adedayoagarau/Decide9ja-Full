@@ -47,6 +47,11 @@ from app.agents.tier2_core import (
     PromiseLookupAgent,
 )
 
+# Tier 3: Multimodal
+from app.agents.tier3_multimodal import (
+    VoiceTranscriptionAgent,
+)
+
 # Tier 4: Reporting
 from app.agents.tier4_reporting import (
     IssueIntakeAgent,
@@ -55,6 +60,7 @@ from app.agents.tier4_reporting import (
 # Tier 5: Output Layer
 from app.agents.tier5_output import (
     FallbackAgent,
+    VoiceSynthesisAgent,
 )
 
 # Tier 6: Analytics
@@ -90,10 +96,13 @@ __all__ = [
     "ElectionInfoAgent",
     "NewsQueryAgent",
     "PromiseLookupAgent",
+    # Tier 3 Agents
+    "VoiceTranscriptionAgent",
     # Tier 4 Agents
     "IssueIntakeAgent",
     # Tier 5 Agents
     "FallbackAgent",
+    "VoiceSynthesisAgent",
     # Tier 6 Agents
     "DataCollectorAgent",
 ]
