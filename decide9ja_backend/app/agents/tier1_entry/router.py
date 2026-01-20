@@ -53,11 +53,15 @@ class RouterAgent(BaseAgent):
         Intent.CANDIDATE_SEARCH: "election_info",
         Intent.CANDIDATE_FOLLOW: "election_info",
         Intent.CANDIDATE_UNFOLLOW: "election_info",
-        Intent.CANDIDATE_COMPARE: "election_info",
+        Intent.CANDIDATE_COMPARE: "candidate_compare",
         Intent.MY_CANDIDATES: "election_info",
         Intent.ELECTION_INFO: "election_info",
         Intent.VOTER_REGISTRATION: "election_info",
         Intent.POLLING_UNIT: "election_info",
+
+        # Manifesto & Voting Records
+        Intent.MANIFESTO_LOOKUP: "manifesto",
+        Intent.VOTING_RECORD: "voting_record",
 
         # News
         Intent.NEWS_QUERY: "news_query",

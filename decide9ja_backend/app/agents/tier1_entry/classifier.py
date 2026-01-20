@@ -76,6 +76,10 @@ class Intent:
     # Verification
     FACT_CHECK = "fact_check"
 
+    # Manifesto & Voting Records
+    MANIFESTO_LOOKUP = "manifesto_lookup"
+    VOTING_RECORD = "voting_record"
+
     # Unknown
     UNKNOWN = "unknown"
 
@@ -133,7 +137,11 @@ class ClassifierAgent(BaseAgent):
             r"^unfollow\s+",
         ],
         Intent.CANDIDATE_COMPARE: [
-            r"(compare|vs|versus)\s+([A-Z][a-z]+)\s*(and|vs|versus)?\s*([A-Z][a-z]+)?",
+            r"compare\s+.+\s+(and|vs|versus|with)\s+",
+            r".+\s+vs\.?\s+.+",
+            r"difference between",
+            r"who is better",
+            r".+\s+or\s+.+\?",
         ],
         Intent.MY_CANDIDATES: [
             r"(my\s*candidates?|who\s*(am|do)\s*i\s*follow)",
@@ -166,6 +174,18 @@ class ClassifierAgent(BaseAgent):
         Intent.FACT_CHECK: [
             r"(is\s*it\s*true|verify|fact[\s-]*check|real\s*or\s*fake)",
             r"(did\s+[A-Z][a-z]+\s+really)",
+        ],
+        Intent.MANIFESTO_LOOKUP: [
+            r"manifesto",
+            r"(apc|pdp|lp|nnpp|apga|sdp|adc)\s+(policy|plan|position)",
+            r"what does.+(party|apc|pdp|lp).+say",
+            r"party.+policy",
+        ],
+        Intent.VOTING_RECORD: [
+            r"voting record",
+            r"how did.+vote",
+            r"voting history",
+            r"voted (for|against)",
         ],
         Intent.MY_POINTS: [
             r"(my\s*points?|my\s*score|civic\s*score)",
