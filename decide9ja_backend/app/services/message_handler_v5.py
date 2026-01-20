@@ -1,350 +1,307 @@
 """
-Message Handler V5 — Multi-Agent Architecture
+Message Handler V5
+==================
+Thin orchestrator using the new tiered multi-agent architecture.
 
-This is the thin orchestrator for the new agent-based system.
-
-Key differences from V4:
-1. Each agent loads ONLY its own prompt (fixes instruction degradation)
-2. RouterAgent classifies intent and dispatches to specialists
-3. Agents communicate via typed protocols (AgentMessage, AgentResult)
-4. ~60% lower token cost due to focused prompts
-5. Higher accuracy due to smaller, focused instructions
+Architecture: Database First, LLM Last
+Cost Target: 80% of queries at $0 (database + cache + rules)
 
 Flow:
-    User Message
-         │
-         ▼
-    Load State & Memory
-         │
-         ▼
-    Check Escape Commands / Active Flows
-         │
-         ▼
-    RouterAgent (classify intent)
-         │
-         ├──► ElectionAgent (2027 elections)
-         ├──► CommunityAgent (gamification)
-         ├──► FactCheckAgent (verification)
-         ├──► DigestAgent (subscriptions)
-         ├──► FlowAgent (multi-step flows)
-         └──► ResponseAgent (complex queries)
-         │
-         ▼
-    Save State & Memory
-         │
-         ▼
-    Return Response
+1. Gatekeeper → User recognition (FREE)
+2. Classifier → Intent detection (70% FREE, 30% CHEAP)
+3. Router → Agent dispatch (FREE)
+4. Specialist → Handle query (mostly FREE)
+5. DataCollector → Analytics (FREE)
+
+Feature flag: Set USE_V5=true to enable, falls back to v4.
 """
+
+import os
+import uuid
+import asyncio
 import logging
+from datetime import datetime
 from typing import Optional
+import hashlib
 
-from app.models.state import UserState, ConversationFlow
-from app.services.state_manager import _get_state_async, _save_state_async
-from app.services.user_memory import user_memory
-from app.services.enhanced_memory import enhanced_memory
-from app.services.templates import get_template, TEMPLATES
-
-# Agent imports
-from app.services.agents import (
-    AgentMessage,
-    AgentResult,
+from app.agents import (
+    AgentInput,
+    AgentOutput,
     UserContext,
-    register_agent,
-    get_agent,
-    dispatch_to_agent
+    registry,
+    CostLevel
 )
-from app.services.agents.router_agent import RouterAgent
-from app.services.agents.election_agent import ElectionAgent
-from app.services.agents.community_agent import CommunityAgent
-from app.services.agents.digest_agent import DigestAgent
-from app.services.agents.fact_check_agent import FactCheckAgent
-from app.services.agents.flow_agent import FlowAgent
-from app.services.agents.response_agent import ResponseAgent
+
+# Import agents to trigger registration
+from app.agents.tier1_entry import GatekeeperAgent, ClassifierAgent, RouterAgent
+from app.agents.tier2_core.rep_lookup import RepLookupAgent
+from app.agents.tier5_output import FallbackAgent
+from app.agents.tier6_analytics import DataCollectorAgent
 
 logger = logging.getLogger(__name__)
 
-# Escape commands that reset conversation
-ESCAPE_COMMANDS = {"reset", "restart", "cancel", "menu", "stop", "start over", "new"}
+# Feature flag
+USE_V5 = os.getenv("USE_V5", "false").lower() == "true"
 
-# Flag to track if agents are registered
-_agents_initialized = False
+# Max handoffs to prevent infinite loops
+MAX_HANDOFFS = 10
 
 
-def _initialize_agents():
-    """Register all agents. Called once on first message."""
-    global _agents_initialized
-    if _agents_initialized:
+async def handle_message(
+    phone: str,
+    text: str,
+    voice_url: Optional[str] = None,
+    image_urls: Optional[list] = None,
+    video_url: Optional[str] = None,
+    document_url: Optional[str] = None,
+    location: Optional[dict] = None,
+) -> str:
+    """
+    Main entry point for all messages.
+
+    Routes through the tiered agent system:
+    Gatekeeper → Classifier → Router → Specialist → Response
+    """
+
+    if not USE_V5:
+        # Fall back to v4
+        from app.services.message_handler_v4 import handle_message as handle_v4
+        return await handle_v4(phone, text)
+
+    # Build initial input
+    input_data = AgentInput(
+        message_id=str(uuid.uuid4()),
+        raw_text=text or "",
+        timestamp=datetime.utcnow(),
+        user=UserContext(phone_hash=_hash_phone(phone)),
+        voice_url=voice_url,
+        image_urls=image_urls or [],
+        video_url=video_url,
+        document_url=document_url,
+        location=location,
+    )
+
+    # Process through agent chain
+    output = await _process_agent_chain(input_data)
+
+    # Collect analytics (async, don't block response)
+    asyncio.create_task(_collect_analytics(input_data, output))
+
+    # Format and return
+    return _format_response(output)
+
+
+async def _process_agent_chain(input_data: AgentInput) -> AgentOutput:
+    """
+    Process through agents until we get a final response.
+
+    Chain: gatekeeper → classifier → router → specialist
+    """
+
+    current_agent = "gatekeeper"
+    handoff_count = 0
+
+    while handoff_count < MAX_HANDOFFS:
+        agent = registry.get(current_agent)
+
+        if not agent:
+            logger.warning(f"Agent '{current_agent}' not found, using fallback")
+            agent = registry.get("fallback")
+            if not agent:
+                return AgentOutput(
+                    success=False,
+                    response_text="Sorry, something went wrong. Please try again.",
+                    error="no_fallback_agent"
+                )
+
+        # Process with agent
+        logger.debug(f"Processing with agent: {current_agent}")
+        output = await agent.handle(input_data)
+
+        # Check if we need to handoff
+        if output.handoff_to:
+            # Update input with data from this agent
+            _update_input_from_output(input_data, output)
+
+            input_data.source_agent = current_agent
+            input_data.handoff_reason = output.handoff_reason
+
+            current_agent = output.handoff_to
+            handoff_count += 1
+
+            logger.debug(f"Handoff: {input_data.source_agent} → {current_agent} ({output.handoff_reason})")
+            continue
+
+        # No handoff - we have a final response
+        return output
+
+    # Too many handoffs - return error
+    logger.error(f"Max handoffs ({MAX_HANDOFFS}) exceeded")
+    return AgentOutput(
+        success=False,
+        response_text="Sorry, I'm having trouble processing that. Please try again.",
+        error="max_handoffs_exceeded"
+    )
+
+
+def _update_input_from_output(input_data: AgentInput, output: AgentOutput):
+    """Update input with data from agent output for next agent"""
+    if not output.data:
         return
 
-    # Register all agents
-    register_agent(RouterAgent())
-    register_agent(ElectionAgent())
-    register_agent(CommunityAgent())
-    register_agent(DigestAgent())
-    register_agent(FactCheckAgent())
-    register_agent(FlowAgent())
-    register_agent(ResponseAgent())
+    # Update intent and classification
+    if "intent" in output.data:
+        input_data.intent = output.data["intent"]
+    if "confidence" in output.data:
+        input_data.confidence = output.data["confidence"]
+    if "entities" in output.data:
+        input_data.entities = output.data["entities"]
 
-    _agents_initialized = True
-    logger.info("All agents initialized")
+    # Update user context
+    if "user" in output.data:
+        user_data = output.data["user"]
+        if isinstance(user_data, dict):
+            input_data.user = UserContext(**user_data)
+        elif isinstance(user_data, UserContext):
+            input_data.user = user_data
 
 
-async def handle_message(phone: str, text: str, media_url: str = None) -> str:
-    """
-    Main entry point — Multi-Agent Architecture.
+def _format_response(output: AgentOutput) -> str:
+    """Format agent output for WhatsApp/user"""
 
-    Flow:
-    1. Initialize agents (once)
-    2. Load state & memory
-    3. Save user message to persistent history
-    4. Check escape commands
-    5. Check for active flows (onboarding, issue, etc.)
-    6. If IDLE → dispatch to RouterAgent
-    7. Process AgentResult (response, handoffs, flow changes)
-    8. Save state & memory
-    """
-    # Initialize agents on first call
-    _initialize_agents()
+    if not output.success:
+        return output.response_text or "Sorry, I couldn't process that. Please try again."
 
-    text = text.strip() if text else ""
-    text_lower = text.lower()
+    response = output.response_text or ""
 
-    # ===========================================
-    # STEP 1: Load State & Memory
-    # ===========================================
+    # Add interactive buttons as numbered options
+    if output.buttons:
+        response += "\n\n"
+        for i, button in enumerate(output.buttons, 1):
+            response += f"{i}. {button['text']}\n"
+
+    # Add list items
+    if output.list_items:
+        response += "\n"
+        for item in output.list_items:
+            response += f"• {item}\n"
+
+    # Add source citations
+    if output.sources:
+        response += f"\n\n_Source: {', '.join(output.sources)}_"
+
+    return response.strip()
+
+
+def _hash_phone(phone: str) -> str:
+    """Hash phone number for privacy"""
+    return hashlib.sha256(phone.encode()).hexdigest()[:16]
+
+
+async def _collect_analytics(input_data: AgentInput, output: AgentOutput):
+    """Collect analytics asynchronously (don't block response)"""
     try:
-        state = await _get_state_async(phone)
-        memory = user_memory.get_user_memory(phone)
-        is_returning = memory.is_returning_user if memory else False
+        collector = registry.get("data_collector")
+        if collector:
+            await collector.collect(input_data, output)
     except Exception as e:
-        logger.error(f"Failed to load state: {e}")
-        state = UserState(
-            user_id="temp",
-            phone=phone,
-            flow=ConversationFlow.IDLE
-        )
-        memory = None
-        is_returning = False
+        logger.error(f"Analytics collection failed: {e}")
 
-    # ===========================================
-    # STEP 2: Save User Message
-    # ===========================================
-    user_memory.save_message(phone, "user", text)
 
-    # ===========================================
-    # STEP 3: Check Escape Commands
-    # ===========================================
-    if text_lower in ESCAPE_COMMANDS:
-        state.clear_flow()
-        state.clear_context()
-        await _save_state_async(state)
-        response = get_template("menu")
-        user_memory.save_message(phone, "assistant", response)
-        return response
+# =============================================================================
+# ALTERNATIVE ENTRY POINTS
+# =============================================================================
 
-    # ===========================================
-    # STEP 4: Add to Session History
-    # ===========================================
-    state.add_to_history("user", text)
-
-    # ===========================================
-    # STEP 5: Handle Active Flows (non-IDLE states)
-    # ===========================================
+async def handle_message_with_fallback(
+    phone: str,
+    text: str,
+    **kwargs
+) -> str:
+    """
+    Entry point with automatic fallback to v4 on any error.
+    Use during migration for safety.
+    """
     try:
-        if state.flow == ConversationFlow.ONBOARDING:
-            # Onboarding is special - still handled by dedicated flow
-            from app.services.flows.onboarding import handle_onboarding
-            response = await handle_onboarding(state, text)
-
-        elif state.flow in [ConversationFlow.ISSUE_FLOW,
-                           ConversationFlow.CONFIRMING,
-                           ConversationFlow.AWAITING_CLARIFY]:
-            # Route to FlowAgent
-            response = await _dispatch_to_flow_agent(state, text, media_url)
-
-        else:
-            # IDLE state — use agent dispatch
-            response = await _handle_idle_with_agents(state, text, memory)
-
+        return await handle_message(phone, text, **kwargs)
     except Exception as e:
-        logger.exception(f"Error handling message: {e}")
-        response = TEMPLATES.get("error_generic", "Something went wrong. Please try again.")
-
-    # ===========================================
-    # STEP 6: Update State & Save
-    # ===========================================
-    state.add_to_history("assistant", response)
-    await _save_state_async(state)
-    user_memory.save_message(phone, "assistant", response)
-
-    # ===========================================
-    # STEP 7: Enhanced Memory (async)
-    # ===========================================
-    await _process_enhanced_memory(phone, text, state)
-
-    return response
-
-
-async def _handle_idle_with_agents(state: UserState, text: str, memory=None) -> str:
-    """
-    Handle IDLE state using multi-agent dispatch.
-
-    1. Check if onboarding needed
-    2. Create AgentMessage
-    3. Dispatch to RouterAgent
-    4. Process result and any handoffs
-    """
-
-    # Check onboarding
-    if not state.is_onboarding_complete():
-        from app.services.flows.onboarding import handle_onboarding
-        was_already_onboarding = state.flow == ConversationFlow.ONBOARDING
-        state.flow = ConversationFlow.ONBOARDING
-        if not was_already_onboarding:
-            state.flow_step = 0
-            state.greeted = False
-        return await handle_onboarding(state, text)
-
-    # Create AgentMessage from state
-    user_context = UserContext.from_user_state(state)
-
-    message = AgentMessage(
-        query=text,
-        user_context=user_context,
-        metadata={
-            "is_returning_user": memory.is_returning_user if memory else False,
-            "flow_state": state.flow.value if state.flow else "idle"
-        }
-    )
-
-    # Dispatch to router agent
-    result = await dispatch_to_agent("router", message)
-
-    # Process result
-    response = _process_agent_result(result, state)
-
-    return response
-
-
-async def _dispatch_to_flow_agent(state: UserState, text: str, media_url: str = None) -> str:
-    """Dispatch to FlowAgent for active flow handling."""
-    user_context = UserContext.from_user_state(state)
-
-    # Add flow-specific data
-    flow_data = state.flow_data or {}
-    flow_data["flow_step"] = state.flow_step
-    if media_url:
-        flow_data["media_url"] = media_url
-    user_context.flow_data = flow_data
-
-    message = AgentMessage(
-        query=text,
-        user_context=user_context,
-        metadata={
-            "flow_state": state.flow.value if state.flow else "idle"
-        }
-    )
-
-    result = await dispatch_to_agent("flow", message)
-    return _process_agent_result(result, state)
-
-
-def _process_agent_result(result: AgentResult, state: UserState) -> str:
-    """
-    Process AgentResult and update state as needed.
-
-    Handles:
-    - Response text
-    - Flow state changes
-    - Flow data updates
-    """
-    if not result.success and result.error:
-        logger.error(f"Agent error: {result.error}")
-        return TEMPLATES.get("error_generic", "Something went wrong. Please try again.")
-
-    # Process data for state changes
-    data = result.data or {}
-
-    # Handle flow changes
-    if data.get("clear_flow"):
-        state.clear_flow()
-
-    if data.get("set_flow"):
-        flow_name = data["set_flow"]
-        flow_map = {
-            "issue_flow": ConversationFlow.ISSUE_FLOW,
-            "confirming": ConversationFlow.CONFIRMING,
-            "awaiting_clarify": ConversationFlow.AWAITING_CLARIFY,
-            "onboarding": ConversationFlow.ONBOARDING,
-        }
-        state.flow = flow_map.get(flow_name, ConversationFlow.IDLE)
-
-    if "set_flow_step" in data:
-        state.flow_step = data["set_flow_step"]
-
-    if data.get("update_flow_data"):
-        if state.flow_data is None:
-            state.flow_data = {}
-        state.flow_data.update(data["update_flow_data"])
-
-    if data.get("flow_data"):
-        state.flow_data = data["flow_data"]
-
-    # Handle active politician tracking
-    if data.get("active_poll"):
-        if state.flow_data is None:
-            state.flow_data = {}
-        state.flow_data["active_poll"] = data["active_poll"]
-
-    if data.get("clear_active_poll"):
-        if state.flow_data:
-            state.flow_data.pop("active_poll", None)
-
-    return result.response or TEMPLATES.get("error_generic", "Something went wrong.")
-
-
-async def _process_enhanced_memory(phone: str, text: str, state: UserState):
-    """Process enhanced memory asynchronously."""
-    try:
-        import asyncio
-
-        # Store embedding for semantic search
-        asyncio.create_task(
-            enhanced_memory.embed_and_store_message(
-                phone, "user", text,
-                metadata={"intent": state.flow.value if state.flow else "idle"}
-            )
-        )
-
-        # Periodic consolidation
-        memory_stats = enhanced_memory.get_memory_stats(phone)
-        if memory_stats.get("total_messages", 0) % 10 == 0:
-            asyncio.create_task(enhanced_memory.consolidate_memory(phone))
-
-    except Exception as e:
-        logger.warning(f"Enhanced memory processing error: {e}")
-
-
-# ===========================================
-# Feature flag for switching between v4 and v5
-# ===========================================
-
-USE_V5_HANDLER = True  # Set to False to fall back to v4
-
-
-async def handle_message_with_fallback(phone: str, text: str, media_url: str = None) -> str:
-    """
-    Entry point with automatic fallback to v4.
-
-    Use this during migration to safely test v5.
-    """
-    if USE_V5_HANDLER:
-        try:
-            return await handle_message(phone, text, media_url)
-        except Exception as e:
-            logger.error(f"V5 handler failed, falling back to V4: {e}")
-            from app.services.message_handler_v4 import handle_message as handle_v4
-            return await handle_v4(phone, text, media_url)
-    else:
+        logger.error(f"V5 handler failed, falling back to V4: {e}")
         from app.services.message_handler_v4 import handle_message as handle_v4
-        return await handle_v4(phone, text, media_url)
+        return await handle_v4(phone, text)
+
+
+def configure_agents(db_client=None, cache_client=None, llm_client=None):
+    """
+    Configure shared clients for all agents.
+    Call this at application startup.
+    """
+    registry.configure(
+        db_client=db_client,
+        cache_client=cache_client,
+        llm_client=llm_client
+    )
+    logger.info("Agent registry configured")
+
+
+def get_agent_stats() -> dict:
+    """Get statistics for all agents"""
+    return registry.stats()
+
+
+# =============================================================================
+# SIMPLE QUERIES (bypass full chain for obvious cases)
+# =============================================================================
+
+GREETING_WORDS = {"hi", "hello", "hey", "good morning", "good afternoon", "good evening"}
+HELP_WORDS = {"help", "menu", "options", "commands"}
+
+async def handle_simple_query(phone: str, text: str) -> Optional[str]:
+    """
+    Fast path for simple queries that don't need full agent chain.
+    Returns None if query is not simple.
+    """
+    text_lower = text.lower().strip()
+
+    # Greetings
+    if text_lower in GREETING_WORDS or text_lower.startswith(("hi ", "hello ")):
+        return (
+            "Hello! I'm Decide9ja, your guide to Nigerian politics.\n\n"
+            "I can help you:\n"
+            "• Find your representatives\n"
+            "• Track 2027 election candidates\n"
+            "• Report community issues\n"
+            "• Check political promises\n\n"
+            "What would you like to know?"
+        )
+
+    # Help
+    if text_lower in HELP_WORDS:
+        return (
+            "*Decide9ja Menu*\n\n"
+            "Try asking:\n"
+            "• \"Who is my senator?\"\n"
+            "• \"Who is running for president in 2027?\"\n"
+            "• \"What did Tinubu promise?\"\n"
+            "• \"Report bad road in my area\"\n"
+            "• \"Follow Tinubu\" (get updates)\n\n"
+            "Or just ask any question about Nigerian politics!"
+        )
+
+    return None
+
+
+async def handle_message_optimized(
+    phone: str,
+    text: str,
+    **kwargs
+) -> str:
+    """
+    Optimized entry point with simple query fast path.
+    Use this for lowest latency.
+    """
+    # Try simple query first (no agent chain)
+    simple_response = await handle_simple_query(phone, text)
+    if simple_response:
+        return simple_response
+
+    # Full agent chain for complex queries
+    return await handle_message(phone, text, **kwargs)
