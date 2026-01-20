@@ -3,7 +3,12 @@ PoliticianProfileAgent
 ======================
 Get detailed profile information about Nigerian politicians.
 
-DATABASE FIRST - queries existing politician table.
+CACHE FIRST, DATABASE SECOND, LIVE RESEARCH LAST
+1. Check knowledge cache (fast, pre-researched data)
+2. Check politician database (existing records)
+3. Fallback to static profiles
+4. Record cache miss for background research
+
 Cost: FREE (database lookup)
 
 Handles:
@@ -24,7 +29,7 @@ from app.agents.base import (
     AgentTier,
     CostLevel
 )
-from app.agents.registry import register_agent
+from app.agents.registry import register_agent, registry
 from app.agents.tier1_entry.classifier import Intent
 
 logger = logging.getLogger(__name__)
@@ -61,7 +66,7 @@ class PoliticianProfileAgent(DatabaseAgent):
         return input.intent in self.handled_intents
 
     async def query_database(self, input: AgentInput) -> Optional[Dict]:
-        """Query politician database for profile"""
+        """Query for politician profile - cache first, then database, then fallback"""
 
         # Extract politician name from entities or raw text
         name = self._extract_politician_name(input)
@@ -69,22 +74,85 @@ class PoliticianProfileAgent(DatabaseAgent):
         if not name:
             return {"need_name": True}
 
-        # Try database lookup
         politician = None
-        if self.db:
+        source = "unknown"
+        is_stale = False
+
+        # 1. Try knowledge cache first (fastest, richest data)
+        try:
+            cache_agent = registry.get("knowledge_cache")
+            if cache_agent:
+                cached = await cache_agent.get_politician(name)
+                if cached and cached.get("data"):
+                    politician = cached["data"]
+                    is_stale = cached.get("is_stale", False)
+                    source = "knowledge_cache"
+                    logger.info(f"Cache hit for politician: {name} (stale={is_stale})")
+
+                    # If stale, trigger background refresh (non-blocking)
+                    if is_stale:
+                        self._trigger_background_refresh(name)
+        except Exception as e:
+            logger.warning(f"Knowledge cache lookup failed: {e}")
+
+        # 2. Try politician database
+        if not politician and self.db:
             try:
                 politician = await self._find_politician(name)
+                if politician:
+                    source = "database"
             except Exception as e:
                 logger.error(f"Database query failed: {e}")
 
-        # If not in database, try fallback data
+        # 3. Try fallback static data
         if not politician:
             politician = self._get_fallback_profile(name)
+            if politician:
+                source = "fallback"
 
+        # 4. Not found - record cache miss for research prioritization
         if not politician:
+            await self._record_cache_miss(input, name)
             return {"not_found": True, "searched_name": name}
 
-        return {"politician": politician, "searched_name": name}
+        return {
+            "politician": politician,
+            "searched_name": name,
+            "source": source,
+            "is_stale": is_stale
+        }
+
+    def _trigger_background_refresh(self, name: str):
+        """Trigger background research for stale data"""
+        import asyncio
+
+        async def refresh():
+            try:
+                # Import here to avoid circular imports
+                from app.jobs.research_job import run_single_entity_research
+                await run_single_entity_research(name)
+            except Exception as e:
+                logger.debug(f"Background refresh failed for {name}: {e}")
+
+        # Create task but don't await
+        try:
+            asyncio.create_task(refresh())
+        except RuntimeError:
+            # No running event loop
+            pass
+
+    async def _record_cache_miss(self, input: AgentInput, name: str):
+        """Record cache miss for research prioritization"""
+        try:
+            cache_agent = registry.get("knowledge_cache")
+            if cache_agent:
+                await cache_agent.record_cache_miss(
+                    query=input.raw_text,
+                    intent="politician_info",
+                    entity=name
+                )
+        except Exception as e:
+            logger.debug(f"Failed to record cache miss: {e}")
 
     async def format_response(self, input: AgentInput, data: Dict) -> AgentOutput:
         """Format politician profile for user"""
@@ -113,6 +181,8 @@ class PoliticianProfileAgent(DatabaseAgent):
             )
 
         p = data["politician"]
+        source = data.get("source", "unknown")
+        is_stale = data.get("is_stale", False)
 
         # Build profile response
         response_parts = []
@@ -122,6 +192,10 @@ class PoliticianProfileAgent(DatabaseAgent):
         party = p.get("party", "")
         party_str = f" ({party})" if party else ""
         response_parts.append(f"*{name}*{party_str}\n")
+
+        # Stale data notice
+        if is_stale:
+            response_parts.append("_Data may be slightly outdated. Refreshing..._\n")
 
         # Current position
         position = p.get("current_position") or p.get("position")
@@ -149,11 +223,40 @@ class PoliticianProfileAgent(DatabaseAgent):
             response_parts.append(f"\n🎓 *Education:* {education}\n")
 
         # Political history
-        history = p.get("political_history") or p.get("previous_positions")
+        history = p.get("political_history") or p.get("previous_positions") or p.get("career_history")
         if history:
             if isinstance(history, list):
                 history = ", ".join(history[:3])
             response_parts.append(f"\n📋 *Previous Roles:* {history}\n")
+
+        # Promises (if from knowledge cache)
+        promises = p.get("promises", [])
+        if promises and source == "knowledge_cache":
+            response_parts.append("\n📢 *Recent Promises:*")
+            for promise in promises[:3]:
+                status_emoji = {
+                    "kept": "✅",
+                    "broken": "❌",
+                    "in_progress": "🔄",
+                    "pending": "⏳",
+                    "unknown": "❓"
+                }.get(promise.get("status", "unknown"), "❓")
+                text = promise.get("promise_text", "")[:100]
+                if len(text) == 100:
+                    text += "..."
+                response_parts.append(f"\n{status_emoji} {text}")
+            response_parts.append("\n")
+
+        # Recent news (if from knowledge cache)
+        news = p.get("recent_news", [])
+        if news and source == "knowledge_cache":
+            response_parts.append("\n📰 *Recent News:*")
+            for item in news[:2]:
+                headline = item.get("headline", "")[:80]
+                date = item.get("date", "")
+                date_str = f" ({date})" if date else ""
+                response_parts.append(f"\n• {headline}{date_str}")
+            response_parts.append("\n")
 
         # Contact info (if politician_contact intent)
         if input.intent == Intent.POLITICIAN_CONTACT:
@@ -177,20 +280,35 @@ class PoliticianProfileAgent(DatabaseAgent):
 
         response_text = "".join(response_parts)
 
+        # Build sources based on where data came from
+        sources = []
+        if source == "knowledge_cache":
+            # Get sources from cache data
+            cached_sources = p.get("sources", [])
+            if cached_sources:
+                sources = cached_sources[:3]
+            else:
+                sources = ["Decide9ja Knowledge Cache"]
+        else:
+            sources = [f"Decide9ja Database - {name}"]
+
         return AgentOutput(
             success=True,
             response_text=response_text,
-            data={"politician": p},
-            sources=[f"Decide9ja Database - {name}"],
+            data={"politician": p, "source": source},
+            sources=sources,
             buttons=[
                 {"text": f"Follow {name.split()[0]}", "callback": f"follow:{p.get('id', name)}"},
                 {"text": "News about them", "callback": f"news:{name}"},
+                {"text": "Their promises", "callback": f"promises:{name}"},
             ],
             cost_level=CostLevel.FREE,
             analytics_tags={
                 "topic": "politician_profile",
                 "politician": name,
-                "party": party
+                "party": party,
+                "data_source": source,
+                "cache_hit": source == "knowledge_cache"
             }
         )
 

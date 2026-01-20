@@ -65,9 +65,13 @@ from app.agents.tier5_output import (
     VoiceSynthesisAgent,
 )
 
-# Tier 6: Analytics
+# Tier 6: Analytics & Research
 from app.agents.tier6_analytics import (
     DataCollectorAgent,
+    ResearchOrchestratorAgent,
+    SourceCrawlerAgent,
+    DataExtractorAgent,
+    KnowledgeCacheAgent,
 )
 
 __all__ = [
@@ -109,4 +113,8 @@ __all__ = [
     "VoiceSynthesisAgent",
     # Tier 6 Agents
     "DataCollectorAgent",
+    "ResearchOrchestratorAgent",
+    "SourceCrawlerAgent",
+    "DataExtractorAgent",
+    "KnowledgeCacheAgent",
 ]
