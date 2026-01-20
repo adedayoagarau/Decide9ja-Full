@@ -277,7 +277,16 @@ async def handle_idle_claude_first(state: UserState, text: str, memory=None) -> 
     logger.info(f"Claude understanding: intent={understanding.intent.value}, "
                 f"strategy={understanding.retrieval_strategy.value}, "
                 f"confidence={understanding.confidence}")
-    
+
+    # ===========================================
+    # EARLY EXIT FOR GIBBERISH/LOW CONFIDENCE
+    # ===========================================
+    # If confidence is very low (< 0.2) and intent is FALLBACK, return short response
+    # This prevents long irrelevant responses to random key mashes like "Awwaftghvdesxh"
+    if understanding.confidence < 0.2 and understanding.intent == Intent.FALLBACK:
+        logger.info(f"Low confidence gibberish detected: '{text[:30]}...' conf={understanding.confidence}")
+        return get_template("gibberish_short")
+
     # ===========================================
     # ROUTE BY INTENT
     # ===========================================
