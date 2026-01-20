@@ -13,16 +13,17 @@ Flow:
 4. Specialist → Handle query (mostly FREE)
 5. DataCollector → Analytics (FREE)
 
-Feature flag: Set USE_V5=true to enable, falls back to v4.
+Feature flags: See app/config/feature_flags.py
 """
 
-import os
 import uuid
 import asyncio
 import logging
-from datetime import datetime
-from typing import Optional
+import time
 import hashlib
+from datetime import datetime
+from typing import Optional, Dict, List
+from dataclasses import dataclass, field
 
 from app.agents import (
     AgentInput,
@@ -30,6 +31,13 @@ from app.agents import (
     UserContext,
     registry,
     CostLevel
+)
+
+# Import feature flags
+from app.config.feature_flags import (
+    flags,
+    record_v5_error,
+    record_v5_success,
 )
 
 # Import agents to trigger registration
@@ -40,12 +48,53 @@ from app.agents.tier6_analytics import DataCollectorAgent
 
 logger = logging.getLogger(__name__)
 
-# Feature flag
-USE_V5 = os.getenv("USE_V5", "false").lower() == "true"
-
 # Max handoffs to prevent infinite loops
 MAX_HANDOFFS = 10
 
+
+# =============================================================================
+# REQUEST TRACKING
+# =============================================================================
+
+@dataclass
+class RequestMetrics:
+    """Metrics for a single request"""
+    request_id: str
+    start_time: float
+    end_time: float = 0.0
+    total_time_ms: float = 0.0
+    agents_called: List[str] = field(default_factory=list)
+    agent_times_ms: Dict[str, float] = field(default_factory=dict)
+    handoffs: List[str] = field(default_factory=list)
+    final_agent: str = ""
+    intent: str = ""
+    cost_level: str = "FREE"
+    used_fallback: bool = False
+    error: Optional[str] = None
+
+    def finish(self):
+        """Mark request as complete and calculate total time"""
+        self.end_time = time.time()
+        self.total_time_ms = (self.end_time - self.start_time) * 1000
+
+    def to_dict(self) -> dict:
+        return {
+            "request_id": self.request_id,
+            "total_time_ms": round(self.total_time_ms, 2),
+            "agents_called": self.agents_called,
+            "agent_times_ms": {k: round(v, 2) for k, v in self.agent_times_ms.items()},
+            "handoffs": self.handoffs,
+            "final_agent": self.final_agent,
+            "intent": self.intent,
+            "cost_level": self.cost_level,
+            "used_fallback": self.used_fallback,
+            "error": self.error,
+        }
+
+
+# =============================================================================
+# MAIN ENTRY POINT
+# =============================================================================
 
 async def handle_message(
     phone: str,
@@ -62,18 +111,33 @@ async def handle_message(
     Routes through the tiered agent system:
     Gatekeeper → Classifier → Router → Specialist → Response
     """
+    user_hash = _hash_phone(phone)
 
-    if not USE_V5:
+    # Check feature flags for routing decision
+    if not flags.should_use_v5(user_hash):
         # Fall back to v4
+        if flags.DEBUG_AGENTS:
+            logger.debug("Routing to V4 (USE_V5=%s, rollout=%d%%)",
+                        flags.USE_V5, flags.V5_ROLLOUT_PERCENTAGE)
         from app.services.message_handler_v4 import handle_message as handle_v4
         return await handle_v4(phone, text)
+
+    # Initialize metrics
+    metrics = RequestMetrics(
+        request_id=str(uuid.uuid4())[:8],
+        start_time=time.time()
+    )
+
+    if flags.DEBUG_AGENTS:
+        logger.info("[%s] Starting V5 request: %s...",
+                   metrics.request_id, text[:50])
 
     # Build initial input
     input_data = AgentInput(
         message_id=str(uuid.uuid4()),
         raw_text=text or "",
         timestamp=datetime.utcnow(),
-        user=UserContext(phone_hash=_hash_phone(phone)),
+        user=UserContext(phone_hash=user_hash),
         voice_url=voice_url,
         image_urls=image_urls or [],
         video_url=video_url,
@@ -81,23 +145,52 @@ async def handle_message(
         location=location,
     )
 
-    # Process through agent chain
-    output = await _process_agent_chain(input_data)
+    try:
+        # Process through agent chain
+        output = await _process_agent_chain(input_data, metrics)
 
-    # Collect analytics (async, don't block response)
-    asyncio.create_task(_collect_analytics(input_data, output))
+        # Record success
+        record_v5_success()
 
-    # Format and return
-    return _format_response(output)
+        # Collect analytics (async, don't block response)
+        if flags.ENABLE_ANALYTICS:
+            asyncio.create_task(_collect_analytics(input_data, output, metrics))
+
+        # Log metrics
+        metrics.finish()
+        _log_metrics(metrics)
+
+        # Format and return
+        return _format_response(output)
+
+    except Exception as e:
+        # Record error for auto-disable logic
+        record_v5_error()
+        metrics.error = str(e)
+        metrics.finish()
+
+        logger.error("[%s] V5 error after %.0fms: %s",
+                    metrics.request_id, metrics.total_time_ms, e)
+
+        # Auto-fallback if enabled
+        if flags.AUTO_FALLBACK_ON_ERROR:
+            logger.warning("[%s] Falling back to V4", metrics.request_id)
+            metrics.used_fallback = True
+            from app.services.message_handler_v4 import handle_message as handle_v4
+            return await handle_v4(phone, text)
+
+        raise
 
 
-async def _process_agent_chain(input_data: AgentInput) -> AgentOutput:
+async def _process_agent_chain(
+    input_data: AgentInput,
+    metrics: RequestMetrics
+) -> AgentOutput:
     """
     Process through agents until we get a final response.
 
     Chain: gatekeeper → classifier → router → specialist
     """
-
     current_agent = "gatekeeper"
     handoff_count = 0
 
@@ -105,8 +198,10 @@ async def _process_agent_chain(input_data: AgentInput) -> AgentOutput:
         agent = registry.get(current_agent)
 
         if not agent:
-            logger.warning(f"Agent '{current_agent}' not found, using fallback")
+            logger.warning("[%s] Agent '%s' not found, using fallback",
+                          metrics.request_id, current_agent)
             agent = registry.get("fallback")
+            metrics.used_fallback = True
             if not agent:
                 return AgentOutput(
                     success=False,
@@ -114,29 +209,56 @@ async def _process_agent_chain(input_data: AgentInput) -> AgentOutput:
                     error="no_fallback_agent"
                 )
 
+        # Track agent call
+        metrics.agents_called.append(current_agent)
+        agent_start = time.time()
+
         # Process with agent
-        logger.debug(f"Processing with agent: {current_agent}")
+        if flags.DEBUG_AGENTS:
+            logger.debug("[%s] → %s", metrics.request_id, current_agent)
+
         output = await agent.handle(input_data)
+
+        # Track agent time
+        agent_time_ms = (time.time() - agent_start) * 1000
+        metrics.agent_times_ms[current_agent] = agent_time_ms
+
+        if flags.DEBUG_AGENTS:
+            logger.debug("[%s] ← %s (%.0fms)",
+                        metrics.request_id, current_agent, agent_time_ms)
 
         # Check if we need to handoff
         if output.handoff_to:
             # Update input with data from this agent
             _update_input_from_output(input_data, output)
 
+            # Track intent once we have it
+            if input_data.intent and not metrics.intent:
+                metrics.intent = input_data.intent
+
             input_data.source_agent = current_agent
             input_data.handoff_reason = output.handoff_reason
 
+            # Log handoff
+            handoff_str = f"{current_agent}→{output.handoff_to}"
+            metrics.handoffs.append(handoff_str)
+
+            if flags.LOG_HANDOFFS:
+                logger.info("[%s] Handoff: %s (%s)",
+                           metrics.request_id, handoff_str,
+                           output.handoff_reason or "routing")
+
             current_agent = output.handoff_to
             handoff_count += 1
-
-            logger.debug(f"Handoff: {input_data.source_agent} → {current_agent} ({output.handoff_reason})")
             continue
 
         # No handoff - we have a final response
+        metrics.final_agent = current_agent
+        metrics.cost_level = output.cost_level.name if output.cost_level else "FREE"
         return output
 
     # Too many handoffs - return error
-    logger.error(f"Max handoffs ({MAX_HANDOFFS}) exceeded")
+    logger.error("[%s] Max handoffs (%d) exceeded", metrics.request_id, MAX_HANDOFFS)
     return AgentOutput(
         success=False,
         response_text="Sorry, I'm having trouble processing that. Please try again.",
@@ -198,14 +320,48 @@ def _hash_phone(phone: str) -> str:
     return hashlib.sha256(phone.encode()).hexdigest()[:16]
 
 
-async def _collect_analytics(input_data: AgentInput, output: AgentOutput):
+def _log_metrics(metrics: RequestMetrics):
+    """Log request metrics"""
+    if not flags.LOG_RESPONSE_TIMES:
+        return
+
+    # Summary log
+    logger.info(
+        "[%s] Completed in %.0fms | agents=%s | intent=%s | cost=%s%s",
+        metrics.request_id,
+        metrics.total_time_ms,
+        "→".join(metrics.agents_called),
+        metrics.intent or "unknown",
+        metrics.cost_level,
+        " [FALLBACK]" if metrics.used_fallback else ""
+    )
+
+    # Detailed timing if debug enabled
+    if flags.DEBUG_AGENTS and metrics.agent_times_ms:
+        timing_parts = [f"{k}={v:.0f}ms" for k, v in metrics.agent_times_ms.items()]
+        logger.debug("[%s] Agent times: %s", metrics.request_id, ", ".join(timing_parts))
+
+
+async def _collect_analytics(
+    input_data: AgentInput,
+    output: AgentOutput,
+    metrics: RequestMetrics
+):
     """Collect analytics asynchronously (don't block response)"""
     try:
         collector = registry.get("data_collector")
         if collector:
+            # Add metrics to output for analytics
+            if not output.analytics_tags:
+                output.analytics_tags = {}
+            output.analytics_tags["request_id"] = metrics.request_id
+            output.analytics_tags["total_time_ms"] = metrics.total_time_ms
+            output.analytics_tags["agents_called"] = metrics.agents_called
+            output.analytics_tags["used_fallback"] = metrics.used_fallback
+
             await collector.collect(input_data, output)
     except Exception as e:
-        logger.error(f"Analytics collection failed: {e}")
+        logger.error("[%s] Analytics collection failed: %s", metrics.request_id, e)
 
 
 # =============================================================================
@@ -224,7 +380,7 @@ async def handle_message_with_fallback(
     try:
         return await handle_message(phone, text, **kwargs)
     except Exception as e:
-        logger.error(f"V5 handler failed, falling back to V4: {e}")
+        logger.error("V5 handler failed, falling back to V4: %s", e)
         from app.services.message_handler_v4 import handle_message as handle_v4
         return await handle_v4(phone, text)
 
@@ -247,6 +403,11 @@ def get_agent_stats() -> dict:
     return registry.stats()
 
 
+def get_feature_flags() -> dict:
+    """Get current feature flag state"""
+    return flags.to_dict()
+
+
 # =============================================================================
 # SIMPLE QUERIES (bypass full chain for obvious cases)
 # =============================================================================
@@ -254,11 +415,15 @@ def get_agent_stats() -> dict:
 GREETING_WORDS = {"hi", "hello", "hey", "good morning", "good afternoon", "good evening"}
 HELP_WORDS = {"help", "menu", "options", "commands"}
 
+
 async def handle_simple_query(phone: str, text: str) -> Optional[str]:
     """
     Fast path for simple queries that don't need full agent chain.
     Returns None if query is not simple.
     """
+    if not flags.ENABLE_FAST_PATH:
+        return None
+
     text_lower = text.lower().strip()
 
     # Greetings
@@ -301,6 +466,8 @@ async def handle_message_optimized(
     # Try simple query first (no agent chain)
     simple_response = await handle_simple_query(phone, text)
     if simple_response:
+        if flags.DEBUG_AGENTS:
+            logger.debug("Fast path response for: %s...", text[:30])
         return simple_response
 
     # Full agent chain for complex queries
