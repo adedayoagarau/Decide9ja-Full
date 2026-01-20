@@ -412,6 +412,202 @@ class KnowledgeCacheAgent(DatabaseAgent):
         return saved
 
     # ===================
+    # MANIFESTO METHODS
+    # ===================
+
+    async def get_manifesto(
+        self,
+        party: str,
+        topic: Optional[str] = None
+    ) -> List[Dict]:
+        """
+        Get cached manifesto data for a party.
+
+        Args:
+            party: Party code (APC, PDP, LP, etc.)
+            topic: Optional topic filter
+
+        Returns:
+            List of manifesto sections
+        """
+        if not self.db:
+            return []
+
+        try:
+            query = {"party_code": party.upper()}
+            if topic:
+                query["topic"] = {"$regex": topic, "$options": "i"}
+
+            cursor = self.db.manifesto_cache.find(query).sort("section_order", 1)
+            sections = await cursor.to_list(50)
+
+            return [
+                {
+                    "id": str(s.get("_id")),
+                    "party": s.get("party_code"),
+                    "title": s.get("title"),
+                    "content": s.get("content"),
+                    "topic": s.get("topic"),
+                    "page": s.get("page_number"),
+                    "year": s.get("year", 2023)
+                }
+                for s in sections
+            ]
+
+        except Exception as e:
+            logger.error(f"Error getting manifesto for {party}: {e}")
+            return []
+
+    async def save_manifesto(
+        self,
+        party: str,
+        sections: List[Dict],
+        year: int = 2023
+    ) -> int:
+        """
+        Save manifesto sections to cache.
+
+        Args:
+            party: Party code
+            sections: List of manifesto sections
+            year: Manifesto year
+
+        Returns:
+            Number of sections saved
+        """
+        if not self.db or not sections:
+            return 0
+
+        saved = 0
+        for i, section in enumerate(sections):
+            try:
+                await self.db.manifesto_cache.update_one(
+                    {
+                        "party_code": party.upper(),
+                        "title": section.get("title"),
+                        "year": year
+                    },
+                    {
+                        "$set": {
+                            "content": section.get("content"),
+                            "topic": section.get("topic"),
+                            "page_number": section.get("page"),
+                            "section_order": i,
+                            "updated_at": datetime.utcnow()
+                        },
+                        "$setOnInsert": {
+                            "created_at": datetime.utcnow()
+                        }
+                    },
+                    upsert=True
+                )
+                saved += 1
+
+            except Exception as e:
+                logger.error(f"Error saving manifesto section: {e}")
+                continue
+
+        logger.info(f"Saved {saved} manifesto sections for {party}")
+        return saved
+
+    # ===================
+    # VOTING RECORD METHODS
+    # ===================
+
+    async def get_voting_records(
+        self,
+        politician_name: str,
+        limit: int = 20
+    ) -> List[Dict]:
+        """
+        Get voting records for a legislator.
+
+        Args:
+            politician_name: Name of the legislator
+            limit: Max records to return
+
+        Returns:
+            List of voting record dicts
+        """
+        if not self.db:
+            return []
+
+        try:
+            cursor = self.db.voting_records.find({
+                "politician_name": {"$regex": politician_name, "$options": "i"}
+            }).sort("vote_date", -1).limit(limit)
+
+            records = await cursor.to_list(limit)
+
+            return [
+                {
+                    "id": str(r.get("_id")),
+                    "politician_name": r.get("politician_name"),
+                    "bill_name": r.get("bill_name"),
+                    "bill_id": r.get("bill_id"),
+                    "vote": r.get("vote"),  # YES, NO, ABSTAIN
+                    "date": r.get("vote_date"),
+                    "summary": r.get("bill_summary"),
+                    "chamber": r.get("chamber"),  # Senate, House
+                    "session": r.get("session")
+                }
+                for r in records
+            ]
+
+        except Exception as e:
+            logger.error(f"Error getting voting records for {politician_name}: {e}")
+            return []
+
+    async def save_voting_records(
+        self,
+        records: List[Dict]
+    ) -> int:
+        """
+        Save voting records to cache.
+
+        Args:
+            records: List of voting record dicts
+
+        Returns:
+            Number of records saved
+        """
+        if not self.db or not records:
+            return 0
+
+        saved = 0
+        for record in records:
+            try:
+                await self.db.voting_records.update_one(
+                    {
+                        "politician_name": record.get("politician_name"),
+                        "bill_id": record.get("bill_id")
+                    },
+                    {
+                        "$set": {
+                            "bill_name": record.get("bill_name"),
+                            "vote": record.get("vote"),
+                            "vote_date": record.get("date"),
+                            "bill_summary": record.get("summary"),
+                            "chamber": record.get("chamber"),
+                            "session": record.get("session"),
+                            "updated_at": datetime.utcnow()
+                        },
+                        "$setOnInsert": {
+                            "created_at": datetime.utcnow()
+                        }
+                    },
+                    upsert=True
+                )
+                saved += 1
+
+            except Exception as e:
+                logger.error(f"Error saving voting record: {e}")
+                continue
+
+        logger.info(f"Saved {saved} voting records")
+        return saved
+
+    # ===================
     # CACHE MISS TRACKING
     # ===================
 

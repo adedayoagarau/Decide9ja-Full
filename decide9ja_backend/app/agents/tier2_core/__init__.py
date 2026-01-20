@@ -4,6 +4,9 @@ from app.agents.tier2_core.politician_profile import PoliticianProfileAgent
 from app.agents.tier2_core.election_info import ElectionInfoAgent
 from app.agents.tier2_core.news_query import NewsQueryAgent
 from app.agents.tier2_core.promise_lookup import PromiseLookupAgent
+from app.agents.tier2_core.candidate_compare import CandidateCompareAgent
+from app.agents.tier2_core.manifesto import ManifestoAgent
+from app.agents.tier2_core.voting_record import VotingRecordAgent
 
 __all__ = [
     "RepLookupAgent",
@@ -11,4 +14,7 @@ __all__ = [
     "ElectionInfoAgent",
     "NewsQueryAgent",
     "PromiseLookupAgent",
+    "CandidateCompareAgent",
+    "ManifestoAgent",
+    "VotingRecordAgent",
 ]
