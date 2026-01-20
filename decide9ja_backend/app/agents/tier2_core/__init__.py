@@ -1,0 +1,14 @@
+"""Tier 2: Core Specialists - Database-first agents for Nigerian politics"""
+from app.agents.tier2_core.rep_lookup import RepLookupAgent
+from app.agents.tier2_core.politician_profile import PoliticianProfileAgent
+from app.agents.tier2_core.election_info import ElectionInfoAgent
+from app.agents.tier2_core.news_query import NewsQueryAgent
+from app.agents.tier2_core.promise_lookup import PromiseLookupAgent
+
+__all__ = [
+    "RepLookupAgent",
+    "PoliticianProfileAgent",
+    "ElectionInfoAgent",
+    "NewsQueryAgent",
+    "PromiseLookupAgent",
+]
