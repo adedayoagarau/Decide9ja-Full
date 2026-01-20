@@ -63,6 +63,10 @@ class Intent:
     TRACK_ISSUE = "track_issue"
     MY_ISSUES = "my_issues"
 
+    # Location-based
+    LOCATION_SHARED = "location_shared"
+    FIND_NEARBY = "find_nearby"
+
     # Engagement
     MY_POINTS = "my_points"
     LEADERBOARD = "leaderboard"
@@ -175,6 +179,15 @@ class ClassifierAgent(BaseAgent):
         Intent.UNSUBSCRIBE_DIGEST: [
             r"(unsubscribe|stop\s*updates?|no\s*more)",
         ],
+        Intent.LOCATION_SHARED: [
+            r"^(this\s*is\s*my\s*location|here\s*i\s*am|i\s*am\s*here)$",
+            r"(my\s*location|where\s*i\s*(am|live))$",
+        ],
+        Intent.FIND_NEARBY: [
+            r"(what|where)\s*(is|are)?\s*(near|around|close\s*to)\s*(me|here)",
+            r"(nearby|around\s*me|close\s*by)",
+            r"(polling\s*unit|hospital|school|market)\s*(near|around|close)",
+        ],
     }
 
     # Known Nigerian politicians for entity extraction
@@ -195,9 +208,32 @@ class ClassifierAgent(BaseAgent):
         if cached:
             return self._tag_analytics(input, cached)
 
-        text = input.raw_text.strip()
+        # Get multimodal context from gatekeeper (if available)
+        multimodal_context = input.context.get("multimodal_context", {}) if input.context else {}
+        modality = input.context.get("modality", "text") if input.context else "text"
 
-        # 2. Try rule-based classification (FREE)
+        # Use effective text (transcribed or raw)
+        text = input.context.get("effective_text", input.raw_text).strip() if input.context else input.raw_text.strip()
+
+        # 2. Check for multimodal-derived intents (FREE)
+        multimodal_intent = self._classify_multimodal(modality, multimodal_context, text)
+        if multimodal_intent:
+            intent, confidence, entities = multimodal_intent
+            output = AgentOutput(
+                success=True,
+                handoff_to="router",
+                data={
+                    "intent": intent,
+                    "confidence": confidence,
+                    "entities": entities,
+                    "method": "multimodal",
+                    "modality": modality,
+                },
+                cost_level=CostLevel.FREE
+            )
+            return self._tag_analytics(input, output)
+
+        # 3. Try rule-based classification (FREE)
         intent, confidence, entities = self._classify_by_rules(text)
 
         if confidence >= 0.8:
@@ -209,14 +245,15 @@ class ClassifierAgent(BaseAgent):
                     "intent": intent,
                     "confidence": confidence,
                     "entities": entities,
-                    "method": "rules"
+                    "method": "rules",
+                    "modality": modality,
                 },
                 cost_level=CostLevel.FREE
             )
             await self._save_cache(input, output)
             return self._tag_analytics(input, output)
 
-        # 3. Low confidence - could use LLM here for ambiguous cases
+        # 4. Low confidence - could use LLM here for ambiguous cases
         # For now, return best guess from rules
         output = AgentOutput(
             success=True,
@@ -225,12 +262,81 @@ class ClassifierAgent(BaseAgent):
                 "intent": intent or Intent.UNKNOWN,
                 "confidence": confidence,
                 "entities": entities,
-                "method": "rules_lowconf"
+                "method": "rules_lowconf",
+                "modality": modality,
             },
             cost_level=CostLevel.FREE
         )
 
         return self._tag_analytics(input, output)
+
+    def _classify_multimodal(
+        self,
+        modality: str,
+        multimodal_context: dict,
+        text: str
+    ) -> tuple[str, float, dict] | None:
+        """
+        Classify based on multimodal context.
+        Returns (intent, confidence, entities) or None if no clear classification.
+        """
+        entities = {}
+
+        # Image with issue evidence → REPORT_ISSUE
+        if modality in ("image", "image_with_caption"):
+            if multimodal_context.get("is_issue_evidence"):
+                entities["issue_category"] = multimodal_context.get("issue_category")
+                entities["image_description"] = multimodal_context.get("description", "")
+                entities["has_image_evidence"] = True
+                return Intent.REPORT_ISSUE, 0.9, entities
+
+            # Image of politician → POLITICIAN_INFO
+            politicians = multimodal_context.get("politicians_detected", [])
+            if politicians:
+                entities["politician"] = politicians[0]
+                entities["detected_from_image"] = True
+                return Intent.POLITICIAN_INFO, 0.85, entities
+
+            # Document image with detected text - analyze the text
+            detected_text = multimodal_context.get("detected_text", "")
+            if detected_text and len(detected_text) > 20:
+                # Check if it's election/voter related document
+                text_lower = detected_text.lower()
+                if any(kw in text_lower for kw in ["inec", "voter", "election", "pvc", "polling"]):
+                    return Intent.ELECTION_INFO, 0.8, {"detected_from_document": True}
+                if any(kw in text_lower for kw in ["budget", "allocation", "project"]):
+                    return Intent.PROMISE_STATUS, 0.75, {"detected_from_document": True}
+
+        # Location shared without text → LOCATION_SHARED
+        if modality == "location":
+            is_nigeria = multimodal_context.get("is_nigeria", False)
+            entities["latitude"] = multimodal_context.get("latitude")
+            entities["longitude"] = multimodal_context.get("longitude")
+            entities["state"] = multimodal_context.get("state", "")
+            entities["lga"] = multimodal_context.get("lga", "")
+            entities["is_nigeria"] = is_nigeria
+
+            # If no meaningful text, it's a pure location share
+            if not text or len(text.strip()) < 5:
+                return Intent.LOCATION_SHARED, 0.95, entities
+
+            # Location + text mentioning polling/voting → POLLING_UNIT
+            text_lower = text.lower()
+            if any(kw in text_lower for kw in ["polling", "vote", "where do i vote"]):
+                return Intent.POLLING_UNIT, 0.9, entities
+
+            # Location + text mentioning issues → REPORT_ISSUE with location context
+            if any(kw in text_lower for kw in ["bad", "broken", "no water", "no light", "problem", "issue"]):
+                return Intent.REPORT_ISSUE, 0.85, entities
+
+        # Voice note - already transcribed, will be classified by rules
+        # But if transcription failed, we can handle gracefully
+        if modality == "voice_note":
+            if multimodal_context.get("transcription_error"):
+                entities["transcription_failed"] = True
+                return Intent.HELP, 0.5, entities
+
+        return None
 
     def _classify_by_rules(self, text: str) -> Tuple[str, float, Dict]:
         """Rule-based classification - no LLM cost"""

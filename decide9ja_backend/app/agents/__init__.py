@@ -50,6 +50,8 @@ from app.agents.tier2_core import (
 # Tier 3: Multimodal
 from app.agents.tier3_multimodal import (
     VoiceTranscriptionAgent,
+    ImageAnalysisAgent,
+    LocationProcessorAgent,
 )
 
 # Tier 4: Reporting
@@ -98,6 +100,8 @@ __all__ = [
     "PromiseLookupAgent",
     # Tier 3 Agents
     "VoiceTranscriptionAgent",
+    "ImageAnalysisAgent",
+    "LocationProcessorAgent",
     # Tier 4 Agents
     "IssueIntakeAgent",
     # Tier 5 Agents
