@@ -25,7 +25,7 @@ from app.services.embeddings import get_embedding, cosine_similarity, json_to_em
 
 logger = logging.getLogger(__name__)
 
-# Try to import knowledge graph components
+# Try to import knowledge graph components (optional - system works without it)
 try:
     from app.services.nigeria_knowledge import (
         get_knowledge_graph,
@@ -35,7 +35,8 @@ try:
     from app.services.nigeria_knowledge.historical_data import get_data_summary
     KNOWLEDGE_GRAPH_AVAILABLE = True
 except ImportError as e:
-    logger.warning(f"Knowledge graph not available: {e}")
+    # Debug level since knowledge graph is optional enhancement
+    logger.debug(f"Knowledge graph not available (optional): {e}")
     KNOWLEDGE_GRAPH_AVAILABLE = False
 
 

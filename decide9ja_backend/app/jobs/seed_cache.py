@@ -159,6 +159,7 @@ SEED_LIST: Dict[str, List[str]] = {
         "Nasir Idris",
         "Ahmad Aliyu",
         "Dauda Lawal",
+        "Abdullahi Umar Ganduje",
     ],
 
     "former_governors_influential": [

@@ -385,6 +385,13 @@ TEMPLATES = {
         "Try asking about a specific politician by full name, "
         "your representatives, or current political news."
     ),
+
+    "gibberish_short": (
+        "I didn't understand that. Try asking about:\n"
+        "• Politicians (e.g., 'Who is Tinubu?')\n"
+        "• Your reps (e.g., 'My senator')\n"
+        "• News (e.g., 'Latest political news')"
+    ),
     
     # ==========================================
     # CONVERSATION MANAGEMENT
