@@ -2,21 +2,33 @@
 """
 Seed Politicians Database
 =========================
-Populates the politicians table with key Nigerian political figures.
+Populates the politicians table with Nigerian political figures from:
+1. Wikidata JSON file (4,789 politicians)
+2. Manual enrichment data for key figures
 
 Run with: python scripts/seed_politicians.py
 
-This ensures the politician lookup doesn't fall back to web search
-for common queries about Nigerian politicians.
+Options:
+  --list     List politicians without seeding
+  --count    Show count only
+  --wikidata Import from wikidata JSON only (skip manual data)
+  --manual   Use manual data only (skip wikidata)
 """
 
 import os
 import sys
 import json
 from datetime import datetime
+from collections import defaultdict
 
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Path to wikidata politicians JSON
+WIKIDATA_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "nigeria_knowledge_data", "wikidata", "nigerian_politicians.json"
+)
 
 def slugify(name: str) -> str:
     """Convert name to URL-safe slug."""
@@ -582,59 +594,220 @@ POLITICIANS = [
     },
 ]
 
+# Create lookup dict for manual enrichment by name
+MANUAL_ENRICHMENT = {slugify(p["name"]): p for p in POLITICIANS}
 
-def seed_database():
+
+def load_wikidata_politicians() -> list:
+    """Load and deduplicate politicians from wikidata JSON."""
+    if not os.path.exists(WIKIDATA_PATH):
+        print(f"Warning: Wikidata file not found at {WIKIDATA_PATH}")
+        return []
+
+    with open(WIKIDATA_PATH, 'r') as f:
+        data = json.load(f)
+
+    results = data.get("results", [])
+    print(f"Loaded {len(results)} raw records from wikidata")
+
+    # Deduplicate by person entity - same person may have multiple positions
+    by_person = defaultdict(lambda: {
+        "positions": set(),
+        "parties": set(),
+        "name": None,
+        "description": None,
+        "birth_date": None,
+        "death_date": None,
+        "gender": None,
+        "image": None,
+        "wikidata_id": None
+    })
+
+    for r in results:
+        person_url = r.get("person", "")
+        wikidata_id = person_url.split("/")[-1] if person_url else None
+
+        if not wikidata_id:
+            continue
+
+        entry = by_person[wikidata_id]
+        entry["wikidata_id"] = wikidata_id
+        entry["name"] = r.get("personLabel")
+        entry["description"] = r.get("personDescription")
+        entry["birth_date"] = r.get("birthDate")
+        entry["death_date"] = r.get("deathDate")
+        entry["gender"] = r.get("genderLabel")
+        entry["image"] = r.get("image")
+
+        if r.get("positionLabel"):
+            entry["positions"].add(r["positionLabel"])
+        if r.get("partyLabel"):
+            entry["parties"].add(r["partyLabel"])
+
+    # Convert to list with consolidated data
+    politicians = []
+    for wikidata_id, data in by_person.items():
+        if not data["name"]:
+            continue
+
+        # Prioritize positions (Governor > President > Senator > Minister > Member)
+        positions = list(data["positions"])
+        primary_position = None
+        for priority in ["President", "Governor", "Senate President", "Speaker",
+                         "Vice President", "Minister", "Senator", "member of the Senate",
+                         "member of the House"]:
+            for pos in positions:
+                if priority.lower() in pos.lower():
+                    primary_position = pos
+                    break
+            if primary_position:
+                break
+        if not primary_position and positions:
+            primary_position = positions[0]
+
+        # Get most recent party
+        parties = list(data["parties"])
+        primary_party = None
+        for priority in ["APC", "PDP", "LP", "NNPP", "APGA"]:
+            if priority in parties:
+                primary_party = priority
+                break
+        if not primary_party and parties:
+            primary_party = parties[0]
+
+        # Extract state from position if possible
+        state = None
+        for pos in positions:
+            if "State" in pos:
+                # "Governor of Lagos State" -> "Lagos"
+                parts = pos.replace("Governor of ", "").replace(" State", "").split()
+                if parts:
+                    state = parts[0]
+                    break
+
+        politicians.append({
+            "name": data["name"],
+            "position": primary_position or "Politician",
+            "party": primary_party,
+            "state": state,
+            "positions": list(data["positions"]),
+            "parties": list(data["parties"]),
+            "description": data["description"],
+            "birth_date": data["birth_date"],
+            "death_date": data["death_date"],
+            "gender": data["gender"],
+            "image": data["image"],
+            "wikidata_id": data["wikidata_id"],
+            "source": "wikidata"
+        })
+
+    print(f"Deduplicated to {len(politicians)} unique politicians")
+    return politicians
+
+
+def seed_database(use_wikidata=True, use_manual=True):
     """Seed the politician database."""
-    # Import inside function to handle path issues
     from app.database import SessionLocal, Politician
 
     db = SessionLocal()
 
     try:
-        # Check existing count
         existing = db.query(Politician).count()
         print(f"Existing politicians in DB: {existing}")
 
+        all_politicians = []
+
+        # Load wikidata politicians
+        if use_wikidata:
+            wikidata_pols = load_wikidata_politicians()
+            all_politicians.extend(wikidata_pols)
+            print(f"Loaded {len(wikidata_pols)} from wikidata")
+
+        # Add/merge manual data (takes priority for enrichment)
+        if use_manual:
+            for p in POLITICIANS:
+                slug = slugify(p["name"])
+                # Check if already in wikidata list
+                found = False
+                for wp in all_politicians:
+                    if slugify(wp["name"]) == slug:
+                        # Enrich with manual data
+                        wp["bio"] = p.get("bio", "")
+                        if p.get("party"):
+                            wp["party"] = p["party"]
+                        if p.get("position"):
+                            wp["position"] = p["position"]
+                        if p.get("state"):
+                            wp["state"] = p["state"]
+                        wp["source"] = "wikidata+manual"
+                        found = True
+                        break
+
+                if not found:
+                    all_politicians.append({
+                        "name": p["name"],
+                        "position": p.get("position", "Politician"),
+                        "party": p.get("party"),
+                        "state": p.get("state"),
+                        "bio": p.get("bio", ""),
+                        "source": "manual"
+                    })
+            print(f"After manual enrichment: {len(all_politicians)} total")
+
         added = 0
         updated = 0
-        skipped = 0
 
-        for p in POLITICIANS:
+        for p in all_politicians:
             slug = slugify(p["name"])
-
-            # Check if exists
             existing_pol = db.query(Politician).filter(Politician.slug == slug).first()
 
+            # Build data JSON
+            data_dict = {
+                "seeded_at": datetime.now().isoformat(),
+                "source": p.get("source", "unknown")
+            }
+            if p.get("bio"):
+                data_dict["bio"] = p["bio"]
+            if p.get("description"):
+                data_dict["description"] = p["description"]
+            if p.get("positions"):
+                data_dict["positions"] = p["positions"]
+            if p.get("parties"):
+                data_dict["parties"] = p["parties"]
+            if p.get("birth_date"):
+                data_dict["birth_date"] = p["birth_date"]
+            if p.get("death_date"):
+                data_dict["death_date"] = p["death_date"]
+            if p.get("gender"):
+                data_dict["gender"] = p["gender"]
+            if p.get("image"):
+                data_dict["image"] = p["image"]
+            if p.get("wikidata_id"):
+                data_dict["wikidata_id"] = p["wikidata_id"]
+
             if existing_pol:
-                # Update existing
                 existing_pol.name = p["name"]
-                existing_pol.party = p["party"]
-                existing_pol.position = p["position"]
-                existing_pol.state = p["state"]
-                existing_pol.data_json = json.dumps({
-                    "bio": p.get("bio", ""),
-                    "seeded_at": datetime.now().isoformat()
-                })
+                if p.get("party"):
+                    existing_pol.party = p["party"]
+                if p.get("position"):
+                    existing_pol.position = p["position"]
+                if p.get("state"):
+                    existing_pol.state = p["state"]
+                existing_pol.data_json = json.dumps(data_dict)
                 updated += 1
             else:
-                # Add new
                 new_pol = Politician(
                     slug=slug,
                     name=p["name"],
-                    party=p["party"],
-                    position=p["position"],
-                    state=p["state"],
-                    data_json=json.dumps({
-                        "bio": p.get("bio", ""),
-                        "seeded_at": datetime.now().isoformat()
-                    })
+                    party=p.get("party"),
+                    position=p.get("position", "Politician"),
+                    state=p.get("state"),
+                    data_json=json.dumps(data_dict)
                 )
                 db.add(new_pol)
                 added += 1
 
         db.commit()
-
-        # Final count
         final_count = db.query(Politician).count()
 
         print(f"\n{'='*50}")
@@ -642,11 +815,9 @@ def seed_database():
         print(f"{'='*50}")
         print(f"Added: {added}")
         print(f"Updated: {updated}")
-        print(f"Skipped: {skipped}")
         print(f"Total in DB: {final_count}")
         print(f"{'='*50}")
 
-        # Show sample
         print(f"\nSample politicians:")
         for p in db.query(Politician).limit(10).all():
             print(f"  - {p.name} | {p.position} | {p.party} | {p.state}")
@@ -655,28 +826,44 @@ def seed_database():
 
     except Exception as e:
         print(f"ERROR: {e}")
+        import traceback
+        traceback.print_exc()
         db.rollback()
         return False
     finally:
         db.close()
 
 
-def list_politicians():
+def list_politicians(source="all"):
     """List all politicians in seed data."""
-    print(f"Total politicians in seed data: {len(POLITICIANS)}\n")
+    if source == "manual":
+        pols = POLITICIANS
+        print(f"Manual enrichment data: {len(pols)} politicians\n")
+    elif source == "wikidata":
+        pols = load_wikidata_politicians()
+        print(f"Wikidata: {len(pols)} politicians\n")
+    else:
+        wikidata_pols = load_wikidata_politicians()
+        print(f"Wikidata: {len(wikidata_pols)} politicians")
+        print(f"Manual: {len(POLITICIANS)} politicians")
+        print(f"(Manual data enriches wikidata records for key figures)\n")
+        pols = wikidata_pols
 
     # Group by position type
     positions = {}
-    for p in POLITICIANS:
-        pos = p["position"]
+    for p in pols:
+        pos = p.get("position", "Unknown")
         if pos not in positions:
             positions[pos] = []
         positions[pos].append(p["name"])
 
-    for pos, names in sorted(positions.items()):
+    # Show top positions
+    for pos, names in sorted(positions.items(), key=lambda x: -len(x[1]))[:15]:
         print(f"{pos} ({len(names)}):")
-        for name in names:
+        for name in names[:5]:  # Show first 5
             print(f"  - {name}")
+        if len(names) > 5:
+            print(f"  ... and {len(names) - 5} more")
         print()
 
 
@@ -686,12 +873,23 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Seed politicians database")
     parser.add_argument("--list", action="store_true", help="List politicians without seeding")
     parser.add_argument("--count", action="store_true", help="Just show count")
+    parser.add_argument("--wikidata", action="store_true", help="Use wikidata only (skip manual)")
+    parser.add_argument("--manual", action="store_true", help="Use manual data only (skip wikidata)")
 
     args = parser.parse_args()
 
     if args.count:
-        print(f"Politicians in seed data: {len(POLITICIANS)}")
+        wikidata_pols = load_wikidata_politicians()
+        print(f"Wikidata politicians: {len(wikidata_pols)}")
+        print(f"Manual enrichment: {len(POLITICIANS)}")
     elif args.list:
-        list_politicians()
+        if args.wikidata:
+            list_politicians("wikidata")
+        elif args.manual:
+            list_politicians("manual")
+        else:
+            list_politicians("all")
     else:
-        seed_database()
+        use_wikidata = not args.manual
+        use_manual = not args.wikidata
+        seed_database(use_wikidata=use_wikidata, use_manual=use_manual)
