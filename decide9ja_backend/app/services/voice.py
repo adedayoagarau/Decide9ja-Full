@@ -120,16 +120,17 @@ async def speech_to_text(audio_url: str) -> Optional[str]:
     
     try:
         # Download audio from Twilio with authentication
-        async with httpx.AsyncClient(timeout=30.0) as client:
+        # Note: Twilio returns 307 redirects for media files, so we must follow redirects
+        async with httpx.AsyncClient(timeout=30.0, follow_redirects=True) as client:
             # Twilio media URLs require basic auth
             if "twilio.com" in audio_url and TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN:
                 auth = (TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
                 response = await client.get(audio_url, auth=auth)
             else:
                 response = await client.get(audio_url)
-            
+
             if response.status_code != 200:
-                logger.error(f"Failed to download audio: {response.status_code}")
+                logger.error(f"Failed to download audio: {response.status_code} from {audio_url}")
                 return None
             
             # Save to temp file
