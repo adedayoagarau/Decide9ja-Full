@@ -70,7 +70,9 @@ class AgentInput:
 
     # Media attachments
     voice_url: Optional[str] = None
-    image_urls: List[str] = field(default_factory=list)
+    audio_url: Optional[str] = None    # Alias for voice_url (WhatsApp uses audio)
+    image_url: Optional[str] = None    # Single image URL
+    image_urls: List[str] = field(default_factory=list)  # Multiple images
     video_url: Optional[str] = None
     document_url: Optional[str] = None
     location: Optional[Dict] = None    # {lat, lng, address}
@@ -79,6 +81,9 @@ class AgentInput:
     source_agent: Optional[str] = None
     handoff_reason: Optional[str] = None
     retrieval_context: Optional[Dict] = None
+
+    # General context for agent-to-agent data passing
+    context: Optional[Dict] = None     # Multimodal context, preprocessed data, etc.
 
     # For analytics
     session_id: Optional[str] = None
