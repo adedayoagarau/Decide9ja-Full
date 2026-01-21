@@ -74,6 +74,8 @@ class RouterAgent(BaseAgent):
 
         # Engagement
         Intent.MY_POINTS: "engagement",
+        Intent.MY_BADGES: "engagement",
+        Intent.MY_STREAK: "engagement",
         Intent.LEADERBOARD: "engagement",
         Intent.SUBSCRIBE_DIGEST: "engagement",
         Intent.UNSUBSCRIBE_DIGEST: "engagement",

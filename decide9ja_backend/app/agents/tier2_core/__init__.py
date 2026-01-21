@@ -7,6 +7,7 @@ from app.agents.tier2_core.promise_lookup import PromiseLookupAgent
 from app.agents.tier2_core.candidate_compare import CandidateCompareAgent
 from app.agents.tier2_core.manifesto import ManifestoAgent
 from app.agents.tier2_core.voting_record import VotingRecordAgent
+from app.agents.tier2_core.engagement import EngagementAgent
 
 __all__ = [
     "RepLookupAgent",
@@ -17,4 +18,5 @@ __all__ = [
     "CandidateCompareAgent",
     "ManifestoAgent",
     "VotingRecordAgent",
+    "EngagementAgent",
 ]
