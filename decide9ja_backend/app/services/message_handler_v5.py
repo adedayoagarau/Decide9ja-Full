@@ -42,7 +42,18 @@ from app.config.feature_flags import (
 
 # Import agents to trigger registration
 from app.agents.tier1_entry import GatekeeperAgent, ClassifierAgent, RouterAgent
-from app.agents.tier2_core.rep_lookup import RepLookupAgent
+from app.agents.tier2_core import (
+    RepLookupAgent,
+    PoliticianProfileAgent,
+    ElectionInfoAgent,
+    NewsQueryAgent,
+    PromiseLookupAgent,
+    CandidateCompareAgent,
+    ManifestoAgent,
+    VotingRecordAgent,
+    EngagementAgent,
+)
+from app.agents.tier4_reporting import IssueIntakeAgent, IssueTrackingAgent
 from app.agents.tier5_output import FallbackAgent
 from app.agents.tier6_analytics import DataCollectorAgent
 

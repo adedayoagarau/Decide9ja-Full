@@ -84,7 +84,14 @@ def store_articles(articles: List[dict], db: Session = None) -> int:
                 db.add(article)
                 db.flush()  # Flush to catch constraint errors immediately
                 new_count += 1
-                
+
+                # Link politicians to this article
+                try:
+                    from app.services.politician_mention_service import extract_and_link_politicians
+                    extract_and_link_politicians(article, db)
+                except Exception as link_error:
+                    logger.warning(f"Error linking politicians for {article_id}: {link_error}")
+
             except IntegrityError:
                 # Duplicate detected during insert (race condition) - skip gracefully
                 db.rollback()
