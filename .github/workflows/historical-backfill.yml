@@ -1,0 +1,89 @@
+name: Historical News Backfill
+
+on:
+  workflow_dispatch:
+    inputs:
+      year:
+        description: 'Year to backfill (e.g., 2023)'
+        required: true
+        type: string
+      source:
+        description: 'Source to backfill (or "all")'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - punch
+          - premium_times
+          - vanguard
+          - sahara_reporters
+          - channels
+          - guardian
+          - dailytrust
+          - thecable
+          - thisday
+          - leadership
+      limit:
+        description: 'Max articles per source'
+        required: false
+        default: '50'
+        type: string
+
+env:
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180  # 3 hours for large backfills
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: 'decide9ja_backend/requirements.txt'
+
+      - name: Install dependencies
+        run: |
+          cd decide9ja_backend
+          pip install -r requirements.txt
+
+      - name: Run historical backfill
+        run: |
+          cd decide9ja_backend
+          python -c "
+          import asyncio
+          import logging
+          logging.basicConfig(level=logging.INFO)
+
+          from app.services.historical_news_backfill import HistoricalNewsBackfill
+
+          async def run():
+              backfill = HistoricalNewsBackfill()
+              try:
+                  result = await backfill.backfill_year(
+                      year=${{ inputs.year }},
+                      source='${{ inputs.source }}',
+                      limit=${{ inputs.limit }}
+                  )
+                  print('Backfill complete!')
+                  print(f'Year: {result[\"year\"]}')
+                  print(f'Sources: {result[\"sources\"]}')
+                  print(f'Total articles: {result[\"total_articles\"]}')
+                  print(f'Stats: {result[\"stats\"]}')
+              finally:
+                  await backfill.close()
+
+          asyncio.run(run())
+          "
+
+      - name: Report results
+        if: always()
+        run: |
+          echo "::notice::Historical backfill for year ${{ inputs.year }} completed"
