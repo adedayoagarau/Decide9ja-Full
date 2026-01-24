@@ -10,16 +10,16 @@ on:
         options:
           - pm-news
           - nigeria-magazine
-      year:
-        description: 'Year to scrape (1960-2010 for PM News)'
+      start_year:
+        description: 'Start year (e.g., 1960)'
         required: true
         type: string
-      month:
-        description: 'Month (1-12, or empty for whole year)'
-        required: false
+      end_year:
+        description: 'End year (e.g., 2010). Same as start for single year.'
+        required: true
         type: string
       limit:
-        description: 'Max pages to scrape'
+        description: 'Max pages per year'
         required: false
         default: '100'
         type: string
@@ -36,7 +36,7 @@ env:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 240  # 4 hours for OCR-heavy scraping
+    timeout-minutes: 360  # 6 hours for multi-year scraping
 
     steps:
       - name: Checkout code
@@ -57,71 +57,14 @@ jobs:
       - name: Run archivi.ng scraper
         run: |
           cd decide9ja_backend
-          python -c "
-          import asyncio
-          import logging
-          logging.basicConfig(level=logging.INFO)
-
-          from app.services.archiving_scraper import ArchiviNgScraper, store_scraped_pages, NewspaperPage
-
-          async def run():
-              scraper = ArchiviNgScraper()
-              try:
-                  source = '${{ inputs.source }}'
-                  year = int('${{ inputs.year }}')
-                  limit = int('${{ inputs.limit }}')
-                  use_ocr = '${{ inputs.use_ocr }}' == 'true'
-                  month_input = '${{ inputs.month }}'
-
-                  print(f'Scraping archivi.ng: {source} for {year}')
-                  print(f'OCR enabled: {use_ocr}')
-                  print(f'Limit: {limit} pages')
-
-                  if month_input and month_input.strip():
-                      month = int(month_input)
-                      print(f'Month filter: {month}')
-                      # Scrape specific month by iterating days
-                      all_pages = []
-                      for day in range(1, 32):
-                          try:
-                              edition = await scraper.scrape_date(
-                                  source, year, month, day, use_ocr=use_ocr
-                              )
-                              if edition:
-                                  all_pages.extend(edition.pages)
-                              if len(all_pages) >= limit:
-                                  break
-                          except Exception as e:
-                              print(f'Day {day} error: {e}')
-                      result = {
-                          'source': source,
-                          'year': year,
-                          'month': month,
-                          'pages_scraped': len(all_pages),
-                          'pages': [p.to_dict() for p in all_pages]
-                      }
-                  else:
-                      result = await scraper.scrape_year(
-                          source, year, limit, use_ocr=use_ocr
-                      )
-
-                  print(f'\\nScrape complete!')
-                  print(f'Pages scraped: {result.get(\"pages_scraped\", 0)}')
-                  print(f'Politicians found: {result.get(\"politicians_found\", [])[:20]}')
-
-                  # Store in database
-                  if result.get('pages'):
-                      pages = [NewspaperPage(**p) for p in result['pages']]
-                      stored = await store_scraped_pages(pages)
-                      print(f'Stored in database: {stored}')
-
-              finally:
-                  await scraper.close()
-
-          asyncio.run(run())
-          "
+          python scripts/scrape_archiving_full.py \
+            --source ${{ inputs.source }} \
+            --start ${{ inputs.start_year }} \
+            --end ${{ inputs.end_year }} \
+            --limit ${{ inputs.limit }} \
+            ${{ inputs.use_ocr == true && '--ocr' || '' }}
 
       - name: Report results
         if: always()
         run: |
-          echo "::notice::Archivi.ng scrape for ${{ inputs.source }} ${{ inputs.year }} completed"
+          echo "::notice::Archivi.ng scrape for ${{ inputs.source }} ${{ inputs.start_year }}-${{ inputs.end_year }} completed"
