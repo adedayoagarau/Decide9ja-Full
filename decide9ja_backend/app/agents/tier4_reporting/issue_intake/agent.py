@@ -444,20 +444,30 @@ Thank you for reporting!"""
         )
 
     async def _store_report(self, report: Dict) -> bool:
-        """Store report in database"""
-        if not self.db:
-            logger.warning("No database configured for issue reports")
-            return False
-
+        """Store report in database using civic_issues service"""
         try:
-            # Adapt to your database schema
-            # Example for SQLAlchemy:
-            # issue = IssueReport(**report)
-            # self.db.add(issue)
-            # await self.db.commit()
+            from app.services.civic_issues import issue_intake_service
 
-            logger.info(f"Issue report stored: {report['tracking_id']}")
-            return True
+            result = issue_intake_service.report_issue(
+                reporter_hash=report.get("reporter_phone_hash", "unknown"),
+                title=f"{report.get('category', 'Issue').title()} - {report.get('location', 'Unknown')[:50]}",
+                description=report.get("description", ""),
+                category=report.get("category", "other"),
+                state=report.get("reporter_state", ""),
+                lga=report.get("reporter_lga", ""),
+                address=report.get("location", ""),
+                photo_urls=report.get("media_urls", []),
+            )
+
+            if result.get("success"):
+                # Update tracking ID with the one from service
+                report["db_issue_id"] = result.get("issue_id")
+                logger.info(f"Issue report stored: {report['tracking_id']} -> {result.get('issue_id')}")
+                return True
+            else:
+                logger.error(f"Failed to store issue: {result.get('error')}")
+                return False
+
         except Exception as e:
             logger.error(f"Failed to store issue report: {e}")
             return False

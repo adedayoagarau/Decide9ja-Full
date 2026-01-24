@@ -69,6 +69,8 @@ class Intent:
 
     # Engagement
     MY_POINTS = "my_points"
+    MY_BADGES = "my_badges"
+    MY_STREAK = "my_streak"
     LEADERBOARD = "leaderboard"
     SUBSCRIBE_DIGEST = "subscribe_digest"
     UNSUBSCRIBE_DIGEST = "unsubscribe_digest"
@@ -189,6 +191,12 @@ class ClassifierAgent(BaseAgent):
         ],
         Intent.MY_POINTS: [
             r"(my\s*points?|my\s*score|civic\s*score)",
+        ],
+        Intent.MY_BADGES: [
+            r"(my\s*badges?|my\s*achievements?|show\s*badges)",
+        ],
+        Intent.MY_STREAK: [
+            r"(my\s*streak|daily\s*streak|streak\s*status)",
         ],
         Intent.LEADERBOARD: [
             r"(leaderboard|top\s*citizens?|rankings?)",
