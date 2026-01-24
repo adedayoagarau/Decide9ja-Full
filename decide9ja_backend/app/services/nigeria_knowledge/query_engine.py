@@ -133,6 +133,13 @@ class QueryEngine:
 
             # Comparison queries
             r"compare (.+) (?:and|vs|versus|with) (.+)": self._query_compare,
+
+            # News queries
+            r"(?:news|articles?) (?:about|on|regarding|mentioning) (.+)": self._query_politician_news,
+            r"(?:recent|latest) (?:news|articles?) (?:about|on|for) (.+)": self._query_politician_news,
+            r"what.* (?:news|media|press) (?:say|said|saying|report) (?:about|on) (.+)": self._query_politician_news,
+            r"who (?:is|are) (?:being )?(?:mentioned|discussed|talked about) (?:in )?(?:the )?news": self._query_trending_politicians,
+            r"who (?:is|are) (.+) (?:often )?mentioned with": self._query_co_mentioned,
         }
 
     def query(self, user_query: str) -> QueryResult:
@@ -554,6 +561,175 @@ class QueryEngine:
             entities=entities,
             context=f"Comparison: {entity1_name} vs {entity2_name}",
             sources=list(set(s for e in entities for s in e.sources)) if entities else [],
+        )
+
+    def _query_politician_news(self, match) -> QueryResult:
+        """Find news articles mentioning a politician."""
+        politician_name = match.group(1).strip()
+        entities = []
+        relationships = []
+        sources = []
+
+        # First, find the politician
+        politician_entity = self.graph.find_entity(politician_name)
+
+        if not politician_entity:
+            # Try searching by partial name
+            for entity in self.graph.entities.values():
+                if entity.entity_type == EntityType.POLITICIAN:
+                    if politician_name.lower() in entity.name.lower():
+                        politician_entity = entity
+                        break
+
+        if not politician_entity:
+            return QueryResult(
+                success=False,
+                query_type=QueryType.RELATIONSHIP,
+                context=f"Politician '{politician_name}' not found in knowledge graph",
+                confidence=0.0,
+            )
+
+        entities.append(politician_entity)
+
+        # Get MENTIONED_IN relationships (outgoing from politician)
+        news_relationships = self.graph.get_relationships(
+            politician_entity.id,
+            relation_type=RelationType.MENTIONED_IN,
+            direction="outgoing"
+        )
+
+        # Get article entities
+        article_entities = []
+        for source_id, target_id, data in news_relationships[:10]:
+            article_entity = self.graph.get_entity(target_id)
+            if article_entity:
+                article_entities.append(article_entity)
+                relationships.append({
+                    "source_name": politician_entity.name,
+                    "relation": "mentioned_in",
+                    "target_name": article_entity.name,
+                    "mention_type": data.get("mention_type", "mentioned"),
+                })
+                sources.extend(article_entity.sources)
+
+        entities.extend(article_entities)
+
+        return QueryResult(
+            success=len(article_entities) > 0,
+            query_type=QueryType.RELATIONSHIP,
+            entities=entities,
+            relationships=relationships,
+            context=f"Found {len(article_entities)} news articles mentioning {politician_entity.name}",
+            confidence=0.85,
+            sources=sources,
+        )
+
+    def _query_trending_politicians(self, match) -> QueryResult:
+        """Find politicians frequently mentioned in recent news."""
+        # Count news mentions per politician
+        mention_counts = {}
+
+        for entity_id, entity in self.graph.entities.items():
+            if entity.entity_type == EntityType.POLITICIAN:
+                # Count MENTIONED_IN relationships
+                relationships = self.graph.get_relationships(
+                    entity_id,
+                    relation_type=RelationType.MENTIONED_IN,
+                    direction="outgoing"
+                )
+                if relationships:
+                    mention_counts[entity_id] = len(relationships)
+
+        # Sort by mention count
+        sorted_politicians = sorted(
+            mention_counts.items(),
+            key=lambda x: x[1],
+            reverse=True
+        )[:10]
+
+        entities = []
+        for entity_id, count in sorted_politicians:
+            entity = self.graph.get_entity(entity_id)
+            if entity:
+                # Add mention count to properties for context
+                entity.properties["news_mention_count"] = count
+                entities.append(entity)
+
+        return QueryResult(
+            success=len(entities) > 0,
+            query_type=QueryType.LIST,
+            entities=entities,
+            context=f"Top {len(entities)} politicians mentioned in news",
+            confidence=0.8,
+            sources=["news_articles"],
+        )
+
+    def _query_co_mentioned(self, match) -> QueryResult:
+        """Find politicians frequently mentioned alongside another."""
+        politician_name = match.group(1).strip()
+
+        # Find the politician
+        politician_entity = self.graph.find_entity(politician_name)
+        if not politician_entity:
+            return QueryResult(
+                success=False,
+                query_type=QueryType.RELATIONSHIP,
+                context=f"Politician '{politician_name}' not found",
+                confidence=0.0,
+            )
+
+        # Get articles mentioning this politician
+        news_relationships = self.graph.get_relationships(
+            politician_entity.id,
+            relation_type=RelationType.MENTIONED_IN,
+            direction="outgoing"
+        )
+
+        article_ids = {target_id for _, target_id, _ in news_relationships}
+
+        # Find other politicians in those articles
+        co_mention_counts = {}
+        for article_id in article_ids:
+            # Get incoming MENTIONED_IN edges to this article
+            incoming = self.graph.get_relationships(
+                article_id,
+                relation_type=RelationType.MENTIONED_IN,
+                direction="incoming"
+            )
+
+            for source_id, _, _ in incoming:
+                if source_id != politician_entity.id and source_id.startswith("politician_"):
+                    co_mention_counts[source_id] = co_mention_counts.get(source_id, 0) + 1
+
+        # Get top co-mentioned politicians
+        sorted_co_mentions = sorted(
+            co_mention_counts.items(),
+            key=lambda x: x[1],
+            reverse=True
+        )[:10]
+
+        entities = [politician_entity]  # Include original politician
+        relationships = []
+
+        for entity_id, count in sorted_co_mentions:
+            entity = self.graph.get_entity(entity_id)
+            if entity:
+                entity.properties["co_mention_count"] = count
+                entities.append(entity)
+                relationships.append({
+                    "source_name": politician_entity.name,
+                    "relation": f"co-mentioned {count} times with",
+                    "target_name": entity.name,
+                })
+
+        return QueryResult(
+            success=len(entities) > 1,
+            query_type=QueryType.RELATIONSHIP,
+            entities=entities,
+            relationships=relationships,
+            context=f"Politicians frequently mentioned with {politician_entity.name}",
+            confidence=0.8,
+            sources=["news_articles"],
         )
 
     def _fuzzy_search(self, query: str) -> QueryResult:

@@ -92,6 +92,15 @@ def store_articles(articles: List[dict], db: Session = None) -> int:
                 except Exception as link_error:
                     logger.warning(f"Error linking politicians for {article_id}: {link_error}")
 
+                # Ingest into knowledge graph (if available)
+                try:
+                    from app.services.nigeria_knowledge.news_graph_ingestion import ingest_single_article
+                    from app.services.nigeria_knowledge.knowledge_graph import get_knowledge_graph
+                    kg = get_knowledge_graph()
+                    ingest_single_article(article_id, kg)
+                except Exception as kg_error:
+                    logger.debug(f"Knowledge graph ingestion skipped: {kg_error}")
+
             except IntegrityError:
                 # Duplicate detected during insert (race condition) - skip gracefully
                 db.rollback()
