@@ -211,6 +211,46 @@ class PoliticianIssue(Base):
     )
 
 
+class ArticlePoliticianMention(Base):
+    """
+    Join table linking news articles to politicians.
+    Provides structured tracking of politician mentions in articles.
+
+    Enables efficient queries like:
+    - "Get all articles about Tinubu"
+    - "Which politicians are mentioned together?"
+    - "News sentiment trend for a politician"
+    """
+    __tablename__ = "article_politician_mentions"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+
+    # Links
+    article_id = Column(String(20), nullable=False, index=True)  # NewsArticle.article_id
+    politician_slug = Column(String(200), nullable=False, index=True)  # Politician.slug
+
+    # Context
+    mention_type = Column(String(30), default="mentioned")  # mentioned, quoted, primary_subject, secondary
+    sentiment = Column(String(20))  # positive, negative, neutral, mixed
+    confidence = Column(Float, default=0.8)  # How confident is the match (0-1)
+
+    # Position in article
+    first_mention_position = Column(Integer)  # Character position of first mention
+    mention_count = Column(Integer, default=1)  # Times mentioned in article
+
+    # Extraction metadata
+    matched_name = Column(String(200))  # Original name string that was matched
+    extraction_method = Column(String(50))  # keyword, fuzzy, claude
+
+    # Timestamps
+    created_at = Column(DateTime, server_default=func.now())
+
+    # Composite index for efficient queries
+    __table_args__ = (
+        # Handled via code for SQLite compatibility
+    )
+
+
 class User(Base):
     """
     Stores user profiles for conversation memory.
