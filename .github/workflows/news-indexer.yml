@@ -1,0 +1,47 @@
+name: News Indexer
+
+on:
+  schedule:
+    # Every 4 hours (offset from scraper)
+    - cron: '30 */4 * * *'
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: 'Batch size for indexing'
+        default: '50'
+        type: string
+
+env:
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+jobs:
+  index-news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: 'decide9ja_backend/requirements.txt'
+
+      - name: Install dependencies
+        run: |
+          cd decide9ja_backend
+          pip install -r requirements.txt
+
+      - name: Index articles for RAG
+        run: |
+          cd decide9ja_backend
+          python -m app.scheduler_unified --job index
+
+      - name: Report results
+        if: always()
+        run: |
+          echo "::notice::News indexing job completed"
