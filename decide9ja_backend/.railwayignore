@@ -1,0 +1,16 @@
+# Railway Ignore
+decide9ja.db
+*.sqlite3
+*.log
+.env
+.venv
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+.git/
+.github/
+nigeria_data.zip
+nigeria_knowledge_data/
+tests/
+Procfile
