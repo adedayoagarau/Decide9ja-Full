@@ -350,6 +350,76 @@ Extract the text now:"""
 
         return self._parse_search_results(html)
 
+    async def browse_editions(
+        self,
+        source: str,
+        year: int,
+        limit: int = 100
+    ) -> List[Dict]:
+        """
+        Browse the editions page directly to find newspaper pages.
+        Fallback when search doesn't return results.
+
+        Tries multiple URL patterns that archivi.ng might use.
+        """
+        results = []
+
+        # Try different URL patterns
+        patterns = [
+            f"{EDITIONS_URL}/{source}/{year}",       # /editions/pm-news/1999
+            f"{EDITIONS_URL}/{source}?year={year}",  # /editions/pm-news?year=1999
+            f"{BASE_URL}/{source}/{year}",           # /pm-news/1999
+            f"{BASE_URL}/newspaper/{source}/{year}", # /newspaper/pm-news/1999
+            f"{EDITIONS_URL}?source={source}&year={year}",  # /editions?source=pm-news&year=1999
+        ]
+
+        for url_pattern in patterns:
+            logger.info(f"Trying editions URL: {url_pattern}")
+            html = await self._fetch(url_pattern)
+
+            if html:
+                # Look for any links that might be newspaper editions/pages
+                soup = BeautifulSoup(html, 'html.parser')
+
+                # Find all links
+                for link in soup.find_all('a', href=True):
+                    href = link.get('href', '')
+                    text = link.get_text(strip=True)
+
+                    # Look for date-like patterns or edition/page links
+                    if any(pattern in href.lower() for pattern in [
+                        f'/{year}/', str(year), '/page/', '/edition/',
+                        '/view/', '/read/', '/issue/'
+                    ]):
+                        url = urljoin(BASE_URL, href)
+                        title = text[:200] if text else f"Edition: {href}"
+
+                        if title and len(title) > 2:
+                            results.append({
+                                "page_id": hashlib.md5(url.encode()).hexdigest()[:16],
+                                "url": url,
+                                "title": title,
+                                "date": None,
+                                "image_url": None,
+                            })
+
+                if results:
+                    logger.info(f"Found {len(results)} results from editions browser: {url_pattern}")
+                    break
+                else:
+                    # Log HTML preview for debugging
+                    logger.debug(f"No results from {url_pattern}. HTML preview: {html[:1000]}")
+
+        # Deduplicate
+        seen_urls = set()
+        unique_results = []
+        for r in results:
+            if r['url'] not in seen_urls:
+                seen_urls.add(r['url'])
+                unique_results.append(r)
+
+        return unique_results[:limit]
+
     def _parse_search_results(self, html: str) -> List[Dict]:
         """Parse search results page."""
         soup = BeautifulSoup(html, 'html.parser')
@@ -646,7 +716,7 @@ Extract the text now:"""
 
         all_pages = []
 
-        # Search month by month
+        # First try: search month by month
         for month in range(1, 13):
             if len(all_pages) >= limit:
                 break
@@ -659,6 +729,17 @@ Extract the text now:"""
                 if len(all_pages) >= limit:
                     break
 
+                page = await self.get_page_content(result["url"], use_ocr=use_ocr)
+                if page:
+                    all_pages.append(page)
+
+        # Fallback: If search returned nothing, try browsing editions directly
+        if not all_pages:
+            logger.info(f"Search returned 0 results, trying editions browser for {source}/{year}")
+            results = await self.browse_editions(source, year, limit)
+            for result in results:
+                if len(all_pages) >= limit:
+                    break
                 page = await self.get_page_content(result["url"], use_ocr=use_ocr)
                 if page:
                     all_pages.append(page)
