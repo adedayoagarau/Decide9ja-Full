@@ -355,9 +355,11 @@ Extract the text now:"""
         soup = BeautifulSoup(html, 'html.parser')
         results = []
 
-        # Look for result items (structure may vary)
-        # Common patterns: article cards, list items, etc.
-        for item in soup.select('.search-result, .result-item, article, .card'):
+        # Debug: log HTML snippet if no results found with primary selectors
+        # Try multiple selector strategies
+
+        # Strategy 1: Common result container classes
+        for item in soup.select('.search-result, .result-item, article, .card, .item, .result'):
             try:
                 result = self._parse_result_item(item)
                 if result:
@@ -365,12 +367,58 @@ Extract the text now:"""
             except Exception as e:
                 logger.debug(f"Error parsing result item: {e}")
 
-        # Also try to find pagination info
-        pagination = soup.select_one('.pagination, .pager')
-        if pagination:
-            logger.debug(f"Found pagination: {pagination.get_text(strip=True)[:100]}")
+        # Strategy 2: If no results, try finding links with newspaper/page patterns
+        if not results:
+            for link in soup.find_all('a', href=True):
+                href = link.get('href', '')
+                # Look for links that might be newspaper pages
+                if any(pattern in href.lower() for pattern in ['/page/', '/edition/', '/issue/', '/newspaper/', '/view/', '/item/']):
+                    url = urljoin(BASE_URL, href)
+                    title = link.get_text(strip=True)[:200] or f"Page: {href}"
+                    if title and len(title) > 3:
+                        results.append({
+                            "page_id": hashlib.md5(url.encode()).hexdigest()[:16],
+                            "url": url,
+                            "title": title,
+                            "date": None,
+                            "image_url": None,
+                        })
 
-        return results
+        # Strategy 3: If still no results, try finding any div/li with links inside
+        if not results:
+            for container in soup.select('div, li, tr'):
+                link = container.find('a', href=True)
+                if link:
+                    href = link.get('href', '')
+                    if href and not href.startswith('#') and not href.startswith('javascript'):
+                        # Skip navigation/header links
+                        if any(skip in href.lower() for skip in ['login', 'signup', 'about', 'contact', 'help', 'faq']):
+                            continue
+                        url = urljoin(BASE_URL, href)
+                        title = link.get_text(strip=True)[:200]
+                        if title and len(title) > 5:
+                            results.append({
+                                "page_id": hashlib.md5(url.encode()).hexdigest()[:16],
+                                "url": url,
+                                "title": title,
+                                "date": None,
+                                "image_url": None,
+                            })
+
+        # Debug logging if still no results
+        if not results:
+            # Log first 2000 chars of HTML for debugging
+            logger.warning(f"No results found. HTML preview: {html[:2000]}")
+
+        # Deduplicate by URL
+        seen_urls = set()
+        unique_results = []
+        for r in results:
+            if r['url'] not in seen_urls:
+                seen_urls.add(r['url'])
+                unique_results.append(r)
+
+        return unique_results[:100]  # Limit to 100 results
 
     def _parse_result_item(self, item) -> Optional[Dict]:
         """Parse a single search result item."""
