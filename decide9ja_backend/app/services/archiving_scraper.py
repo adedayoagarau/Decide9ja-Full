@@ -366,6 +366,7 @@ Extract the text now:"""
 
         # Try different URL patterns
         patterns = [
+            f"{EDITIONS_URL}/{source}",              # /editions/pm-news (main listing)
             f"{EDITIONS_URL}/{source}/{year}",       # /editions/pm-news/1999
             f"{EDITIONS_URL}/{source}?year={year}",  # /editions/pm-news?year=1999
             f"{BASE_URL}/{source}/{year}",           # /pm-news/1999
@@ -386,11 +387,19 @@ Extract the text now:"""
                     href = link.get('href', '')
                     text = link.get_text(strip=True)
 
-                    # Look for date-like patterns or edition/page links
-                    if any(pattern in href.lower() for pattern in [
+                    # Skip navigation and query links
+                    if '?' in href or href.startswith('#'):
+                        continue
+
+                    # archivi.ng uses /search/{id} format for pages (e.g., /search/oyhy24oBCApQwdEHPVjl)
+                    # Also look for date-like patterns or edition/page links
+                    is_search_page = '/search/' in href and not href.endswith('/search')
+                    is_edition_link = any(pattern in href.lower() for pattern in [
                         f'/{year}/', str(year), '/page/', '/edition/',
                         '/view/', '/read/', '/issue/'
-                    ]):
+                    ])
+
+                    if is_search_page or is_edition_link:
                         url = urljoin(BASE_URL, href)
                         title = text[:200] if text else f"Edition: {href}"
 
@@ -438,11 +447,20 @@ Extract the text now:"""
                 logger.debug(f"Error parsing result item: {e}")
 
         # Strategy 2: If no results, try finding links with newspaper/page patterns
+        # archivi.ng uses /search/{id} format for individual pages
         if not results:
             for link in soup.find_all('a', href=True):
                 href = link.get('href', '')
-                # Look for links that might be newspaper pages
-                if any(pattern in href.lower() for pattern in ['/page/', '/edition/', '/issue/', '/newspaper/', '/view/', '/item/']):
+
+                # Skip query params and anchor links
+                if '?' in href or href.startswith('#'):
+                    continue
+
+                # archivi.ng uses /search/ID format (e.g., /search/oyhy24oBCApQwdEHPVjl)
+                is_search_page = '/search/' in href and not href.endswith('/search')
+                is_page_link = any(pattern in href.lower() for pattern in ['/page/', '/edition/', '/issue/', '/newspaper/', '/view/', '/item/', '/read/'])
+
+                if is_search_page or is_page_link:
                     url = urljoin(BASE_URL, href)
                     title = link.get_text(strip=True)[:200] or f"Page: {href}"
                     if title and len(title) > 3:
