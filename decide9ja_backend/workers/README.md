@@ -11,7 +11,7 @@ Scrapes historical Nigerian newspapers from archivi.ng (1960-2010).
 1. **Create a new service** in your Railway project:
    ```bash
    railway link  # Link to your project
-   railway service create archiving-worker
+   railway add --service archiving-worker
    ```
 
 2. **Set environment variables** in Railway dashboard or CLI:
