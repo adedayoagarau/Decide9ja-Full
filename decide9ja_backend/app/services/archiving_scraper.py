@@ -184,6 +184,73 @@ class ArchiviNgScraper:
         if self._client and not self._client.is_closed:
             await self._client.aclose()
 
+    async def ocr_with_tesseract(self, image_url: str) -> Optional[str]:
+        """
+        Extract text from a newspaper page image using Tesseract OCR (FREE).
+        
+        Tesseract is an open-source OCR engine maintained by Google.
+        It works well with scanned documents and printed text.
+
+        Args:
+            image_url: URL of the scanned newspaper page image
+
+        Returns:
+            Extracted text or None if OCR failed
+        """
+        try:
+            # Import PIL and pytesseract
+            from PIL import Image
+            import pytesseract
+            from io import BytesIO
+            
+            # Download image
+            client = await self._get_client()
+            response = await client.get(image_url)
+
+            if response.status_code != 200:
+                logger.warning(f"Failed to download image: {response.status_code}")
+                return None
+
+            # Load image with PIL
+            image = Image.open(BytesIO(response.content))
+            
+            # Convert to RGB if necessary (Tesseract works better with RGB)
+            if image.mode != 'RGB':
+                image = image.convert('RGB')
+            
+            # Optional: Preprocess for better OCR results
+            # - Increase contrast, convert to grayscale, etc.
+            # For now, let's use default settings
+            
+            # Run Tesseract OCR
+            # Config options:
+            # - PSM 3: Fully automatic page segmentation (default)
+            # - OEM 3: Default, based on what is available
+            custom_config = r'--oem 3 --psm 3'
+            
+            # Extract text - run in thread pool to avoid blocking
+            import asyncio
+            loop = asyncio.get_event_loop()
+            extracted_text = await loop.run_in_executor(
+                None,
+                lambda: pytesseract.image_to_string(image, config=custom_config)
+            )
+            
+            if extracted_text:
+                extracted_text = extracted_text.strip()
+                logger.info(f"Tesseract extracted {len(extracted_text)} chars from {image_url}")
+                return extracted_text
+            else:
+                logger.warning(f"Tesseract returned empty text for {image_url}")
+                return None
+
+        except ImportError as e:
+            logger.error(f"Tesseract dependencies not installed: {e}. Install with: pip install pytesseract pillow")
+            return None
+        except Exception as e:
+            logger.error(f"Tesseract OCR failed: {e}")
+            return None
+
     async def ocr_with_claude_vision(self, image_url: str) -> Optional[str]:
         """
         Extract text from a newspaper page image using Claude Vision API.
@@ -618,7 +685,8 @@ Extract the text now:"""
         self,
         result: Dict,
         source: str,
-        use_ocr: bool = False
+        use_ocr: bool = False,
+        ocr_engine: str = "tesseract"  # "tesseract" (free) or "claude" (paid)
     ) -> Optional[NewspaperPage]:
         """
         Process a single API result into a NewspaperPage, optionally running OCR.
@@ -628,7 +696,8 @@ Extract the text now:"""
         Args:
             result: API search result dict with id, image_path, summary, date, etc.
             source: Source slug (e.g., "pm-news")
-            use_ocr: Whether to run Claude Vision OCR on the image for full text
+            use_ocr: Whether to run OCR on the image for full text
+            ocr_engine: "tesseract" (free) or "claude" (paid, higher quality)
             
         Returns:
             NewspaperPage or None
@@ -644,8 +713,18 @@ Extract the text now:"""
         
         # If OCR is enabled, get full text from the image
         if use_ocr and image_url:
-            logger.info(f"Running Claude Vision OCR on {page_id}")
-            ocr_text = await self.ocr_with_claude_vision(image_url)
+            ocr_text = None
+            
+            if ocr_engine == "tesseract":
+                logger.info(f"Running Tesseract OCR (FREE) on {page_id}")
+                ocr_text = await self.ocr_with_tesseract(image_url)
+            elif ocr_engine == "claude":
+                logger.info(f"Running Claude Vision OCR (PAID) on {page_id}")
+                ocr_text = await self.ocr_with_claude_vision(image_url)
+            else:
+                logger.warning(f"Unknown OCR engine: {ocr_engine}, using tesseract")
+                ocr_text = await self.ocr_with_tesseract(image_url)
+            
             if ocr_text:
                 text_content = ocr_text
                 self.stats["ocr_pages"] = self.stats.get("ocr_pages", 0) + 1
@@ -676,6 +755,7 @@ Extract the text now:"""
                 "publication": result.get("publication", ""),
                 "keywords": result.get("keywords", ""),
                 "ocr_used": use_ocr and bool(image_url),
+                "ocr_engine": ocr_engine if use_ocr else None,
             }
         )
 
