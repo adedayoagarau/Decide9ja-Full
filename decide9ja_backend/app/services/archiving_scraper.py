@@ -308,10 +308,11 @@ Extract the text now:"""
         year: int,
         month: Optional[int] = None,
         day: Optional[int] = None,
-        keyword: Optional[str] = None
+        keyword: Optional[str] = None,
+        page: int = 1
     ) -> List[Dict]:
         """
-        Search archivi.ng for newspaper pages by date.
+        Search archivi.ng for newspaper pages by date using their JSON API.
 
         Args:
             source: Source slug (e.g., "pm-news")
@@ -319,12 +320,12 @@ Extract the text now:"""
             month: Optional month (1-12)
             day: Optional day (1-31)
             keyword: Optional keyword to search for
+            page: Page number for pagination (default 1)
 
         Returns:
             List of search result dicts
         """
         # Build search query
-        # archivi.ng uses Elasticsearch-style search
         query_parts = [f"source:{source}"]
 
         if year:
@@ -340,15 +341,62 @@ Extract the text now:"""
             query_parts.append(keyword)
 
         query = " ".join(query_parts)
-        search_url = f"{SEARCH_URL}?q={quote(query)}"
+        
+        # Use the JSON API endpoint instead of HTML page
+        api_url = f"{BASE_URL}/api/archive/search?q={quote(query)}&page={page}"
 
-        logger.info(f"Searching archivi.ng: {query}")
+        logger.info(f"Searching archivi.ng API: {query} (page {page})")
 
-        html = await self._fetch(search_url)
-        if not html:
+        await self._rate_limit_wait()
+
+        try:
+            client = await self._get_client()
+            response = await client.get(api_url)
+
+            if response.status_code != 200:
+                logger.warning(f"API returned {response.status_code}: {api_url}")
+                return []
+
+            data = response.json()
+            
+            # Parse the response structure:
+            # {"data": {"body": [...], "pagination": {...}}}
+            results = []
+            try:
+                inner = data.get("data", {})
+                # Handle both single and double nesting (API may vary)
+                if "body" in inner:
+                    body = inner.get("body", [])
+                    pagination = inner.get("pagination", {})
+                else:
+                    # Fallback for doubly nested response
+                    body = inner.get("data", {}).get("body", [])
+                    pagination = inner.get("data", {}).get("pagination", {})
+                
+                logger.info(f"Found {len(body)} results (page {pagination.get('current_page', page)} of {pagination.get('total_pages', '?')})")
+                
+                for item in body:
+                    result = {
+                        "page_id": item.get("id", ""),
+                        "url": f"{BASE_URL}/search/{item.get('id', '')}",
+                        "title": item.get("summary", "") or item.get("topics", ""),
+                        "date": item.get("date", "").replace("/", "-") if item.get("date") else None,
+                        "image_url": item.get("image_path", ""),
+                        "publication": item.get("publication", ""),
+                        "page_number": item.get("page", 1),
+                        "keywords": item.get("keywords", ""),
+                    }
+                    results.append(result)
+                    
+            except Exception as e:
+                logger.error(f"Error parsing API response: {e}")
+                
+            return results
+
+        except Exception as e:
+            logger.error(f"API fetch error {api_url}: {e}")
+            self.stats["errors"] += 1
             return []
-
-        return self._parse_search_results(html)
 
     def _parse_search_results(self, html: str) -> List[Dict]:
         """Parse search results page."""
