@@ -100,6 +100,7 @@ class NewspaperPage:
     politicians_mentioned: List[str]
     url: str
     scraped_at: str
+    metadata: Optional[Dict] = None
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -613,6 +614,71 @@ Extract the text now:"""
 
         return found
 
+    async def process_api_result(
+        self,
+        result: Dict,
+        source: str,
+        use_ocr: bool = False
+    ) -> Optional[NewspaperPage]:
+        """
+        Process a single API result into a NewspaperPage, optionally running OCR.
+        
+        This bypasses the SPA HTML page fetch and directly uses API data + image OCR.
+        
+        Args:
+            result: API search result dict with id, image_path, summary, date, etc.
+            source: Source slug (e.g., "pm-news")
+            use_ocr: Whether to run Claude Vision OCR on the image for full text
+            
+        Returns:
+            NewspaperPage or None
+        """
+        page_id = result.get("page_id", "")
+        image_url = result.get("image_url", "")
+        
+        if not page_id and not image_url:
+            return None
+        
+        # Start with the summary from the API
+        text_content = result.get("title", "")  # "title" contains the summary from our search_by_date
+        
+        # If OCR is enabled, get full text from the image
+        if use_ocr and image_url:
+            logger.info(f"Running Claude Vision OCR on {page_id}")
+            ocr_text = await self.ocr_with_claude_vision(image_url)
+            if ocr_text:
+                text_content = ocr_text
+                self.stats["ocr_pages"] = self.stats.get("ocr_pages", 0) + 1
+            else:
+                logger.warning(f"OCR failed for {page_id}, using summary")
+        
+        # Extract politicians from the text
+        politicians = self._extract_politicians(text_content or "")
+        
+        source_info = SOURCES.get(source, {"name": source})
+        
+        self.stats["pages_scraped"] += 1
+        self.stats["politicians_extracted"] += len(politicians)
+        
+        return NewspaperPage(
+            page_id=page_id,
+            source=source,
+            source_name=source_info.get("name", source),
+            date=result.get("date", ""),
+            page_number=result.get("page_number", 1),
+            title=result.get("title", "")[:200],  # Summary for title
+            image_url=image_url,
+            text_content=text_content,
+            politicians_mentioned=politicians,
+            url=result.get("url", f"{BASE_URL}/search/{page_id}"),
+            scraped_at=datetime.now().isoformat(),
+            metadata={
+                "publication": result.get("publication", ""),
+                "keywords": result.get("keywords", ""),
+                "ocr_used": use_ocr and bool(image_url),
+            }
+        )
+
     async def scrape_year(
         self,
         source: str,
@@ -632,7 +698,7 @@ Extract the text now:"""
         Returns:
             Statistics dict
         """
-        logger.info(f"Starting archivi.ng scrape: {source} for {year}")
+        logger.info(f"Starting archivi.ng scrape: {source} for {year} (OCR: {use_ocr})")
 
         source_info = SOURCES.get(source)
         if not source_info:
@@ -645,21 +711,25 @@ Extract the text now:"""
             }
 
         all_pages = []
+        total_api_results = 0
 
-        # Search month by month
+        # Search month by month using the JSON API
         for month in range(1, 13):
             if len(all_pages) >= limit:
                 break
 
             logger.info(f"Searching {source} for {year}-{month:02d}")
 
+            # Get results from JSON API (already has image URLs)
             results = await self.search_by_date(source, year, month)
+            total_api_results += len(results)
 
             for result in results:
                 if len(all_pages) >= limit:
                     break
 
-                page = await self.get_page_content(result["url"], use_ocr=use_ocr)
+                # Process directly from API data (no HTML fetch needed)
+                page = await self.process_api_result(result, source, use_ocr=use_ocr)
                 if page:
                     all_pages.append(page)
 
@@ -669,7 +739,9 @@ Extract the text now:"""
             "source": source,
             "year": year,
             "pages_scraped": len(all_pages),
+            "api_results_found": total_api_results,
             "unique_dates": len(set(p.date for p in all_pages if p.date)),
+            "ocr_pages": self.stats.get("ocr_pages", 0),
             "politicians_found": list(set(
                 p for page in all_pages for p in page.politicians_mentioned
             )),
