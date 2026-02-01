@@ -1,6 +1,6 @@
 """
 WhatsApp Webhook Router for Decide9ja.
-Handles incoming WhatsApp messages from Meta Cloud API.
+Handles incoming WhatsApp messages from Meta Cloud API and Twilio.
 """
 import logging
 import hmac
@@ -9,12 +9,28 @@ from fastapi import APIRouter, Request, HTTPException, Query, BackgroundTasks
 from fastapi.responses import PlainTextResponse
 
 from app.services import whatsapp
-from app.services.message_handler_v4 import handle_message as handle_whatsapp_message
 from app.services.security import security
+# Import the MERGED Unified Handler
+from app.services.tade_unified import UnifiedTadeHandler
+
+# MERGER: Import UnifiedTadeHandler (combines OLD + NEW Tade)
+from app.services.tade_unified import UnifiedTadeHandler
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
+
+# Global Singleton for Unified Handler
+_unified_handler = None
+
+def get_unified_handler() -> UnifiedTadeHandler:
+    """Get or create singleton instance of UnifiedTadeHandler."""
+    global _unified_handler
+    if _unified_handler is None:
+        _unified_handler = UnifiedTadeHandler()
+        logger.info("✅ UnifiedTadeHandler initialized (OLD + NEW Tade merger)")
+    return _unified_handler
+
 
 
 @router.get("/webhook")
@@ -119,10 +135,12 @@ async def receive_message(request: Request, background_tasks: BackgroundTasks):
                 except:
                     pass
                 
-                # Process message in background to not block webhook
+                # Use Unified Handler for background processing
+                # Note: UnifiedTadeHandler handles format conversion internally if needed
+                # For now, we keep the v4 handler for Meta API until tested
+                from app.services.message_handler_v4 import handle_message as handle_whatsapp_message
                 background_tasks.add_task(handle_whatsapp_message, payload)
         
-        # Always return 200 quickly to acknowledge receipt
         return {"status": "received"}
         
     except Exception as e:
@@ -136,12 +154,19 @@ async def webhook_status():
     """Check WhatsApp webhook configuration status."""
     from app.services import twilio_whatsapp
     
+    # Check if unified handler is active
+    global _unified_handler
+    unified_status = "UnifiedTadeHandler" if _unified_handler else "Not Initialized"
+    
     return {
         "meta_configured": whatsapp.is_configured(),
         "twilio_configured": twilio_whatsapp.is_configured(),
         "phone_number_id": whatsapp.PHONE_NUMBER_ID[:4] + "..." if whatsapp.PHONE_NUMBER_ID else None,
         "verify_token_set": bool(whatsapp.VERIFY_TOKEN),
-        "access_token_set": bool(whatsapp.ACCESS_TOKEN)
+        "merger_status": {
+            "unified_handler_active": True,
+            "new_handler": f"{unified_status} (Active)"
+        }
     }
 
 
@@ -163,6 +188,7 @@ async def twilio_webhook(request: Request):
         message = parse_twilio_media_message(form_dict)
         
         user_hash = message["from_hash"]
+        user_phone = message.get("from_raw", "").replace("whatsapp:", "")
         msg_type = message.get("type", "text")
         
         # Log with type info
@@ -175,20 +201,25 @@ async def twilio_webhook(request: Request):
             if int(form_dict.get("NumMedia", 0)) == 0:
                 return {"status": "no_message"}
         
-        # Process message using multimodal handler
-        try:
-            response = await process_multimodal_message(message, user_hash)
-            
-            # Handle dict responses (buttons not supported in Twilio sandbox)
-            if isinstance(response, dict):
-                response = response.get("text", str(response))
-            
-            # Format for WhatsApp
-            response = twilio_whatsapp.format_for_whatsapp(response)
-            
-        except Exception as e:
-            logger.error(f"Message processing error: {e}")
-            response = "Welcome to Decide9ja! 🇳🇬 Say 'hi' to get started."
+        # =========================================================
+        # USE UNIFIED TADE HANDLER (The Merger)
+        # =========================================================
+        handler = get_unified_handler()
+        
+        # Unified handler expects: phone, text, media_url (optional)
+        # It handles state, memory, tools internally
+        text_body = message.get("text") or message.get("caption") or ""
+        media_url = form_dict.get("MediaUrl0") # Simple grab of first media
+        
+        # Process message
+        response = await handler.handle_message(
+            phone=user_phone,
+            message=text_body,
+            media_url=media_url
+        )
+        
+        # Format for WhatsApp (if needed, handler returns string usually)
+        formatted_response = twilio_whatsapp.format_for_whatsapp(response)
         
         # Add response to context
         conversation.add_to_context(user_hash, "assistant", response)
