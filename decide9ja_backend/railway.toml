@@ -3,4 +3,4 @@ builder = "nixpacks"
 buildCommand = "pip install -r requirements.txt"
 
 [deploy]
-startCommand = "python workers/archiving_worker.py"
+startCommand = "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
