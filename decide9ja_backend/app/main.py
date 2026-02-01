@@ -194,6 +194,10 @@ async def startup_event():
     
     # Include WhatsApp webhook router
     app.include_router(webhook_router.router, prefix="/api", tags=["WhatsApp"])
+
+    # Include Twilio Channel Router (Direct)
+    from app.channels import twilio_whatsapp as twilio_channel
+    app.include_router(twilio_channel.router, tags=["Twilio"])
     
     # Include Issues router
     from app.routers import issues as issues_router
