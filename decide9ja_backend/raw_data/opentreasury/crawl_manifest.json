@@ -1,0 +1,1492 @@
+{
+  "started_at": "2026-02-12T23:03:05.766617",
+  "output_dir": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury",
+  "years": {
+    "2025": {
+      "year": 2025,
+      "files": 246,
+      "downloaded": 246,
+      "skipped": 0,
+      "errors": 0,
+      "details": [
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-05.xlsx",
+          "status": "downloaded",
+          "size": 26360,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-05.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-08.xlsx",
+          "status": "downloaded",
+          "size": 10411,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-08.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-09.xlsx",
+          "status": "downloaded",
+          "size": 9147,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-09.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-04.xlsx",
+          "status": "downloaded",
+          "size": 27825,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-04.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-07.xlsx",
+          "status": "downloaded",
+          "size": 15680,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-07.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-11.xlsx",
+          "status": "downloaded",
+          "size": 13170,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-11.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-10.xlsx",
+          "status": "downloaded",
+          "size": 19999,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-10.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-12.xlsx",
+          "status": "downloaded",
+          "size": 16726,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-12.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-15.xlsx",
+          "status": "downloaded",
+          "size": 17133,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-15.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-06.xlsx",
+          "status": "downloaded",
+          "size": 15666,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-06.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-14.xlsx",
+          "status": "downloaded",
+          "size": 29424,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-14.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-16.xlsx",
+          "status": "downloaded",
+          "size": 75863,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-16.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-13.xlsx",
+          "status": "downloaded",
+          "size": 17873,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-13.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-24.xlsx",
+          "status": "downloaded",
+          "size": 134027,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-24.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-03.xlsx",
+          "status": "downloaded",
+          "size": 89620,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-03.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-26.xlsx",
+          "status": "downloaded",
+          "size": 52456,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-26.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-25.xlsx",
+          "status": "downloaded",
+          "size": 79548,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-25.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/March/25-03-10.xlsx",
+          "status": "downloaded",
+          "size": 35155,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/March/25-03-10.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/March/25-03-11.xlsx",
+          "status": "downloaded",
+          "size": 31292,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/March/25-03-11.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/March/25-03-13.xlsx",
+          "status": "downloaded",
+          "size": 19456,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/March/25-03-13.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/March/25-03-14.xlsx",
+          "status": "downloaded",
+          "size": 21109,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/March/25-03-14.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/February/25-02-27.xlsx",
+          "status": "downloaded",
+          "size": 98366,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/February/25-02-27.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/March/25-03-15.xlsx",
+          "status": "downloaded",
+          "size": 10619,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/March/25-03-15.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/March/25-03-12.xlsx",
+          "status": "downloaded",
+          "size": 22697,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/March/25-03-12.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/March/25-03-16.xlsx",
+          "status": "downloaded",
+          "size": 11169,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/March/25-03-16.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/March/25-03-19.xlsx",
+          "status": "downloaded",
+          "size": 28859,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/March/25-03-19.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/March/25-03-17.xlsx",
+          "status": "downloaded",
+          "size": 28486,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/March/25-03-17.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/March/25-03-22.xlsx",
+          "status": "downloaded",
+          "size": 9586,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/March/25-03-22.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/March/25-03-23.xlsx",
+          "status": "downloaded",
+          "size": 10850,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/March/25-03-23.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/April/25-04-21.xlsx",
+          "status": "downloaded",
+          "size": 9657,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/April/25-04-21.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/March/25-03-18.xlsx",
+          "status": "downloaded",
+          "size": 71006,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/March/25-03-18.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/March/25-03-20.xlsx",
+          "status": "downloaded",
+          "size": 38737,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/March/25-03-20.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/March/25-03-21.xlsx",
+          "status": "downloaded",
+          "size": 35179,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/March/25-03-21.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/April/25-04-27.xlsx",
+          "status": "downloaded",
+          "size": 10749,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/April/25-04-27.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/April/25-04-28.xlsx",
+          "status": "downloaded",
+          "size": 21986,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/April/25-04-28.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/April/25-04-26.xlsx",
+          "status": "downloaded",
+          "size": 11326,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/April/25-04-26.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/April/25-04-29.xlsx",
+          "status": "downloaded",
+          "size": 17670,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/April/25-04-29.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/April/25-04-25.xlsx",
+          "status": "downloaded",
+          "size": 19119,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/April/25-04-25.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/April/25-04-23.xlsx",
+          "status": "downloaded",
+          "size": 32758,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/April/25-04-23.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/April/25-04-22.xlsx",
+          "status": "downloaded",
+          "size": 20241,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/April/25-04-22.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/April/25-04-30.xlsx",
+          "status": "downloaded",
+          "size": 55339,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/April/25-04-30.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-04.xlsx",
+          "status": "downloaded",
+          "size": 10976,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-04.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-05.xlsx",
+          "status": "downloaded",
+          "size": 26962,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-05.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-06.xlsx",
+          "status": "downloaded",
+          "size": 16560,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-06.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-01.xlsx",
+          "status": "downloaded",
+          "size": 85276,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-01.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-02.xlsx",
+          "status": "downloaded",
+          "size": 69607,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-02.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-09.xlsx",
+          "status": "downloaded",
+          "size": 23025,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-09.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-07.xlsx",
+          "status": "downloaded",
+          "size": 40280,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-07.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-10.xlsx",
+          "status": "downloaded",
+          "size": 15166,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-10.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-11.xlsx",
+          "status": "downloaded",
+          "size": 10792,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-11.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-12.xlsx",
+          "status": "downloaded",
+          "size": 20522,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-12.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-13.xlsx",
+          "status": "downloaded",
+          "size": 30485,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-13.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-15.xlsx",
+          "status": "downloaded",
+          "size": 29596,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-15.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-08.xlsx",
+          "status": "downloaded",
+          "size": 35238,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-08.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-03.xlsx",
+          "status": "downloaded",
+          "size": 11425,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-03.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-17.xlsx",
+          "status": "downloaded",
+          "size": 10668,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-17.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-14.xlsx",
+          "status": "downloaded",
+          "size": 24764,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-14.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-20.xlsx",
+          "status": "downloaded",
+          "size": 12863,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-20.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-16.xlsx",
+          "status": "downloaded",
+          "size": 15146,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-16.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-21.xlsx",
+          "status": "downloaded",
+          "size": 18370,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-21.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-22.xlsx",
+          "status": "downloaded",
+          "size": 16260,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-22.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-19.xlsx",
+          "status": "downloaded",
+          "size": 17240,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-19.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-25.xlsx",
+          "status": "downloaded",
+          "size": 10974,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-25.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-18.xlsx",
+          "status": "downloaded",
+          "size": 10351,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-18.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-24.xlsx",
+          "status": "downloaded",
+          "size": 9928,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-24.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/25-05-26.xlsx",
+          "status": "downloaded",
+          "size": 20120,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/25-05-26.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/24-05-27.xlsx",
+          "status": "downloaded",
+          "size": 23195,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/24-05-27.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/24-05-28.xlsx",
+          "status": "downloaded",
+          "size": 32357,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/24-05-28.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-01.xlsx",
+          "status": "downloaded",
+          "size": 10920,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-01.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-03.xlsx",
+          "status": "downloaded",
+          "size": 21689,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-03.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/24-05-31.xlsx",
+          "status": "downloaded",
+          "size": 36231,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/24-05-31.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-04.xlsx",
+          "status": "downloaded",
+          "size": 15075,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-04.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-02.xlsx",
+          "status": "downloaded",
+          "size": 18389,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-02.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/24-05-30.xlsx",
+          "status": "downloaded",
+          "size": 77306,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/24-05-30.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/May/24-05-29.xlsx",
+          "status": "downloaded",
+          "size": 85823,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/May/24-05-29.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-05.xlsx",
+          "status": "downloaded",
+          "size": 35626,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-05.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-07.xlsx",
+          "status": "downloaded",
+          "size": 15203,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-07.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-08.xlsx",
+          "status": "downloaded",
+          "size": 13901,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-08.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-06.xlsx",
+          "status": "downloaded",
+          "size": 28773,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-06.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-09.xlsx",
+          "status": "downloaded",
+          "size": 12812,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-09.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-10.xlsx",
+          "status": "downloaded",
+          "size": 19400,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-10.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-15.xlsx",
+          "status": "downloaded",
+          "size": 11341,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-15.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-14.xlsx",
+          "status": "downloaded",
+          "size": 11191,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-14.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-11.xlsx",
+          "status": "downloaded",
+          "size": 24717,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-11.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-13.xlsx",
+          "status": "downloaded",
+          "size": 18215,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-13.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-23.xlsx",
+          "status": "downloaded",
+          "size": 16820,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-23.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-12.xlsx",
+          "status": "downloaded",
+          "size": 17077,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-12.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-24.xlsx",
+          "status": "downloaded",
+          "size": 14801,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-24.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-26.xlsx",
+          "status": "downloaded",
+          "size": 14719,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-26.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-27.xlsx",
+          "status": "downloaded",
+          "size": 22081,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-27.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-28.xlsx",
+          "status": "downloaded",
+          "size": 16468,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-28.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-25.xlsx",
+          "status": "downloaded",
+          "size": 20243,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-25.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-02.xlsx",
+          "status": "downloaded",
+          "size": 13638,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-02.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-29.xlsx",
+          "status": "downloaded",
+          "size": 10374,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-29.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-03.xlsx",
+          "status": "downloaded",
+          "size": 23499,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-03.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-04.xlsx",
+          "status": "downloaded",
+          "size": 13885,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-04.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-01.xlsx",
+          "status": "downloaded",
+          "size": 23442,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-01.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-08.xlsx",
+          "status": "downloaded",
+          "size": 17711,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-08.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-05.xlsx",
+          "status": "downloaded",
+          "size": 10441,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-05.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-07.xlsx",
+          "status": "downloaded",
+          "size": 48341,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-07.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-09.xlsx",
+          "status": "downloaded",
+          "size": 20304,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-09.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-10.xlsx",
+          "status": "downloaded",
+          "size": 21677,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-10.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-13.xlsx",
+          "status": "downloaded",
+          "size": 13376,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-13.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-11.xlsx",
+          "status": "downloaded",
+          "size": 16997,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-11.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-12.xlsx",
+          "status": "downloaded",
+          "size": 13364,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-12.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-16.xlsx",
+          "status": "downloaded",
+          "size": 14373,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-16.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-15.xlsx",
+          "status": "downloaded",
+          "size": 20467,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-15.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/June/25-06-30.xlsx",
+          "status": "downloaded",
+          "size": 145700,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/June/25-06-30.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-20.xlsx",
+          "status": "downloaded",
+          "size": 10463,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-20.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-19.xlsx",
+          "status": "downloaded",
+          "size": 13553,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-19.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-14.xlsx",
+          "status": "downloaded",
+          "size": 21205,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-14.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-21.xlsx",
+          "status": "downloaded",
+          "size": 15591,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-21.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-17.xlsx",
+          "status": "downloaded",
+          "size": 21258,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-17.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-22.xlsx",
+          "status": "downloaded",
+          "size": 20536,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-22.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-18.xlsx",
+          "status": "downloaded",
+          "size": 22839,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-18.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-24.xlsx",
+          "status": "downloaded",
+          "size": 14374,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-24.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-25.xlsx",
+          "status": "downloaded",
+          "size": 20655,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-25.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-26.xlsx",
+          "status": "downloaded",
+          "size": 27758,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-26.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-29.xlsx",
+          "status": "downloaded",
+          "size": 28658,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-29.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-27.xlsx",
+          "status": "downloaded",
+          "size": 105218,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-27.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-01.xlsx",
+          "status": "downloaded",
+          "size": 34543,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-01.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-30.xlsx",
+          "status": "downloaded",
+          "size": 27636,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-30.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-28.xlsx",
+          "status": "downloaded",
+          "size": 58512,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-28.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-31.xlsx",
+          "status": "downloaded",
+          "size": 36178,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-31.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-02.xlsx",
+          "status": "downloaded",
+          "size": 11942,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-02.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-13.xlsx",
+          "status": "downloaded",
+          "size": 25239,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-13.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-12.xlsx",
+          "status": "downloaded",
+          "size": 25759,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-12.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-14.xlsx",
+          "status": "downloaded",
+          "size": 21788,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-14.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-11.xlsx",
+          "status": "downloaded",
+          "size": 21060,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-11.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-03.xlsx",
+          "status": "downloaded",
+          "size": 11639,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-03.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-16.xlsx",
+          "status": "downloaded",
+          "size": 13447,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-16.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/July/25-07-23.xlsx",
+          "status": "downloaded",
+          "size": 16826,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/July/25-07-23.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-17.xlsx",
+          "status": "downloaded",
+          "size": 9652,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-17.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-21.xlsx",
+          "status": "downloaded",
+          "size": 26104,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-21.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-19.xlsx",
+          "status": "downloaded",
+          "size": 35928,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-19.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-15.xlsx",
+          "status": "downloaded",
+          "size": 30681,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-15.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-23.xlsx",
+          "status": "downloaded",
+          "size": 76363,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-23.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-18.xlsx",
+          "status": "downloaded",
+          "size": 53126,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-18.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-24.xlsx",
+          "status": "downloaded",
+          "size": 45904,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-24.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-26.xlsx",
+          "status": "downloaded",
+          "size": 15046,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-26.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-22.xlsx",
+          "status": "downloaded",
+          "size": 58688,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-22.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-27.xlsx",
+          "status": "downloaded",
+          "size": 29584,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-27.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-29.xlsx",
+          "status": "downloaded",
+          "size": 31191,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-29.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-25.xlsx",
+          "status": "downloaded",
+          "size": 42645,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-25.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-31.xlsx",
+          "status": "downloaded",
+          "size": 13045,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-31.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-28.xlsx",
+          "status": "downloaded",
+          "size": 41534,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-28.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-30.xlsx",
+          "status": "downloaded",
+          "size": 14463,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-30.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-01.xlsx",
+          "status": "downloaded",
+          "size": 16871,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-01.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-02.xlsx",
+          "status": "downloaded",
+          "size": 34504,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-02.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-04.xlsx",
+          "status": "downloaded",
+          "size": 23215,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-04.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-05.xlsx",
+          "status": "downloaded",
+          "size": 17120,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-05.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-08.xlsx",
+          "status": "downloaded",
+          "size": 21197,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-08.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/August/25-08-20.xlsx",
+          "status": "downloaded",
+          "size": 45051,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/August/25-08-20.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-06.xlsx",
+          "status": "downloaded",
+          "size": 30617,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-06.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-07.xlsx",
+          "status": "downloaded",
+          "size": 39151,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-07.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-03.xlsx",
+          "status": "downloaded",
+          "size": 148812,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-03.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-09.xlsx",
+          "status": "downloaded",
+          "size": 62381,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-09.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-11.xlsx",
+          "status": "downloaded",
+          "size": 94008,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-11.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-12.xlsx",
+          "status": "downloaded",
+          "size": 49213,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-12.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-14.xlsx",
+          "status": "downloaded",
+          "size": 38439,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-14.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-10.xlsx",
+          "status": "downloaded",
+          "size": 69460,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-10.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-13.xlsx",
+          "status": "downloaded",
+          "size": 68522,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-13.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-15.xlsx",
+          "status": "downloaded",
+          "size": 52968,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-15.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-17.xlsx",
+          "status": "downloaded",
+          "size": 25569,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-17.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-19.xlsx",
+          "status": "downloaded",
+          "size": 18007,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-19.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-20.xlsx",
+          "status": "downloaded",
+          "size": 11803,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-20.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-21.xlsx",
+          "status": "downloaded",
+          "size": 13674,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-21.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-18.xlsx",
+          "status": "downloaded",
+          "size": 23976,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-18.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-30.xlsx",
+          "status": "downloaded",
+          "size": 27962,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-30.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-02.xlsx",
+          "status": "downloaded",
+          "size": 25848,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-02.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-29.xlsx",
+          "status": "downloaded",
+          "size": 38601,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-29.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-04.xlsx",
+          "status": "downloaded",
+          "size": 11869,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-04.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-03.xlsx",
+          "status": "downloaded",
+          "size": 25521,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-03.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-05.xlsx",
+          "status": "downloaded",
+          "size": 16400,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-05.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/September/25-09-16.xlsx",
+          "status": "downloaded",
+          "size": 25421,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/September/25-09-16.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-01.xlsx",
+          "status": "downloaded",
+          "size": 15934,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-01.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-08.xlsx",
+          "status": "downloaded",
+          "size": 26804,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-08.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-07.xlsx",
+          "status": "downloaded",
+          "size": 57220,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-07.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-11.xlsx",
+          "status": "downloaded",
+          "size": 10300,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-11.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-09.xlsx",
+          "status": "downloaded",
+          "size": 23045,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-09.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-10.xlsx",
+          "status": "downloaded",
+          "size": 45415,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-10.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-12.xlsx",
+          "status": "downloaded",
+          "size": 10068,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-12.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-06.xlsx",
+          "status": "downloaded",
+          "size": 108226,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-06.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-13.xlsx",
+          "status": "downloaded",
+          "size": 23408,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-13.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-14.xlsx",
+          "status": "downloaded",
+          "size": 27904,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-14.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-15.xlsx",
+          "status": "downloaded",
+          "size": 24595,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-15.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-16.xlsx",
+          "status": "downloaded",
+          "size": 15370,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-16.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-17.xlsx",
+          "status": "downloaded",
+          "size": 16230,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-17.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-18.xlsx",
+          "status": "downloaded",
+          "size": 12114,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-18.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-19.xlsx",
+          "status": "downloaded",
+          "size": 10252,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-19.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-24.xlsx",
+          "status": "downloaded",
+          "size": 18612,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-24.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-20.xlsx",
+          "status": "downloaded",
+          "size": 10691,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-20.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-22.xlsx",
+          "status": "downloaded",
+          "size": 19890,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-22.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-23.xlsx",
+          "status": "downloaded",
+          "size": 18794,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-23.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-26.xlsx",
+          "status": "downloaded",
+          "size": 10337,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-26.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-27.xlsx",
+          "status": "downloaded",
+          "size": 18194,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-27.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-25.xlsx",
+          "status": "downloaded",
+          "size": 11300,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-25.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-29.xlsx",
+          "status": "downloaded",
+          "size": 28032,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-29.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-28.xlsx",
+          "status": "downloaded",
+          "size": 39653,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-28.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-01.xlsx",
+          "status": "downloaded",
+          "size": 14495,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-01.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-31.xlsx",
+          "status": "downloaded",
+          "size": 43131,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-31.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-03.xlsx",
+          "status": "downloaded",
+          "size": 15617,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-03.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/October/25-10-30.xlsx",
+          "status": "downloaded",
+          "size": 43933,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/October/25-10-30.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-02.xlsx",
+          "status": "downloaded",
+          "size": 11559,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-02.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-04.xlsx",
+          "status": "downloaded",
+          "size": 25518,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-04.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-06.xlsx",
+          "status": "downloaded",
+          "size": 22002,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-06.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-08.xlsx",
+          "status": "downloaded",
+          "size": 11222,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-08.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-09.xlsx",
+          "status": "downloaded",
+          "size": 10021,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-09.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-07.xlsx",
+          "status": "downloaded",
+          "size": 16447,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-07.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-10.xlsx",
+          "status": "downloaded",
+          "size": 12084,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-10.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-11.xlsx",
+          "status": "downloaded",
+          "size": 11655,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-11.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-12.xlsx",
+          "status": "downloaded",
+          "size": 20062,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-12.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-13.xlsx",
+          "status": "downloaded",
+          "size": 16724,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-13.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-14.xlsx",
+          "status": "downloaded",
+          "size": 15371,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-14.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-16.xlsx",
+          "status": "downloaded",
+          "size": 10784,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-16.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-24.xlsx",
+          "status": "downloaded",
+          "size": 20994,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-24.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-15.xlsx",
+          "status": "downloaded",
+          "size": 21457,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-15.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-25.xlsx",
+          "status": "downloaded",
+          "size": 23604,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-25.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-27.xlsx",
+          "status": "downloaded",
+          "size": 43033,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-27.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-30.xlsx",
+          "status": "downloaded",
+          "size": 15683,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-30.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-28.xlsx",
+          "status": "downloaded",
+          "size": 31300,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-28.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-29.xlsx",
+          "status": "downloaded",
+          "size": 14586,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-29.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-08.xlsx",
+          "status": "downloaded",
+          "size": 17409,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-08.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-09.xlsx",
+          "status": "downloaded",
+          "size": 18366,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-09.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-10.xlsx",
+          "status": "downloaded",
+          "size": 17361,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-10.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/November/25-11-05.xlsx",
+          "status": "downloaded",
+          "size": 148611,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/November/25-11-05.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-12.xlsx",
+          "status": "downloaded",
+          "size": 62435,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-12.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-14.xlsx",
+          "status": "downloaded",
+          "size": 42189,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-14.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-11.xlsx",
+          "status": "downloaded",
+          "size": 78118,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-11.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-13.xlsx",
+          "status": "downloaded",
+          "size": 116847,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-13.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-16.xlsx",
+          "status": "downloaded",
+          "size": 80405,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-16.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-17.xlsx",
+          "status": "downloaded",
+          "size": 34284,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-17.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-15.xlsx",
+          "status": "downloaded",
+          "size": 103477,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-15.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-19.xlsx",
+          "status": "downloaded",
+          "size": 66998,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-19.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-21.xlsx",
+          "status": "downloaded",
+          "size": 51853,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-21.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-18.xlsx",
+          "status": "downloaded",
+          "size": 63583,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-18.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-22.xlsx",
+          "status": "downloaded",
+          "size": 47088,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-22.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-25.xlsx",
+          "status": "downloaded",
+          "size": 39865,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-25.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-20.xlsx",
+          "status": "downloaded",
+          "size": 104493,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-20.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-26.xlsx",
+          "status": "downloaded",
+          "size": 38252,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-26.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-27.xlsx",
+          "status": "downloaded",
+          "size": 26416,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-27.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-28.xlsx",
+          "status": "downloaded",
+          "size": 17384,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-28.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-29.xlsx",
+          "status": "downloaded",
+          "size": 39543,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-29.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-24.xlsx",
+          "status": "downloaded",
+          "size": 150623,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-24.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-30.xlsx",
+          "status": "downloaded",
+          "size": 190580,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-30.xlsx"
+        },
+        {
+          "file": "/Volumes/Crucial X10/Decide9ja/decide9ja_backend/raw_data/opentreasury/2025/December/25-12-31.xlsx",
+          "status": "downloaded",
+          "size": 269839,
+          "url": "https://opentreasury.gov.ng/images/2025/DAILYPAYMENTREPORTFGN/December/25-12-31.xlsx"
+        }
+      ]
+    }
+  },
+  "completed_at": "2026-02-12T23:06:39.360540"
+}

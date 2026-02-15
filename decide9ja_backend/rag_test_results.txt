@@ -1,0 +1,111 @@
+Starting Stress Test: 17 Questions
+============================================================
+
+[1/17] Q: Who is the current President of Nigeria?
+  -> Time: 8.77s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 3500 chars
+
+[2/17] Q: Who is the Governor of Lagos State?
+  -> Time: 7.64s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 3347 chars
+
+[3/17] Q: How much did Lagos budget for health in 2026?
+  -> Time: 5.67s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 3634 chars
+
+[4/17] Q: What is the total budget for Borno State in 2026?
+  -> Time: 6.42s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 4243 chars
+
+[5/17] Q: How much was allocated for education in Adamawa?
+  -> Time: 4.24s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 3415 chars
+
+[6/17] Q: Show me the capital expenditure for Works in Rivers.
+  -> Time: 2.36s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 3211 chars
+
+[7/17] Q: Did Enugu budget for any new hospitals in 2026?
+  -> Time: 4.63s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 3755 chars
+
+[8/17] Q: Show me suspicious payments in Lagos.
+  -> Time: 0.89s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 4031 chars
+
+[9/17] Q: Who are the top contractors receiving payments recently?
+  -> Time: 1.41s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 3886 chars
+
+[10/17] Q: Did 'Julius Berger' receive any money in 2025?
+  -> Time: 1.52s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 3626 chars
+
+[11/17] Q: Show me payments above 1 billion naira.
+  -> Time: 1.25s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 3621 chars
+
+[12/17] Q: Show me payments to 'DANTATA & SAWOE'.
+  -> Time: 0.97s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 3774 chars
+
+[13/17] Q: What did the Ministry of Power spend money on in April 2025?
+  -> Time: 6.38s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 3985 chars
+
+[14/17] Q: Compare the budget for Education in Lagos vs Kano.
+  -> Time: 5.18s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 3939 chars
+
+[15/17] Q: Is there a budget for 'Renewable Energy' in the 2026 plan?
+  -> Time: 4.51s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 4243 chars
+
+[16/17] Q: Wetin be the budget for 'Stomach Infrastructure'?
+  -> Time: 1.10s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 4002 chars
+
+[17/17] Q: How much dem wan spend for road inside Lagos?
+  -> Time: 3.78s
+  -> Sources: ['budget', 'finance_intel', 'newspaper_archive']
+  -> Top Source: Newspaper Archive (80K+ articles)
+  -> Context Length: 3696 chars
+============================================================
+TEST SUMMARY
+Total Questions: 17
+Successful Retrievals: 17/17
+Budget Data Triggered: 17 times
+Financial Intel Triggered: 17 times
+Total Time: 66.74s

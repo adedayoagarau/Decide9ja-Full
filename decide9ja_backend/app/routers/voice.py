@@ -2,7 +2,7 @@
 Twilio Voice Router - AI Phone Call Handler
 Enables live AI conversations over phone calls.
 
-Updated to use message_handler_v4 (unified handler with SOT prompts).
+Updated to use message_handler_v5 (multi-agent handler).
 """
 import os
 import logging
@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 
 from app.database import get_db
 from app.services import voice
-from app.services.message_handler_v4 import handle_message
+from app.services.message_handler_v5 import handle_message
 
 logger = logging.getLogger(__name__)
 

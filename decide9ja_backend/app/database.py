@@ -43,7 +43,7 @@ class Document(Base):
     Stores all retrievable documents with embeddings.
     Each document is a searchable chunk of political data.
     """
-    __tablename__ = "documents"
+    __tablename__ = "rag_documents"
     
     id = Column(Integer, primary_key=True, autoincrement=True)
     doc_type = Column(String(50), nullable=False, index=True)  # politician, election, poll, fact_check
@@ -58,6 +58,7 @@ class Document(Base):
     party = Column(String(20), index=True)
     position = Column(String(100), index=True)
     category = Column(String(50), index=True)
+    language = Column(String(10), default="en", index=True)  # Added for multilingual support
     
     created_at = Column(DateTime, server_default=func.now())
 
@@ -92,6 +93,26 @@ class Interaction(Base):
     created_at = Column(DateTime, server_default=func.now())
 
 
+class PrivacyLog(Base):
+    """
+    Differentially Private analytics logs.
+    Stores anonymized queries for cluster analysis without PII.
+    """
+    __tablename__ = "privacy_logs"
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    log_id = Column(String(50), unique=True, nullable=False, index=True)
+    
+    # Anonymized content (PII stripped)
+    anonymized_query = Column(Text, nullable=False)
+    intent_category = Column(String(50), index=True)
+    cluster_id = Column(Integer, index=True)
+    
+    # Metadata
+    language = Column(String(10), default="en")
+    timestamp = Column(DateTime, server_default=func.now())
+
+
 class NewsArticle(Base):
     """Stores scraped news articles with embeddings for RAG."""
     __tablename__ = "news_articles"
@@ -119,6 +140,7 @@ class NewsArticle(Base):
     # Status
     is_processed = Column(Boolean, default=False)
     is_indexed = Column(Boolean, default=False, index=True)
+    language = Column(String(10), default="en", index=True)  # Added for multilingual support
 
 
 class Issue(Base):

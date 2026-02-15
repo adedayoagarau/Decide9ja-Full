@@ -2,15 +2,17 @@
 RAG Service - Retrieval-Augmented Generation.
 
 Retrieves relevant context from multiple sources:
-1. SQLAlchemy database (semantic search with embeddings)
-2. Knowledge Graph (structured Nigerian political data)
-3. News pipeline (recent news articles)
-4. Web search fallback (when local data is insufficient)
+1. Knowledge Graph - structured entity/relationship data
+2. Database - semantic search with embeddings  
+3. News pipeline - recent news articles
+4. Newspaper Archive Catalog - 80K+ historical/current articles (FTS5)
+5. Web search fallback - when local data is insufficient
 
 Data Sources Available:
 - 4,789+ Nigerian politicians from Wikidata
 - 8,392 entities (states, parties, military officers, etc.)
 - 1,646 Wikipedia articles (coups, events, biographies)
+- 80,345+ newspaper articles (catalog.db — single source of truth for press content)
 - BudgIT financial data (budgets, FAAC allocations, economic indicators)
 - INEC scraped data (LGAs, senatorial districts, election results)
 - Real-time news from Nigerian outlets
@@ -84,7 +86,8 @@ class RAGService:
         1. Knowledge Graph - structured entity/relationship data
         2. Database - semantic search with embeddings
         3. News pipeline - recent articles
-        4. Web search - fallback for missing data
+        4. Newspaper Archive Catalog - 80K+ docs via FTS5
+        5. Web search - fallback for missing data
 
         Args:
             query: User's question
@@ -109,83 +112,80 @@ class RAGService:
                 "similarity": 1.0
             })
 
-        # 2. Generate query embedding for semantic search
-        query_embedding = get_embedding(query)
-        
-        # Get all documents (in production, use vector DB with index)
-        docs_query = self.db.query(Document)
-        
-        # Apply filters if provided
-        if filters:
-            if filters.get("state"):
-                docs_query = docs_query.filter(Document.state.ilike(f"%{filters['state']}%"))
-            if filters.get("party"):
-                docs_query = docs_query.filter(Document.party == filters["party"])
-            if filters.get("position"):
-                docs_query = docs_query.filter(Document.position.ilike(f"%{filters['position']}%"))
-            if filters.get("doc_type"):
-                docs_query = docs_query.filter(Document.doc_type == filters["doc_type"])
-        
-        documents = docs_query.all()
-        
-        if not documents:
-            return "NO DATA FOUND: The database is empty.", []
-        
-        # Calculate similarities
-        scored_docs = []
-        for doc in documents:
-            if doc.embedding_json:
-                doc_embedding = json_to_embedding(doc.embedding_json)
-                similarity = cosine_similarity(query_embedding, doc_embedding)
-                scored_docs.append((similarity, doc))
-        
-        # Sort by similarity (descending)
-        scored_docs.sort(key=lambda x: x[0], reverse=True)
-        
-        # Take top_k
-        top_docs = scored_docs[:top_k]
-        
-        if not top_docs:
-            return "NO RELEVANT DATA FOUND for your query.", []
-        
-        # Format context
-        context_parts = []
-        sources = []
-        
-        for similarity, doc in top_docs:
-            if similarity < 0.3:  # Threshold for relevance
-                continue
+        # 2. Database Semantic Search (Source #2)
+        try:
+            # Generate query embedding for semantic search
+            query_embedding = get_embedding(query)
+            
+            # Get all documents (in production, use vector DB with index)
+            docs_query = self.db.query(Document)
+            
+            # Apply filters if provided
+            if filters:
+                if filters.get("state"):
+                    docs_query = docs_query.filter(Document.state.ilike(f"%{filters['state']}%"))
+                if filters.get("party"):
+                    docs_query = docs_query.filter(Document.party == filters["party"])
+                if filters.get("position"):
+                    docs_query = docs_query.filter(Document.position.ilike(f"%{filters['position']}%"))
+                if filters.get("doc_type"):
+                    docs_query = docs_query.filter(Document.doc_type == filters["doc_type"])
+            
+            documents = docs_query.all()
+            
+            if documents:
+                # Calculate similarities
+                scored_docs = []
+                for doc in documents:
+                    if doc.embedding_json:
+                        doc_embedding = json_to_embedding(doc.embedding_json)
+                        similarity = cosine_similarity(query_embedding, doc_embedding)
+                        scored_docs.append((similarity, doc))
                 
-            context_parts.append(f"=== [{doc.doc_type.upper()}] {doc.title} ===")
-            context_parts.append(doc.content)
-            
-            # Add metadata if available
-            if doc.metadata_json:
-                try:
-                    meta = json.loads(doc.metadata_json)
-                    if meta.get("party"):
-                        context_parts.append(f"Party: {meta['party']}")
-                    if meta.get("state"):
-                        context_parts.append(f"State: {meta['state']}")
-                except:
-                    pass
-            
-            context_parts.append(f"[Relevance: {similarity:.2f}]\n")
-            
-            sources.append({
-                "doc_id": doc.doc_id,
-                "title": doc.title,
-                "doc_type": doc.doc_type,
-                "similarity": similarity
-            })
-        
-        if not context_parts:
-            # No DB results, but we may have KG results
-            pass
-        else:
-            all_context_parts.append("\n=== DATABASE DOCUMENTS ===")
-            all_context_parts.extend(context_parts)
-            all_sources.extend(sources)
+                # Sort by similarity (descending)
+                scored_docs.sort(key=lambda x: x[0], reverse=True)
+                
+                # Take top_k
+                top_docs = scored_docs[:top_k]
+                
+                if top_docs:
+                    # Format context
+                    context_parts = []
+                    sources = []
+                    
+                    for similarity, doc in top_docs:
+                        if similarity < 0.3:  # Threshold for relevance
+                            continue
+                            
+                        context_parts.append(f"=== [{doc.doc_type.upper()}] {doc.title} ===")
+                        context_parts.append(doc.content)
+                        
+                        # Add metadata if available
+                        if doc.metadata_json:
+                            try:
+                                meta = json.loads(doc.metadata_json)
+                                if meta.get("party"):
+                                    context_parts.append(f"Party: {meta['party']}")
+                                if meta.get("state"):
+                                    context_parts.append(f"State: {meta['state']}")
+                            except:
+                                pass
+                        
+                        context_parts.append(f"[Relevance: {similarity:.2f}]\n")
+                        
+                        sources.append({
+                            "doc_id": doc.doc_id,
+                            "title": doc.title,
+                            "doc_type": doc.doc_type,
+                            "similarity": similarity
+                        })
+                    
+                    if context_parts:
+                        all_context_parts.append("\n=== DATABASE DOCUMENTS ===")
+                        all_context_parts.extend(context_parts)
+                        all_sources.extend(sources)
+        except Exception as e:
+            logger.warning(f"Database semantic search failed: {e}")
 
         # 3. Add recent news if available
         try:
@@ -197,6 +197,65 @@ class RAGService:
         except Exception as e:
             # News module not available or error, continue without news
             pass
+
+        # 4. Search Newspaper Archive Catalog (80K+ docs, single source of truth)
+        try:
+            from app.services.catalog_search import get_catalog_service
+            catalog = get_catalog_service()
+            if catalog.is_available:
+                catalog_context = catalog.get_context_for_rag(query, limit=3)
+                if catalog_context:
+                    all_context_parts.append("\n" + catalog_context)
+                    all_sources.append({
+                        "doc_id": "newspaper_catalog",
+                        "title": "Newspaper Archive (80K+ articles)",
+                        "doc_type": "newspaper_archive",
+                        "similarity": 0.8  # High confidence for FTS5 matches
+                    })
+        except Exception as e:
+            logger.debug(f"Catalog search not available: {e}")
+
+        # 5. Search Budget Data (Federal & State)
+        try:
+            from app.services.budget_search import get_budget_service
+            budget_svc = get_budget_service()
+            if budget_svc.is_available:
+                # Basic budget search with query
+                # If query contains explicit year, pass it?
+                # For now, simple text search is robust enough for "Lagos health budget"
+                budget_result = budget_svc.search(query, limit=5)
+                if budget_result.has_results:
+                    budget_context = budget_result.to_context_string()
+                    all_context_parts.append("\n" + budget_context)
+                    all_sources.append({
+                        "doc_id": "budget_data",
+                        "title": "Government Budget Data",
+                        "doc_type": "budget",
+                        "similarity": 0.95 # High confidence for structured data match
+                    })
+        except Exception as e:
+             logger.debug(f"Budget search not available: {e}")
+
+        # 6. Financial Intelligence (Findings & Transactions)
+        try:
+            from app.services.financial_intelligence import get_financial_intelligence
+            fi_service = get_financial_intelligence(self.db)
+            
+            # Use the query to find relevant findings or transactions
+            # e.g. "suspicious payments in Lagos" or "high value contracts"
+            fi_context = fi_service.get_context_for_rag(query)
+            
+            if fi_context:
+                all_context_parts.append("\n=== FINANCIAL INTELLIGENCE & RED FLAGS ===")
+                all_context_parts.append(fi_context)
+                all_sources.append({
+                    "doc_id": "financial_intelligence",
+                    "title": "Financial Intelligence Findings",
+                    "doc_type": "finance_intel",
+                    "similarity": 0.90
+                })
+        except Exception as e:
+            logger.debug(f"Financial Intelligence search not available: {e}")
 
         # Combine all context
         if not all_context_parts:

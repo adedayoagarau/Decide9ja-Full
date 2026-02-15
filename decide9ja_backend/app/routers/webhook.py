@@ -135,10 +135,9 @@ async def receive_message(request: Request, background_tasks: BackgroundTasks):
                 except:
                     pass
                 
-                # Use Unified Handler for background processing
+                # Use V5 Handler for background processing
                 # Note: UnifiedTadeHandler handles format conversion internally if needed
-                # For now, we keep the v4 handler for Meta API until tested
-                from app.services.message_handler_v4 import handle_message as handle_whatsapp_message
+                from app.services.message_handler_v5 import handle_message as handle_whatsapp_message
                 background_tasks.add_task(handle_whatsapp_message, payload)
         
         return {"status": "received"}

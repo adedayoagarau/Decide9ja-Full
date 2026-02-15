@@ -591,6 +591,95 @@ class SearchDiscoveryService:
                     }
                 ))
 
+            # --- SEARCH CATALOG ARCHIVE ---
+            # Include catalog if no specific type filter or "archive" is in types
+            include_archive = True
+            if filters and filters.types and "archive" not in filters.types and "news" not in filters.types:
+                include_archive = False
+            
+            if include_archive:
+                try:
+                    from app.services.catalog_search import get_catalog_service
+                    catalog_service = get_catalog_service()
+                    if catalog_service.is_available:
+                        # Convert datetime filters to year integers if present
+                        year_from = filters.date_from.year if filters and filters.date_from else None
+                        year_to = filters.date_to.year if filters and filters.date_to else None
+                        
+                        cat_results = catalog_service.search(
+                            query=query,
+                            limit=10,
+                            year_from=year_from,
+                            year_to=year_to
+                        )
+                        
+                        for i, article in enumerate(cat_results.articles):
+                            # Score slightly lower than fresh news unless high rank
+                            score = 0.75 - (i * 0.02) 
+                            
+                            results.append(SearchResult(
+                                id=article.id,
+                                type="archive",
+                                title=article.title,
+                                snippet=article.snippet,
+                                score=score,
+                                metadata={
+                                    "source": article.source_id,
+                                    "date": article.published_date,
+                                    "topics": article.topics,
+                                    "relevance": article.relevance_rank
+                                }
+                            ))
+                except Exception as e:
+                    logger.error(f"Error searching catalog in unified search: {e}")
+
+            # --- SEARCH BUDGETS ---
+            include_budgets = True
+            if filters and filters.types and "budget" not in filters.types:
+                include_budgets = False
+            
+            if include_budgets:
+                try:
+                    from app.services.budget_search import get_budget_service
+                    budget_service = get_budget_service()
+                    if budget_service.is_available:
+                        # Extract year filter if present
+                        year = filters.date_from.year if filters and filters.date_from else None
+                        
+                        # Extract jurisdiction from state filter?
+                        # If states filter is present, we can use it as jurisdiction filter
+                        # But budget service takes single strings for now.
+                        # Maybe iteration? Or simple broad search.
+                        jurisdiction = None
+                        if filters and filters.states:
+                             # Just take the first one or ignore for now to avoid complexity
+                             # Ideally we'd loop or support lists in budget service
+                             jurisdiction = filters.states[0]
+
+                        bud_results = budget_service.search(
+                            query=query,
+                            limit=5, # Keep it light
+                            year=year,
+                            jurisdiction=jurisdiction
+                        )
+
+                        for item in bud_results.items:
+                            results.append(SearchResult(
+                                id=f"budget-{item.id}",
+                                type="budget",
+                                title=f"{item.jurisdiction} Budget: {item.project}",
+                                snippet=f"{item.mda} - ₦{item.amount:,.2f}",
+                                score=0.82, # High relevance for specific searches
+                                metadata={
+                                    "year": item.year,
+                                    "jurisdiction": item.jurisdiction,
+                                    "amount": item.amount,
+                                    "mda": item.mda
+                                }
+                            ))
+                except Exception as e:
+                    logger.error(f"Error searching budgets: {e}")
+
             # Sort by score
             results.sort(key=lambda r: r.score, reverse=True)
 
@@ -652,7 +741,7 @@ class SearchDiscoveryService:
                 "parties": parties,
                 "states": states,
                 "domains": domains,
-                "types": ["politician", "issue", "news", "bill"],
+                "types": ["politician", "issue", "news", "bill", "archive", "budget"],
                 "categories": ["economy", "security", "infrastructure", "governance", "elections"]
             }
 

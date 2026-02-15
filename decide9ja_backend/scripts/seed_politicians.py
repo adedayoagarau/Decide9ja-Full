@@ -24,11 +24,15 @@ from collections import defaultdict
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from app.database import SessionLocal, Politician, Document, init_db
+from app.services.embeddings import get_embeddings, embedding_to_json
+
 # Path to wikidata politicians JSON
 WIKIDATA_PATH = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
     "nigeria_knowledge_data", "wikidata", "nigerian_politicians.json"
 )
+print(f"DEBUG: Looking for wikidata at: {WIKIDATA_PATH}")
 
 def slugify(name: str) -> str:
     """Convert name to URL-safe slug."""
@@ -757,8 +761,14 @@ def seed_database(use_wikidata=True, use_manual=True):
         added = 0
         updated = 0
 
+        seen_slugs = set()
         for p in all_politicians:
             slug = slugify(p["name"])
+            
+            if slug in seen_slugs:
+                continue
+            seen_slugs.add(slug)
+
             existing_pol = db.query(Politician).filter(Politician.slug == slug).first()
 
             # Build data JSON
@@ -816,6 +826,75 @@ def seed_database(use_wikidata=True, use_manual=True):
         print(f"Added: {added}")
         print(f"Updated: {updated}")
         print(f"Total in DB: {final_count}")
+        print(f"{'='*50}")
+
+        # Sync to RAG Documents
+        print("\nSyncing to RAG Documents (batch processing)...")
+        all_pols = db.query(Politician).all()
+        batch_size = 100
+        rag_added = 0
+        
+        for i in range(0, len(all_pols), batch_size):
+            batch = all_pols[i:i+batch_size]
+            texts = []
+            
+            for p in batch:
+                # Construct rich context
+                bio = ""
+                if p.data_json:
+                    try:
+                        d = json.loads(p.data_json)
+                        bio = d.get("bio", "")
+                    except: pass
+                
+                text = f"Profile of {p.name} ({p.party or 'Unknown Party'}).\n"
+                text += f"Position: {p.position or 'Politician'}\n"
+                if p.state:
+                    text += f"State: {p.state}\n"
+                if p.constituency:
+                    text += f"Constituency: {p.constituency}\n"
+                if bio:
+                    text += f"Biography: {bio}\n"
+                texts.append(text)
+            
+            # Generate embeddings
+            try:
+                embeddings = get_embeddings(texts)
+            except Exception as e:
+                print(f"Error generating embeddings for batch {i}: {e}")
+                continue
+                
+            # Create Documents
+            for idx, p in enumerate(batch):
+                doc_id = f"politician_card_{p.slug}"
+                
+                # Check if exists
+                existing = db.query(Document).filter(Document.doc_id == doc_id).first()
+                if not existing:
+                    doc = Document(
+                        doc_type="politician_card",
+                        doc_id=doc_id,
+                        title=f"Profile: {p.name} ({p.position})",
+                        content=texts[idx],
+                        metadata_json=json.dumps({
+                            "slug": p.slug,
+                            "party": p.party,
+                            "state": p.state,
+                            "position": p.position
+                        }),
+                        embedding_json=embedding_to_json(embeddings[idx]),
+                        category="politician",
+                        state=p.state,
+                        party=p.party,
+                        position=p.position
+                    )
+                    db.add(doc)
+                    rag_added += 1
+            
+            db.commit()
+            print(f"Processed {min(i+batch_size, len(all_pols))}/{len(all_pols)} RAG docs...")
+            
+        print(f"RAG Sync Complete. Added {rag_added} new documents.\n")
         print(f"{'='*50}")
 
         print(f"\nSample politicians:")

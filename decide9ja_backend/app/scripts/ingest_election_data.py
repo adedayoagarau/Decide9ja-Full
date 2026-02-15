@@ -1,4 +1,8 @@
 import os
+import sys
+# Add parent directory to path to allow importing 'app'
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
 import json
 import glob
 import logging
@@ -9,7 +13,7 @@ from app.database import SessionLocal, Politician, init_db
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-DATA_DIR = "/Users/Admin/Decide9ja/decide9ja_scraper/data"
+DATA_DIR = "/Volumes/Crucial X10/Decide9ja/decide9ja_scraper/data"
 
 def get_db():
     db = SessionLocal()

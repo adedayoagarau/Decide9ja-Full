@@ -55,9 +55,33 @@ INTENT_PATTERNS = {
         "boost_types": ["procedure_pack"],
     },
     "election": {
-        "patterns": ["election result", "who won", "votes for", "2023 election", "election in"],
+        "patterns": ["election result", "who won", "votes for", "2023 election", "election in", "zabe", "ibo"],
         "boost_types": ["election_result", "jurisdiction_card", "politician_card"],
     },
+}
+
+# Cross-lingual mappings (Local -> English Concept)
+CROSS_LINGUAL_MAPPINGS = {
+    # Hausa
+    "zabe": "election vote",
+    "kudi": "money budget allocation",
+    "shugaba": "president leader",
+    "gwamna": "governor",
+    "majalisar": "assembly parliament house",
+    "sanata": "senator",
+    
+    # Yoruba
+    "owo": "money budget allocation",
+    "ibo": "election vote",
+    "aare": "president",
+    "gomina": "governor",
+    "ile igbimo": "assembly parliament house",
+    
+    # Igbo
+    "ego": "money budget allocation",
+    "ndu": "leader president",
+    "onye": "person who",
+    "gomenti": "government",
 }
 
 
@@ -78,6 +102,7 @@ class EnhancedRAGService:
         query: str,
         top_k: int = 5,
         filters: Optional[Dict] = None,
+        language: str = "en",
     ) -> Tuple[str, List[Dict]]:
         """
         Enhanced retrieval with intent detection and document type boosting.
@@ -97,13 +122,13 @@ class EnhancedRAGService:
         expanded_query = self._preprocess_query(query, intent)
         
         # Step 3: Get candidates using hybrid search with type boosting
-        candidates = self._hybrid_search(expanded_query, self.rerank_candidates, filters, intent)
+        candidates = self._hybrid_search(expanded_query, self.rerank_candidates, filters, intent, language)
         
         if not candidates:
             return "NO DATA FOUND for your query.", []
         
         # Step 4: Rerank with intent awareness
-        reranked = self._rerank_results(candidates, query, intent, top_k)
+        reranked = self._rerank_results(candidates, query, intent, top_k, language)
         
         # Step 5: Format context by document type
         context, sources = self._format_context(reranked, intent)
@@ -158,6 +183,11 @@ class EnhancedRAGService:
             entities.append("INEC registration steps guide how to")
         elif intent == "issue_tracking":
             entities.append("latest update news development crisis")
+            
+        # Cross-lingual expansion
+        for term, expansion in CROSS_LINGUAL_MAPPINGS.items():
+            if term in query_lower:
+                entities.append(expansion)
         
         if entities:
             return f"{query} {' '.join(entities)}"
@@ -168,7 +198,8 @@ class EnhancedRAGService:
         query: str,
         limit: int,
         filters: Optional[Dict],
-        intent: str
+        intent: str,
+        language: str = "en"
     ) -> List[Tuple[float, Document]]:
         """Hybrid search with document type boosting."""
         query_embedding = get_embedding(query)
@@ -219,7 +250,11 @@ class EnhancedRAGService:
             # Apply intent-specific boost
             intent_boost = 0.15 if doc.doc_type in boost_types else 0
             
-            final_score = base_score * type_priority + intent_boost
+            # Apply language boost (if available in doc)
+            # Assuming Document model has 'language' attribute now
+            lang_boost = 0.2 if getattr(doc, 'language', 'en') == language else 0
+            
+            final_score = base_score * type_priority + intent_boost + lang_boost
             combined.append((final_score, doc))
         
         # Sort and return top candidates
@@ -248,7 +283,8 @@ class EnhancedRAGService:
         candidates: List[Tuple[float, Document]],
         original_query: str,
         intent: str,
-        top_k: int
+        top_k: int,
+        language: str = "en"
     ) -> List[Tuple[float, Document]]:
         """Rerank candidates with intent awareness."""
         query_terms = set(re.findall(r'\w+', original_query.lower()))
@@ -267,7 +303,10 @@ class EnhancedRAGService:
             # Intent alignment boost
             intent_alignment = 0.1 if doc.doc_type in boost_types else 0
             
-            boosted_score = score + title_boost + freshness_boost + intent_alignment
+            # Language match boost (reinforce during rerank)
+            lang_match = 0.1 if getattr(doc, 'language', 'en') == language else 0
+            
+            boosted_score = score + title_boost + freshness_boost + intent_alignment + lang_match
             reranked.append((boosted_score, doc))
         
         reranked.sort(key=lambda x: x[0], reverse=True)

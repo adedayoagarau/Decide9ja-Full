@@ -1,18 +1,38 @@
 """
-Supermemory Integration for Decide9ja (Old Tade)
+Supermemory Integration for Decide9ja
 
-Replaces custom memory with Supermemory for:
-- Cross-session persistence
-- Automatic user profiling
-- Semantic recall
-- 1-month learning period before building our own
+Production-ready integration with Supermemory for:
+- Cross-session persistence (memories survive restarts/deploys)
+- Automatic user profiling from interactions
+- Semantic recall with sub-300ms latency
+- Continuous learning from user feedback
+- Knowledge graph augmentation
+
+API Docs: https://supermemory.ai/docs
+Console: https://console.supermemory.ai
 
 Usage:
-    from supermemory_integration import TadeSupermemory
-    
-    memory = TadeSupermemory()
-    await memory.store_interaction(phone, message, response)
-    context = await memory.recall_context(phone, query)
+    from app.services.supermemory_integration import SuperMemoryClient
+
+    # Initialize client
+    memory = SuperMemoryClient()
+
+    # Store interaction
+    await memory.add_memory(
+        user_id=phone_hash,
+        content=f"User asked: {question}\\nAgent responded: {response}",
+        metadata={"intent": intent, "entities": entities}
+    )
+
+    # Recall context for new query
+    context = await memory.search_memories(
+        user_id=phone_hash,
+        query=new_question,
+        limit=5
+    )
+
+    # Get user profile
+    profile = await memory.get_user_profile(phone_hash)
 """
 
 import os
@@ -20,87 +40,226 @@ import json
 import logging
 from typing import Optional, List, Dict, Any
 from datetime import datetime
+from dataclasses import dataclass, asdict
 
-# Supermemory client (using their API directly)
 import httpx
 
 logger = logging.getLogger(__name__)
 
-SUPERMEMORY_API_KEY = os.getenv("SUPERMEMORY_API_KEY", "sm_2YjQGcbZqBgtUhQuJZmGur_jjJBWVrjxCusomPYZOiEPyphQmUPsJINLyqijzoaUoDGrqUnttcQyOOmDjuMEBtk")
-SUPERMEMORY_BASE_URL = "https://api.supermemory.ai/v1"
+# Configuration from environment
+SUPERMEMORY_API_KEY = os.getenv("SUPERMEMORY_API_KEY", "")
+SUPERMEMORY_BASE_URL = os.getenv("SUPERMEMORY_BASE_URL", "https://api.supermemory.ai/v1")
+SUPERMEMORY_CONTAINER = os.getenv("SUPERMEMORY_CONTAINER", "decide9ja-prod")
 
 
-class TadeSupermemory:
+# ===========================================
+# DATA CLASSES
+# ===========================================
+
+@dataclass
+class Memory:
+    """A stored memory item."""
+    id: str
+    content: str
+    user_id: str
+    metadata: Dict[str, Any]
+    created_at: str
+    score: float = 0.0  # Relevance score from search
+
+
+@dataclass
+class UserProfile:
+    """Auto-generated user profile from memories."""
+    user_id: str
+    static_facts: List[str]  # Always-true facts (location, preferences)
+    dynamic_facts: List[str]  # Recent context (last topics, current interests)
+    summary: str
+    memory_count: int
+    last_interaction: str
+
+
+# ===========================================
+# SUPERMEMORY CLIENT
+# ===========================================
+
+class SuperMemoryClient:
     """
-    Supermemory integration for Tade/Decide9ja.
-    
-    Provides:
-    - Automatic conversation storage
-    - Semantic search across history
-    - User profile building
-    - Cross-session continuity
+    Production Supermemory client for Decide9ja.
+
+    Features:
+    - Persistent memory storage across sessions
+    - Semantic search with sub-300ms recall
+    - Automatic user profiling
+    - Memory containerization for multi-tenant safety
+    - Feedback loop for continuous learning
     """
-    
-    def __init__(self, api_key: str = None):
+
+    def __init__(self, api_key: str = None, container: str = None):
         self.api_key = api_key or SUPERMEMORY_API_KEY
         self.base_url = SUPERMEMORY_BASE_URL
+        self.container = container or SUPERMEMORY_CONTAINER
+
+        if not self.api_key:
+            logger.warning("SUPERMEMORY_API_KEY not set - memory features disabled")
+
         self.client = httpx.AsyncClient(
             base_url=self.base_url,
-            headers={"Authorization": f"Bearer {self.api_key}"}
+            headers={
+                "Authorization": f"Bearer {self.api_key}",
+                "Content-Type": "application/json",
+                "X-Container": self.container,
+            },
+            timeout=30.0
         )
-        
-        # Container tag for Tade memories
-        self.container = "tade-decide9ja"
+
+        self._enabled = bool(self.api_key)
     
+    # ===========================================
+    # MEMORY OPERATIONS
+    # ===========================================
+
+    async def add_memory(
+        self,
+        user_id: str,
+        content: str,
+        metadata: Dict[str, Any] = None,
+        memory_type: str = "conversation"
+    ) -> Optional[str]:
+        """
+        Add a memory to Supermemory.
+
+        Args:
+            user_id: User identifier (phone hash)
+            content: Memory content (conversation, fact, preference)
+            metadata: Additional context (intent, entities, location)
+            memory_type: Type of memory (conversation, fact, preference, feedback)
+
+        Returns:
+            Memory ID if successful, None otherwise
+        """
+        if not self._enabled:
+            return None
+
+        try:
+            payload = {
+                "content": content,
+                "userId": user_id,
+                "tags": [self.container, memory_type, f"user:{user_id}"],
+                "metadata": {
+                    "type": memory_type,
+                    "timestamp": datetime.utcnow().isoformat(),
+                    "source": "decide9ja",
+                    **(metadata or {})
+                }
+            }
+
+            response = await self.client.post("/memories", json=payload)
+
+            if response.status_code in [200, 201]:
+                result = response.json()
+                memory_id = result.get("id") or result.get("memoryId")
+                logger.info(f"Stored memory for user {user_id[:8]}...: {memory_id}")
+                return memory_id
+            else:
+                logger.error(f"Failed to store memory: {response.status_code} - {response.text}")
+                return None
+
+        except Exception as e:
+            logger.error(f"Supermemory add error: {e}")
+            return None
+
     async def store_interaction(
         self,
         phone: str,
         user_message: str,
-        tade_response: str,
+        agent_response: str,
         metadata: Dict[str, Any] = None
     ) -> bool:
         """
-        Store a conversation interaction in Supermemory.
-        
+        Store a conversation interaction.
+        Convenience method for typical Q&A storage.
+
         Args:
-            phone: User's phone number (hashed for privacy)
+            phone: User's phone hash
             user_message: What user said
-            tade_response: What Tade replied
-            metadata: Additional context (location, query type, etc.)
+            agent_response: What Tade/agent replied
+            metadata: Additional context (intent, entities, location)
         """
-        try:
-            # Create memory content
-            content = f"""User ({phone}): {user_message}
+        content = f"""User: {user_message}
 
-Tade: {tade_response}
+Agent: {agent_response}"""
 
-Context: {json.dumps(metadata) if metadata else "None"}"""
-            
-            # Store in Supermemory
-            response = await self.client.post(
-                "/memories",
-                json={
-                    "content": content,
-                    "tags": [self.container, f"user:{phone}", "conversation"],
-                    "metadata": {
-                        "phone": phone,
-                        "timestamp": datetime.utcnow().isoformat(),
-                        **(metadata or {})
-                    }
-                }
-            )
-            
-            if response.status_code == 200:
-                logger.info(f"Stored interaction for {phone}")
-                return True
-            else:
-                logger.error(f"Failed to store: {response.text}")
-                return False
-                
-        except Exception as e:
-            logger.error(f"Supermemory store error: {e}")
-            return False
+        memory_id = await self.add_memory(
+            user_id=phone,
+            content=content,
+            metadata={
+                "user_message": user_message[:500],
+                "agent_response": agent_response[:500],
+                **(metadata or {})
+            },
+            memory_type="conversation"
+        )
+        return memory_id is not None
     
+    async def search_memories(
+        self,
+        user_id: str,
+        query: str,
+        limit: int = 5,
+        memory_types: List[str] = None
+    ) -> List[Memory]:
+        """
+        Search memories semantically for a user.
+
+        Args:
+            user_id: User identifier
+            query: Search query (semantic)
+            limit: Max results to return
+            memory_types: Filter by memory types (conversation, fact, preference)
+
+        Returns:
+            List of Memory objects with relevance scores
+        """
+        if not self._enabled:
+            return []
+
+        try:
+            payload = {
+                "query": query,
+                "userId": user_id,
+                "limit": limit,
+                "tags": [self.container, f"user:{user_id}"]
+            }
+
+            if memory_types:
+                payload["tags"].extend(memory_types)
+
+            response = await self.client.post("/search", json=payload)
+
+            if response.status_code == 200:
+                results = response.json()
+                memories = []
+
+                for item in results.get("memories", results.get("results", [])):
+                    memories.append(Memory(
+                        id=item.get("id", ""),
+                        content=item.get("content", ""),
+                        user_id=user_id,
+                        metadata=item.get("metadata", {}),
+                        created_at=item.get("createdAt", ""),
+                        score=item.get("score", item.get("similarity", 0.0))
+                    ))
+
+                logger.info(f"Recalled {len(memories)} memories for user {user_id[:8]}...")
+                return memories
+            else:
+                logger.error(f"Memory search failed: {response.status_code}")
+                return []
+
+        except Exception as e:
+            logger.error(f"Supermemory search error: {e}")
+            return []
+
     async def recall_context(
         self,
         phone: str,
@@ -109,292 +268,413 @@ Context: {json.dumps(metadata) if metadata else "None"}"""
     ) -> List[Dict[str, Any]]:
         """
         Recall relevant context for a user query.
-        
-        Args:
-            phone: User's phone number
-            query: Current query to find context for
-            limit: Max memories to return
-            
-        Returns:
-            List of relevant memories with similarity scores
+        Legacy compatibility method.
         """
-        try:
-            # Search Supermemory
-            response = await self.client.post(
-                "/search",
-                json={
-                    "query": query,
-                    "tags": [self.container, f"user:{phone}"],
-                    "limit": limit
-                }
-            )
-            
-            if response.status_code == 200:
-                results = response.json()
-                logger.info(f"Recalled {len(results.get('memories', []))} memories for {phone}")
-                return results.get("memories", [])
-            else:
-                logger.error(f"Failed to recall: {response.text}")
-                return []
-                
-        except Exception as e:
-            logger.error(f"Supermemory recall error: {e}")
-            return []
+        memories = await self.search_memories(phone, query, limit)
+        return [asdict(m) for m in memories]
     
-    async def get_user_profile(self, phone: str) -> Dict[str, Any]:
+    async def get_user_profile(self, user_id: str) -> Optional[UserProfile]:
         """
         Get auto-generated user profile from Supermemory.
-        
-        Supermemory builds profiles automatically from stored memories.
+
+        Supermemory builds profiles automatically from stored memories,
+        extracting static facts (location, preferences) and dynamic
+        context (recent topics, current interests).
         """
+        if not self._enabled:
+            return None
+
         try:
             response = await self.client.get(
-                f"/profiles/{phone}",
+                f"/users/{user_id}/profile",
                 params={"container": self.container}
             )
-            
+
             if response.status_code == 200:
-                return response.json()
+                data = response.json()
+                return UserProfile(
+                    user_id=user_id,
+                    static_facts=data.get("staticFacts", data.get("static_facts", [])),
+                    dynamic_facts=data.get("dynamicFacts", data.get("dynamic_facts", [])),
+                    summary=data.get("summary", ""),
+                    memory_count=data.get("memoryCount", data.get("memory_count", 0)),
+                    last_interaction=data.get("lastInteraction", data.get("last_interaction", ""))
+                )
             else:
-                return {}
-                
+                logger.warning(f"Profile not found for user {user_id[:8]}...")
+                return None
+
         except Exception as e:
             logger.error(f"Profile fetch error: {e}")
-            return {}
+            return None
     
     async def store_user_fact(
         self,
-        phone: str,
+        user_id: str,
         fact: str,
         fact_type: str = "preference"
     ) -> bool:
         """
         Store a specific fact about a user.
-        
+
+        Facts are used to build the user profile automatically.
+        Types: location, preference, interest, demographic
+
         Examples:
-        - "User lives in Lagos State"
-        - "User interested in education budgets"
-        - "User prefers Pidgin responses"
+        - "User lives in Lagos State" (location)
+        - "User interested in education budgets" (interest)
+        - "User prefers Pidgin responses" (preference)
+        - "User is a first-time voter" (demographic)
         """
+        memory_id = await self.add_memory(
+            user_id=user_id,
+            content=fact,
+            metadata={"fact_type": fact_type},
+            memory_type="fact"
+        )
+        return memory_id is not None
+
+    # ===========================================
+    # FEEDBACK & LEARNING
+    # ===========================================
+
+    async def store_feedback(
+        self,
+        user_id: str,
+        query: str,
+        response: str,
+        feedback_type: str,
+        correction: str = None,
+        rating: int = None
+    ) -> bool:
+        """
+        Store user feedback for continuous learning.
+
+        Args:
+            user_id: User identifier
+            query: Original query
+            response: Agent's response
+            feedback_type: positive, negative, correction, clarification
+            correction: User's corrected answer (if feedback_type=correction)
+            rating: 1-5 rating (if provided)
+        """
+        content = f"""FEEDBACK ({feedback_type})
+Query: {query}
+Response: {response}
+{f'Correction: {correction}' if correction else ''}
+{f'Rating: {rating}/5' if rating else ''}"""
+
+        metadata = {
+            "feedback_type": feedback_type,
+            "query": query[:500],
+            "response": response[:500],
+        }
+        if correction:
+            metadata["correction"] = correction
+        if rating:
+            metadata["rating"] = rating
+
+        memory_id = await self.add_memory(
+            user_id=user_id,
+            content=content,
+            metadata=metadata,
+            memory_type="feedback"
+        )
+        return memory_id is not None
+
+    async def get_similar_questions(
+        self,
+        query: str,
+        limit: int = 3
+    ) -> List[Memory]:
+        """
+        Find similar questions asked by any user.
+        Useful for learning common query patterns.
+        """
+        if not self._enabled:
+            return []
+
         try:
-            response = await self.client.post(
-                "/memories",
-                json={
-                    "content": fact,
-                    "tags": [self.container, f"user:{phone}", "fact", fact_type],
-                    "metadata": {
-                        "phone": phone,
-                        "fact_type": fact_type,
-                        "timestamp": datetime.utcnow().isoformat()
-                    }
-                }
-            )
-            
-            return response.status_code == 200
-            
+            payload = {
+                "query": query,
+                "limit": limit,
+                "tags": [self.container, "conversation"]
+            }
+
+            response = await self.client.post("/search", json=payload)
+
+            if response.status_code == 200:
+                results = response.json()
+                return [
+                    Memory(
+                        id=item.get("id", ""),
+                        content=item.get("content", ""),
+                        user_id=item.get("userId", ""),
+                        metadata=item.get("metadata", {}),
+                        created_at=item.get("createdAt", ""),
+                        score=item.get("score", 0.0)
+                    )
+                    for item in results.get("memories", results.get("results", []))
+                ]
+            return []
+
         except Exception as e:
-            logger.error(f"Fact store error: {e}")
-            return False
+            logger.error(f"Similar questions search error: {e}")
+            return []
     
     async def get_conversation_summary(
         self,
-        phone: str,
-        since: datetime = None
+        user_id: str,
+        limit: int = 10
     ) -> str:
         """
         Get a summary of recent conversations with a user.
-        
-        Useful for context compression recovery.
+        Useful for context compression and session recovery.
         """
+        memories = await self.search_memories(
+            user_id=user_id,
+            query="recent conversation topics and questions",
+            limit=limit,
+            memory_types=["conversation"]
+        )
+
+        if not memories:
+            return ""
+
+        # Extract key topics
+        topics = []
+        for mem in memories:
+            content = mem.content
+            # Extract user question from conversation format
+            if "User:" in content:
+                user_part = content.split("User:")[1].split("Agent:")[0].strip()
+                if user_part:
+                    topics.append(user_part[:100])
+
+        if topics:
+            return "Recent topics: " + "; ".join(topics[-5:])
+
+        return ""
+
+    async def delete_user_memories(self, user_id: str) -> bool:
+        """
+        Delete all memories for a user (GDPR compliance).
+        """
+        if not self._enabled:
+            return True
+
         try:
-            # Get recent memories
-            memories = await self.recall_context(
-                phone=phone,
-                query="recent conversation summary",
-                limit=10
+            response = await self.client.delete(
+                f"/users/{user_id}/memories",
+                params={"container": self.container}
             )
-            
-            if not memories:
-                return ""
-            
-            # Extract key points
-            key_points = []
-            for mem in memories:
-                content = mem.get("content", "")
-                # Extract just the user messages for summary
-                if "User (" in content:
-                    user_msg = content.split("User (")[1].split("):")[1].split("\n\nTade:")[0].strip()
-                    key_points.append(user_msg)
-            
-            if key_points:
-                return "Previous topics: " + "; ".join(key_points[-5:])
-            
-            return ""
-            
+            return response.status_code in [200, 204]
         except Exception as e:
-            logger.error(f"Summary error: {e}")
-            return ""
-    
+            logger.error(f"Delete user memories error: {e}")
+            return False
+
     async def close(self):
-        """Close HTTP client"""
+        """Close HTTP client."""
         await self.client.aclose()
 
+    async def __aenter__(self):
+        return self
 
-# Integration helper for message_handler_v4.py
-async def enhance_tade_with_supermemory(
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        await self.close()
+
+
+# ===========================================
+# LEGACY COMPATIBILITY - TadeSupermemory alias
+# ===========================================
+
+# Alias for backwards compatibility with existing code
+TadeSupermemory = SuperMemoryClient
+
+
+# ===========================================
+# HELPER FUNCTIONS FOR MESSAGE HANDLER
+# ===========================================
+
+async def enhance_with_supermemory(
     phone: str,
     user_message: str,
-    tade_response: str,
+    agent_response: str,
     metadata: Dict[str, Any] = None
 ):
     """
-    Drop-in replacement for existing memory storage.
-    
-    Usage in message_handler_v4.py:
-        # OLD (custom memory):
-        # user_memory.save_message(phone, "user", text)
-        
-        # NEW (Supermemory):
-        await enhance_tade_with_supermemory(phone, text, response, {
-            "location": user_state.state,
-            "query_type": intent
+    Store interaction in SuperMemory after response generation.
+
+    Usage in message_handler_v5.py:
+        await enhance_with_supermemory(phone, text, response, {
+            "intent": intent,
+            "entities": entities,
+            "location": user_state
         })
     """
-    memory = TadeSupermemory()
-    
-    try:
-        # Store interaction
-        await memory.store_interaction(phone, user_message, tade_response, metadata)
-        
-        # If location collected, store as fact
-        if metadata and metadata.get("location"):
-            await memory.store_user_fact(
-                phone,
-                f"User is located in {metadata['location']}",
-                "location"
-            )
-        
-        # If interests mentioned, store as fact
-        if metadata and metadata.get("interests"):
-            for interest in metadata["interests"]:
+    async with SuperMemoryClient() as memory:
+        # Store the interaction
+        await memory.store_interaction(phone, user_message, agent_response, metadata)
+
+        # Extract and store facts from metadata
+        if metadata:
+            if metadata.get("location"):
                 await memory.store_user_fact(
                     phone,
-                    f"User interested in {interest}",
-                    "interest"
+                    f"User is located in {metadata['location']}",
+                    "location"
                 )
-                
-    finally:
-        await memory.close()
+
+            if metadata.get("interests"):
+                for interest in metadata["interests"]:
+                    await memory.store_user_fact(
+                        phone,
+                        f"User interested in {interest}",
+                        "interest"
+                    )
+
+            if metadata.get("state"):
+                await memory.store_user_fact(
+                    phone,
+                    f"User is in {metadata['state']} state",
+                    "location"
+                )
 
 
-async def get_supermemory_context(phone: str, query: str) -> str:
+# Alias for backwards compatibility
+enhance_tade_with_supermemory = enhance_with_supermemory
+
+
+async def get_memory_context(phone: str, query: str) -> str:
     """
-    Get relevant context from Supermemory before generating response.
-    
-    Usage in message_handler_v4.py:
-        # Before calling Claude:
-        context = await get_supermemory_context(phone, user_message)
-        # Add context to Claude prompt
+    Get relevant context from SuperMemory before generating response.
+
+    Usage in message_handler_v5.py:
+        context = await get_memory_context(phone, user_message)
+        # Add to Claude prompt
     """
-    memory = TadeSupermemory()
-    
-    try:
-        # Recall relevant memories
-        memories = await memory.recall_context(phone, query, limit=3)
-        
+    async with SuperMemoryClient() as memory:
+        memories = await memory.search_memories(phone, query, limit=3)
+
         if not memories:
             return ""
-        
+
         # Format for Claude prompt
         context_parts = []
         for mem in memories:
-            content = mem.get("content", "")
-            # Extract relevant parts
-            if "Tade:" in content:
-                # Previous Q&A
-                context_parts.append(content.split("Tade:")[1].split("\n\nContext:")[0].strip())
-        
+            # Extract previous agent responses
+            if "Agent:" in mem.content:
+                agent_part = mem.content.split("Agent:")[1].strip()
+                context_parts.append(f"- {agent_part[:200]}")
+
         if context_parts:
-            return "Relevant previous context:\n" + "\n".join(context_parts)
-        
+            return "Previous relevant context:\n" + "\n".join(context_parts)
+
         return ""
-        
-    finally:
-        await memory.close()
 
 
-# Migration script from old memory to Supermemory
+# Alias for backwards compatibility
+get_supermemory_context = get_memory_context
+
+
+async def get_user_memory_profile(phone: str) -> Dict[str, Any]:
+    """
+    Get user profile with facts and recent context.
+
+    Returns dict with:
+    - static_facts: Location, preferences that don't change
+    - dynamic_facts: Recent topics, current interests
+    - summary: Brief user description
+    """
+    async with SuperMemoryClient() as memory:
+        profile = await memory.get_user_profile(phone)
+
+        if profile:
+            return {
+                "static_facts": profile.static_facts,
+                "dynamic_facts": profile.dynamic_facts,
+                "summary": profile.summary,
+                "memory_count": profile.memory_count
+            }
+
+        return {
+            "static_facts": [],
+            "dynamic_facts": [],
+            "summary": "New user",
+            "memory_count": 0
+        }
+
+
 async def migrate_user_to_supermemory(phone: str, user_state: Any, history: List[Dict]):
     """
-    Migrate existing user data to Supermemory.
-    
-    Run once per user on first interaction after Supermemory deployment.
+    Migrate existing user data to SuperMemory.
+    Run once per user on first interaction after deployment.
     """
-    memory = TadeSupermemory()
-    
-    try:
+    async with SuperMemoryClient() as memory:
         # Store user facts
-        if user_state.state:
+        if hasattr(user_state, 'state') and user_state.state:
             await memory.store_user_fact(phone, f"User is in {user_state.state} state", "location")
-        
-        if user_state.lga:
+
+        if hasattr(user_state, 'lga') and user_state.lga:
             await memory.store_user_fact(phone, f"User's LGA is {user_state.lga}", "location")
-        
-        if user_state.interests:
+
+        if hasattr(user_state, 'interests') and user_state.interests:
             for interest in user_state.interests:
                 await memory.store_user_fact(phone, f"User interested in {interest}", "interest")
-        
-        # Migrate recent history (last 10 messages)
+
+        # Migrate recent history
         for msg in history[-10:]:
-            if msg.get("role") in ["user", "assistant"]:
-                await memory.store_interaction(
-                    phone=phone,
-                    user_message=msg.get("content", ""),
-                    tade_response="",  # We don't have the response in old format
-                    metadata={"migrated": True, "original_timestamp": msg.get("timestamp")}
+            if msg.get("role") == "user":
+                await memory.add_memory(
+                    user_id=phone,
+                    content=f"User: {msg.get('content', '')}",
+                    metadata={"migrated": True, "original_timestamp": msg.get("timestamp")},
+                    memory_type="conversation"
                 )
-        
-        logger.info(f"Migrated user {phone} to Supermemory")
-        
-    finally:
-        await memory.close()
+
+        logger.info(f"Migrated user {phone[:8]}... to SuperMemory")
 
 
-# Monitoring/metrics for the 1-month learning period
-class SupermemoryMetrics:
-    """Track Supermemory usage and effectiveness during learning period"""
-    
+# ===========================================
+# METRICS & MONITORING
+# ===========================================
+
+class SuperMemoryMetrics:
+    """Track SuperMemory usage and effectiveness."""
+
     def __init__(self):
         self.stats = {
             "stores": 0,
-            "recalls": 0,
-            "avg_recall_relevance": 0.0,
-            "profile_hits": 0
+            "searches": 0,
+            "avg_relevance": 0.0,
+            "profile_fetches": 0,
+            "feedback_stored": 0,
+            "errors": 0
         }
-    
+
     def record_store(self):
         self.stats["stores"] += 1
-    
-    def record_recall(self, relevance_score: float):
-        self.stats["recalls"] += 1
-        # Update running average
-        n = self.stats["recalls"]
-        self.stats["avg_recall_relevance"] = (
-            (self.stats["avg_recall_relevance"] * (n - 1) + relevance_score) / n
+
+    def record_search(self, relevance_score: float):
+        self.stats["searches"] += 1
+        n = self.stats["searches"]
+        self.stats["avg_relevance"] = (
+            (self.stats["avg_relevance"] * (n - 1) + relevance_score) / n
         )
-    
+
+    def record_feedback(self):
+        self.stats["feedback_stored"] += 1
+
+    def record_error(self):
+        self.stats["errors"] += 1
+
     def get_report(self) -> Dict:
         return {
             **self.stats,
-            "effectiveness_score": self.stats["avg_recall_relevance"],
-            "recommendation": self._get_recommendation()
+            "effectiveness_score": self.stats["avg_relevance"],
+            "error_rate": self.stats["errors"] / max(1, self.stats["stores"] + self.stats["searches"])
         }
-    
-    def _get_recommendation(self) -> str:
-        """Generate recommendation for building our own system"""
-        if self.stats["avg_recall_relevance"] > 0.8:
-            return "High effectiveness. Consider building similar semantic search system."
-        elif self.stats["avg_recall_relevance"] > 0.6:
-            return "Moderate effectiveness. May need hybrid approach."
-        else:
-            return "Low effectiveness. Consider different memory architecture."
+
+
+# Alias for backwards compatibility
+SupermemoryMetrics = SuperMemoryMetrics

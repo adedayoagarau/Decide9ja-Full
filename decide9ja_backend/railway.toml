@@ -1,6 +1,22 @@
+# Decide9ja Backend - Railway Configuration
+# https://docs.railway.app/reference/config-as-code
+
 [build]
-builder = "nixpacks"
-buildCommand = "pip install -r requirements.txt"
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
 
 [deploy]
-startCommand = "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+startCommand = "gunicorn app.main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT --timeout 120"
+healthcheckPath = "/health"
+healthcheckTimeout = 30
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
+
+# Environment variables are set via Railway dashboard:
+# - DATABASE_URL (Railway PostgreSQL)
+# - ANTHROPIC_API_KEY
+# - OPENAI_API_KEY
+# - TWILIO_ACCOUNT_SID
+# - TWILIO_AUTH_TOKEN
+# - SUPERMEMORY_API_KEY
+# - REDIS_URL (optional)

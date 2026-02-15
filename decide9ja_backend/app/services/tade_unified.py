@@ -29,6 +29,8 @@ from app.services.supermemory_integration import (
     enhance_tade_with_supermemory,
     get_supermemory_context
 )
+from app.services.rag_router import get_rag_router
+from app.database import get_db
 
 logger = logging.getLogger(__name__)
 
@@ -239,9 +241,12 @@ class UnifiedTadeHandler:
     - Supermemory integration
     """
     
+    
     def __init__(self):
         self.location_id = LocationIdentifier()
         self.supermemory = TadeSupermemory()
+        self.db = next(get_db())
+        self.rag_router = get_rag_router(self.db)
     
     async def handle_message(self, phone: str, message: str, media_url: str = None) -> str:
         """
@@ -337,8 +342,22 @@ class UnifiedTadeHandler:
             else:
                 return result["message"]
         
-        # Other tool types...
-        return "What would you like to know?"
+        # Use RAG Router for all other queries
+        try:
+            query = working_memory.current_query.get("query_text", "")
+            router_response = await self.rag_router.route(query)
+            
+            # Format response with sources if available
+            response_text = router_response["response"]
+            if router_response.get("sources"):
+                sources_text = "\n\nSources:\n" + "\n".join([f"- {s.get('title', 'Source')}" for s in router_response.get("sources", [])[:3]])
+                response_text += sources_text
+                
+            return response_text
+            
+        except Exception as e:
+            logger.error(f"RAG Router failed: {e}")
+            return "I encountered a problem accessing the information. Please try again."
     
     def _detect_intent(self, message: str) -> str:
         """Simple intent detection"""

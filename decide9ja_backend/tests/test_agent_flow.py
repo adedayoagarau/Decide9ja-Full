@@ -6,7 +6,7 @@ Tests for the multi-agent routing system.
 Tests:
 1. ClassifierAgent - Intent recognition
 2. RouterAgent - Correct agent routing
-3. End-to-end flow through message_handler_v5
+3. End-to-end flow through message_handler_v4
 """
 
 import os
@@ -17,9 +17,6 @@ from unittest.mock import MagicMock, AsyncMock, patch
 
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-# Set USE_V5 before imports
-os.environ["USE_V5"] = "true"
 
 from app.agents.base import AgentInput, AgentOutput, UserContext, CostLevel
 from app.agents.tier1_entry.classifier import ClassifierAgent, Intent
@@ -404,9 +401,6 @@ class TestEndToEndFlow:
         """Test full flow for rep lookup query"""
         from app.services.message_handler_v5 import handle_message
 
-        # Ensure USE_V5 is enabled
-        os.environ["USE_V5"] = "true"
-
         response = await handle_message(
             phone="+2348012345678",
             text="Who is my rep in Ikeja?"
@@ -415,15 +409,11 @@ class TestEndToEndFlow:
         # Should get a response (not error)
         assert response is not None
         assert len(response) > 0
-        # Should mention something about representatives or the area
-        # Note: actual content depends on database/fallback data
 
     @pytest.mark.asyncio
     async def test_full_flow_politician_info(self):
         """Test full flow for politician info query"""
         from app.services.message_handler_v5 import handle_message
-
-        os.environ["USE_V5"] = "true"
 
         response = await handle_message(
             phone="+2348012345678",
@@ -440,8 +430,6 @@ class TestEndToEndFlow:
         """Test full flow for election info query"""
         from app.services.message_handler_v5 import handle_message
 
-        os.environ["USE_V5"] = "true"
-
         response = await handle_message(
             phone="+2348012345678",
             text="When is the 2027 election?"
@@ -457,8 +445,6 @@ class TestEndToEndFlow:
         """Test full flow for news query"""
         from app.services.message_handler_v5 import handle_message
 
-        os.environ["USE_V5"] = "true"
-
         response = await handle_message(
             phone="+2348012345678",
             text="Latest news on fuel subsidy"
@@ -472,8 +458,6 @@ class TestEndToEndFlow:
         """Test full flow for promise lookup query"""
         from app.services.message_handler_v5 import handle_message
 
-        os.environ["USE_V5"] = "true"
-
         response = await handle_message(
             phone="+2348012345678",
             text="What did Obi promise about education?"
@@ -486,8 +470,6 @@ class TestEndToEndFlow:
     async def test_full_flow_report_issue(self):
         """Test full flow for issue reporting query"""
         from app.services.message_handler_v5 import handle_message
-
-        os.environ["USE_V5"] = "true"
 
         response = await handle_message(
             phone="+2348012345678",
@@ -523,8 +505,6 @@ class TestEndToEndFlow:
     async def test_optimized_handler(self):
         """Test the optimized handler with fast path"""
         from app.services.message_handler_v5 import handle_message_optimized
-
-        os.environ["USE_V5"] = "true"
 
         # Simple greeting should be fast
         response = await handle_message_optimized(

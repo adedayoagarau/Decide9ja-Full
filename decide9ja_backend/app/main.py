@@ -279,6 +279,14 @@ async def startup_event():
     from app.routers import performance as performance_router
     app.include_router(performance_router.router, tags=["Performance"])
 
+    # Include Budget router
+    from app.routers import budget as budget_router
+    app.include_router(budget_router.router, tags=["Budget"])
+
+    # Include Catalog (Newspaper Archive) router
+    from app.routers import catalog as catalog_router
+    app.include_router(catalog_router.router, tags=["Catalog"])
+
     logger.info("✅ Decide9ja Backend Started")
     logger.info(f"   Environment: {ENVIRONMENT}")
     logger.info(f"   Rate Limiting: {RATE_LIMITING_ENABLED}")
@@ -303,6 +311,7 @@ async def startup_event():
     logger.info(f"   Data Pipeline API: /api/pipeline")
     logger.info(f"   Dashboard API: /api/dashboard")
     logger.info(f"   Performance API: /api/performance")
+    logger.info(f"   Catalog API: /api/catalog")
     
     # Start background scheduler for cron jobs
     try:
@@ -406,39 +415,35 @@ async def ask_question(request: Request, body: AskRequest, db: Session = Depends
         )
     
     # Import here to avoid circular imports
-    from app.services.rag import RAGService
-    from app.services.llm import generate_response_sync
+    from app.services.rag_router import RAGRouter
     
-    # Initialize RAG service
-    rag = RAGService(db)
+    # Initialize RAG Router
+    router = RAGRouter(db)
     
-    # Build filters from request (already validated by Pydantic)
+    # Build filters from request
     filters = {}
     if body.state:
         filters["state"] = body.state
     
-    # Retrieve relevant context
-    context, sources = rag.retrieve(
-        query=body.query,
-        top_k=5,
-        filters=filters if filters else None
-    )
-    
-    # Check if we have an API key
-    api_key = os.getenv("ANTHROPIC_API_KEY")
-    
-    if api_key:
-        try:
-            response_text = generate_response_sync(
-                user_message=body.query,
-                context=context
-            )
-        except Exception as e:
-            logger.error(f"LLM error: {e}")
-            response_text = "I'm having trouble processing your request. Please try again."
-    else:
-        # Fallback: return raw context if no API key
-        response_text = f"[API Key not configured - Showing raw context]\n\n{context}"
+    try:
+        # Route query to appropriate handler
+        # This handles retrieval, context building, and answer synthesis
+        result = await router.route(
+            query=body.query,
+            filters=filters
+        )
+        
+        response_text = result.get("response", "I'm having trouble finding that information.")
+        sources = result.get("sources", [])
+        context = result.get("context", "")
+        
+        # Log the intent for debugging
+        logger.info(f"Query routed as: {result.get('intent')}")
+        
+    except Exception as e:
+        logger.error(f"Router error: {e}")
+        response_text = "I encountered an error while processing your request. Please try again."
+        sources = []
     
     # Calculate response time
     response_time = int((time.time() - start_time) * 1000)
@@ -611,13 +616,13 @@ async def _process_and_respond(phone_from: str, message_body: str, media_url: st
     Background task to process message and send response via Twilio API.
     This avoids Twilio's 15-second webhook timeout.
     """
-    from app.services.message_handler_v4 import handle_message
+    from app.services.message_handler_v5 import handle_message
     from app.services.twilio_whatsapp import send_message, hash_phone
     from app.services import voice
-    
+
     try:
         user_hash = hash_phone(phone_from)
-        
+
         # Handle incoming voice note
         if media_url and "audio" in media_type:
             logger.info(f"Transcribing voice note from {user_hash[:8]}...")
@@ -630,11 +635,11 @@ async def _process_and_respond(phone_from: str, message_body: str, media_url: st
                 logger.error(f"Voice transcription error: {e}")
                 send_message(phone_from, "Sorry, I couldn't understand that voice note. Please try again or type your message.")
                 return
-        
+
         if not message_body:
             return
-        
-        # Process message with V4 Claude-First handler
+
+        # Process message with V5 Multi-Agent handler
         response_text = await handle_message(phone_from, message_body, media_url)
         
         logger.info(f"📤 Response ready ({len(response_text)} chars): '{response_text[:80]}...'")

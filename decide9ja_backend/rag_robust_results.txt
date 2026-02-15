@@ -1,0 +1,208 @@
+🚀 Starting RAG ROBUSTNESS TEST (90 Questions)
+================================================================================
+
+[1/90] Q: Wetin concern budget with me?
+   ✅ Time: 4.236s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[2/90] Q: How much dem wan spend for road inside Lagos?
+   ✅ Time: 5.402s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[3/90] Q: Who carry our money go?
+   ✅ Time: 1.167s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[4/90] Q: Abeg show me allocation for my local government.
+   ✅ Time: 5.126s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[5/90] Q: Any money for youth empowerment?
+   ✅ Time: 4.651s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[6/90] Q: Wetin be the budget for 'Stomach Infrastructure'?
+   ✅ Time: 1.975s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[7/90] Q: Did they budget for 'Generator' maintenance?
+   ✅ Time: 6.046s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[8/90] Q: How much for 'Refreshment' and 'Meals'?
+   ✅ Time: 5.480s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[9/90] Q: Who get the highest allocation for 2026?
+   ✅ Time: 4.698s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[10/90] Q: Is the budget realistic?
+   ✅ Time: 1.512s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[11/90] Q: Who is responsible for the bad roads in Surulere?
+   ✅ Time: 4.014s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[12/90] Q: Did my senator deliver the constituency project in Borno South?
+   ✅ Time: 1.814s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[13/90] Q: Show me the breakdown of the Governor's security vote.
+   ✅ Time: 7.039s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[14/90] Q: Why is the Ministry of Works spending so much on 'Consultancy'?
+   ✅ Time: 10.854s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[15/90] Q: List all companies paid for 'Borehole' construction.
+   ✅ Time: 5.098s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[16/90] Q: Who approved the payment to 'DANTATA & SAWOE'?
+   ✅ Time: 3.190s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[17/90] Q: Are there any red flags for the Ministry of Power?
+   ✅ Time: 10.465s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[18/90] Q: Show me duplicate payments in the transaction records.
+   ✅ Time: 3.453s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[19/90] Q: Which MDA has the most suspicious findings?
+   ✅ Time: 1.813s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[20/90] Q: Is there any evidence of contract splitting?
+   ✅ Time: 6.941s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[21/90] Q: Why is rice so expensive in the market?
+   ✅ Time: 3.020s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[22/90] Q: How much did we borrow in 2025?
+   ✅ Time: 0.945s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[23/90] Q: What is the debt service allocation for 2026?
+   ✅ Time: 4.432s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[24/90] Q: Compare the budget for Agriculture vs Defence.
+   ✅ Time: 2.589s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[25/90] Q: Is there any subsidy in the 2026 budget?
+   ✅ Time: 3.333s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[26/90] Q: How much is allocated for 'Social Investment Programs'?
+   ✅ Time: 3.872s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[27/90] Q: What is the exchange rate assumption in the budget?
+   ✅ Time: 3.457s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[28/90] Q: Show me the capital vs recurrent expenditure ratio.
+   ✅ Time: 2.023s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[29/90] Q: How much is the personnel cost for the Presidency?
+   ✅ Time: 2.924s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[30/90] Q: Did the allocation for Health increase or decrease?
+   ✅ Time: 1.189s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[31/90] Q: How much did Lagos budget for health in 2026?
+   ✅ Time: 1.796s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[32/90] Q: What is the total budget for Borno State in 2026?
+   ✅ Time: 5.520s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[33/90] Q: How much was allocated for education in Adamawa?
+   ✅ Time: 2.558s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[34/90] Q: Show me the capital expenditure for Works in Rivers.
+   ✅ Time: 2.840s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[35/90] Q: Did Enugu budget for any new hospitals in 2026?
+   ✅ Time: 2.868s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[36/90] Q: How much is the personnel cost for Lagos Ministry of Education?
+   ✅ Time: 6.297s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[37/90] Q: What is the allocation for the Governor's Office in Yobe?
+   ✅ Time: 5.512s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[38/90] Q: Find budget items related to 'Borehole' in Jigawa.
+   ✅ Time: 5.167s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[39/90] Q: How much for 'Feeding' in Katsina budget?
+   ✅ Time: 4.295s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[40/90] Q: What is the biggest project in the 2026 Budget for Anambra?
+   ✅ Time: 4.434s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[41/90] Q: Show me suspicious payments in Lagos.
+   ✅ Time: 3.314s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[42/90] Q: Who are the top contractors receiving payments recently?
+   ✅ Time: 1.139s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[43/90] Q: Did 'Julius Berger' receive any money in 2025?
+   ✅ Time: 0.584s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[44/90] Q: Show me payments above 1 billion naira.
+   ✅ Time: 0.815s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[45/90] Q: Are there any anomalies in travel expenses?
+   ✅ Time: 3.533s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[46/90] Q: Find payments to 'Unknown' beneficiaries.
+   ✅ Time: 1.868s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[47/90] Q: Show me budget items with amount 0.
+   ✅ Time: 3.003s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[48/90] Q: Who signed the 2026 budget?
+   ✅ Time: 1.746s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[49/90] Q: What is the code for Ministry of Health?
+   ✅ Time: 6.470s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[50/90] Q: Show me the overhead cost for the Judiciary.
+   ✅ Time: 3.272s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[51/90] Q: Who received payments from the Federal Government yesterday?
+   ✅ Time: 2.645s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[52/90] Q: Show me payments to 'CCECC'.
+   ✅ Time: 1.215s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[53/90] Q: How much was paid for 'Conference' in 2025?
+   ✅ Time: 1.715s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[54/90] Q: Did the State House receive any payments recently?
+   ✅ Time: 4.087s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[55/90] Q: What did the Ministry of Power spend money on in April 2025?
+   ✅ Time: 6.867s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[56/90] Q: Show payments made to individuals instead of companies.
+   ✅ Time: 5.410s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[57/90] Q: List payments for 'Diesel' or 'Fuel'.
+   ✅ Time: 1.300s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[58/90] Q: Did any payment references mention 'Estacode'?
+   ✅ Time: 2.058s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[59/90] Q: Who authorized the payment for 'Legislative Aides'?
+   ✅ Time: 2.180s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[60/90] Q: What is the total amount paid to 'Julius Berger'?
+   ✅ Time: 1.235s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[61/90] Q: How do I recall my senator?
+   ✅ Time: 0.210s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[62/90] Q: What are the requirements to run for Governor?
+   ✅ Time: 1.735s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[63/90] Q: Does the constitution allow for state police?
+   ✅ Time: 3.984s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[64/90] Q: What is the role of the Local Government Chairman?
+   ✅ Time: 5.736s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[65/90] Q: How can I report a corrupt official?
+   ✅ Time: 1.858s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[66/90] Q: Is it legal for the Governor to appoint his son?
+   ✅ Time: 2.238s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[67/90] Q: What does 'Federal Character' mean?
+   ✅ Time: 0.532s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[68/90] Q: Who confirms the appointment of Ministers?
+   ✅ Time: 2.494s | Sources: ['finance_intel', 'budget', 'newspaper_archive']
+
+[69/90] Q: Can the President spend money without approval?

@@ -132,6 +132,15 @@ def save_documents_to_rag(documents: List[Dict], db_session=None) -> int:
             embedding = get_embedding(f"{search_text}\n\n{doc['content'][:2000]}")
             embedding_json = embedding_to_json(embedding)
             
+            # Auto-detect language
+            try:
+                from langdetect import detect
+                language = detect(doc["content"][:1000])
+                if language not in ['en', 'ha', 'yo', 'ig', 'pidgin']:
+                    language = 'en'
+            except:
+                language = 'en'
+            
             metadata = {
                 "source_type": "source_reference",
                 "category": doc["category"],
@@ -147,6 +156,7 @@ def save_documents_to_rag(documents: List[Dict], db_session=None) -> int:
                 existing.doc_type = "source_reference"
                 existing.embedding_json = embedding_json
                 existing.metadata_json = json.dumps(metadata)
+                existing.language = language
             else:
                 new_doc = Document(
                     doc_id=doc["doc_id"],
@@ -155,6 +165,7 @@ def save_documents_to_rag(documents: List[Dict], db_session=None) -> int:
                     doc_type="source_reference",
                     embedding_json=embedding_json,
                     metadata_json=json.dumps(metadata),
+                    language=language
                 )
                 db_session.add(new_doc)
             

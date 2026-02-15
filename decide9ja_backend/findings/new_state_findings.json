@@ -1,0 +1,2104 @@
+{
+  "generated_at": "2026-02-13T09:46:28.538915",
+  "total_findings": 131,
+  "findings": [
+    {
+      "id": "benue-total-2022",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Benue 2022 budget totals \u20a6413.27T. Population: 6,000,000. Per capita: \u20a668.88M.",
+      "amount": 413272457572865.0,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Benue",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6413.27T",
+        "Per capita: \u20a668.88M"
+      ]
+    },
+    {
+      "id": "benue-vehicles-2022",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2022",
+      "description": "Benue budgets \u20a69.57T for vehicles (558 items). \u20a61.59M per citizen.",
+      "amount": 9567215764471.79,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Benue",
+      "recommendation": "Compare to healthcare: \u20a637.97T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a69.57T",
+        "558 items",
+        "\u20a61.59M per citizen"
+      ]
+    },
+    {
+      "id": "benue-travel-2022",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2022",
+      "description": "Benue allocates \u20a62.02T for travel. Could build 13491 schools.",
+      "amount": 2023711449215.86,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Benue",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a62.02T",
+        "Could build 13491 schools"
+      ]
+    },
+    {
+      "id": "benue-consultancy-2022",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2022",
+      "description": "Benue budgets \u20a678.90B for consultancy services.",
+      "amount": 78896258292.85,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Benue",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 75,
+      "risk_factors": [
+        "Consultancy: \u20a678.90B"
+      ]
+    },
+    {
+      "id": "benue-item-22020401-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "MAINTENANCE OF MOTOR VEHICLE /\nTRANSPORT EQUIPMENT",
+      "description": "\u20a632.60B for 'MAINTENANCE OF MOTOR VEHICLE /\nTRANSPORT EQUIPMENT' in Benue",
+      "amount": 32600700100.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Benue",
+      "budget_code": "22020401",
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a632.60B"
+      ]
+    },
+    {
+      "id": "benue-item-22020101-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "LOCAL TRAVEL & TRANSPORT: TRAINING",
+      "description": "\u20a632.60B for 'LOCAL TRAVEL & TRANSPORT: TRAINING' in Benue",
+      "amount": 32600100100.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Benue",
+      "budget_code": "22020101",
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a632.60B"
+      ]
+    },
+    {
+      "id": "benue-item-22020102-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "LOCAL TRAVEL & TRANSPORT: OTHERS",
+      "description": "\u20a632.60B for 'LOCAL TRAVEL & TRANSPORT: OTHERS' in Benue",
+      "amount": 32600100100.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Benue",
+      "budget_code": "22020102",
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a632.60B"
+      ]
+    },
+    {
+      "id": "bauchi-total-2022",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Bauchi 2022 budget totals \u20a6492.57T. Population: 7,000,000. Per capita: \u20a670.37M.",
+      "amount": 492571447630886.94,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Bauchi",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6492.57T",
+        "Per capita: \u20a670.37M"
+      ]
+    },
+    {
+      "id": "bauchi-vehicles-2022",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2022",
+      "description": "Bauchi budgets \u20a64.34T for vehicles (365 items). \u20a6620,270 per citizen.",
+      "amount": 4341887146211.2,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Bauchi",
+      "recommendation": "Compare to healthcare: \u20a639.40T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a64.34T",
+        "365 items",
+        "\u20a6620,270 per citizen"
+      ]
+    },
+    {
+      "id": "bauchi-travel-2022",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2022",
+      "description": "Bauchi allocates \u20a681.50B for travel. Could build 543 schools.",
+      "amount": 81502514513.92,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Bauchi",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a681.50B",
+        "Could build 543 schools"
+      ]
+    },
+    {
+      "id": "bauchi-consultancy-2022",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2022",
+      "description": "Bauchi budgets \u20a6512.39M for consultancy services.",
+      "amount": 512391020.0,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Bauchi",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 37,
+      "risk_factors": [
+        "Consultancy: \u20a6512.39M"
+      ]
+    },
+    {
+      "id": "bauchi-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a638.80B for 'Reform of Government and Governance' in Bauchi",
+      "amount": 38796290683.67,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Bauchi",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a638.80B"
+      ]
+    },
+    {
+      "id": "bauchi-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance - General",
+      "description": "\u20a638.80B for 'Reform of Government and Governance - General' in Bauchi",
+      "amount": 38796290683.67,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Bauchi",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a638.80B"
+      ]
+    },
+    {
+      "id": "bauchi-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a632.76B for 'Reform of Government and Governance' in Bauchi",
+      "amount": 32758289204.35,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Bauchi",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a632.76B"
+      ]
+    },
+    {
+      "id": "adamawa-total-2022",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Adamawa 2022 budget totals \u20a6476.58T. Population: 4,500,000. Per capita: \u20a6105.91M.",
+      "amount": 476575132640477.6,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Adamawa",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6476.58T",
+        "Per capita: \u20a6105.91M"
+      ]
+    },
+    {
+      "id": "adamawa-vehicles-2022",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2022",
+      "description": "Adamawa budgets \u20a62.70T for vehicles (481 items). \u20a6600,855 per citizen.",
+      "amount": 2703846605753.02,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Adamawa",
+      "recommendation": "Compare to healthcare: \u20a619.13T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a62.70T",
+        "481 items",
+        "\u20a6600,855 per citizen"
+      ]
+    },
+    {
+      "id": "adamawa-travel-2022",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2022",
+      "description": "Adamawa allocates \u20a6200.72B for travel. Could build 1338 schools.",
+      "amount": 200722730715.07,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Adamawa",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a6200.72B",
+        "Could build 1338 schools"
+      ]
+    },
+    {
+      "id": "adamawa-consultancy-2022",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2022",
+      "description": "Adamawa budgets \u20a64.49B for consultancy services.",
+      "amount": 4486449929.639999,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Adamawa",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 57,
+      "risk_factors": [
+        "Consultancy: \u20a64.49B"
+      ]
+    },
+    {
+      "id": "adamawa-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a644.16B for 'Reform of Government and Governance' in Adamawa",
+      "amount": 44155212812.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Adamawa",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a644.16B"
+      ]
+    },
+    {
+      "id": "adamawa-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a644.16B for 'Reform of Government and Governance' in Adamawa",
+      "amount": 44155212812.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Adamawa",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a644.16B"
+      ]
+    },
+    {
+      "id": "adamawa-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a640.37B for 'Reform of Government and Governance' in Adamawa",
+      "amount": 40372409058.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Adamawa",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a640.37B"
+      ]
+    },
+    {
+      "id": "anambra-total-2014",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Anambra 2014 budget totals \u20a6917.24T. Population: 5,500,000. Per capita: \u20a6166.77M.",
+      "amount": 917239375848289.1,
+      "severity": "MEDIUM",
+      "year": 2014,
+      "state": "Anambra",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6917.24T",
+        "Per capita: \u20a6166.77M"
+      ]
+    },
+    {
+      "id": "anambra-vehicles-2014",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2014",
+      "description": "Anambra budgets \u20a63.71T for vehicles (183 items). \u20a6675,182 per citizen.",
+      "amount": 3713500982828.84,
+      "severity": "CRITICAL",
+      "year": 2014,
+      "state": "Anambra",
+      "recommendation": "Compare to healthcare: \u20a6403.76T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a63.71T",
+        "183 items",
+        "\u20a6675,182 per citizen"
+      ]
+    },
+    {
+      "id": "anambra-travel-2014",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2014",
+      "description": "Anambra allocates \u20a619.38B for travel. Could build 129 schools.",
+      "amount": 19375387512.02,
+      "severity": "HIGH",
+      "year": 2014,
+      "state": "Anambra",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a619.38B",
+        "Could build 129 schools"
+      ]
+    },
+    {
+      "id": "anambra-consultancy-2014",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2014",
+      "description": "Anambra budgets \u20a6621.38M for consultancy services.",
+      "amount": 621384588.22,
+      "severity": "MEDIUM",
+      "year": 2014,
+      "state": "Anambra",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 38,
+      "risk_factors": [
+        "Consultancy: \u20a6621.38M"
+      ]
+    },
+    {
+      "id": "anambra-item-None-2014",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a637.64B for 'Reform of Government and Governance' in Anambra",
+      "amount": 37640707335.0,
+      "severity": "CRITICAL",
+      "year": 2014,
+      "state": "Anambra",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a637.64B"
+      ]
+    },
+    {
+      "id": "anambra-item-None-2014",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "ReformofGovernmentandGovernance",
+      "description": "\u20a636.68B for 'ReformofGovernmentandGovernance' in Anambra",
+      "amount": 36678959813.0,
+      "severity": "CRITICAL",
+      "year": 2014,
+      "state": "Anambra",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a636.68B"
+      ]
+    },
+    {
+      "id": "anambra-item-None-2014",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "ReformofGovernmentandGovernance",
+      "description": "\u20a636.68B for 'ReformofGovernmentandGovernance' in Anambra",
+      "amount": 36678959813.0,
+      "severity": "CRITICAL",
+      "year": 2014,
+      "state": "Anambra",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a636.68B"
+      ]
+    },
+    {
+      "id": "imo-total-2022",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Imo 2022 budget totals \u20a6386.88T. Population: 5,500,000. Per capita: \u20a670.34M.",
+      "amount": 386878399046715.25,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Imo",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6386.88T",
+        "Per capita: \u20a670.34M"
+      ]
+    },
+    {
+      "id": "imo-vehicles-2022",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2022",
+      "description": "Imo budgets \u20a61.21T for vehicles (265 items). \u20a6219,377 per citizen.",
+      "amount": 1206573022792.96,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Imo",
+      "recommendation": "Compare to healthcare: \u20a612.05T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a61.21T",
+        "265 items",
+        "\u20a6219,377 per citizen"
+      ]
+    },
+    {
+      "id": "imo-travel-2022",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2022",
+      "description": "Imo allocates \u20a674.73B for travel. Could build 498 schools.",
+      "amount": 74733991898.41,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Imo",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a674.73B",
+        "Could build 498 schools"
+      ]
+    },
+    {
+      "id": "imo-consultancy-2022",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2022",
+      "description": "Imo budgets \u20a611.82B for consultancy services.",
+      "amount": 11816108909.2,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Imo",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 75,
+      "risk_factors": [
+        "Consultancy: \u20a611.82B"
+      ]
+    },
+    {
+      "id": "imo-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a634.98B for 'Reform of Government and Governance' in Imo",
+      "amount": 34980009028.23,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Imo",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a634.98B"
+      ]
+    },
+    {
+      "id": "imo-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance - General",
+      "description": "\u20a634.98B for 'Reform of Government and Governance - General' in Imo",
+      "amount": 34980009028.23,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Imo",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a634.98B"
+      ]
+    },
+    {
+      "id": "imo-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Law Reform Commission",
+      "description": "\u20a632.60B for 'Law Reform Commission' in Imo",
+      "amount": 32600200100.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Imo",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a632.60B"
+      ]
+    },
+    {
+      "id": "gombe-total-2014",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Gombe 2014 budget totals \u20a6367.81T. Population: 3,500,000. Per capita: \u20a6105.09M.",
+      "amount": 367811573743807.7,
+      "severity": "MEDIUM",
+      "year": 2014,
+      "state": "Gombe",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6367.81T",
+        "Per capita: \u20a6105.09M"
+      ]
+    },
+    {
+      "id": "gombe-vehicles-2014",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2014",
+      "description": "Gombe budgets \u20a64.58T for vehicles (768 items). \u20a61.31M per citizen.",
+      "amount": 4579705580395.9,
+      "severity": "CRITICAL",
+      "year": 2014,
+      "state": "Gombe",
+      "recommendation": "Compare to healthcare: \u20a616.02T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a64.58T",
+        "768 items",
+        "\u20a61.31M per citizen"
+      ]
+    },
+    {
+      "id": "gombe-travel-2014",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2014",
+      "description": "Gombe allocates \u20a659.91B for travel. Could build 399 schools.",
+      "amount": 59907193710.37,
+      "severity": "HIGH",
+      "year": 2014,
+      "state": "Gombe",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a659.91B",
+        "Could build 399 schools"
+      ]
+    },
+    {
+      "id": "gombe-consultancy-2014",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2014",
+      "description": "Gombe budgets \u20a683.99B for consultancy services.",
+      "amount": 83990189460.69,
+      "severity": "HIGH",
+      "year": 2014,
+      "state": "Gombe",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 75,
+      "risk_factors": [
+        "Consultancy: \u20a683.99B"
+      ]
+    },
+    {
+      "id": "gombe-item-None-2014",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Gombe State Small Business Enterprises Development Agency",
+      "description": "\u20a622.21B for 'Gombe State Small Business Enterprises Development Agency' in Gombe",
+      "amount": 22205100100.0,
+      "severity": "CRITICAL",
+      "year": 2014,
+      "state": "Gombe",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a622.21B"
+      ]
+    },
+    {
+      "id": "gombe-item-None-2014",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Gombe State Small Business Enterprises Development Agency",
+      "description": "\u20a622.21B for 'Gombe State Small Business Enterprises Development Agency' in Gombe",
+      "amount": 22205100100.0,
+      "severity": "CRITICAL",
+      "year": 2014,
+      "state": "Gombe",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a622.21B"
+      ]
+    },
+    {
+      "id": "gombe-item-None-2014",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Gombe State Small Business Enterprises Development Agency",
+      "description": "\u20a622.21B for 'Gombe State Small Business Enterprises Development Agency' in Gombe",
+      "amount": 22205100100.0,
+      "severity": "CRITICAL",
+      "year": 2014,
+      "state": "Gombe",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a622.21B"
+      ]
+    },
+    {
+      "id": "bayelsa-total-2014",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Bayelsa 2014 budget totals \u20a6644.01T. Population: 2,500,000. Per capita: \u20a6257.60M.",
+      "amount": 644008174306649.5,
+      "severity": "MEDIUM",
+      "year": 2014,
+      "state": "Bayelsa",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6644.01T",
+        "Per capita: \u20a6257.60M"
+      ]
+    },
+    {
+      "id": "bayelsa-vehicles-2014",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2014",
+      "description": "Bayelsa budgets \u20a63.04T for vehicles (594 items). \u20a61.22M per citizen.",
+      "amount": 3043102448284.53,
+      "severity": "CRITICAL",
+      "year": 2014,
+      "state": "Bayelsa",
+      "recommendation": "Compare to healthcare: \u20a626.12T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a63.04T",
+        "594 items",
+        "\u20a61.22M per citizen"
+      ]
+    },
+    {
+      "id": "bayelsa-travel-2014",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2014",
+      "description": "Bayelsa allocates \u20a6681.44B for travel. Could build 4542 schools.",
+      "amount": 681442294402.35,
+      "severity": "HIGH",
+      "year": 2014,
+      "state": "Bayelsa",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a6681.44B",
+        "Could build 4542 schools"
+      ]
+    },
+    {
+      "id": "bayelsa-item-None-2014",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a649.82B for 'Reform of Government and Governance' in Bayelsa",
+      "amount": 49817000000.0,
+      "severity": "CRITICAL",
+      "year": 2014,
+      "state": "Bayelsa",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a649.82B"
+      ]
+    },
+    {
+      "id": "bayelsa-item-None-2014",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a649.82B for 'Reform of Government and Governance' in Bayelsa",
+      "amount": 49817000000.0,
+      "severity": "CRITICAL",
+      "year": 2014,
+      "state": "Bayelsa",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a649.82B"
+      ]
+    },
+    {
+      "id": "bayelsa-item-131001-2014",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance - Gen",
+      "description": "\u20a649.82B for 'Reform of Government and Governance - Gen' in Bayelsa",
+      "amount": 49817000000.0,
+      "severity": "CRITICAL",
+      "year": 2014,
+      "state": "Bayelsa",
+      "budget_code": "131001",
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a649.82B"
+      ]
+    },
+    {
+      "id": "kebbi-total-2022",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Kebbi 2022 budget totals \u20a6425.56T. Population: 5,000,000. Per capita: \u20a685.11M.",
+      "amount": 425555784515870.75,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Kebbi",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6425.56T",
+        "Per capita: \u20a685.11M"
+      ]
+    },
+    {
+      "id": "kebbi-vehicles-2022",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2022",
+      "description": "Kebbi budgets \u20a64.48T for vehicles (345 items). \u20a6895,278 per citizen.",
+      "amount": 4476388152547.37,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Kebbi",
+      "recommendation": "Compare to healthcare: \u20a628.43T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a64.48T",
+        "345 items",
+        "\u20a6895,278 per citizen"
+      ]
+    },
+    {
+      "id": "kebbi-travel-2022",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2022",
+      "description": "Kebbi allocates \u20a6739.07B for travel. Could build 4927 schools.",
+      "amount": 739073259273.0,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Kebbi",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a6739.07B",
+        "Could build 4927 schools"
+      ]
+    },
+    {
+      "id": "kebbi-consultancy-2022",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2022",
+      "description": "Kebbi budgets \u20a6337.20B for consultancy services.",
+      "amount": 337200400413.0,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Kebbi",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 75,
+      "risk_factors": [
+        "Consultancy: \u20a6337.20B"
+      ]
+    },
+    {
+      "id": "kebbi-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "World Bank State Action\non Business Enabling\nReforms (SABER)\nProgramme (World Ba",
+      "description": "\u20a642.00B for 'World Bank State Action\non Business Enabling\nReforms (SABER)' in Kebbi",
+      "amount": 42000000000.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Kebbi",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a642.00B"
+      ]
+    },
+    {
+      "id": "kebbi-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Purchase of Operational Vehicle 2No. 4WD Toyota Hilux\nand 5No. Motor Cycles",
+      "description": "\u20a640.00B for 'Purchase of Operational Vehicle 2No. 4WD Toyota Hilux\nand 5N' in Kebbi",
+      "amount": 40000000003.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Kebbi",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a640.00B"
+      ]
+    },
+    {
+      "id": "kebbi-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Purchase of Vehicle for Refuse collections in the Central\nMarket and Motor Parks",
+      "description": "\u20a640.00B for 'Purchase of Vehicle for Refuse collections in the Central\nMa' in Kebbi",
+      "amount": 40000000002.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Kebbi",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a640.00B"
+      ]
+    },
+    {
+      "id": "jigawa-total-2022",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Jigawa 2022 budget totals \u20a6741.54T. Population: 6,000,000. Per capita: \u20a6123.59M.",
+      "amount": 741541898016519.1,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Jigawa",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6741.54T",
+        "Per capita: \u20a6123.59M"
+      ]
+    },
+    {
+      "id": "jigawa-vehicles-2022",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2022",
+      "description": "Jigawa budgets \u20a69.58T for vehicles (816 items). \u20a61.60M per citizen.",
+      "amount": 9580977420817.63,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Jigawa",
+      "recommendation": "Compare to healthcare: \u20a6100.38T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a69.58T",
+        "816 items",
+        "\u20a61.60M per citizen"
+      ]
+    },
+    {
+      "id": "jigawa-travel-2022",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2022",
+      "description": "Jigawa allocates \u20a678.15B for travel. Could build 521 schools.",
+      "amount": 78150910000.0,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Jigawa",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a678.15B",
+        "Could build 521 schools"
+      ]
+    },
+    {
+      "id": "jigawa-consultancy-2022",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2022",
+      "description": "Jigawa budgets \u20a61.81B for consultancy services.",
+      "amount": 1806470275.68,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Jigawa",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 44,
+      "risk_factors": [
+        "Consultancy: \u20a61.81B"
+      ]
+    },
+    {
+      "id": "jigawa-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Effective governance of the education system",
+      "description": "\u20a640.21B for 'Effective governance of the education system' in Jigawa",
+      "amount": 40211271000.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Jigawa",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a640.21B"
+      ]
+    },
+    {
+      "id": "jigawa-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Effective governance of the education system",
+      "description": "\u20a640.07B for 'Effective governance of the education system' in Jigawa",
+      "amount": 40074521000.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Jigawa",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a640.07B"
+      ]
+    },
+    {
+      "id": "jigawa-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Effective governance of the education system",
+      "description": "\u20a640.07B for 'Effective governance of the education system' in Jigawa",
+      "amount": 40074521000.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Jigawa",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a640.07B"
+      ]
+    },
+    {
+      "id": "rivers-total-2022",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Rivers 2022 budget totals \u20a6441.45T. Population: 8,000,000. Per capita: \u20a655.18M.",
+      "amount": 441452224880248.94,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Rivers",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6441.45T",
+        "Per capita: \u20a655.18M"
+      ]
+    },
+    {
+      "id": "rivers-vehicles-2022",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2022",
+      "description": "Rivers budgets \u20a62.48T for vehicles (232 items). \u20a6309,995 per citizen.",
+      "amount": 2479958853305.7,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Rivers",
+      "recommendation": "Compare to healthcare: \u20a623.36T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a62.48T",
+        "232 items",
+        "\u20a6309,995 per citizen"
+      ]
+    },
+    {
+      "id": "rivers-travel-2022",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2022",
+      "description": "Rivers allocates \u20a665.50B for travel. Could build 436 schools.",
+      "amount": 65501550333.93,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Rivers",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a665.50B",
+        "Could build 436 schools"
+      ]
+    },
+    {
+      "id": "rivers-consultancy-2022",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2022",
+      "description": "Rivers budgets \u20a62.42B for consultancy services.",
+      "amount": 2424249229.04,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Rivers",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 47,
+      "risk_factors": [
+        "Consultancy: \u20a62.42B"
+      ]
+    },
+    {
+      "id": "rivers-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Effective governance of the education system",
+      "description": "\u20a645.64B for 'Effective governance of the education system' in Rivers",
+      "amount": 45642833590.7,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Rivers",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a645.64B"
+      ]
+    },
+    {
+      "id": "rivers-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "State's Action for Business Enabling Reforms (SABER) Loan from World Bank Intern",
+      "description": "\u20a641.89B for 'State's Action for Business Enabling Reforms (SABER) Loan fr' in Rivers",
+      "amount": 41891907038.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Rivers",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a641.89B"
+      ]
+    },
+    {
+      "id": "rivers-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a634.64B for 'Reform of Government and Governance' in Rivers",
+      "amount": 34639397979.04,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Rivers",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a634.64B"
+      ]
+    },
+    {
+      "id": "katsina-total-2022",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Katsina 2022 budget totals \u20a6682.58T. Population: 8,000,000. Per capita: \u20a685.32M.",
+      "amount": 682578917831722.0,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Katsina",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6682.58T",
+        "Per capita: \u20a685.32M"
+      ]
+    },
+    {
+      "id": "katsina-vehicles-2022",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2022",
+      "description": "Katsina budgets \u20a611.72T for vehicles (488 items). \u20a61.47M per citizen.",
+      "amount": 11722570713467.75,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Katsina",
+      "recommendation": "Compare to healthcare: \u20a643.05T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a611.72T",
+        "488 items",
+        "\u20a61.47M per citizen"
+      ]
+    },
+    {
+      "id": "katsina-travel-2022",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2022",
+      "description": "Katsina allocates \u20a6126.70B for travel. Could build 844 schools.",
+      "amount": 126696290803.0,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Katsina",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a6126.70B",
+        "Could build 844 schools"
+      ]
+    },
+    {
+      "id": "katsina-consultancy-2022",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2022",
+      "description": "Katsina budgets \u20a61.55B for consultancy services.",
+      "amount": 1546188045.8600001,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Katsina",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 42,
+      "risk_factors": [
+        "Consultancy: \u20a61.55B"
+      ]
+    },
+    {
+      "id": "katsina-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Effective governance of the Agriculture Sector",
+      "description": "\u20a645.36B for 'Effective governance of the Agriculture Sector' in Katsina",
+      "amount": 45358403449.21,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Katsina",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a645.36B"
+      ]
+    },
+    {
+      "id": "katsina-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Effective governance of the Agriculture Sector",
+      "description": "\u20a645.36B for 'Effective governance of the Agriculture Sector' in Katsina",
+      "amount": 45358403449.21,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Katsina",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a645.36B"
+      ]
+    },
+    {
+      "id": "katsina-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Effective governance of the Agriculture Sector",
+      "description": "\u20a645.36B for 'Effective governance of the Agriculture Sector' in Katsina",
+      "amount": 45358403449.21,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Katsina",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a645.36B"
+      ]
+    },
+    {
+      "id": "niger-total-2022",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Niger 2022 budget totals \u20a6777.29T. Population: 6,000,000. Per capita: \u20a6129.55M.",
+      "amount": 777289053438506.0,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Niger",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6777.29T",
+        "Per capita: \u20a6129.55M"
+      ]
+    },
+    {
+      "id": "niger-vehicles-2022",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2022",
+      "description": "Niger budgets \u20a610.61T for vehicles (528 items). \u20a61.77M per citizen.",
+      "amount": 10614189698633.67,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Niger",
+      "recommendation": "Compare to healthcare: \u20a658.36T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a610.61T",
+        "528 items",
+        "\u20a61.77M per citizen"
+      ]
+    },
+    {
+      "id": "niger-travel-2022",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2022",
+      "description": "Niger allocates \u20a6110.07B for travel. Could build 733 schools.",
+      "amount": 110073814639.64,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Niger",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a6110.07B",
+        "Could build 733 schools"
+      ]
+    },
+    {
+      "id": "niger-consultancy-2022",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2022",
+      "description": "Niger budgets \u20a617.16B for consultancy services.",
+      "amount": 17159415605.77,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Niger",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 75,
+      "risk_factors": [
+        "Consultancy: \u20a617.16B"
+      ]
+    },
+    {
+      "id": "niger-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a649.17B for 'Reform of Government and Governance' in Niger",
+      "amount": 49170205200.68,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Niger",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a649.17B"
+      ]
+    },
+    {
+      "id": "niger-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance - General",
+      "description": "\u20a649.17B for 'Reform of Government and Governance - General' in Niger",
+      "amount": 49170205200.68,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Niger",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a649.17B"
+      ]
+    },
+    {
+      "id": "niger-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a648.86B for 'Reform of Government and Governance' in Niger",
+      "amount": 48858418447.68,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Niger",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a648.86B"
+      ]
+    },
+    {
+      "id": "plateau-total-2022",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Plateau 2022 budget totals \u20a6353.09T. Population: 4,500,000. Per capita: \u20a678.46M.",
+      "amount": 353085202419786.0,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Plateau",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6353.09T",
+        "Per capita: \u20a678.46M"
+      ]
+    },
+    {
+      "id": "plateau-vehicles-2022",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2022",
+      "description": "Plateau budgets \u20a66.28T for vehicles (511 items). \u20a61.40M per citizen.",
+      "amount": 6281066697807.88,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Plateau",
+      "recommendation": "Compare to healthcare: \u20a632.17T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a66.28T",
+        "511 items",
+        "\u20a61.40M per citizen"
+      ]
+    },
+    {
+      "id": "plateau-travel-2022",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2022",
+      "description": "Plateau allocates \u20a6121.09B for travel. Could build 807 schools.",
+      "amount": 121089965772.0,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Plateau",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a6121.09B",
+        "Could build 807 schools"
+      ]
+    },
+    {
+      "id": "plateau-consultancy-2022",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2022",
+      "description": "Plateau budgets \u20a622.93B for consultancy services.",
+      "amount": 22929689308.42,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Plateau",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 75,
+      "risk_factors": [
+        "Consultancy: \u20a622.93B"
+      ]
+    },
+    {
+      "id": "plateau-item-23010105-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "PURCHASE OF MOTOR VEHICLES",
+      "description": "\u20a616.86B for 'PURCHASE OF MOTOR VEHICLES' in Plateau",
+      "amount": 16863888600.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Plateau",
+      "budget_code": "23010105",
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 93,
+      "risk_factors": [
+        "Amount: \u20a616.86B"
+      ]
+    },
+    {
+      "id": "plateau-item-23010105-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "PURCHASE OF MOTOR VEHICLES",
+      "description": "\u20a616.86B for 'PURCHASE OF MOTOR VEHICLES' in Plateau",
+      "amount": 16863888600.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Plateau",
+      "budget_code": "23010105",
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 93,
+      "risk_factors": [
+        "Amount: \u20a616.86B"
+      ]
+    },
+    {
+      "id": "plateau-item-23010105-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "PURCHASE OF MOTOR VEHICLES",
+      "description": "\u20a616.86B for 'PURCHASE OF MOTOR VEHICLES' in Plateau",
+      "amount": 16863888600.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Plateau",
+      "budget_code": "23010105",
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 93,
+      "risk_factors": [
+        "Amount: \u20a616.86B"
+      ]
+    },
+    {
+      "id": "ondo-total-2022",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Ondo 2022 budget totals \u20a6491.24T. Population: 5,000,000. Per capita: \u20a698.25M.",
+      "amount": 491241273627750.94,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Ondo",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6491.24T",
+        "Per capita: \u20a698.25M"
+      ]
+    },
+    {
+      "id": "ondo-vehicles-2022",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2022",
+      "description": "Ondo budgets \u20a66.04T for vehicles (453 items). \u20a61.21M per citizen.",
+      "amount": 6044585282638.13,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Ondo",
+      "recommendation": "Compare to healthcare: \u20a626.55T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a66.04T",
+        "453 items",
+        "\u20a61.21M per citizen"
+      ]
+    },
+    {
+      "id": "ondo-travel-2022",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2022",
+      "description": "Ondo allocates \u20a658.29B for travel. Could build 388 schools.",
+      "amount": 58290100334.409996,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Ondo",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a658.29B",
+        "Could build 388 schools"
+      ]
+    },
+    {
+      "id": "ondo-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Ondo State Open Governance Partnership State Action Committee",
+      "description": "\u20a623.80B for 'Ondo State Open Governance Partnership State Action Committe' in Ondo",
+      "amount": 23800101200.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Ondo",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a623.80B"
+      ]
+    },
+    {
+      "id": "ondo-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Ondo State Open Governance Partnership State Action Committee",
+      "description": "\u20a623.80B for 'Ondo State Open Governance Partnership State Action Committe' in Ondo",
+      "amount": 23800101200.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Ondo",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a623.80B"
+      ]
+    },
+    {
+      "id": "ondo-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Ondo State Open Governance Partnership State Action Committee",
+      "description": "\u20a623.80B for 'Ondo State Open Governance Partnership State Action Committe' in Ondo",
+      "amount": 23800101200.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Ondo",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a623.80B"
+      ]
+    },
+    {
+      "id": "taraba-total-2022",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Taraba 2022 budget totals \u20a6415.76T. Population: 3,500,000. Per capita: \u20a6118.79M.",
+      "amount": 415762280934298.3,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Taraba",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6415.76T",
+        "Per capita: \u20a6118.79M"
+      ]
+    },
+    {
+      "id": "taraba-vehicles-2022",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2022",
+      "description": "Taraba budgets \u20a66.32T for vehicles (494 items). \u20a61.81M per citizen.",
+      "amount": 6323391410599.01,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Taraba",
+      "recommendation": "Compare to healthcare: \u20a626.23T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a66.32T",
+        "494 items",
+        "\u20a61.81M per citizen"
+      ]
+    },
+    {
+      "id": "taraba-travel-2022",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2022",
+      "description": "Taraba allocates \u20a6351.29B for travel. Could build 2341 schools.",
+      "amount": 351290551941.19,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Taraba",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a6351.29B",
+        "Could build 2341 schools"
+      ]
+    },
+    {
+      "id": "taraba-consultancy-2022",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2022",
+      "description": "Taraba budgets \u20a6610.29M for consultancy services.",
+      "amount": 610288501.8,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Taraba",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 38,
+      "risk_factors": [
+        "Consultancy: \u20a6610.29M"
+      ]
+    },
+    {
+      "id": "taraba-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a637.94B for 'Reform of Government and Governance' in Taraba",
+      "amount": 37937466390.35,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Taraba",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a637.94B"
+      ]
+    },
+    {
+      "id": "taraba-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance - General",
+      "description": "\u20a637.94B for 'Reform of Government and Governance - General' in Taraba",
+      "amount": 37937466390.35,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Taraba",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a637.94B"
+      ]
+    },
+    {
+      "id": "taraba-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Effective governance of the education system",
+      "description": "\u20a636.43B for 'Effective governance of the education system' in Taraba",
+      "amount": 36429124526.17,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Taraba",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a636.43B"
+      ]
+    },
+    {
+      "id": "yobe-total-2013",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Yobe 2013 budget totals \u20a6747.32T. Population: 4,000,000. Per capita: \u20a6186.83M.",
+      "amount": 747324386276936.1,
+      "severity": "MEDIUM",
+      "year": 2013,
+      "state": "Yobe",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6747.32T",
+        "Per capita: \u20a6186.83M"
+      ]
+    },
+    {
+      "id": "yobe-vehicles-2013",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2013",
+      "description": "Yobe budgets \u20a621.26T for vehicles (1340 items). \u20a65.31M per citizen.",
+      "amount": 21259166327933.64,
+      "severity": "CRITICAL",
+      "year": 2013,
+      "state": "Yobe",
+      "recommendation": "Compare to healthcare: \u20a659.68T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a621.26T",
+        "1340 items",
+        "\u20a65.31M per citizen"
+      ]
+    },
+    {
+      "id": "yobe-travel-2013",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2013",
+      "description": "Yobe allocates \u20a67.29T for travel. Could build 48577 schools.",
+      "amount": 7286680363224.0,
+      "severity": "HIGH",
+      "year": 2013,
+      "state": "Yobe",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a67.29T",
+        "Could build 48577 schools"
+      ]
+    },
+    {
+      "id": "yobe-consultancy-2013",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2013",
+      "description": "Yobe budgets \u20a6740.30B for consultancy services.",
+      "amount": 740302871880.0,
+      "severity": "HIGH",
+      "year": 2013,
+      "state": "Yobe",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 75,
+      "risk_factors": [
+        "Consultancy: \u20a6740.30B"
+      ]
+    },
+    {
+      "id": "yobe-item-None-2013",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a649.89B for 'Reform of Government and Governance' in Yobe",
+      "amount": 49885887000.0,
+      "severity": "CRITICAL",
+      "year": 2013,
+      "state": "Yobe",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a649.89B"
+      ]
+    },
+    {
+      "id": "yobe-item-None-2013",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance - General",
+      "description": "\u20a649.89B for 'Reform of Government and Governance - General' in Yobe",
+      "amount": 49885887000.0,
+      "severity": "CRITICAL",
+      "year": 2013,
+      "state": "Yobe",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a649.89B"
+      ]
+    },
+    {
+      "id": "yobe-item-None-2013",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a649.89B for 'Reform of Government and Governance' in Yobe",
+      "amount": 49885887000.0,
+      "severity": "CRITICAL",
+      "year": 2013,
+      "state": "Yobe",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a649.89B"
+      ]
+    },
+    {
+      "id": "zamfara-total-2022",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Zamfara 2022 budget totals \u20a6549.18T. Population: 5,000,000. Per capita: \u20a6109.84M.",
+      "amount": 549179075772090.9,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Zamfara",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6549.18T",
+        "Per capita: \u20a6109.84M"
+      ]
+    },
+    {
+      "id": "zamfara-vehicles-2022",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2022",
+      "description": "Zamfara budgets \u20a66.49T for vehicles (577 items). \u20a61.30M per citizen.",
+      "amount": 6492657418397.78,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Zamfara",
+      "recommendation": "Compare to healthcare: \u20a680.54T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a66.49T",
+        "577 items",
+        "\u20a61.30M per citizen"
+      ]
+    },
+    {
+      "id": "zamfara-travel-2022",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2022",
+      "description": "Zamfara allocates \u20a6466.43B for travel. Could build 3109 schools.",
+      "amount": 466427667960.5,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Zamfara",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a6466.43B",
+        "Could build 3109 schools"
+      ]
+    },
+    {
+      "id": "zamfara-consultancy-2022",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2022",
+      "description": "Zamfara budgets \u20a613.83B for consultancy services.",
+      "amount": 13831289895.19,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Zamfara",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 75,
+      "risk_factors": [
+        "Consultancy: \u20a613.83B"
+      ]
+    },
+    {
+      "id": "zamfara-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a639.75B for 'Reform of Government and Governance' in Zamfara",
+      "amount": 39751290771.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Zamfara",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a639.75B"
+      ]
+    },
+    {
+      "id": "zamfara-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance - General",
+      "description": "\u20a639.75B for 'Reform of Government and Governance - General' in Zamfara",
+      "amount": 39751290771.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Zamfara",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a639.75B"
+      ]
+    },
+    {
+      "id": "zamfara-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "LAW REFORM COMMISSION",
+      "description": "\u20a632.60B for 'LAW REFORM COMMISSION' in Zamfara",
+      "amount": 32600200100.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Zamfara",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a632.60B"
+      ]
+    },
+    {
+      "id": "enugu-total-2022",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Enugu 2022 budget totals \u20a6474.49T. Population: 4,500,000. Per capita: \u20a6105.44M.",
+      "amount": 474494268020231.94,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Enugu",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6474.49T",
+        "Per capita: \u20a6105.44M"
+      ]
+    },
+    {
+      "id": "enugu-vehicles-2022",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2022",
+      "description": "Enugu budgets \u20a62.69T for vehicles (252 items). \u20a6597,947 per citizen.",
+      "amount": 2690759862971.66,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Enugu",
+      "recommendation": "Compare to healthcare: \u20a623.82T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a62.69T",
+        "252 items",
+        "\u20a6597,947 per citizen"
+      ]
+    },
+    {
+      "id": "enugu-travel-2022",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2022",
+      "description": "Enugu allocates \u20a6120.17B for travel. Could build 801 schools.",
+      "amount": 120165278474.94,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Enugu",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a6120.17B",
+        "Could build 801 schools"
+      ]
+    },
+    {
+      "id": "enugu-consultancy-2022",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2022",
+      "description": "Enugu budgets \u20a65.86B for consultancy services.",
+      "amount": 5861559281.97,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Enugu",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 64,
+      "risk_factors": [
+        "Consultancy: \u20a65.86B"
+      ]
+    },
+    {
+      "id": "enugu-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a648.64B for 'Reform of Government and Governance' in Enugu",
+      "amount": 48639098176.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Enugu",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a648.64B"
+      ]
+    },
+    {
+      "id": "enugu-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a647.76B for 'Reform of Government and Governance' in Enugu",
+      "amount": 47759977900.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Enugu",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a647.76B"
+      ]
+    },
+    {
+      "id": "enugu-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a647.70B for 'Reform of Government and Governance' in Enugu",
+      "amount": 47695403838.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Enugu",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a647.70B"
+      ]
+    },
+    {
+      "id": "borno-total-2022",
+      "type": "STATE_BUDGET",
+      "entity": "Total Expenditure",
+      "description": "Borno 2022 budget totals \u20a6705.36T. Population: 6,500,000. Per capita: \u20a6108.52M.",
+      "amount": 705358924884585.8,
+      "severity": "MEDIUM",
+      "year": 2022,
+      "state": "Borno",
+      "recommendation": "Compare per-capita spending with other states.",
+      "risk_score": 50,
+      "risk_factors": [
+        "Total: \u20a6705.36T",
+        "Per capita: \u20a6108.52M"
+      ]
+    },
+    {
+      "id": "borno-vehicles-2022",
+      "type": "VEHICLE_MADNESS",
+      "entity": "Vehicle Spending 2022",
+      "description": "Borno budgets \u20a616.01T for vehicles (1168 items). \u20a62.46M per citizen.",
+      "amount": 16008748819648.64,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Borno",
+      "recommendation": "Compare to healthcare: \u20a644.63T",
+      "risk_score": 99,
+      "risk_factors": [
+        "Total: \u20a616.01T",
+        "1168 items",
+        "\u20a62.46M per citizen"
+      ]
+    },
+    {
+      "id": "borno-travel-2022",
+      "type": "TRAVEL_EXCESS",
+      "entity": "Travel Spending 2022",
+      "description": "Borno allocates \u20a6279.44B for travel. Could build 1862 schools.",
+      "amount": 279438310880.0,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Borno",
+      "recommendation": "Reduce travel, use virtual meetings.",
+      "risk_score": 80,
+      "risk_factors": [
+        "Travel: \u20a6279.44B",
+        "Could build 1862 schools"
+      ]
+    },
+    {
+      "id": "borno-consultancy-2022",
+      "type": "CONSULTANCY_EXCESS",
+      "entity": "Consultancy 2022",
+      "description": "Borno budgets \u20a621.14B for consultancy services.",
+      "amount": 21142634000.0,
+      "severity": "HIGH",
+      "year": 2022,
+      "state": "Borno",
+      "recommendation": "Build internal capacity instead.",
+      "risk_score": 75,
+      "risk_factors": [
+        "Consultancy: \u20a621.14B"
+      ]
+    },
+    {
+      "id": "borno-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "WORLD BANK PFM & GOVERNANCE REFORM GRANT",
+      "description": "\u20a646.14B for 'WORLD BANK PFM & GOVERNANCE REFORM GRANT' in Borno",
+      "amount": 46136941000.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Borno",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a646.14B"
+      ]
+    },
+    {
+      "id": "borno-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "WORLD BANK PFM & GOVERNANCE REFORM GRANT",
+      "description": "\u20a646.14B for 'WORLD BANK PFM & GOVERNANCE REFORM GRANT' in Borno",
+      "amount": 46136941000.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Borno",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a646.14B"
+      ]
+    },
+    {
+      "id": "borno-item-None-2022",
+      "type": "HIGH_VALUE_OUTRAGE",
+      "entity": "Reform of Government and Governance",
+      "description": "\u20a645.73B for 'Reform of Government and Governance' in Borno",
+      "amount": 45725458000.0,
+      "severity": "CRITICAL",
+      "year": 2022,
+      "state": "Borno",
+      "budget_code": null,
+      "recommendation": "Request itemized breakdown.",
+      "risk_score": 95,
+      "risk_factors": [
+        "Amount: \u20a645.73B"
+      ]
+    }
+  ]
+}

@@ -1,15 +1,15 @@
 """
 Multimodal Message Processor for Decide9ja.
 Orchestrates voice, image, document, and location handling.
-Routes to v4 handler for all processing.
+Routes to v5 handler for all processing.
 
-Updated to use message_handler_v4 exclusively.
+Updated to use message_handler_v5 exclusively.
 """
 import logging
 from typing import Dict, Optional, Union
 
 from app.services import conversation
-from app.services.message_handler_v4 import handle_message
+from app.services.message_handler_v5 import handle_message
 
 logger = logging.getLogger(__name__)
 

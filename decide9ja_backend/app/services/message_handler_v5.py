@@ -124,14 +124,13 @@ async def handle_message(
     """
     user_hash = _hash_phone(phone)
 
-    # Check feature flags for routing decision
+    # V5 is now the only handler - v4 has been archived
+    # Feature flags are kept for potential future A/B testing
     if not flags.should_use_v5(user_hash):
-        # Fall back to v4
+        # Log that we would have routed elsewhere, but v5 is now primary
         if flags.DEBUG_AGENTS:
-            logger.debug("Routing to V4 (USE_V5=%s, rollout=%d%%)",
+            logger.debug("V5 is primary handler (flags: USE_V5=%s, rollout=%d%%)",
                         flags.USE_V5, flags.V5_ROLLOUT_PERCENTAGE)
-        from app.services.message_handler_v4 import handle_message as handle_v4
-        return await handle_v4(phone, text)
 
     # Initialize metrics
     metrics = RequestMetrics(
@@ -183,12 +182,11 @@ async def handle_message(
         logger.error("[%s] V5 error after %.0fms: %s",
                     metrics.request_id, metrics.total_time_ms, e)
 
-        # Auto-fallback if enabled
+        # Return error response (v4 fallback removed - v5 is primary)
         if flags.AUTO_FALLBACK_ON_ERROR:
-            logger.warning("[%s] Falling back to V4", metrics.request_id)
+            logger.warning("[%s] Error occurred, returning graceful error response", metrics.request_id)
             metrics.used_fallback = True
-            from app.services.message_handler_v4 import handle_message as handle_v4
-            return await handle_v4(phone, text)
+            return "Sorry, I'm having trouble processing that. Please try again in a moment."
 
         raise
 
@@ -385,15 +383,14 @@ async def handle_message_with_fallback(
     **kwargs
 ) -> str:
     """
-    Entry point with automatic fallback to v4 on any error.
-    Use during migration for safety.
+    Entry point with graceful error handling.
+    Returns user-friendly error message on failure.
     """
     try:
         return await handle_message(phone, text, **kwargs)
     except Exception as e:
-        logger.error("V5 handler failed, falling back to V4: %s", e)
-        from app.services.message_handler_v4 import handle_message as handle_v4
-        return await handle_v4(phone, text)
+        logger.error("V5 handler failed: %s", e)
+        return "Sorry, I'm having trouble processing that. Please try again in a moment."
 
 
 def configure_agents(db_client=None, cache_client=None, llm_client=None):
