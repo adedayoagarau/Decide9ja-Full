@@ -37,8 +37,15 @@ ENV PATH=/home/decide9ja/.local/bin:$PATH
 COPY . .
 
 # Create non-root user for security
-RUN useradd -m -u 1000 decide9ja && \
-    chown -R decide9ja:decide9ja /app /home/decide9ja
+RUN useradd -m -u 1000 decide9ja
+
+# Copy Python packages directly with correct ownership (avoids expensive chown -R)
+COPY --from=builder --chown=decide9ja:decide9ja /root/.local /home/decide9ja/.local
+ENV PATH=/home/decide9ja/.local/bin:$PATH
+
+# Copy application code with correct ownership
+COPY --chown=decide9ja:decide9ja . .
+
 USER decide9ja
 
 # Environment defaults
@@ -46,10 +53,6 @@ ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     ENVIRONMENT=production \
     PORT=8000
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:${PORT}/health || exit 1
 
 # Expose port
 EXPOSE ${PORT}

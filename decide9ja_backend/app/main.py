@@ -336,13 +336,10 @@ async def root():
     }
 
 
-@app.get("/health", response_model=dict)
+@app.get("/health")
 async def health_check():
-    """
-    Lightweight health check for Railway/Load Balancers.
-    Must return 200 OK quickly.
-    """
-    return {"status": "ok", "timestamp": datetime.utcnow().isoformat()}
+    """Lightweight health check for Railway."""
+    return {"status": "ok"}
 
 
 @app.get("/health/detailed", response_model=HealthResponse)
