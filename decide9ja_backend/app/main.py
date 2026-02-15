@@ -336,10 +336,22 @@ async def root():
     }
 
 
-@app.get("/health", response_model=HealthResponse)
-@limiter.limit("60/minute")
-async def health_check(request: Request, db: Session = Depends(get_db)):
-    """Health check endpoint with database stats."""
+@app.get("/health", response_model=dict)
+async def health_check():
+    """
+    Lightweight health check for Railway/Load Balancers.
+    Must return 200 OK quickly.
+    """
+    return {"status": "ok", "timestamp": datetime.utcnow().isoformat()}
+
+
+@app.get("/health/detailed", response_model=HealthResponse)
+@limiter.limit("5/minute")
+async def health_check_detailed(request: Request, db: Session = Depends(get_db)):
+    """
+    Detailed health check with database stats.
+    Use this for debugging, not for load balancer checks.
+    """
     try:
         doc_count = db.query(Document).count()
         from app.database import Politician
@@ -353,7 +365,7 @@ async def health_check(request: Request, db: Session = Depends(get_db)):
             timestamp=datetime.utcnow().isoformat()
         )
     except Exception as e:
-        logger.error(f"Health check failed: {e}")
+        logger.error(f"Detailed health check failed: {e}")
         return HealthResponse(
             status="unhealthy",
             database_connected=False,

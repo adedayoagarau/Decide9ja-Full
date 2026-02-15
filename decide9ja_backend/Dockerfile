@@ -30,15 +30,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy Python packages from builder
-COPY --from=builder /root/.local /root/.local
-ENV PATH=/root/.local/bin:$PATH
+COPY --from=builder /root/.local /home/decide9ja/.local
+ENV PATH=/home/decide9ja/.local/bin:$PATH
 
 # Copy application code
 COPY . .
 
 # Create non-root user for security
 RUN useradd -m -u 1000 decide9ja && \
-    chown -R decide9ja:decide9ja /app
+    chown -R decide9ja:decide9ja /app /home/decide9ja
 USER decide9ja
 
 # Environment defaults
