@@ -4,7 +4,7 @@ Gap 9: Frontend Integration
 """
 from fastapi import APIRouter, Depends, HTTPException, Query
 from typing import List, Optional
-from app.services.financial_intelligence import get_financial_service, FinancialIntelligenceService
+from app.services.financial_intelligence import get_financial_intelligence, FinancialIntelligenceService
 from app.services.budget_search import get_budget_service
 
 router = APIRouter(prefix="/api/budget", tags=["budget"])
@@ -14,7 +14,7 @@ async def search_financials(
     q: str, 
     limit: int = 20, 
     offset: int = 0,
-    service: FinancialIntelligenceService = Depends(get_financial_service)
+    service: FinancialIntelligenceService = Depends(get_financial_intelligence)
 ):
     """
     Unified search for financial data (Findings, Budgets, Transactions).
@@ -26,7 +26,7 @@ async def search_financials(
 async def get_state_summary(
     state_name: str,
     year: int = 2026,
-    service: FinancialIntelligenceService = Depends(get_financial_service)
+    service: FinancialIntelligenceService = Depends(get_financial_intelligence)
 ):
     """
     Get high-level budget summary for a state.
@@ -43,7 +43,7 @@ async def get_state_summary(
 async def get_all_findings(
     limit: int = 50,
     offset: int = 0,
-    service: FinancialIntelligenceService = Depends(get_financial_service)
+    service: FinancialIntelligenceService = Depends(get_financial_intelligence)
 ):
     """
     Get raw findings (pagination support).
@@ -59,7 +59,7 @@ async def get_all_findings(
 async def get_red_flags(
     jurisdiction: Optional[str] = None,
     limit: int = 50,
-    service: FinancialIntelligenceService = Depends(get_financial_service)
+    service: FinancialIntelligenceService = Depends(get_financial_intelligence)
 ):
     """
     Get high-risk 'Red Flag' findings (e.g. suspicious payments, budget anomalies).
