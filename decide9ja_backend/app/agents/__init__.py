@@ -49,7 +49,6 @@ from app.agents.tier2_core import (
     PromiseLookupAgent,
     CandidateCompareAgent,
     ManifestoAgent,
-    ManifestoAgent,
     VotingRecordAgent,
     FactCheckAgent,
 )
@@ -112,7 +111,6 @@ __all__ = [
     "NewsQueryAgent",
     "PromiseLookupAgent",
     "CandidateCompareAgent",
-    "ManifestoAgent",
     "ManifestoAgent",
     "VotingRecordAgent",
     "FactCheckAgent",
