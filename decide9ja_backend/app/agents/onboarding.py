@@ -158,7 +158,7 @@ class OnboardingAgent(BaseAgent):
             return _onboarding_sessions[phone_hash]
 
         # Create fresh onboarding state
-        state = UserState(phone_hash=phone_hash)
+        state = UserState(user_id=phone_hash, phone="")
         state.flow = ConversationFlow.ONBOARDING
         state.flow_step = 0
         state.greeted = False
