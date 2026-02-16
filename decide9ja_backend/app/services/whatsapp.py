@@ -15,11 +15,12 @@ load_dotenv()
 logger = logging.getLogger(__name__)
 
 # WhatsApp API Configuration
+# WhatsApp API Configuration (Hardcoded for Deployment)
 WHATSAPP_API_URL = "https://graph.facebook.com/v18.0"
-PHONE_NUMBER_ID = os.getenv("WHATSAPP_PHONE_NUMBER_ID")
-ACCESS_TOKEN = os.getenv("WHATSAPP_ACCESS_TOKEN")
-VERIFY_TOKEN = os.getenv("WHATSAPP_VERIFY_TOKEN")
-BUSINESS_ACCOUNT_ID = os.getenv("WHATSAPP_BUSINESS_ACCOUNT_ID")
+PHONE_NUMBER_ID = "960447083817127"
+ACCESS_TOKEN = "EAAYNUf6ZB1yEBQrkeR29X7X0IXeOaX5q600K6uBWQa6PLfhJmJG3jeZCqwfvlphjfRsFuK9tLkY6d61Lv9mT2k1zufLD5Q5eOZBoUYzD0kfk1McXqZCUaZBDevYGlbR30mIrMx5bZAOEss8SFDHzXfvWLqAZAG00W8QVZCwjxHTT4YFd5yPFGNcPjhC1BD2BJQZDZD"
+VERIFY_TOKEN = "decide9ja_verify_2024"
+BUSINESS_ACCOUNT_ID = "1383059273032709"
 
 # Max message length for WhatsApp
 MAX_MESSAGE_LENGTH = 4096
