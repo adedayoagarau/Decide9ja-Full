@@ -137,8 +137,7 @@ async def receive_message(request: Request, background_tasks: BackgroundTasks):
                 
                 # Use V5 Handler for background processing
                 # Note: UnifiedTadeHandler handles format conversion internally if needed
-                from app.services.message_handler_v5 import handle_message as handle_whatsapp_message
-                background_tasks.add_task(handle_whatsapp_message, payload)
+                background_tasks.add_task(_process_meta_message, value)
         
         return {"status": "received"}
         
@@ -235,3 +234,69 @@ async def twilio_webhook(request: Request):
         logger.error(f"Twilio webhook error: {e}")
         return {"status": "error", "message": str(e)}
 
+async def _process_meta_message(value: dict):
+    """Process incoming Meta WhatsApp message and send response."""
+    from app.services.message_handler_v5 import handle_message
+    from app.services import whatsapp
+
+    try:
+        messages = value.get("messages", [])
+        if not messages:
+            return
+
+        msg = messages[0]
+        phone = msg.get("from", "")
+        msg_type = msg.get("type", "text")
+        message_id = msg.get("id", "")
+
+        # Mark as read
+        if message_id:
+            whatsapp.mark_as_read(message_id)
+
+        # Extract text based on message type
+        text = ""
+        media_url = None
+        location = None
+
+        if msg_type == "text":
+            text = msg.get("text", {}).get("body", "")
+        elif msg_type == "interactive":
+            interactive = msg.get("interactive", {})
+            int_type = interactive.get("type")
+            if int_type == "button_reply":
+                text = interactive.get("button_reply", {}).get("title", "")
+            elif int_type == "list_reply":
+                text = interactive.get("list_reply", {}).get("title", "")
+        elif msg_type == "location":
+            loc = msg.get("location", {})
+            location = {
+                "lat": loc.get("latitude"),
+                "lng": loc.get("longitude"),
+            }
+            text = "My location"
+        elif msg_type == "image":
+            text = msg.get("image", {}).get("caption", "Sent an image")
+        elif msg_type == "audio":
+            text = "Sent a voice note"
+        elif msg_type == "document":
+            text = msg.get("document", {}).get("caption", "Sent a document")
+
+        if not text and not location:
+            return
+
+        logger.info(f"📨 Meta message from {phone[-4:]}: {text[:50]}")
+
+        # Process through agent chain
+        response = await handle_message(
+            phone=phone,
+            text=text,
+            location=location,
+        )
+
+        # Send response back via Meta Cloud API
+        if response:
+            whatsapp.send_text_message(phone, response)
+            logger.info(f"📤 Response sent to {phone[-4:]} ({len(response)} chars)")
+
+    except Exception as e:
+        logger.error(f"Meta message processing error: {e}")
