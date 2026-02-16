@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 # WhatsApp API Configuration
 # WhatsApp API Configuration (Hardcoded for Deployment)
-WHATSAPP_API_URL = "https://graph.facebook.com/v18.0"
+WHATSAPP_API_URL = "https://graph.facebook.com/v22.0"
 PHONE_NUMBER_ID = "960447083817127"
 ACCESS_TOKEN = "EAAYNUf6ZB1yEBQrkeR29X7X0IXeOaX5q600K6uBWQa6PLfhJmJG3jeZCqwfvlphjfRsFuK9tLkY6d61Lv9mT2k1zufLD5Q5eOZBoUYzD0kfk1McXqZCUaZBDevYGlbR30mIrMx5bZAOEss8SFDHzXfvWLqAZAG00W8QVZCwjxHTT4YFd5yPFGNcPjhC1BD2BJQZDZD"
 VERIFY_TOKEN = "decide9ja_verify_2024"
