@@ -8,6 +8,7 @@ from app.agents.tier2_core.candidate_compare import CandidateCompareAgent
 from app.agents.tier2_core.manifesto import ManifestoAgent
 from app.agents.tier2_core.voting_record import VotingRecordAgent
 from app.agents.tier2_core.engagement import EngagementAgent
+from app.agents.tier2_core.fact_check.agent import FactCheckAgent
 
 __all__ = [
     "RepLookupAgent",
@@ -19,4 +20,5 @@ __all__ = [
     "ManifestoAgent",
     "VotingRecordAgent",
     "EngagementAgent",
+    "FactCheckAgent",
 ]
