@@ -49,7 +49,9 @@ from app.agents.tier2_core import (
     PromiseLookupAgent,
     CandidateCompareAgent,
     ManifestoAgent,
+    ManifestoAgent,
     VotingRecordAgent,
+    FactCheckAgent,
 )
 
 # Tier 3: Multimodal
@@ -111,7 +113,9 @@ __all__ = [
     "PromiseLookupAgent",
     "CandidateCompareAgent",
     "ManifestoAgent",
+    "ManifestoAgent",
     "VotingRecordAgent",
+    "FactCheckAgent",
     # Tier 3 Agents
     "VoiceTranscriptionAgent",
     "ImageAnalysisAgent",

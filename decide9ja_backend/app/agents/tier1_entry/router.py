@@ -83,6 +83,10 @@ class RouterAgent(BaseAgent):
         # Verification
         Intent.FACT_CHECK: "fact_check",
 
+        # Location & Nearby
+        Intent.LOCATION_SHARED: "location_processor",
+        Intent.FIND_NEARBY: "location_processor",
+
         # Unknown
         Intent.UNKNOWN: "fallback",
     }
