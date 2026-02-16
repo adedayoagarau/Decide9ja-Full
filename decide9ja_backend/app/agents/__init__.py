@@ -38,6 +38,8 @@ from app.agents.tier1_entry import (
     RouterAgent,
 )
 
+from app.agents.onboarding import OnboardingAgent
+
 # Tier 2: Core Specialists
 from app.agents.tier2_core import (
     RepLookupAgent,
@@ -99,6 +101,7 @@ __all__ = [
     "GatekeeperAgent",
     "ClassifierAgent",
     "RouterAgent",
+    "OnboardingAgent",
     # Tier 2 Agents
     "RepLookupAgent",
     "PoliticianProfileAgent",
