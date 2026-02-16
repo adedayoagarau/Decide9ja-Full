@@ -68,6 +68,7 @@ from app.agents.tier4_reporting import (
 from app.agents.tier5_output import (
     FallbackAgent,
     VoiceSynthesisAgent,
+    ResponseComposerAgent,
 )
 
 # Tier 6: Analytics & Research
@@ -120,6 +121,7 @@ __all__ = [
     # Tier 5 Agents
     "FallbackAgent",
     "VoiceSynthesisAgent",
+    "ResponseComposerAgent",
     # Tier 6 Agents
     "DataCollectorAgent",
     "ResearchOrchestratorAgent",
