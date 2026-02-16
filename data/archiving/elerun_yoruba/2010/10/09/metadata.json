@@ -1,0 +1,29 @@
+{
+  "newspaper": "Elerun Yoruba",
+  "date": "2010-10-09",
+  "url": "https://archivi.ng/search?publication=Elerun%20Yoruba&date=2010-10-09",
+  "scrapedAt": "2026-02-10T19:46:16.992Z",
+  "agentId": "sigma",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 489
+  },
+  "articles": [
+    {
+      "id": "2010-10-09_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 489,
+      "hasImages": true
+    },
+    {
+      "id": "2010-10-09_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

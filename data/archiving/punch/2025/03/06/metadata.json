@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "newspaper": "Punch",
+  "date": "2025-03-06",
+  "issues": [
+    {
+      "url": "https://archivi.ng/the-archivist/stories",
+      "title": "Stories",
+      "imageUrl": null,
+      "date": null
+    },
+    {
+      "url": "",
+      "title": "ReportsComing soon",
+      "imageUrl": null,
+      "date": null
+    },
+    {
+      "url": "",
+      "title": "ToolsComing soon",
+      "imageUrl": null,
+      "date": null
+    }
+  ],
+  "url": "https://archivi.ng/search?publication=Punch&date=2025-03-06",
+  "timestamp": "2026-02-07T10:46:56.176Z"
+}

@@ -1,0 +1,29 @@
+{
+  "newspaper": "Comet",
+  "date": "2009-11-06",
+  "url": "https://archivi.ng/search?publication=Comet&date=2009-11-06",
+  "scrapedAt": "2026-02-09T00:38:30.472Z",
+  "agentId": "omicron",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 484
+  },
+  "articles": [
+    {
+      "id": "2009-11-06_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 484,
+      "hasImages": true
+    },
+    {
+      "id": "2009-11-06_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

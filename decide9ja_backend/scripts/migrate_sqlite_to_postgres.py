@@ -29,6 +29,11 @@ def migrate_data(sqlite_url, postgres_url):
     pg_meta = MetaData()
     pg_meta.reflect(bind=pg_engine)
     
+    # Create schemas in Postgres if they don't exist
+    from app.database import Base
+    logger.info("🔨 Creating tables in destination database...")
+    Base.metadata.create_all(bind=pg_engine)
+    
     # Create sessions
     SessionSQLite = sessionmaker(bind=sqlite_engine)
     session_sqlite = SessionSQLite()
@@ -101,7 +106,14 @@ def migrate_data(sqlite_url, postgres_url):
 
 if __name__ == "__main__":
     # Default paths
-    SQLITE_URL = "sqlite:///./decide9ja.db"
+    db_path = os.path.abspath("decide9ja.db")
+    if not os.path.exists(db_path):
+        logger.error(f"❌ SQLite database not found at {db_path}")
+        sys.exit(1)
+        
+    SQLITE_URL = f"sqlite:///{db_path}"
+    logger.info(f"📂 Source Database: {SQLITE_URL}")
+    
     POSTGRES_URL = os.getenv("DATABASE_URL")
     
     if not POSTGRES_URL:

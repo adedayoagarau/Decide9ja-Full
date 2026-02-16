@@ -1,0 +1,24 @@
+{
+  "id": "2009-05-11_001",
+  "newspaper": "New Nigerian",
+  "date": "2009-05-11",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2009-05-11_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=New%20Nigerian&date=2009-05-11",
+  "scrapedAt": "2026-02-09T12:04:58.016Z",
+  "agentId": "tau"
+}

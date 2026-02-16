@@ -1,0 +1,29 @@
+{
+  "newspaper": "Lagos Weekly Record",
+  "date": "2017-07-07",
+  "url": "https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2017-07-07",
+  "scrapedAt": "2026-02-09T16:16:31.230Z",
+  "agentId": "pi",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 491
+  },
+  "articles": [
+    {
+      "id": "2017-07-07_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 491,
+      "hasImages": true
+    },
+    {
+      "id": "2017-07-07_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

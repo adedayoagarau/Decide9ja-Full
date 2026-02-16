@@ -1,0 +1,24 @@
+{
+  "id": "2009-12-14_001",
+  "newspaper": "New Nigerian",
+  "date": "2009-12-14",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2009-12-14_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=New%20Nigerian&date=2009-12-14",
+  "scrapedAt": "2026-02-09T04:05:43.627Z",
+  "agentId": "tau"
+}

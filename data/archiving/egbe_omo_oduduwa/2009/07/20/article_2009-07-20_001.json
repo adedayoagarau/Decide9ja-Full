@@ -1,0 +1,24 @@
+{
+  "id": "2009-07-20_001",
+  "newspaper": "Egbe Omo Oduduwa",
+  "date": "2009-07-20",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2009-07-20_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Egbe%20Omo%20Oduduwa&date=2009-07-20",
+  "scrapedAt": "2026-02-09T09:49:04.167Z",
+  "agentId": "rho"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "1941-11-01_000",
+  "newspaper": "Africa",
+  "date": "1941-11-01",
+  "searchDate": "",
+  "title": "archivi.ng",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://archivi.ng/_nuxt/archiving_logo.BTqpXjXR.svg",
+      "alt": "archivi.ng",
+      "localPath": "images/image_1941-11-01_000.svg"
+    },
+    "article": []
+  },
+  "sourceUrl": "https://archivi.ng/",
+  "searchUrl": "https://archivi.ng/search?publication=Africa&date=1941-11-01",
+  "scrapedAt": "2026-02-11T03:45:10.563Z",
+  "agentId": "beta"
+}

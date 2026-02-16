@@ -1,0 +1,24 @@
+{
+  "id": "2015-10-30_021",
+  "newspaper": "PM News",
+  "date": "2015-10-30",
+  "searchDate": "",
+  "title": "  The text discusses various issues related to sports, including the African Club Championship, which is scheduled to take place in Cotonou, Benin Republic, and the Nigeria Football Association's (NFA) inability to manage the professional soccer league effectively. Additionally, there is a mention of the Handball Association of Nigeria expressing concern over the silence of the organizers of the African Club Championship.",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://s3.af-south-1.amazonaws.com/resiz.ed/1998/November%201998/PM%20News%20November%2026_1998_Pg%207.jpeg",
+      "alt": "  The text discusses various issues related to sports, including the African Club Championship, which is scheduled to take place in Cotonou, Benin Republic, and the Nigeria Football Association's (NFA) inability to manage the professional soccer league effectively. Additionally, there is a mention of the Handball Association of Nigeria expressing concern over the silence of the organizers of the African Club Championship.",
+      "localPath": "images/image_2015-10-30_021.jpeg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=PM%20News&date=2015-10-30",
+  "scrapedAt": "2026-02-10T23:55:26.812Z",
+  "agentId": "alpha"
+}

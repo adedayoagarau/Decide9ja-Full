@@ -1,0 +1,24 @@
+{
+  "id": "1999-06-08_021",
+  "newspaper": "Africa Now",
+  "date": "1999-06-08",
+  "searchDate": "",
+  "title": "The text highlights a significant hunger crisis affecting over 150 million people in Africa who are facing starvation or malnutrition. It suggests that simply modernizing agricultural practices or systems is not a sufficient solution to address the underlying food issues in the region.",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://s3.af-south-1.amazonaws.com/resiz.ed/Magazines/Africa%20Now/1984/August%201984/August%204,%201984/Africa%20Now%20August%204_1984_Pg%2055.jpeg",
+      "alt": "The text highlights a significant hunger crisis affecting over 150 million people in Africa who are facing starvation or malnutrition. It suggests that simply modernizing agricultural practices or systems is not a sufficient solution to address the underlying food issues in the region.",
+      "localPath": "images/image_1999-06-08_021.jpeg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Africa%20Now&date=1999-06-08",
+  "scrapedAt": "2026-02-10T01:54:37.455Z",
+  "agentId": "epsilon"
+}

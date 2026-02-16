@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "newspaper": "Daily Trust",
+  "date": "2021-03-09",
+  "issues": [
+    {
+      "url": "https://archivi.ng/the-archivist/stories",
+      "title": "Stories",
+      "imageUrl": null,
+      "date": null
+    },
+    {
+      "url": "",
+      "title": "ReportsComing soon",
+      "imageUrl": null,
+      "date": null
+    },
+    {
+      "url": "",
+      "title": "ToolsComing soon",
+      "imageUrl": null,
+      "date": null
+    }
+  ],
+  "url": "https://archivi.ng/search?publication=Daily+Trust&date=2021-03-09",
+  "timestamp": "2026-02-08T03:00:50.411Z"
+}

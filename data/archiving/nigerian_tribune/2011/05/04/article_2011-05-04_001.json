@@ -1,0 +1,24 @@
+{
+  "id": "2011-05-04_001",
+  "newspaper": "Nigerian Tribune",
+  "date": "2011-05-04",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2011-05-04_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Nigerian%20Tribune&date=2011-05-04",
+  "scrapedAt": "2026-02-10T03:19:27.028Z",
+  "agentId": "mu"
+}

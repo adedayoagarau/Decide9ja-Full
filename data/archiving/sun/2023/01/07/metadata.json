@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "newspaper": "Sun",
+  "date": "2023-01-07",
+  "issues": [
+    {
+      "url": "https://archivi.ng/the-archivist/stories",
+      "title": "Stories",
+      "imageUrl": null,
+      "date": null
+    },
+    {
+      "url": "",
+      "title": "ReportsComing soon",
+      "imageUrl": null,
+      "date": null
+    },
+    {
+      "url": "",
+      "title": "ToolsComing soon",
+      "imageUrl": null,
+      "date": null
+    }
+  ],
+  "url": "https://archivi.ng/search?publication=Sun&date=2023-01-07",
+  "timestamp": "2026-02-09T05:26:07.804Z"
+}

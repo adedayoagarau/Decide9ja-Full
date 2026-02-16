@@ -1,0 +1,29 @@
+{
+  "newspaper": "Nigerian Standard",
+  "date": "2007-01-10",
+  "url": "https://archivi.ng/search?publication=Nigerian%20Standard&date=2007-01-10",
+  "scrapedAt": "2026-02-10T05:38:19.825Z",
+  "agentId": "chi",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 510
+  },
+  "articles": [
+    {
+      "id": "2007-01-10_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 510,
+      "hasImages": true
+    },
+    {
+      "id": "2007-01-10_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

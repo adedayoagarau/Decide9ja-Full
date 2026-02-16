@@ -1,0 +1,29 @@
+{
+  "newspaper": "Africa",
+  "date": "2026-04-06",
+  "url": "https://archivi.ng/search?publication=Africa&date=2026-04-06",
+  "scrapedAt": "2026-02-11T11:30:53.710Z",
+  "agentId": "beta",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 492
+  },
+  "articles": [
+    {
+      "id": "2026-04-06_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 492,
+      "hasImages": true
+    },
+    {
+      "id": "2026-04-06_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

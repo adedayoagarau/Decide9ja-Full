@@ -1,0 +1,29 @@
+{
+  "newspaper": "Africa Now",
+  "date": "1998-10-04",
+  "url": "https://archivi.ng/search?publication=Africa%20Now&date=1998-10-04",
+  "scrapedAt": "2026-02-10T09:48:10.628Z",
+  "agentId": "epsilon",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 393
+  },
+  "articles": [
+    {
+      "id": "1998-10-04_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 393,
+      "hasImages": true
+    },
+    {
+      "id": "1998-10-04_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

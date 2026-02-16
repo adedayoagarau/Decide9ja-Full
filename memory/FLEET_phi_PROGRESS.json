@@ -1,0 +1,185 @@
+{
+  "agentId": "phi",
+  "currentDate": "2001-11-28",
+  "processedDates": 3345,
+  "totalImages": 6689,
+  "totalArticles": 6689,
+  "failedDates": [
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2010-12-31",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2010-12-31\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2009-09-19",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2009-09-19\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2009-09-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2009-09-11\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2009-09-10",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2009-09-10\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2009-03-06",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2009-03-06\" is interrupted by another navigation to \"https://archivi.ng/\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2009-03-06\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2008-11-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2008-11-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2008-10-21",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2008-10-21\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2008-05-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2008-05-24\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2008-05-03",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2008-05-03\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2008-04-13",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2008-04-13\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2008-01-05",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2008-01-05\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2007-12-07",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2007-12-07\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2007-10-22",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2007-10-22\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2007-08-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2007-08-24\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2007-05-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2007-05-27\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2007-01-29",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2007-01-29\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2006-09-19",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2006-09-19\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2006-06-25",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2006-06-25\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2006-03-09",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2006-03-09\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2006-01-12",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2006-01-12\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2005-11-25",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2005-11-25\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2005-09-06",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2005-09-06\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2005-08-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2005-08-27\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2005-07-09",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2005-07-09\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2005-06-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2005-06-27\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2005-06-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2005-06-24\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2005-04-26",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2005-04-26\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2004-12-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2004-12-24\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2003-11-20",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2003-11-20\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2003-01-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2003-01-24\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2003-01-14",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2003-01-14\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2003-01-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2003-01-01\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2002-09-02",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2002-09-02\" is interrupted by another navigation to \"https://archivi.ng/\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2002-09-02\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2002-06-26",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2002-06-26\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Observer",
+      "date": "2002-05-23",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Observer&date=2002-05-23\", waiting until \"networkidle\"\n"
+    }
+  ],
+  "lastRun": "2026-02-11T13:46:24.864Z"
+}

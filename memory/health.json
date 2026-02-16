@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-02-11T02:09:28.192Z",
+  "pid": 38504,
+  "memory": {
+    "rss": 119947264,
+    "heapTotal": 58277888,
+    "heapUsed": 38635784,
+    "external": 3638017,
+    "arrayBuffers": 21647
+  },
+  "uptime": 0.393014375,
+  "directories": {
+    "data": "OK",
+    "logs": "OK",
+    "memory": "OK"
+  }
+}

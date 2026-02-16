@@ -1,0 +1,30 @@
+{
+  "agentId": "eta",
+  "currentDate": "2026-10-20",
+  "processedDates": 71,
+  "totalImages": 1562,
+  "totalArticles": 1562,
+  "failedDates": [
+    {
+      "newspaper": "Africa Week",
+      "date": "2026-12-31",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Week&date=2026-12-31\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Week",
+      "date": "2026-12-26",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Week&date=2026-12-26\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Week",
+      "date": "2026-12-20",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Week&date=2026-12-20\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Week",
+      "date": "2026-10-20",
+      "error": "page.waitForTimeout: Target page, context or browser has been closed"
+    }
+  ],
+  "lastRun": "2026-02-11T15:02:32.383Z"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "1980-12-08_001",
+  "newspaper": "Africa International",
+  "date": "1980-12-08",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_1980-12-08_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Africa%20International&date=1980-12-08",
+  "scrapedAt": "2026-02-09T16:24:19.205Z",
+  "agentId": "delta"
+}

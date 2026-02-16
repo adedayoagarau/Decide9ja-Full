@@ -1,0 +1,29 @@
+{
+  "newspaper": "Africa",
+  "date": "1942-04-20",
+  "url": "https://archivi.ng/search?publication=Africa&date=1942-04-20",
+  "scrapedAt": "2026-02-11T02:13:39.401Z",
+  "agentId": "beta",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 536
+  },
+  "articles": [
+    {
+      "id": "1942-04-20_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 536,
+      "hasImages": true
+    },
+    {
+      "id": "1942-04-20_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

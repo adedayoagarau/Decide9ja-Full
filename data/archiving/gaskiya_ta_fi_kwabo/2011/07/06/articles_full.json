@@ -1,0 +1,52 @@
+{
+  "articles": [
+    {
+      "id": "2011-07-06_000",
+      "newspaper": "Gaskiya Ta Fi Kwabo",
+      "date": "2011-07-06",
+      "searchDate": "",
+      "title": "archivi.ng",
+      "author": "",
+      "publishDate": "",
+      "snippet": "",
+      "content": "",
+      "wordCount": 0,
+      "images": {
+        "searchResult": {
+          "url": "https://archivi.ng/_nuxt/archiving_logo.BTqpXjXR.svg",
+          "alt": "archivi.ng",
+          "localPath": "images/image_2011-07-06_000.svg"
+        },
+        "article": []
+      },
+      "sourceUrl": "https://archivi.ng/",
+      "searchUrl": "https://archivi.ng/search?publication=Gaskiya%20Ta%20Fi%20Kwabo&date=2011-07-06",
+      "scrapedAt": "2026-02-09T12:56:40.229Z",
+      "agentId": "psi"
+    },
+    {
+      "id": "2011-07-06_001",
+      "newspaper": "Gaskiya Ta Fi Kwabo",
+      "date": "2011-07-06",
+      "searchDate": "",
+      "title": "Researcher",
+      "author": "",
+      "publishDate": "",
+      "snippet": "",
+      "content": "",
+      "wordCount": 0,
+      "images": {
+        "searchResult": {
+          "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+          "alt": "Researcher",
+          "localPath": "images/image_2011-07-06_001.jpg"
+        },
+        "article": []
+      },
+      "sourceUrl": "",
+      "searchUrl": "https://archivi.ng/search?publication=Gaskiya%20Ta%20Fi%20Kwabo&date=2011-07-06",
+      "scrapedAt": "2026-02-09T12:56:41.408Z",
+      "agentId": "psi"
+    }
+  ]
+}

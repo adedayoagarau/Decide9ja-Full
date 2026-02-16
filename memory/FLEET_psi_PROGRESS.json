@@ -1,0 +1,15 @@
+{
+  "agentId": "psi",
+  "currentDate": "2012-10-13",
+  "processedDates": 98,
+  "totalImages": 196,
+  "totalArticles": 196,
+  "failedDates": [
+    {
+      "newspaper": "Gaskiya Ta Fi Kwabo",
+      "date": "2026-12-30",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Gaskiya%20Ta%20Fi%20Kwabo&date=2026-12-30\", waiting until \"networkidle\"\u001b[22m\n"
+    }
+  ],
+  "lastRun": "2026-02-11T13:21:21.840Z"
+}

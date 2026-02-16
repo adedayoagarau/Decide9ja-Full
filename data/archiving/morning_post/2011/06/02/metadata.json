@@ -1,0 +1,29 @@
+{
+  "newspaper": "Morning Post",
+  "date": "2011-06-02",
+  "url": "https://archivi.ng/search?publication=Morning%20Post&date=2011-06-02",
+  "scrapedAt": "2026-02-11T09:04:16.930Z",
+  "agentId": "upsilon",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 553
+  },
+  "articles": [
+    {
+      "id": "2011-06-02_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 553,
+      "hasImages": true
+    },
+    {
+      "id": "2011-06-02_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

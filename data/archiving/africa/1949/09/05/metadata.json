@@ -1,0 +1,29 @@
+{
+  "newspaper": "Africa",
+  "date": "1949-09-05",
+  "url": "https://archivi.ng/search?publication=Africa&date=1949-09-05",
+  "scrapedAt": "2026-02-10T06:35:12.080Z",
+  "agentId": "beta",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 504
+  },
+  "articles": [
+    {
+      "id": "1949-09-05_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 504,
+      "hasImages": true
+    },
+    {
+      "id": "1949-09-05_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

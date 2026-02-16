@@ -1,0 +1,685 @@
+{
+  "agentId": "zeta",
+  "currentDate": "2008-01-11",
+  "processedDates": 4652,
+  "totalImages": 37610,
+  "failedDates": [
+    {
+      "newspaper": "PM News",
+      "date": "2001-01-01",
+      "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=PM%20News&date=2001-01-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "PM News",
+      "date": "2001-02-25",
+      "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=PM%20News&date=2001-02-25\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "PM News",
+      "date": "2001-12-17",
+      "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=PM%20News&date=2001-12-17\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "PM News",
+      "date": "2002-04-28",
+      "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=PM%20News&date=2002-04-28\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "PM News",
+      "date": "2003-02-17",
+      "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=PM%20News&date=2003-02-17\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "PM News",
+      "date": "2003-02-18",
+      "error": "page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://archivi.ng/search?publication=PM%20News&date=2003-02-18\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=PM%20News&date=2003-02-18\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "PM News",
+      "date": "2003-02-19",
+      "error": "page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://archivi.ng/search?publication=PM%20News&date=2003-02-19\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=PM%20News&date=2003-02-19\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "PM News",
+      "date": "2003-02-20",
+      "error": "page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://archivi.ng/search?publication=PM%20News&date=2003-02-20\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=PM%20News&date=2003-02-20\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "PM News",
+      "date": "2003-02-21",
+      "error": "page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://archivi.ng/search?publication=PM%20News&date=2003-02-21\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=PM%20News&date=2003-02-21\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "PM News",
+      "date": "2003-02-22",
+      "error": "page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://archivi.ng/search?publication=PM%20News&date=2003-02-22\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=PM%20News&date=2003-02-22\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "PM News",
+      "date": "2003-02-23",
+      "error": "page.goto: net::ERR_CONNECTION_TIMED_OUT at https://archivi.ng/search?publication=PM%20News&date=2003-02-23\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=PM%20News&date=2003-02-23\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "PM News",
+      "date": "2003-02-24",
+      "error": "page.goto: net::ERR_CONNECTION_TIMED_OUT at https://archivi.ng/search?publication=PM%20News&date=2003-02-24\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=PM%20News&date=2003-02-24\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "PM News",
+      "date": "2003-02-25",
+      "error": "page.goto: net::ERR_CONNECTION_TIMED_OUT at https://archivi.ng/search?publication=PM%20News&date=2003-02-25\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=PM%20News&date=2003-02-25\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "PM News",
+      "date": "2003-02-26",
+      "error": "page.goto: net::ERR_CONNECTION_TIMED_OUT at https://archivi.ng/search?publication=PM%20News&date=2003-02-26\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=PM%20News&date=2003-02-26\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "The Guardian",
+      "date": "2003-02-25",
+      "error": "page.goto: net::ERR_CONNECTION_TIMED_OUT at https://archivi.ng/search?publication=The%20Guardian&date=2003-02-25\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=The%20Guardian&date=2003-02-25\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Vanguard",
+      "date": "2003-02-25",
+      "error": "page.goto: net::ERR_CONNECTION_TIMED_OUT at https://archivi.ng/search?publication=Vanguard&date=2003-02-25\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Vanguard&date=2003-02-25\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Punch",
+      "date": "2003-02-25",
+      "error": "page.goto: net::ERR_CONNECTION_TIMED_OUT at https://archivi.ng/search?publication=Punch&date=2003-02-25\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Punch&date=2003-02-25\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Trust",
+      "date": "2003-07-03",
+      "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Trust&date=2003-07-03\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Trust",
+      "date": "2010-05-20",
+      "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Trust&date=2010-05-20\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Trust",
+      "date": "2010-06-06",
+      "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Trust&date=2010-06-06\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Trust",
+      "date": "2010-06-16",
+      "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Trust&date=2010-06-16\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Trust",
+      "date": "2010-07-08",
+      "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Trust&date=2010-07-08\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Trust",
+      "date": "2010-07-22",
+      "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Trust&date=2010-07-22\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Trust",
+      "date": "2010-07-28",
+      "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Trust&date=2010-07-28\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Trust",
+      "date": "2010-08-28",
+      "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Trust&date=2010-08-28\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Trust",
+      "date": "2010-10-24",
+      "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Trust&date=2010-10-24\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-12-31",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-12-31\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-12-26",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-12-26\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-11-18",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-11-18\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-11-12",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-11-12\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-09-28",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-09-28\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-09-25",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-09-25\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-09-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-09-24\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-09-19",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-09-19\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-09-14",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-09-14\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-09-08",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-09-08\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-07-18",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-07-18\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-07-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-07-11\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-07-09",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-07-09\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-07-07",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-07-07\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-07-05",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-07-05\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-07-04",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-07-04\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-07-02",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-07-02\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-06-30",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-06-30\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-06-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-06-27\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-06-25",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-06-25\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-06-23",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-06-23\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-06-21",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-06-21\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-05-15",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-05-15\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-05-08",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-05-08\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-04-29",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-04-29\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-04-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-04-27\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-04-25",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-04-25\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-04-23",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-04-23\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-04-21",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-04-21\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-04-19",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-04-19\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-04-17",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-04-17\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-04-15",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-04-15\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-04-13",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-04-13\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-04-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-04-11\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-04-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-04-11\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-04-04",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-04-04\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-03-22",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-03-22\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-03-20",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-03-20\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-03-14",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-03-14\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-03-10",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-03-10\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-02-28",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-02-28\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-02-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-02-27\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-02-21",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-02-21\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-02-18",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-02-18\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-02-15",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-02-15\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-02-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-02-11\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-01-22",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-01-22\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2010-01-19",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2010-01-19\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-12-28",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-12-28\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-12-26",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-12-26\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-12-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-12-24\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-12-23",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-12-23\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-12-21",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-12-21\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-12-02",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-12-02\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-11-30",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-11-30\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-11-28",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-11-28\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-11-26",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-11-26\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-11-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-11-24\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-11-09",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-11-09\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-11-07",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-11-07\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-09-16",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-09-16\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-09-12",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-09-12\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-09-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-09-11\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-08-28",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-08-28\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-08-21",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-08-21\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-08-19",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-08-19\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-08-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-08-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-07-31",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-07-31\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-07-26",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-07-26\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-07-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-07-24\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-07-22",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-07-22\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-06-22",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-06-22\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-06-16",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-06-16\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-06-13",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-06-13\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-05-10",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-05-10\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-04-10",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-04-10\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-03-29",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-03-29\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-03-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-03-27\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-03-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-03-24\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-03-02",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-03-02\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-03-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-03-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-02-21",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-02-21\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-02-20",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-02-20\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-02-06",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-02-06\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2009-02-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2009-02-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-12-26",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-12-26\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-12-17",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-12-17\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-12-15",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-12-15\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-11-14",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-11-14\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-10-08",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-10-08\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-10-07",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-10-07\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-08-20",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-08-20\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-08-19",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-08-19\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-08-17",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-08-17\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-07-08",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-07-08\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-07-04",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-07-04\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-06-12",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-06-12\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-05-21",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-05-21\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-05-02",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-05-02\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-04-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-04-27\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-04-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-04-24\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-04-14",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-04-14\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-04-12",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-04-12\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-03-23",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-03-23\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-03-21",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-03-21\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-03-16",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-03-16\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-03-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-03-11\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-03-06",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-03-06\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa Today",
+      "date": "2008-01-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20Today&date=2008-01-11\", waiting until \"networkidle\"\n"
+    }
+  ],
+  "lastRun": "2026-02-11T14:31:07.308Z",
+  "totalArticles": 22060
+}

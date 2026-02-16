@@ -1,0 +1,29 @@
+{
+  "newspaper": "The Guardian",
+  "date": "2024-06-06",
+  "url": "https://archivi.ng/search?publication=The%20Guardian&date=2024-06-06",
+  "scrapedAt": "2026-02-09T14:28:17.462Z",
+  "agentId": "iota",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 523
+  },
+  "articles": [
+    {
+      "id": "2024-06-06_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 523,
+      "hasImages": true
+    },
+    {
+      "id": "2024-06-06_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

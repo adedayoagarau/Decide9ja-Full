@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "newspaper": "Leadership",
+  "date": "2024-01-06",
+  "issues": [
+    {
+      "url": "https://archivi.ng/the-archivist/stories",
+      "title": "Stories",
+      "imageUrl": null,
+      "date": null
+    },
+    {
+      "url": "",
+      "title": "ReportsComing soon",
+      "imageUrl": null,
+      "date": null
+    },
+    {
+      "url": "",
+      "title": "ToolsComing soon",
+      "imageUrl": null,
+      "date": null
+    }
+  ],
+  "url": "https://archivi.ng/search?publication=Leadership&date=2024-01-06",
+  "timestamp": "2026-02-10T07:57:51.186Z"
+}

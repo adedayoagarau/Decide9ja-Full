@@ -1,0 +1,29 @@
+{
+  "newspaper": "Elerun Yoruba",
+  "date": "2013-10-12",
+  "url": "https://archivi.ng/search?publication=Elerun%20Yoruba&date=2013-10-12",
+  "scrapedAt": "2026-02-09T08:51:10.338Z",
+  "agentId": "sigma",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 0
+  },
+  "articles": [
+    {
+      "id": "2013-10-12_000",
+      "title": "archivi.ng",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    },
+    {
+      "id": "2013-10-12_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

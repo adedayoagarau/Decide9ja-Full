@@ -1,0 +1,24 @@
+{
+  "id": "2009-12-20_001",
+  "newspaper": "Nigerian Tribune",
+  "date": "2009-12-20",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2009-12-20_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Nigerian%20Tribune&date=2009-12-20",
+  "scrapedAt": "2026-02-10T10:19:20.337Z",
+  "agentId": "mu"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "2024-07-15_000",
+  "newspaper": "PM News",
+  "date": "2024-07-15",
+  "searchDate": "",
+  "title": "archivi.ng",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://archivi.ng/_nuxt/archiving_logo.BTqpXjXR.svg",
+      "alt": "archivi.ng",
+      "localPath": "images/image_2024-07-15_000.svg"
+    },
+    "article": []
+  },
+  "sourceUrl": "https://archivi.ng/",
+  "searchUrl": "https://archivi.ng/search?publication=PM%20News&date=2024-07-15",
+  "scrapedAt": "2026-02-09T12:05:45.097Z",
+  "agentId": "alpha"
+}

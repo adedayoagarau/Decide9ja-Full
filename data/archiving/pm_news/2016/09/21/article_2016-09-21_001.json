@@ -1,0 +1,24 @@
+{
+  "id": "2016-09-21_001",
+  "newspaper": "PM News",
+  "date": "2016-09-21",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2016-09-21_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=PM%20News&date=2016-09-21",
+  "scrapedAt": "2026-02-10T20:49:16.614Z",
+  "agentId": "alpha"
+}

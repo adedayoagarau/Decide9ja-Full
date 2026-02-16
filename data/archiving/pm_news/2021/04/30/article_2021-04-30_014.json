@@ -1,0 +1,24 @@
+{
+  "id": "2021-04-30_014",
+  "newspaper": "PM News",
+  "date": "2021-04-30",
+  "searchDate": "",
+  "title": "  The text appears to be a news article from the BBC regarding a murder in the Vatican. The victim, Louis Hesserman, was the commander of the Swiss Guard and was found dead in his apartment. The article also mentions a protest march in Nigeria against the country's military government, led by General Sani Abacha, and the potential transformation of the military into a civilian presidency. There are also references to prominent wives of politicians and business moguls, as well as a mention of a Marwa On SOS mission.",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://s3.af-south-1.amazonaws.com/resiz.ed/1998/May%2012%201998/PM%20News%20May%205_1998_Pg%201.jpeg",
+      "alt": "  The text appears to be a news article from the BBC regarding a murder in the Vatican. The victim, Louis Hesserman, was the commander of the Swiss Guard and was found dead in his apartment. The article also mentions a protest march in Nigeria against the country's military government, led by General Sani Abacha, and the potential transformation of the military into a civilian presidency. There are also references to prominent wives of politicians and business moguls, as well as a mention of a Marwa On SOS mission.",
+      "localPath": "images/image_2021-04-30_014.jpeg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=PM%20News&date=2021-04-30",
+  "scrapedAt": "2026-02-10T01:00:12.864Z",
+  "agentId": "alpha"
+}

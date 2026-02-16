@@ -1,0 +1,24 @@
+{
+  "id": "2004-01-10_001",
+  "newspaper": "Sunday Times",
+  "date": "2004-01-10",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2004-01-10_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Sunday%20Times&date=2004-01-10",
+  "scrapedAt": "2026-02-10T21:55:53.984Z",
+  "agentId": "nu"
+}

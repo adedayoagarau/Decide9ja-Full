@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "newspaper": "The Guardian",
+  "date": "2026-01-15",
+  "issues": [
+    {
+      "url": "https://archivi.ng/the-archivist/stories",
+      "title": "Stories",
+      "imageUrl": null,
+      "date": null
+    },
+    {
+      "url": "",
+      "title": "ReportsComing soon",
+      "imageUrl": null,
+      "date": null
+    },
+    {
+      "url": "",
+      "title": "ToolsComing soon",
+      "imageUrl": null,
+      "date": null
+    }
+  ],
+  "url": "https://archivi.ng/search?publication=The+Guardian&date=2026-01-15",
+  "timestamp": "2026-02-06T11:55:05.061Z"
+}

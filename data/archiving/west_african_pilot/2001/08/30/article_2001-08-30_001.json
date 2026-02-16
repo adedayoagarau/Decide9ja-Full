@@ -1,0 +1,24 @@
+{
+  "id": "2001-08-30_001",
+  "newspaper": "West African Pilot",
+  "date": "2001-08-30",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2001-08-30_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=West%20African%20Pilot&date=2001-08-30",
+  "scrapedAt": "2026-02-11T03:16:14.116Z",
+  "agentId": "lambda"
+}

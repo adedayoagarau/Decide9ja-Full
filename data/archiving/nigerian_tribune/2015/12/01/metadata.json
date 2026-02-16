@@ -1,0 +1,29 @@
+{
+  "newspaper": "Nigerian Tribune",
+  "date": "2015-12-01",
+  "url": "https://archivi.ng/search?publication=Nigerian%20Tribune&date=2015-12-01",
+  "scrapedAt": "2026-02-09T02:14:20.120Z",
+  "agentId": "mu",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 443
+  },
+  "articles": [
+    {
+      "id": "2015-12-01_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 443,
+      "hasImages": true
+    },
+    {
+      "id": "2015-12-01_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

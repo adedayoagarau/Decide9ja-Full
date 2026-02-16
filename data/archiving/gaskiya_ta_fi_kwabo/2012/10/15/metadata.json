@@ -1,0 +1,29 @@
+{
+  "newspaper": "Gaskiya Ta Fi Kwabo",
+  "date": "2012-10-15",
+  "url": "https://archivi.ng/search?publication=Gaskiya%20Ta%20Fi%20Kwabo&date=2012-10-15",
+  "scrapedAt": "2026-02-11T13:20:57.672Z",
+  "agentId": "psi",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 496
+  },
+  "articles": [
+    {
+      "id": "2012-10-15_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 496,
+      "hasImages": true
+    },
+    {
+      "id": "2012-10-15_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "2012-06-13_000",
+  "newspaper": "Nigerian Tribune",
+  "date": "2012-06-13",
+  "searchDate": "",
+  "title": "archivi.ng",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://archivi.ng/_nuxt/archiving_logo.BTqpXjXR.svg",
+      "alt": "archivi.ng",
+      "localPath": "images/image_2012-06-13_000.svg"
+    },
+    "article": []
+  },
+  "sourceUrl": "https://archivi.ng/",
+  "searchUrl": "https://archivi.ng/search?publication=Nigerian%20Tribune&date=2012-06-13",
+  "scrapedAt": "2026-02-09T15:19:22.400Z",
+  "agentId": "mu"
+}

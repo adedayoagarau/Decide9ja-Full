@@ -1,0 +1,24 @@
+{
+  "id": "1977-12-17_001",
+  "newspaper": "Africa Events",
+  "date": "1977-12-17",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_1977-12-17_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Africa%20Events&date=1977-12-17",
+  "scrapedAt": "2026-02-10T05:03:10.480Z",
+  "agentId": "gamma"
+}

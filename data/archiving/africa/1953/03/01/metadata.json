@@ -1,0 +1,29 @@
+{
+  "newspaper": "Africa",
+  "date": "1953-03-01",
+  "url": "https://archivi.ng/search?publication=Africa&date=1953-03-01",
+  "scrapedAt": "2026-02-09T16:44:28.004Z",
+  "agentId": "beta",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 506
+  },
+  "articles": [
+    {
+      "id": "1953-03-01_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 506,
+      "hasImages": true
+    },
+    {
+      "id": "1953-03-01_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

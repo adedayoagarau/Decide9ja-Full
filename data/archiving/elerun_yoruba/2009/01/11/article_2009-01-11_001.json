@@ -1,0 +1,24 @@
+{
+  "id": "2009-01-11_001",
+  "newspaper": "Elerun Yoruba",
+  "date": "2009-01-11",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2009-01-11_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Elerun%20Yoruba&date=2009-01-11",
+  "scrapedAt": "2026-02-11T05:15:56.388Z",
+  "agentId": "sigma"
+}

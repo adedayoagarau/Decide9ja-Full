@@ -1,0 +1,29 @@
+{
+  "newspaper": "New Nigerian",
+  "date": "2006-02-26",
+  "url": "https://archivi.ng/search?publication=New%20Nigerian&date=2006-02-26",
+  "scrapedAt": "2026-02-11T01:24:25.862Z",
+  "agentId": "tau",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 489
+  },
+  "articles": [
+    {
+      "id": "2006-02-26_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 489,
+      "hasImages": true
+    },
+    {
+      "id": "2006-02-26_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

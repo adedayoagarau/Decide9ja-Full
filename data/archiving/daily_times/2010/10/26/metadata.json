@@ -1,0 +1,29 @@
+{
+  "newspaper": "Daily Times",
+  "date": "2010-10-26",
+  "url": "https://archivi.ng/search?publication=Daily%20Times&date=2010-10-26",
+  "scrapedAt": "2026-02-10T12:50:43.320Z",
+  "agentId": "kappa",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 535
+  },
+  "articles": [
+    {
+      "id": "2010-10-26_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 535,
+      "hasImages": true
+    },
+    {
+      "id": "2010-10-26_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

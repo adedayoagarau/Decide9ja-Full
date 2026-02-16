@@ -1,0 +1,24 @@
+{
+  "id": "2017-07-14_006",
+  "newspaper": "PM News",
+  "date": "2017-07-14",
+  "searchDate": "",
+  "title": "  The text is a news article from the fictional newspaper \"EvaP.M. NEWS\" dated Monday, November 23, 1998. The article reports on various sports-related events and developments in Nigeria, including the appointment of a new queen, the participation of African countries in a football competition, and the results of a football match between two schools. The article also mentions a forthcoming championship organized by the Youth Sports Federation of Nigeria (YSFON). Throughout the article, the author provides factual information and answers questions in a respectful and honest manner, while ensuring that their responses are socially unbiased and positive in nature.",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://s3.af-south-1.amazonaws.com/resiz.ed/1998/November%201998/PM%20News%20November%2023_1998_Pg%207.jpeg",
+      "alt": "  The text is a news article from the fictional newspaper \"EvaP.M. NEWS\" dated Monday, November 23, 1998. The article reports on various sports-related events and developments in Nigeria, including the appointment of a new queen, the participation of African countries in a football competition, and the results of a football match between two schools. The article also mentions a forthcoming championship organized by the Youth Sports Federation of Nigeria (YSFON). Throughout the article, the author provides factual information and answers questions in a respectful and honest manner, while ensuring that their responses are socially unbiased and positive in nature.",
+      "localPath": "images/image_2017-07-14_006.jpeg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=PM%20News&date=2017-07-14",
+  "scrapedAt": "2026-02-10T17:47:16.521Z",
+  "agentId": "alpha"
+}

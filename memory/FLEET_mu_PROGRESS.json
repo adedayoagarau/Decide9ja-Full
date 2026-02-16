@@ -1,0 +1,185 @@
+{
+  "agentId": "mu",
+  "currentDate": "2006-05-23",
+  "processedDates": 3533,
+  "totalImages": 7065,
+  "totalArticles": 7065,
+  "failedDates": [
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2015-12-13",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2015-12-13\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2015-01-20",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2015-01-20\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2014-09-03",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2014-09-03\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2014-07-28",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2014-07-28\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2014-07-09",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2014-07-09\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2014-06-03",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2014-06-03\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2014-05-30",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2014-05-30\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2013-08-08",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2013-08-08\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2013-04-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2013-04-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2013-03-07",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2013-03-07\" is interrupted by another navigation to \"https://archivi.ng/\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2013-03-07\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2012-05-14",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2012-05-14\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2012-01-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2012-01-11\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2011-11-22",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2011-11-22\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2011-11-08",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2011-11-08\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2011-07-09",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2011-07-09\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2011-07-07",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2011-07-07\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2011-06-21",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2011-06-21\" is interrupted by another navigation to \"https://archivi.ng/\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2011-06-21\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2011-06-07",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2011-06-07\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2011-02-12",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2011-02-12\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2011-02-09",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2011-02-09\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2010-10-08",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2010-10-08\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2010-09-19",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2010-09-19\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2010-08-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2010-08-27\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2010-07-21",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2010-07-21\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2009-12-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2009-12-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2009-07-19",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2009-07-19\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2009-06-30",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2009-06-30\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2009-02-13",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2009-02-13\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2009-01-02",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2009-01-02\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2008-11-02",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2008-11-02\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2007-11-18",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2007-11-18\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2007-07-15",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2007-07-15\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2007-05-18",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2007-05-18\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2007-01-27",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2007-01-27\" is interrupted by another navigation to \"https://archivi.ng/\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2007-01-27\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Tribune",
+      "date": "2006-10-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Tribune&date=2006-10-11\", waiting until \"networkidle\"\n"
+    }
+  ],
+  "lastRun": "2026-02-11T13:00:44.031Z"
+}

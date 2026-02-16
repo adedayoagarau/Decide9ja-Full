@@ -1,0 +1,40 @@
+{
+  "agentId": "chi",
+  "currentDate": "2007-05-15",
+  "processedDates": 966,
+  "totalImages": 1932,
+  "totalArticles": 1932,
+  "failedDates": [
+    {
+      "newspaper": "Nigerian Standard",
+      "date": "2008-04-09",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Standard&date=2008-04-09\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Standard",
+      "date": "2008-02-02",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Standard&date=2008-02-02\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Standard",
+      "date": "2008-01-30",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Standard&date=2008-01-30\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Nigerian Standard",
+      "date": "2007-10-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Standard&date=2007-10-27\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Standard",
+      "date": "2007-09-16",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Nigerian%20Standard&date=2007-09-16\" is interrupted by another navigation to \"https://archivi.ng/\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Standard&date=2007-09-16\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Nigerian Standard",
+      "date": "2007-09-02",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Nigerian%20Standard&date=2007-09-02\", waiting until \"networkidle\"\n"
+    }
+  ],
+  "lastRun": "2026-02-11T13:36:26.083Z"
+}

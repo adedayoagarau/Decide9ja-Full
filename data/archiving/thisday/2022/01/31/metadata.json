@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "newspaper": "ThisDay",
+  "date": "2022-01-31",
+  "issues": [
+    {
+      "url": "https://archivi.ng/the-archivist/stories",
+      "title": "Stories",
+      "imageUrl": null,
+      "date": null
+    },
+    {
+      "url": "",
+      "title": "ReportsComing soon",
+      "imageUrl": null,
+      "date": null
+    },
+    {
+      "url": "",
+      "title": "ToolsComing soon",
+      "imageUrl": null,
+      "date": null
+    }
+  ],
+  "url": "https://archivi.ng/search?publication=ThisDay&date=2022-01-31",
+  "timestamp": "2026-02-08T11:12:18.107Z"
+}

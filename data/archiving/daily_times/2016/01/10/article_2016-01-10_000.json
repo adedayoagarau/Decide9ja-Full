@@ -1,0 +1,24 @@
+{
+  "id": "2016-01-10_000",
+  "newspaper": "Daily Times",
+  "date": "2016-01-10",
+  "searchDate": "",
+  "title": "archivi.ng",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://archivi.ng/_nuxt/archiving_logo.BTqpXjXR.svg",
+      "alt": "archivi.ng",
+      "localPath": "images/image_2016-01-10_000.svg"
+    },
+    "article": []
+  },
+  "sourceUrl": "https://archivi.ng/",
+  "searchUrl": "https://archivi.ng/search?publication=Daily%20Times&date=2016-01-10",
+  "scrapedAt": "2026-02-09T12:57:35.554Z",
+  "agentId": "kappa"
+}

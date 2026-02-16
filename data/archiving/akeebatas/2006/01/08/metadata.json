@@ -1,0 +1,29 @@
+{
+  "newspaper": "Akeebatas",
+  "date": "2006-01-08",
+  "url": "https://archivi.ng/search?publication=Akeebatas&date=2006-01-08",
+  "scrapedAt": "2026-02-11T05:55:08.716Z",
+  "agentId": "omega",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 505
+  },
+  "articles": [
+    {
+      "id": "2006-01-08_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 505,
+      "hasImages": true
+    },
+    {
+      "id": "2006-01-08_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

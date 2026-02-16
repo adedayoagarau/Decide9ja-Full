@@ -1,0 +1,24 @@
+{
+  "id": "2026-11-12_001",
+  "newspaper": "Africa Week",
+  "date": "2026-11-12",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2026-11-12_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Africa%20Week&date=2026-11-12",
+  "scrapedAt": "2026-02-11T14:51:51.978Z",
+  "agentId": "eta"
+}

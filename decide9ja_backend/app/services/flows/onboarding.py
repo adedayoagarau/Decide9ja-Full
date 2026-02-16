@@ -36,10 +36,10 @@ async def classify_onboarding_input(text: str, expected: str) -> Tuple[str, Opti
         - intent: "name", "greeting", "question", "state", "lga", "other"
         - extracted_value: The actual name/state/lga if applicable
     """
-    import anthropic
+    from openai import OpenAI
 
     try:
-        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
         prompt = f"""Classify this user input during onboarding. We asked for their {expected}.
 
@@ -57,13 +57,13 @@ Respond ONLY in this format:
 INTENT: [name|greeting|question|state|lga|other]
 VALUE: [extracted value or NONE]"""
 
-        response = client.messages.create(
-            model="claude-3-haiku-20240307",
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
             max_tokens=50,
             messages=[{"role": "user", "content": prompt}]
         )
 
-        result = response.content[0].text.strip()
+        result = response.choices[0].message.content.strip()
 
         # Parse response
         intent = "other"

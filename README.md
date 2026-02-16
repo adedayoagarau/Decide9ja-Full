@@ -1,182 +1,113 @@
-# DECIDE9JA - INEC Data Scraper
+# Decide9ja - Nigerian Election Intelligence Platform
 
-Scrapes Nigerian electoral data from INEC for the Decide9ja political intelligence platform.
+[![Status](https://img.shields.io/badge/Status-Active-brightgreen)]()
+[![Version](https://img.shields.io/badge/Version-2.0.0-blue)]()
+[![Scraper](https://img.shields.io/badge/Scraper-Philip%20Active-orange)]()
 
-## What This Scrapes
+## 🎯 Mission
 
-| File | Records | Source |
-|------|---------|--------|
-| `parties.json` | 18 | inecnigeria.org/political-parties |
-| `states.json` | 37 | Nigerian Constitution |
-| `lgas.json` | 774 | Nigerian Constitution |
-| `senatorial_districts.json` | 109 | Nigerian Constitution |
+Comprehensive Nigerian election intelligence platform combining historical archives, real-time data, and predictive analytics.
 
-## Quick Start
+## 🏗️ Architecture
 
-### Option 1: Run in Google Antigravity
+```
+Decide9ja/
+├── 📁 data/
+│   ├── archiving/          # Historical newspaper archives (Philip)
+│   ├── catalogs/           # Master indexes & metadata
+│   ├── raw/                # Raw scraped data
+│   └── processed/          # Cleaned, OCR'd, analyzed data
+├── 📁 src/
+│   ├── scraper/            # Archivi.ng scraper (Philip)
+│   ├── ocr/                # Tesseract OCR pipeline
+│   ├── catalog/            # Index & search system
+│   ├── api/                # REST API endpoints
+│   └── utils/              # Utilities & helpers
+├── 📁 config/              # Configuration files
+├── 📁 logs/                # Scraping & processing logs
+├── 📁 memory/              # Agent memory & progress tracking
+├── 📁 docs/                # Documentation
+└── 📁 tests/               # Test suites
+```
 
-1. Open this folder in Antigravity
-2. Tell the agent:
-   ```
-   Run the scrape_inec.py script to collect INEC data
-   ```
-3. Data will be saved to `data/processed/`
+## 🤖 Active Agents (Part of the Agent Fleet - see MEMORY.md for full list)
 
-### Option 2: Run Locally
+| Agent | Role | Status | Location |
+|-------|------|--------|----------|
+| 🔍 **Philip** | Archivi.ng Scraper | 🟢 Nonstop | `src/scraper/` |
+| 🗳️ **Thomas** | Decide9ja Monitor | 🟢 Active | Project watchdog |
+| 📖 **John** | AI Research | 🟢 Nonstop | Memory & docs |
+| ⚔️ **Fleet Alpha** | Abuja Newsweek (REDEPLOYED 2015-2025) | 🟢 Full Content | `data/archiving/` |
+| ⚔️ **Fleet Omega** | Akeebatas Scraper (2010-2000) | 🟢 Running | `data/archiving/` |
+| 🔍 **Judas** | OCR Processor | 🟢 Running | `src/ocr/` |
+
+## 📰 Archiving Mission
+
+**Target**: 43 Nigerian newspapers (2026 → 1900)
+- **Current**: All 43 newspapers in progress
+- **Method**: Daily backwards scraping (2026 → 1900)
+- **Storage**: `data/archiving/{newspaper}/{YYYY}/{MM-DD}/`
+- **Processing**: Download → OCR → Catalog → Index
+
+## 🚀 Quick Start
 
 ```bash
 # Install dependencies
-pip install -r requirements.txt
+cd /Volumes/Crucial\ X10/Decide9ja
+npm install
 
-# Run scraper
-python scrape_inec.py
+# Start archivi.ng scraper (Philip)
+npm run scrape:archiving
+
+# Run OCR on downloaded images
+npm run ocr:process
+
+# Build catalog index
+npm run catalog:build
+
+# Start API server
+npm run api:start
 ```
 
-### Option 3: Use the Pre-Generated Data
+## 📊 Progress Tracking
 
-The `data/processed/` folder already contains the scraped data. You can use it directly.
+- **Issues Archived**: See `memory/SCRAPING_PROGRESS.md`
+- **Agent Reports**: WhatsApp updates every 5 min
+- **Storage Stats**: See `data/catalogs/storage_stats.json`
 
-## Output Structure
+## 🔧 Configuration
 
-```
-data/
-├── raw/                          # Raw HTML pages (for debugging)
-└── processed/
-    ├── parties.json              # Political parties
-    ├── states.json               # Nigerian states
-    ├── lgas.json                 # Local Government Areas
-    ├── senatorial_districts.json # 109 senatorial districts
-    └── _summary.json             # Scrape metadata
-```
+- **Scraper Config**: `config/scraper.json`
+- **OCR Settings**: `config/ocr.json`
+- **API Keys**: `.env` (not committed)
 
-## Data Schema
+## 📝 Documentation
 
-### parties.json
-```json
-{
-  "id": "apc",
-  "name": "All Progressives Congress",
-  "abbreviation": "APC",
-  "chairman": "Dr. Abdullahi Umar Ganduje",
-  "secretary": "...",
-  "treasurer": "...",
-  "logo_url": "...",
-  "source_url": "https://inecnigeria.org/political-parties/",
-  "scraped_at": "2025-12-27T..."
-}
-```
+- **System Design**: `docs/ARCHITECTURE.md`
+- **Scraper Guide**: `docs/SCRAPER_GUIDE.md`
+- **API Reference**: `docs/API.md`
 
-### states.json
-```json
-{
-  "id": "lagos",
-  "name": "Lagos",
-  "capital": "Ikeja",
-  "region": "South-West",
-  "lgas": ["Agege", "Alimosho", ...],
-  "senatorial_districts": ["Lagos Central", "Lagos East", "Lagos West"],
-  "federal_constituencies": 11,
-  "state_constituencies": 20
-}
-```
+## 🛡️ Industry Standards
 
-### lgas.json
-```json
-{
-  "id": "lagos_alimosho",
-  "name": "Alimosho",
-  "state": "Lagos",
-  "state_id": "lagos"
-}
-```
+- ✅ Structured logging
+- ✅ Error handling & recovery
+- ✅ Incremental backups
+- ✅ Data validation
+- ✅ Monitoring & alerts
+- ✅ Git version control
+- ✅ Environment configs
 
-## Next Steps: Add Candidate Data
+---
 
-This scraper provides the foundation data. You still need to manually curate:
+**Last Updated**: 2026-02-05  
+**Maintained By**: Agent Fleet (7 Disciples)
 
-1. **Candidate profiles** - Not available via scraping (need manual research)
-2. **Policy positions** - From manifestos, interviews, debates
-3. **Campaign promises** - From campaign events
-4. **Voting records** - From National Assembly (partial scraping possible)
+## 🤝 Contributing
 
-### Candidate Data Template
+Contributions are welcome! Please ensure all documentation changes are consistent with project goals and agent memory (`MEMORY.md`).
 
-Create `data/candidates/` with files like:
+## ✍️ Documentation Practices
 
-```json
-{
-  "id": "tinubu_bola_2023_president",
-  "name": "Bola Ahmed Tinubu",
-  "party_id": "apc",
-  "position_sought": "President",
-  "election_year": 2023,
-  "state_of_origin": "Lagos",
-  "bio": {
-    "birth_year": 1952,
-    "education": [...],
-    "career": [...]
-  },
-  "positions": [
-    {
-      "issue": "Economy",
-      "stance": "Pro-business, privatization",
-      "quotes": [
-        {
-          "text": "We will create 1 million tech jobs",
-          "source": "Campaign rally, Lagos",
-          "date": "2022-11-15",
-          "url": "https://..."
-        }
-      ]
-    }
-  ]
-}
-```
-
-## Antigravity Mission Prompts
-
-### Extend the Scraper
-
-```
-MISSION: Add candidate scraping
-
-Look at the scrape_inec.py file and extend it to also scrape:
-1. Candidate lists from INEC when they publish them
-2. BudgIT data on budget allocations
-3. News articles about candidates from Premium Times
-
-Save all scraped data in the data/processed folder.
-```
-
-### Create Candidate Database
-
-```
-MISSION: Create candidate database
-
-Research and create JSON files for the top 20 candidates for 2027:
-- Presidential candidates from major parties
-- Lagos gubernatorial candidates
-- Oyo gubernatorial candidates
-
-For each candidate, find:
-- Basic bio (Wikipedia, news)
-- 3-5 policy positions with source URLs
-- Notable quotes
-
-Save to data/candidates/{name}.json
-```
-
-## Troubleshooting
-
-### Scraper returns few parties
-INEC's website structure may have changed. The scraper falls back to a known parties database in this case.
-
-### Rate limiting
-The scraper waits 2 seconds between requests to be respectful. Don't decrease this.
-
-### Missing data
-Some fields (founded_year, ideology, colors) require manual enrichment or Wikipedia scraping.
-
-## License
-
-MIT - Use this for civic good.
+- Keep `MEMORY.md` updated with significant decisions, project progress, and agent roles.
+- Ensure `README.md` reflects the most current project status.
+- Add specific `docs/` for detailed guides and technical specifications.

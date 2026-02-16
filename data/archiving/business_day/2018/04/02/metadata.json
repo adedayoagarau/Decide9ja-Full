@@ -1,0 +1,29 @@
+{
+  "newspaper": "Business Day",
+  "date": "2018-04-02",
+  "url": "https://archivi.ng/search?publication=Business%20Day&date=2018-04-02",
+  "scrapedAt": "2026-02-11T03:12:48.044Z",
+  "agentId": "xi",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 510
+  },
+  "articles": [
+    {
+      "id": "2018-04-02_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 510,
+      "hasImages": true
+    },
+    {
+      "id": "2018-04-02_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

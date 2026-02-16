@@ -1,0 +1,24 @@
+{
+  "id": "1958-04-23_001",
+  "newspaper": "Africa",
+  "date": "1958-04-23",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_1958-04-23_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Africa&date=1958-04-23",
+  "scrapedAt": "2026-02-09T06:58:20.621Z",
+  "agentId": "beta"
+}

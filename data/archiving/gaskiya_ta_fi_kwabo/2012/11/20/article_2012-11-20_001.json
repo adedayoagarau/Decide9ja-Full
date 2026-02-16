@@ -1,0 +1,24 @@
+{
+  "id": "2012-11-20_001",
+  "newspaper": "Gaskiya Ta Fi Kwabo",
+  "date": "2012-11-20",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2012-11-20_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Gaskiya%20Ta%20Fi%20Kwabo&date=2012-11-20",
+  "scrapedAt": "2026-02-11T09:39:53.618Z",
+  "agentId": "psi"
+}

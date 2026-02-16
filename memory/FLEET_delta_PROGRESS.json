@@ -1,0 +1,35 @@
+{
+  "agentId": "delta",
+  "currentDate": "2026-10-19",
+  "processedDates": 73,
+  "totalImages": 1606,
+  "totalArticles": 1606,
+  "failedDates": [
+    {
+      "newspaper": "Africa International",
+      "date": "2026-12-31",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20International&date=2026-12-31\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa International",
+      "date": "2026-12-26",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20International&date=2026-12-26\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa International",
+      "date": "2026-12-21",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20International&date=2026-12-21\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa International",
+      "date": "2026-12-16",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20International&date=2026-12-16\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Africa International",
+      "date": "2026-12-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Africa%20International&date=2026-12-11\", waiting until \"networkidle\"\n"
+    }
+  ],
+  "lastRun": "2026-02-11T14:40:06.644Z"
+}

@@ -1,0 +1,170 @@
+{
+  "agentId": "nu",
+  "currentDate": "2002-10-04",
+  "processedDates": 2660,
+  "totalImages": 5319,
+  "totalArticles": 5319,
+  "failedDates": [
+    {
+      "newspaper": "Sunday Times",
+      "date": "2009-05-22",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2009-05-22\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2009-04-21",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2009-04-21\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2009-04-20",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Sunday%20Times&date=2009-04-20\" is interrupted by another navigation to \"https://archivi.ng/search?publication=Sunday%20Times&date=2009-04-21\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2009-04-20\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2009-04-09",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2009-04-09\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2008-10-26",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2008-10-26\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2008-10-15",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2008-10-15\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2008-06-14",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2008-06-14\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2008-03-23",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2008-03-23\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2008-02-15",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2008-02-15\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2008-02-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2008-02-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2008-01-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2008-01-11\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2007-12-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2007-12-01\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2007-08-30",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2007-08-30\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2007-06-13",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2007-06-13\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2007-05-22",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2007-05-22\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2007-02-26",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2007-02-26\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2007-01-18",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2007-01-18\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2006-11-18",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2006-11-18\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2006-11-14",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2006-11-14\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2006-09-19",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2006-09-19\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2006-05-15",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2006-05-15\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2005-12-31",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2005-12-31\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2005-09-29",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2005-09-29\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2005-02-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2005-02-24\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2004-08-28",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Sunday%20Times&date=2004-08-28\" is interrupted by another navigation to \"https://archivi.ng/\"\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2004-08-28\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2004-05-09",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2004-05-09\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2004-04-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2004-04-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2003-12-03",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2003-12-03\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2003-11-18",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2003-11-18\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2003-04-16",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2003-04-16\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2003-04-12",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2003-04-12\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Sunday Times",
+      "date": "2002-12-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Sunday%20Times&date=2002-12-24\", waiting until \"networkidle\"\u001b[22m\n"
+    }
+  ],
+  "lastRun": "2026-02-11T07:54:35.477Z"
+}

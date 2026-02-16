@@ -1,0 +1,24 @@
+{
+  "id": "2018-03-29_015",
+  "newspaper": "Africa Week",
+  "date": "2018-03-29",
+  "searchDate": "",
+  "title": "The text appears to be a reference to a publication from 2008, specifically Volume 1, Number 3 of a journal or magazine. However, the details provided are incomplete, making it difficult to summarize the content effectively. It seems to indicate a structured format typical of academic or professional publications.",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://s3.af-south-1.amazonaws.com/resiz.ed/Magazines/Africa%20Week/2008/August%202008/August%201,%202008/Africa%20Week%20August%201_2008_Pg%201.jpeg",
+      "alt": "The text appears to be a reference to a publication from 2008, specifically Volume 1, Number 3 of a journal or magazine. However, the details provided are incomplete, making it difficult to summarize the content effectively. It seems to indicate a structured format typical of academic or professional publications.",
+      "localPath": "images/image_2018-03-29_015.jpeg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Africa%20Week&date=2018-03-29",
+  "scrapedAt": "2026-02-11T05:27:04.683Z",
+  "agentId": "eta"
+}

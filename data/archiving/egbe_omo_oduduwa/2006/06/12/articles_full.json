@@ -1,0 +1,52 @@
+{
+  "articles": [
+    {
+      "id": "2006-06-12_000",
+      "newspaper": "Egbe Omo Oduduwa",
+      "date": "2006-06-12",
+      "searchDate": "",
+      "title": "archivi.ng",
+      "author": "",
+      "publishDate": "",
+      "snippet": "",
+      "content": "",
+      "wordCount": 0,
+      "images": {
+        "searchResult": {
+          "url": "https://archivi.ng/_nuxt/archiving_logo.BTqpXjXR.svg",
+          "alt": "archivi.ng",
+          "localPath": "images/image_2006-06-12_000.svg"
+        },
+        "article": []
+      },
+      "sourceUrl": "https://archivi.ng/",
+      "searchUrl": "https://archivi.ng/search?publication=Egbe%20Omo%20Oduduwa&date=2006-06-12",
+      "scrapedAt": "2026-02-10T11:36:15.453Z",
+      "agentId": "rho"
+    },
+    {
+      "id": "2006-06-12_001",
+      "newspaper": "Egbe Omo Oduduwa",
+      "date": "2006-06-12",
+      "searchDate": "",
+      "title": "Researcher",
+      "author": "",
+      "publishDate": "",
+      "snippet": "",
+      "content": "",
+      "wordCount": 0,
+      "images": {
+        "searchResult": {
+          "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+          "alt": "Researcher",
+          "localPath": "images/image_2006-06-12_001.jpg"
+        },
+        "article": []
+      },
+      "sourceUrl": "",
+      "searchUrl": "https://archivi.ng/search?publication=Egbe%20Omo%20Oduduwa&date=2006-06-12",
+      "scrapedAt": "2026-02-10T11:36:15.574Z",
+      "agentId": "rho"
+    }
+  ]
+}

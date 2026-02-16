@@ -1,0 +1,29 @@
+{
+  "newspaper": "Sunday Times",
+  "date": "2007-06-23",
+  "url": "https://archivi.ng/search?publication=Sunday%20Times&date=2007-06-23",
+  "scrapedAt": "2026-02-09T15:05:51.384Z",
+  "agentId": "nu",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 517
+  },
+  "articles": [
+    {
+      "id": "2007-06-23_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 517,
+      "hasImages": true
+    },
+    {
+      "id": "2007-06-23_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

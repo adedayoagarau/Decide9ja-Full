@@ -1,0 +1,140 @@
+{
+  "agentId": "pi",
+  "currentDate": "2010-12-19",
+  "processedDates": 2956,
+  "totalImages": 5912,
+  "totalArticles": 5912,
+  "failedDates": [
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2017-12-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2017-12-27\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2017-12-08",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2017-12-08\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2017-09-20",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2017-09-20\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2017-09-02",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2017-09-02\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2017-09-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2017-09-01\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2017-08-29",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2017-08-29\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2017-07-02",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2017-07-02\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2017-06-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2017-06-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2016-04-07",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2016-04-07\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2016-02-05",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2016-02-05\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2015-12-17",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2015-12-17\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2015-11-24",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2015-11-24\" is interrupted by another navigation to \"https://archivi.ng/\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2015-11-24\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2015-11-08",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2015-11-08\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2015-09-26",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2015-09-26\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2015-09-25",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2015-09-25\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2015-07-10",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2015-07-10\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2015-03-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2015-03-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2015-01-13",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2015-01-13\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2014-02-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2014-02-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2013-12-25",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2013-12-25\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2013-11-28",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2013-11-28\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2013-05-31",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2013-05-31\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2013-05-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2013-05-11\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2013-04-26",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2013-04-26\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2013-03-13",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2013-03-13\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Lagos Weekly Record",
+      "date": "2013-03-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Lagos%20Weekly%20Record&date=2013-03-01\", waiting until \"networkidle\"\u001b[22m\n"
+    }
+  ],
+  "lastRun": "2026-02-11T13:40:44.039Z"
+}

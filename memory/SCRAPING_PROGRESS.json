@@ -1,0 +1,38 @@
+{
+  "currentNewspaper": 10,
+  "currentDate": "2026-02-05",
+  "totalIssues": 108806,
+  "errors": [
+    {
+      "newspaper": "PM News",
+      "date": "2025-10-26",
+      "error": "All 5 retries failed for scrape-PM News-2025-10-26: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=PM+News&date=2025-10-26\", waiting until \"networkidle\"\n",
+      "timestamp": "2026-02-05T20:55:12.689Z"
+    },
+    {
+      "newspaper": "The Guardian",
+      "date": "2025-12-27",
+      "error": "All 5 retries failed for scrape-The Guardian-2025-12-27: page.goto: net::ERR_CONNECTION_TIMED_OUT at https://archivi.ng/search?publication=The+Guardian&date=2025-12-27\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=The+Guardian&date=2025-12-27\", waiting until \"networkidle\"\n",
+      "timestamp": "2026-02-06T12:04:42.600Z"
+    },
+    {
+      "newspaper": "Sun",
+      "date": "2020-09-11",
+      "error": "All 5 retries failed for scrape-Sun-2020-09-11: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Sun&date=2020-09-11\", waiting until \"networkidle\"\n",
+      "timestamp": "2026-02-09T10:10:29.152Z"
+    },
+    {
+      "newspaper": "Leadership",
+      "date": "2023-10-19",
+      "error": "All 5 retries failed for scrape-Leadership-2023-10-19: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Leadership&date=2023-10-19\", waiting until \"networkidle\"\n",
+      "timestamp": "2026-02-10T08:40:19.636Z"
+    },
+    {
+      "newspaper": "Leadership",
+      "date": "2023-06-23",
+      "error": "All 5 retries failed for scrape-Leadership-2023-06-23: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Leadership&date=2023-06-23\", waiting until \"networkidle\"\n",
+      "timestamp": "2026-02-10T09:50:27.676Z"
+    }
+  ],
+  "newspapers": {}
+}

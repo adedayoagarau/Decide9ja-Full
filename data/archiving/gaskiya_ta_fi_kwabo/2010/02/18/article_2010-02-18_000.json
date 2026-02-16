@@ -1,0 +1,24 @@
+{
+  "id": "2010-02-18_000",
+  "newspaper": "Gaskiya Ta Fi Kwabo",
+  "date": "2010-02-18",
+  "searchDate": "",
+  "title": "archivi.ng",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://archivi.ng/_nuxt/archiving_logo.BTqpXjXR.svg",
+      "alt": "archivi.ng",
+      "localPath": "images/image_2010-02-18_000.svg"
+    },
+    "article": []
+  },
+  "sourceUrl": "https://archivi.ng/",
+  "searchUrl": "https://archivi.ng/search?publication=Gaskiya%20Ta%20Fi%20Kwabo&date=2010-02-18",
+  "scrapedAt": "2026-02-10T05:23:00.917Z",
+  "agentId": "psi"
+}

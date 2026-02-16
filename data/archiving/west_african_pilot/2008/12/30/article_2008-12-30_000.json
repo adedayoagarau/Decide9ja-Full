@@ -1,0 +1,24 @@
+{
+  "id": "2008-12-30_000",
+  "newspaper": "West African Pilot",
+  "date": "2008-12-30",
+  "searchDate": "",
+  "title": "archivi.ng",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://archivi.ng/_nuxt/archiving_logo.BTqpXjXR.svg",
+      "alt": "archivi.ng",
+      "localPath": "images/image_2008-12-30_000.svg"
+    },
+    "article": []
+  },
+  "sourceUrl": "https://archivi.ng/",
+  "searchUrl": "https://archivi.ng/search?publication=West%20African%20Pilot&date=2008-12-30",
+  "scrapedAt": "2026-02-09T11:34:33.036Z",
+  "agentId": "lambda"
+}

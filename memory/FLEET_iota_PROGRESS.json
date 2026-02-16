@@ -1,0 +1,80 @@
+{
+  "agentId": "iota",
+  "currentDate": "2023-01-01",
+  "processedDates": 1482,
+  "totalImages": 2964,
+  "totalArticles": 2964,
+  "failedDates": [
+    {
+      "newspaper": "The Guardian",
+      "date": "2025-05-03",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=The%20Guardian&date=2025-05-03\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "The Guardian",
+      "date": "2025-04-29",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=The%20Guardian&date=2025-04-29\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "The Guardian",
+      "date": "2025-03-08",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=The%20Guardian&date=2025-03-08\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "The Guardian",
+      "date": "2025-02-14",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=The%20Guardian&date=2025-02-14\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "The Guardian",
+      "date": "2025-01-29",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=The%20Guardian&date=2025-01-29\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "The Guardian",
+      "date": "2024-12-29",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=The%20Guardian&date=2024-12-29\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "The Guardian",
+      "date": "2024-06-20",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=The%20Guardian&date=2024-06-20\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "The Guardian",
+      "date": "2024-02-06",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=The%20Guardian&date=2024-02-06\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "The Guardian",
+      "date": "2023-07-04",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=The%20Guardian&date=2023-07-04\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "The Guardian",
+      "date": "2023-04-15",
+      "error": "page.goto: net::ERR_NETWORK_CHANGED at https://archivi.ng/search?publication=The%20Guardian&date=2023-04-15\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=The%20Guardian&date=2023-04-15\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "The Guardian",
+      "date": "2023-02-12",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=The%20Guardian&date=2023-02-12\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "The Guardian",
+      "date": "2023-02-04",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=The%20Guardian&date=2023-02-04\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "The Guardian",
+      "date": "2023-02-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=The%20Guardian&date=2023-02-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "The Guardian",
+      "date": "2023-01-31",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=The%20Guardian&date=2023-01-31\", waiting until \"networkidle\"\n"
+    }
+  ],
+  "lastRun": "2026-02-11T13:51:33.349Z"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "2009-07-19_001",
+  "newspaper": "Nigerian Observer",
+  "date": "2009-07-19",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2009-07-19_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Nigerian%20Observer&date=2009-07-19",
+  "scrapedAt": "2026-02-09T10:57:03.135Z",
+  "agentId": "phi"
+}

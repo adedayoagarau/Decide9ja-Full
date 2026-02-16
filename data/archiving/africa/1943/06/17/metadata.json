@@ -1,0 +1,29 @@
+{
+  "newspaper": "Africa",
+  "date": "1943-06-17",
+  "url": "https://archivi.ng/search?publication=Africa&date=1943-06-17",
+  "scrapedAt": "2026-02-11T00:21:01.399Z",
+  "agentId": "beta",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 529
+  },
+  "articles": [
+    {
+      "id": "1943-06-17_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 529,
+      "hasImages": true
+    },
+    {
+      "id": "1943-06-17_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

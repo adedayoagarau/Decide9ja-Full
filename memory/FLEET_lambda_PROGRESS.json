@@ -1,0 +1,190 @@
+{
+  "agentId": "lambda",
+  "currentDate": "2000-06-30",
+  "processedDates": 3872,
+  "totalImages": 7744,
+  "totalArticles": 7744,
+  "failedDates": [
+    {
+      "newspaper": "West African Pilot",
+      "date": "2010-03-10",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2010-03-10\" is interrupted by another navigation to \"https://archivi.ng/\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2010-03-10\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2009-12-08",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2009-12-08\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2009-10-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2009-10-27\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2009-10-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2009-10-24\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2009-10-08",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2009-10-08\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2009-10-05",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2009-10-05\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2009-09-05",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2009-09-05\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2009-05-07",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2009-05-07\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2007-04-29",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2007-04-29\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2007-04-05",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2007-04-05\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2007-01-17",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2007-01-17\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2006-11-12",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2006-11-12\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2006-10-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2006-10-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2006-09-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2006-09-24\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2006-07-17",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2006-07-17\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2006-07-12",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2006-07-12\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2006-05-12",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2006-05-12\" is interrupted by another navigation to \"https://archivi.ng/\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2006-05-12\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2006-05-07",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2006-05-07\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2005-03-09",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2005-03-09\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2004-11-04",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2004-11-04\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2004-11-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2004-11-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2004-02-23",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2004-02-23\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2003-12-06",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2003-12-06\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2003-11-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2003-11-27\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2003-10-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2003-10-27\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2003-10-14",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2003-10-14\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2003-08-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2003-08-24\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2003-08-22",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2003-08-22\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2003-02-13",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2003-02-13\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2002-06-05",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2002-06-05\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2002-02-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2002-02-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2001-12-02",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2001-12-02\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2001-08-09",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2001-08-09\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2001-06-06",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2001-06-06\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2001-05-03",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2001-05-03\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "West African Pilot",
+      "date": "2001-04-23",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=West%20African%20Pilot&date=2001-04-23\", waiting until \"networkidle\"\n"
+    }
+  ],
+  "lastRun": "2026-02-11T13:25:19.498Z"
+}

@@ -1,0 +1,29 @@
+{
+  "newspaper": "West African Pilot",
+  "date": "2004-05-19",
+  "url": "https://archivi.ng/search?publication=West%20African%20Pilot&date=2004-05-19",
+  "scrapedAt": "2026-02-10T10:38:07.089Z",
+  "agentId": "lambda",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 0
+  },
+  "articles": [
+    {
+      "id": "2004-05-19_000",
+      "title": "archivi.ng",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    },
+    {
+      "id": "2004-05-19_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

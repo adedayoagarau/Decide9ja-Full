@@ -1,0 +1,29 @@
+{
+  "newspaper": "Nigerian Observer",
+  "date": "2006-01-23",
+  "url": "https://archivi.ng/search?publication=Nigerian%20Observer&date=2006-01-23",
+  "scrapedAt": "2026-02-10T06:12:21.631Z",
+  "agentId": "phi",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 497
+  },
+  "articles": [
+    {
+      "id": "2006-01-23_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 497,
+      "hasImages": true
+    },
+    {
+      "id": "2006-01-23_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

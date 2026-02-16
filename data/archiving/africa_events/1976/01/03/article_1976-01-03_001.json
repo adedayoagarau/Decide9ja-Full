@@ -1,0 +1,24 @@
+{
+  "id": "1976-01-03_001",
+  "newspaper": "Africa Events",
+  "date": "1976-01-03",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_1976-01-03_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Africa%20Events&date=1976-01-03",
+  "scrapedAt": "2026-02-10T20:14:39.957Z",
+  "agentId": "gamma"
+}

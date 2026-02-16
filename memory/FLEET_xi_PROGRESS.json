@@ -1,0 +1,145 @@
+{
+  "agentId": "xi",
+  "currentDate": "2017-06-06",
+  "processedDates": 2050,
+  "totalImages": 4097,
+  "totalArticles": 4097,
+  "failedDates": [
+    {
+      "newspaper": "Business Day",
+      "date": "2022-12-31",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2022-12-31\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2022-10-05",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Business%20Day&date=2022-10-05\" is interrupted by another navigation to \"https://archivi.ng/\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2022-10-05\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2022-07-10",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2022-07-10\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2022-06-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2022-06-01\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2022-05-31",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Business%20Day&date=2022-05-31\" is interrupted by another navigation to \"https://archivi.ng/search?publication=Business%20Day&date=2022-06-01\"\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2022-05-31\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2022-05-30",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Business%20Day&date=2022-05-30\" is interrupted by another navigation to \"https://archivi.ng/search?publication=Business%20Day&date=2022-05-31\"\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2022-05-30\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2022-01-25",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2022-01-25\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2021-08-08",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2021-08-08\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2021-07-05",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2021-07-05\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2021-07-02",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2021-07-02\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2021-06-10",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2021-06-10\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2021-04-28",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2021-04-28\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2021-04-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2021-04-27\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2021-04-15",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2021-04-15\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2021-03-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2021-03-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2021-01-19",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2021-01-19\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2021-01-18",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2021-01-18\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2021-01-07",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2021-01-07\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2020-12-09",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2020-12-09\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2020-07-09",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2020-07-09\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2020-02-26",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2020-02-26\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2019-02-18",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2019-02-18\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2017-11-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2017-11-01\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2017-10-03",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2017-10-03\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2017-10-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2017-10-01\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2017-08-18",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2017-08-18\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Business Day",
+      "date": "2017-06-19",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Business%20Day&date=2017-06-19\", waiting until \"networkidle\"\n"
+    }
+  ],
+  "lastRun": "2026-02-11T07:55:48.366Z"
+}

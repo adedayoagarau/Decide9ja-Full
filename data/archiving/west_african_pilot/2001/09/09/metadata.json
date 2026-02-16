@@ -1,0 +1,29 @@
+{
+  "newspaper": "West African Pilot",
+  "date": "2001-09-09",
+  "url": "https://archivi.ng/search?publication=West%20African%20Pilot&date=2001-09-09",
+  "scrapedAt": "2026-02-11T03:13:19.541Z",
+  "agentId": "lambda",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 493
+  },
+  "articles": [
+    {
+      "id": "2001-09-09_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 493,
+      "hasImages": true
+    },
+    {
+      "id": "2001-09-09_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

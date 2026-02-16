@@ -1,0 +1,195 @@
+{
+  "agentId": "kappa",
+  "currentDate": "2008-05-03",
+  "processedDates": 4671,
+  "totalImages": 9342,
+  "totalArticles": 9342,
+  "failedDates": [
+    {
+      "newspaper": "Daily Times",
+      "date": "2020-12-20",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2020-12-20\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2018-01-16",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2018-01-16\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2018-01-13",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2018-01-13\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2018-01-12",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2018-01-12\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2018-01-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2018-01-11\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2017-08-31",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2017-08-31\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2017-07-04",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2017-07-04\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2016-08-20",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2016-08-20\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2016-08-04",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2016-08-04\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2016-07-19",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2016-07-19\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2016-06-02",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2016-06-02\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2016-04-18",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2016-04-18\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2016-02-20",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2016-02-20\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2016-02-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2016-02-11\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2016-01-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2016-01-11\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2016-01-06",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2016-01-06\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2015-10-18",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2015-10-18\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2015-10-14",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2015-10-14\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2015-06-10",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2015-06-10\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2014-07-25",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2014-07-25\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2014-05-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2014-05-11\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2014-03-24",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2014-03-24\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2013-12-16",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2013-12-16\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2013-11-11",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Daily%20Times&date=2013-11-11\" is interrupted by another navigation to \"https://archivi.ng/\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2013-11-11\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2013-03-20",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2013-03-20\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2012-11-19",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2012-11-19\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2012-08-04",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2012-08-04\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2012-05-02",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2012-05-02\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2012-03-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2012-03-27\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2012-03-06",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2012-03-06\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2011-09-13",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2011-09-13\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2010-12-08",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2010-12-08\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2010-08-13",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2010-08-13\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2010-08-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2010-08-11\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2010-04-06",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2010-04-06\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2009-05-23",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2009-05-23\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Daily Times",
+      "date": "2009-01-14",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Daily%20Times&date=2009-01-14\", waiting until \"networkidle\"\n"
+    }
+  ],
+  "lastRun": "2026-02-11T14:47:19.982Z"
+}

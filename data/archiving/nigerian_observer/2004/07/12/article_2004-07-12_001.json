@@ -1,0 +1,24 @@
+{
+  "id": "2004-07-12_001",
+  "newspaper": "Nigerian Observer",
+  "date": "2004-07-12",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2004-07-12_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Nigerian%20Observer&date=2004-07-12",
+  "scrapedAt": "2026-02-10T22:00:59.240Z",
+  "agentId": "phi"
+}

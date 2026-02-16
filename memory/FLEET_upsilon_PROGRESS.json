@@ -1,0 +1,80 @@
+{
+  "agentId": "upsilon",
+  "currentDate": "2011-04-09",
+  "processedDates": 1747,
+  "totalImages": 3494,
+  "totalArticles": 3494,
+  "failedDates": [
+    {
+      "newspaper": "Morning Post",
+      "date": "2015-05-25",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Morning%20Post&date=2015-05-25\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Morning Post",
+      "date": "2015-05-10",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Morning%20Post&date=2015-05-10\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Morning Post",
+      "date": "2015-05-09",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Morning%20Post&date=2015-05-09\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Morning Post",
+      "date": "2015-05-08",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Morning%20Post&date=2015-05-08\" is interrupted by another navigation to \"https://archivi.ng/search?publication=Morning%20Post&date=2015-05-09\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Morning%20Post&date=2015-05-08\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Morning Post",
+      "date": "2015-05-07",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Morning%20Post&date=2015-05-07\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Morning Post",
+      "date": "2015-02-21",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Morning%20Post&date=2015-02-21\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Morning Post",
+      "date": "2014-11-22",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Morning%20Post&date=2014-11-22\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Morning Post",
+      "date": "2014-10-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Morning%20Post&date=2014-10-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Morning Post",
+      "date": "2014-09-14",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Morning%20Post&date=2014-09-14\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Morning Post",
+      "date": "2014-05-23",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Morning%20Post&date=2014-05-23\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Morning Post",
+      "date": "2013-08-03",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Morning%20Post&date=2013-08-03\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Morning Post",
+      "date": "2013-03-10",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Morning%20Post&date=2013-03-10\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Morning Post",
+      "date": "2013-01-22",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Morning%20Post&date=2013-01-22\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Morning Post",
+      "date": "2012-12-26",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Morning%20Post&date=2012-12-26\", waiting until \"networkidle\"\u001b[22m\n"
+    }
+  ],
+  "lastRun": "2026-02-11T12:24:51.301Z"
+}

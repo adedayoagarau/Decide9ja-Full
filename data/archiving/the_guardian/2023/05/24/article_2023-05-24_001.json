@@ -1,0 +1,24 @@
+{
+  "id": "2023-05-24_001",
+  "newspaper": "The Guardian",
+  "date": "2023-05-24",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2023-05-24_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=The%20Guardian&date=2023-05-24",
+  "scrapedAt": "2026-02-10T02:22:49.314Z",
+  "agentId": "iota"
+}

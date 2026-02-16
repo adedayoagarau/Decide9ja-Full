@@ -1,0 +1,29 @@
+{
+  "newspaper": "Nigerian Tribune",
+  "date": "2009-03-04",
+  "url": "https://archivi.ng/search?publication=Nigerian%20Tribune&date=2009-03-04",
+  "scrapedAt": "2026-02-10T12:54:45.764Z",
+  "agentId": "mu",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 500
+  },
+  "articles": [
+    {
+      "id": "2009-03-04_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 500,
+      "hasImages": true
+    },
+    {
+      "id": "2009-03-04_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

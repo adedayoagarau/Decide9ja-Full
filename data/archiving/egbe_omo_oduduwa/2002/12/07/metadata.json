@@ -1,0 +1,29 @@
+{
+  "newspaper": "Egbe Omo Oduduwa",
+  "date": "2002-12-07",
+  "url": "https://archivi.ng/search?publication=Egbe%20Omo%20Oduduwa&date=2002-12-07",
+  "scrapedAt": "2026-02-11T13:41:28.274Z",
+  "agentId": "rho",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 553
+  },
+  "articles": [
+    {
+      "id": "2002-12-07_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 553,
+      "hasImages": true
+    },
+    {
+      "id": "2002-12-07_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}

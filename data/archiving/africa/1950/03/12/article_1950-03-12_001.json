@@ -1,0 +1,24 @@
+{
+  "id": "1950-03-12_001",
+  "newspaper": "Africa",
+  "date": "1950-03-12",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_1950-03-12_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Africa&date=1950-03-12",
+  "scrapedAt": "2026-02-10T05:52:22.024Z",
+  "agentId": "beta"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "2021-02-21_001",
+  "newspaper": "Business Day",
+  "date": "2021-02-21",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2021-02-21_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Business%20Day&date=2021-02-21",
+  "scrapedAt": "2026-02-10T07:35:26.731Z",
+  "agentId": "xi"
+}

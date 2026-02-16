@@ -1,0 +1,105 @@
+{
+  "agentId": "tau",
+  "currentDate": "2004-03-12",
+  "processedDates": 2136,
+  "totalImages": 4272,
+  "totalArticles": 4272,
+  "failedDates": [
+    {
+      "newspaper": "New Nigerian",
+      "date": "2026-12-31",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2026-12-31\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2009-09-15",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2009-09-15\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2009-09-14",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=New%20Nigerian&date=2009-09-14\" is interrupted by another navigation to \"https://archivi.ng/search?publication=New%20Nigerian&date=2009-09-15\"\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2009-09-14\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2009-08-11",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2009-08-11\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2009-06-21",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2009-06-21\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2009-05-19",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2009-05-19\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2009-03-30",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2009-03-30\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2009-02-07",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2009-02-07\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2008-12-29",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2008-12-29\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2008-11-21",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2008-11-21\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2008-08-09",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2008-08-09\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2008-06-01",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2008-06-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2008-05-05",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2008-05-05\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2008-04-20",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2008-04-20\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2008-01-14",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2008-01-14\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2008-01-07",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2008-01-07\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2006-08-03",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2006-08-03\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2006-02-15",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2006-02-15\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "New Nigerian",
+      "date": "2005-09-27",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=New%20Nigerian&date=2005-09-27\", waiting until \"networkidle\"\n"
+    }
+  ],
+  "lastRun": "2026-02-11T12:20:43.800Z"
+}

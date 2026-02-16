@@ -1,0 +1,30 @@
+{
+  "agentId": "theta",
+  "currentDate": "2026-12-10",
+  "processedDates": 21,
+  "totalImages": 462,
+  "totalArticles": 462,
+  "failedDates": [
+    {
+      "newspaper": "African Business",
+      "date": "2026-12-31",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=African%20Business&date=2026-12-31\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "African Business",
+      "date": "2026-12-25",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=African%20Business&date=2026-12-25\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "African Business",
+      "date": "2026-12-20",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=African%20Business&date=2026-12-20\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "African Business",
+      "date": "2026-12-16",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=African%20Business&date=2026-12-16\", waiting until \"networkidle\"\n"
+    }
+  ],
+  "lastRun": "2026-02-11T14:37:44.544Z"
+}

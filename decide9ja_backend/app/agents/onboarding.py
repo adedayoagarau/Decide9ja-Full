@@ -68,9 +68,8 @@ class OnboardingAgent(BaseAgent):
             logger.error(f"Onboarding flow error for {phone_hash[:8]}...: {e}")
             return AgentOutput(
                 success=False,
-                response=("Welcome to Decide9ja! 🇳🇬 I'm Tade, your civic assistant. "
-                         "Let's get you set up — what's your first name?"),
-                error_message=str(e),
+                response_text="Welcome to Decide9ja! 🇳🇬 I'm Tade, your civic assistant. Let's get you set up — what's your first name?",
+                error=str(e),
                 cost_level=CostLevel.FREE
             )
 
@@ -91,7 +90,7 @@ class OnboardingAgent(BaseAgent):
                           f"processing pending query: {state.pending_query[:50]}")
                 return AgentOutput(
                     success=True,
-                    response=response_text,
+                    response_text=response_text,
                     handoff_to="classifier",
                     handoff_reason="onboarding_complete_with_pending_query",
                     data={
@@ -115,7 +114,7 @@ class OnboardingAgent(BaseAgent):
 
             return AgentOutput(
                 success=True,
-                response=response_text,
+                response_text=response_text,
                 data={
                     "onboarding_complete": True,
                     "user": {
@@ -133,7 +132,7 @@ class OnboardingAgent(BaseAgent):
         # 5. Still in onboarding — return the response and stay in this agent
         return AgentOutput(
             success=True,
-            response=response_text,
+            response_text=response_text,
             handoff_to="onboarding",  # Stay in onboarding for next message
             handoff_reason=f"onboarding_step_{state.flow_step}",
             data={

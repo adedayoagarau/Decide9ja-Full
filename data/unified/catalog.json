@@ -1,0 +1,119 @@
+{
+  "generated_at": "2026-02-06T19:48:41.954Z",
+  "total_documents": 5,
+  "by_newspaper": {
+    "pmnews": 5
+  },
+  "by_topic": {
+    "election": 5,
+    "economy": 5,
+    "security": 5,
+    "health": 5,
+    "education": 5
+  },
+  "by_sentiment": {
+    "positive": 0,
+    "negative": 4,
+    "neutral": 1
+  },
+  "top_entities": {
+    "people": [
+      [
+        "Magistrate",
+        5
+      ],
+      [
+        "Ags",
+        5
+      ],
+      [
+        "Beko",
+        5
+      ],
+      [
+        "Gay",
+        5
+      ],
+      [
+        "Oblayode",
+        5
+      ],
+      [
+        "Kenny Marie",
+        5
+      ],
+      [
+        "Jim",
+        5
+      ],
+      [
+        "Ronke",
+        5
+      ],
+      [
+        "Howson",
+        5
+      ],
+      [
+        "Dipo",
+        5
+      ],
+      [
+        "Latest Kayodsl",
+        5
+      ],
+      [
+        "Tsav",
+        5
+      ],
+      [
+        "Chuks Anayo",
+        5
+      ],
+      [
+        "Were",
+        5
+      ],
+      [
+        "Abubakar Alhaji",
+        5
+      ],
+      [
+        "Alex Onyenwenwa",
+        5
+      ],
+      [
+        "Grsingbe Evadema",
+        4
+      ],
+      [
+        "Jones Chir",
+        4
+      ]
+    ],
+    "organizations": [
+      [
+        "PDP",
+        5
+      ],
+      [
+        "CBN",
+        4
+      ]
+    ],
+    "locations": [
+      [
+        "Lagos",
+        5
+      ],
+      [
+        "Abuja",
+        5
+      ],
+      [
+        "Port Harcourt",
+        5
+      ]
+    ]
+  }
+}

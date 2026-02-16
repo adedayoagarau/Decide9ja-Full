@@ -1,0 +1,24 @@
+{
+  "id": "2009-06-30_001",
+  "newspaper": "Africa Today",
+  "date": "2009-06-30",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2009-06-30_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Africa%20Today&date=2009-06-30",
+  "scrapedAt": "2026-02-10T04:55:39.791Z",
+  "agentId": "zeta"
+}

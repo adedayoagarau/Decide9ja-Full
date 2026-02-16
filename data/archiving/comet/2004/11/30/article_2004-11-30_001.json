@@ -1,0 +1,24 @@
+{
+  "id": "2004-11-30_001",
+  "newspaper": "Comet",
+  "date": "2004-11-30",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2004-11-30_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Comet&date=2004-11-30",
+  "scrapedAt": "2026-02-11T02:52:03.304Z",
+  "agentId": "omicron"
+}

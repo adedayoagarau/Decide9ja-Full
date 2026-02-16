@@ -1,0 +1,90 @@
+{
+  "agentId": "omicron",
+  "currentDate": "2003-11-07",
+  "processedDates": 2271,
+  "totalImages": 4540,
+  "totalArticles": 4540,
+  "failedDates": [
+    {
+      "newspaper": "Comet",
+      "date": "2009-08-14",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Comet&date=2009-08-14\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "newspaper": "Comet",
+      "date": "2009-02-12",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Comet&date=2009-02-12\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Comet",
+      "date": "2009-01-16",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Comet&date=2009-01-16\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Comet",
+      "date": "2008-12-30",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Comet&date=2008-12-30\" is interrupted by another navigation to \"https://archivi.ng/\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Comet&date=2008-12-30\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Comet",
+      "date": "2008-12-29",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Comet&date=2008-12-29\" is interrupted by another navigation to \"https://archivi.ng/search?publication=Comet&date=2008-12-30\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Comet&date=2008-12-29\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Comet",
+      "date": "2008-02-06",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Comet&date=2008-02-06\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Comet",
+      "date": "2008-01-23",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Comet&date=2008-01-23\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Comet",
+      "date": "2007-11-17",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Comet&date=2007-11-17\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Comet",
+      "date": "2007-02-26",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Comet&date=2007-02-26\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Comet",
+      "date": "2006-12-25",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Comet&date=2006-12-25\" is interrupted by another navigation to \"https://archivi.ng/\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Comet&date=2006-12-25\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Comet",
+      "date": "2006-06-01",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Comet&date=2006-06-01\" is interrupted by another navigation to \"https://archivi.ng/\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Comet&date=2006-06-01\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Comet",
+      "date": "2006-05-31",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Comet&date=2006-05-31\" is interrupted by another navigation to \"https://archivi.ng/search?publication=Comet&date=2006-06-01\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Comet&date=2006-05-31\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Comet",
+      "date": "2005-07-18",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Comet&date=2005-07-18\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Comet",
+      "date": "2005-04-23",
+      "error": "page.goto: Navigation to \"https://archivi.ng/search?publication=Comet&date=2005-04-23\" is interrupted by another navigation to \"https://archivi.ng/\"\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Comet&date=2005-04-23\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Comet",
+      "date": "2005-02-16",
+      "error": "page.goto: net::ERR_NETWORK_CHANGED at https://archivi.ng/search?publication=Comet&date=2005-02-16\nCall log:\n  - navigating to \"https://archivi.ng/search?publication=Comet&date=2005-02-16\", waiting until \"networkidle\"\n"
+    },
+    {
+      "newspaper": "Comet",
+      "date": "2004-04-12",
+      "error": "page.goto: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://archivi.ng/search?publication=Comet&date=2004-04-12\", waiting until \"networkidle\"\u001b[22m\n"
+    }
+  ],
+  "lastRun": "2026-02-11T07:59:00.858Z"
+}

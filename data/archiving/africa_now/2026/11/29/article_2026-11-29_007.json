@@ -1,0 +1,24 @@
+{
+  "id": "2026-11-29_007",
+  "newspaper": "Africa Now",
+  "date": "2026-11-29",
+  "searchDate": "",
+  "title": "The report discusses the demographic changes and challenges faced by Black Britons and African immigrants in the UK over the past decades. It highlights the rising unemployment rates among Black individuals compared to their White counterparts, and the complexities surrounding census data collection, particularly regarding ethnicity and undocumented residents. The report also notes significant increases in the African-born population in the UK, particularly from East Africa, and examines the socio-political factors driving migration, such as political insecurity and economic opportunities. Overall, it paints a picture of a community facing ongoing struggles while also experiencing growth in numbers.",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://s3.af-south-1.amazonaws.com/resiz.ed/Magazines/Africa%20Now/1984/August%201984/August%204,%201984/Africa%20Now%20August%204_1984_Pg%2082.jpeg",
+      "alt": "The report discusses the demographic changes and challenges faced by Black Britons and African immigrants in the UK over the past decades. It highlights the rising unemployment rates among Black individuals compared to their White counterparts, and the complexities surrounding census data collection, particularly regarding ethnicity and undocumented residents. The report also notes significant increases in the African-born population in the UK, particularly from East Africa, and examines the socio-political factors driving migration, such as political insecurity and economic opportunities. Overall, it paints a picture of a community facing ongoing struggles while also experiencing growth in numbers.",
+      "localPath": "images/image_2026-11-29_007.jpeg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Africa%20Now&date=2026-11-29",
+  "scrapedAt": "2026-02-11T07:23:27.202Z",
+  "agentId": "epsilon"
+}

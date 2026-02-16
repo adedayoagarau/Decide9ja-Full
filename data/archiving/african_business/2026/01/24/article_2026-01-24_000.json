@@ -1,0 +1,24 @@
+{
+  "id": "2026-01-24_000",
+  "newspaper": "African Business",
+  "date": "2026-01-24",
+  "searchDate": "",
+  "title": "archivi.ng",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://archivi.ng/_nuxt/archiving_logo.BTqpXjXR.svg",
+      "alt": "archivi.ng",
+      "localPath": "images/image_2026-01-24_000.svg"
+    },
+    "article": []
+  },
+  "sourceUrl": "https://archivi.ng/",
+  "searchUrl": "https://archivi.ng/search?publication=African%20Business&date=2026-01-24",
+  "scrapedAt": "2026-02-10T02:12:48.194Z",
+  "agentId": "theta"
+}

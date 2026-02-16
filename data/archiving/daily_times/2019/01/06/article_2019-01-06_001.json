@@ -1,0 +1,24 @@
+{
+  "id": "2019-01-06_001",
+  "newspaper": "Daily Times",
+  "date": "2019-01-06",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2019-01-06_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Daily%20Times&date=2019-01-06",
+  "scrapedAt": "2026-02-09T06:30:54.356Z",
+  "agentId": "kappa"
+}

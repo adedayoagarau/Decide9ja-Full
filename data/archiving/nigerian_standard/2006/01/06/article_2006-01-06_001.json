@@ -1,0 +1,24 @@
+{
+  "id": "2006-01-06_001",
+  "newspaper": "Nigerian Standard",
+  "date": "2006-01-06",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2006-01-06_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Nigerian%20Standard&date=2006-01-06",
+  "scrapedAt": "2026-02-10T13:47:19.915Z",
+  "agentId": "chi"
+}

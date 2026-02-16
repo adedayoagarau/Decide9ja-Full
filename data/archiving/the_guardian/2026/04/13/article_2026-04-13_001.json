@@ -1,0 +1,24 @@
+{
+  "id": "2026-04-13_001",
+  "newspaper": "The Guardian",
+  "date": "2026-04-13",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2026-04-13_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=The%20Guardian&date=2026-04-13",
+  "scrapedAt": "2026-02-09T06:59:28.854Z",
+  "agentId": "iota"
+}

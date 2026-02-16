@@ -1,0 +1,24 @@
+{
+  "id": "2009-05-21_001",
+  "newspaper": "Comet",
+  "date": "2009-05-21",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2009-05-21_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Comet&date=2009-05-21",
+  "scrapedAt": "2026-02-09T09:03:16.381Z",
+  "agentId": "omicron"
+}

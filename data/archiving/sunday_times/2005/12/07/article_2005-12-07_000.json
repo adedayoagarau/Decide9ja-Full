@@ -1,0 +1,24 @@
+{
+  "id": "2005-12-07_000",
+  "newspaper": "Sunday Times",
+  "date": "2005-12-07",
+  "searchDate": "",
+  "title": "archivi.ng",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://archivi.ng/_nuxt/archiving_logo.BTqpXjXR.svg",
+      "alt": "archivi.ng",
+      "localPath": "images/image_2005-12-07_000.svg"
+    },
+    "article": []
+  },
+  "sourceUrl": "https://archivi.ng/",
+  "searchUrl": "https://archivi.ng/search?publication=Sunday%20Times&date=2005-12-07",
+  "scrapedAt": "2026-02-10T09:56:49.353Z",
+  "agentId": "nu"
+}

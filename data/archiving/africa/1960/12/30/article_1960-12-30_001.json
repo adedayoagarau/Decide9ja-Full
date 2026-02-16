@@ -1,0 +1,24 @@
+{
+  "id": "1960-12-30_001",
+  "newspaper": "Africa",
+  "date": "1960-12-30",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_1960-12-30_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Africa&date=1960-12-30",
+  "scrapedAt": "2026-02-08T23:25:34.131Z",
+  "agentId": "beta"
+}

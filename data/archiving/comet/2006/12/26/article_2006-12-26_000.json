@@ -1,0 +1,24 @@
+{
+  "id": "2006-12-26_000",
+  "newspaper": "Comet",
+  "date": "2006-12-26",
+  "searchDate": "",
+  "title": "archivi.ng",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://archivi.ng/_nuxt/archiving_logo.BTqpXjXR.svg",
+      "alt": "archivi.ng",
+      "localPath": "images/image_2006-12-26_000.svg"
+    },
+    "article": []
+  },
+  "sourceUrl": "https://archivi.ng/",
+  "searchUrl": "https://archivi.ng/search?publication=Comet&date=2006-12-26",
+  "scrapedAt": "2026-02-10T09:52:28.306Z",
+  "agentId": "omicron"
+}

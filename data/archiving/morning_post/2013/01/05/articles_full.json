@@ -1,0 +1,52 @@
+{
+  "articles": [
+    {
+      "id": "2013-01-05_000",
+      "newspaper": "Morning Post",
+      "date": "2013-01-05",
+      "searchDate": "",
+      "title": "archivi.ng",
+      "author": "",
+      "publishDate": "",
+      "snippet": "",
+      "content": "",
+      "wordCount": 0,
+      "images": {
+        "searchResult": {
+          "url": "https://archivi.ng/_nuxt/archiving_logo.BTqpXjXR.svg",
+          "alt": "archivi.ng",
+          "localPath": "images/image_2013-01-05_000.svg"
+        },
+        "article": []
+      },
+      "sourceUrl": "https://archivi.ng/",
+      "searchUrl": "https://archivi.ng/search?publication=Morning%20Post&date=2013-01-05",
+      "scrapedAt": "2026-02-11T05:24:30.625Z",
+      "agentId": "upsilon"
+    },
+    {
+      "id": "2013-01-05_001",
+      "newspaper": "Morning Post",
+      "date": "2013-01-05",
+      "searchDate": "",
+      "title": "Researcher",
+      "author": "",
+      "publishDate": "",
+      "snippet": "",
+      "content": "",
+      "wordCount": 0,
+      "images": {
+        "searchResult": {
+          "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+          "alt": "Researcher",
+          "localPath": "images/image_2013-01-05_001.jpg"
+        },
+        "article": []
+      },
+      "sourceUrl": "",
+      "searchUrl": "https://archivi.ng/search?publication=Morning%20Post&date=2013-01-05",
+      "scrapedAt": "2026-02-11T05:24:31.140Z",
+      "agentId": "upsilon"
+    }
+  ]
+}

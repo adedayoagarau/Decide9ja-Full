@@ -1,0 +1,52 @@
+{
+  "articles": [
+    {
+      "id": "1956-11-27_000",
+      "newspaper": "Africa",
+      "date": "1956-11-27",
+      "searchDate": "",
+      "title": "archivi.ng",
+      "author": "",
+      "publishDate": "",
+      "snippet": "",
+      "content": "",
+      "wordCount": 0,
+      "images": {
+        "searchResult": {
+          "url": "https://archivi.ng/_nuxt/archiving_logo.BTqpXjXR.svg",
+          "alt": "archivi.ng",
+          "localPath": "images/image_1956-11-27_000.svg"
+        },
+        "article": []
+      },
+      "sourceUrl": "https://archivi.ng/",
+      "searchUrl": "https://archivi.ng/search?publication=Africa&date=1956-11-27",
+      "scrapedAt": "2026-02-09T10:35:19.389Z",
+      "agentId": "beta"
+    },
+    {
+      "id": "1956-11-27_001",
+      "newspaper": "Africa",
+      "date": "1956-11-27",
+      "searchDate": "",
+      "title": "Researcher",
+      "author": "",
+      "publishDate": "",
+      "snippet": "",
+      "content": "",
+      "wordCount": 0,
+      "images": {
+        "searchResult": {
+          "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+          "alt": "Researcher",
+          "localPath": "images/image_1956-11-27_001.jpg"
+        },
+        "article": []
+      },
+      "sourceUrl": "",
+      "searchUrl": "https://archivi.ng/search?publication=Africa&date=1956-11-27",
+      "scrapedAt": "2026-02-09T10:35:19.481Z",
+      "agentId": "beta"
+    }
+  ]
+}

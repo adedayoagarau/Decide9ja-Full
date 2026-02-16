@@ -1,0 +1,24 @@
+{
+  "id": "2003-11-15_001",
+  "newspaper": "Nigerian Observer",
+  "date": "2003-11-15",
+  "searchDate": "",
+  "title": "Researcher",
+  "author": "",
+  "publishDate": "",
+  "snippet": "",
+  "content": "",
+  "wordCount": 0,
+  "images": {
+    "searchResult": {
+      "url": "https://images.prismic.io/archiving/aB6AiidWJ-7kR2tb_OlalekanOjumu.jpg?auto=format,compress",
+      "alt": "Researcher",
+      "localPath": "images/image_2003-11-15_001.jpg"
+    },
+    "article": []
+  },
+  "sourceUrl": "",
+  "searchUrl": "https://archivi.ng/search?publication=Nigerian%20Observer&date=2003-11-15",
+  "scrapedAt": "2026-02-11T00:30:03.479Z",
+  "agentId": "phi"
+}

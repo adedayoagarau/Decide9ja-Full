@@ -1,0 +1,29 @@
+{
+  "newspaper": "\"African Business",
+  "date": "2026-08-11",
+  "url": "https://archivi.ng/search?publication=%22African%20Business&date=2026-08-11",
+  "scrapedAt": "2026-02-09T09:24:19.846Z",
+  "agentId": "theta",
+  "stats": {
+    "articlesFound": 2,
+    "articlesProcessed": 2,
+    "imagesDownloaded": 2,
+    "totalWordCount": 524
+  },
+  "articles": [
+    {
+      "id": "2026-08-11_000",
+      "title": "Nigeria’s history, one search away",
+      "hasContent": true,
+      "wordCount": 524,
+      "hasImages": true
+    },
+    {
+      "id": "2026-08-11_001",
+      "title": "Researcher",
+      "hasContent": false,
+      "wordCount": 0,
+      "hasImages": true
+    }
+  ]
+}
