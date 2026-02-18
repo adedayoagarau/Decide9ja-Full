@@ -35,4 +35,4 @@ ENV PATH=/home/decide9ja/.local/bin:$PATH \
 USER decide9ja
 EXPOSE ${PORT}
 
-CMD ["sh", "-c", "gunicorn app.main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:${PORT} --timeout 120"]
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT} --timeout-keep-alive 30"]
