@@ -27,3 +27,12 @@ dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Large data files (not needed in git — too big for Railway to clone)
+data/
+decide9ja_backend/nigeria_knowledge_data/
+decide9ja_backend/nigeria_data.zip
+decide9ja_backend/ocr_resume_wal.log
+decide9ja_scraper/data/
+*.pdf
+*.zip
