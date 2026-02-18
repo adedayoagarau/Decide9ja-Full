@@ -1,16 +1,42 @@
-# Railway Ignore
-decide9ja.db
-*.sqlite3
-*.log
-.env
-.venv
-venv/
-__pycache__/
-*.pyc
-.DS_Store
-.git/
-.github/
-nigeria_data.zip
+# Large data files not needed at runtime
+data/
 nigeria_knowledge_data/
+nigeria_data.zip
+*.zip
+
+# Development databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+*.log.*
+logs/
+ocr_resume_wal.log
+
+# Test/debug files
 tests/
-Procfile
+test_*.py
+debug_*.py
+.pytest_cache/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+*.swp
+
+# Git
+.git/
+
+# Jupyter
+*.ipynb
+.ipynb_checkpoints/
+
+# Deployment scripts
+deployment/
+
+# Coverage
+.coverage
+htmlcov/
