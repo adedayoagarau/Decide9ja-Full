@@ -190,7 +190,12 @@ class LocationResponse(BaseModel):
 @app.on_event("startup")
 async def startup_event():
     """Initialize database on startup."""
-    init_db()
+    try:
+        init_db()
+        logger.info("✅ Database initialized")
+    except Exception as e:
+        logger.warning(f"⚠️ Database init failed (non-fatal): {e}")
+        logger.warning("   App will start without DB — check DATABASE_URL")
     
     # Include WhatsApp webhook router
     app.include_router(webhook_router.router, prefix="/api", tags=["WhatsApp"])

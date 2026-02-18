@@ -1,6 +1,6 @@
 # Procfile for Railway deployment
 # Main web process (production with gunicorn)
-web: gunicorn app.main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT --timeout 120
+web: gunicorn app.main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT --timeout 120
 
 # Background worker for scheduled tasks (separate Railway service)
 worker: python -m app.scheduler_unified
