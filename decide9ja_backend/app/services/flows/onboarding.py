@@ -36,10 +36,13 @@ async def classify_onboarding_input(text: str, expected: str) -> Tuple[str, Opti
         - intent: "name", "greeting", "question", "state", "lga", "other"
         - extracted_value: The actual name/state/lga if applicable
     """
-    from openai import OpenAI
+    from openai import AsyncOpenAI
 
     try:
-        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        api_key = os.getenv("OPENAI_API_KEY")
+        if not api_key:
+            raise ValueError("OPENAI_API_KEY not set")
+        client = AsyncOpenAI(api_key=api_key)
 
         prompt = f"""Classify this user input during onboarding. We asked for their {expected}.
 
@@ -57,13 +60,13 @@ Respond ONLY in this format:
 INTENT: [name|greeting|question|state|lga|other]
 VALUE: [extracted value or NONE]"""
 
-        response = client.chat.completions.create(
+        response = await client.chat.completions.create(
             model="gpt-4o-mini",
             max_tokens=50,
             messages=[{"role": "user", "content": prompt}]
         )
 
-        result = response.choices[0].message.content.strip()
+        result = response.choices[0].message.content.strip()  # type: ignore
 
         # Parse response
         intent = "other"

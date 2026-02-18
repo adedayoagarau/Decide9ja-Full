@@ -190,7 +190,16 @@ class BaseAgent(ABC):
 
         if cached:
             self._cache_hits += 1
-            output = AgentOutput(**json.loads(cached))
+            # Filter to only known AgentOutput fields to avoid unknown kwarg errors
+            cached_dict = json.loads(cached)
+            valid_fields = {
+                "success", "response_text", "response_voice", "response_media",
+                "data", "handoff_to", "handoff_reason", "buttons", "list_items",
+                "template_name", "sources", "confidence", "cost_level", "cached",
+                "analytics_tags", "error", "error_code"
+            }
+            filtered = {k: v for k, v in cached_dict.items() if k in valid_fields}
+            output = AgentOutput(**filtered)
             output.cached = True
             return output
 
@@ -349,26 +358,31 @@ class LLMAgent(BaseAgent):
     system_prompt: str = ""
     max_tokens: int = 500
     temperature: float = 0.3
-    model: str = "claude-3-haiku-20240307"  # Default to cheapest
+    model: str = "gpt-4o-mini"  # Default to OpenAI (Anthropic credits depleted)
 
     async def call_llm(self, user_prompt: str, context: Dict = None) -> str:
         """Call the LLM with this agent's system prompt"""
-        if not self.llm:
-            raise ValueError("LLM client not configured")
+        import os
+        from openai import AsyncOpenAI
 
+        api_key = os.getenv("OPENAI_API_KEY")
+        if not api_key:
+            raise ValueError("OPENAI_API_KEY not configured")
+
+        client = AsyncOpenAI(api_key=api_key)
         messages = [
             {"role": "system", "content": self.system_prompt},
             {"role": "user", "content": user_prompt}
         ]
 
-        response = await self.llm.chat(
-            messages=messages,
+        response = await client.chat.completions.create(
+            model=self.model,
             max_tokens=self.max_tokens,
             temperature=self.temperature,
-            model=self.model
+            messages=messages
         )
 
-        return response.content
+        return response.choices[0].message.content or ""
 
     async def handle(self, input: AgentInput) -> AgentOutput:
         self._call_count += 1
