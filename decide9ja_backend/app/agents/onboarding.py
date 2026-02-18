@@ -25,6 +25,7 @@ from app.agents.base import (
 from app.agents.registry import register_agent
 from app.models.state import UserState, ConversationFlow
 from app.services.flows.onboarding import handle_onboarding
+from app.database import SessionLocal, User
 
 logger = logging.getLogger(__name__)
 
@@ -171,24 +172,34 @@ class OnboardingAgent(BaseAgent):
         Save completed onboarding profile to the database.
         """
         try:
-            if self.db:
-                # TODO: Implement actual DB save based on your schema
-                # Example for SQLAlchemy:
-                # await self.db.execute(
-                #     insert(User).values(
-                #         phone_hash=phone_hash,
-                #         first_name=state.first_name,
-                #         last_name=state.last_name,
-                #         name=state.name,
-                #         state=state.state,
-                #         lga=state.lga,
-                #     )
-                # )
-                pass
-
-            logger.info(f"Saved profile: {state.first_name} {state.last_name}, "
-                       f"{state.lga}, {state.state}")
-
+            db = SessionLocal()
+            try:
+                # Check for existing user (upsert)
+                existing = db.query(User).filter(User.phone_hash == phone_hash).first()
+                if existing:
+                    existing.first_name = state.first_name
+                    existing.last_name = state.last_name
+                    existing.name = f"{state.first_name} {state.last_name}".strip()
+                    existing.state = state.state
+                    existing.lga = state.lga
+                    existing.onboarding_completed = True
+                else:
+                    new_user = User(
+                        phone_hash=phone_hash,
+                        first_name=state.first_name,
+                        last_name=state.last_name,
+                        name=f"{state.first_name} {state.last_name}".strip(),
+                        state=state.state,
+                        lga=state.lga,
+                        onboarding_completed=True,
+                    )
+                    db.add(new_user)
+                db.commit()
+                logger.info(f"Saved profile: {state.first_name} {state.last_name}, "
+                           f"{state.lga}, {state.state}")
+            finally:
+                db.close()
         except Exception as e:
             logger.error(f"Failed to save user profile: {e}")
+            # Don't fail the onboarding — profile can be saved on next interaction
             # Don't fail the onboarding — profile can be saved on next interaction

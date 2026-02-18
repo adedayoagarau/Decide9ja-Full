@@ -25,6 +25,7 @@ from app.agents.base import (
     UserContext
 )
 from app.agents.registry import register_agent, registry
+from app.database import SessionLocal, User
 
 logger = logging.getLogger(__name__)
 
@@ -279,23 +280,27 @@ class GatekeeperAgent(BaseAgent):
         return modality, preprocessed_context
 
     async def _lookup_user(self, phone_hash: str) -> Optional[dict]:
-        """Look up user in database"""
-        if not self.db:
-            return None
-
+        """Look up user in database by phone_hash."""
         try:
-            # Adapt this to your database schema
-            # For SQLAlchemy async:
-            # result = await self.db.execute(
-            #     select(User).where(User.phone_hash == phone_hash)
-            # )
-            # return result.scalar_one_or_none()
-
-            # For MongoDB:
-            # return await self.db.users.find_one({"phone_hash": phone_hash})
-
-            # Placeholder - adapt to your schema
-            return None
+            db = SessionLocal()
+            try:
+                user = db.query(User).filter(User.phone_hash == phone_hash).first()
+                if user and user.onboarding_completed:
+                    return {
+                        "name": user.name,
+                        "first_name": user.first_name,
+                        "last_name": user.last_name,
+                        "state": user.state,
+                        "lga": user.lga,
+                        "ward": getattr(user, 'ward', None),
+                        "is_verified": False,
+                        "preferences": {},
+                        "followed_politicians": [],
+                        "reported_issues": [],
+                    }
+                return None
+            finally:
+                db.close()
         except Exception as e:
             logger.error(f"User lookup failed: {e}")
             return None
