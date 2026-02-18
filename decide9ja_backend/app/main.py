@@ -184,147 +184,116 @@ class LocationResponse(BaseModel):
 
 
 # ===========================================
-# STARTUP
+# ROUTER INCLUDES (at module level, before startup)
 # ===========================================
 
-@app.on_event("startup")
-async def startup_event():
-    """Initialize database on startup."""
+# Core routers (imported at top of file)
+app.include_router(webhook_router.router, prefix="/api", tags=["WhatsApp"])
+app.include_router(voice_router.router, tags=["Voice"])
+
+# Additional routers
+from app.channels import twilio_whatsapp as twilio_channel
+app.include_router(twilio_channel.router, tags=["Twilio"])
+
+from app.routers import issues as issues_router
+app.include_router(issues_router.router, tags=["Issues"])
+app.include_router(issues_router.admin_router, tags=["Admin"])
+
+from app.routers import admin as admin_router
+app.include_router(admin_router.router, tags=["Admin"])
+
+from app.api import election_analytics
+app.include_router(election_analytics.router, tags=["Election Analytics"])
+
+from app.routers import notifications as notifications_router
+app.include_router(notifications_router.router, tags=["Notifications"])
+
+from app.routers import comparison as comparison_router
+app.include_router(comparison_router.router, tags=["Comparison"])
+
+from app.routers import scheduler_status as scheduler_router
+app.include_router(scheduler_router.router, tags=["Scheduler"])
+
+from app.routers import bills as bills_router
+app.include_router(bills_router.router, tags=["Bills"])
+
+from app.routers import personalization as personalization_router
+app.include_router(personalization_router.router, tags=["Personalization"])
+
+from app.routers import election_2027 as election_2027_router
+app.include_router(election_2027_router.router, tags=["Election 2027"])
+
+from app.routers import chatbot as chatbot_router
+app.include_router(chatbot_router.router, tags=["Chatbot"])
+
+from app.routers import search as search_router
+app.include_router(search_router.router, tags=["Search"])
+
+from app.routers import broadcast as broadcast_router
+app.include_router(broadcast_router.router, tags=["Broadcast"])
+
+from app.routers import constituency as constituency_router
+app.include_router(constituency_router.router, tags=["Constituency"])
+
+from app.routers import auth as auth_router
+app.include_router(auth_router.router, tags=["Authentication"])
+
+from app.routers import media as media_router
+app.include_router(media_router.router, tags=["Media"])
+
+from app.routers import localization as localization_router
+app.include_router(localization_router.router, tags=["Localization"])
+
+from app.routers import pipeline as pipeline_router
+app.include_router(pipeline_router.router, tags=["Data Pipeline"])
+
+from app.routers import dashboard as dashboard_router
+app.include_router(dashboard_router.router, tags=["Dashboard"])
+
+from app.routers import performance as performance_router
+app.include_router(performance_router.router, tags=["Performance"])
+
+from app.routers import budget as budget_router
+app.include_router(budget_router.router, tags=["Budget"])
+
+from app.routers import catalog as catalog_router
+app.include_router(catalog_router.router, tags=["Catalog"])
+
+logger.info("✅ All routers registered")
+
+
+# ===========================================
+# STARTUP (non-blocking — /health works immediately)
+# ===========================================
+
+async def _init_db_background():
+    """Initialize DB in background so startup doesn't block."""
+    import asyncio
+    await asyncio.sleep(0)  # yield to event loop first
     try:
         init_db()
         logger.info("✅ Database initialized")
     except Exception as e:
         logger.warning(f"⚠️ Database init failed (non-fatal): {e}")
-        logger.warning("   App will start without DB — check DATABASE_URL")
-    
-    # Include WhatsApp webhook router
-    app.include_router(webhook_router.router, prefix="/api", tags=["WhatsApp"])
+        logger.warning("   App running without DB — check DATABASE_URL")
 
-    # Include Twilio Channel Router (Direct)
-    from app.channels import twilio_whatsapp as twilio_channel
-    app.include_router(twilio_channel.router, tags=["Twilio"])
-    
-    # Include Issues router
-    from app.routers import issues as issues_router
-    app.include_router(issues_router.router, tags=["Issues"])
-    app.include_router(issues_router.admin_router, tags=["Admin"])
-    
-    # Include Admin router  
-    from app.routers import admin as admin_router
-    app.include_router(admin_router.router, tags=["Admin"])
-    
-    # Include Voice router (Twilio Voice AI)
-    app.include_router(voice_router.router, tags=["Voice"])
-
-    # Include Election 2027 Analytics API
-    from app.api import election_analytics
-    app.include_router(election_analytics.router, tags=["Election Analytics"])
-
-    # Include Notifications router
-    from app.routers import notifications as notifications_router
-    app.include_router(notifications_router.router, tags=["Notifications"])
-
-    # Include Politician Comparison router
-    from app.routers import comparison as comparison_router
-    app.include_router(comparison_router.router, tags=["Comparison"])
-
-    # Include Scheduler Status router
-    from app.routers import scheduler_status as scheduler_router
-    app.include_router(scheduler_router.router, tags=["Scheduler"])
-
-    # Include Bills & Voting Records router
-    from app.routers import bills as bills_router
-    app.include_router(bills_router.router, tags=["Bills"])
-
-    # Include User Personalization router
-    from app.routers import personalization as personalization_router
-    app.include_router(personalization_router.router, tags=["Personalization"])
-
-    # Include Election 2027 Enhanced Features router
-    from app.routers import election_2027 as election_2027_router
-    app.include_router(election_2027_router.router, tags=["Election 2027"])
-
-    # Include Chatbot Enhancements router
-    from app.routers import chatbot as chatbot_router
-    app.include_router(chatbot_router.router, tags=["Chatbot"])
-
-    # Include Search & Discovery router
-    from app.routers import search as search_router
-    app.include_router(search_router.router, tags=["Search"])
-
-    # Include Broadcast & Proactive Messaging router
-    from app.routers import broadcast as broadcast_router
-    app.include_router(broadcast_router.router, tags=["Broadcast"])
-
-    # Include Constituency & Community router
-    from app.routers import constituency as constituency_router
-    app.include_router(constituency_router.router, tags=["Constituency"])
-
-    # Include Auth & Security router
-    from app.routers import auth as auth_router
-    app.include_router(auth_router.router, tags=["Authentication"])
-
-    # Include Media Upload router
-    from app.routers import media as media_router
-    app.include_router(media_router.router, tags=["Media"])
-
-    # Include Localization router
-    from app.routers import localization as localization_router
-    app.include_router(localization_router.router, tags=["Localization"])
-
-    # Include Data Pipeline router
-    from app.routers import pipeline as pipeline_router
-    app.include_router(pipeline_router.router, tags=["Data Pipeline"])
-
-    # Include Analytics Dashboard router
-    from app.routers import dashboard as dashboard_router
-    app.include_router(dashboard_router.router, tags=["Dashboard"])
-
-    # Include Performance & Caching router
-    from app.routers import performance as performance_router
-    app.include_router(performance_router.router, tags=["Performance"])
-
-    # Include Budget router
-    from app.routers import budget as budget_router
-    app.include_router(budget_router.router, tags=["Budget"])
-
-    # Include Catalog (Newspaper Archive) router
-    from app.routers import catalog as catalog_router
-    app.include_router(catalog_router.router, tags=["Catalog"])
-
-    logger.info("✅ Decide9ja Backend Started")
-    logger.info(f"   Environment: {ENVIRONMENT}")
-    logger.info(f"   Rate Limiting: {RATE_LIMITING_ENABLED}")
-    logger.info(f"   WhatsApp Webhook: /api/webhook")
-    logger.info(f"   Voice Webhook: /voice/incoming")
-    logger.info(f"   Issues API: /api/issues")
-    logger.info(f"   Admin API: /api/admin")
-    logger.info(f"   Election Analytics: /api/v1/election")
-    logger.info(f"   Notifications API: /api/notifications")
-    logger.info(f"   Comparison API: /api/compare")
-    logger.info(f"   Scheduler API: /api/scheduler")
-    logger.info(f"   Bills API: /api/bills")
-    logger.info(f"   Personalization API: /api/me")
-    logger.info(f"   Election 2027 API: /api/election/2027")
-    logger.info(f"   Chatbot API: /api/chatbot")
-    logger.info(f"   Search API: /api/search")
-    logger.info(f"   Broadcast API: /api/broadcast")
-    logger.info(f"   Constituency API: /api/constituency")
-    logger.info(f"   Auth API: /api/auth")
-    logger.info(f"   Media API: /api/media")
-    logger.info(f"   Localization API: /api/localization")
-    logger.info(f"   Data Pipeline API: /api/pipeline")
-    logger.info(f"   Dashboard API: /api/dashboard")
-    logger.info(f"   Performance API: /api/performance")
-    logger.info(f"   Catalog API: /api/catalog")
-    
-    # Start background scheduler for cron jobs
+    # Start background scheduler
     try:
         from app.scheduler_unified import start_scheduler
-        scheduler = start_scheduler()
-        logger.info("📅 Background scheduler started with cron jobs")
+        start_scheduler()
+        logger.info("📅 Background scheduler started")
     except Exception as e:
         logger.warning(f"⚠️ Scheduler startup failed (non-critical): {e}")
+
+
+@app.on_event("startup")
+async def startup_event():
+    """Fire-and-forget: DB init + scheduler run in background."""
+    import asyncio
+    asyncio.create_task(_init_db_background())
+    logger.info("🚀 Decide9ja Backend started — DB init running in background")
+
+
 
 
 # ===========================================
