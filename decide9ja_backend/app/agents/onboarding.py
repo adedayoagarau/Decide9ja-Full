@@ -129,12 +129,12 @@ class OnboardingAgent(BaseAgent):
                 cost_level=CostLevel.CHEAP
             )
 
-        # 5. Still in onboarding — return the response and stay in this agent
+        # 5. Still in onboarding — return the response (no handoff needed)
+        # The next message will come back through gatekeeper → onboarding naturally,
+        # because the user still has no name/profile in the database.
         return AgentOutput(
             success=True,
             response_text=response_text,
-            handoff_to="onboarding",  # Stay in onboarding for next message
-            handoff_reason=f"onboarding_step_{state.flow_step}",
             data={
                 "onboarding_step": state.flow_step,
                 "collected": {
