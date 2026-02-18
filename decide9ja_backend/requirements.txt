@@ -5,19 +5,18 @@
 # Core Framework
 fastapi>=0.104.0
 uvicorn>=0.24.0
-gunicorn>=21.0.0              # Production WSGI server
 python-multipart>=0.0.6
 
 # Database
 sqlalchemy>=2.0.0
-psycopg2-binary>=2.9.0        # PostgreSQL driver (standard)
-pgvector>=0.2.0               # Vector similarity search for embeddings
-alembic>=1.13.0               # Database migrations
+psycopg2-binary>=2.9.0
+pgvector>=0.2.0
+alembic>=1.13.0
 
 # AI/ML
-anthropic>=0.18.0             # Claude API
-openai>=1.3.0                 # Embeddings
-tiktoken>=0.5.0               # Token counting
+anthropic>=0.18.0
+openai>=1.3.0
+tiktoken>=0.5.0
 
 # Async/HTTP
 aiohttp>=3.8.0
@@ -25,55 +24,35 @@ httpx>=0.24.0
 requests>=2.31.0
 
 # Messaging
-twilio>=8.0.0                 # WhatsApp/SMS/Voice
+twilio>=8.0.0
 
 # Caching & Memory
-redis>=5.0.0                  # Caching, rate limiting
-supermemory>=0.1.0            # Long-term agent memory (if available via pip)
+redis>=5.0.0
+supermemory>=0.1.0
 
 # Data Processing
 beautifulsoup4>=4.12.0
 lxml>=5.1.0
 feedparser>=6.0.10
 pypdf>=3.0.0
-rapidfuzz>=3.0.0              # Fuzzy matching for Nigerian names
-Pillow>=10.0.0                # Image processing
-pytesseract>=0.3.10           # OCR
+rapidfuzz>=3.0.0
+Pillow>=10.0.0
 
 # Scheduling
 apscheduler>=3.10.0
 
 # Search
-ddgs>=9.0.0                   # DuckDuckGo search
+ddgs>=9.0.0
 
-# Security & Monitoring
-slowapi>=0.1.9                # Rate limiting
+# Security & Config
+slowapi>=0.1.9
 python-dotenv>=1.0.0
-structlog>=24.0.0             # Structured logging
-sentry-sdk>=1.38.0            # Error tracking (optional)
+python-jose[cryptography]>=3.3.0
 
-# Testing (dev only, excluded in prod build)
-pytest>=7.0.0
-pytest-asyncio>=0.21.0
-pytest-cov>=4.0.0
+# Reliability
+tenacity>=8.2.0
+langdetect>=1.0.9
+phonenumbers>=8.13.0
 
-# ===========================================
-# RAG Enhancements (Added 2026-02-14)
-# ===========================================
-
-# Robustness & Reliability
-tenacity>=8.2.0                 # Advanced retries for LLM calls
-langdetect>=1.0.9               # Fallback language detection
-phonenumbers>=8.13.0            # Nigerian phone validation (+234)
-
-# Privacy & Security
-diffprivlib>=0.6.0              # IBM Differential Privacy Library
-python-jose[cryptography]>=3.3.0 # Secure JWT handling
-
-# Monitoring & Ops
-prometheus-fastapi-instrumentator>=6.1.0 # RAG metrics (latency/errors)
-structlog>=24.1.0               # Production JSON logging
-
-# Data Science (RAG Analytics)
-pandas>=2.1.0                   # Log analysis & reporting
-numpy>=1.26.0                   # Vector math fallback
+# Logging
+structlog>=24.0.0
