@@ -19,6 +19,8 @@ from app.agents.base import (
 )
 from app.agents.registry import register_agent
 from app.agents.tier1_entry.classifier import Intent
+from app.database import SessionLocal, Politician
+from sqlalchemy import func, or_
 
 logger = logging.getLogger(__name__)
 
@@ -180,27 +182,87 @@ class RepLookupAgent(DatabaseAgent):
     ) -> List[Dict]:
         """
         Find politicians matching criteria.
-        Adapt this to your actual database schema.
         """
-        # Placeholder - implement based on your database
-        # For SQLAlchemy:
-        # query = select(Politician).where(
-        #     Politician.state == state,
-        #     Politician.current_office_type == office_type,
-        #     Politician.is_active == True
-        # )
-        # result = await self.db.execute(query)
-        # return [row._asdict() for row in result.scalars()]
+        if not state and not constituency:
+            return []
 
-        return []
+        session = SessionLocal()
+        try:
+            query = session.query(Politician)
+
+            if state:
+                query = query.filter(func.lower(Politician.state) == state.lower())
+
+            if office_type:
+                # Fuzzy match for position (e.g. "Senator", "Governor")
+                query = query.filter(func.lower(Politician.position).contains(office_type.lower()))
+
+            if constituency:
+                # Fuzzy match for constituency
+                query = query.filter(func.lower(Politician.constituency).contains(constituency.lower()))
+
+            # Only active/valid records
+            # query = query.filter(Politician.is_active == True) # Schema doesn't have is_active yet
+
+            results = query.all()
+            
+            # Convert to dicts
+            return [
+                {
+                    "id": p.id,
+                    "name": p.name,
+                    "party": p.party,
+                    "office_type": p.position.lower(),
+                    "office_title": f"{p.position} - {p.constituency}" if p.constituency else p.position,
+                    "state": p.state,
+                    "phone": None, # Data might be in data_json, simplified for now
+                    "email": None
+                }
+                for p in results
+            ]
+        except Exception as e:
+            logger.error(f"Database query failed: {e}")
+            return []
+        finally:
+            session.close()
 
     async def _get_constituency(self, state: str, lga: str) -> Optional[str]:
         """Map LGA to federal constituency"""
-        if not self.db or not lga:
+        if not lga:
             return None
 
-        # Placeholder - implement based on your constituency mapping
-        return None
+        # Logic: Find a politician (Rep) whose constituency field contains this LGA
+        # This works because constituency names often list the LGAs e.g. "Agege Federal Constituency" (bad example)
+        # or "Ikeja/Ojodu/..."
+        # Better approach: We search for a Politician record where state matches and constituency contains matching text,
+        # or trust the data ingestion to have normalized this.
+        # For now, we'll try to find a Representative in this state where the constituency might match.
+        
+        session = SessionLocal()
+        try:
+            # Try to find a rep where the constituency description might cover this LGA
+            # This is a heuristic until we have a proper LGA->Constituency mapping table
+            
+            # Simple heuristic: Look for a politician with position 'Representative' in this state
+            # whose constituency name roughly matches the LGA or is related.
+            # actually, often the constituency IS the LGA name or contains it.
+            
+            query = session.query(Politician).filter(
+                func.lower(Politician.state) == state.lower(),
+                func.lower(Politician.position).contains("representative"),
+                func.lower(Politician.constituency).contains(lga.lower())
+            )
+            
+            match = query.first()
+            if match:
+                return match.constituency
+            
+            return None
+        except Exception as e:
+            logger.error(f"Constituency lookup failed: {e}")
+            return None
+        finally:
+            session.close()
 
     def _get_fallback_data(self, state: str, office: str = None) -> List[Dict]:
         """

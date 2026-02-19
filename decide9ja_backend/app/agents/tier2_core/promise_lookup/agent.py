@@ -30,6 +30,9 @@ from app.agents.base import (
 )
 from app.agents.registry import register_agent
 from app.agents.tier1_entry.classifier import Intent
+from app.database import SessionLocal, Politician
+from sqlalchemy import func, or_
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -185,26 +188,46 @@ class PromiseLookupAgent(BaseAgent):
     async def _query_promises_database(
         self, politician: Optional[str], category: Optional[str]
     ) -> List[Dict]:
-        """Query promises from database"""
-        if not self.db:
+        """Query promises from database (via Politician.data_json)"""
+        if not politician:
             return []
 
+        session = SessionLocal()
         try:
-            # Build query based on filters
-            # Adapt to your database schema
-            # Example for SQLAlchemy:
-            # query = select(Promise)
-            # if politician:
-            #     query = query.where(Promise.politician_name.ilike(f"%{politician}%"))
-            # if category:
-            #     query = query.where(Promise.category == category)
-            # results = await self.db.execute(query)
-            # return [r._asdict() for r in results.scalars()]
-
-            return []
+            # Find the politician
+            term = politician.lower()
+            query = session.query(Politician).filter(
+                or_(
+                    func.lower(Politician.name).contains(term),
+                    func.lower(Politician.slug).contains(term.replace(" ", "-"))
+                )
+            )
+            p = query.first()
+            
+            if not p or not p.data_json:
+                return []
+                
+            # Parse JSON
+            try:
+                data = json.loads(p.data_json)
+                promises = data.get("promises", [])
+                
+                # Filter by category if needed
+                if category:
+                    promises = [
+                        prom for prom in promises 
+                        if prom.get("category", "").lower() == category.lower()
+                    ]
+                    
+                return promises
+            except json.JSONDecodeError:
+                return []
+                
         except Exception as e:
             logger.error(f"Promise database query failed: {e}")
             return []
+        finally:
+            session.close()
 
     def _get_fallback_promises(
         self, politician: Optional[str], category: Optional[str]

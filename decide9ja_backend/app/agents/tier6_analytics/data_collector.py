@@ -22,6 +22,8 @@ from app.agents.base import (
     CostLevel
 )
 from app.agents.registry import register_agent
+from app.database import SessionLocal, Interaction
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -76,16 +78,21 @@ class DataCollectorAgent(BaseAgent):
             # Build analytics record
             record = {
                 "timestamp": datetime.utcnow(),
+                "user_id": input.user.phone_hash if hasattr(input.user, "phone_hash") else "anonymous",
 
                 # Location (anonymized, for regional aggregation)
                 "state": input.user.state,
                 "lga": input.user.lga,
+                
+                # Content
+                "original_query": input.raw_text,
+                "response_text": output.response_text,
 
                 # Intent & classification
                 "intent": input.intent,
                 "confidence": input.confidence,
                 "entities": input.entities,
-
+                
                 # Query characteristics
                 "query_length": len(input.raw_text) if input.raw_text else 0,
                 "has_media": bool(input.image_urls or input.voice_url or input.video_url),
@@ -178,16 +185,26 @@ class DataCollectorAgent(BaseAgent):
 
     async def _store_record(self, record: Dict):
         """Store analytics record in database"""
-        # Adapt to your database
-        # For MongoDB:
-        # await self.db.analytics.insert_one(record)
+        session = SessionLocal()
+        try:
+            interaction = Interaction(
+                user_id=record.get("user_id", "anonymous"),
+                query=record.get("original_query", ""),
+                response=record.get("response_text", ""),
+                intent=record.get("intent", "unknown"),
+                context_used=json.dumps(record, default=str), # Store full analytics record as metadata
+                response_time_ms=0 # Not currently available here
+            )
+            
+            session.add(interaction)
+            session.commit()
+            logger.debug(f"Analytics recorded: {record.get('intent')} - {record.get('state')}")
+            
+        except Exception as e:
+            logger.error(f"Failed to store analytics: {e}")
+        finally:
+            session.close()
 
-        # For SQLAlchemy:
-        # analytics = AnalyticsRecord(**record)
-        # self.db.add(analytics)
-        # await self.db.commit()
-
-        logger.debug(f"Analytics recorded: {record.get('intent')} - {record.get('state')}")
 
     async def _update_counters(self, record: Dict):
         """Update real-time counters for dashboards"""

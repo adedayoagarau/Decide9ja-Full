@@ -27,6 +27,7 @@ from app.agents.base import (
 )
 from app.agents.registry import register_agent
 from app.agents.tier1_entry.classifier import Intent
+from app.database import SessionLocal, UserSubscription, Politician
 
 logger = logging.getLogger(__name__)
 
@@ -334,12 +335,43 @@ _Make sure you know your polling unit before election day!_"""
             return {"type": "general", "data": self.ELECTION_DATA}
 
         # Store follow in database
-        if self.db:
-            try:
-                # await self.db.follows.insert_one({...})
-                pass
-            except Exception as e:
-                logger.error(f"Follow failed: {e}")
+        session = SessionLocal()
+        try:
+            # First verify politician exists to get canonical name/slug (optional validation)
+            # For now, just trust the name or use what we have
+            
+            # Upsert subscription
+            user_hash = input.user.phone_hash
+            
+            # Check if already following
+            existing = session.query(UserSubscription).filter_by(
+                user_hash=user_hash,
+                subscription_type="politician",
+                target_id=name.lower() # Simple slug ID for now
+            ).first()
+            
+            if not existing:
+                sub = UserSubscription(
+                    user_hash=user_hash,
+                    subscription_type="politician",
+                    target_id=name.lower(),
+                    target_name=name.title(),
+                    notify_news=True,
+                    notify_updates=True
+                )
+                session.add(sub)
+                session.commit()
+                logger.info(f"User {user_hash} followed {name}")
+            else:
+                # Reactivate if inactive
+                if not existing.is_active:
+                    existing.is_active = True
+                    session.commit()
+
+        except Exception as e:
+            logger.error(f"Follow failed: {e}")
+        finally:
+            session.close()
 
         return {
             "type": "follow_success",
@@ -349,15 +381,52 @@ _Make sure you know your polling unit before election day!_"""
     async def _handle_unfollow(self, input: AgentInput) -> Dict:
         """Handle unfollow candidate request"""
         name = input.entities.get("politician") or input.entities.get("candidate_name")
+        
+        if name:
+            session = SessionLocal()
+            try:
+                user_hash = input.user.phone_hash
+                target_id = name.lower()
+                
+                existing = session.query(UserSubscription).filter_by(
+                    user_hash=user_hash,
+                    subscription_type="politician",
+                    target_id=target_id
+                ).first()
+                
+                if existing:
+                    session.delete(existing)
+                    # or existing.is_active = False
+                    session.commit()
+            except Exception as e:
+                logger.error(f"Unfollow failed: {e}")
+            finally:
+                session.close()
 
+        display_name = name.title() if name else "the candidate"
         return {
             "type": "follow_success",
-            "message": f"✅ You've unfollowed *{name.title() if name else 'the candidate'}*."
+            "message": f"✅ You've unfollowed *{display_name}*."
         }
 
     async def _get_followed_candidates(self, input: AgentInput) -> Dict:
         """Get user's followed candidates"""
-        followed = input.user.followed_politicians or []
+        followed = []
+        
+        session = SessionLocal()
+        try:
+            user_hash = input.user.phone_hash
+            subs = session.query(UserSubscription).filter_by(
+                user_hash=user_hash,
+                subscription_type="politician",
+                is_active=True
+            ).all()
+            
+            followed = [sub.target_name for sub in subs]
+        except Exception as e:
+            logger.error(f"Get follows failed: {e}")
+        finally:
+            session.close()
 
         return {"type": "my_candidates", "followed": followed}
 

@@ -31,6 +31,9 @@ from app.agents.base import (
 )
 from app.agents.registry import register_agent, registry
 from app.agents.tier1_entry.classifier import Intent
+from app.database import SessionLocal, Politician
+from sqlalchemy import func, or_
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -346,20 +349,59 @@ class PoliticianProfileAgent(DatabaseAgent):
 
     async def _find_politician(self, name: str) -> Optional[Dict]:
         """Find politician in database by name"""
-        # Adapt to your database schema
-        # For SQLAlchemy:
-        # from sqlalchemy import select, or_, func
-        # query = select(Politician).where(
-        #     or_(
-        #         func.lower(Politician.name).contains(name.lower()),
-        #         func.lower(Politician.aliases).contains(name.lower())
-        #     )
-        # )
-        # result = await self.db.execute(query)
-        # row = result.scalar_one_or_none()
-        # return row._asdict() if row else None
-
-        return None
+        session = SessionLocal()
+        try:
+            # Search by name or slug
+            # Normalized search term
+            term = name.lower()
+            
+            query = session.query(Politician).filter(
+                or_(
+                    func.lower(Politician.name).contains(term),
+                    func.lower(Politician.slug).contains(term.replace(" ", "-"))
+                )
+            )
+            
+            # Get best match (shortest name usually closest to exact match if multiple)
+            # or just first for now
+            politician = query.first()
+            
+            if not politician:
+                return None
+                
+            # Parse extra data from JSON if available
+            extra_data = {}
+            if politician.data_json:
+                try:
+                    extra_data = json.loads(politician.data_json)
+                except:
+                    pass
+            
+            # Merge structured fields with JSON data
+            # JSON data takes precedence for detailed fields not in main schema
+            profile = {
+                "id": politician.id,
+                "name": politician.name,
+                "party": politician.party,
+                "position": politician.position,
+                "state": politician.state,
+                "constituency": politician.constituency,
+            }
+            
+            # Add all extra data
+            profile.update(extra_data)
+            
+            # Ensure critical fields are present
+            if "name" not in profile: profile["name"] = politician.name
+            if "party" not in profile: profile["party"] = politician.party
+            
+            return profile
+            
+        except Exception as e:
+            logger.error(f"Database query failed: {e}")
+            return None
+        finally:
+            session.close()
 
     def _get_fallback_profile(self, name: str) -> Optional[Dict]:
         """Fallback profiles for major politicians"""
