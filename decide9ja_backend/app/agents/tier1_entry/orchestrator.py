@@ -173,6 +173,20 @@ IMPORTANT RULES:
                         "required": ["query"]
                     }
                 }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "search_financial_intelligence",
+                    "description": "Search Nigerian government budgets, state allocations, daily treasury payments, and audit findings.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "query": {"type": "string", "description": "The financial query, e.g., 'Lagos budget', 'payment to Julius Berger', 'audit finding'"},
+                        },
+                        "required": ["query"]
+                    }
+                }
             }
         ]
 
@@ -231,6 +245,21 @@ IMPORTANT RULES:
                     result_data = {"error": f"RAG failed: {e}"}
                 finally:
                     db.close()
+                    
+            elif tool_call.function.name == "search_financial_intelligence":
+                from app.services.financial_intelligence import get_financial_intelligence
+                try:
+                    import asyncio
+                    loop = asyncio.get_running_loop()
+                    financial_service = get_financial_intelligence()
+                    # Use get_context_for_rag to get formatted string that is LLM friendly
+                    result_str = await loop.run_in_executor(
+                        None,
+                        lambda: financial_service.get_context_for_rag(args.get("query", ""))
+                    )
+                    result_data = {"financial_data": result_str}
+                except Exception as e:
+                    result_data = {"error": f"Financial search failed: {e}"}
             else:
                 result_data = {"error": "Unknown tool"}
 

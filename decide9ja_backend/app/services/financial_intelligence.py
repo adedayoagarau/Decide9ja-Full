@@ -1,40 +1,33 @@
 """
 Financial Intelligence Service
 Gap 7: Advanced Financial Intelligence
+Migrated to SQLAlchemy & PostgreSQL
 """
-import sqlite3
 import json
 import logging
 from typing import List, Dict, Any, Optional
 from datetime import datetime
+from sqlalchemy import or_, and_, func
+
+# Use absolute import from app.database since backend is in path
+from app.database import SessionLocal, Finding, Budget, Transaction
 
 # Setup logging
 logger = logging.getLogger(__name__)
 
 class FinancialIntelligenceService:
-    def __init__(self, db_path: str = "/Volumes/Crucial X10/Decide9ja/data/catalog.db"):
-        self.db_path = db_path
+    def __init__(self):
+        pass
 
-    def get_db(self):
-        conn = sqlite3.connect(self.db_path)
-        conn.row_factory = sqlite3.Row
-        return conn
-
-    def _prepare_fts_query(self, query: str) -> Optional[str]:
+    def _prepare_fts_query(self, query: str) -> Optional[List[str]]:
         import re
         """
-        Prepare a natural language query for FTS5 MATCH syntax.
+        Prepare a natural language query for basic ILIKE search keywords.
         """
         if not query or not query.strip():
             return None
 
-        # If user already quoted, pass through
-        if '"' in query:
-            # Clean dangerous characters but preserve quotes
-            cleaned = re.sub(r'[^\w\s"*]', ' ', query)
-            return cleaned.strip() or None
-
-        # Remove FTS special characters
+        # Clean dangerous characters
         cleaned = re.sub(r'[^\w\s]', ' ', query)
         
         # Split into words, filter short/stop words
@@ -56,127 +49,123 @@ class FinancialIntelligenceService:
         if not words:
             return None
 
-        # Use OR for broader matching
-        return " OR ".join(words)
+        return words
 
     def search_financials(self, query: str, limit: int = 20, offset: int = 0) -> Dict[str, Any]:
         """
-        Unified search across Findings, Transactions, and Budgets.
+        Unified search across Findings, Transactions, and Budgets using SQLAlchemy.
         Principles: Neutrality (show all matches), Insight (calculate facts).
         """
-        conn = self.get_db()
-        cursor = conn.cursor()
-        
-        fts_query = self._prepare_fts_query(query)
-        if not fts_query:
+        words = self._prepare_fts_query(query)
+        if not words:
             return {"metadata": {"query": query, "total_returned": 0}, "results": []}
 
-        # 1. Search Findings (FTS5) - Pre-computed risks/anomalies
-        # We search primarily by text match
-        findings_query = """
-            SELECT 
-                f.id, 
-                'finding' as source_type,
-                f.title as main_text,
-                f.description as sub_text,
-                f.amount,
-                f.year,
-                f.jurisdiction,
-                f.risk_score,
-                f.enriched_analysis
-            FROM findings_fts fts
-            JOIN findings f ON f.rowid = fts.rowid
-            WHERE findings_fts MATCH ? 
-            ORDER BY fts.rank 
-            LIMIT ? OFFSET ?
-        """
-        
-        # 2. Search Budgets (FTS5) - Planned allocations
-        budgets_query = """
-            SELECT 
-                b.id, 
-                'budget' as source_type,
-                b.project as main_text,
-                b.mda as sub_text,
-                b.amount,
-                b.year,
-                b.jurisdiction,
-                0 as risk_score,
-                NULL as enriched_analysis
-            FROM budgets_fts fts
-            JOIN budgets b ON b.rowid = fts.rowid
-            WHERE budgets_fts MATCH ? 
-            ORDER BY fts.rank 
-            LIMIT ? OFFSET ?
-        """
-        
-        # 3. Search Transactions (Regular LIKE for now, pending FTS) - Actual payments
-        # Optimization: Use FTS if table grows large. For now, LIKE on payer/receiver/desc
-        transactions_query = """
-            SELECT 
-                id, 
-                'transaction' as source_type,
-                description as main_text,
-                payer || ' -> ' || receiver as sub_text,
-                amount,
-                strftime('%Y', payment_date) as year,
-                state as jurisdiction,
-                0 as risk_score,
-                NULL as enriched_analysis
-            FROM transactions 
-            WHERE description LIKE ? OR payer LIKE ? OR receiver LIKE ?
-            ORDER BY payment_date DESC 
-            LIMIT ? OFFSET ?
-        """
-
+        session = SessionLocal()
         results = []
         
-        # Execute Findings Search
+        # 1. Search Findings
         try:
-            cursor.execute(findings_query, (fts_query, limit, offset))
-            for row in cursor.fetchall():
-                results.append(self._process_row(row))
+            finding_conditions = []
+            for w in words:
+                term = f"%{w}%"
+                finding_conditions.append(or_(
+                    Finding.title.ilike(term), 
+                    Finding.description.ilike(term), 
+                    Finding.project_name.ilike(term)
+                ))
+            
+            finding_records = session.query(Finding).filter(and_(*finding_conditions)).limit(limit).offset(offset).all()
+            for f in finding_records:
+                results.append({
+                    'id': f.id,
+                    'source_type': 'finding',
+                    'main_text': f.title,
+                    'sub_text': f.description,
+                    'amount': f.amount,
+                    'year': f.year,
+                    'jurisdiction': f.jurisdiction,
+                    'risk_score': f.risk_score,
+                    'enriched_analysis': f.enriched_analysis
+                })
         except Exception as e:
             logger.error(f"Error searching findings: {e}")
 
-        # Execute Budgets Search (if we need more results or want mix)
-        # Note: Ideally we'd UNION ALL and order by relevance, but FTS rank is table-specific.
-        # For this iteration, we fetch separately and mix.
+        # 2. Search Budgets
         try:
-            cursor.execute(budgets_query, (fts_query, limit, offset))
-            for row in cursor.fetchall():
-                results.append(self._process_row(row))
+            budget_conditions = []
+            for w in words:
+                term = f"%{w}%"
+                budget_conditions.append(or_(Budget.project.ilike(term), Budget.mda.ilike(term)))
+            
+            budget_records = session.query(Budget).filter(and_(*budget_conditions)).limit(limit).offset(offset).all()
+            for b in budget_records:
+                results.append({
+                    'id': b.id,
+                    'source_type': 'budget',
+                    'main_text': b.project,
+                    'sub_text': b.mda,
+                    'amount': b.amount,
+                    'year': b.year,
+                    'jurisdiction': b.jurisdiction,
+                    'risk_score': 0,
+                    'enriched_analysis': None
+                })
         except Exception as e:
             logger.error(f"Error searching budgets: {e}")
-            
-        # Execute Transactions Search
-        try:
-            like_query = f"%{query}%"
-            cursor.execute(transactions_query, (like_query, like_query, like_query, limit, offset))
-            for row in cursor.fetchall():
-                results.append(self._process_row(row))
-        except Exception as e:
-             logger.error(f"Error searching transactions: {e}")
 
-        conn.close()
+        # 3. Search Transactions
+        try:
+            txn_conditions = []
+            for w in words:
+                term = f"%{w}%"
+                txn_conditions.append(or_(Transaction.description.ilike(term), Transaction.payer.ilike(term), Transaction.receiver.ilike(term)))
+            
+            txn_records = session.query(Transaction).filter(and_(*txn_conditions)).limit(limit).offset(offset).all()
+            for t in txn_records:
+                try:
+                    # Extracts YYYY from YYYY-MM-DD
+                    year = int(t.payment_date[:4]) if t.payment_date and len(t.payment_date) >= 4 else None
+                except:
+                    year = None
+                
+                results.append({
+                    'id': t.id,
+                    'source_type': 'transaction',
+                    'main_text': t.description,
+                    'sub_text': f"{t.payer} -> {t.receiver}",
+                    'amount': t.amount,
+                    'year': year,
+                    'jurisdiction': t.state,
+                    'risk_score': 0,
+                    'enriched_analysis': None
+                })
+        except Exception as e:
+            logger.error(f"Error searching transactions: {e}")
+
+        session.close()
+
+        for item in results:
+            if item.get('year'):
+                try: item['year'] = int(item['year'])
+                except: item['year'] = 0
+
+        # Sort combined results by year DESC, then Amount DESC
+        results.sort(key=lambda x: (x.get('year') or 0, x.get('amount') or 0), reverse=True)
         
-        # Sort combined results by 'relevance' approximation (findings first, then amount?)
-        # For neutral search, maybe just sort by date (year) desc?
-        # Let's sort by year DESC, then Amount DESC
-        results.sort(key=lambda x: (x['year'] or 0, x['amount'] or 0), reverse=True)
+        # Add automated insights
+        processed_results = [self._process_row(r) for r in results[:limit]]
         
         return {
             "metadata": {
                 "query": query,
-                "total_returned": len(results),
+                "total_returned": len(processed_results),
                 "generated_at": datetime.now().isoformat()
             },
-            "results": results[:limit] # Re-slice after sort
+            "results": processed_results
         }
 
-    def _process_row(self, row: sqlite3.Row) -> Dict[str, Any]:
-        """Convert row to dict and add computed insights."""
-        item = dict(row)
+    def _process_row(self, item: Dict[str, Any]) -> Dict[str, Any]:
+        """Add computed insights to dict."""
         
         # Neutral Insight Generation
         insights = []
@@ -190,7 +179,7 @@ class FinancialIntelligenceService:
                 insights.append(f"Significant entry: ₦{amount/1_000_000:.2f} Million")
         
         # Insight 2: Contextual Flags (Neutral)
-        if item['source_type'] == 'finding' and item['risk_score'] > 0:
+        if item.get('source_type') == 'finding' and item.get('risk_score', 0) > 0:
              insights.append(f"Flagged in audit with risk score {item['risk_score']}/100")
              
         # Parse enriched analysis if available
@@ -209,36 +198,37 @@ class FinancialIntelligenceService:
         return item
     
     def get_state_summary(self, state: str, year: int = 2026) -> Dict[str, Any]:
-        """Get summary stats for a state/year."""
-        conn = self.get_db()
-        cursor = conn.cursor()
-        
+        """Get summary stats for a state/year using SQLAlchemy."""
+        session = SessionLocal()
         summary = {"state": state, "year": year}
         
         # Total Budget
         try:
-            cursor.execute("SELECT SUM(amount), COUNT(*) FROM budgets WHERE jurisdiction = ? AND year = ?", (state, year))
-            total, count = cursor.fetchone()
-            summary['total_budget'] = total or 0
-            summary['line_items'] = count or 0
-        except:
+            total = session.query(func.sum(Budget.amount)).filter(Budget.jurisdiction == state, Budget.year == year).scalar()
+            count = session.query(func.count(Budget.id)).filter(Budget.jurisdiction == state, Budget.year == year).scalar()
+            summary['total_budget'] = float(total) if total else 0
+            summary['line_items'] = float(count) if count else 0
+        except Exception as e:
+            logger.error(f"Error getting budget summary: {e}")
             summary['total_budget'] = 0
+            summary['line_items'] = 0
             
         # Top 3 MDAs
         try:
-            cursor.execute("""
-                SELECT mda, SUM(amount) as total 
-                FROM budgets 
-                WHERE jurisdiction = ? AND year = ? 
-                GROUP BY mda 
-                ORDER BY total DESC 
-                LIMIT 3
-            """, (state, year))
-            summary['top_mdas'] = [dict(row) for row in cursor.fetchall()]
-        except:
+            top_mdas = session.query(
+                Budget.mda, 
+                func.sum(Budget.amount).label('total')
+            ).filter(
+                Budget.jurisdiction == state, 
+                Budget.year == year
+            ).group_by(Budget.mda).order_by(func.sum(Budget.amount).desc()).limit(3).all()
+            
+            summary['top_mdas'] = [{"mda": str(mda), "total": float(total)} for mda, total in top_mdas]
+        except Exception as e:
+            logger.error(f"Error getting top mdas: {e}")
             summary['top_mdas'] = []
             
-        conn.close()
+        session.close()
         return summary
 
     def get_context_for_rag(self, query: str, limit: int = 5) -> str:

@@ -69,6 +69,63 @@ class Document(Base):
     created_at = Column(DateTime, server_default=func.now())
 
 
+class Budget(Base):
+    """
+    State and Federal budget dataset.
+    Migrated from catalog.db SQLite.
+    """
+    __tablename__ = "budgets"
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    year = Column(Integer, nullable=False, index=True)
+    jurisdiction = Column(String(50), nullable=False, index=True)  # e.g., "Federal", "Lagos"
+    mda = Column(String(200), index=True)  # Ministry, Department, Agency
+    project = Column(Text, nullable=False)
+    amount = Column(Float, index=True)
+    source_file = Column(String(200))
+    page = Column(Integer)
+    created_at = Column(DateTime, server_default=func.now())
+
+
+class Transaction(Base):
+    """
+    OpenTreasury daily payment records for financial transparency.
+    Migrated from catalog.db SQLite.
+    """
+    __tablename__ = "transactions"
+    
+    id = Column(String(100), primary_key=True)  # Payment number
+    payment_date = Column(String(50), index=True)
+    payer = Column(String(200), index=True)
+    receiver = Column(String(200), index=True)
+    amount = Column(Float, index=True)
+    description = Column(Text)
+    source_url = Column(String(500))
+    state = Column(String(50), default="Federal", index=True)
+    created_at = Column(DateTime, server_default=func.now())
+
+
+class Finding(Base):
+    """
+    Financial intelligence findings, anomalies, and AI-enriched analysis.
+    Migrated from catalog.db SQLite.
+    """
+    __tablename__ = "findings"
+    
+    id = Column(String(100), primary_key=True)
+    risk_score = Column(Integer, default=0, index=True)
+    title = Column(String(500))
+    description = Column(Text)
+    jurisdiction = Column(String(50), index=True)
+    year = Column(Integer, index=True)
+    mda = Column(String(200), index=True)
+    amount = Column(Float)
+    project_name = Column(Text)
+    anomaly_type = Column(String(100), index=True)
+    enriched_analysis = Column(Text)
+    created_at = Column(DateTime, server_default=func.now())
+
+
 class Politician(Base):
     """Structured politician data for direct lookups."""
     __tablename__ = "politicians"

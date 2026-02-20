@@ -12,10 +12,8 @@ Schema:
 - budgets_fts (rowid, project, mda)
 """
 
-import argparse
 import json
 import logging
-import sqlite3
 import sys
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -33,61 +31,9 @@ DATA_DIR = BASE_DIR / "data"
 CATALOG_DB = DATA_DIR / "catalog.db"
 NAIJADATA_DIR = DATA_DIR / "naijadata" / "data"
 
-def init_db():
-    conn = sqlite3.connect(str(CATALOG_DB))
-    
-    # Main table
-    conn.execute("""
-        CREATE TABLE IF NOT EXISTS budgets (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            year INTEGER NOT NULL,
-            jurisdiction TEXT NOT NULL,
-            mda TEXT,
-            project TEXT NOT NULL,
-            amount REAL,
-            source_file TEXT,
-            page INTEGER,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-        )
-    """)
-    
-    # Indexes for filtering
-    conn.execute("CREATE INDEX IF NOT EXISTS idx_budgets_year ON budgets(year)")
-    conn.execute("CREATE INDEX IF NOT EXISTS idx_budgets_jurisdiction ON budgets(jurisdiction)")
-    conn.execute("CREATE INDEX IF NOT EXISTS idx_budgets_mda ON budgets(mda)")
-    conn.execute("CREATE INDEX IF NOT EXISTS idx_budgets_amount ON budgets(amount)")
-
-    # FTS table for search
-    conn.execute("""
-        CREATE VIRTUAL TABLE IF NOT EXISTS budgets_fts USING fts5(
-            project,
-            mda,
-            content=budgets,
-            content_rowid=id
-        )
-    """)
-    
-    # Triggers to keep FTS in sync
-    conn.execute("""
-        CREATE TRIGGER IF NOT EXISTS budgets_ai AFTER INSERT ON budgets BEGIN
-            INSERT INTO budgets_fts(rowid, project, mda) VALUES (new.id, new.project, new.mda);
-        END;
-    """)
-    conn.execute("""
-        CREATE TRIGGER IF NOT EXISTS budgets_ad AFTER DELETE ON budgets BEGIN
-            INSERT INTO budgets_fts(budgets_fts, rowid, project, mda) VALUES('delete', old.id, old.project, old.mda);
-        END;
-    """)
-    conn.execute("""
-        CREATE TRIGGER IF NOT EXISTS budgets_au AFTER UPDATE ON budgets BEGIN
-            INSERT INTO budgets_fts(budgets_fts, rowid, project, mda) VALUES('delete', old.id, old.project, old.mda);
-            INSERT INTO budgets_fts(rowid, project, mda) VALUES (new.id, new.project, new.mda);
-        END;
-    """)
-
-    conn.commit()
-    conn.close()
-    logger.info("Database initialized.")
+# Add backend to path
+sys.path.append(str(BASE_DIR / "decide9ja_backend"))
+from app.database import SessionLocal, Budget
 
 def ingest_federal(dry_run: bool = False):
     """Ingest Federal budget data."""
@@ -223,20 +169,41 @@ def ingest_states(dry_run: bool = False):
         _bulk_insert(records_to_insert)
 
 def _bulk_insert(records: List):
-    conn = sqlite3.connect(str(CATALOG_DB))
-    cursor = conn.cursor()
-    
-    logger.info(f"Inserting {len(records)} records into DB...")
-    cursor.executemany("""
-        INSERT INTO budgets (year, jurisdiction, mda, project, amount, source_file, page)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, records)
-    
-    conn.commit()
-    conn.close()
-    logger.info("Insert complete.")
+    session = SessionLocal()
+    logger.info(f"Inserting {len(records)} records into DB using bulk mechanism...")
+    try:
+        mappings = [
+            {
+                "year": r[0],
+                "jurisdiction": r[1],
+                "mda": r[2],
+                "project": r[3],
+                "amount": r[4],
+                "source_file": r[5],
+                "page": r[6]
+            }
+            for r in records
+        ]
+        
+        batch_size = 10000
+        total_batches = (len(mappings) + batch_size - 1) // batch_size
+        
+        for i in range(0, len(mappings), batch_size):
+            batch = mappings[i:i + batch_size]
+            session.bulk_insert_mappings(Budget, batch)
+            session.commit()
+            if (i // batch_size + 1) % 10 == 0 or (i // batch_size + 1) == total_batches:
+                logger.info(f"  Inserted batch {i // batch_size + 1}/{total_batches}")
+                
+        logger.info("Bulk insert complete.")
+    except Exception as e:
+        session.rollback()
+        logger.error(f"Failed to insert records: {e}")
+    finally:
+        session.close()
 
 def main():
+    import argparse
     parser = argparse.ArgumentParser(description="Ingest Budget Data")
     parser.add_argument("--dry-run", action="store_true", help="Scan but do not insert")
     parser.add_argument("--reset", action="store_true", help="Clear existing budget data before ingestion")
@@ -246,25 +213,26 @@ def main():
         logger.error(f"Naijadata not found at {NAIJADATA_DIR}")
         sys.exit(1)
 
-    init_db()
-
     if args.reset:
         logger.info("Resetting budgets table...")
-        conn = sqlite3.connect(str(CATALOG_DB))
-        conn.execute("DELETE FROM budgets")
-        conn.execute("DELETE FROM budgets_fts")
-        conn.commit()
-        conn.close()
+        session = SessionLocal()
+        try:
+            session.query(Budget).delete()
+            session.commit()
+        except:
+            session.rollback()
+        finally:
+            session.close()
 
     ingest_federal(args.dry_run)
     ingest_states(args.dry_run)
 
     # Verification
     if not args.dry_run:
-        conn = sqlite3.connect(str(CATALOG_DB))
-        count = conn.execute("SELECT COUNT(*) FROM budgets").fetchone()[0]
+        session = SessionLocal()
+        count = session.query(Budget).count()
         logger.info(f"Total budget records in DB: {count}")
-        conn.close()
+        session.close()
 
 if __name__ == "__main__":
     main()

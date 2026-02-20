@@ -3,7 +3,6 @@
 Ingest OpenTreasury 2025 Data
 Reads daily payment CSV/Excel files from `processed_data/opentreasury/2025` and populates `transactions` table.
 """
-import sqlite3
 import pandas as pd
 import glob
 import os
@@ -14,12 +13,11 @@ from datetime import datetime
 # Configuration
 BASE_DIR = Path("/Volumes/Crucial X10/Decide9ja")
 RAW_DATA_DIR = BASE_DIR / "decide9ja_backend/raw_data/opentreasury/2025"
-DB_PATH = BASE_DIR / "data/catalog.db"
 
-def get_db():
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    return conn
+# Add backend to path
+sys.path.append(str(BASE_DIR / "decide9ja_backend"))
+from app.database import SessionLocal, Transaction
+from sqlalchemy.dialects.postgresql import insert
 
 def parse_amount(text):
     try:
@@ -37,8 +35,7 @@ def ingest_daily_payments():
     files = list(RAW_DATA_DIR.rglob("*.xlsx")) + list(RAW_DATA_DIR.rglob("*.csv"))
     print(f"Found {len(files)} files.")
 
-    conn = get_db()
-    cursor = conn.cursor()
+    session = SessionLocal()
     
     total_ingested = 0
     
@@ -71,38 +68,40 @@ def ingest_daily_payments():
             # Mapping based on typical OpenTreasury format
             # Expected: 'payment no', 'payer', 'beneficiary', 'amount', 'date', 'description'
             
-            count = 0
+            mappings = []
             for _, row in df.iterrows():
                 try:
                     payment_no = row.get('payment no', '') or row.get('payment_no', '') or row.get('no.', '')
                     if not payment_no: continue
                     
-                    cursor.execute("""
-                        INSERT OR IGNORE INTO transactions
-                        (id, payment_date, payer, receiver, amount, description, source_url, state)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                    """, (
-                        str(payment_no),
-                        row.get('date', datetime.now().strftime('%Y-%m-%d')),
-                        row.get('payer', 'Federal Government'),
-                        row.get('beneficiary', 'Unknown'),
-                        parse_amount(row.get('amount', 0)),
-                        row.get('description', 'No description'),
-                        file_path.name,
-                        'Federal'
-                    ))
-                    count += 1
+                    mappings.append({
+                        "id": str(payment_no),
+                        "payment_date": str(row.get('date', datetime.now().strftime('%Y-%m-%d'))),
+                        "payer": str(row.get('payer', 'Federal Government')),
+                        "receiver": str(row.get('beneficiary', 'Unknown')),
+                        "amount": parse_amount(row.get('amount', 0)),
+                        "description": str(row.get('description', 'No description')),
+                        "source_url": str(file_path.name),
+                        "state": 'Federal'
+                    })
                 except Exception as sub_e:
                     continue
             
-            print(f"  Ingested {count} rows.")
-            total_ingested += count
+            if mappings:
+                try:
+                    stmt = insert(Transaction).values(mappings).on_conflict_do_nothing(index_elements=['id'])
+                    session.execute(stmt)
+                    session.commit()
+                    print(f"  Ingested {len(mappings)} rows.")
+                    total_ingested += len(mappings)
+                except Exception as e:
+                    session.rollback()
+                    print(f"Commit error for {file_path.name}: {e}")
             
         except Exception as e:
             print(f"Error processing {file_path.name}: {e}")
 
-    conn.commit()
-    conn.close()
+    session.close()
     print(f"Total Processed: {total_ingested} transactions.")
 
 if __name__ == "__main__":

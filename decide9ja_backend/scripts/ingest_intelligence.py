@@ -3,25 +3,23 @@
 Ingest Intelligence Data (Gap 7)
 Reads structured JSONs from `naijadata` and populates `catalog.db`.
 """
-import sqlite3
 import json
 import glob
 import os
 import sys
+from pathlib import Path
 
 # Paths
-BASE_DIR = "/Volumes/Crucial X10/Decide9ja/data"
-NAIJA_DATA_DIR = "/Volumes/Crucial X10/Decide9ja/data/naijadata"
-DB_PATH = os.path.join(BASE_DIR, "catalog.db")
+BASE_DIR_PATH = Path("/Volumes/Crucial X10/Decide9ja")
+NAIJA_DATA_DIR = str(BASE_DIR_PATH / "data/naijadata")
+
+sys.path.append(str(BASE_DIR_PATH / "decide9ja_backend"))
+from app.database import SessionLocal, Finding, Transaction
+from sqlalchemy.dialects.postgresql import insert
 
 FINDINGS_FILE = os.path.join(NAIJA_DATA_DIR, "findings/all_findings_enriched.json")
 TRANSACTIONS_FILE = os.path.join(NAIJA_DATA_DIR, "data/opentreasury/private_contractor_transactions.json")
 CONTEXT_DIR = os.path.join(NAIJA_DATA_DIR, "data/context")
-
-def get_db():
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    return conn
 
 def ingest_findings():
     print(f"Loading findings from {FINDINGS_FILE}...")
@@ -35,41 +33,40 @@ def ingest_findings():
     findings = data.get('findings', [])
     print(f"Found {len(findings)} findings. Ingesting...")
 
-    conn = get_db()
-    cursor = conn.cursor()
+    session = SessionLocal()
+    mappings = []
     
-    count = 0
     for item in findings:
         try:
             # Flatten enriched analysis
             enriched_analysis = json.dumps(item.get('llm', {}))
-            
-            cursor.execute("""
-                INSERT OR IGNORE INTO findings 
-                (id, risk_score, title, description, jurisdiction, year, mda, amount, project_name, anomaly_type, enriched_analysis)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (
-                item.get('id'),
-                50 if item.get('severity') == 'HIGH' else 10, # arbitrary score mapping for now
-                item.get('type'), # using type as title
-                item.get('llm', {}).get('analysis', item.get('desc')), # Use analysis as description if aval, else desc
-                'Federal', # Default to Federal for now based on sample
-                item.get('year'),
-                item.get('mda'),
-                item.get('amount'),
-                item.get('desc'), # Project name from desc
-                item.get('type'),
-                enriched_analysis
-            ))
-            count += 1
-            if count % 1000 == 0:
-                print(f"Ingested {count} findings...")
+            mappings.append({
+                "id": str(item.get('id')),
+                "risk_score": 50 if item.get('severity') == 'HIGH' else 10,
+                "title": str(item.get('type')),
+                "description": str(item.get('desc')),
+                "jurisdiction": 'Federal',
+                "year": item.get('year'),
+                "mda": str(item.get('mda')),
+                "amount": float(item.get('amount') or 0.0),
+                "project_name": str(item.get('desc')),
+                "anomaly_type": str(item.get('type')),
+                "enriched_analysis": enriched_analysis
+            })
         except Exception as e:
-            print(f"Error ingesting finding {item.get('id')}: {e}")
+            print(f"Error preparing finding {item.get('id')}: {e}")
 
-    conn.commit()
-    print(f"Successfully ingested {count} findings.")
-    conn.close()
+    if mappings:
+        try:
+            stmt = insert(Finding).values(mappings).on_conflict_do_nothing(index_elements=['id'])
+            session.execute(stmt)
+            session.commit()
+            print(f"Successfully ingested {len(mappings)} findings.")
+        except Exception as e:
+            session.rollback()
+            print(f"Commit error: {e}")
+            
+    session.close()
 
 def ingest_transactions():
     print(f"Loading transactions from {TRANSACTIONS_FILE}...")
@@ -82,35 +79,35 @@ def ingest_transactions():
 
     print(f"Found {len(transactions)} transactions. Ingesting...")
 
-    conn = get_db()
-    cursor = conn.cursor()
+    session = SessionLocal()
+    mappings = []
     
-    count = 0
     for item in transactions:
         try:
-            cursor.execute("""
-                INSERT OR IGNORE INTO transactions
-                (id, payment_date, payer, receiver, amount, description, source_url, state)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-            """, (
-                item.get('payment_no'),
-                item.get('date'),
-                item.get('organization'),
-                item.get('beneficiary'),
-                item.get('amount'),
-                item.get('description'),
-                item.get('source_file'),
-                'Federal' # OpenTreasury is largely Federal
-            ))
-            count += 1
-            if count % 5000 == 0:
-                print(f"Ingested {count} transactions...")
+            mappings.append({
+                "id": str(item.get('payment_no')),
+                "payment_date": str(item.get('date')),
+                "payer": str(item.get('organization')),
+                "receiver": str(item.get('beneficiary')),
+                "amount": float(item.get('amount') or 0.0),
+                "description": str(item.get('description')),
+                "source_url": str(item.get('source_file')),
+                "state": 'Federal' # OpenTreasury is largely Federal
+            })
         except Exception as e:
-            print(f"Error ingesting transaction {item.get('payment_no')}: {e}")
+            print(f"Error preparing transaction {item.get('payment_no')}: {e}")
 
-    conn.commit()
-    print(f"Successfully ingested {count} transactions.")
-    conn.close()
+    if mappings:
+        try:
+            stmt = insert(Transaction).values(mappings).on_conflict_do_nothing(index_elements=['id'])
+            session.execute(stmt)
+            session.commit()
+            print(f"Successfully ingested {len(mappings)} transactions.")
+        except Exception as e:
+            session.rollback()
+            print(f"Commit error: {e}")
+            
+    session.close()
 
 def ingest_context():
     print(f"Scanning context directory: {CONTEXT_DIR}...")
@@ -142,4 +139,4 @@ def ingest_context():
 if __name__ == "__main__":
     ingest_findings()
     ingest_transactions()
-    ingest_context()
+    # ingest_context() # Disabled pending Postgres migration of context_registry
