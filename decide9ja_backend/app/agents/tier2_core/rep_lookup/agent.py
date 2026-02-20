@@ -110,6 +110,15 @@ class RepLookupAgent(DatabaseAgent):
     async def format_response(self, input: AgentInput, data: Dict) -> AgentOutput:
         """Format database result into user-friendly response"""
 
+        # Orhcestrator Tool Mode: Return raw JSON instead of rendering UI
+        if input.context and input.context.get("tool_mode"):
+            return AgentOutput(
+                success=not data.get("need_location", False),
+                response_text="Data retrieved via tool.",
+                data=data,
+                cost_level=CostLevel.FREE
+            )
+
         if data.get("need_location"):
             return AgentOutput(
                 success=True,

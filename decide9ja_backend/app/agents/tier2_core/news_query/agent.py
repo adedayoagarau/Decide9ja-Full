@@ -174,6 +174,15 @@ class NewsQueryAgent(BaseAgent):
 
     def _format_news_response(self, input: AgentInput, news: List[Dict], query: str) -> AgentOutput:
         """Format news results for user"""
+        
+        # Orchestrator Tool Mode: Return raw JSON
+        if input.context and input.context.get("tool_mode"):
+            return AgentOutput(
+                success=True,
+                response_text="Data retrieved via tool.",
+                data={"news": news, "query": query},
+                cost_level=CostLevel.FREE
+            )
 
         if not news:
             return self._format_trending_fallback(input)
@@ -215,6 +224,15 @@ class NewsQueryAgent(BaseAgent):
 
     def _format_trending_fallback(self, input: AgentInput) -> AgentOutput:
         """Fallback when no specific news found"""
+        
+        # Orchestrator Tool Mode: Return raw JSON fallback
+        if input.context and input.context.get("tool_mode"):
+            return AgentOutput(
+                success=False,
+                response_text="No news found.",
+                data={"error": "no news found"},
+                cost_level=CostLevel.FREE
+            )
 
         # Static trending topics (update regularly)
         trending = [

@@ -215,7 +215,8 @@ class EnhancedRAGService:
             if filters.get("doc_type"):
                 docs_query = docs_query.filter(Document.doc_type == filters["doc_type"])
         
-        documents = docs_query.all()
+        # Prevent catastrophic Python lockups: Only compare against the top 200 most recent documents
+        documents = docs_query.order_by(Document.created_at.desc()).limit(200).all()
         
         if not documents:
             return []

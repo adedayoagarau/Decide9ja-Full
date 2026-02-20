@@ -159,6 +159,15 @@ class PoliticianProfileAgent(DatabaseAgent):
 
     async def format_response(self, input: AgentInput, data: Dict) -> AgentOutput:
         """Format politician profile for user"""
+        
+        # Orhcestrator Tool Mode: Return raw JSON instead of rendering UI
+        if input.context and input.context.get("tool_mode"):
+            return AgentOutput(
+                success=True,
+                response_text="Data retrieved via tool.",
+                data=data.get("politician", data),
+                cost_level=CostLevel.FREE
+            )
 
         if data.get("need_name"):
             return AgentOutput(

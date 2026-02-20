@@ -139,10 +139,10 @@ class GatekeeperAgent(BaseAgent):
                 cost_level=CostLevel.FREE
             )
 
-        # 8. Pass to classifier with enriched context
+        # 8. Pass to Orchestrator (Replaces Classifier and Router)
         return AgentOutput(
             success=True,
-            handoff_to="classifier",
+            handoff_to="conversational_orchestrator",
             handoff_reason="user_recognized",
             data={
                 "user": self._user_to_dict(user),
