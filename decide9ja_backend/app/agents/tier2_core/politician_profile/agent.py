@@ -99,7 +99,7 @@ class PoliticianProfileAgent(DatabaseAgent):
             logger.warning(f"Knowledge cache lookup failed: {e}")
 
         # 2. Try politician database
-        if not politician and self.db:
+        if not politician:
             try:
                 politician = await self._find_politician(name)
                 if politician:
@@ -190,11 +190,21 @@ class PoliticianProfileAgent(DatabaseAgent):
         # Build profile response
         response_parts = []
 
+        # p is the politician dict
+        raw_name = p.get("name", "Unknown Politician")
+        
+        if isinstance(raw_name, dict):
+            display_name = raw_name.get("common") or raw_name.get("en") or raw_name.get("full", "Unknown")
+        else:
+            display_name = str(raw_name)
+            
+        # Extract aliases for keywords/search (optional, not displayed in title)
+        
         # Header
-        name = p.get("name", "Unknown")
+        name = display_name # Ensure backward compatibility for references later in the function
         party = p.get("party", "")
         party_str = f" ({party})" if party else ""
-        response_parts.append(f"*{name}*{party_str}\n")
+        response_parts.append(f"*{display_name}*{party_str}\n")
 
         # Stale data notice
         if is_stale:
@@ -279,7 +289,9 @@ class PoliticianProfileAgent(DatabaseAgent):
                 response_parts.append("\n_Contact information not available._")
 
         # Follow prompt
-        response_parts.append(f"\n\n_Say \"follow {name.split()[0]}\" to get updates about this politician._")
+        # ensure display_name is a string before splitting
+        first_name = str(display_name).split()[0] if display_name else "them"
+        response_parts.append(f"\n\n_Say \"follow {first_name}\" to get updates about this politician._")
 
         response_text = "".join(response_parts)
 
@@ -300,11 +312,11 @@ class PoliticianProfileAgent(DatabaseAgent):
             response_text=response_text,
             data={"politician": p, "source": source},
             sources=sources,
-            buttons=[
-                {"text": f"Follow {name.split()[0]}", "callback": f"follow:{p.get('id', name)}"},
-                {"text": "News about them", "callback": f"news:{name}"},
-                {"text": "Their promises", "callback": f"promises:{name}"},
-            ],
+            buttons = [
+            {"text": "Latest News", "callback": f"news:{p.get('slug', name)}"},
+            {"text": "Track Promises", "callback": f"promises:{p.get('slug', name)}"},
+            {"text": f"Follow {first_name}", "callback": f"follow:{p.get('id', name)}"},
+        ],
             cost_level=CostLevel.FREE,
             analytics_tags={
                 "topic": "politician_profile",

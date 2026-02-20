@@ -52,38 +52,46 @@ class RepLookupAgent(DatabaseAgent):
 
         reps = []
 
-        if self.db:
-            try:
-                # Adapt these queries to your actual database schema
+        try:
+            # Adapt these queries to your actual database schema
 
-                if office == "senator" or not office:
-                    # Get senators for state
-                    senators = await self._find_politicians(
-                        state=state,
-                        office_type="senator"
+            if office == "senator" or not office:
+                # Get senators for state
+                senators = await self._find_politicians(
+                    state=state,
+                    office_type="senator"
+                )
+                reps.extend(senators)
+
+            if office == "representative" or not office:
+                # Get House of Reps member for constituency
+                constituency = await self._get_constituency(state, lga)
+                if constituency:
+                    house_reps = await self._find_politicians(
+                        constituency=constituency,
+                        office_type="representative"
                     )
-                    reps.extend(senators)
-
-                if office == "representative" or not office:
-                    # Get House of Reps member for constituency
-                    constituency = await self._get_constituency(state, lga)
-                    if constituency:
-                        house_reps = await self._find_politicians(
-                            constituency=constituency,
-                            office_type="representative"
-                        )
-                        reps.extend(house_reps)
-
-                if office == "governor" or not office:
-                    # Get governor
-                    governors = await self._find_politicians(
+                    reps.extend(house_reps)
+                else:
+                    # Fallback: if we can't map LGA to constituency, get all reps for the state
+                    # or better, just get politicians matching LGA roughly
+                    house_reps = await self._find_politicians(
                         state=state,
-                        office_type="governor"
+                        constituency=lga,
+                        office_type="representative"
                     )
-                    reps.extend(governors)
+                    reps.extend(house_reps)
 
-            except Exception as e:
-                logger.error(f"Database query failed: {e}")
+            if office == "governor" or not office:
+                # Get governor
+                governors = await self._find_politicians(
+                    state=state,
+                    office_type="governor"
+                )
+                reps.extend(governors)
+
+        except Exception as e:
+            logger.error(f"Database query failed: {e}")
 
         # If no database or no results, use fallback data
         if not reps:
