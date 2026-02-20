@@ -96,8 +96,9 @@ class ResponseComposerAgent(BaseAgent):
         response_text = self.TEMPLATES.get(template_key, self.TEMPLATES["default_response"])
 
         # Add personalized greeting if user is known
-        if template_key == "greeting_response" and input.user.first_name:
-            response_text = f"Hello {input.user.first_name}! 👋" + response_text[6:]
+        if template_key == "greeting_response" and input.user.name:
+            first_name = input.user.name.split()[0]
+            response_text = f"Hello {first_name}! 👋" + response_text[6:]
 
         return AgentOutput(
             success=True,
