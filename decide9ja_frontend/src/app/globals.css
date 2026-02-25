@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --c-red: #D6453A;
+  --c-blue: #164678;
+  --c-green: #487A3A;
+  --c-yellow: #EBC346;
+  --c-beige: #D9D9CD;
+  --c-brown: #9E7D45;
+  --c-black: #050505;
+  --c-border: #111111;
+  --font-display: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-display);
+  line-height: 1.4;
+  background: var(--c-beige);
+  color: var(--c-black);
+}
+
+/* Custom utilities */
+.bg-c-red { background-color: var(--c-red); }
+.bg-c-blue { background-color: var(--c-blue); }
+.bg-c-green { background-color: var(--c-green); }
+.bg-c-yellow { background-color: var(--c-yellow); }
+.bg-c-beige { background-color: var(--c-beige); }
+.bg-c-brown { background-color: var(--c-brown); }
+.bg-c-black { background-color: var(--c-black); }
+.text-c-red { color: var(--c-red); }
+.text-c-blue { color: var(--c-blue); }
+.text-c-green { color: var(--c-green); }
+.text-c-yellow { color: var(--c-yellow); }
+.text-c-beige { color: var(--c-beige); }
+.text-c-brown { color: var(--c-brown); }
+.text-c-black { color: var(--c-black); }
+.border-c-border { border-color: var(--c-border); }
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
+
+::-webkit-scrollbar { width: 6px; background: var(--c-black); }
+::-webkit-scrollbar-thumb { background: var(--c-beige); border-radius: 3px; }
+
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 2px solid var(--c-yellow);
+  outline-offset: 2px;
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up { animation: slide-up 0.2s ease-out; }
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in { animation: fade-in 0.3s ease-out; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
