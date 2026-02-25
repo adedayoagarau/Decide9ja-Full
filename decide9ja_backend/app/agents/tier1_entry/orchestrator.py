@@ -270,6 +270,7 @@ class ConversationalOrchestratorAgent(BaseAgent):
                     agent_input = AgentInput(
                         message_id=root_input.message_id,
                         raw_text=args.get("name", ""),
+                        timestamp=root_input.timestamp,
                         user=root_input.user,
                         entities={"politician_name": args.get("name")},
                         context={"tool_mode": True} # Tell agent to return raw JSON instead of UI card
@@ -283,6 +284,7 @@ class ConversationalOrchestratorAgent(BaseAgent):
                     agent_input = AgentInput(
                         message_id=root_input.message_id,
                         raw_text=args.get("location", ""),
+                        timestamp=root_input.timestamp,
                         user=root_input.user,
                         entities={"location": args.get("location")},
                         context={"tool_mode": True}
