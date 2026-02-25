@@ -54,7 +54,7 @@ class FinancialIntelligenceService:
     def search_financials(self, query: str, limit: int = 20, offset: int = 0) -> Dict[str, Any]:
         """
         Unified search across Findings, Transactions, and Budgets using SQLAlchemy.
-        Principles: Neutrality (show all matches), Insight (calculate facts).
+        Uses OR logic (match ANY keyword) with relevance ranking (more matches = higher rank).
         """
         words = self._prepare_fts_query(query)
         if not words:
@@ -62,22 +62,20 @@ class FinancialIntelligenceService:
 
         session = SessionLocal()
         results = []
-        
-        # 1. Search Findings
+
+        # 1. Search Findings — OR logic: match ANY keyword in ANY field
         try:
-            finding_conditions = []
+            or_conditions = []
             for w in words:
                 term = f"%{w}%"
-                finding_conditions.append(or_(
-                    Finding.title.ilike(term), 
-                    Finding.description.ilike(term), 
-                    Finding.project_name.ilike(term),
-                    Finding.jurisdiction.ilike(term),
-                    Finding.mda.ilike(term),
-                    func.cast(Finding.year, String).ilike(term)
-                ))
-            
-            finding_records = session.query(Finding).filter(and_(*finding_conditions)).limit(limit).offset(offset).all()
+                or_conditions.append(Finding.title.ilike(term))
+                or_conditions.append(Finding.description.ilike(term))
+                or_conditions.append(Finding.project_name.ilike(term))
+                or_conditions.append(Finding.jurisdiction.ilike(term))
+                or_conditions.append(Finding.mda.ilike(term))
+                or_conditions.append(func.cast(Finding.year, String).ilike(term))
+
+            finding_records = session.query(Finding).filter(or_(*or_conditions)).limit(limit).offset(offset).all()
             for f in finding_records:
                 results.append({
                     'id': f.id,
@@ -93,19 +91,17 @@ class FinancialIntelligenceService:
         except Exception as e:
             logger.error(f"Error searching findings: {e}")
 
-        # 2. Search Budgets
+        # 2. Search Budgets — OR logic
         try:
-            budget_conditions = []
+            or_conditions = []
             for w in words:
                 term = f"%{w}%"
-                budget_conditions.append(or_(
-                    Budget.project.ilike(term), 
-                    Budget.mda.ilike(term),
-                    Budget.jurisdiction.ilike(term),
-                    func.cast(Budget.year, String).ilike(term)
-                ))
-            
-            budget_records = session.query(Budget).filter(and_(*budget_conditions)).limit(limit).offset(offset).all()
+                or_conditions.append(Budget.project.ilike(term))
+                or_conditions.append(Budget.mda.ilike(term))
+                or_conditions.append(Budget.jurisdiction.ilike(term))
+                or_conditions.append(func.cast(Budget.year, String).ilike(term))
+
+            budget_records = session.query(Budget).filter(or_(*or_conditions)).limit(limit).offset(offset).all()
             for b in budget_records:
                 results.append({
                     'id': b.id,
@@ -121,27 +117,24 @@ class FinancialIntelligenceService:
         except Exception as e:
             logger.error(f"Error searching budgets: {e}")
 
-        # 3. Search Transactions
+        # 3. Search Transactions — OR logic
         try:
-            txn_conditions = []
+            or_conditions = []
             for w in words:
                 term = f"%{w}%"
-                txn_conditions.append(or_(
-                    Transaction.description.ilike(term), 
-                    Transaction.payer.ilike(term), 
-                    Transaction.receiver.ilike(term),
-                    Transaction.state.ilike(term),
-                    Transaction.payment_date.ilike(term)
-                ))
-            
-            txn_records = session.query(Transaction).filter(and_(*txn_conditions)).limit(limit).offset(offset).all()
+                or_conditions.append(Transaction.description.ilike(term))
+                or_conditions.append(Transaction.payer.ilike(term))
+                or_conditions.append(Transaction.receiver.ilike(term))
+                or_conditions.append(Transaction.state.ilike(term))
+                or_conditions.append(Transaction.payment_date.ilike(term))
+
+            txn_records = session.query(Transaction).filter(or_(*or_conditions)).limit(limit).offset(offset).all()
             for t in txn_records:
                 try:
-                    # Extracts YYYY from YYYY-MM-DD
                     year = int(t.payment_date[:4]) if t.payment_date and len(t.payment_date) >= 4 else None
                 except:
                     year = None
-                
+
                 results.append({
                     'id': t.id,
                     'source_type': 'transaction',
@@ -163,8 +156,16 @@ class FinancialIntelligenceService:
                 try: item['year'] = int(item['year'])
                 except: item['year'] = 0
 
-        # Sort combined results by year DESC, then Amount DESC
-        results.sort(key=lambda x: (x.get('year') or 0, x.get('amount') or 0), reverse=True)
+        # Relevance ranking: count how many query keywords each result matches
+        for item in results:
+            searchable = ' '.join(str(v) for v in [
+                item.get('main_text', ''), item.get('sub_text', ''),
+                item.get('jurisdiction', ''), item.get('year', '')
+            ]).lower()
+            item['relevance_score'] = sum(1 for w in words if w.lower() in searchable)
+
+        # Sort by relevance first, then year DESC, then amount DESC
+        results.sort(key=lambda x: (x.get('relevance_score', 0), x.get('year') or 0, x.get('amount') or 0), reverse=True)
         
         # Add automated insights
         processed_results = [self._process_row(r) for r in results[:limit]]
@@ -245,7 +246,7 @@ class FinancialIntelligenceService:
         session.close()
         return summary
 
-    def get_context_for_rag(self, query: str, limit: int = 5) -> str:
+    def get_context_for_rag(self, query: str, limit: int = 10) -> str:
         """
         Format financial intelligence for LLM context.
         """

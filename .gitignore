@@ -36,3 +36,10 @@ decide9ja_backend/ocr_resume_wal.log
 decide9ja_scraper/data/
 *.pdf
 *.zip
+
+# Dead weight / large local-only files
+decide9ja-intro/
+raw_data/
+eng.traineddata
+*.patch
+logs/

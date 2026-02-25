@@ -36,12 +36,85 @@ class RepLookupAgent(DatabaseAgent):
     async def can_handle(self, input: AgentInput) -> bool:
         return input.intent == Intent.REP_LOOKUP
 
+    # All 36 states + FCT for fuzzy matching
+    NIGERIAN_STATES = [
+        "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue",
+        "Borno", "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu",
+        "FCT", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi",
+        "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun",
+        "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara"
+    ]
+
+    def _resolve_location(self, location_text: str) -> Dict[str, Optional[str]]:
+        """
+        Resolve a free-text location string to state/lga.
+        1. Exact/fuzzy match against 36 states + FCT
+        2. Check if it matches an LGA in the politicians table
+        3. Check constituency matches
+        """
+        if not location_text:
+            return {}
+
+        loc = location_text.strip()
+        result = {}
+
+        # 1. Check if it matches a state name (case-insensitive, partial match)
+        loc_lower = loc.lower()
+
+        # Handle common aliases
+        aliases = {
+            "abuja": "FCT", "federal capital": "FCT", "fct": "FCT",
+            "portharcourt": "Rivers", "port harcourt": "Rivers", "ph": "Rivers",
+        }
+        if loc_lower in aliases:
+            result["state"] = aliases[loc_lower]
+            return result
+
+        for state_name in self.NIGERIAN_STATES:
+            if state_name.lower() == loc_lower:
+                result["state"] = state_name
+                return result
+
+        # Partial match: "Akwa" → "Akwa Ibom", "Cross" → "Cross River"
+        for state_name in self.NIGERIAN_STATES:
+            if loc_lower in state_name.lower() or state_name.lower() in loc_lower:
+                result["state"] = state_name
+                # The remaining part might be an LGA
+                remainder = loc_lower.replace(state_name.lower(), "").strip()
+                if remainder:
+                    result["lga"] = remainder.title()
+                return result
+
+        # 2. Not a state — might be an LGA or constituency name
+        # Search the politicians table for a constituency containing this text
+        session = SessionLocal()
+        try:
+            match = session.query(Politician).filter(
+                func.lower(Politician.constituency).contains(loc_lower)
+            ).first()
+            if match:
+                result["state"] = match.state
+                result["lga"] = loc
+                return result
+        except Exception as e:
+            logger.error(f"Location resolution DB lookup failed: {e}")
+        finally:
+            session.close()
+
+        return result
+
     async def query_database(self, input: AgentInput) -> Optional[Dict]:
         """Query the politician database for representatives"""
 
-        # Get user's location
-        state = input.user.state
-        lga = input.user.lga
+        # Check if a specific location was queried (vs using user's profile)
+        queried_location = input.entities.get("location")
+        if queried_location:
+            resolved = self._resolve_location(queried_location)
+            state = resolved.get("state") or input.user.state
+            lga = resolved.get("lga") or input.user.lga
+        else:
+            state = input.user.state
+            lga = input.user.lga
 
         if not state:
             # Need location - return special marker

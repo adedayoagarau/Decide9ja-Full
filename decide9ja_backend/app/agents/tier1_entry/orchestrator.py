@@ -72,18 +72,30 @@ PERSONALITY:
 - When data backs you up, be confident. When it doesn't, say so honestly — "I no get that info right now o, but let me check".
 - Keep WhatsApp messages short. People are reading on phones. 2-4 short paragraphs max unless they asked for detail.
 - Use emojis sparingly and only when they add meaning (🗳️ for elections, 📊 for budgets, 🏛️ for governance).
+- Match the user's language energy. If they write pidgin, reply with more pidgin. If formal, stay formal.
 
 TOOLS:
-You have search tools. ALWAYS use them for factual questions — never guess or use stale knowledge. If a tool returns no data, be honest and suggest the user try differently.
+You have 8 tools. ALWAYS use them for factual questions — never guess.
+- `lookup_politician_profile` — politician backgrounds, education, career history
+- `lookup_representatives` — find senators, reps, governors for any state/LGA
+- `search_rag_news_and_context` — search political news and documents
+- `search_financial_intelligence` — budgets, treasury payments, audit findings
+- `check_election_info` — 2027 election dates, voter registration, candidate lists
+- `fact_check_claim` — verify political claims against news evidence
+- `search_news` — search news articles specifically (with web fallback)
+- `lookup_promises` — campaign promises by politicians
 
 RULES:
-1. ALWAYS ground your answers in tool results. If the tools return data, weave it into your reply naturally.
-2. For news/political questions, call `search_rag_news_and_context` before answering.
-3. For budget/financial questions, call `search_financial_intelligence`.
-4. For politician profiles, call `lookup_politician_profile`.
-5. If tools return nothing useful, be upfront: "I checked but didn't find anything on that yet."
-6. For greetings or casual chat, just be Tade — no tools needed.
-7. Never fabricate facts, statistics, or quotes."""
+1. ALWAYS use tools for factual questions. Never answer from memory alone.
+2. For "who are my reps" or "representatives in [place]" → `lookup_representatives`
+3. For budget, spending, allocation, corruption, audit → `search_financial_intelligence`
+4. For news, latest, happening, update → `search_news` or `search_rag_news_and_context`
+5. For promises, pledges, commitments → `lookup_promises`
+6. For elections, voting, INEC, registration, PVC → `check_election_info`
+7. For "is it true that..." or claim verification → `fact_check_claim`
+8. For politician background/profile → `lookup_politician_profile`
+9. When tools return no data, be straight: "I no get that info yet o" — don't pad with generic advice.
+10. Never fabricate facts, statistics, or quotes."""
 
 
 @register_agent
@@ -249,6 +261,63 @@ class ConversationalOrchestratorAgent(BaseAgent):
                         "required": ["query"]
                     }
                 }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "check_election_info",
+                    "description": "Get upcoming election dates, voter registration steps, polling unit info, or candidate lists for 2027 elections.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "query": {"type": "string", "description": "The election-related question, e.g., 'when is the next election', 'how to register to vote', 'PVC collection'"},
+                        },
+                        "required": ["query"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "fact_check_claim",
+                    "description": "Verify a political claim or statement by cross-referencing news articles and documents.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "claim": {"type": "string", "description": "The claim to verify, e.g., 'Tinubu removed fuel subsidy' or 'Nigeria's debt is 100 trillion'"},
+                        },
+                        "required": ["claim"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "search_news",
+                    "description": "Search the Nigerian political news database for recent articles on a topic, with web search fallback.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "query": {"type": "string", "description": "The news topic to search for, e.g., 'fuel subsidy removal', 'ASUU strike', 'Tinubu cabinet'"},
+                        },
+                        "required": ["query"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "lookup_promises",
+                    "description": "Look up campaign promises and commitments made by a specific politician.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "politician_name": {"type": "string", "description": "Name of the politician, e.g., 'Tinubu', 'Peter Obi', 'Atiku'"},
+                            "category": {"type": "string", "description": "Optional category filter: economy, security, education, health, infrastructure, governance"},
+                        },
+                        "required": ["politician_name"]
+                    }
+                }
             }
         ]
 
@@ -316,14 +385,86 @@ class ConversationalOrchestratorAgent(BaseAgent):
                     import asyncio
                     loop = asyncio.get_running_loop()
                     financial_service = get_financial_intelligence()
-                    # Use get_context_for_rag to get formatted string that is LLM friendly
                     result_str = await loop.run_in_executor(
                         None,
                         lambda: financial_service.get_context_for_rag(args.get("query", ""))
                     )
-                    result_data = {"financial_data": result_str}
+                    if result_str:
+                        result_data = {"financial_data": result_str}
+                    else:
+                        result_data = {"financial_data": "No matching records found in the budget/financial database for this query. The database covers Federal budgets and 7 state budgets (Abia, Adamawa, Akwa Ibom, Anambra, Bauchi, Bayelsa). Treasury transactions are Federal-level. Try broader search terms."}
                 except Exception as e:
                     result_data = {"error": f"Financial search failed: {e}"}
+
+            elif tool_call.function.name == "check_election_info":
+                agent = registry.get("election_info")
+                if agent:
+                    agent_input = AgentInput(
+                        message_id=root_input.message_id,
+                        raw_text=args.get("query", ""),
+                        timestamp=root_input.timestamp,
+                        user=root_input.user,
+                        entities={"topic": "general"},
+                        context={"tool_mode": True}
+                    )
+                    out = await agent.handle(agent_input)
+                    result_data = out.data if out.success else {"error": "Election info not found"}
+                else:
+                    result_data = {"error": "Election info agent not available"}
+
+            elif tool_call.function.name == "fact_check_claim":
+                agent = registry.get("fact_check")
+                if agent:
+                    agent_input = AgentInput(
+                        message_id=root_input.message_id,
+                        raw_text=args.get("claim", ""),
+                        timestamp=root_input.timestamp,
+                        user=root_input.user,
+                        entities={},
+                        context={"tool_mode": True}
+                    )
+                    out = await agent.handle(agent_input)
+                    # FactCheckAgent returns response_text with the verdict
+                    result_data = {"fact_check_result": out.response_text} if out.success else {"error": "Fact check failed"}
+                else:
+                    result_data = {"error": "Fact check agent not available"}
+
+            elif tool_call.function.name == "search_news":
+                agent = registry.get("news_query")
+                if agent:
+                    agent_input = AgentInput(
+                        message_id=root_input.message_id,
+                        raw_text=args.get("query", ""),
+                        timestamp=root_input.timestamp,
+                        user=root_input.user,
+                        entities={},
+                        context={"tool_mode": True}
+                    )
+                    out = await agent.handle(agent_input)
+                    result_data = out.data if out.success else {"error": "News search failed"}
+                else:
+                    result_data = {"error": "News agent not available"}
+
+            elif tool_call.function.name == "lookup_promises":
+                agent = registry.get("promise_lookup")
+                if agent:
+                    raw_text = args.get("politician_name", "")
+                    if args.get("category"):
+                        raw_text += f" {args['category']}"
+                    agent_input = AgentInput(
+                        message_id=root_input.message_id,
+                        raw_text=raw_text,
+                        timestamp=root_input.timestamp,
+                        user=root_input.user,
+                        entities={"politician": args.get("politician_name")},
+                        context={"tool_mode": True}
+                    )
+                    out = await agent.handle(agent_input)
+                    # PromiseLookupAgent returns response_text with formatted promises
+                    result_data = out.data if out.data else {"promises_text": out.response_text} if out.success else {"error": "Promise lookup failed"}
+                else:
+                    result_data = {"error": "Promise lookup agent not available"}
+
             else:
                 result_data = {"error": "Unknown tool"}
 
