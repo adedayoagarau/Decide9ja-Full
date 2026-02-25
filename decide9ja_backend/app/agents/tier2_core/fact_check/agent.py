@@ -56,24 +56,97 @@ OUTPUT FORMAT:
     async def process_with_llm(self, input: AgentInput) -> str:
         """
         Process fact-check request.
-        TODO: Integrate actual Web Search tool (Tavily/SerpAPI) here.
-        For now, relies on LLM internal knowledge + RAG context if available.
+        Searches news database + web for evidence, then uses LLM to synthesize verdict.
         """
-        # If we had search results in context, we'd add them here
-        context_str = ""
-        if input.context and "search_results" in input.context:
-            context_str = f"\nSEARCH RESULTS:\n{input.context['search_results']}\n"
+        # Gather evidence from multiple sources
+        evidence_parts = []
+
+        # 1. Search news database
+        try:
+            from app.database import SessionLocal, NewsArticle
+            from sqlalchemy import or_, desc
+
+            db = SessionLocal()
+            try:
+                # Extract key terms from the claim
+                claim = input.raw_text.lower()
+                keywords = [w for w in claim.split() if len(w) > 3][:5]
+                if keywords:
+                    filters = []
+                    for kw in keywords:
+                        filters.append(NewsArticle.title.ilike(f"%{kw}%"))
+                        filters.append(NewsArticle.excerpt.ilike(f"%{kw}%"))
+
+                    articles = db.query(NewsArticle).filter(
+                        or_(*filters)
+                    ).order_by(desc(NewsArticle.published_date)).limit(5).all()
+
+                    if articles:
+                        evidence_parts.append("NEWS DATABASE EVIDENCE:")
+                        for a in articles:
+                            date_str = a.published_date.strftime("%Y-%m-%d") if a.published_date else "Unknown date"
+                            evidence_parts.append(
+                                f"- [{date_str}] {a.title} ({a.source_name or a.source}): {(a.excerpt or '')[:200]}"
+                            )
+            finally:
+                db.close()
+        except Exception as e:
+            logger.error(f"News DB search for fact-check failed: {e}")
+
+        # 2. Search web for current information
+        try:
+            from app.services.realtime import fetch_web_search
+            import asyncio
+
+            loop = asyncio.get_running_loop()
+            web_results = await loop.run_in_executor(
+                None,
+                lambda: fetch_web_search(f"Nigeria {input.raw_text} fact check", limit=5)
+            )
+            if web_results:
+                evidence_parts.append("\nWEB SEARCH EVIDENCE:")
+                for r in web_results[:5]:
+                    evidence_parts.append(
+                        f"- {r.get('title', '')}: {r.get('snippet', r.get('description', ''))[:200]}"
+                    )
+        except Exception as e:
+            logger.debug(f"Web search for fact-check failed: {e}")
+
+        # 3. Check RAG documents
+        try:
+            from app.services.enhanced_rag import get_enhanced_rag_service
+            from app.database import SessionLocal as SL
+            db2 = SL()
+            try:
+                rag = get_enhanced_rag_service(db2)
+                import asyncio
+                loop = asyncio.get_running_loop()
+                context, _ = await loop.run_in_executor(
+                    None,
+                    lambda: rag.retrieve(input.raw_text)
+                )
+                if context and len(context) > 50:
+                    evidence_parts.append(f"\nKNOWLEDGE BASE:\n{context[:1000]}")
+            finally:
+                db2.close()
+        except Exception as e:
+            logger.debug(f"RAG search for fact-check failed: {e}")
+
+        # Build context string
+        if evidence_parts:
+            context_str = "\n".join(evidence_parts)
+        else:
+            context_str = "(No external evidence found — rely on training knowledge with caution)"
 
         user_prompt = f"""Verify this claim/query regarding Nigerian politics:
 "{input.raw_text}"
 
+EVIDENCE GATHERED:
 {context_str}
 
-Provide a fact-check analysis based on available information.
+Based on the evidence above, provide a fact-check analysis. Be honest about what the evidence supports and what remains unverified.
 """
         return await self.call_llm(user_prompt)
 
     async def handle(self, input: AgentInput) -> AgentOutput:
-        # In a real implementation, we would trigger a web search first
-        # For now, we'll just use the LLM
         return await super().handle(input)

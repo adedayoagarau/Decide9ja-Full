@@ -249,14 +249,10 @@ _Say "compare [name] vs [name]" to compare_"""
         if not state or not lga:
             return {"type": "polling_unit", "need_location": True}
 
-        # Try database lookup
+        # Polling unit data not in local database — direct to INEC
         polling_unit = None
-        if self.db:
-            try:
-                # Adapt to your database schema
-                pass
-            except Exception as e:
-                logger.error(f"Polling unit lookup failed: {e}")
+        # INEC's polling unit finder: https://cvr.inecnigeria.org/
+        # We can guide users there since we don't have this data locally
 
         return {
             "type": "polling_unit",

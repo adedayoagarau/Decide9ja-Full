@@ -125,7 +125,7 @@ class ManifestoAgent(DatabaseAgent):
         3. Format for WhatsApp
         """
         try:
-            parsed = self._parse_request(input.message)
+            parsed = self._parse_request(input.raw_text)
             party = parsed.get("party")
             topic = parsed.get("topic")
 
@@ -170,9 +170,6 @@ class ManifestoAgent(DatabaseAgent):
             # Fetch manifesto from cache
             try:
                 manifesto = await cache.get_manifesto(party, topic)
-            except AttributeError:
-                # get_manifesto might not exist yet
-                manifesto = None
             except Exception as e:
                 logger.warning(f"Failed to fetch manifesto: {e}")
                 manifesto = None
@@ -370,7 +367,7 @@ class ManifestoAgent(DatabaseAgent):
 
     async def can_handle(self, input: AgentInput) -> bool:
         """Check if this agent can handle the input"""
-        message = input.message.lower()
+        message = input.raw_text.lower()
 
         manifesto_keywords = [
             "manifesto", "policy", "plan", "position",

@@ -521,7 +521,19 @@ async def news_agent_tool(query: str, entities: Dict, context: Dict) -> Dict:
     Returns:
         Tool result dict
     """
-    from app.services.agentic_retrieval import ToolResult
+    from dataclasses import dataclass, field as dc_field
+    from typing import Any, Dict, Optional as Opt
+
+    @dataclass
+    class ToolResult:
+        tool_name: str
+        success: bool
+        data: Any
+        confidence: float
+        source: str
+        error: Opt[str] = None
+        handoff_to: Opt[str] = None
+        metadata: Dict = dc_field(default_factory=dict)
 
     try:
         with NewsAgent() as agent:

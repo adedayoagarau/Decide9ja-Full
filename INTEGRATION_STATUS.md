@@ -87,7 +87,7 @@ pip install httpx
 
 ### Step 2: Environment
 ```bash
-export SUPERMEMORY_API_KEY="sm_2YjQGcbZqBgtUhQuJZmGur_jjJBWVrjxCusomPYZOiEPyphQmUPsJINLyqijzoaUoDGrqUnttcQyOOmDjuMEBtk"
+export SUPERMEMORY_API_KEY="your_supermemory_api_key_here"
 ```
 
 ### Step 3: Deploy Files

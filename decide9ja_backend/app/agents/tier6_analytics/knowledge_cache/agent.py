@@ -1,13 +1,15 @@
 """
 KnowledgeCacheAgent
 ===================
-Manages the knowledge cache - the central data store for all researched information.
+Manages the knowledge cache - queries existing SQLAlchemy/PostgreSQL tables.
 
-Operations:
-- Get/save politician profiles
-- Get/save promises
-- Get/save news summaries
-- Track cache misses for research prioritization
+Provides a unified interface for other agents to access:
+- Politician profiles (from politicians table)
+- News articles (from news_articles table)
+- Promises (from politician data_json)
+- Voting records (from votes + bills tables)
+- Manifesto data (from rag_documents table)
+- Cache miss tracking (logged to database)
 
 Cost: FREE (database operations only)
 """
@@ -17,21 +19,30 @@ import logging
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any
 
+from sqlalchemy import or_, and_, desc, func, text
+from sqlalchemy.orm import Session
+
 from app.agents.base import (
-    DatabaseAgent,
+    BaseAgent,
     AgentInput,
     AgentOutput,
     AgentTier,
     CostLevel
 )
 from app.agents.registry import register_agent
+from app.database import SessionLocal
 
 logger = logging.getLogger(__name__)
 
 
+def _get_db() -> Session:
+    """Get a database session."""
+    return SessionLocal()
+
+
 @register_agent
-class KnowledgeCacheAgent(DatabaseAgent):
-    """Manages the knowledge cache - read/write structured data"""
+class KnowledgeCacheAgent(BaseAgent):
+    """Manages the knowledge cache - read/write structured data via SQLAlchemy"""
 
     name = "knowledge_cache"
     description = "Cache layer for researched political knowledge"
@@ -44,15 +55,11 @@ class KnowledgeCacheAgent(DatabaseAgent):
     NEWS_STALE_HOURS = 6
     PROMISES_STALE_HOURS = 168  # 1 week
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
     async def can_handle(self, input: AgentInput) -> bool:
         return False  # Not user-facing
 
-    async def query_database(self, input: AgentInput) -> Optional[Dict]:
-        """Not used - this agent has specific methods"""
-        return None
+    async def handle(self, input: AgentInput) -> AgentOutput:
+        return AgentOutput(success=False, error="Not user-facing")
 
     # ===================
     # POLITICIAN METHODS
@@ -60,7 +67,7 @@ class KnowledgeCacheAgent(DatabaseAgent):
 
     async def get_politician(self, name: str) -> Optional[Dict]:
         """
-        Get cached politician data.
+        Get politician data from the politicians table.
 
         Args:
             name: Politician name (fuzzy matched)
@@ -68,23 +75,40 @@ class KnowledgeCacheAgent(DatabaseAgent):
         Returns:
             Dict with data, updated_at, sources, is_stale
         """
-        if not self.db:
-            return None
-
+        db = None
         try:
-            result = await self.db.knowledge_cache.find_one({
-                "entity_type": "politician",
-                "entity_name": {"$regex": name, "$options": "i"}
-            })
+            from app.database import Politician
+            db = _get_db()
 
-            if result:
-                updated_at = result.get("updated_at")
+            # Try exact match first, then fuzzy
+            politician = db.query(Politician).filter(
+                Politician.name.ilike(f"%{name}%")
+            ).first()
+
+            if politician:
+                # Parse data_json if available
+                data = {}
+                if politician.data_json:
+                    try:
+                        data = json.loads(politician.data_json)
+                    except (json.JSONDecodeError, TypeError):
+                        pass
+
+                data.update({
+                    "name": politician.name,
+                    "party": politician.party,
+                    "position": politician.position,
+                    "state": politician.state,
+                    "constituency": politician.constituency,
+                    "slug": politician.slug,
+                })
+
                 return {
-                    "data": result.get("data", {}),
-                    "updated_at": updated_at,
-                    "sources": result.get("sources", []),
-                    "is_stale": self._is_stale(updated_at, self.POLITICIAN_STALE_HOURS),
-                    "cache_id": str(result.get("_id"))
+                    "data": data,
+                    "updated_at": politician.created_at,
+                    "sources": data.get("sources", []),
+                    "is_stale": self._is_stale(politician.created_at, self.POLITICIAN_STALE_HOURS),
+                    "cache_id": str(politician.id)
                 }
 
             return None
@@ -92,95 +116,44 @@ class KnowledgeCacheAgent(DatabaseAgent):
         except Exception as e:
             logger.error(f"Error getting politician {name}: {e}")
             return None
-
-    async def save_politician(
-        self,
-        name: str,
-        data: Dict,
-        sources: List[str]
-    ) -> bool:
-        """
-        Save or update politician data in cache.
-
-        Args:
-            name: Politician name
-            data: Structured profile data
-            sources: List of source URLs
-
-        Returns:
-            True if successful
-        """
-        if not self.db:
-            return False
-
-        try:
-            await self.db.knowledge_cache.update_one(
-                {
-                    "entity_type": "politician",
-                    "entity_name": name
-                },
-                {
-                    "$set": {
-                        "data": data,
-                        "sources": sources,
-                        "updated_at": datetime.utcnow()
-                    },
-                    "$setOnInsert": {
-                        "created_at": datetime.utcnow()
-                    }
-                },
-                upsert=True
-            )
-            logger.info(f"Cached politician: {name}")
-            return True
-
-        except Exception as e:
-            logger.error(f"Error saving politician {name}: {e}")
-            return False
+        finally:
+            if db:
+                db.close()
 
     async def search_politicians(
         self,
         query: str,
         limit: int = 10
     ) -> List[Dict]:
-        """
-        Search cached politicians by name.
-
-        Args:
-            query: Search string
-            limit: Max results
-
-        Returns:
-            List of matching politician summaries
-        """
-        if not self.db:
-            return []
-
+        """Search politicians by name."""
+        db = None
         try:
-            cursor = self.db.knowledge_cache.find(
+            from app.database import Politician
+            db = _get_db()
+
+            results = db.query(Politician).filter(
+                Politician.name.ilike(f"%{query}%")
+            ).limit(limit).all()
+
+            return [
                 {
-                    "entity_type": "politician",
-                    "entity_name": {"$regex": query, "$options": "i"}
+                    "name": p.name,
+                    "party": p.party,
+                    "position": p.position,
+                    "state": p.state,
+                    "slug": p.slug,
+                    "updated_at": p.created_at,
+                    "is_stale": self._is_stale(p.created_at, self.POLITICIAN_STALE_HOURS)
                 }
-            ).limit(limit)
-
-            results = []
-            async for doc in cursor:
-                data = doc.get("data", {})
-                results.append({
-                    "name": doc.get("entity_name"),
-                    "party": data.get("party"),
-                    "position": data.get("current_position"),
-                    "state": data.get("state_of_origin"),
-                    "updated_at": doc.get("updated_at"),
-                    "is_stale": self._is_stale(doc.get("updated_at"), self.POLITICIAN_STALE_HOURS)
-                })
-
-            return results
+                for p in results
+            ]
 
         except Exception as e:
             logger.error(f"Error searching politicians: {e}")
             return []
+        finally:
+            if db:
+                db.close()
 
     # ===================
     # PROMISES METHODS
@@ -193,7 +166,7 @@ class KnowledgeCacheAgent(DatabaseAgent):
         status: Optional[str] = None
     ) -> List[Dict]:
         """
-        Get cached promises for a politician.
+        Get promises for a politician from their data_json field.
 
         Args:
             politician_name: Politician name
@@ -203,33 +176,46 @@ class KnowledgeCacheAgent(DatabaseAgent):
         Returns:
             List of promise dicts
         """
-        if not self.db:
-            return []
-
+        db = None
         try:
-            query = {
-                "politician_name": {"$regex": politician_name, "$options": "i"}
-            }
+            from app.database import Politician
+            db = _get_db()
 
+            politician = db.query(Politician).filter(
+                Politician.name.ilike(f"%{politician_name}%")
+            ).first()
+
+            if not politician or not politician.data_json:
+                return []
+
+            data = json.loads(politician.data_json)
+            promises = data.get("promises", [])
+
+            # Apply filters
             if topic:
-                query["topic"] = topic
-            if status:
-                query["status"] = status
+                topic_lower = topic.lower()
+                promises = [
+                    p for p in promises
+                    if topic_lower in p.get("topic", "").lower()
+                    or topic_lower in p.get("category", "").lower()
+                ]
 
-            cursor = self.db.promises_cache.find(query).sort("date_made", -1)
-            promises = await cursor.to_list(100)
+            if status:
+                status_lower = status.lower()
+                promises = [
+                    p for p in promises
+                    if p.get("status", "").lower() == status_lower
+                ]
 
             return [
                 {
-                    "id": str(p.get("_id")),
-                    "politician_name": p.get("politician_name"),
-                    "promise_text": p.get("promise_text"),
-                    "topic": p.get("topic"),
-                    "status": p.get("status"),
-                    "status_evidence": p.get("status_evidence"),
-                    "date_made": p.get("date_made"),
-                    "source_url": p.get("source_url"),
-                    "updated_at": p.get("updated_at")
+                    "politician_name": politician.name,
+                    "promise_text": p.get("promise_text", p.get("text", p.get("description", ""))),
+                    "topic": p.get("topic", p.get("category", "")),
+                    "status": p.get("status", "unknown"),
+                    "status_evidence": p.get("evidence", p.get("status_evidence", "")),
+                    "date_made": p.get("date_made", p.get("date", "")),
+                    "source_url": p.get("source_url", p.get("source", "")),
                 }
                 for p in promises
             ]
@@ -237,83 +223,9 @@ class KnowledgeCacheAgent(DatabaseAgent):
         except Exception as e:
             logger.error(f"Error getting promises for {politician_name}: {e}")
             return []
-
-    async def save_promises(
-        self,
-        politician_name: str,
-        promises: List[Dict]
-    ) -> int:
-        """
-        Save or update promises in cache.
-
-        Args:
-            politician_name: Politician name
-            promises: List of promise dicts
-
-        Returns:
-            Number of promises saved
-        """
-        if not self.db or not promises:
-            return 0
-
-        saved = 0
-        for promise in promises:
-            try:
-                await self.db.promises_cache.update_one(
-                    {
-                        "politician_name": politician_name,
-                        "promise_text": promise.get("promise_text")
-                    },
-                    {
-                        "$set": {
-                            "topic": promise.get("topic"),
-                            "status": promise.get("status", "unknown"),
-                            "status_evidence": promise.get("status_evidence"),
-                            "source_url": promise.get("source_url"),
-                            "date_made": promise.get("date_made"),
-                            "updated_at": datetime.utcnow()
-                        },
-                        "$setOnInsert": {
-                            "created_at": datetime.utcnow()
-                        }
-                    },
-                    upsert=True
-                )
-                saved += 1
-
-            except Exception as e:
-                logger.error(f"Error saving promise: {e}")
-                continue
-
-        logger.info(f"Saved {saved} promises for {politician_name}")
-        return saved
-
-    async def update_promise_status(
-        self,
-        promise_id: str,
-        status: str,
-        evidence: str
-    ) -> bool:
-        """Update the status of a specific promise"""
-        if not self.db:
-            return False
-
-        try:
-            from bson import ObjectId
-            await self.db.promises_cache.update_one(
-                {"_id": ObjectId(promise_id)},
-                {
-                    "$set": {
-                        "status": status,
-                        "status_evidence": evidence,
-                        "status_updated_at": datetime.utcnow()
-                    }
-                }
-            )
-            return True
-        except Exception as e:
-            logger.error(f"Error updating promise status: {e}")
-            return False
+        finally:
+            if db:
+                db.close()
 
     # ===================
     # NEWS METHODS
@@ -327,10 +239,10 @@ class KnowledgeCacheAgent(DatabaseAgent):
         limit: int = 20
     ) -> List[Dict]:
         """
-        Get cached news items.
+        Get news articles from the news_articles table.
 
         Args:
-            politician_name: Filter by politician
+            politician_name: Filter by politician mention
             topic: Filter by topic
             days: How many days back
             limit: Max results
@@ -338,78 +250,58 @@ class KnowledgeCacheAgent(DatabaseAgent):
         Returns:
             List of news items
         """
-        if not self.db:
-            return []
-
+        db = None
         try:
+            from app.database import NewsArticle
+            db = _get_db()
+
             cutoff = datetime.utcnow() - timedelta(days=days)
-            query = {"created_at": {"$gte": cutoff}}
+            query = db.query(NewsArticle).filter(
+                NewsArticle.published_date >= cutoff
+            )
 
             if politician_name:
-                query["politician_name"] = {"$regex": politician_name, "$options": "i"}
-            if topic:
-                query["topic"] = topic
+                # Search in title, excerpt, and politicians_json
+                query = query.filter(
+                    or_(
+                        NewsArticle.title.ilike(f"%{politician_name}%"),
+                        NewsArticle.excerpt.ilike(f"%{politician_name}%"),
+                        NewsArticle.politicians_json.ilike(f"%{politician_name}%")
+                    )
+                )
 
-            cursor = self.db.news_cache.find(query).sort("published_date", -1).limit(limit)
-            news = await cursor.to_list(limit)
+            if topic:
+                query = query.filter(
+                    or_(
+                        NewsArticle.title.ilike(f"%{topic}%"),
+                        NewsArticle.topics_json.ilike(f"%{topic}%")
+                    )
+                )
+
+            articles = query.order_by(
+                desc(NewsArticle.published_date)
+            ).limit(limit).all()
 
             return [
                 {
-                    "id": str(n.get("_id")),
-                    "headline": n.get("headline"),
-                    "summary": n.get("summary"),
-                    "source": n.get("source"),
-                    "url": n.get("url"),
-                    "published_date": n.get("published_date"),
-                    "politician_name": n.get("politician_name"),
-                    "sentiment": n.get("sentiment"),
-                    "topic": n.get("topic")
+                    "id": str(a.id),
+                    "headline": a.title,
+                    "summary": a.excerpt or "",
+                    "source": a.source_name or a.source,
+                    "url": a.url,
+                    "published_date": a.published_date.isoformat() if a.published_date else None,
+                    "politician_name": politician_name,
+                    "topic": topic,
                 }
-                for n in news
+                for a in articles
             ]
 
         except Exception as e:
             logger.error(f"Error getting news: {e}")
             return []
-
-    async def save_news(self, news_items: List[Dict]) -> int:
-        """Save news items to cache (deduplicates by URL)"""
-        if not self.db or not news_items:
-            return 0
-
-        saved = 0
-        for item in news_items:
-            try:
-                # Skip if no URL (can't dedupe)
-                if not item.get("url"):
-                    continue
-
-                await self.db.news_cache.update_one(
-                    {"url": item["url"]},
-                    {
-                        "$set": {
-                            "headline": item.get("headline"),
-                            "summary": item.get("summary"),
-                            "source": item.get("source"),
-                            "published_date": item.get("date"),
-                            "politician_name": item.get("politician_name"),
-                            "sentiment": item.get("sentiment"),
-                            "topic": item.get("topic"),
-                            "updated_at": datetime.utcnow()
-                        },
-                        "$setOnInsert": {
-                            "created_at": datetime.utcnow()
-                        }
-                    },
-                    upsert=True
-                )
-                saved += 1
-
-            except Exception as e:
-                logger.debug(f"Error saving news item: {e}")
-                continue
-
-        return saved
+        finally:
+            if db:
+                db.close()
 
     # ===================
     # MANIFESTO METHODS
@@ -421,7 +313,8 @@ class KnowledgeCacheAgent(DatabaseAgent):
         topic: Optional[str] = None
     ) -> List[Dict]:
         """
-        Get cached manifesto data for a party.
+        Get manifesto data from the rag_documents table.
+        Manifestos are stored as doc_type='manifesto'.
 
         Args:
             party: Party code (APC, PDP, LP, etc.)
@@ -430,85 +323,48 @@ class KnowledgeCacheAgent(DatabaseAgent):
         Returns:
             List of manifesto sections
         """
-        if not self.db:
-            return []
-
+        db = None
         try:
-            query = {"party_code": party.upper()}
-            if topic:
-                query["topic"] = {"$regex": topic, "$options": "i"}
+            from app.database import Document
+            db = _get_db()
 
-            cursor = self.db.manifesto_cache.find(query).sort("section_order", 1)
-            sections = await cursor.to_list(50)
+            query = db.query(Document).filter(
+                Document.doc_type == "manifesto",
+                or_(
+                    Document.doc_id.ilike(f"%{party}%"),
+                    Document.title.ilike(f"%{party}%"),
+                    Document.content.ilike(f"%{party}%")
+                )
+            )
+
+            if topic:
+                query = query.filter(
+                    or_(
+                        Document.title.ilike(f"%{topic}%"),
+                        Document.content.ilike(f"%{topic}%")
+                    )
+                )
+
+            docs = query.limit(50).all()
 
             return [
                 {
-                    "id": str(s.get("_id")),
-                    "party": s.get("party_code"),
-                    "title": s.get("title"),
-                    "content": s.get("content"),
-                    "topic": s.get("topic"),
-                    "page": s.get("page_number"),
-                    "year": s.get("year", 2023)
+                    "id": str(d.id),
+                    "party": party.upper(),
+                    "title": d.title or "",
+                    "content": d.content[:2000] if d.content else "",
+                    "topic": topic or "",
+                    "doc_id": d.doc_id,
                 }
-                for s in sections
+                for d in docs
             ]
 
         except Exception as e:
             logger.error(f"Error getting manifesto for {party}: {e}")
             return []
-
-    async def save_manifesto(
-        self,
-        party: str,
-        sections: List[Dict],
-        year: int = 2023
-    ) -> int:
-        """
-        Save manifesto sections to cache.
-
-        Args:
-            party: Party code
-            sections: List of manifesto sections
-            year: Manifesto year
-
-        Returns:
-            Number of sections saved
-        """
-        if not self.db or not sections:
-            return 0
-
-        saved = 0
-        for i, section in enumerate(sections):
-            try:
-                await self.db.manifesto_cache.update_one(
-                    {
-                        "party_code": party.upper(),
-                        "title": section.get("title"),
-                        "year": year
-                    },
-                    {
-                        "$set": {
-                            "content": section.get("content"),
-                            "topic": section.get("topic"),
-                            "page_number": section.get("page"),
-                            "section_order": i,
-                            "updated_at": datetime.utcnow()
-                        },
-                        "$setOnInsert": {
-                            "created_at": datetime.utcnow()
-                        }
-                    },
-                    upsert=True
-                )
-                saved += 1
-
-            except Exception as e:
-                logger.error(f"Error saving manifesto section: {e}")
-                continue
-
-        logger.info(f"Saved {saved} manifesto sections for {party}")
-        return saved
+        finally:
+            if db:
+                db.close()
 
     # ===================
     # VOTING RECORD METHODS
@@ -520,7 +376,7 @@ class KnowledgeCacheAgent(DatabaseAgent):
         limit: int = 20
     ) -> List[Dict]:
         """
-        Get voting records for a legislator.
+        Get voting records from the votes + bills tables.
 
         Args:
             politician_name: Name of the legislator
@@ -529,83 +385,51 @@ class KnowledgeCacheAgent(DatabaseAgent):
         Returns:
             List of voting record dicts
         """
-        if not self.db:
-            return []
-
+        db = None
         try:
-            cursor = self.db.voting_records.find({
-                "politician_name": {"$regex": politician_name, "$options": "i"}
-            }).sort("vote_date", -1).limit(limit)
+            from app.database import Vote, Bill, Politician
+            db = _get_db()
 
-            records = await cursor.to_list(limit)
+            # First find the politician
+            politician = db.query(Politician).filter(
+                Politician.name.ilike(f"%{politician_name}%")
+            ).first()
 
-            return [
-                {
-                    "id": str(r.get("_id")),
-                    "politician_name": r.get("politician_name"),
-                    "bill_name": r.get("bill_name"),
-                    "bill_id": r.get("bill_id"),
-                    "vote": r.get("vote"),  # YES, NO, ABSTAIN
-                    "date": r.get("vote_date"),
-                    "summary": r.get("bill_summary"),
-                    "chamber": r.get("chamber"),  # Senate, House
-                    "session": r.get("session")
-                }
-                for r in records
-            ]
+            if not politician:
+                return []
+
+            # Get their votes with bill info
+            votes = db.query(Vote).filter(
+                Vote.politician_slug == politician.slug
+            ).order_by(desc(Vote.vote_date)).limit(limit).all()
+
+            results = []
+            for vote in votes:
+                # Get the bill details
+                bill = db.query(Bill).filter(
+                    Bill.bill_id == vote.bill_id
+                ).first()
+
+                results.append({
+                    "id": str(vote.id),
+                    "politician_name": politician.name,
+                    "bill_name": bill.title if bill else (vote.motion_title or vote.bill_id),
+                    "bill_id": vote.bill_id,
+                    "vote": vote.vote_cast,  # aye, nay, abstain, absent
+                    "date": vote.vote_date.isoformat() if vote.vote_date else None,
+                    "summary": bill.description if bill else (vote.motion_description or ""),
+                    "chamber": vote.chamber,
+                    "voted_with_party": vote.voted_with_party,
+                })
+
+            return results
 
         except Exception as e:
             logger.error(f"Error getting voting records for {politician_name}: {e}")
             return []
-
-    async def save_voting_records(
-        self,
-        records: List[Dict]
-    ) -> int:
-        """
-        Save voting records to cache.
-
-        Args:
-            records: List of voting record dicts
-
-        Returns:
-            Number of records saved
-        """
-        if not self.db or not records:
-            return 0
-
-        saved = 0
-        for record in records:
-            try:
-                await self.db.voting_records.update_one(
-                    {
-                        "politician_name": record.get("politician_name"),
-                        "bill_id": record.get("bill_id")
-                    },
-                    {
-                        "$set": {
-                            "bill_name": record.get("bill_name"),
-                            "vote": record.get("vote"),
-                            "vote_date": record.get("date"),
-                            "bill_summary": record.get("summary"),
-                            "chamber": record.get("chamber"),
-                            "session": record.get("session"),
-                            "updated_at": datetime.utcnow()
-                        },
-                        "$setOnInsert": {
-                            "created_at": datetime.utcnow()
-                        }
-                    },
-                    upsert=True
-                )
-                saved += 1
-
-            except Exception as e:
-                logger.error(f"Error saving voting record: {e}")
-                continue
-
-        logger.info(f"Saved {saved} voting records")
-        return saved
+        finally:
+            if db:
+                db.close()
 
     # ===================
     # CACHE MISS TRACKING
@@ -619,54 +443,21 @@ class KnowledgeCacheAgent(DatabaseAgent):
     ):
         """
         Record a cache miss for research prioritization.
-
-        Args:
-            query: User's query text
-            intent: Classified intent
-            entity: Specific entity requested (if identified)
+        Uses the Interaction table or logs for now.
         """
-        if not self.db:
-            return
-
-        try:
-            await self.db.cache_misses.insert_one({
-                "query_text": query[:500],  # Limit size
-                "intent_topic": intent,
-                "query_entity": entity,
-                "created_at": datetime.utcnow()
-            })
-        except Exception as e:
-            logger.debug(f"Error recording cache miss: {e}")
+        # Log the miss for analytics — lightweight, no separate table needed
+        logger.info(
+            f"CACHE_MISS | intent={intent} | entity={entity} | query={query[:200]}"
+        )
 
     async def get_cache_miss_stats(self, hours: int = 24) -> Dict:
-        """Get cache miss statistics for research prioritization"""
-        if not self.db:
-            return {}
-
-        try:
-            cutoff = datetime.utcnow() - timedelta(hours=hours)
-
-            # Count by intent topic
-            pipeline = [
-                {"$match": {"created_at": {"$gte": cutoff}}},
-                {"$group": {
-                    "_id": "$intent_topic",
-                    "count": {"$sum": 1}
-                }},
-                {"$sort": {"count": -1}}
-            ]
-
-            results = await self.db.cache_misses.aggregate(pipeline).to_list(50)
-
-            return {
-                "total_misses": sum(r["count"] for r in results),
-                "by_topic": {r["_id"]: r["count"] for r in results if r["_id"]},
-                "period_hours": hours
-            }
-
-        except Exception as e:
-            logger.error(f"Error getting cache miss stats: {e}")
-            return {}
+        """Get cache miss statistics — placeholder until analytics table exists."""
+        return {
+            "total_misses": 0,
+            "by_topic": {},
+            "period_hours": hours,
+            "note": "Check logs for CACHE_MISS entries"
+        }
 
     # ===================
     # UTILITY METHODS
@@ -679,76 +470,25 @@ class KnowledgeCacheAgent(DatabaseAgent):
         return (datetime.utcnow() - updated_at).total_seconds() > hours * 3600
 
     async def get_cache_stats(self) -> Dict:
-        """Get overall cache statistics"""
-        if not self.db:
-            return {}
-
+        """Get overall cache statistics from real tables."""
+        db = None
         try:
-            politician_count = await self.db.knowledge_cache.count_documents(
-                {"entity_type": "politician"}
-            )
-            promise_count = await self.db.promises_cache.count_documents({})
-            news_count = await self.db.news_cache.count_documents({})
+            from app.database import Politician, NewsArticle, Vote
+            db = _get_db()
 
-            # Stale counts
-            stale_cutoff = datetime.utcnow() - timedelta(hours=self.POLITICIAN_STALE_HOURS)
-            stale_politicians = await self.db.knowledge_cache.count_documents({
-                "entity_type": "politician",
-                "updated_at": {"$lt": stale_cutoff}
-            })
+            politician_count = db.query(Politician).count()
+            news_count = db.query(NewsArticle).count()
+            vote_count = db.query(Vote).count()
 
             return {
-                "politicians": {
-                    "total": politician_count,
-                    "stale": stale_politicians,
-                    "fresh": politician_count - stale_politicians
-                },
-                "promises": promise_count,
-                "news": news_count,
-                "cache_misses_24h": await self._count_recent_misses(24)
+                "politicians": politician_count,
+                "news_articles": news_count,
+                "voting_records": vote_count,
             }
 
         except Exception as e:
             logger.error(f"Error getting cache stats: {e}")
             return {}
-
-    async def _count_recent_misses(self, hours: int) -> int:
-        """Count cache misses in last N hours"""
-        if not self.db:
-            return 0
-
-        try:
-            cutoff = datetime.utcnow() - timedelta(hours=hours)
-            return await self.db.cache_misses.count_documents({
-                "created_at": {"$gte": cutoff}
-            })
-        except:
-            return 0
-
-    async def clear_stale_data(self, older_than_days: int = 30) -> Dict:
-        """Clear very old cached data"""
-        if not self.db:
-            return {"error": "No database connection"}
-
-        cutoff = datetime.utcnow() - timedelta(days=older_than_days)
-
-        try:
-            # Clear old news (keep recent)
-            news_result = await self.db.news_cache.delete_many({
-                "created_at": {"$lt": cutoff}
-            })
-
-            # Clear old cache misses
-            misses_result = await self.db.cache_misses.delete_many({
-                "created_at": {"$lt": cutoff}
-            })
-
-            return {
-                "news_deleted": news_result.deleted_count,
-                "cache_misses_deleted": misses_result.deleted_count,
-                "cutoff_date": cutoff.isoformat()
-            }
-
-        except Exception as e:
-            logger.error(f"Error clearing stale data: {e}")
-            return {"error": str(e)}
+        finally:
+            if db:
+                db.close()

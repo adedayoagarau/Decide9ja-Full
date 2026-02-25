@@ -150,27 +150,86 @@ class NewsQueryAgent(BaseAgent):
         return unique_results[:5]  # Max 5 results
 
     async def _search_cached_news(self, query: str) -> List[Dict]:
-        """Search cached news in database"""
-        # Implement based on your news table schema
-        # Example for MongoDB:
-        # return await self.db.news.find(
-        #     {"$text": {"$search": query}},
-        #     {"score": {"$meta": "textScore"}}
-        # ).sort([("score", {"$meta": "textScore"})]).limit(5).to_list(5)
-        return []
+        """Search news in the news_articles database table."""
+        try:
+            from app.database import SessionLocal, NewsArticle
+            from sqlalchemy import or_, desc
+
+            db = SessionLocal()
+            try:
+                # Extract keywords from query
+                stop_words = {"news", "about", "latest", "nigeria", "nigerian", "the", "what", "is", "on", "in", "a"}
+                keywords = [w for w in query.lower().split() if w not in stop_words and len(w) > 2]
+
+                if not keywords:
+                    # Just get the latest articles
+                    articles = db.query(NewsArticle).order_by(
+                        desc(NewsArticle.published_date)
+                    ).limit(5).all()
+                else:
+                    # Build search filter — match any keyword in title, excerpt, or politicians
+                    filters = []
+                    for kw in keywords[:5]:  # Limit to 5 keywords
+                        filters.append(NewsArticle.title.ilike(f"%{kw}%"))
+                        filters.append(NewsArticle.excerpt.ilike(f"%{kw}%"))
+                        filters.append(NewsArticle.politicians_json.ilike(f"%{kw}%"))
+                        filters.append(NewsArticle.topics_json.ilike(f"%{kw}%"))
+
+                    articles = db.query(NewsArticle).filter(
+                        or_(*filters)
+                    ).order_by(
+                        desc(NewsArticle.published_date)
+                    ).limit(10).all()
+
+                return [
+                    {
+                        "title": a.title,
+                        "summary": a.excerpt or "",
+                        "source": a.source_name or a.source,
+                        "url": a.url,
+                        "date": a.published_date.isoformat() if a.published_date else None,
+                    }
+                    for a in articles
+                ]
+            finally:
+                db.close()
+
+        except Exception as e:
+            logger.error(f"Database news search failed: {e}")
+            return []
 
     async def _web_search(self, query: str) -> List[Dict]:
-        """Perform web search for news"""
-        # This would integrate with your web search service
-        # For now, return empty - implement with your search provider
+        """Perform web search for current news using realtime service."""
+        try:
+            from app.services.realtime import fetch_web_search
+            import asyncio
 
-        # Example integration:
-        # from app.services.realtime import fetch_web_search
-        # results = fetch_web_search(query, limit=5)
-        # return [{"title": r["title"], "summary": r["snippet"],
-        #          "source": r["source"], "url": r["url"]} for r in results]
+            loop = asyncio.get_running_loop()
+            results = await loop.run_in_executor(
+                None,
+                lambda: fetch_web_search(query, limit=5)
+            )
 
-        return []
+            if not results:
+                return []
+
+            return [
+                {
+                    "title": r.get("title", ""),
+                    "summary": r.get("snippet", r.get("description", "")),
+                    "source": r.get("source", r.get("domain", "Web")),
+                    "url": r.get("url", r.get("link", "")),
+                }
+                for r in results
+                if r.get("title")
+            ]
+
+        except ImportError:
+            logger.warning("realtime service not available for web search")
+            return []
+        except Exception as e:
+            logger.error(f"Web search failed: {e}")
+            return []
 
     def _format_news_response(self, input: AgentInput, news: List[Dict], query: str) -> AgentOutput:
         """Format news results for user"""

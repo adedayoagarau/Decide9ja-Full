@@ -62,7 +62,7 @@ class CandidateCompareAgent(LLMAgent):
         """
         try:
             # Parse the comparison request
-            parsed = await self._parse_comparison(input.message)
+            parsed = await self._parse_comparison(input.raw_text)
 
             candidate_a = parsed.get("candidate_a")
             candidate_b = parsed.get("candidate_b")
@@ -127,7 +127,7 @@ class CandidateCompareAgent(LLMAgent):
                 for name in missing:
                     try:
                         await cache.record_cache_miss(
-                            query=input.message,
+                            query=input.raw_text,
                             intent="candidate_compare",
                             entity=name
                         )
@@ -284,7 +284,7 @@ class CandidateCompareAgent(LLMAgent):
 
     async def can_handle(self, input: AgentInput) -> bool:
         """Check if this agent can handle the input"""
-        message = input.message.lower()
+        message = input.raw_text.lower()
 
         comparison_keywords = [
             "compare", "vs", "versus", "difference between",

@@ -60,7 +60,11 @@ class VotingRecordAgent(DatabaseAgent):
         "dangote": "Jibrin Ibrahim",
     }
 
-    async def process(self, input: AgentInput) -> AgentOutput:
+    async def query_database(self, input: AgentInput) -> Optional[Dict]:
+        """Not used — handle() is overridden directly."""
+        return None
+
+    async def handle(self, input: AgentInput) -> AgentOutput:
         """
         Process voting record lookup request.
 
@@ -71,7 +75,7 @@ class VotingRecordAgent(DatabaseAgent):
         4. Format for WhatsApp
         """
         try:
-            politician = self._extract_name(input.message)
+            politician = self._extract_name(input.raw_text)
 
             if not politician:
                 return AgentOutput(
@@ -109,7 +113,7 @@ class VotingRecordAgent(DatabaseAgent):
                 # Record cache miss
                 try:
                     await cache.record_cache_miss(
-                        query=input.message,
+                        query=input.raw_text,
                         intent="voting_record",
                         entity=politician
                     )
@@ -144,9 +148,6 @@ class VotingRecordAgent(DatabaseAgent):
             # Get voting records from cache
             try:
                 records = await cache.get_voting_records(politician)
-            except AttributeError:
-                # get_voting_records might not exist yet
-                records = None
             except Exception as e:
                 logger.warning(f"Failed to fetch voting records: {e}")
                 records = None
@@ -265,12 +266,14 @@ class VotingRecordAgent(DatabaseAgent):
             vote = record.get("vote", "UNKNOWN").upper()
 
             # Vote emoji
-            if vote == "YES" or vote == "YEA":
+            if vote in ("YES", "YEA", "AYE"):
                 emoji = "✅"
-            elif vote == "NO" or vote == "NAY":
+            elif vote in ("NO", "NAY"):
                 emoji = "❌"
-            elif vote == "ABSTAIN":
+            elif vote in ("ABSTAIN", "ABSTAINED"):
                 emoji = "⏸️"
+            elif vote in ("ABSENT", "EXCUSED"):
+                emoji = "🚫"
             else:
                 emoji = "❔"
 
@@ -305,7 +308,7 @@ class VotingRecordAgent(DatabaseAgent):
 
     async def can_handle(self, input: AgentInput) -> bool:
         """Check if this agent can handle the input"""
-        message = input.message.lower()
+        message = input.raw_text.lower()
 
         voting_keywords = [
             "voting record",

@@ -192,8 +192,7 @@ app.include_router(webhook_router.router, prefix="/api", tags=["WhatsApp"])
 app.include_router(voice_router.router, tags=["Voice"])
 
 # Additional routers
-from app.channels import twilio_whatsapp as twilio_channel
-app.include_router(twilio_channel.router, tags=["Twilio"])
+# Note: Twilio webhook is now handled in routers/webhook.py at /api/webhook/twilio
 
 from app.routers import issues as issues_router
 app.include_router(issues_router.router, tags=["Issues"])
@@ -533,116 +532,9 @@ async def search_with_web(request: Request, body: AskRequest, db: Session = Depe
     )
 
 
-@app.post("/webhook")
-@limiter.limit("200/minute")
-async def whatsapp_webhook(request: Request, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
-    """
-    WhatsApp webhook endpoint (Twilio format).
-    Uses ASYNC processing to avoid timeout issues.
-    
-    Flow:
-    1. Receive message
-    2. Return immediate acknowledgment (empty TwiML)
-    3. Process in background and send response via Twilio API
-    """
-    try:
-        # Parse form data (Twilio sends as form)
-        form_data = await request.form()
-        
-        phone_from = str(form_data.get("From", ""))
-        message_body = str(form_data.get("Body", ""))
-        profile_name = str(form_data.get("ProfileName", "User"))
-        num_media = int(form_data.get("NumMedia", 0))
-        media_url = str(form_data.get("MediaUrl0", "")) if num_media > 0 else ""
-        media_type = str(form_data.get("MediaContentType0", ""))
-        
-        # User identification
-        from app.services.twilio_whatsapp import hash_phone
-        user_hash = hash_phone(phone_from)
-        
-        if not message_body and not media_url:
-            logger.info(f"Empty message from {user_hash}")
-            return {"status": "no message"}
-        
-        # SECURITY: Sanitize
-        message_body = sanitize_input(message_body)[:1000]
-        
-        # Log for debugging
-        logger.info(f"📨 Processing message from {user_hash[:8]}...: '{message_body[:50]}'")
-        
-        # Process message in BACKGROUND to avoid Twilio timeout
-        background_tasks.add_task(
-            _process_and_respond,
-            phone_from,
-            message_body,
-            media_url,
-            media_type
-        )
-        
-        # Return empty TwiML immediately (acknowledgment)
-        # Response will be sent via Twilio API in background
-        return Response(
-            content="""<?xml version="1.0" encoding="UTF-8"?><Response></Response>""",
-            media_type="application/xml"
-        )
-        
-    except Exception as e:
-        logger.error(f"Webhook error: {e}")
-        return Response(
-            content="""<?xml version="1.0" encoding="UTF-8"?><Response></Response>""",
-            media_type="application/xml"
-        )
-
-
-async def _process_and_respond(phone_from: str, message_body: str, media_url: str, media_type: str):
-    """
-    Background task to process message and send response via Twilio API.
-    This avoids Twilio's 15-second webhook timeout.
-    """
-    from app.services.message_handler_v5 import handle_message
-    from app.services.twilio_whatsapp import send_message, hash_phone
-    from app.services import voice
-
-    try:
-        user_hash = hash_phone(phone_from)
-
-        # Handle incoming voice note
-        if media_url and "audio" in media_type:
-            logger.info(f"Transcribing voice note from {user_hash[:8]}...")
-            try:
-                transcribed = await voice.speech_to_text(media_url)
-                if transcribed:
-                    message_body = transcribed
-                    logger.info(f"Transcribed: {transcribed[:100]}...")
-            except Exception as e:
-                logger.error(f"Voice transcription error: {e}")
-                send_message(phone_from, "Sorry, I couldn't understand that voice note. Please try again or type your message.")
-                return
-
-        if not message_body:
-            return
-
-        # Process message with V5 Multi-Agent handler
-        response_text = await handle_message(phone_from, message_body, media_url)
-        
-        logger.info(f"📤 Response ready ({len(response_text)} chars): '{response_text[:80]}...'")
-        
-        # Send response via Twilio API (NOT TwiML)
-        result = send_message(phone_from, response_text[:1500])
-        
-        if result.get("error"):
-            logger.error(f"Twilio send error: {result['error']}")
-        else:
-            logger.info(f"✅ Response sent via Twilio API: {result.get('sid', 'unknown')}")
-            
-    except Exception as e:
-        logger.error(f"Background processing error: {e}")
-        # Try to send error message to user
-        try:
-            from app.services.twilio_whatsapp import send_message
-            send_message(phone_from, "Sorry, something went wrong. Please try again.")
-        except:
-            pass
+# Note: WhatsApp webhook endpoints moved to routers/webhook.py
+# Meta Cloud API: POST /api/webhook
+# Twilio: POST /api/webhook/twilio
 
 
 # ===========================================

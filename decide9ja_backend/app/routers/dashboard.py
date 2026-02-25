@@ -370,7 +370,7 @@ async def dashboard_health_check(
         status["status"] = "degraded"
 
     # Check services
-    services = ["broadcast", "factcheck", "constituency", "localization"]
+    services = ["broadcast_service", "fact_check_service", "constituency_service", "localization"]
     for service in services:
         try:
             exec(f"from app.services.{service} import *")

@@ -70,9 +70,6 @@ class DataCollectorAgent(BaseAgent):
         Collect anonymized interaction data.
         Called after every successful response.
         """
-        if not self.db:
-            logger.debug("No database configured for analytics")
-            return
 
         try:
             # Build analytics record
@@ -207,31 +204,23 @@ class DataCollectorAgent(BaseAgent):
 
 
     async def _update_counters(self, record: Dict):
-        """Update real-time counters for dashboards"""
-        if not self.db:
-            return
+        """Update real-time counters for dashboards.
 
-        today = record["timestamp"].strftime("%Y-%m-%d")
-
+        Currently lightweight — just logs key metrics.
+        Counter aggregation is done via SQL queries on the Interaction table
+        when the dashboard requests it.
+        """
         try:
-            # Adapt to your database
-            # For MongoDB:
-            # await self.db.counters.update_one(
-            #     {"date": today, "state": record["state"]},
-            #     {
-            #         "$inc": {
-            #             "total_queries": 1,
-            #             f"intents.{record['intent']}": 1,
-            #         }
-            #     },
-            #     upsert=True
-            # )
+            politicians = record.get("politicians_mentioned", [])
+            topics = record.get("topics", [])
+            state = record.get("state", "unknown")
+            intent = record.get("intent", "unknown")
 
-            # Track politician mentions
-            for politician in record.get("politicians_mentioned", []):
-                # await self.db.politician_mentions.update_one(...)
-                pass
-
+            if politicians or topics:
+                logger.debug(
+                    f"Analytics: state={state} intent={intent} "
+                    f"politicians={politicians} topics={topics}"
+                )
         except Exception as e:
             logger.error(f"Counter update failed: {e}")
 

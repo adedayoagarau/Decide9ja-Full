@@ -405,7 +405,7 @@ class AnalyticsDashboardService:
         db=None
     ) -> Dict[str, Any]:
         """Get broadcast campaign analytics."""
-        from app.services.broadcast import BroadcastService, BroadcastStatus
+        from app.services.broadcast_service import BroadcastService, BroadcastStatus
 
         campaigns = BroadcastService.list_campaigns()
 
@@ -435,7 +435,7 @@ class AnalyticsDashboardService:
         db=None
     ) -> Dict[str, Any]:
         """Get fact-checking analytics."""
-        from app.services.factcheck import FactCheckService, FactCheckVerdict, FactCheckStatus
+        from app.services.fact_check_service import FactCheckService, FactCheckVerdict, FactCheckStatus
 
         factchecks = FactCheckService.list_factchecks()
 

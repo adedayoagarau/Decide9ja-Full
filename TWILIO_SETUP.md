@@ -20,9 +20,9 @@ pip install twilio
 
 ```bash
 # Add to .env file or export directly
-export TWILIO_ACCOUNT_SID="ACac53124d3638106e1795c92c34ac69d3"
-export TWILIO_AUTH_TOKEN="54a3d5b49e0949ee69abb447e6a10a78"
-export TWILIO_PHONE_NUMBER="+17753632498"
+export TWILIO_ACCOUNT_SID="your_twilio_account_sid_here"
+export TWILIO_AUTH_TOKEN="your_twilio_auth_token_here"
+export TWILIO_PHONE_NUMBER="your_twilio_phone_number_here"
 ```
 
 **⚠️ Security Note:** Never commit these to git! Add `.env` to `.gitignore`.
@@ -78,14 +78,14 @@ Expected response:
 ```json
 {
   "configured": true,
-  "phone_number": "+17753632498",
-  "account_sid_prefix": "ACac53124..."
+  "phone_number": "+1XXXXXXXXXX",
+  "account_sid_prefix": "ACXXXXXXX..."
 }
 ```
 
 ### 6. Send a Test Message
 
-Send WhatsApp to **+17753632498** with message:
+Send WhatsApp to your Twilio number with message:
 ```
 Hello Tade!
 ```
@@ -149,9 +149,9 @@ All Tade features work immediately:
 
 | Setting | Value |
 |---------|-------|
-| Account SID | `ACac53124d3638106e1795c92c34ac69d3` |
-| Phone Number | `+17753632498` |
-| Region | US (Nevada) |
+| Account SID | Set in environment variables |
+| Phone Number | Set in environment variables |
+| Region | US |
 
 ---
 

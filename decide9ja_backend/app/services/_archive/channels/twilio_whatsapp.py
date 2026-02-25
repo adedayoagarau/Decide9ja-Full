@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 # Initialize Twilio client
 TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
-TWILIO_PHONE_NUMBER = os.getenv("TWILIO_PHONE_NUMBER", "+17753632498")
+TWILIO_PHONE_NUMBER = os.getenv("TWILIO_PHONE_NUMBER", "")
 
 # Validate credentials on import
 if not all([TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN]):
