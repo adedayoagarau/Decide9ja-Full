@@ -1,0 +1,36 @@
+diff --git a/decide9ja_backend/app/agents/tier1_entry/orchestrator.py b/decide9ja_backend/app/agents/tier1_entry/orchestrator.py
+index 60d8199a19..7ba64ffa5c 100644
+--- a/decide9ja_backend/app/agents/tier1_entry/orchestrator.py
++++ b/decide9ja_backend/app/agents/tier1_entry/orchestrator.py
+@@ -458,6 +458,7 @@ class ConversationalOrchestratorAgent(BaseAgent):
+                     agent_input = AgentInput(
+                         message_id=root_input.message_id,
+                         raw_text=args.get("name", ""),
++                        timestamp=root_input.timestamp,
+                         user=root_input.user,
+                         entities={"politician_name": args.get("name")},
+                         context={"tool_mode": True} # Tell agent to return raw JSON instead of UI card
+@@ -536,6 +537,7 @@ class ConversationalOrchestratorAgent(BaseAgent):
+                     agent_input = AgentInput(
+                         message_id=root_input.message_id,
+                         raw_text=args.get("location", ""),
++                        timestamp=root_input.timestamp,
+                         user=root_input.user,
+                         entities={"location": args.get("location")},
+                         context={"tool_mode": True}
+@@ -644,6 +646,7 @@ class ConversationalOrchestratorAgent(BaseAgent):
+                         agent_input = AgentInput(
+                             message_id=root_input.message_id,
+                             raw_text=args.get("politician_name", ""),
++                            timestamp=root_input.timestamp,
+                             user=root_input.user,
+                             entities={
+                                 "politician": args.get("politician_name"),
+@@ -985,6 +988,7 @@ class ConversationalOrchestratorAgent(BaseAgent):
+                                 p_input = AgentInput(
+                                     message_id=root_input.message_id,
+                                     raw_text=politician_name,
++                                    timestamp=root_input.timestamp,
+                                     user=root_input.user,
+                                     entities={"politician": politician_name},
+                                     context={"tool_mode": True}
