@@ -7,7 +7,7 @@ import json
 import logging
 from typing import List, Dict, Any, Optional
 from datetime import datetime
-from sqlalchemy import or_, and_, func
+from sqlalchemy import or_, and_, func, String
 
 # Use absolute import from app.database since backend is in path
 from app.database import SessionLocal, Finding, Budget, Transaction
@@ -71,7 +71,10 @@ class FinancialIntelligenceService:
                 finding_conditions.append(or_(
                     Finding.title.ilike(term), 
                     Finding.description.ilike(term), 
-                    Finding.project_name.ilike(term)
+                    Finding.project_name.ilike(term),
+                    Finding.jurisdiction.ilike(term),
+                    Finding.mda.ilike(term),
+                    func.cast(Finding.year, String).ilike(term)
                 ))
             
             finding_records = session.query(Finding).filter(and_(*finding_conditions)).limit(limit).offset(offset).all()
@@ -95,7 +98,12 @@ class FinancialIntelligenceService:
             budget_conditions = []
             for w in words:
                 term = f"%{w}%"
-                budget_conditions.append(or_(Budget.project.ilike(term), Budget.mda.ilike(term)))
+                budget_conditions.append(or_(
+                    Budget.project.ilike(term), 
+                    Budget.mda.ilike(term),
+                    Budget.jurisdiction.ilike(term),
+                    func.cast(Budget.year, String).ilike(term)
+                ))
             
             budget_records = session.query(Budget).filter(and_(*budget_conditions)).limit(limit).offset(offset).all()
             for b in budget_records:
@@ -118,7 +126,13 @@ class FinancialIntelligenceService:
             txn_conditions = []
             for w in words:
                 term = f"%{w}%"
-                txn_conditions.append(or_(Transaction.description.ilike(term), Transaction.payer.ilike(term), Transaction.receiver.ilike(term)))
+                txn_conditions.append(or_(
+                    Transaction.description.ilike(term), 
+                    Transaction.payer.ilike(term), 
+                    Transaction.receiver.ilike(term),
+                    Transaction.state.ilike(term),
+                    Transaction.payment_date.ilike(term)
+                ))
             
             txn_records = session.query(Transaction).filter(and_(*txn_conditions)).limit(limit).offset(offset).all()
             for t in txn_records:

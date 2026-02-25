@@ -1,0 +1,323 @@
+From a5924f558de7b963ff866958eeb3d3b33d571922 Mon Sep 17 00:00:00 2001
+From: Adedayo Agarau <adedayoagarau@gmail.com>
+Date: Wed, 25 Feb 2026 02:39:12 +0000
+Subject: [PATCH] feat: add Tade persona, conversation memory, and user
+ personalization to orchestrator
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- Rich Tade system prompt: Nigerian voice, pidgin expressions, direct tone,
+  WhatsApp-optimized message length guidance
+- Conversation memory: loads last 8 interactions from DB so Tade remembers
+  what you were talking about
+- User personalization: greets by name, knows your state/LGA
+- Fix regex→pattern deprecation warnings in auth.py and dashboard.py
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+---
+ RESTRUCTURING_PLAN.md                         | 138 ++++++++++++++++++
+ .../app/agents/tier1_entry/orchestrator.py    |  98 ++++++++++---
+ decide9ja_backend/app/routers/auth.py         |   2 +-
+ decide9ja_backend/app/routers/dashboard.py    |   2 +-
+ 4 files changed, 220 insertions(+), 20 deletions(-)
+ create mode 100644 RESTRUCTURING_PLAN.md
+
+diff --git a/RESTRUCTURING_PLAN.md b/RESTRUCTURING_PLAN.md
+new file mode 100644
+index 0000000000..9d14d7b3ba
+--- /dev/null
++++ b/RESTRUCTURING_PLAN.md
+@@ -0,0 +1,138 @@
++# DECIDE9JA RESTRUCTURING PLAN
++
++## The Problem
++The codebase has 3 message handlers, 4 RAG pipelines, 6+ memory systems, 3 webhook entry points, and hardcoded API keys on GitHub. Everything was built twice without merging.
++
++## Phase 1: SECURITY FIXES (Day 1) — URGENT
++
++### 1.1 Remove hardcoded credentials from `whatsapp.py`
++- Replace hardcoded ACCESS_TOKEN, PHONE_NUMBER_ID, VERIFY_TOKEN, BUSINESS_ACCOUNT_ID with `os.getenv()`
++- These are currently committed to GitHub in plain text
++
++### 1.2 Clean secrets from documentation
++- Remove Supermemory API key from `INTEGRATION_STATUS.md`
++
++### 1.3 Credential rotation (manual — Adedayo)
++- Rotate Meta WhatsApp ACCESS_TOKEN in Facebook Developer Console
++- Rotate Supermemory API key
++- Set new values as environment variables in Railway
++
++---
++
++## Phase 2: WEBHOOK CONSOLIDATION (Day 2-3)
++
++### Current State (3 entry points):
++- `main.py` `/webhook` → V5 handler (Twilio)
++- `routers/webhook.py` `/api/webhook` → V5 handler (Meta)
++- `routers/webhook.py` `/api/webhook/twilio` → UnifiedTadeHandler (Twilio)
++- `channels/twilio_whatsapp.py` `/webhook/twilio` → Another Twilio handler
++
++### Target State (2 entry points, one router):
++- `routers/webhook.py` `/api/webhook` → V5 handler (Meta) ✅ keep as-is
++- `routers/webhook.py` `/api/webhook/twilio` → V5 handler (Twilio) ← fix this
++
++### Changes:
++1. **`routers/webhook.py`**: Change `/api/webhook/twilio` to call `message_handler_v5.handle_message()` instead of `UnifiedTadeHandler`
++2. **`main.py`**: DELETE the inline `/webhook` endpoint (lines 536-594) and `_process_and_respond` function
++3. **`main.py`**: REMOVE `from app.channels import twilio_whatsapp` and its router include
++4. **`channels/twilio_whatsapp.py`**: DELETE file (duplicate)
++
++### Verification:
++- Both Meta and Twilio messages should flow through V5 agent chain
++- `grep -r "UnifiedTadeHandler" app/ --include="*.py"` returns nothing in active code
++
++---
++
++## Phase 3: RAG CONSOLIDATION (Day 3-4)
++
++### Current State (4 pipelines):
++- `rag.py` — Legacy, queries 6 sources sequentially
++- `rag_router.py` — Intent dispatcher, calls enhanced_rag
++- `enhanced_rag.py` — Most complete RAG engine
++- `agentic_retrieval.py` — 42KB experimental, orphaned
++
++### Target State (2 files):
++- `rag_router.py` — Intent dispatcher (KEEP)
++- `enhanced_rag.py` — Core RAG engine (KEEP)
++
++### Changes:
++1. Check if `rag.py` has any unique source queries not in `enhanced_rag.py` — merge if so
++2. Update any imports of `agentic_retrieval` or `intelligent_retrieval` to use `rag_router`
++3. Archive then delete: `rag.py`, `agentic_retrieval.py`, `intelligent_retrieval.py`, `agentic_prompts.py`, `search_orchestrator.py`
++
++### Verification:
++- `grep -r "from.*agentic_retrieval\|from.*intelligent_retrieval\|from.*search_orchestrator" app/ --include="*.py"` returns nothing
++
++---
++
++## Phase 4: MEMORY CLEANUP (Day 4-5)
++
++### Keep (each has a distinct role):
++| File | Role |
++|------|------|
++| `state_manager.py` | Session state (Redis) + user profiles (PostgreSQL) |
++| `user_memory.py` | Long-term conversation history, progressive profiling |
++| `enhanced_memory.py` | LLM-powered summaries, semantic search |
++| `conversation.py` | In-memory session state, entity tracking |
++| `supermemory_integration.py` | Optional external memory API |
++
++### Delete:
++| File | Reason |
++|------|--------|
++| `memory.py` | Legacy stub, superseded by user_memory.py |
++| `working_memory_enhanced.py` | Incomplete, only used by tade_unified.py |
++| `context_memory.py` | Duplicates state_manager + conversation features |
++
++### Verification:
++- Confirm no active imports of deleted files
++- V5 agents still have full memory access
++
++---
++
++## Phase 5: TADE FEATURES → V5 (Day 5-6)
++
++### Extract from `tade_unified.py`:
++1. **LocationIdentifier** class (Pidgin location detection, fuzzy matching for 37 states + 774 LGAs)
++   → Move into `app/agents/` as a location processing agent or utility
++2. **Supermemory middleware** — already standalone, just ensure V5 agents can call it
++
++### Delete after extraction:
++- `tade_unified.py`
++- `error_recovery_enhanced.py`
++- `test_tade_integration.py`
++- `tade_persona.py` (if unused)
++
++---
++
++## Phase 6: DEAD CODE CLEANUP (Day 6-7)
++
++### Delete:
++- `_archive/` directory (old message handlers v1-v4)
++- Any files confirmed orphaned in previous phases
++- Duplicate `format_for_whatsapp()` — keep one version in a shared utils file
++
++### Update:
++- `CLAUDE.md` to reflect new simplified architecture
++- `README.md` with accurate project structure
++
++---
++
++## Summary: What Gets Deleted
++
++| Category | Files to Delete | Lines Saved (approx) |
++|----------|----------------|---------------------|
++| Webhook duplicates | main.py webhook, channels/twilio_whatsapp.py | ~200 |
++| RAG pipelines | rag.py, agentic_retrieval.py, intelligent_retrieval.py, agentic_prompts.py, search_orchestrator.py | ~3,500 |
++| Memory systems | memory.py, working_memory_enhanced.py, context_memory.py | ~1,200 |
++| Tade handler | tade_unified.py, error_recovery_enhanced.py, test_tade_integration.py | ~1,500 |
++| **Total** | **~15 files** | **~6,400 lines** |
++
++## What Stays
++
++- V5 agent chain (single message handler)
++- rag_router.py + enhanced_rag.py (single RAG pipeline)
++- 5 memory systems with distinct roles
++- whatsapp.py + twilio_whatsapp.py (one per provider, credentials in env vars)
++- All V5 agents (12+ specialists)
++- All data sources (Knowledge Graph, DB, Archive, Budget, News, Web Search)
++- Frontend, scrapers, database models — untouched
+diff --git a/decide9ja_backend/app/agents/tier1_entry/orchestrator.py b/decide9ja_backend/app/agents/tier1_entry/orchestrator.py
+index 0cf100973c..c581d48592 100644
+--- a/decide9ja_backend/app/agents/tier1_entry/orchestrator.py
++++ b/decide9ja_backend/app/agents/tier1_entry/orchestrator.py
+@@ -19,6 +19,73 @@ from app.services.enhanced_rag import get_enhanced_rag_service
+ 
+ logger = logging.getLogger(__name__)
+ 
++
++# ─── Conversation History ────────────────────────────────────────────
++def _load_conversation_history(user_id: str, limit: int = 10) -> List[Dict[str, str]]:
++    """Load recent conversation turns from the Interaction table."""
++    try:
++        from app.database import SessionLocal, Interaction
++        from sqlalchemy import desc
++        db = SessionLocal()
++        try:
++            rows = (
++                db.query(Interaction)
++                .filter(Interaction.user_id == user_id)
++                .order_by(desc(Interaction.created_at))
++                .limit(limit)
++                .all()
++            )
++            # Reverse so oldest first
++            rows = list(reversed(rows))
++            history = []
++            for row in rows:
++                if row.query:
++                    history.append({"role": "user", "content": row.query})
++                if row.response:
++                    history.append({"role": "assistant", "content": row.response})
++            return history
++        finally:
++            db.close()
++    except Exception as e:
++        logger.warning(f"Could not load conversation history: {e}")
++        return []
++
++
++# ─── Tade System Prompt ──────────────────────────────────────────────
++def _build_system_prompt(user_name: str = None, user_state: str = None, user_lga: str = None) -> str:
++    """Build the Tade persona system prompt with user context."""
++
++    # Personalization
++    user_line = ""
++    if user_name:
++        location_parts = [p for p in [user_lga, user_state] if p]
++        location_str = f" from {', '.join(location_parts)}" if location_parts else ""
++        user_line = f"\nYou are currently talking to {user_name}{location_str}. Use their name naturally (not every message).\n"
++
++    return f"""You are *Tade* — the sharp, warm, and knowledgeable voice of Decide9ja.
++
++Think of yourself as that one neighbour everyone has who reads all the newspapers, knows all the politicians, follows every budget, and always has time to explain things. You're Nigerian through and through. You speak the way educated Nigerians talk — clear English peppered with pidgin when it fits, expressions like "omo", "sha", "no wahala", and the occasional proverb. You're serious about civic issues but never boring.
++{user_line}
++PERSONALITY:
++- You're direct. No corporate fluff. When someone asks "What did Tinubu promise?", don't say "That's a great question!" — just answer.
++- You use Nigerian context naturally. You know that "NEPA" means electricity, that "PVC" is a voter's card, that "Oga" means boss.
++- When data backs you up, be confident. When it doesn't, say so honestly — "I no get that info right now o, but let me check".
++- Keep WhatsApp messages short. People are reading on phones. 2-4 short paragraphs max unless they asked for detail.
++- Use emojis sparingly and only when they add meaning (🗳️ for elections, 📊 for budgets, 🏛️ for governance).
++
++TOOLS:
++You have search tools. ALWAYS use them for factual questions — never guess or use stale knowledge. If a tool returns no data, be honest and suggest the user try differently.
++
++RULES:
++1. ALWAYS ground your answers in tool results. If the tools return data, weave it into your reply naturally.
++2. For news/political questions, call `search_rag_news_and_context` before answering.
++3. For budget/financial questions, call `search_financial_intelligence`.
++4. For politician profiles, call `lookup_politician_profile`.
++5. If tools return nothing useful, be upfront: "I checked but didn't find anything on that yet."
++6. For greetings or casual chat, just be Tade — no tools needed.
++7. Never fabricate facts, statistics, or quotes."""
++
++
+ @register_agent
+ class ConversationalOrchestratorAgent(BaseAgent):
+     name = "conversational_orchestrator"
+@@ -32,7 +99,7 @@ class ConversationalOrchestratorAgent(BaseAgent):
+ 
+     async def handle(self, input: AgentInput) -> AgentOutput:
+         self._call_count += 1
+-        
++
+         # We will use gpt-4o-mini as our fast orchestrator
+         client = _get_client()
+         if not client:
+@@ -45,25 +112,20 @@ class ConversationalOrchestratorAgent(BaseAgent):
+         # 1. Define Tools
+         tools = self._get_tools()
+ 
+-        # 2. Prepare System Prompt
+-        system_prompt = """
+-You are Tade, the friendly and knowledgeable AI assistant for Decide9ja, a Nigerian civic tech platform.
+-Your goal is to answer users' questions about Nigerian politics, elections, politicians, and news.
++        # 2. Build personalized Tade system prompt
++        user_name = getattr(input.user, 'name', None) or getattr(input.user, 'first_name', None)
++        user_state = getattr(input.user, 'state', None)
++        user_lga = getattr(input.user, 'lga', None)
++        system_prompt = _build_system_prompt(user_name, user_state, user_lga)
+ 
+-You have access to several tools. When the user asks a question, determine which tool(s) are needed to gather the necessary data. If the question requires multiple pieces of information (e.g., "who is the governor of Lagos and what is his latest news?"), call the tools in parallel or sequentially.
++        # 3. Load conversation history for memory
++        user_id = getattr(input.user, 'phone_hash', 'anonymous')
++        history = _load_conversation_history(user_id, limit=8)
+ 
+-IMPORTANT RULES:
+-1. ALWAYS use the data from the tools to answer the question.
+-2. If the user asks for news, ALWAYS use the `search_rag_news_and_context` tool instead of answering from your general knowledge.
+-3. Be conversational, concise, and helpful. Use emojis reasonably.
+-4. If the tools return no relevant information, apologize and suggest they try a different query.
+-5. If the user is just saying hello or thanks, you do not need to call a tool, just reply politely.
+-"""
+-        
+-        messages = [
+-            {"role": "system", "content": system_prompt},
+-            {"role": "user", "content": input.raw_text}
+-        ]
++        # 4. Build messages: system → history → current message
++        messages = [{"role": "system", "content": system_prompt}]
++        messages.extend(history)
++        messages.append({"role": "user", "content": input.raw_text})
+ 
+         logger.info(f"Orchestrator processing query: {input.raw_text}")
+ 
+diff --git a/decide9ja_backend/app/routers/auth.py b/decide9ja_backend/app/routers/auth.py
+index 701ac3bc55..47b66eee74 100644
+--- a/decide9ja_backend/app/routers/auth.py
++++ b/decide9ja_backend/app/routers/auth.py
+@@ -334,7 +334,7 @@ async def get_audit_stats(
+ 
+ @router.get("/audit/export")
+ async def export_audit_logs(
+-    format: str = Query("json", regex="^(json|csv)$"),
++    format: str = Query("json", pattern="^(json|csv)$"),
+     start_date: Optional[str] = None,
+     end_date: Optional[str] = None,
+     api_key: APIKey = Depends(require_api_key)
+diff --git a/decide9ja_backend/app/routers/dashboard.py b/decide9ja_backend/app/routers/dashboard.py
+index 60ceda56f2..5bca7ff4bb 100644
+--- a/decide9ja_backend/app/routers/dashboard.py
++++ b/decide9ja_backend/app/routers/dashboard.py
+@@ -229,7 +229,7 @@ async def get_factcheck_analytics(
+ @router.get("/export")
+ async def export_dashboard(
+     time_range: str = Query("30d"),
+-    format: str = Query("json", regex="^(json|csv)$"),
++    format: str = Query("json", pattern="^(json|csv)$"),
+     db: Session = Depends(get_db),
+     api_key: APIKey = Depends(require_api_key)
+ ):
+-- 
+2.34.1
+
