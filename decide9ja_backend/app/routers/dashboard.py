@@ -229,7 +229,7 @@ async def get_factcheck_analytics(
 @router.get("/export")
 async def export_dashboard(
     time_range: str = Query("30d"),
-    format: str = Query("json", regex="^(json|csv)$"),
+    format: str = Query("json", pattern="^(json|csv)$"),
     db: Session = Depends(get_db),
     api_key: APIKey = Depends(require_api_key)
 ):

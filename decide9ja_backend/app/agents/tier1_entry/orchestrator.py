@@ -19,6 +19,73 @@ from app.services.enhanced_rag import get_enhanced_rag_service
 
 logger = logging.getLogger(__name__)
 
+
+# ─── Conversation History ────────────────────────────────────────────
+def _load_conversation_history(user_id: str, limit: int = 10) -> List[Dict[str, str]]:
+    """Load recent conversation turns from the Interaction table."""
+    try:
+        from app.database import SessionLocal, Interaction
+        from sqlalchemy import desc
+        db = SessionLocal()
+        try:
+            rows = (
+                db.query(Interaction)
+                .filter(Interaction.user_id == user_id)
+                .order_by(desc(Interaction.created_at))
+                .limit(limit)
+                .all()
+            )
+            # Reverse so oldest first
+            rows = list(reversed(rows))
+            history = []
+            for row in rows:
+                if row.query:
+                    history.append({"role": "user", "content": row.query})
+                if row.response:
+                    history.append({"role": "assistant", "content": row.response})
+            return history
+        finally:
+            db.close()
+    except Exception as e:
+        logger.warning(f"Could not load conversation history: {e}")
+        return []
+
+
+# ─── Tade System Prompt ──────────────────────────────────────────────
+def _build_system_prompt(user_name: str = None, user_state: str = None, user_lga: str = None) -> str:
+    """Build the Tade persona system prompt with user context."""
+
+    # Personalization
+    user_line = ""
+    if user_name:
+        location_parts = [p for p in [user_lga, user_state] if p]
+        location_str = f" from {', '.join(location_parts)}" if location_parts else ""
+        user_line = f"\nYou are currently talking to {user_name}{location_str}. Use their name naturally (not every message).\n"
+
+    return f"""You are *Tade* — the sharp, warm, and knowledgeable voice of Decide9ja.
+
+Think of yourself as that one neighbour everyone has who reads all the newspapers, knows all the politicians, follows every budget, and always has time to explain things. You're Nigerian through and through. You speak the way educated Nigerians talk — clear English peppered with pidgin when it fits, expressions like "omo", "sha", "no wahala", and the occasional proverb. You're serious about civic issues but never boring.
+{user_line}
+PERSONALITY:
+- You're direct. No corporate fluff. When someone asks "What did Tinubu promise?", don't say "That's a great question!" — just answer.
+- You use Nigerian context naturally. You know that "NEPA" means electricity, that "PVC" is a voter's card, that "Oga" means boss.
+- When data backs you up, be confident. When it doesn't, say so honestly — "I no get that info right now o, but let me check".
+- Keep WhatsApp messages short. People are reading on phones. 2-4 short paragraphs max unless they asked for detail.
+- Use emojis sparingly and only when they add meaning (🗳️ for elections, 📊 for budgets, 🏛️ for governance).
+
+TOOLS:
+You have search tools. ALWAYS use them for factual questions — never guess or use stale knowledge. If a tool returns no data, be honest and suggest the user try differently.
+
+RULES:
+1. ALWAYS ground your answers in tool results. If the tools return data, weave it into your reply naturally.
+2. For news/political questions, call `search_rag_news_and_context` before answering.
+3. For budget/financial questions, call `search_financial_intelligence`.
+4. For politician profiles, call `lookup_politician_profile`.
+5. If tools return nothing useful, be upfront: "I checked but didn't find anything on that yet."
+6. For greetings or casual chat, just be Tade — no tools needed.
+7. Never fabricate facts, statistics, or quotes."""
+
+
 @register_agent
 class ConversationalOrchestratorAgent(BaseAgent):
     name = "conversational_orchestrator"
@@ -32,7 +99,7 @@ class ConversationalOrchestratorAgent(BaseAgent):
 
     async def handle(self, input: AgentInput) -> AgentOutput:
         self._call_count += 1
-        
+
         # We will use gpt-4o-mini as our fast orchestrator
         client = _get_client()
         if not client:
@@ -45,25 +112,20 @@ class ConversationalOrchestratorAgent(BaseAgent):
         # 1. Define Tools
         tools = self._get_tools()
 
-        # 2. Prepare System Prompt
-        system_prompt = """
-You are Tade, the friendly and knowledgeable AI assistant for Decide9ja, a Nigerian civic tech platform.
-Your goal is to answer users' questions about Nigerian politics, elections, politicians, and news.
+        # 2. Build personalized Tade system prompt
+        user_name = getattr(input.user, 'name', None) or getattr(input.user, 'first_name', None)
+        user_state = getattr(input.user, 'state', None)
+        user_lga = getattr(input.user, 'lga', None)
+        system_prompt = _build_system_prompt(user_name, user_state, user_lga)
 
-You have access to several tools. When the user asks a question, determine which tool(s) are needed to gather the necessary data. If the question requires multiple pieces of information (e.g., "who is the governor of Lagos and what is his latest news?"), call the tools in parallel or sequentially.
+        # 3. Load conversation history for memory
+        user_id = getattr(input.user, 'phone_hash', 'anonymous')
+        history = _load_conversation_history(user_id, limit=8)
 
-IMPORTANT RULES:
-1. ALWAYS use the data from the tools to answer the question.
-2. If the user asks for news, ALWAYS use the `search_rag_news_and_context` tool instead of answering from your general knowledge.
-3. Be conversational, concise, and helpful. Use emojis reasonably.
-4. If the tools return no relevant information, apologize and suggest they try a different query.
-5. If the user is just saying hello or thanks, you do not need to call a tool, just reply politely.
-"""
-        
-        messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": input.raw_text}
-        ]
+        # 4. Build messages: system → history → current message
+        messages = [{"role": "system", "content": system_prompt}]
+        messages.extend(history)
+        messages.append({"role": "user", "content": input.raw_text})
 
         logger.info(f"Orchestrator processing query: {input.raw_text}")
 
