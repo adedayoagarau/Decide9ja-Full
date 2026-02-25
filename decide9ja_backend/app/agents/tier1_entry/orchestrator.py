@@ -10,12 +10,14 @@ Cost: CHEAP/MEDIUM
 import logging
 import json
 import asyncio
+import time
 from typing import Dict, Any, List, Optional
 
 from app.agents.base import BaseAgent, AgentInput, AgentOutput, AgentTier, CostLevel
 from app.agents.registry import register_agent, registry
 from app.services.embeddings import _get_client
 from app.services.enhanced_rag import get_enhanced_rag_service
+from app.services.learning_service import get_learning_service
 
 logger = logging.getLogger(__name__)
 
@@ -113,6 +115,7 @@ class ConversationalOrchestratorAgent(BaseAgent):
 
     async def handle(self, input: AgentInput) -> AgentOutput:
         self._call_count += 1
+        start_time = time.time()
 
         # We will use gpt-4o-mini as our fast orchestrator
         client = _get_client()
@@ -136,13 +139,21 @@ class ConversationalOrchestratorAgent(BaseAgent):
         user_id = getattr(input.user, 'phone_hash', 'anonymous')
         history = _load_conversation_history(user_id, limit=8)
 
+        # 3b. LEARNING: Inject user memory into system prompt
+        learning = get_learning_service()
+        try:
+            memory_prompt = learning.get_user_memory_for_prompt(user_id)
+            if memory_prompt:
+                system_prompt += memory_prompt
+        except Exception as e:
+            logger.debug(f"Learning memory injection skipped: {e}")
+
         # 4. Build messages: system → history → current message
         messages = [{"role": "system", "content": system_prompt}]
         messages.extend(history)
         messages.append({"role": "user", "content": input.raw_text})
 
         logger.info(f"Orchestrator processing query: {input.raw_text}")
-
 
         # Determine tool_choice — force tool use for known factual categories
         query_lower = input.raw_text.lower()
@@ -153,7 +164,11 @@ class ConversationalOrchestratorAgent(BaseAgent):
         else:
             tool_choice = "auto"
 
-        # 3. Call OpenAI with tools
+        # Track tools called for learning
+        tools_called = []
+        tool_results_for_learning = {}
+
+        # 5. Call OpenAI with tools
         try:
             loop = asyncio.get_running_loop()
             response = await loop.run_in_executor(
@@ -169,7 +184,7 @@ class ConversationalOrchestratorAgent(BaseAgent):
 
             response_message = response.choices[0].message
 
-            # 4. Handle tool calls if any
+            # 6. Handle tool calls if any
             if response_message.tool_calls:
                 messages.append(response_message)
 
@@ -183,8 +198,14 @@ class ConversationalOrchestratorAgent(BaseAgent):
                         "name": tool_call.function.name,
                         "content": result_str
                     })
+                    # Track for learning
+                    tools_called.append(tool_call.function.name)
+                    try:
+                        tool_results_for_learning[tool_call.function.name] = json.loads(result_str)
+                    except Exception:
+                        tool_results_for_learning[tool_call.function.name] = result_str
 
-                # 5. Get final synthesis after tools
+                # 7. Get final synthesis after tools
                 second_response = await loop.run_in_executor(
                     None,
                     lambda: client.chat.completions.create(
@@ -194,17 +215,31 @@ class ConversationalOrchestratorAgent(BaseAgent):
                     )
                 )
                 final_reply = second_response.choices[0].message.content
-                
+
             else:
                 # No tools needed (e.g. simple greeting)
                 final_reply = response_message.content
+
+            # 8. LEARNING: Learn from this interaction (async, non-blocking)
+            response_time_ms = int((time.time() - start_time) * 1000)
+            try:
+                learning.learn_from_interaction(
+                    user_id=user_id,
+                    query=input.raw_text,
+                    response=final_reply or "",
+                    tools_called=tools_called if tools_called else None,
+                    tool_results=tool_results_for_learning if tool_results_for_learning else None,
+                    response_time_ms=response_time_ms,
+                )
+            except Exception as e:
+                logger.debug(f"Learning post-interaction skipped: {e}")
 
             # Return directly as a composed response
             return AgentOutput(
                 success=True,
                 response_text=final_reply,
                 cost_level=CostLevel.MEDIUM,
-                handoff_to=None, 
+                handoff_to=None,
                 data={"orchestrator_handled": True}
             )
 

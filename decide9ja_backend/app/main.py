@@ -276,6 +276,14 @@ async def _init_db_background():
         logger.warning(f"⚠️ Database init failed (non-fatal): {e}")
         logger.warning("   App running without DB — check DATABASE_URL")
 
+    # Initialize v2 learning tables (agent_feedback, agent_knowledge_gaps, query_patterns)
+    try:
+        from app.database_v2 import init_db_v2
+        init_db_v2()
+        logger.info("✅ Learning tables initialized (v2)")
+    except Exception as e:
+        logger.warning(f"⚠️ Learning tables init skipped (non-fatal): {e}")
+
     # Start background scheduler
     try:
         from app.scheduler_unified import start_scheduler
@@ -313,6 +321,18 @@ async def root():
 async def health_check():
     """Lightweight health check for Railway."""
     return {"status": "ok"}
+
+
+@app.get("/api/learning/stats")
+async def learning_stats():
+    """See what Tade is learning from conversations."""
+    try:
+        from app.services.learning_service import get_learning_service
+        service = get_learning_service()
+        stats = service.get_learning_stats()
+        return {"status": "ok", "learning": stats}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
 
 
 @app.get("/health/detailed", response_model=HealthResponse)
