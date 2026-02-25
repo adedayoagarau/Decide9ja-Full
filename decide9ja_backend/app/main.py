@@ -258,7 +258,26 @@ app.include_router(budget_router.router, tags=["Budget"])
 from app.routers import catalog as catalog_router
 app.include_router(catalog_router.router, tags=["Catalog"])
 
+from app.routers import web_chat as web_chat_router
+app.include_router(web_chat_router.router, tags=["Web Chat"])
+
+from app.routers import admin_stats as admin_stats_router
+app.include_router(admin_stats_router.router, tags=["Admin Stats"])
+
 logger.info("✅ All routers registered")
+
+# ─── Convenience routes for HTML pages ───
+from fastapi.responses import FileResponse
+
+@app.get("/chat")
+async def serve_chat():
+    """Serve the web chat interface."""
+    return FileResponse(str(static_dir / "chat.html"))
+
+@app.get("/admin")
+async def serve_admin():
+    """Serve the admin dashboard."""
+    return FileResponse(str(static_dir / "admin.html"))
 
 
 # ===========================================

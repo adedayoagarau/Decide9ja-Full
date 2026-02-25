@@ -486,6 +486,48 @@ def run_budgit_pipeline(
     return stats
 
 
+def get_state_budget_overview_for_rag(state_name: str) -> Optional[str]:
+    """
+    Get budget overview for a state from RAG Document table.
+    Used by orchestrator's get_state_budget_overview tool.
+    """
+    from app.database import SessionLocal, Document
+    from sqlalchemy import or_
+
+    # Normalize state name
+    state_clean = state_name.strip().lower().replace("-", " ")
+
+    db = SessionLocal()
+    try:
+        # Search for budget_overview documents matching this state
+        docs = db.query(Document).filter(
+            Document.doc_type == "budget_overview",
+            or_(
+                Document.state.ilike(f"%{state_clean}%"),
+                Document.title.ilike(f"%{state_clean}%"),
+                Document.content.ilike(f"%{state_clean}%budget%"),
+            )
+        ).order_by(Document.created_at.desc()).limit(3).all()
+
+        if not docs:
+            return None
+
+        parts = []
+        for doc in docs:
+            parts.append(f"[STATE BUDGET OVERVIEW: {doc.title or doc.state}]")
+            if doc.content:
+                parts.append(doc.content[:1500])
+            parts.append("")
+
+        return "\n".join(parts)
+
+    except Exception as e:
+        logger.warning(f"State budget RAG lookup failed: {e}")
+        return None
+    finally:
+        db.close()
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     stats = run_budgit_pipeline(max_states=3)  # Test with 3 states

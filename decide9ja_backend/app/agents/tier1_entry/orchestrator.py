@@ -79,27 +79,31 @@ HOW YOU TALK:
 - NEVER repeat the same closing phrase twice in a conversation.
 - Use the person's name occasionally (not every message). Reference their state/LGA when relevant.
 
-TOOLS — YOU HAVE 8:
+TOOLS — YOU HAVE 10:
 - `lookup_politician_profile` — backgrounds, career, education
 - `lookup_representatives` — senators, reps, governors by state/LGA
 - `search_rag_news_and_context` — political news and documents
-- `search_financial_intelligence` — treasury payments, budgets, audit flags (includes OpenTreasury daily payment data)
+- `search_financial_intelligence` — treasury payments, federal budgets, audit flags (OpenTreasury daily payment data)
 - `check_election_info` — 2027 dates, voter registration, INEC updates, candidates
 - `fact_check_claim` — verify claims against evidence
 - `search_news` — latest news articles
 - `lookup_promises` — campaign promises tracking
+- `search_legislation` — bills before the National Assembly (Senate + House), legislative activity
+- `get_state_budget_overview` — state-level budget data from BudgIT (revenue, expenditure, IGR, debt for all 36 states)
 
 ROUTING RULES (STRICT):
 1. ALWAYS call a tool for factual questions. NEVER answer from general knowledge.
 2. Representatives/reps/senators → `lookup_representatives`
-3. Budget/spending/allocation/payment/contractor/treasury/corruption/audit/fishy → `search_financial_intelligence`
-4. News/latest/happening/update → `search_news` or `search_rag_news_and_context`
-5. Promises/pledges/commitments → `lookup_promises`
-6. Election/voting/INEC/registration/PVC/2027/candidate/polling → `check_election_info`
-7. "Is it true"/"fact check"/claim → `fact_check_claim`
-8. Politician profile/background → `lookup_politician_profile`
-9. No data? Say "I no get that info yet o." Don't pad with generic advice or suggest checking websites.
-10. NEVER fabricate facts, stats, or quotes."""
+3. Federal budget/spending/allocation/payment/contractor/treasury/corruption/audit → `search_financial_intelligence`
+4. State budget/state spending/IGR/state revenue/state debt → `get_state_budget_overview`
+5. Bills/legislation/acts/amendments/NASS/National Assembly/senate bill/house bill → `search_legislation`
+6. News/latest/happening/update → `search_news` or `search_rag_news_and_context`
+7. Promises/pledges/commitments → `lookup_promises`
+8. Election/voting/INEC/registration/PVC/2027/candidate/polling → `check_election_info`
+9. "Is it true"/"fact check"/claim → `fact_check_claim`
+10. Politician profile/background → `lookup_politician_profile`
+11. No data? Say "I no get that info yet o." Don't pad with generic advice or suggest checking websites.
+12. NEVER fabricate facts, stats, or quotes."""
 
 
 @register_agent
@@ -159,7 +163,8 @@ class ConversationalOrchestratorAgent(BaseAgent):
         query_lower = input.raw_text.lower()
         _election_kws = ["election", "inec", "vote", "voter", "register", "pvc", "polling", "candidate", "2027"]
         _financial_kws = ["budget", "spending", "allocation", "treasury", "payment", "contractor", "corruption"]
-        if any(kw in query_lower for kw in _election_kws + _financial_kws):
+        _legislation_kws = ["bill", "legislation", "nass", "national assembly", "senate bill", "house bill", "amendment", "act"]
+        if any(kw in query_lower for kw in _election_kws + _financial_kws + _legislation_kws):
             tool_choice = "required"
         else:
             tool_choice = "auto"
@@ -366,6 +371,34 @@ class ConversationalOrchestratorAgent(BaseAgent):
                         "required": ["politician_name"]
                     }
                 }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "search_legislation",
+                    "description": "Search bills and legislation before the National Assembly (Senate and House of Representatives). Use for questions about proposed laws, bills, acts, amendments, or legislative activity.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "query": {"type": "string", "description": "The legislative query, e.g., 'petroleum industry bill', 'education amendment', 'finance act'"},
+                        },
+                        "required": ["query"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "get_state_budget_overview",
+                    "description": "Get budget overview and fiscal data for a specific Nigerian state — revenue, expenditure, IGR, debt profile from BudgIT open data.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "state": {"type": "string", "description": "The Nigerian state name, e.g., 'Lagos', 'Kano', 'Rivers', 'Kaduna'"},
+                        },
+                        "required": ["state"]
+                    }
+                }
             }
         ]
 
@@ -522,6 +555,46 @@ class ConversationalOrchestratorAgent(BaseAgent):
                     result_data = out.data if out.data else {"promises_text": out.response_text} if out.success else {"error": "Promise lookup failed"}
                 else:
                     result_data = {"error": "Promise lookup agent not available"}
+
+            elif tool_call.function.name == "search_legislation":
+                try:
+                    import asyncio
+                    loop = asyncio.get_running_loop()
+                    from app.services.nass_pipeline import get_bill_data_for_rag
+                    result_str = await loop.run_in_executor(
+                        None,
+                        lambda: get_bill_data_for_rag(args.get("query", ""))
+                    )
+                    if result_str:
+                        result_data = {"legislation_data": result_str}
+                    else:
+                        result_data = {"legislation_data": "No matching bills found in the National Assembly tracker. The database covers bills from the current legislative session scraped from nass.gov.ng."}
+                except Exception as e:
+                    result_data = {"error": f"Legislation search failed: {e}"}
+
+            elif tool_call.function.name == "get_state_budget_overview":
+                try:
+                    import asyncio
+                    loop = asyncio.get_running_loop()
+                    from app.services.budgit_pipeline import get_state_budget_overview_for_rag
+                    state = args.get("state", "")
+                    result_str = await loop.run_in_executor(
+                        None,
+                        lambda: get_state_budget_overview_for_rag(state)
+                    )
+                    if result_str:
+                        result_data = {"state_budget_overview": result_str}
+                    else:
+                        # Fall back to financial intelligence service which also has budget data
+                        from app.services.financial_intelligence import get_financial_intelligence
+                        financial_service = get_financial_intelligence()
+                        fallback = await loop.run_in_executor(
+                            None,
+                            lambda: financial_service.get_context_for_rag(f"{state} budget", limit=5)
+                        )
+                        result_data = {"state_budget_overview": fallback if fallback else f"No budget overview available for {state} yet. BudgIT data is updated weekly from openstates.ng."}
+                except Exception as e:
+                    result_data = {"error": f"State budget lookup failed: {e}"}
 
             else:
                 result_data = {"error": "Unknown tool"}

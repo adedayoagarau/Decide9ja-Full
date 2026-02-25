@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decide9ja — Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --green: #008751;
+            --green-dark: #006837;
+            --green-light: #e8f5e9;
+            --white: #ffffff;
+            --gray-50: #f8f9fa;
+            --gray-100: #f1f3f5;
+            --gray-200: #e9ecef;
+            --gray-400: #ced4da;
+            --gray-600: #868e96;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+            --red: #e03131;
+            --orange: #fd7e14;
+            --blue: #1971c2;
+            --radius: 12px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-900);
+            line-height: 1.5;
+        }
+        /* ─── Header ─── */
+        .header {
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: white;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,.15);
+        }
+        .header h1 { font-size: 20px; font-weight: 700; }
+        .header-right { display: flex; gap: 12px; align-items: center; font-size: 13px; }
+        .header-right a { color: rgba(255,255,255,.85); text-decoration: none; padding: 6px 14px; border-radius: 6px; transition: .2s; }
+        .header-right a:hover { background: rgba(255,255,255,.15); color: white; }
+        .header-right a.active { background: rgba(255,255,255,.2); color: white; font-weight: 600; }
+        .refresh-btn { background: rgba(255,255,255,.2); border: none; color: white; padding: 6px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+        .refresh-btn:hover { background: rgba(255,255,255,.3); }
+
+        /* ─── Layout ─── */
+        .container { max-width: 1280px; margin: 0 auto; padding: 24px; }
+        .grid { display: grid; gap: 20px; }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+        /* ─── Cards ─── */
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,.06);
+            border: 1px solid var(--gray-200);
+        }
+        .card h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .5px; color: var(--gray-600); margin-bottom: 8px; }
+        .stat-value { font-size: 32px; font-weight: 700; color: var(--gray-900); }
+        .stat-sub { font-size: 12px; color: var(--gray-600); margin-top: 4px; }
+        .stat-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+        .badge-green { background: var(--green-light); color: var(--green-dark); }
+        .badge-orange { background: #fff3e0; color: #e65100; }
+        .badge-red { background: #ffebee; color: var(--red); }
+
+        /* ─── Section ─── */
+        .section { margin-top: 28px; }
+        .section-title { font-size: 16px; font-weight: 700; color: var(--gray-800); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .section-title span { font-size: 18px; }
+
+        /* ─── Table ─── */
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th { text-align: left; padding: 10px 12px; background: var(--gray-100); color: var(--gray-600); font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: .5px; }
+        td { padding: 10px 12px; border-bottom: 1px solid var(--gray-200); }
+        tr:hover td { background: var(--gray-50); }
+
+        /* ─── Pipeline status ─── */
+        .pipeline-card { display: flex; align-items: center; gap: 12px; }
+        .pipeline-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+        .dot-ok { background: var(--green); }
+        .dot-warn { background: var(--orange); }
+        .dot-err { background: var(--red); }
+        .pipeline-info { flex: 1; }
+        .pipeline-name { font-weight: 600; font-size: 14px; }
+        .pipeline-meta { font-size: 12px; color: var(--gray-600); }
+
+        /* ─── Chart ─── */
+        .chart-container { position: relative; height: 250px; }
+
+        /* ─── Loading ─── */
+        .loading { text-align: center; padding: 40px; color: var(--gray-600); }
+        .spinner { display: inline-block; width: 24px; height: 24px; border: 3px solid var(--gray-200); border-top-color: var(--green); border-radius: 50%; animation: spin .8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        @media (max-width: 768px) {
+            .container { padding: 16px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🇳🇬 Decide9ja Admin</h1>
+    <div class="header-right">
+        <a href="/static/admin.html" class="active">Dashboard</a>
+        <a href="/static/chat.html">Web Chat</a>
+        <a href="/docs" target="_blank">API Docs</a>
+        <button class="refresh-btn" onclick="loadAll()">↻ Refresh</button>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ─── KPI Cards ─── -->
+    <div class="grid grid-4" id="kpi-cards">
+        <div class="card"><div class="loading"><div class="spinner"></div></div></div>
+        <div class="card"><div class="loading"><div class="spinner"></div></div></div>
+        <div class="card"><div class="loading"><div class="spinner"></div></div></div>
+        <div class="card"><div class="loading"><div class="spinner"></div></div></div>
+    </div>
+
+    <!-- ─── Activity Chart + Pipelines ─── -->
+    <div class="section">
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>Query Activity (30 days)</h3>
+                <div class="chart-container"><canvas id="activityChart"></canvas></div>
+            </div>
+            <div class="card">
+                <h3>Pipeline Health</h3>
+                <div id="pipeline-status"><div class="loading"><div class="spinner"></div></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── Database + Bills + Learning ─── -->
+    <div class="section">
+        <div class="grid grid-3">
+            <div class="card">
+                <h3>Database Records</h3>
+                <div id="db-records"><div class="loading"><div class="spinner"></div></div></div>
+            </div>
+            <div class="card">
+                <h3>Bills by Status</h3>
+                <div class="chart-container"><canvas id="billsChart"></canvas></div>
+            </div>
+            <div class="card">
+                <h3>Learning System</h3>
+                <div id="learning-stats"><div class="loading"><div class="spinner"></div></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── Top Queries ─── -->
+    <div class="section">
+        <div class="card">
+            <h3>Top Queries (7 days)</h3>
+            <div class="table-wrap" id="top-queries"><div class="loading"><div class="spinner"></div></div></div>
+        </div>
+    </div>
+</div>
+
+<script>
+const API = '';
+let activityChartInstance = null;
+let billsChartInstance = null;
+
+async function fetchJSON(url) {
+    try {
+        const res = await fetch(API + url);
+        return await res.json();
+    } catch (e) {
+        console.error(`Fetch ${url} failed:`, e);
+        return null;
+    }
+}
+
+function fmt(n) {
+    if (n >= 1e6) return (n/1e6).toFixed(1) + 'M';
+    if (n >= 1e3) return (n/1e3).toFixed(1) + 'K';
+    return String(n);
+}
+
+function timeAgo(iso) {
+    if (!iso) return 'Never';
+    const diff = (Date.now() - new Date(iso).getTime()) / 1000;
+    if (diff < 60) return 'Just now';
+    if (diff < 3600) return Math.floor(diff/60) + 'm ago';
+    if (diff < 86400) return Math.floor(diff/3600) + 'h ago';
+    return Math.floor(diff/86400) + 'd ago';
+}
+
+// ─── KPI Cards ───
+async function loadOverview() {
+    const data = await fetchJSON('/api/admin/stats/overview');
+    if (!data || data.error) return;
+
+    const db = data.database || {};
+    const act = data.activity || {};
+    const fresh = data.content_freshness || {};
+
+    document.getElementById('kpi-cards').innerHTML = `
+        <div class="card">
+            <h3>Queries (24h)</h3>
+            <div class="stat-value">${fmt(act.queries_24h || 0)}</div>
+            <div class="stat-sub">${fmt(act.queries_7d || 0)} in 7 days</div>
+        </div>
+        <div class="card">
+            <h3>Unique Users (7d)</h3>
+            <div class="stat-value">${fmt(act.unique_users_7d || 0)}</div>
+            <div class="stat-sub">Last query: ${timeAgo(fresh.latest_interaction)}</div>
+        </div>
+        <div class="card">
+            <h3>Bills Tracked</h3>
+            <div class="stat-value">${fmt(db.bills || 0)}</div>
+            <div class="stat-sub">Latest: ${timeAgo(fresh.latest_bill)}</div>
+        </div>
+        <div class="card">
+            <h3>Treasury Records</h3>
+            <div class="stat-value">${fmt(db.transactions || 0)}</div>
+            <div class="stat-sub">+ ${fmt(db.findings || 0)} audit findings</div>
+        </div>
+    `;
+
+    // DB Records
+    document.getElementById('db-records').innerHTML = `
+        <table>
+            <tr><td>Documents (RAG)</td><td style="text-align:right;font-weight:600">${fmt(db.documents||0)}</td></tr>
+            <tr><td>Politicians</td><td style="text-align:right;font-weight:600">${fmt(db.politicians||0)}</td></tr>
+            <tr><td>News Articles</td><td style="text-align:right;font-weight:600">${fmt(db.news_articles||0)}</td></tr>
+            <tr><td>Budget Lines</td><td style="text-align:right;font-weight:600">${fmt(db.budgets||0)}</td></tr>
+            <tr><td>Transactions</td><td style="text-align:right;font-weight:600">${fmt(db.transactions||0)}</td></tr>
+            <tr><td>Audit Findings</td><td style="text-align:right;font-weight:600">${fmt(db.findings||0)}</td></tr>
+            <tr><td>Bills</td><td style="text-align:right;font-weight:600">${fmt(db.bills||0)}</td></tr>
+            <tr><td>Interactions</td><td style="text-align:right;font-weight:600">${fmt(db.interactions||0)}</td></tr>
+        </table>
+    `;
+}
+
+// ─── Activity Chart ───
+async function loadActivityChart() {
+    const data = await fetchJSON('/api/admin/stats/activity-timeline?days=30');
+    if (!data || !data.timeline) return;
+
+    const labels = data.timeline.map(d => d.date.slice(5));
+    const values = data.timeline.map(d => d.queries);
+
+    const ctx = document.getElementById('activityChart').getContext('2d');
+    if (activityChartInstance) activityChartInstance.destroy();
+    activityChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [{
+                label: 'Queries',
+                data: values,
+                backgroundColor: 'rgba(0,135,81,0.6)',
+                borderRadius: 4,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { beginAtZero: true, ticks: { stepSize: 1 } },
+                x: { grid: { display: false } }
+            }
+        }
+    });
+}
+
+// ─── Pipelines ───
+async function loadPipelines() {
+    const data = await fetchJSON('/api/admin/stats/pipelines');
+    const container = document.getElementById('pipeline-status');
+
+    if (!data || !data.pipelines) {
+        container.innerHTML = '<p style="color:var(--gray-600)">Unable to load pipeline status</p>';
+        return;
+    }
+
+    const jobs = data.pipelines.jobs || [];
+    if (jobs.length === 0) {
+        container.innerHTML = '<p style="color:var(--gray-600)">No scheduled jobs found</p>';
+        return;
+    }
+
+    container.innerHTML = jobs.map(j => {
+        const status = j.last_status || 'unknown';
+        const dotClass = status === 'success' ? 'dot-ok' : status === 'failed' ? 'dot-err' : 'dot-warn';
+        const runInfo = j.last_run ? `Last: ${timeAgo(j.last_run)}` : 'Never run';
+        const statsInfo = `${j.successful || 0} ok / ${j.failed || 0} fail`;
+        return `
+            <div class="pipeline-card" style="margin-bottom:14px">
+                <div class="pipeline-dot ${dotClass}"></div>
+                <div class="pipeline-info">
+                    <div class="pipeline-name">${j.name || j.id}</div>
+                    <div class="pipeline-meta">${runInfo} · ${statsInfo}</div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// ─── Bills Chart ───
+async function loadBills() {
+    const data = await fetchJSON('/api/admin/stats/bills-summary');
+    if (!data || data.error) return;
+
+    const statuses = data.by_status || {};
+    const labels = Object.keys(statuses).map(s => s.replace(/_/g,' ').replace(/\b\w/g,l=>l.toUpperCase()));
+    const values = Object.values(statuses);
+
+    const ctx = document.getElementById('billsChart').getContext('2d');
+    if (billsChartInstance) billsChartInstance.destroy();
+    billsChartInstance = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels,
+            datasets: [{
+                data: values,
+                backgroundColor: ['#008751','#2b8a3e','#51cf66','#fd7e14','#1971c2','#e03131','#868e96','#f59f00'],
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } }
+            }
+        }
+    });
+}
+
+// ─── Learning ───
+async function loadLearning() {
+    const data = await fetchJSON('/api/admin/stats/learning');
+    const container = document.getElementById('learning-stats');
+    const l = data?.learning || {};
+
+    if (l.error) {
+        container.innerHTML = `<p style="color:var(--gray-600)">${l.error}</p>`;
+        return;
+    }
+
+    container.innerHTML = `
+        <table>
+            <tr><td>Active Users</td><td style="text-align:right;font-weight:600">${l.active_users || 0}</td></tr>
+            <tr><td>Feedback Signals</td><td style="text-align:right;font-weight:600">${l.total_feedback || 0}</td></tr>
+            <tr><td>Knowledge Gaps</td><td style="text-align:right;font-weight:600">${l.total_gaps || 0}</td></tr>
+            <tr><td>Memory Entries</td><td style="text-align:right;font-weight:600">${l.memory_entries || l.active_users || 0}</td></tr>
+        </table>
+    `;
+}
+
+// ─── Top Queries ───
+async function loadTopQueries() {
+    const data = await fetchJSON('/api/admin/stats/top-queries?days=7&limit=15');
+    const container = document.getElementById('top-queries');
+
+    if (!data || !data.top_queries || data.top_queries.length === 0) {
+        container.innerHTML = '<p style="color:var(--gray-600);padding:12px">No queries in the last 7 days</p>';
+        return;
+    }
+
+    container.innerHTML = `
+        <table>
+            <thead><tr><th>#</th><th>Query</th><th>Count</th></tr></thead>
+            <tbody>
+                ${data.top_queries.map((q, i) => `
+                    <tr><td>${i+1}</td><td>${q.query}</td><td style="font-weight:600">${q.count}</td></tr>
+                `).join('')}
+            </tbody>
+        </table>
+    `;
+}
+
+// ─── Load all ───
+async function loadAll() {
+    await Promise.all([
+        loadOverview(),
+        loadActivityChart(),
+        loadPipelines(),
+        loadBills(),
+        loadLearning(),
+        loadTopQueries(),
+    ]);
+}
+
+loadAll();
+setInterval(loadAll, 60000); // Auto-refresh every 60s
+</script>
+</body>
+</html>
