@@ -32,6 +32,8 @@ INEC_BASE = "https://www.inecnigeria.org"
 INEC_NEWS_URLS = [
     f"{INEC_BASE}/news/",
     f"{INEC_BASE}/press-releases/",
+    f"{INEC_BASE}/inec-news/",
+    f"{INEC_BASE}/",
 ]
 
 # Nigerian political news RSS for INEC-related stories
@@ -270,6 +272,7 @@ def run_inec_pipeline() -> Dict:
     Returns stats dict.
     """
     from app.database import SessionLocal, Document
+    from sqlalchemy import text
 
     logger.info("INEC Pipeline: Starting...")
 
@@ -297,52 +300,55 @@ def run_inec_pipeline() -> Dict:
     # Store in RAG documents table for retrieval
     db = SessionLocal()
     stored = 0
+
+    # Fix PK sequence if needed (PostgreSQL auto-increment can get out of sync)
     try:
-        for record in all_records:
-            try:
-                doc_id = f"inec_{record['id']}"
-                # Check if exists
-                existing = db.query(Document).filter(Document.doc_id == doc_id).first()
-
-                content_text = record['title']
-                if record.get('content'):
-                    content_text += '\n\n' + record['content']
-
-                if existing:
-                    existing.content = content_text
-                    existing.metadata_json = json.dumps({
-                        "source": record.get("source"),
-                        "category": record.get("category"),
-                        "url": record.get("url"),
-                        "published_date": record.get("published_date"),
-                    })
-                    existing.updated_at = datetime.now()
-                else:
-                    doc = Document(
-                        doc_id=doc_id,
-                        doc_type="election_data",
-                        title=record['title'][:300],
-                        content=content_text,
-                        source=record.get('source', 'inec'),
-                        metadata_json=json.dumps({
-                            "source": record.get("source"),
-                            "category": record.get("category"),
-                            "url": record.get("url"),
-                            "published_date": record.get("published_date"),
-                        }),
-                    )
-                    db.add(doc)
-                stored += 1
-            except Exception as e:
-                logger.warning(f"INEC Pipeline: Failed to store record {record.get('id')}: {e}")
-                continue
-
+        db.execute(
+            text("SELECT setval(pg_get_serial_sequence('rag_documents', 'id'), COALESCE(MAX(id), 0) + 1, false) FROM rag_documents")
+        )
         db.commit()
-    except Exception as e:
-        db.rollback()
-        logger.error(f"INEC Pipeline: DB commit failed: {e}")
-    finally:
-        db.close()
+    except Exception:
+        db.rollback()  # Harmless if it fails (e.g., on sqlite)
+
+    for record in all_records:
+        try:
+            doc_id = f"inec_{record['id']}"
+            # Check if exists
+            existing = db.query(Document).filter(Document.doc_id == doc_id).first()
+
+            content_text = record['title']
+            if record.get('content'):
+                content_text += '\n\n' + record['content']
+
+            metadata = json.dumps({
+                "source": record.get("source", "inec"),
+                "category": record.get("category"),
+                "url": record.get("url"),
+                "published_date": record.get("published_date"),
+            })
+
+            if existing:
+                existing.content = content_text
+                existing.metadata_json = metadata
+            else:
+                doc = Document(
+                    doc_id=doc_id,
+                    doc_type="election_data",
+                    title=record['title'][:300],
+                    content=content_text,
+                    category=record.get('category', 'general_election'),
+                    metadata_json=metadata,
+                )
+                db.add(doc)
+
+            db.commit()
+            stored += 1
+        except Exception as e:
+            db.rollback()
+            logger.warning(f"INEC Pipeline: Failed to store record {record.get('id')}: {e}")
+            continue
+
+    db.close()
 
     stats = {
         "static_records": len(static_records),

@@ -85,17 +85,18 @@ You have 8 tools. ALWAYS use them for factual questions — never guess.
 - `search_news` — search news articles specifically (with web fallback)
 - `lookup_promises` — campaign promises by politicians
 
-RULES:
-1. ALWAYS use tools for factual questions. Never answer from memory alone.
+CRITICAL RULES:
+1. ALWAYS use tools for factual questions. NEVER answer from memory or general knowledge. If a tool exists for the topic, you MUST call it.
 2. For "who are my reps" or "representatives in [place]" → `lookup_representatives`
-3. For budget, spending, allocation, corruption, audit → `search_financial_intelligence`
+3. For budget, spending, allocation, corruption, audit, payment, contractor → `search_financial_intelligence`
 4. For news, latest, happening, update → `search_news` or `search_rag_news_and_context`
 5. For promises, pledges, commitments → `lookup_promises`
-6. For elections, voting, INEC, registration, PVC → `check_election_info`
+6. For election, voting, INEC, registration, PVC, register to vote, when is election, 2027, candidate, polling unit → MUST use `check_election_info`
 7. For "is it true that..." or claim verification → `fact_check_claim`
 8. For politician background/profile → `lookup_politician_profile`
 9. When tools return no data, be straight: "I no get that info yet o" — don't pad with generic advice.
-10. Never fabricate facts, statistics, or quotes."""
+10. Never fabricate facts, statistics, or quotes.
+11. If the question is about elections, voting, registration, or INEC in ANY way, you MUST call check_election_info. Do NOT answer election questions without calling the tool first."""
 
 
 @register_agent
@@ -141,6 +142,16 @@ class ConversationalOrchestratorAgent(BaseAgent):
 
         logger.info(f"Orchestrator processing query: {input.raw_text}")
 
+
+        # Determine tool_choice — force tool use for known factual categories
+        query_lower = input.raw_text.lower()
+        _election_kws = ["election", "inec", "vote", "voter", "register", "pvc", "polling", "candidate", "2027"]
+        _financial_kws = ["budget", "spending", "allocation", "treasury", "payment", "contractor", "corruption"]
+        if any(kw in query_lower for kw in _election_kws + _financial_kws):
+            tool_choice = "required"
+        else:
+            tool_choice = "auto"
+
         # 3. Call OpenAI with tools
         try:
             loop = asyncio.get_running_loop()
@@ -150,19 +161,20 @@ class ConversationalOrchestratorAgent(BaseAgent):
                     model="gpt-4o-mini",
                     messages=messages,
                     tools=tools,
-                    tool_choice="auto",
+                    tool_choice=tool_choice,
                     temperature=0.3
                 )
             )
 
             response_message = response.choices[0].message
-            
+
             # 4. Handle tool calls if any
             if response_message.tool_calls:
                 messages.append(response_message)
-                
+
                 # Execute tools sequentially to avoid SQLite connection or thread deadlocks
                 for tool_call in response_message.tool_calls:
+                    logger.info(f"Orchestrator calling tool: {tool_call.function.name}")
                     tool_call_id, result_str = await self._execute_tool(tool_call, input)
                     messages.append({
                         "tool_call_id": tool_call_id,
@@ -408,7 +420,12 @@ class ConversationalOrchestratorAgent(BaseAgent):
                         context={"tool_mode": True}
                     )
                     out = await agent.handle(agent_input)
-                    result_data = out.data if out.success else {"error": "Election info not found"}
+                    if out.success and out.response_text:
+                        result_data = {"election_info": out.response_text}
+                    elif out.success and out.data:
+                        result_data = out.data
+                    else:
+                        result_data = {"error": "Election info not found"}
                 else:
                     result_data = {"error": "Election info agent not available"}
 
@@ -441,7 +458,12 @@ class ConversationalOrchestratorAgent(BaseAgent):
                         context={"tool_mode": True}
                     )
                     out = await agent.handle(agent_input)
-                    result_data = out.data if out.success else {"error": "News search failed"}
+                    if out.success and out.response_text:
+                        result_data = {"news_results": out.response_text}
+                    elif out.success and out.data:
+                        result_data = out.data
+                    else:
+                        result_data = {"error": "News search failed"}
                 else:
                     result_data = {"error": "News agent not available"}
 
