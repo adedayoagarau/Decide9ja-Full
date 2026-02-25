@@ -723,6 +723,56 @@ def run_inec_pipeline():
         raise
 
 
+@with_retry(max_retries=2, base_delay=10.0)
+def run_budgit_pipeline():
+    """
+    Scrape BudgIT openstates.ng for state budget data across 36 states.
+    Stores in Budget table for financial intelligence queries.
+    Frequency: Weekly on Mondays at 4 AM
+    """
+    logger.info("📊 Starting BudgIT state budget pipeline job...")
+
+    try:
+        from app.services.budgit_pipeline import run_budgit_pipeline as _run
+
+        stats = _run(max_states=37)
+
+        logger.info(f"✅ BudgIT pipeline complete: {stats.get('states_processed', 0)} states, "
+                     f"{stats.get('total_records_stored', 0)} records stored")
+        return stats
+    except ImportError as e:
+        logger.warning(f"BudgIT pipeline not available: {e}")
+        return {"skipped": True, "reason": str(e)}
+    except Exception as e:
+        logger.error(f"BudgIT pipeline error: {e}")
+        raise
+
+
+@with_retry(max_retries=2, base_delay=10.0)
+def run_nass_pipeline():
+    """
+    Scrape NASS website for National Assembly bills and legislative activity.
+    Stores in Bill table + RAG documents.
+    Frequency: Every 12 hours
+    """
+    logger.info("📜 Starting NASS bill tracker pipeline job...")
+
+    try:
+        from app.services.nass_pipeline import run_nass_pipeline as _run
+
+        stats = _run()
+
+        logger.info(f"✅ NASS pipeline complete: {stats.get('bills_new', 0)} new bills, "
+                     f"{stats.get('bills_updated', 0)} updated")
+        return stats
+    except ImportError as e:
+        logger.warning(f"NASS pipeline not available: {e}")
+        return {"skipped": True, "reason": str(e)}
+    except Exception as e:
+        logger.error(f"NASS pipeline error: {e}")
+        raise
+
+
 def run_health_check():
     """
     Log scheduler health and job metrics.
@@ -952,6 +1002,24 @@ def create_scheduler() -> BackgroundScheduler:
         replace_existing=True
     )
 
+    # === BudgIT State Budget Pipeline - Weekly on Mondays at 4 AM ===
+    scheduler.add_job(
+        run_budgit_pipeline,
+        CronTrigger(day_of_week='mon', hour=4, minute=0),
+        id="budgit_pipeline",
+        name="Scrape BudgIT state budget data (36 states)",
+        replace_existing=True
+    )
+
+    # === NASS Bill Tracker Pipeline - Every 12 hours ===
+    scheduler.add_job(
+        run_nass_pipeline,
+        IntervalTrigger(hours=12),
+        id="nass_pipeline",
+        name="Track National Assembly bills and legislation",
+        replace_existing=True
+    )
+
     return scheduler
 
 
@@ -999,6 +1067,8 @@ def run_job_once(job_name: str):
         "whatsapp_weekly": run_whatsapp_weekly_summary,
         "opentreasury": run_opentreasury_pipeline,
         "inec": run_inec_pipeline,
+        "budgit": run_budgit_pipeline,
+        "nass": run_nass_pipeline,
     }
 
     if job_name not in jobs:
