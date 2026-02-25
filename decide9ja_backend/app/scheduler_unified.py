@@ -675,6 +675,54 @@ def run_whatsapp_weekly_summary():
         raise
 
 
+@with_retry(max_retries=2, base_delay=10.0)
+def run_opentreasury_pipeline():
+    """
+    Ingest daily payment reports from opentreasury.gov.ng.
+    Downloads XLSX files in-memory, parses, and stores in transactions table.
+    Frequency: Daily at 2 AM
+    """
+    logger.info("💰 Starting OpenTreasury pipeline job...")
+
+    try:
+        from app.services.opentreasury_pipeline import run_opentreasury_pipeline as _run
+
+        stats = _run(year=None, max_files=30)
+
+        logger.info(f"✅ OpenTreasury pipeline complete: {stats}")
+        return stats
+    except ImportError as e:
+        logger.warning(f"OpenTreasury pipeline not available: {e}")
+        return {"skipped": True, "reason": str(e)}
+    except Exception as e:
+        logger.error(f"OpenTreasury pipeline error: {e}")
+        raise
+
+
+@with_retry(max_retries=2, base_delay=10.0)
+def run_inec_pipeline():
+    """
+    Scrape INEC website + news RSS for election data.
+    Stores structured election records in the Document table.
+    Frequency: Every 6 hours
+    """
+    logger.info("🗳️ Starting INEC election data pipeline job...")
+
+    try:
+        from app.services.inec_pipeline import run_inec_pipeline as _run
+
+        stats = _run()
+
+        logger.info(f"✅ INEC pipeline complete: {stats}")
+        return stats
+    except ImportError as e:
+        logger.warning(f"INEC pipeline not available: {e}")
+        return {"skipped": True, "reason": str(e)}
+    except Exception as e:
+        logger.error(f"INEC pipeline error: {e}")
+        raise
+
+
 def run_health_check():
     """
     Log scheduler health and job metrics.
@@ -886,6 +934,24 @@ def create_scheduler() -> BackgroundScheduler:
         replace_existing=True
     )
 
+    # === OpenTreasury Pipeline - Daily at 2 AM ===
+    scheduler.add_job(
+        run_opentreasury_pipeline,
+        CronTrigger(hour=2, minute=0),
+        id="opentreasury_pipeline",
+        name="Ingest OpenTreasury daily payment reports",
+        replace_existing=True
+    )
+
+    # === INEC Election Data Pipeline - Every 6 hours ===
+    scheduler.add_job(
+        run_inec_pipeline,
+        IntervalTrigger(hours=6),
+        id="inec_pipeline",
+        name="Scrape INEC election data and news",
+        replace_existing=True
+    )
+
     return scheduler
 
 
@@ -931,6 +997,8 @@ def run_job_once(job_name: str):
         "broadcast": run_broadcast_queue_processor,
         "whatsapp_digest": run_whatsapp_daily_digest,
         "whatsapp_weekly": run_whatsapp_weekly_summary,
+        "opentreasury": run_opentreasury_pipeline,
+        "inec": run_inec_pipeline,
     }
 
     if job_name not in jobs:

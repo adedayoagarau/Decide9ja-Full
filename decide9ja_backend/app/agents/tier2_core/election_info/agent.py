@@ -32,6 +32,16 @@ from app.database import SessionLocal, UserSubscription, Politician
 logger = logging.getLogger(__name__)
 
 
+def _get_rag_election_data(query: str) -> Optional[str]:
+    """Try to fetch enriched election data from the INEC pipeline's RAG store."""
+    try:
+        from app.services.inec_pipeline import get_election_data_for_rag
+        return get_election_data_for_rag(query, limit=5)
+    except Exception as e:
+        logger.warning(f"INEC RAG lookup failed: {e}")
+        return None
+
+
 @register_agent
 class ElectionInfoAgent(DatabaseAgent):
     name = "election_info"
@@ -73,18 +83,22 @@ class ElectionInfoAgent(DatabaseAgent):
         return input.intent in self.handled_intents
 
     async def query_database(self, input: AgentInput) -> Optional[Dict]:
-        """Route to appropriate election query"""
+        """Route to appropriate election query, enriched with INEC pipeline data."""
 
         intent = input.intent
 
         if intent == Intent.VOTER_REGISTRATION:
-            return {"type": "registration"}
+            # Enrich with RAG data about registration
+            rag_data = _get_rag_election_data("voter registration cvr pvc how to register")
+            return {"type": "registration", "rag_extra": rag_data}
 
         if intent == Intent.POLLING_UNIT:
             return await self._get_polling_unit(input)
 
         if intent == Intent.CANDIDATE_SEARCH:
-            return {"type": "candidates", "candidates": self.PRESIDENTIAL_CANDIDATES}
+            # Enrich with any scraped candidate news
+            rag_data = _get_rag_election_data("2027 candidates presidential")
+            return {"type": "candidates", "candidates": self.PRESIDENTIAL_CANDIDATES, "rag_extra": rag_data}
 
         if intent == Intent.CANDIDATE_FOLLOW:
             return await self._handle_follow(input)
@@ -98,8 +112,9 @@ class ElectionInfoAgent(DatabaseAgent):
         if intent == Intent.MY_CANDIDATES:
             return await self._get_followed_candidates(input)
 
-        # Default: general election info
-        return {"type": "general", "data": self.ELECTION_DATA}
+        # Default: general election info — enrich with INEC pipeline data
+        rag_data = _get_rag_election_data(input.raw_text or "2027 election dates timetable")
+        return {"type": "general", "data": self.ELECTION_DATA, "rag_extra": rag_data}
 
     async def format_response(self, input: AgentInput, data: Dict) -> AgentOutput:
         """Format election info response"""
@@ -134,8 +149,9 @@ class ElectionInfoAgent(DatabaseAgent):
         return self._format_general_info({"data": self.ELECTION_DATA})
 
     def _format_general_info(self, data: Dict) -> AgentOutput:
-        """Format general election information"""
+        """Format general election information, enriched with INEC pipeline data."""
         e = data.get("data", self.ELECTION_DATA)
+        rag_extra = data.get("rag_extra", "")
 
         response = f"""🗳️ *2027 Nigerian General Elections*
 
@@ -150,12 +166,24 @@ class ElectionInfoAgent(DatabaseAgent):
 
 📞 *INEC Contact:*
 • Website: {e['inec_website']}
-• Phone: {e['inec_phone']}
+• Phone: {e['inec_phone']}"""
 
-💡 *Quick Actions:*
+        # Append INEC pipeline data if available
+        if rag_extra:
+            response += "\n\n📰 *Latest INEC Updates:*\n"
+            # Extract just titles from RAG results for a clean summary
+            for line in rag_extra.split('\n'):
+                if line.startswith('### '):
+                    response += f"• {line[4:]}\n"
+
+        response += """\n💡 *Quick Actions:*
 Say "register to vote" for registration steps
 Say "who is running" to see candidates
 Say "my polling unit" to find where to vote"""
+
+        sources = ["INEC Nigeria"]
+        if rag_extra:
+            sources.append("INEC Pipeline (live data)")
 
         return AgentOutput(
             success=True,
@@ -165,7 +193,7 @@ Say "my polling unit" to find where to vote"""
                 {"text": "See Candidates", "callback": "intent:candidate_search"},
                 {"text": "Find Polling Unit", "callback": "intent:polling_unit"},
             ],
-            sources=["INEC Nigeria"],
+            sources=sources,
             cost_level=CostLevel.FREE,
             analytics_tags={"topic": "election_info", "subtopic": "general"}
         )
