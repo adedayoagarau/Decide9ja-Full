@@ -77,11 +77,16 @@ class FinancialIntelligenceService:
 
             finding_records = session.query(Finding).filter(or_(*or_conditions)).limit(limit).offset(offset).all()
             for f in finding_records:
+                # Use description or project_name as main text, NOT title
+                # (title is often a flag like 'VAGUE_DESCRIPTION' or 'CONTRACT_SPLITTING')
+                display_text = f.description or f.project_name or f.title
+                flag_type = f.title if f.title not in (display_text, None) else None
                 results.append({
                     'id': f.id,
                     'source_type': 'finding',
-                    'main_text': f.title,
-                    'sub_text': f.description,
+                    'main_text': display_text,
+                    'sub_text': f.mda or f.project_name or '',
+                    'flag_type': flag_type,
                     'amount': f.amount,
                     'year': f.year,
                     'jurisdiction': f.jurisdiction,
@@ -138,8 +143,11 @@ class FinancialIntelligenceService:
                 results.append({
                     'id': t.id,
                     'source_type': 'transaction',
-                    'main_text': t.description,
-                    'sub_text': f"{t.payer} -> {t.receiver}",
+                    'main_text': t.description or 'No description',
+                    'sub_text': f"{t.payer or '?'} → {t.receiver or '?'}",
+                    'payment_date': t.payment_date,
+                    'payer': t.payer,
+                    'receiver': t.receiver,
                     'amount': t.amount,
                     'year': year,
                     'jurisdiction': t.state,
@@ -193,9 +201,19 @@ class FinancialIntelligenceService:
             elif amount > 1_000_000:
                 insights.append(f"Significant entry: ₦{amount/1_000_000:.2f} Million")
         
-        # Insight 2: Contextual Flags (Neutral)
+        # Insight 2: Contextual Flags with meaningful labels
         if item.get('source_type') == 'finding' and item.get('risk_score', 0) > 0:
-             insights.append(f"Flagged in audit with risk score {item['risk_score']}/100")
+            flag = item.get('flag_type', '')
+            if flag == 'CONTRACT_SPLITTING':
+                insights.append("Flagged for suspected contract splitting")
+            elif flag == 'DUPLICATE_ALLOCATION':
+                insights.append("Flagged as possible duplicate allocation")
+            elif flag == 'VAGUE_DESCRIPTION':
+                insights.append("Budget line has vague/generic description — warrants scrutiny")
+            elif flag:
+                insights.append(f"Audit flag: {flag.replace('_', ' ').title()}")
+            else:
+                insights.append(f"Risk score: {item['risk_score']}/100")
              
         # Parse enriched analysis if available
         if item.get('enriched_analysis'):
@@ -249,22 +267,47 @@ class FinancialIntelligenceService:
     def get_context_for_rag(self, query: str, limit: int = 10) -> str:
         """
         Format financial intelligence for LLM context.
+        Includes rich metadata: dates, payer/receiver, flag types.
         """
         data = self.search_financials(query, limit=limit)
         results = data.get("results", [])
-        
+
         if not results:
             return ""
-            
+
         context_lines = []
         for item in results:
-            line = f"- [{item['source_type'].upper()}] {item['jurisdiction']} ({item['year']}): {item['main_text']}"
-            if item.get('amount'):
-                line += f" | Amount: ₦{item['amount']:,.2f}"
-            if item.get('automated_insights'):
-                line += f" | Insights: {'; '.join(item['automated_insights'])}"
+            src = item['source_type'].upper()
+            jurisdiction = item.get('jurisdiction', 'Federal')
+            year = item.get('year', '?')
+
+            if src == 'TRANSACTION':
+                date = item.get('payment_date', '?')
+                payer = item.get('payer', '?')
+                receiver = item.get('receiver', '?')
+                line = f"- [PAYMENT {date}] {item['main_text']}"
+                line += f"\n  Paid by: {payer} → To: {receiver}"
+                if item.get('amount'):
+                    line += f" | Amount: ₦{item['amount']:,.2f}"
+            elif src == 'FINDING':
+                flag = item.get('flag_type', '')
+                flag_label = f" [{flag}]" if flag and flag != 'VAGUE_DESCRIPTION' else ""
+                line = f"- [AUDIT FINDING{flag_label}] {jurisdiction} ({year}): {item['main_text']}"
+                if item.get('sub_text'):
+                    line += f"\n  MDA: {item['sub_text']}"
+                if item.get('amount'):
+                    line += f" | Amount: ₦{item['amount']:,.2f}"
+                if item.get('risk_score', 0) > 0:
+                    line += f" | Risk: {item['risk_score']}/100"
+            else:
+                line = f"- [BUDGET] {jurisdiction} ({year}): {item['main_text']}"
+                if item.get('sub_text'):
+                    line += f" | MDA: {item['sub_text']}"
+                if item.get('amount'):
+                    line += f" | Amount: ₦{item['amount']:,.2f}"
+
             context_lines.append(line)
-            
+
         return "\n".join(context_lines)
 
 # Singleton accessor
